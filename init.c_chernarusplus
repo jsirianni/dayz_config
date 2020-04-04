@@ -64,51 +64,27 @@ class CustomMission: MissionServer
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 
-			TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Blue","AthleticShoes_Brown","AthleticShoes_Green","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Blue","HikingBootsLow_Grey","HikingBoots_Black","HikingBoots_Brown","HikingJacket_Black"};
-			TStringArray tool = {"OrienteeringCompass","StoneKnife","PurificationTablets","RoadFlare"};
-			TStringArray medic = {"Rags","BandageDressing"};
-			TStringArray drink = {"SodaCan_Cola","SodaCan_Kvass","SodaCan_Pipsi","SodaCan_Spite"};
-			TStringArray food = {"SardinesCan","PowderedMilk","PeachesCan","Pear", "Rice"};
+		TStringArray top = {"PrisonUniformJacket"};
+		TStringArray pants = {"PrisonUniformPants"};
+		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
+		//TStringArray backpack = {"TortillaBag","HuntingBag","SmershBag","AssaultBag_Ttsko","AssaultBag_Black","AssaultBag_Green","CoyoteBag_Brown","CoyoteBag_Green","AliceBag_Green","AliceBag_Black","AliceBag_Camo"};
+		//TStringArray vest = {"PlateCarrierComplete","HighCapacityVest_Olive","HighCapacityVest_Black"};
+		TStringArray drink = {"SodaCan_Cola","SodaCan_Kvass","SodaCan_Pipsi","SodaCan_Spite"};
+		TStringArray food = {"Worm","SmallGuts","PowderedMilk","PeachesCan","Pear"};
+		TStringArray tool = {"OrienteeringCompass","PurificationTablets","Matchbox"};
 
-			player.RemoveAllItems();
+		player.RemoveAllItems();
 
-			EntityAI itemEnt;
-			EntityAI itemIn;
-			ItemBase itemBs;
+		player.GetInventory().CreateInInventory(top.GetRandomElement());
+		player.GetInventory().CreateInInventory(pants.GetRandomElement());
+		player.GetInventory().CreateInInventory(shoes.GetRandomElement());
+		player.GetInventory().CreateInInventory(drink.GetRandomElement());
+		player.GetInventory().CreateInInventory(food.GetRandomElement());
+		player.GetInventory().CreateInInventory(tool.GetRandomElement());
 
-			EntityAI item = player.GetInventory().CreateInInventory("PrisonCap");
-			itemBs = ItemBase.Cast(itemEnt);
-
-			EntityAI item = player.GetInventory().CreateInInventory("PrisonUniformJacket");
-			itemBs = ItemBase.Cast(itemEnt);
-
-			EntityAI item2 = player.GetInventory().CreateInInventory("PrisonUniformPants");
-			itemBs = ItemBase.Cast(itemEnt);
-
-			EntityAI item3 = player.GetInventory().CreateInInventory(shoes.GetRandomElement());
-			itemBs = ItemBase.Cast(itemEnt);
-
-			itemEnt = player.GetInventory().CreateInInventory(tool.GetRandomElement());
-			itemBs = ItemBase.Cast(itemEnt);
-
-			itemEnt = player.GetInventory().CreateInInventory(medic.GetRandomElement());
-			itemBs = ItemBase.Cast(itemEnt);
-
-			itemEnt = player.GetInventory().CreateInInventory(drink.GetRandomElement());
-			itemBs = ItemBase.Cast(itemEnt);
-
-			itemEnt = player.GetInventory().CreateInInventory(food.GetRandomElement());
-			itemBs = ItemBase.Cast(itemEnt);
-
-			// handgun and mag
-			itemEnt = player.GetInventory().CreateInInventory("Colt1911");
-			itemBs = ItemBase.Cast(itemEnt);
-			itemEnt = player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-			itemBs = ItemBase.Cast(itemEnt);
-
-			// knife
-			itemEnt = player.GetInventory().CreateInInventory("KitchenKnife");
-			itemBs = ItemBase.Cast(itemEnt);
+		player.GetInventory().CreateInInventory("KitchenKnife");
+		player.GetInventory().CreateInInventory("Colt1911");
+		player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
 	}
 };
 
