@@ -1,0 +1,118 @@
+void main()
+{
+	//INIT WEATHER BEFORE ECONOMY INIT------------------------
+	Weather weather = g_Game.GetWeather();
+
+	weather.MissionWeather(false);    // false = use weather controller from Weather.c
+
+	weather.GetOvercast().Set( Math.RandomFloatInclusive(0.4, 0.6), 1, 0);
+	weather.GetRain().Set( 0, 0, 1);
+	weather.GetFog().Set( Math.RandomFloatInclusive(0.05, 0.1), 1, 0);
+
+	//INIT ECONOMY--------------------------------------
+	Hive ce = CreateHive();
+	if ( ce )
+		ce.InitOffline();
+
+	//DATE RESET AFTER ECONOMY INIT-------------------------
+	int year, month, day, hour, minute;
+	int reset_month = 9, reset_day = 20;
+	GetGame().GetWorld().GetDate(year, month, day, hour, minute);
+
+	if ((month == reset_month) && (day < reset_day))
+	{
+		GetGame().GetWorld().SetDate(year, reset_month, reset_day, hour, minute);
+	}
+	else
+	{
+		if ((month == reset_month + 1) && (day > reset_day))
+		{
+			GetGame().GetWorld().SetDate(year, reset_month, reset_day, hour, minute);
+		}
+		else
+		{
+			if ((month < reset_month) || (month > reset_month + 1))
+			{
+				GetGame().GetWorld().SetDate(year, reset_month, reset_day, hour, minute);
+			}
+		}
+	}
+}
+
+class CustomMission: MissionServer
+{
+	void SetRandomHealth(EntityAI itemEnt)
+	{
+		if ( itemEnt )
+		{
+			int rndHlt = Math.RandomInt(55,100);
+			itemEnt.SetHealth("","",rndHlt);
+		}
+	}
+
+	override PlayerBase CreateCharacter(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterName)
+	{
+		Entity playerEnt;
+		playerEnt = GetGame().CreatePlayer(identity, characterName, pos, 0, "NONE");//Creates random player
+		Class.CastTo(m_player, playerEnt);
+
+		GetGame().SelectPlayer(identity, m_player);
+
+		return m_player;
+	}
+
+	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
+	{
+
+			TStringArray tops = {"Shirt_BlueCheck","Shirt_RedCheck","Shirt_GreenCheck","Shirt_WhiteCheck","Shirt_PlaneBlack","HikingJacket_Blue","HikingJacket_Green","HikingJacket_Red","Sweater_Blue","Sweater_Gray","Sweater_Green","Sweater_Red","TShirt_Beige","TShirt_Black","TShirt_Blue","TShirt_Green","TShirt_Grey","TShirt_OrangeWhiteStripes","TShirt_Red","TShirt_RedBlackStripes","TShirt_White"};
+			TStringArray pants = {"Jeans_Black","Jeans_BlueDark","Jeans_Blue","Jeans_Brown","Jeans_Green","Jeans_Grey"};
+			TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Blue","AthleticShoes_Brown","AthleticShoes_Green","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Blue","HikingBootsLow_Grey","HikingBoots_Black","HikingBoots_Brown","HikingJacket_Black"};
+			TStringArray tool = {"OrienteeringCompass","StoneKnife","PurificationTablets","RoadFlare"};
+			TStringArray medic = {"Rags","BandageDressing"};
+			TStringArray drink = {"SodaCan_Cola","SodaCan_Kvass","SodaCan_Pipsi","SodaCan_Spite"};
+			TStringArray food = {"Worm","SmallGuts","PowderedMilk","PeachesCan","Pear"};
+
+			// random handgun, chance of not getting a handgun at all
+			TStringArray sidearm = {"IJ-70", "Mlock-91", "Kolt 1911", ""}
+
+			player.RemoveAllItems();
+
+			EntityAI itemEnt;
+			EntityAI itemIn;
+			ItemBase itemBs;
+
+			EntityAI item = player.GetInventory().CreateInInventory(tops.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+
+			EntityAI item2 = player.GetInventory().CreateInInventory(pants.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+
+			EntityAI item3 = player.GetInventory().CreateInInventory(shoes.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+
+			itemEnt = player.GetInventory().CreateInInventory(tool.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+			SetRandomHealth(itemEnt);
+
+			itemEnt = player.GetInventory().CreateInInventory(medic.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+			SetRandomHealth(itemEnt);
+
+			itemEnt = player.GetInventory().CreateInInventory(drink.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+			SetRandomHealth(itemEnt);
+
+			itemEnt = player.GetInventory().CreateInInventory(food.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+			SetRandomHealth(itemEnt);
+
+			itemEnt = player.GetInventory().CreateInInventory(sidearm.GetRandomElement());
+			itemBs = ItemBase.Cast(itemEnt);
+			SetRandomHealth(itemEnt);
+	}
+};
+
+Mission CreateCustomMission(string path)
+{
+	return new CustomMission();
+}
