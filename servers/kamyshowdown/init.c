@@ -93,6 +93,9 @@ class CustomMission: MissionServer
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
 		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny","StunBaton","CattleProd",  "BaseballBat", "NailedBaseballBat"};
+		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
+
+
 
 		player.RemoveAllItems();
 
@@ -207,13 +210,11 @@ class CustomMission: MissionServer
 			break;
 		  case "Mp133Shotgun":
 			player.GetInventory().CreateInInventory("Mp133Shotgun");
-			TStringArray ammo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
-			player.GetInventory().CreateInInventory(ammo.GetRandomElement());
+			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 			break;
 		  case "Izh43Shotgun":
 			player.GetInventory().CreateInInventory("Izh43Shotgun");
-			TStringArray ammo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
-			player.GetInventory().CreateInInventory(ammo.GetRandomElement());
+			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 			break;
 		  case "Saiga":
 			player.GetInventory().CreateInInventory("Saiga");
