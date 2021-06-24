@@ -186,11 +186,13 @@ class CustomMission: MissionServer
 			break;
 		  case "Mp133Shotgun":
 			player.GetInventory().CreateInInventory("Mp133Shotgun");
-			player.GetInventory().CreateInInventory("Ammo_12gaSlug");
+			TStringArray ammo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
+			player.GetInventory().CreateInInventory(ammo.GetRandomElement());
 			break;
 		  case "Izh43Shotgun":
 			player.GetInventory().CreateInInventory("Izh43Shotgun");
-			player.GetInventory().CreateInInventory("Ammo_12gaSlug");
+			TStringArray ammo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
+			player.GetInventory().CreateInInventory(ammo.GetRandomElement());
 			break;
 		  case "Saiga":
 			player.GetInventory().CreateInInventory("Saiga");
