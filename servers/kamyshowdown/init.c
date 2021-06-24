@@ -77,6 +77,7 @@ class CustomMission: MissionServer
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		TStringArray top = {"PrisonUniformJacket"};
+		TStringArray vest = {"PlateCarrierVest"}
 		TStringArray pants = {"PrisonUniformPants"};
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
 		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
@@ -87,6 +88,10 @@ class CustomMission: MissionServer
 		player.GetInventory().CreateInInventory(top.GetRandomElement());
 		player.GetInventory().CreateInInventory(pants.GetRandomElement());
 		player.GetInventory().CreateInInventory(shoes.GetRandomElement());
+
+		if (decide(50) == true) {
+			player.GetInventory().CreateInInventory(vest.GetRandomElement());
+		}
 
 		switch(gun.GetRandomElement()) {
 		  case "Flaregun":
