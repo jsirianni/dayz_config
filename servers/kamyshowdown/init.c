@@ -78,7 +78,7 @@ class CustomMission: MissionServer
 				arr[i] = 1;
 			}
 		}
-		pickMe = std::rand() % 100;
+		int pickMe = std::rand() % 100;
 		return arr[pickMe];
 	}
 
