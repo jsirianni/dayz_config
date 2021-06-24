@@ -61,6 +61,9 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
+	// 0 or less is always false
+	// 100 or more is always true
+	// the higher the value inbetween, the more likely false is returned
 	int decide(int percentChance) 
 	{
 		if (percentChance >= 100) {
@@ -97,7 +100,8 @@ class CustomMission: MissionServer
 		player.GetInventory().CreateInInventory(pants.GetRandomElement());
 		player.GetInventory().CreateInInventory(shoes.GetRandomElement());
 
-		if (decide(50) == true) {
+		// a vest should be rare
+		if (decide(90) == true) {
 			player.GetInventory().CreateInInventory(vest.GetRandomElement());
 		}
 
@@ -109,25 +113,29 @@ class CustomMission: MissionServer
 		  case "MakarovIJ70":
 		  	player.GetInventory().CreateInInventory("MakarovIJ70");
 			player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
-            /**
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "FNX45":
 			player.GetInventory().CreateInInventory("FNX45");
 			player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-            /**
-            PistolOptic
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolOptic");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "Glock19":
 			player.GetInventory().CreateInInventory("Glock19");
 			player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
-            /**
-            PistolOptic
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolOptic");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "MKII":
 			player.GetInventory().CreateInInventory("MKII");
@@ -136,16 +144,16 @@ class CustomMission: MissionServer
 		  case "Colt1911":
 			player.GetInventory().CreateInInventory("Colt1911");
 			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-            /**
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "Engraved1911":
 			player.GetInventory().CreateInInventory("Engraved1911");
 			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-            /**
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "Izh18":
 			player.GetInventory().CreateInInventory("Izh18");
@@ -198,16 +206,17 @@ class CustomMission: MissionServer
 		  case "CZ61":
 			player.GetInventory().CreateInInventory("CZ61");
 			player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
-            /**
-            PistolSuppressor
-            **/ 
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
 			break;
 		  case "UMP45":
 			player.GetInventory().CreateInInventory("UMP45");
 			player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
             /**
-            PistolSuppressor
-
             ACOGOptic
 
             M4_T3NRDSOptic
@@ -216,9 +225,10 @@ class CustomMission: MissionServer
 		  case "MP5K":
 			player.GetInventory().CreateInInventory("MP5K");
 			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("PistolSuppressor");
+			}
             /**
-            PistolSuppressor
-
             ACOGOptic
 
             M4_T3NRDSOptic
