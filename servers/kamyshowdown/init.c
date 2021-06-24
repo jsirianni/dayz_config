@@ -78,7 +78,7 @@ class CustomMission: MissionServer
 				arr[i] = 1;
 			}
 		}
-		int pickMe = Math.Random(0, 100);
+		int pickMe = Math.RandomInt(0, 100);
 		return arr[pickMe];
 	}
 
