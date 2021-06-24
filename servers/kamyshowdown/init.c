@@ -218,10 +218,10 @@ class CustomMission: MissionServer
 			break;
 		  case "Saiga":
 			player.GetInventory().CreateInInventory("Saiga");
-			TStringArray mag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
-			player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
+			player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(mag.GetRandomElement());
+				player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PSO11Optic");
@@ -285,10 +285,10 @@ class CustomMission: MissionServer
 			break;
 		  case "AKM":
 			player.GetInventory().CreateInInventory("AKM");
-			TStringArray mag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
-			player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
+			player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(mag.GetRandomElement());
+				player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				TStringArray optic = {"PSO11Optic","KobraOptic"}
@@ -327,10 +327,10 @@ class CustomMission: MissionServer
 			break;
 		  case "M4A1":
 			player.GetInventory().CreateInInventory("M4A1");
-			TStringArray mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
-			player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
+			player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(mag.GetRandomElement());
+				player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
