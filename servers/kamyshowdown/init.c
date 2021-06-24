@@ -233,8 +233,7 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("AKS74U");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			if (decide(70) == true) {
-				TStringArray optic = {"PSO11Optic","KobraOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory("AK_Suppressor");
 			}
 			break;
 		  case "FAL":
@@ -253,12 +252,18 @@ class CustomMission: MissionServer
 				TStringArray optic = {"PSO11Optic","KobraOptic"}
 				player.GetInventory().CreateInInventory(optic.GetRandomElement());
 			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK_Suppressor");
+			}
 			break;
 		  case "AK101":
 			player.GetInventory().CreateInInventory("AK101");
 			player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PSO11Optic");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK_Suppressor");
 			}
 			break;
 		  case "AK74":
@@ -267,6 +272,9 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				TStringArray optic = {"PSO11Optic","KobraOptic"}
 				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK_Suppressor");
 			}
 			break;
 		  case "M4A1":
@@ -297,6 +305,9 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PSO11Optic");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK_Suppressor");
 			}
 			break;
 		  default:
