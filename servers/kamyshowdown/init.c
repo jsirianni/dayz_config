@@ -194,15 +194,11 @@ class CustomMission: MissionServer
 			break;
 		  case "Saiga":
 			player.GetInventory().CreateInInventory("Saiga");
-			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
+			TStringArray mag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
+			player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PSO11Optic");
 			}
-			/**
-			"Mag_Saiga_5Rnd",         
-			"Mag_Saiga_8Rnd",           
-			"Mag_Saiga_Drum20Rnd",  
-			**/
 			break;
 		  case "CZ61":
 			player.GetInventory().CreateInInventory("CZ61");
