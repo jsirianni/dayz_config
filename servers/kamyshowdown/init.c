@@ -259,17 +259,12 @@ class CustomMission: MissionServer
 			break;
 		  case "AKM":
 			player.GetInventory().CreateInInventory("AKM");
-			player.GetInventory().CreateInInventory("Mag_AKM_Drum75Rnd");
+			TStringArray mag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
+			player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("KobraOptic");
+				TStringArray optic = {"PSO11Optic","KobraOptic"}
+				player.GetInventory().CreateInInventory(optic.GetRandomElement());
 			}
-			/**
-			"Mag_AKM_30Rnd",          
-			"Mag_AKM_Palm30Rnd",       
-			"Mag_AKM_Drum75Rnd",
-
-            PSO11Optic
-			**/
 			break;
 		  case "AK101":
 			player.GetInventory().CreateInInventory("AK101");
