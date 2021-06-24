@@ -290,20 +290,15 @@ class CustomMission: MissionServer
 			break;
 		  case "M4A1":
 			player.GetInventory().CreateInInventory("M4A1");
-			player.GetInventory().CreateInInventory("Mag_STANAGCoupled_30Rnd");
+			TStringArray mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
+			player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("ACOGOptic");
+				player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			}
-			/**
-			"Mag_STANAG_30Rnd",       
-			"Mag_STANAGCoupled_30Rnd",
-			"Mag_CMAG_10Rnd",           
-			"Mag_CMAG_20Rnd",           
-			"Mag_CMAG_30Rnd",          
-			"Mag_CMAG_40Rnd", 
-
-            M4_T3NRDSOptic
-			**/
+			if (decide(70) == true) {
+				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
+				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+			}
 			break;
 		  case "VSS":
 			player.GetInventory().CreateInInventory("VSS");
