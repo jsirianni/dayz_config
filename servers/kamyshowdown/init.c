@@ -199,6 +199,9 @@ class CustomMission: MissionServer
 			TStringArray mag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
 			player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			}
+			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PSO11Optic");
 			}
 			break;
@@ -250,6 +253,9 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("AKM");
 			TStringArray mag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
 			player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(mag.GetRandomElement());
+			}
 			if (decide(70) == true) {
 				TStringArray optic = {"PSO11Optic","KobraOptic"}
 				player.GetInventory().CreateInInventory(optic.GetRandomElement());
