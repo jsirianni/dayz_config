@@ -64,10 +64,10 @@ class CustomMission: MissionServer
 	int decide(int percentChance) 
 	{
 		if (percentChance >= 100) {
-			return true;
+			return 1;
 		}
 		if (percentChance <= 0) {
-			return false;
+			return 0;
 		}
 		int arr[100] = {};
 		for (int i = 1; i < 100; i++) {
