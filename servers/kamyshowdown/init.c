@@ -94,7 +94,7 @@ class CustomMission: MissionServer
 		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny","StunBaton","CattleProd",  "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
-
+		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
 
 
 		player.RemoveAllItems();
@@ -244,8 +244,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("PistolSuppressor");
 			}
 			if (decide(70) == true) {
-				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
@@ -258,8 +257,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("PistolSuppressor");
 			}
 			if (decide(70) == true) {
-				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
@@ -279,8 +277,7 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("FAL");
 			player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
 			if (decide(70) == true) {
-				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
@@ -336,8 +333,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory(mag.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("M4_Suppressor");
