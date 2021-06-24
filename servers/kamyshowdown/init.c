@@ -61,17 +61,18 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
-	int decide(int percentChance) 
+	// Function to decide true or false based on percent chance to be false
+	int decide(int percentChanceFalse) 
 	{
-		if (percentChance >= 100) {
-			return 1;
-		}
-		if (percentChance <= 0) {
+		if (percentChanceFalse >= 100) {
 			return 0;
+		}
+		if (percentChanceFalse <= 0) {
+			return 1;
 		}
 		int arr[100] = {};
 		for (int i = 1; i < 100; i++) {
-			if (i < percentChance) { 
+			if (i < percentChanceFalse) { 
 				arr[i] = 0;
 			}
 			else {
