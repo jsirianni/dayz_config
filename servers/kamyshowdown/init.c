@@ -282,11 +282,9 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("AK74");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PSO11Optic");
+				TStringArray optic = {"PSO11Optic","KobraOptic"}
+				player.GetInventory().CreateInInventory(optic.GetRandomElement());
 			}
-            /**
-            KobraOptic
-            **/
 			break;
 		  case "M4A1":
 			player.GetInventory().CreateInInventory("M4A1");
