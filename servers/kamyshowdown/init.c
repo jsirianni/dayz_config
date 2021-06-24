@@ -1,5 +1,3 @@
-#include <cstdlib>
-
 void main()
 {
 	//INIT WEATHER BEFORE ECONOMY INIT------------------------
@@ -80,7 +78,7 @@ class CustomMission: MissionServer
 				arr[i] = 1;
 			}
 		}
-		int pickMe = std::rand() % 100;
+		int pickMe = Math.Random(0, 100);
 		return arr[pickMe];
 	}
 
