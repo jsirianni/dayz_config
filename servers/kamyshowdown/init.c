@@ -61,6 +61,17 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
+	bool decide(int percentChance) {
+		if (percentChance > 100) return true;
+		if (percentChance < 0) return false;
+		int arr[100] = {}
+		for (int i = 1; i < 100; i++) {
+			if (i < percentChance) arr[i] = 0;
+			else arr[i] = 1;
+		}
+		return arr[rand() % 100];
+	}
+
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		TStringArray top = {"PrisonUniformJacket"};
