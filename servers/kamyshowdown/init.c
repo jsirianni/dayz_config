@@ -61,15 +61,25 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
-	int decide(int percentChance) {
-		if (percentChance >= 100) return true;
-		if (percentChance <= 0) return false;
+	int decide(int percentChance) 
+	{
+		if (percentChance >= 100) {
+			return true;
+		}
+		if (percentChance <= 0) {
+			return false;
+		}
 		int arr[100] = {};
 		for (int i = 1; i < 100; i++) {
-			if (i < percentChance) arr[i] = 0;
-			else arr[i] = 1;
+			if (i < percentChance) { 
+				arr[i] = 0;
+			}
+			else {
+				arr[i] = 1;
+			}
 		}
-		return arr[std::rand() % 100];
+		pickMe = std::rand() % 100;
+		return arr[pickMe];
 	}
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
