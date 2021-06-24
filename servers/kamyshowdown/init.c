@@ -1,3 +1,5 @@
+#include <stdlib.h>;
+
 void main()
 {
 	//INIT WEATHER BEFORE ECONOMY INIT------------------------
