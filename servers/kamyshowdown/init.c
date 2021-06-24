@@ -95,6 +95,7 @@ class CustomMission: MissionServer
 		TStringArray mellee = {"BrassKnuckles_Shiny","StunBaton","CattleProd",  "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
+		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
 
 
 		player.RemoveAllItems();
@@ -291,8 +292,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				TStringArray optic = {"PSO11Optic","KobraOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(sovietOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("AK_Suppressor");
@@ -315,8 +315,7 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("AK74");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			if (decide(70) == true) {
-				TStringArray optic = {"PSO11Optic","KobraOptic"}
-				player.GetInventory().CreateInInventory(optic.GetRandomElement());
+				player.GetInventory().CreateInInventory(sovietOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("AK_Suppressor");
