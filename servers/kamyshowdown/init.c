@@ -288,6 +288,9 @@ class CustomMission: MissionServer
 				TStringArray optic = {"ACOGOptic","M4_T3NRDSOptic"}
 				player.GetInventory().CreateInInventory(optic.GetRandomElement());
 			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("M4_Suppressor");
+			}
 			break;
 		  case "VSS":
 			player.GetInventory().CreateInInventory("VSS");
