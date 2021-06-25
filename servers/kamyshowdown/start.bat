@@ -1,7 +1,7 @@
 @echo off
 :start
 
-set serverName=Kamyshowdown | Vanilla | DogShitGames.com
+set serverName="Kamyshowdown | Vanilla | DogShitGames.com"
 set serverLocation="C:\dayz"
 set serverPort=2302
 set serverConfig=serverDZ.cfg
