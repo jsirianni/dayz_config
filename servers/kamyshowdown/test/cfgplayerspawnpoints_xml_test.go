@@ -35,7 +35,7 @@ type Playerspawnpoints struct {
 		} `xml:"generator_params"`
 		GeneratorPosbubbles struct {
 			Text string `xml:",chardata"`
-			Pos  struct {
+			Pos  []struct {
 				Text string `xml:",chardata"`
 				X    string `xml:"x,attr"`
 				Z    string `xml:"z,attr"`
@@ -46,7 +46,7 @@ type Playerspawnpoints struct {
 		Text                string `xml:",chardata"`
 		GeneratorPosbubbles struct {
 			Text string `xml:",chardata"`
-			Pos  struct {
+			Pos  []struct {
 				Text string `xml:",chardata"`
 				X    string `xml:"x,attr"`
 				Z    string `xml:"z,attr"`
@@ -57,7 +57,7 @@ type Playerspawnpoints struct {
 		Text                string `xml:",chardata"`
 		GeneratorPosbubbles struct {
 			Text string `xml:",chardata"`
-			Pos  struct {
+			Pos  []struct {
 				Text string `xml:",chardata"`
 				X    string `xml:"x,attr"`
 				Z    string `xml:"z,attr"`
