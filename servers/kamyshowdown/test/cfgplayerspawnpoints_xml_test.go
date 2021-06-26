@@ -83,12 +83,36 @@ func TestCFGPlayerSpawnPointsXML(t *testing.T) {
 	err = xml.Unmarshal(b, &g)
 	require.NoError(t, err)
 
-	// Make sure values are greater than 0
+	// Make sure values are greater than 0 and convert to float64
 	for k, v := range structs.Map(g.Fresh.SpawnParams) {
+		if k == "Text" {
+			// Skip the text field
+			continue
+		}
+
 		require.NotEmpty(t, v, fmt.Sprintf("expected key %s's value to not be empty", k))
+		value, ok := v.(string)
+		if !ok {
+			require.Equal(t, false, ok, fmt.Sprintf("expected value for %s to be a string", k))
+			continue
+		}
+		_, err := strconv.ParseFloat(value, 32)
+		require.NoError(t, err, fmt.Sprintf("expected fresh spawn param %s to convert to float64", k))
 	}
 	for k, v := range structs.Map(g.Fresh.GeneratorParams) {
+		if k == "Text" {
+			// Skip the text field
+			continue
+		}
+
 		require.NotEmpty(t, v, fmt.Sprintf("expected key %s's value to not be empty", k))
+		value, ok := v.(string)
+		if !ok {
+			require.Equal(t, false, ok, fmt.Sprintf("expected value for %s to be a string", k))
+			continue
+		}
+		_, err := strconv.ParseFloat(value, 32)
+		require.NoError(t, err, fmt.Sprintf("expected fresh generator param %s to convert to float64", k))
 	}
 
 	numFreshSpawn := len(g.Fresh.GeneratorPosbubbles.Pos)
