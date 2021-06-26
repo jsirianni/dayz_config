@@ -1,4 +1,4 @@
-package kamyshowdown
+package islandus1
 
 import (
 	"encoding/xml"
@@ -120,26 +120,4 @@ func TestCFGPlayerSpawnPointsXML(t *testing.T) {
 	numTravelSpawn := len(g.Travel.GeneratorPosbubbles.Pos)
 	require.Equal(t, numFreshSpawn, numHopSpawn, "expected number of hop spawns to be equal to number of fresh spawns")
 	require.Equal(t, numFreshSpawn, numTravelSpawn, "expected number of travel spawns to be equal to number of fresh spawns")
-
-	require.Equal(t, g.Fresh.GeneratorPosbubbles.Pos, g.Hop.GeneratorPosbubbles.Pos, "expected hop spawns to be equal to fresh spawns")
-	require.Equal(t, g.Fresh.GeneratorPosbubbles.Pos, g.Travel.GeneratorPosbubbles.Pos, "expected travel spawns to be equal to fresh spawns")
-
-	// Make sure spawn points are not too far away from Kamy
-	for _, spawn := range g.Fresh.GeneratorPosbubbles.Pos {
-		x, err := strconv.ParseFloat(spawn.X, 32)
-		require.NoError(t, err, "expected X axis spawn coordinate to parse as a float64")
-
-		z, err := strconv.ParseFloat(spawn.Z, 32)
-		require.NoError(t, err, "expected Y spawn coordinate to parse as a float64")
-
-		var maxX float64 = 11990
-		var minX float64 = 11840
-		require.Less(t, x, maxX, fmt.Sprintf("expected X axis value to be less than %v", maxX))
-		require.Greater(t, x, minX, fmt.Sprintf("expected X axis value to be greater than %v", minX))
-
-		var maxZ float64 = 3530
-		var minZ float64 = 3440
-		require.Less(t, z, maxZ, fmt.Sprintf("expected Z axis value to be less than %v", maxZ))
-		require.Greater(t, z, minZ, fmt.Sprintf("expected Z axis value to be greater than %v", minZ))
-	}
 }
