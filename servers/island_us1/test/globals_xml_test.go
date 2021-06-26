@@ -1,4 +1,4 @@
-package kamyshowdown
+package islandus1
 
 import (
 	"encoding/xml"
@@ -51,17 +51,17 @@ func TestGlobalsXML(t *testing.T) {
 
 		switch name := line.Name; name {
 		case "AnimalMaxCount":
-			require.Equal(t, "0", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "200", line.Value, fmt.Sprintf("expected %s to be 200", name))
 		case "CleanupLifetimeDeadPlayer":
-			require.Equal(t, "20", line.Value, fmt.Sprintf("expected %s to be 20", name))
+			require.Equal(t, "3600", line.Value, fmt.Sprintf("expected %s to be 3600", name))
 		case "CleanupLifetimeRuined":
-			require.Equal(t, "60", line.Value, fmt.Sprintf("expected %s to be 60", name))
+			require.Equal(t, "330", line.Value, fmt.Sprintf("expected %s to be 330", name))
 		case "TimeLogin":
-			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 3", name))
+			require.Equal(t, "15", line.Value, fmt.Sprintf("expected %s to be 15", name))
 		case "TimeLogout":
-			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 3", name))
+			require.Equal(t, "15", line.Value, fmt.Sprintf("expected %s to be 15", name))
 		case "ZombieMaxCount":
-			require.Equal(t, "0", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "1000", line.Value, fmt.Sprintf("expected %s to be 1000", name))
 		}
 	}
 }
