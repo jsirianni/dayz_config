@@ -3,7 +3,6 @@ package kamyshowdown
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"regexp"
 	"strings"
@@ -41,6 +40,8 @@ disableCrosshair = 1;         // Toggles the cross-hair (value 0-1)
 **/
 func TestServerCFG(t *testing.T) {
 	r := regexp.MustCompile(`^(?P<param>[\w\-]+) = (?P<value>.*)(?P<semi>;) (?P<comment>.*)`)
+
+	foundHostname := false // will be true if hostname is validated at bottom
 
 	xmlFile, err := os.Open("../serverDZ.cfg")
 	if err != nil {
@@ -86,9 +87,16 @@ func TestServerCFG(t *testing.T) {
 			s := strings.TrimSpace(param.comment)
 			require.True(t, strings.HasPrefix(s, "//"), fmt.Sprintf("comments should be prefixed with //, got '%s'.\nRaw string: '%s'", s, in))
 		}
+
+		if param.key == "hostname" {
+			require.Equal(t, `"Kamyshowdown | Vanilla | DogShitGames.com"`, param.value, "server name is not as expected")
+			foundHostname = true
+		}
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		require.NoError(t, err, "error scanning file")
 	}
+
+	require.True(t, foundHostname, "expected 'hostname' param to be in config file")
 }
