@@ -64,8 +64,8 @@ class CustomMission: MissionServer
 
 	void givePlayerRandomGun(PlayerBase player, string randomGun) 
 	{
-		map<TStringArray,TStringArray> gunMagazineMap;
-		gunMagazineMap.Insert({"Flaregun"}, {"Ammo_Flare"});
+		// map<TStringArray,TStringArray> gunMagazineMap;
+		// gunMagazineMap.Insert({"Flaregun"}, {"Ammo_Flare"});
 		// gunMagazineMap.Insert({"MakarovIJ70"}, {"Mag_IJ70_8Rnd"});
 		// gunMagazineMap.Insert({"FNX45"}, {"Mag_FNX45_15Rnd"});
 		// gunMagazineMap.Insert({"MKII"}, {"Mag_MKII_10Rnd"});
