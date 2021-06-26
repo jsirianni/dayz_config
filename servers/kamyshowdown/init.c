@@ -61,6 +61,41 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
+
+	void givePlayerRandomGun(PlayerBase player, string randomGun) 
+	{
+		map<TStringArray,TStringArray> gunMagazineMap;
+		gunMagazineMap.Insert({"Flaregun"}, {"Ammo_Flare"});
+		// gunMagazineMap.Insert({"MakarovIJ70"}, {"Mag_IJ70_8Rnd"});
+		// gunMagazineMap.Insert({"FNX45"}, {"Mag_FNX45_15Rnd"});
+		// gunMagazineMap.Insert({"MKII"}, {"Mag_MKII_10Rnd"});
+		// gunMagazineMap.Insert({"Colt1911", "Engraved1911"}, {"Mag_1911_7Rnd"});
+		// gunMagazineMap.Insert({"Izh18", "CZ527", "SKS"}, {"Ammo_762x39"});
+		// gunMagazineMap.Insert({"Mosin9130"}, {"Ammo_762x54"});
+		// gunMagazineMap.Insert({"Winchester70", "B95"}, {"Ammo_308Win"});
+		// gunMagazineMap.Insert({"Mp133Shotgun", "Izh43Shotgun"}, {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"});
+		// gunMagazineMap.Insert({"Saiga"}, {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"});
+		// gunMagazineMap.Insert({"CZ61"}, {"Mag_CZ61_20Rnd"});
+		// gunMagazineMap.Insert({"UMP45"}, {"Mag_UMP_25Rnd"});
+		// gunMagazineMap.Insert({"MP5K"}, {"Mag_MP5_30Rnd"});
+		// gunMagazineMap.Insert({"AKS74U", "AK74"}, {"Mag_AK74_30Rnd"});
+		// gunMagazineMap.Insert({"FAL"}, {"Mag_FAL_20Rnd"});
+		// gunMagazineMap.Insert({"AKM"}, {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"});
+		// gunMagazineMap.Insert({"AK101"}, {"Mag_AK101_30Rnd"});
+		// gunMagazineMap.Insert({"M4A1"}, {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"});
+		// gunMagazineMap.Insert({"VSS"}, {"Mag_VSS_10Rnd"});
+		// gunMagazineMap.Insert({"SVD"}, {"Mag_SVD_10Rnd"});
+
+		//Iterate thru map
+		for(auto const &gun : gunMagazineMap) {
+			if (gun.first.Find(randomGun)) {
+				player.GetInventory().CreateInHands(randomGun)
+			} else {
+				return;
+			}
+		}
+	}
+
 	// Function to decide true or false based on percent chance to be false
 	int decide(int percentChanceFalse) 
 	{
