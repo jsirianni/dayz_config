@@ -53,13 +53,13 @@ func TestGlobalsXML(t *testing.T) {
 		case "AnimalMaxCount":
 			require.Equal(t, "0", line.Value, fmt.Sprintf("expected %s to be 0", name))
 		case "CleanupLifetimeDeadPlayer":
-			require.Equal(t, "20", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "20", line.Value, fmt.Sprintf("expected %s to be 20", name))
 		case "CleanupLifetimeRuined":
-			require.Equal(t, "60", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "60", line.Value, fmt.Sprintf("expected %s to be 60", name))
 		case "TimeLogin":
-			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 3", name))
 		case "TimeLogout":
-			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "3", line.Value, fmt.Sprintf("expected %s to be 3", name))
 		case "ZombieMaxCount":
 			require.Equal(t, "0", line.Value, fmt.Sprintf("expected %s to be 0", name))
 		}
