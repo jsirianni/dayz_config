@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -40,6 +41,13 @@ func TestGlobalsXML(t *testing.T) {
 			require.NotEmpty(t, line.Name, "expected name to not be empty")
 			return
 		}
+
+		// All values should convert to int without error
+		_, err := strconv.Atoi(line.Value)
+		require.NoError(t, err, fmt.Sprintf("expected %s to convert to int without error", line.Name))
+
+		// Right now all "types" are "0" so enforce that for now
+		require.Equal(t, "0", line.Type, "expected variable type to be string 0")
 
 		switch name := line.Name; name {
 		case "AnimalMaxCount":
