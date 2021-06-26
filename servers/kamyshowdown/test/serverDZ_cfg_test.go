@@ -40,6 +40,8 @@ disableCrosshair = 1;         // Toggles the cross-hair (value 0-1)
 
 **/
 func TestServerCFG(t *testing.T) {
+	r := regexp.MustCompile(`^(?P<param>[\w\-]+) = (?P<value>.*)(?P<semi>;) (?P<comment>.*)`)
+
 	xmlFile, err := os.Open("../serverDZ.cfg")
 	if err != nil {
 		require.NoError(t, err)
@@ -59,8 +61,6 @@ func TestServerCFG(t *testing.T) {
 		if strings.Contains(in, "class Missions") {
 			break
 		}
-
-		r := regexp.MustCompile(`^(?P<param>[\w\-]+) = (?P<value>.*)(?P<semi>;) (?P<comment>.*)`)
 
 		x := r.FindStringSubmatch(in)
 		l := len(x)
