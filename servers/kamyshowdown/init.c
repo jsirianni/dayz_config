@@ -94,6 +94,7 @@ class CustomMission: MissionServer
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
+		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"}
 
 
 		player.RemoveAllItems();
@@ -105,6 +106,10 @@ class CustomMission: MissionServer
 		// a vest should be rare
 		if (decide(90) == true) {
 			player.GetInventory().CreateInInventory(vest.GetRandomElement());
+		}
+
+		if (decide(70) == true) {
+			player.GetInventory().CreateInInventory(helmet.GetRandomElement());
 		}
 
 		switch(gun.GetRandomElement()) {
