@@ -87,7 +87,7 @@ class CustomMission: MissionServer
 	{
 		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
-		TStringArray vest = {"PlateCarrierVest"}
+		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"}
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
 		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny","StunBaton","CattleProd",  "BaseballBat", "NailedBaseballBat"};
@@ -95,7 +95,7 @@ class CustomMission: MissionServer
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
 		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"}
-
+		TStringArray medical = {"Bandage","Rag"}
 
 		player.RemoveAllItems();
 
@@ -104,12 +104,16 @@ class CustomMission: MissionServer
 		player.GetInventory().CreateInInventory(shoes.GetRandomElement());
 
 		// a vest should be rare
-		if (decide(90) == true) {
+		if (decide(80) == true) {
 			player.GetInventory().CreateInInventory(vest.GetRandomElement());
 		}
 
 		if (decide(70) == true) {
 			player.GetInventory().CreateInInventory(helmet.GetRandomElement());
+		}
+
+		if (decide(50) == true) {
+			player.GetInventory().CreateInInventory(medical.GetRandomElement());
 		}
 
 		switch(gun.GetRandomElement()) {
