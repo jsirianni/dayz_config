@@ -1,0 +1,1 @@
+[![Validate](https://github.com/jsirianni/dayz_config/actions/workflows/validate.yml/badge.svg?branch=master)](https://github.com/jsirianni/dayz_config/actions/workflows/validate.yml)
