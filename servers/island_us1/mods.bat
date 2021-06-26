@@ -4,10 +4,6 @@ set "serverpath=C:\dayz"
 set /p login=Steam Login: 
 echo.
 set /p pass=Steam Password:
-echo.
-set /p workshopid=Workshop id:
-echo.
-set /p modname=Mod folder name:
 
 echo.
 
