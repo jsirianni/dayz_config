@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <variables>
-    <var name="AnimalMaxCount" type="0" value="300"/>
+    <var name="AnimalMaxCount" type="0" value="0"/>
     <var name="CleanupAvoidance" type="0" value="50"/>
     <var name="CleanupLifetimeDeadAnimal" type="0" value="1200"/>
     <var name="CleanupLifetimeDeadInfected" type="0" value="330"/>
-    <var name="CleanupLifetimeDeadPlayer" type="0" value="300"/>
+    <var name="CleanupLifetimeDeadPlayer" type="0" value="20"/>
     <var name="CleanupLifetimeDefault" type="0" value="45"/>
     <var name="CleanupLifetimeLimit" type="0" value="100"/>
     <var name="CleanupLifetimeRuined" type="0" value="60"/>
