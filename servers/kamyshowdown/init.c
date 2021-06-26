@@ -96,6 +96,7 @@ class CustomMission: MissionServer
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
 		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"}
 		TStringArray medical = {"Bandage","Rag"}
+		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"}
 
 		player.RemoveAllItems();
 
@@ -114,6 +115,10 @@ class CustomMission: MissionServer
 
 		if (decide(50) == true) {
 			player.GetInventory().CreateInInventory(medical.GetRandomElement());
+		}
+
+		if (decide(70) == true) {
+			player.GetInventory().CreateInInventory(nades.GetRandomElement());
 		}
 
 		switch(gun.GetRandomElement()) {
