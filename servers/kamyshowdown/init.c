@@ -83,41 +83,6 @@ class CustomMission: MissionServer
 		return arr[pickMe];
 	}
 
-	void givePlayerRandomGun(PlayerBase player, string randomGun) 
-	{
-		map<TStringArray, TStringArray> gunMagazineMap;
-		gunMagazineMap[{"Flaregun"}] = {"Ammo_Flare"};
-		gunMagazineMap[{"MakarovIJ70"}] = {"Mag_IJ70_8Rnd"};
-		gunMagazineMap[{"FNX45"}] = {"Mag_FNX45_15Rnd"};
-		gunMagazineMap[{"Glock19"}] = {"Mag_Glock_15Rnd"};
-		gunMagazineMap[{"MKII"}] = {"Mag_MKII_10Rnd"};
-		gunMagazineMap[{"Colt1911", "Engraved1911"}] = {"Mag_1911_7Rnd"};
-		gunMagazineMap[{"Izh18", "CZ527", "SKS"}] = {"Ammo_762x39"};
-		gunMagazineMap[{"Mosin9130"}] = {"Ammo_762x54"};
-		gunMagazineMap[{"Winchester70", "B95"}] = {"Ammo_308Win"};
-		gunMagazineMap[{"Mp133Shotgun", "Izh43Shotgun"}] = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
-		gunMagazineMap[{"Saiga"}] = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
-		gunMagazineMap[{"CZ61"}] = {"Mag_CZ61_20Rnd"};
-		gunMagazineMap[{"UMP45"}] = {"Mag_UMP_25Rnd"};
-		gunMagazineMap[{"MP5K"}] = {"Mag_MP5_30Rnd"};
-		gunMagazineMap[{"AKS74U", "AK74"}] = {"Mag_AK74_30Rnd"};
-		gunMagazineMap[{"FAL"}] = {"Mag_FAL_20Rnd"};
-		gunMagazineMap[{"AKM"}] = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
-		gunMagazineMap[{"AK101"}] = {"Mag_AK101_30Rnd"};
-		gunMagazineMap[{"M4A1"}] = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"};
-		gunMagazineMap[{"VSS"}] = {"Mag_VSS_10Rnd"};
-		gunMagazineMap[{"SVD"}] = {"Mag_SVD_10Rnd"};
-
-		//Iterate thru map
-		for(auto const &gun : gunMagazineMap) {
-			if (gun.first.Find(randomGun)) {
-				player.GetInventory().CreateInHands(randomGun)
-			} else {
-				return;
-			}
-		}
-	}
-
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
@@ -158,6 +123,7 @@ class CustomMission: MissionServer
 		// function given string
 		// gives player a random gun
 		givePlayerRandomGun(player, gun.GetRandomElement());
+	};
 };
 
 Mission CreateCustomMission(string path)
