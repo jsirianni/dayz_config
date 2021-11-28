@@ -9,6 +9,7 @@ set serverCPU=4
 
 title %serverName% batch
 cd "%serverLocation%"
+c:\steamcmd\steamcmd.exe +login anonymous +force_install_dir %serverLocation% +app_update 223350  +quit
 start "DayZ Server" /min "DayZServer_x64.exe" -config=%serverConfig% -port=%serverPort% -cpuCount=%serverCPU% -dologs -adminlog -netlog -freezecheck
 echo (%time%) %serverName% started.
 
