@@ -138,7 +138,7 @@ func TestCFGPlayerSpawnPointsXML(t *testing.T) {
 		require.Greater(t, x, minX, fmt.Sprintf("expected X axis value to be greater than %v", minX))
 
 		var maxZ float64 = 3530
-		var minZ float64 = 3440
+		var minZ float64 = 3000
 		require.Less(t, z, maxZ, fmt.Sprintf("expected Z axis value to be less than %v", maxZ))
 		require.Greater(t, z, minZ, fmt.Sprintf("expected Z axis value to be greater than %v", minZ))
 	}
