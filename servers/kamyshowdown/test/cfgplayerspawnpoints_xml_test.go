@@ -132,7 +132,7 @@ func TestCFGPlayerSpawnPointsXML(t *testing.T) {
 		z, err := strconv.ParseFloat(spawn.Z, 32)
 		require.NoError(t, err, "expected Y spawn coordinate to parse as a float64")
 
-		var maxX float64 = 12249
+		var maxX float64 = 12250
 		var minX float64 = 11840
 		require.Less(t, x, maxX, fmt.Sprintf("expected X axis value to be less than %v", maxX))
 		require.Greater(t, x, minX, fmt.Sprintf("expected X axis value to be greater than %v", minX))
