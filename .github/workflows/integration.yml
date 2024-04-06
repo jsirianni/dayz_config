@@ -87,14 +87,14 @@ jobs:
     - name: Render serverDZ.cfg hostname
       run: |
         sudo sed -i \
-          "s/hostname=.*/hostname = "test";/g"
+          "s/hostname=.*/hostname = "test";/g" \
           /opt/dayz-server/serverDZ.cfg
         sudo cat /opt/dayz-server/serverDZ.cfg | grep 'hostname = "test";'
 
     - name: Deploy init.c
       run: |
         sudo cp \
-          servers/${{ matrix.server }}/init.c \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/init.c \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
 
