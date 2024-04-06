@@ -16,8 +16,19 @@ env:
   DAYZ_APP_ID: 223350
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '1.16'
+    - run: make test
+
   integration:
     runs-on: ubuntu-22.04
+    needs:
+      - test
     strategy:
       matrix:
         server:
