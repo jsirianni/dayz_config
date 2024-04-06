@@ -87,7 +87,7 @@ jobs:
     - name: Render serverDZ.cfg hostname
       run: |
         sudo sed -i \
-          "s/hostname=.*/hostname = "test";/g" \
+          "s/hostname=.*/hostname = \"test\";/g" \
           /opt/dayz-server/serverDZ.cfg
         sudo cat /opt/dayz-server/serverDZ.cfg | grep 'hostname = "test";'
 
