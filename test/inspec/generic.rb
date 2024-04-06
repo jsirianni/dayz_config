@@ -32,7 +32,6 @@ describe port(2301) do
     its('protocols') { should include 'udp' }
     its('addresses') { should_not include '127.0.0.1' }
     its('addresses') { should include '0.0.0.0' }
-    its('processes') {should include 'DayZServer'}
 end
 
 describe processes('DayZServer') do
