@@ -144,6 +144,8 @@ jobs:
 
     - run: sleep 120
     - run: sudo journalctl -u dayz-server --lines 1000 > dayz-server.log
+    # If player connect is disabled, the server will not start and we should fail the build
+    - run: cat dayz-server.log | grep -i 'player connect will stay disabled' && exit 1
     - run: cat dayz-server.log | grep -i 'Player connect enabled'
     - run: cat dayz-server.log | grep -i 'Mission read.'
     - run: cat dayz-server.log | grep -i 'Connected to Steam'
