@@ -153,6 +153,9 @@ jobs:
     - name: Inspec Tests (Generic)
       run: sudo cinc-auditor exec test/inspec/generic.rb
 
+    - name: Inspec Tests (${{ matrix.server }})
+      run: sudo cinc-auditor exec servers/${{ matrix.server }}/test/inspec.rb
+
     - name: Debug log output
       run: cat dayz-server.log
       if: always()
