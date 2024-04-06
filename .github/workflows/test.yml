@@ -59,13 +59,15 @@ jobs:
           +app_update ${{ env.DAYZ_APP_ID }} \
           +quit
 
+    # Home directory is required. Dayz server process will
+    # attempt to create '~/.local/share/DayZ/DataCache/cache_lock
     - name: Add dayz user and group
       run: |
         sudo adduser \
           --system \
-          --no-create-home \
           --disabled-login \
           --group dayz
+        sudo ls /home/dayz
 
     - name: Deploy systemd service
       run: |
