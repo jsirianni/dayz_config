@@ -1,0 +1,161 @@
+name: Tests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  DAYZ_APP_ID: 223350
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '1.16'
+    - run: make test
+
+  # Integration tests work by installing dayz server
+  # using steamcmd. Dayz server requires an authented
+  # steam account to download the server files. This
+  # means the account cannot have steam gaurd, otherwise
+  # steamcmd will block, asking for a steam gaurd code.
+  # It is recomended to use a throw away account for this.
+  integration:
+    runs-on: ubuntu-22.04
+    needs:
+      - test
+    strategy:
+      matrix:
+        server:
+        - kamyshowdown
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Pre-requisites
+      run: |
+        sudo apt-get update -qq > /dev/null
+        sudo apt-get install \
+          lib32gcc-s1 \
+          build-essential \
+          tree \
+          -y -qq
+
+    - name: Install Cinc (Inspec)
+      run: |
+        curl -L https://omnitruck.cinc.sh/install.sh | \
+        sudo bash -s -- -P cinc-auditor -v 4
+
+    - name: Setup steamcmd
+      uses: CyberAndrii/setup-steamcmd@v1
+
+    - run: mkdir -p /opt/dayz-server
+
+    - name: Update app
+      run: |
+        steamcmd \
+          +force_install_dir /opt/dayz-server/ \
+          +login ${{ secrets.STEAM_USERNAME }} ${{ secrets.STEAM_PASSWORD}} \
+          +app_update ${{ env.DAYZ_APP_ID }} \
+          +quit
+
+    # Home directory is required. Dayz server process will
+    # attempt to create '~/.local/share/DayZ/DataCache/cache_lock
+    - name: Add dayz user and group
+      run: |
+        sudo adduser \
+          --system \
+          --disabled-login \
+          --group dayz
+        sudo ls /home/dayz
+
+    - name: Deploy systemd service
+      run: |
+        cat > dayz-server.service <<EOF
+        [Unit]
+        Description=DayZ Dedicated Server
+        Wants=network-online.target
+        After=network-online.target
+        
+        [Service]
+        ExecStart=/opt/dayz-server/DayZServer \
+          -config=serverDZ.cfg \
+          -port=2301 \
+          -BEpath=battleye \
+          -profiles=profiles \
+          -dologs \
+          -adminlog \
+          -netlog \
+          -freezecheck
+        WorkingDirectory=/opt/dayz-server
+        LimitNOFILE=100000
+        User=dayz
+        Group=dayz
+        Restart=on-failure
+        RestartSec=30s
+        
+        [Install]
+        WantedBy=multi-user.target
+        EOF
+
+        sudo cp dayz-server.service /etc/systemd/system/dayz-server.service
+        sudo systemctl daemon-reload
+        sudo systemctl disable dayz-server
+
+    - name: Deploy serverDZ.cfg
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/serverDZ.cfg \
+          /opt/dayz-server/serverDZ.cfg
+        sudo chown dayz:dayz /opt/dayz-server/serverDZ.cfg
+
+    - name: Deploy init.c
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/init.c \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
+
+    - name: Deploy cfgplayerspawnpoints.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+
+    - name: Deploy globals.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/globals.xml \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
+
+    - run: sudo systemctl start dayz-server
+    - run: sleep 10
+    - run: sudo systemctl status dayz-server
+
+    - run: sleep 120
+    - run: sudo journalctl -u dayz-server --lines 1000 > dayz-server.log
+    - run: cat dayz-server.log | grep -i 'Player connect enabled'
+    - run: cat dayz-server.log | grep -i 'Mission read.'
+    - run: cat dayz-server.log | grep -i 'Connected to Steam'
+    - run: cat dayz-server.log | grep -i 'Steam policy response'
+    - run: cat dayz-server.log | grep -i 'save processed'
+
+    - name: Inspec Tests (Generic)
+      run: sudo cinc-auditor exec test/inspec/generic.rb
+
+    - name: Inspec Tests (${{ matrix.server }})
+      run: sudo cinc-auditor exec servers/${{ matrix.server }}/test/inspec.rb
+
+    - name: Debug log output
+      run: cat dayz-server.log
+      if: always()
