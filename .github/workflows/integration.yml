@@ -77,10 +77,40 @@ jobs:
         sudo systemctl daemon-reload
         sudo systemctl disable dayz-server
 
-    # - name: Deploy cfgplayerspawnpoints.xml
-    #   run: |
-    #     cp servers/${{ matrix.server }}/cfgplayerspawnpoints.xml \
-    #     servers/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+    - name: Deploy serverDZ.cfg
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/serverDZ.cfg \
+          /opt/dayz-server/serverDZ.cfg
+        sudo chown dayz:dayz /opt/dayz-server/serverDZ.cfg
+
+    - name: Render serverDZ.cfg hostname
+      run: |
+        sudo sed -i \
+          "s/hostname=.*/hostname = "test";/g"
+          /opt/dayz-server/serverDZ.cfg
+        sudo cat /opt/dayz-server/serverDZ.cfg | grep 'hostname = "test";'
+
+    - name: Deploy init.c
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/init.c \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
+
+    - name: Deploy cfgplayerspawnpoints.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+
+    - name: Deploy globals.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/globals.xml \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
 
     - run: sudo systemctl start dayz-server
     - run: sleep 10
