@@ -81,7 +81,15 @@ jobs:
         After=network-online.target
         
         [Service]
-        ExecStart=/opt/dayz-server/DayZServer -config=serverDZ.cfg -port=23>
+        ExecStart=/opt/dayz-server/DayZServer \
+          -config=serverDZ.cfg \
+          -port=2301 \
+          -BEpath=battleye \
+          -profiles=profiles \
+          -dologs \
+          -adminlog \
+          -netlog \
+          -freezecheck
         WorkingDirectory=/opt/dayz-server
         LimitNOFILE=100000
         User=dayz
