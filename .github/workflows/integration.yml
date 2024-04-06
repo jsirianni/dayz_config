@@ -16,7 +16,7 @@ env:
   DAYZ_APP_ID: 223350
 
 jobs:
-  test:
+  integration:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
