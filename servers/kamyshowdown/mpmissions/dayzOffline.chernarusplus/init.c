@@ -227,7 +227,6 @@ class CustomMission: MissionServer
 		  case "Winchester70":
 			weapon = player.GetHumanInventory().CreateInHands("Winchester70");
 			player.SetQuickBarEntityShortcut(weapon, 0);
-			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
 			player.GetInventory().CreateInInventory("Ammo_308Win");
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("HuntingOptic");
