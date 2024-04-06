@@ -134,7 +134,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
 			player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
@@ -146,10 +146,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_FNX45_15Rnd");
 			player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolOptic");
+				weapon.GetInventory().CreateAttachment("PistolOptic");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
@@ -161,10 +161,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_Glock_15Rnd");
 			player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolOptic");
+				weapon.GetInventory().CreateAttachment("PistolOptic");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
@@ -185,7 +185,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_1911_7Rnd");
 			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(50) == true) {
 				player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
@@ -197,7 +197,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_1911_7Rnd");
 			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(50) == true) {
 				player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
@@ -215,7 +215,7 @@ class CustomMission: MissionServer
 			weaponMosin9130.GetInventory().CreateAttachment("Ammo_762x54");
 			player.GetInventory().CreateInInventory("Ammo_762x54");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PUScopeOptic");
+				weapon.GetInventory().CreateAttachment("PUScopeOptic");
 			}
 			break;
 		  case "CZ527":
@@ -230,7 +230,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
 			player.GetInventory().CreateInInventory("Ammo_308Win");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("HuntingOptic");
+				weapon.GetInventory().CreateAttachment("HuntingOptic");
 			}
 			break;
 		  case "SKS":
@@ -239,7 +239,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Ammo_762x39");
 			player.GetInventory().CreateInInventory("Ammo_762x39");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PUScopeOptic");
+				weapon.GetInventory().CreateAttachment("PUScopeOptic");
 			}
 			if (decide(50) == true) {
 				player.GetInventory().CreateInInventory("Ammo_762x39");
@@ -265,7 +265,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PSO11Optic");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
 			break;
 		  case "CZ61":
@@ -274,7 +274,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_CZ61_20Rnd");
 			player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
@@ -286,7 +286,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_UMP_25Rnd");
 			player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
@@ -301,10 +301,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_MP5_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
+				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
@@ -316,7 +316,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK_Suppressor");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
@@ -328,7 +328,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_FAL_20Rnd");
 			player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
+				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
@@ -344,10 +344,10 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(sovietOptic.GetRandomElement());
+				weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK_Suppressor");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
 			break;
 		  case "AK101":
@@ -356,10 +356,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_AK101_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PSO11Optic");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK_Suppressor");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
@@ -371,10 +371,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(sovietOptic.GetRandomElement());
+				weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK_Suppressor");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
@@ -390,10 +390,10 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
+				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("M4_Suppressor");
+				weapon.GetInventory().CreateAttachment("M4_Suppressor");
 			}
 			break;
 		  case "VSS":
@@ -402,7 +402,7 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_VSS_10Rnd");
 			player.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PSO11Optic");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
@@ -420,10 +420,10 @@ class CustomMission: MissionServer
 			weapon.GetInventory().CreateAttachment("Mag_SVD_10Rnd");
 			player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("PSO11Optic");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK_Suppressor");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
