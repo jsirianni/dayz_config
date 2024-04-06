@@ -5,7 +5,7 @@
 # steamcmd will block, asking for a steam gaurd code.
 # It is recomended to use a throw away account for this.
 
-name: Integration Tests
+name: Tests
 on:
   pull_request:
   push:
