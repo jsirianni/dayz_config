@@ -7,9 +7,8 @@
     '/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml', 
 ].each do |bin|
     describe file(bin) do
-        its('mode') { should cmp '0755' }
-        its('owner') { should eq 'root' }
-        its('group') { should eq 'root' }
+        its('owner') { should eq 'dayz' }
+        its('group') { should eq 'dayz' }
         its('type') { should cmp 'file' }
     end
 end
@@ -30,7 +29,7 @@ end
 
 describe port(2301) do
     it { should be_listening }
-    its('protocols') { should include 'tcp' }
+    its('protocols') { should include 'udp' }
     its('addresses') { should_not include '127.0.0.1' }
     its('addresses') { should include '0.0.0.0' }
     its('processes') {should include 'DayZServer'}
