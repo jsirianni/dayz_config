@@ -49,6 +49,11 @@ jobs:
           tree \
           -y -qq
 
+    - name: Install Cinc (Inspec)
+      run: |
+        curl -L https://omnitruck.cinc.sh/install.sh | \
+        sudo bash -s -- -P cinc-auditor -v 4
+
     - name: Setup steamcmd
       uses: CyberAndrii/setup-steamcmd@v1
 
@@ -144,6 +149,9 @@ jobs:
     - run: cat dayz-server.log | grep -i 'Connected to Steam'
     - run: cat dayz-server.log | grep -i 'Steam policy response'
     - run: cat dayz-server.log | grep -i 'save processed'
+
+    - name: Inspec Tests (Generic)
+      run: sudo cinc-auditor exec test/inspec/generic.rb
 
     - name: Debug log output
       run: cat dayz-server.log
