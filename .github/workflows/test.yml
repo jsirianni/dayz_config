@@ -44,7 +44,10 @@ jobs:
     - name: Install Pre-requisites
       run: |
         sudo apt-get update -qq > /dev/null
-        sudo apt-get install lib32gcc-s1 -y -qq
+        sudo apt-get install \
+          lib32gcc-s1 \
+          tree \
+          -y -qq
 
     - name: Setup steamcmd
       uses: CyberAndrii/setup-steamcmd@v1
@@ -136,4 +139,8 @@ jobs:
 
     - name: Debug log output
       run: cat dayz-server.log
+      if: always()
+    
+    - name: Debug directory structure
+      run: sudo tree /opt/dayz-server
       if: always()
