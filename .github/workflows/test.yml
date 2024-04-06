@@ -125,3 +125,12 @@ jobs:
     - run: sudo systemctl start dayz-server
     - run: sleep 10
     - run: sudo systemctl status dayz-server
+
+    # We expect the following log lines after 60 seconds
+    - run: sleep 60
+    - run: sudo journalctl -u dayz-server --lines 1000 > dayz-server.log
+    - run: cat dayz-server.log | grep 'Player connect enabled'
+    - run: cat dayz-server.log | grep 'Mission read.'
+    - run: cat dayz-server.log | grep 'Connected to Steam'
+    - run: cat dayz-server.log | grep 'Steam policy response'
+    - run: cat dayz-server.log | grep '[IdleMode] Entering IN - save processed'
