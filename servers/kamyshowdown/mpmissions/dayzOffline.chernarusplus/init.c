@@ -127,8 +127,8 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Ammo_Flare");
 			break;
 		  case "MakarovIJ70":
-		  	EntityAI weapon = player.GetHumanInventory().CreateInHands("MakarovIJ70");
-			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
+		  	EntityAI gun = player.GetHumanInventory().CreateInHands("MakarovIJ70");
+			gun.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
 			player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("PistolSuppressor");
