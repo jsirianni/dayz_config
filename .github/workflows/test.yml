@@ -1,10 +1,3 @@
-# Integration tests work by installing dayz server
-# using steamcmd. Dayz server requires an authented
-# steam account to download the server files. This
-# means the account cannot have steam gaurd, otherwise
-# steamcmd will block, asking for a steam gaurd code.
-# It is recomended to use a throw away account for this.
-
 name: Tests
 on:
   pull_request:
@@ -29,6 +22,12 @@ jobs:
         go-version: '1.16'
     - run: make test
 
+  # Integration tests work by installing dayz server
+  # using steamcmd. Dayz server requires an authented
+  # steam account to download the server files. This
+  # means the account cannot have steam gaurd, otherwise
+  # steamcmd will block, asking for a steam gaurd code.
+  # It is recomended to use a throw away account for this.
   integration:
     runs-on: ubuntu-22.04
     needs:
@@ -139,8 +138,4 @@ jobs:
 
     - name: Debug log output
       run: cat dayz-server.log
-      if: always()
-    
-    - name: Debug directory structure
-      run: sudo tree /opt/dayz-server
       if: always()
