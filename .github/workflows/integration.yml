@@ -1,0 +1,27 @@
+name: Integration Tests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  DAYZ_APP_ID: 223350
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Pre-requisites
+      run: |
+        sudo apt-get update -qq > /dev/null
+        sudo apt-get install lib32gcc-s1 -y -qq
+
+    - name: Setup steamcmd
+      uses: CyberAndrii/setup-steamcmd@v1
+        
+    - name: Update app
+      run: steamcmd +login anonymous +app_update ${{ env.DAYZ_APP_ID }} validate +quit
