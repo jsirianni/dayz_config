@@ -34,12 +34,54 @@ jobs:
     - name: Setup steamcmd
       uses: CyberAndrii/setup-steamcmd@v1
 
-    - run: mkdir -p ~/servers/dayz-server/
+    - run: mkdir -p /opt/dayz-server
 
     - name: Update app
       run: |
         steamcmd \
-          +force_install_dir ~/servers/dayz-server/ \
+          +force_install_dir /opt/dayz-server/ \
           +login ${{ secrets.STEAM_USERNAME }} ${{ secrets.STEAM_PASSWORD}} \
           +app_update ${{ env.DAYZ_APP_ID }} \
           +quit
+
+    - name: Add dayz user and group
+      run: |
+        sudo adduser \
+          --system \
+          --no-create-home \
+          --disabled-login \
+          --group dayz
+
+    - name: Deploy systemd service
+      run: |
+        cat > dayz-server.service <<EOF
+        [Unit]
+        Description=DayZ Dedicated Server
+        Wants=network-online.target
+        After=network-online.target
+        
+        [Service]
+        ExecStart=/opt/dayz-server/DayZServer -config=serverDZ.cfg -port=23>
+        WorkingDirectory=/opt/dayz-server
+        LimitNOFILE=100000
+        User=dayz
+        Group=dayz
+        Restart=on-failure
+        RestartSec=30s
+        
+        [Install]
+        WantedBy=multi-user.target
+        EOF
+
+        sudo cp dayz-server.service /etc/systemd/system/dayz-server.service
+        sudo systemctl daemon-reload
+        sudo systemctl disable dayz-server
+
+    # - name: Deploy cfgplayerspawnpoints.xml
+    #   run: |
+    #     cp servers/${{ matrix.server }}/cfgplayerspawnpoints.xml \
+    #     servers/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+
+    - run: sudo systemctl start dayz-server
+    - run: sleep 10
+    - run: sudo systemctl status dayz-server
