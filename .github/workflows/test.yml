@@ -45,6 +45,7 @@ jobs:
         sudo apt-get update -qq > /dev/null
         sudo apt-get install \
           lib32gcc-s1 \
+          build-essential \
           tree \
           -y -qq
 
