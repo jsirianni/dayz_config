@@ -1,3 +1,10 @@
+# Integration tests work by installing dayz server
+# using steamcmd. Dayz server requires an authented
+# steam account to download the server files. This
+# means the account cannot have steam gaurd, otherwise
+# steamcmd will block, asking for a steam gaurd code.
+# It is recomended to use a throw away account for this.
+
 name: Integration Tests
 on:
   pull_request:
@@ -10,7 +17,11 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        server:
+        - kamyshowdown
     steps:
     - name: Checkout
       uses: actions/checkout@v2
