@@ -85,10 +85,46 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
+		EntityAI weapon;
+
+		// 1% chance of getting jugg
+		if (decide(99) == true) {
+			player.RemoveAllItems();
+			player.GetInventory().CreateInInventory("Raincoat_Pink");
+			player.GetInventory().CreateInInventory("BDUPants");
+			player.GetInventory().CreateInInventory("PlateCarrierVest");
+			player.GetInventory().CreateInInventory("HikingBootsLow_Beige");	
+			player.GetInventory().CreateInInventory("DryBag_Black");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("BandageDressing");	
+			player.GetInventory().CreateInInventory("BandageDressing");	
+			player.GetInventory().CreateInInventory("GorkaHelmet");	
+
+			weapon = player.GetHumanInventory().CreateInHands("M4A1");
+			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
+			weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
+			weapon.GetInventory().CreateAttachment("M4_Suppressor");
+			weapon.GetInventory().CreateAttachment("M4_OEBttstck");
+			weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+
+			weapon = player.GetHumanInventory().CreateInHands("Saiga");
+			weapon.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
+			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
+			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+
+			return;
+		}
+
 		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
 		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"}
-		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
+		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
 		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
@@ -120,8 +156,6 @@ class CustomMission: MissionServer
 		if (decide(70) == true) {
 			player.GetInventory().CreateInInventory(nades.GetRandomElement());
 		}
-
-		EntityAI weapon;
 
 		switch(gun.GetRandomElement()) {
 		  case "Flaregun":
