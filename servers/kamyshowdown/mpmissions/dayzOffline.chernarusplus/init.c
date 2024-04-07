@@ -145,7 +145,6 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolOptic");
-				player.GetInventory().CreateInInventory("Battery9V");
 			}
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");
@@ -160,7 +159,6 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolOptic");
-				player.GetInventory().CreateInInventory("Battery9V");
 			}
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");
@@ -302,10 +300,10 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("MP5_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("MP5k_StockBttstck");
+				weapon.GetInventory().CreateAttachment("MP5k_StockBttstck");
 			}
 			break;
 		  case "AKS74U":
@@ -391,10 +389,10 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK74_WoodBttstck");
+				weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AK74_Hndgrd");
+				weapon.GetInventory().CreateAttachment("AK74_Hndgrd");
 			}
 			break;
 		  case "M4A1":
@@ -455,11 +453,13 @@ class CustomMission: MissionServer
 			weapon = player.GetHumanInventory().CreateInHands("AK74");
 			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			player.GetInventory().CreateInInventory("AK74_WoodBttstck");
-			player.GetInventory().CreateInInventory("AK74_Hndgrd");
+			weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");
+			weapon.GetInventory().CreateAttachment("AK74_Hndgrd");
 		}
 
 		player.SetQuickBarEntityShortcut(weapon, 0);
+
+		player.GetInventory().CreateInInventory("Battery9V");
 		
 		player.GetInventory().CreateInInventory(mellee.GetRandomElement());
 	}
