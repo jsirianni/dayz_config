@@ -106,7 +106,7 @@ class CustomMission: MissionServer
 
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
 			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
-			weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
+			weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
 			weapon.GetInventory().CreateAttachment("M4_Suppressor");
 			weapon.GetInventory().CreateAttachment("M4_OEBttstck");
 			weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
@@ -126,16 +126,16 @@ class CustomMission: MissionServer
 
 		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
-		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"}
+		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
 		TStringArray gun = {"MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
-		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
-		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
-		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
-		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"}
-		TStringArray medical = {"Bandage","Rag"}
-		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"}
+		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
+		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
+		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
+		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
+		TStringArray medical = {"Bandage","Rag"};
+		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		player.RemoveAllItems();
 
