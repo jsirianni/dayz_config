@@ -90,10 +90,12 @@ class CustomMission: MissionServer
 		// 1% chance of getting jugg
 		if (decide(99) == true) {
 			player.RemoveAllItems();
-			player.GetInventory().CreateInInventory("Raincoat_Pink");
-			player.GetInventory().CreateInInventory("BDUPants");
+			player.GetInventory().CreateInInventory("Chainmail_Coif");
+			player.GetInventory().CreateInInventory("Chainmail");
+			player.GetInventory().CreateInInventory("Chainmail_Leggings");
+			player.GetInventory().CreateInInventory("MedievalBoots");	
 			player.GetInventory().CreateInInventory("PlateCarrierVest");
-			player.GetInventory().CreateInInventory("HikingBootsLow_Beige");	
+			player.GetInventory().CreateInInventory("GorkaHelmet");	
 			player.GetInventory().CreateInInventory("DryBag_Black");	
 			player.GetInventory().CreateInInventory("RGD5Grenade");	
 			player.GetInventory().CreateInInventory("RGD5Grenade");	
@@ -101,7 +103,6 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("RGD5Grenade");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
-			player.GetInventory().CreateInInventory("GorkaHelmet");	
 
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
 			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
@@ -118,6 +119,8 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
 			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
 
+			player.GetInventory().CreateInInventory("Battery9V");
+
 			return;
 		}
 
@@ -125,7 +128,7 @@ class CustomMission: MissionServer
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
 		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"}
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
-		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
+		TStringArray gun = {"MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
@@ -158,10 +161,6 @@ class CustomMission: MissionServer
 		}
 
 		switch(gun.GetRandomElement()) {
-		  case "Flaregun":
-			player.GetInventory().CreateInInventory("Flaregun");
-			player.GetInventory().CreateInInventory("Ammo_Flare");
-			break;
 		  case "MakarovIJ70":
 		  	weapon = player.GetHumanInventory().CreateInHands("MakarovIJ70");
 			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
