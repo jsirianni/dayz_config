@@ -350,6 +350,12 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
+			}
 			break;
 		  case "AK101":
 			weapon = player.GetHumanInventory().CreateInHands("AK101");
@@ -363,6 +369,12 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
 			}
 			break;
 		  case "AK74":
