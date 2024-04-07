@@ -333,7 +333,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Fal_FoldingBttstck");
+				weapon.GetInventory().CreateAttachment("Fal_FoldingBttstck");
 			}
 			break;
 		  case "AKM":
