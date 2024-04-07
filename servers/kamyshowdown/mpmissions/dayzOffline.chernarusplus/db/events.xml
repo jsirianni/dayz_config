@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <events>
     <event name="AnimalBear">
-        <nominal>1</nominal>
-        <min>1</min><!--vanilla is 2-->
-        <max>5</max><!--vanilla is 2-->
+        <nominal>0</nominal>
+        <min>3</min><!--vanilla is 2-->
+        <max>10</max><!--vanilla is 2-->
         <lifetime>20</lifetime>
         <restock>0</restock>
         <saferadius>1</saferadius>
