@@ -318,6 +318,9 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AKS74U_Bttstck");
+			}
 			break;
 		  case "FAL":
 			weapon = player.GetHumanInventory().CreateInHands("FAL");
@@ -328,6 +331,9 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Fal_FoldingBttstck");
 			}
 			break;
 		  case "AKM":
