@@ -257,6 +257,9 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+			}
 			break;
 		  case "CZ61":
 			weapon = player.GetHumanInventory().CreateInHands("CZ61");
@@ -289,12 +292,20 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");
+			} else if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("MP5_Compensator");
 			}
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("MP5_RailHndgrd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("MP5k_StockBttstck");
 			}
 			break;
 		  case "AKS74U":
@@ -307,6 +318,9 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
 			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AKS74U_Bttstck");
+			}
 			break;
 		  case "FAL":
 			weapon = player.GetHumanInventory().CreateInHands("FAL");
@@ -317,6 +331,9 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Fal_FoldingBttstck");
 			}
 			break;
 		  case "AKM":
@@ -333,6 +350,12 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
+			}
 			break;
 		  case "AK101":
 			weapon = player.GetHumanInventory().CreateInHands("AK101");
@@ -347,6 +370,12 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
+			}
 			break;
 		  case "AK74":
 			weapon = player.GetHumanInventory().CreateInHands("AK74");
@@ -360,6 +389,12 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK74_WoodBttstck");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("AK74_Hndgrd");
 			}
 			break;
 		  case "M4A1":
@@ -376,6 +411,12 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("M4_Suppressor");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("M4_OEBttstck");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
+			}
 			break;
 		  case "VSS":
 			weapon = player.GetHumanInventory().CreateInHands("VSS");
@@ -385,13 +426,16 @@ class CustomMission: MissionServer
 				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
 			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
+				player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
 			}			
 			break;
 		  case "B95":
 			weapon = player.GetHumanInventory().CreateInHands("B95");
 			weapon.GetInventory().CreateAttachment("Ammo_308Win");
 			player.GetInventory().CreateInInventory("Ammo_308Win");
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("HuntingOptic");
+			}
 			break;
 		  case "SVD":
 			weapon = player.GetHumanInventory().CreateInHands("SVD");
@@ -411,6 +455,8 @@ class CustomMission: MissionServer
 			weapon = player.GetHumanInventory().CreateInHands("AK74");
 			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			player.GetInventory().CreateInInventory("AK74_WoodBttstck");
+			player.GetInventory().CreateInInventory("AK74_Hndgrd");
 		}
 
 		player.SetQuickBarEntityShortcut(weapon, 0);
