@@ -85,18 +85,57 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
+		EntityAI weapon;
+
+		// 1% chance of getting jugg
+		if (decide(99) == true) {
+			player.RemoveAllItems();
+			player.GetInventory().CreateInInventory("Chainmail_Coif");
+			player.GetInventory().CreateInInventory("Chainmail");
+			player.GetInventory().CreateInInventory("Chainmail_Leggings");
+			player.GetInventory().CreateInInventory("MedievalBoots");	
+			player.GetInventory().CreateInInventory("PlateCarrierVest");
+			player.GetInventory().CreateInInventory("GorkaHelmet");	
+			player.GetInventory().CreateInInventory("DryBag_Black");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("RGD5Grenade");	
+			player.GetInventory().CreateInInventory("BandageDressing");	
+			player.GetInventory().CreateInInventory("BandageDressing");	
+
+			weapon = player.GetHumanInventory().CreateInHands("M4A1");
+			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
+			weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
+			weapon.GetInventory().CreateAttachment("M4_Suppressor");
+			weapon.GetInventory().CreateAttachment("M4_OEBttstck");
+			weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+
+			weapon = player.GetHumanInventory().CreateInHands("Saiga");
+			weapon.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
+			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
+			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+
+			player.GetInventory().CreateInInventory("Battery9V");
+
+			return;
+		}
+
 		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
-		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"}
-		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black","HikingJacket_Black"};
-		TStringArray gun = {"Flaregun","MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
+		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
+		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
+		TStringArray gun = {"MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
-		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"}
-		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"}
-		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"}
-		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"}
-		TStringArray medical = {"Bandage","Rag"}
-		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"}
+		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
+		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
+		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
+		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
+		TStringArray medical = {"Bandage","Rag"};
+		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		player.RemoveAllItems();
 
@@ -121,13 +160,7 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory(nades.GetRandomElement());
 		}
 
-		EntityAI weapon;
-
 		switch(gun.GetRandomElement()) {
-		  case "Flaregun":
-			player.GetInventory().CreateInInventory("Flaregun");
-			player.GetInventory().CreateInInventory("Ammo_Flare");
-			break;
 		  case "MakarovIJ70":
 		  	weapon = player.GetHumanInventory().CreateInHands("MakarovIJ70");
 			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
