@@ -257,6 +257,9 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PSO11Optic");
 			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+			}
 			break;
 		  case "CZ61":
 			weapon = player.GetHumanInventory().CreateInHands("CZ61");
