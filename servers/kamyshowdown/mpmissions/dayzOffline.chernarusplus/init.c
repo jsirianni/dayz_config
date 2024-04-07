@@ -292,12 +292,20 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");
+			} else if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("MP5_Compensator");
 			}
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("MP5_RailHndgrd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("MP5k_StockBttstck");
 			}
 			break;
 		  case "AKS74U":
