@@ -2,10 +2,8 @@ package kamyshowdown
 
 import (
 	"encoding/xml"
-	"fmt"
 	"io/ioutil"
 	"os"
-	"strconv"
 	"testing"
 
 	"github.com/stretchr/testify/require"
