@@ -220,9 +220,12 @@ class CustomMission: MissionServer
 			break;
 		  case "CZ527":
 			weapon = player.GetHumanInventory().CreateInHands("CZ527");
+			weapon.GetInventory().CreateAttachment("Mag_CZ527_5rnd");
 			player.SetQuickBarEntityShortcut(weapon, 0);
-			weapon.GetInventory().CreateAttachment("Ammo_762x39");
-			player.GetInventory().CreateInInventory("Ammo_762x39");
+			player.GetInventory().CreateInInventory("Mag_CZ527_5rnd");
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("Mag_CZ527_5rnd");
+			}
 			break;
 		  case "Winchester70":
 			weapon = player.GetHumanInventory().CreateInHands("Winchester70");
