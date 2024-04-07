@@ -138,6 +138,13 @@ jobs:
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
 
+    - name: Deploy events.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/events.xml \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
+
     - run: sudo systemctl start dayz-server
     - run: sleep 10
     - run: sudo systemctl status dayz-server
