@@ -17,3 +17,7 @@ end
 describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml') do
     its('sha256sum') { should eq 'a2fbeed33718d975c328af5815419c815ad1cb34fb813302a0668f49ba6e2c82' }
 end
+
+describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml') do
+    its('sha256sum') { should eq 'a2fbeed33718d975c328af5815419c815ad1cb34fb813302a0668f49ba6e2c82' }
+end

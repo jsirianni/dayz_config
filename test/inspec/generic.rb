@@ -6,6 +6,7 @@
     '/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml',
     '/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml',
     '/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml',  
+    '/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml',
 ].each do |bin|
     describe file(bin) do
         its('owner') { should eq 'dayz' }

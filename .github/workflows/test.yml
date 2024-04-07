@@ -145,6 +145,13 @@ jobs:
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
 
+    - name: Deploy bear_territories.xml
+      run: |
+        sudo cp \
+          servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml          \
+          /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml
+        sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml
+  
     - run: sudo systemctl start dayz-server
     - run: sleep 10
     - run: sudo systemctl status dayz-server
