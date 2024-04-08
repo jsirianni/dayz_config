@@ -85,8 +85,8 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
-		player.GetStatEnergy().Set(1);
-		player.GetStatWater().Set(1);
+		player.GetStatEnergy().Set(5000);
+		player.GetStatWater().Set(5000);
 
 		EntityAI weapon;
 		EntityAI weapon2;
@@ -102,12 +102,17 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("MedievalBoots");	
 			player.GetInventory().CreateInInventory("PlateCarrierVest");
 			player.GetInventory().CreateInInventory("DryBag_Black");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
+
+			EntityAI nade0 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade1 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade2 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade3 = player.GetInventory().CreateInInventory("RGD5Grenade");
+			player.SetQuickBarEntityShortcut(nade0, 3);
+			player.SetQuickBarEntityShortcut(nade1, 4);
+			player.SetQuickBarEntityShortcut(nade2, 5);
+			player.SetQuickBarEntityShortcut(nade3, 6);
 
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
 			weapon.GetInventory().CreateAttachment("Mag_STANAGCoupled_30Rnd");
@@ -234,6 +239,15 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("DryBag_Black");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
 			}
 			break;
 		  case "FNX45":
