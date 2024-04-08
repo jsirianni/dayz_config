@@ -85,18 +85,22 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
+		player.GetStatEnergy().Set(100);
+		player.GetStatWater().Set(100);
+
 		EntityAI weapon;
+		EntityAI weapon2;
+		EntityAI weapon3;
 		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
 
 		// 1% chance of getting jugg
-		if (decide(90) == true) {
+		if (decide(95) == true) {
 			player.RemoveAllItems();
 			player.GetInventory().CreateInInventory("Chainmail_Coif");
 			player.GetInventory().CreateInInventory("Chainmail");
 			player.GetInventory().CreateInInventory("Chainmail_Leggings");
 			player.GetInventory().CreateInInventory("MedievalBoots");	
 			player.GetInventory().CreateInInventory("PlateCarrierVest");
-			player.GetInventory().CreateInInventory("GorkaHelmet");	
 			player.GetInventory().CreateInInventory("DryBag_Black");	
 			player.GetInventory().CreateInInventory("RGD5Grenade");	
 			player.GetInventory().CreateInInventory("RGD5Grenade");	
@@ -106,8 +110,9 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("BandageDressing");	
 
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
-			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
-			weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
+			weapon.GetInventory().CreateAttachment("Mag_STANAGCoupled_30Rnd");
+			EntityAI optic = weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
+			optic.GetInventory().CreateAttachment("Battery9V");
 			weapon.GetInventory().CreateAttachment("M4_Suppressor");
 			weapon.GetInventory().CreateAttachment("M4_OEBttstck");
 			weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
@@ -116,17 +121,28 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
 			player.SetQuickBarEntityShortcut(weapon, 0);
 
-			weapon = player.GetHumanInventory().CreateInHands("Saiga");
-			weapon.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
+			weapon2 = player.GetInventory().CreateInInventory("Saiga");
+			weapon2.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
 			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
-			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
-			player.SetQuickBarEntityShortcut(weapon, 1);
+			weapon2.GetInventory().CreateAttachment("Saiga_Bttstck");
+			player.SetQuickBarEntityShortcut(weapon2, 1);
 
-			player.GetInventory().CreateInInventory("m79");
+			weapon3 = player.GetInventory().CreateInInventory("m79");
 			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
 			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
 			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
-			player.SetQuickBarEntityShortcut(weapon, 2);
+			player.SetQuickBarEntityShortcut(weapon3, 2);
+
+			player.GetInventory().CreateInInventory("EpoxyPutty");
+			player.GetInventory().CreateInInventory("Epinephrine");
+			player.GetInventory().CreateInInventory("Epinephrine");
+			player.GetInventory().CreateInInventory("SalineBagIV");
+			player.GetInventory().CreateInInventory("BloodBagIV");
+			player.GetInventory().CreateInInventory("BandageDressing");
+			player.GetInventory().CreateInInventory("BandageDressing");
+			player.GetInventory().CreateInInventory("Splint");
+			
+			
 
 			player.GetInventory().CreateInInventory("Battery9V");
 
