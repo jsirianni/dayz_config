@@ -85,39 +85,69 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
+		player.GetStatEnergy().Set(5000);
+		player.GetStatWater().Set(5000);
+
 		EntityAI weapon;
+		EntityAI weapon2;
+		EntityAI weapon3;
+		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
 
 		// 1% chance of getting jugg
-		if (decide(99) == true) {
+		if (decide(95) == true) {
 			player.RemoveAllItems();
 			player.GetInventory().CreateInInventory("Chainmail_Coif");
 			player.GetInventory().CreateInInventory("Chainmail");
 			player.GetInventory().CreateInInventory("Chainmail_Leggings");
 			player.GetInventory().CreateInInventory("MedievalBoots");	
 			player.GetInventory().CreateInInventory("PlateCarrierVest");
-			player.GetInventory().CreateInInventory("GorkaHelmet");	
 			player.GetInventory().CreateInInventory("DryBag_Black");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
-			player.GetInventory().CreateInInventory("RGD5Grenade");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
 			player.GetInventory().CreateInInventory("BandageDressing");	
 
+			EntityAI nade0 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade1 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade2 = player.GetInventory().CreateInInventory("RGD5Grenade");	
+			EntityAI nade3 = player.GetInventory().CreateInInventory("RGD5Grenade");
+			player.SetQuickBarEntityShortcut(nade0, 3);
+			player.SetQuickBarEntityShortcut(nade1, 4);
+			player.SetQuickBarEntityShortcut(nade2, 5);
+			player.SetQuickBarEntityShortcut(nade3, 6);
+
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
-			weapon.GetInventory().CreateAttachment("Mag_CMAG_40Rnd");
-			weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
+			weapon.GetInventory().CreateAttachment("Mag_STANAGCoupled_30Rnd");
+			EntityAI optic = weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
+			optic.GetInventory().CreateAttachment("Battery9V");
 			weapon.GetInventory().CreateAttachment("M4_Suppressor");
 			weapon.GetInventory().CreateAttachment("M4_OEBttstck");
 			weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.SetQuickBarEntityShortcut(weapon, 0);
 
-			weapon = player.GetHumanInventory().CreateInHands("Saiga");
-			weapon.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
+			weapon2 = player.GetInventory().CreateInInventory("Saiga");
+			weapon2.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
 			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
-			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+			weapon2.GetInventory().CreateAttachment("Saiga_Bttstck");
+			player.SetQuickBarEntityShortcut(weapon2, 1);
+
+			weapon3 = player.GetInventory().CreateInInventory("m79");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.SetQuickBarEntityShortcut(weapon3, 2);
+
+			player.GetInventory().CreateInInventory("EpoxyPutty");
+			player.GetInventory().CreateInInventory("Epinephrine");
+			player.GetInventory().CreateInInventory("Epinephrine");
+			player.GetInventory().CreateInInventory("SalineBagIV");
+			player.GetInventory().CreateInInventory("BloodBagIV");
+			player.GetInventory().CreateInInventory("BandageDressing");
+			player.GetInventory().CreateInInventory("BandageDressing");
+			player.GetInventory().CreateInInventory("Splint");
+			
+			
 
 			player.GetInventory().CreateInInventory("Battery9V");
 
@@ -128,7 +158,46 @@ class CustomMission: MissionServer
 		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
 		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
 		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
-		TStringArray gun = {"MakarovIJ70","FNX45","Glock19","MKII","Colt1911","Engraved1911","Izh18","Mosin9130","CZ527","Winchester70","SKS", "Mp133Shotgun","Izh43Shotgun","Saiga", "CZ61","UMP45","MP5K","AKS74U", "FAL","AKM","AK101","AK74","M4A1","VSS","B95","SVD"};
+		TStringArray gun = {
+			"MakarovIJ70",
+			"FNX45",
+			"Glock19",
+			"MKII",
+			"Colt1911",
+			"Engraved1911",
+			"Izh18",
+			"Mosin9130",
+			"CZ527",
+			"Winchester70",
+			"SKS",
+			"Mp133Shotgun",
+			"Izh43Shotgun",
+			"Saiga",
+			"CZ61",
+			"UMP45",
+			"MP5K",
+			"AKS74U",
+			"FAL",
+			"AKM",
+			"AK101",
+			"AK74",
+			"M4A1",
+			"VSS",
+			"B95",
+			"SVD",
+			// NEW
+			"ASVAL",
+			"Vikhr",
+			"M16A2",
+			"FAMAS",
+			"Aug",
+			"AugShort",
+			"Deagle_Gold",
+			"PP19",
+			"M14",
+			"m79",
+			"Crossbow_Black"
+		};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
@@ -170,6 +239,15 @@ class CustomMission: MissionServer
 			}
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("DryBag_Black");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("TripwireTrap");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
+				player.GetInventory().CreateInInventory("ClaymoreMine");
 			}
 			break;
 		  case "FNX45":
@@ -430,7 +508,6 @@ class CustomMission: MissionServer
 			break;
 		  case "M4A1":
 			weapon = player.GetHumanInventory().CreateInHands("M4A1");
-			TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
 			weapon.GetInventory().CreateAttachment(m4Mag.GetRandomElement());
 			player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
 			if (decide(70) == true) {
@@ -481,6 +558,125 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
 			}	
+			break;
+		  case "ASVAL":
+			weapon = player.GetHumanInventory().CreateInHands("ASVAL");
+			weapon.GetInventory().CreateAttachment("Mag_Vikhr_30Rnd");
+			player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
+			}		
+			break;
+		  case "Vikhr":
+			weapon = player.GetHumanInventory().CreateInHands("Vikhr");
+			weapon.GetInventory().CreateAttachment("Mag_Vikhr_30Rnd");
+			player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
+			}	
+			break;
+		  case "M16A2":
+			weapon = player.GetHumanInventory().CreateInHands("M16A2");
+			weapon.GetInventory().CreateAttachment(m4Mag.GetRandomElement());
+			player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("M4_Suppressor");
+			}
+			break;
+		  case "FAMAS":
+			weapon = player.GetHumanInventory().CreateInHands("FAMAS");
+			weapon.GetInventory().CreateAttachment("Mag_FAMAS_25Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_FAMAS_25Rnd");
+			}
+			break;
+		  case "Aug":
+			weapon = player.GetHumanInventory().CreateInHands("Aug");
+			weapon.GetInventory().CreateAttachment("Mag_Aug_30Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_Aug_30Rnd");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
+			}
+			break;
+		  case "AugShort":
+			weapon = player.GetHumanInventory().CreateInHands("AugShort");
+			weapon.GetInventory().CreateAttachment("Mag_Aug_30Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_Aug_30Rnd");
+			}
+			break;
+		  case "Deagle_Gold":
+			weapon = player.GetHumanInventory().CreateInHands("Deagle_Gold");
+			weapon.GetInventory().CreateAttachment("Mag_Deagle_9rnd");
+			player.GetInventory().CreateInInventory("Mag_Deagle_9rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_Deagle_9rnd");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PistolOptic");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
+			}
+			break;
+		  case "PP19":
+			weapon = player.GetHumanInventory().CreateInHands("PP19");
+			weapon.GetInventory().CreateAttachment("Mag_PP19_64Rnd");
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_PP19_64Rnd");
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory("Mag_PP19_64Rnd");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PistolOptic");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
+			}
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment("PP19_Bttstck");
+			}
+			break;
+		  case "M14":
+			weapon = player.GetHumanInventory().CreateInHands("M14");
+			TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"}
+			weapon.GetInventory().CreateAttachment(m14Mag.GetRandomElement());
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
+			}
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(m14Mag.GetRandomElement());
+			}
+			break;
+		  case "m79":
+			weapon = player.GetHumanInventory().CreateInHands("m79");
+			TStringArray m79Ammo = {
+				"Ammo_40mm_Explosive",
+				"Ammo_40mm_POX"
+			}
+			weapon.GetInventory().CreateAttachment(m79Ammo.GetRandomElement());
+			player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
+				player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
+			}
+			break;
+		  case "Crossbow_Black":
+			weapon = player.GetHumanInventory().CreateInHands("Crossbow_Black");
+			weapon.GetInventory().CreateAttachment("Ammo_HuntingBolt");
+			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
+			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
+			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
+			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
 			break;
 		  default:
 			weapon = player.GetHumanInventory().CreateInHands("AK74");
