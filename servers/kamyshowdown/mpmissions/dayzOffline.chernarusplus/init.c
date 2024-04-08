@@ -114,11 +114,19 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
 			player.GetInventory().CreateInInventory("Mag_CMAG_40Rnd");
+			player.SetQuickBarEntityShortcut(weapon, 0);
 
 			weapon = player.GetHumanInventory().CreateInHands("Saiga");
 			weapon.GetInventory().CreateAttachment("Mag_Saiga_Drum20Rnd");
 			player.GetInventory().CreateInInventory("Mag_Saiga_Drum20Rnd");
 			weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
+			player.SetQuickBarEntityShortcut(weapon, 1);
+
+			player.GetInventory().CreateInInventory("m79");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.GetInventory().CreateInInventory("Ammo_40mm_Explosive");
+			player.SetQuickBarEntityShortcut(weapon, 2);
 
 			player.GetInventory().CreateInInventory("Battery9V");
 
