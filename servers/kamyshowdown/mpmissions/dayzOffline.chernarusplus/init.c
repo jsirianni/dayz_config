@@ -89,7 +89,7 @@ class CustomMission: MissionServer
 		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
 
 		// 1% chance of getting jugg
-		if (decide(99) == true) {
+		if (decide(90) == true) {
 			player.RemoveAllItems();
 			player.GetInventory().CreateInInventory("Chainmail_Coif");
 			player.GetInventory().CreateInInventory("Chainmail");
