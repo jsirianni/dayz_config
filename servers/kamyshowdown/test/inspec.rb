@@ -11,5 +11,13 @@ describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayersp
 end
 
 describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml') do
-    its('sha256sum') { should eq 'a2fbeed33718d975c328af5815419c815ad1cb34fb813302a0668f49ba6e2c82' }
+    its('sha256sum') { should eq '94f32e43e6e1dafd4a5107d7d85356868bab525b2e3eee473679ac40249e1af7' }
+end
+
+describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml') do
+    its('sha256sum') { should eq 'cb3794fd525f68e67e9268d99591e7179e91e5f2b57e4486407f8ab717abe547' }
+end
+
+describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml') do
+    its('sha256sum') { should eq 'b732255e9a1f772003abd1f69fb673d79253add61c8d205da2de06fecc664fe9' }
 end

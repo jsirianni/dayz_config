@@ -51,7 +51,7 @@ func TestGlobalsXML(t *testing.T) {
 
 		switch name := line.Name; name {
 		case "AnimalMaxCount":
-			require.Equal(t, "0", line.Value, fmt.Sprintf("expected %s to be 0", name))
+			require.Equal(t, "50", line.Value, fmt.Sprintf("expected %s to be 50", name))
 		case "CleanupLifetimeDeadPlayer":
 			require.Equal(t, "20", line.Value, fmt.Sprintf("expected %s to be 20", name))
 		case "CleanupLifetimeRuined":
