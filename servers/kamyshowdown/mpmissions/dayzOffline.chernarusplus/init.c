@@ -85,8 +85,8 @@ class CustomMission: MissionServer
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
-		player.GetStatEnergy().Set(100);
-		player.GetStatWater().Set(100);
+		player.GetStatEnergy().Set(1);
+		player.GetStatWater().Set(1);
 
 		EntityAI weapon;
 		EntityAI weapon2;
