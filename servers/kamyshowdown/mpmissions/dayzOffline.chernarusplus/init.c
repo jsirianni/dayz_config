@@ -91,7 +91,70 @@ class CustomMission: MissionServer
 		EntityAI weapon;
 		EntityAI weapon2;
 		EntityAI weapon3;
+		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
+		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
+		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
+		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
+		TStringArray gun = {
+			"MakarovIJ70",
+			"FNX45",
+			"Glock19",
+			"MKII",
+			"Colt1911",
+			"Engraved1911",
+			"Izh18",
+			"Mosin9130",
+			"CZ527",
+			"Winchester70",
+			"SKS",
+			"Mp133Shotgun",
+			"Izh43Shotgun",
+			"Saiga",
+			"CZ61",
+			"UMP45",
+			"MP5K",
+			"AKS74U",
+			"FAL",
+			"AKM",
+			"AK101",
+			"AK74",
+			"M4A1",
+			"VSS",
+			"B95",
+			"SVD",
+			// NEW
+			"ASVAL",
+			"Vikhr",
+			"M16A2",
+			"FAMAS",
+			"Aug",
+			"AugShort",
+			"Deagle_Gold",
+			"PP19",
+			"M14",
+			"m79",
+			"Crossbow_Black"
+		};
 		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
+		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
+		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
+		TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
+		TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
+		TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"};
+		TStringArray m79Ammo = {
+			"Ammo_40mm_Explosive",
+			"Ammo_40mm_POX"
+		}
+
+		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
+		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
+
+		TStringArray attachments = {"PistolSuppressor","PistolOptic","PSO11Optic","KobraOptic","ACOGOptic","M4_T3NRDSOptic","PUScopeOptic","HuntingOptic"}
+		TStringArray explosives = {"TripwireTrap","ClaymoreMine"}
+
+		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
+		TStringArray medical = {"Bandage","Rag"};
+		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		// 1% chance of getting jugg
 		if (decide(95) == true) {
@@ -146,65 +209,11 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("BandageDressing");
 			player.GetInventory().CreateInInventory("BandageDressing");
 			player.GetInventory().CreateInInventory("Splint");
-			
-			
 
 			player.GetInventory().CreateInInventory("Battery9V");
 
 			return;
 		}
-
-		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
-		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
-		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
-		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
-		TStringArray gun = {
-			"MakarovIJ70",
-			"FNX45",
-			"Glock19",
-			"MKII",
-			"Colt1911",
-			"Engraved1911",
-			"Izh18",
-			"Mosin9130",
-			"CZ527",
-			"Winchester70",
-			"SKS",
-			"Mp133Shotgun",
-			"Izh43Shotgun",
-			"Saiga",
-			"CZ61",
-			"UMP45",
-			"MP5K",
-			"AKS74U",
-			"FAL",
-			"AKM",
-			"AK101",
-			"AK74",
-			"M4A1",
-			"VSS",
-			"B95",
-			"SVD",
-			// NEW
-			"ASVAL",
-			"Vikhr",
-			"M16A2",
-			"FAMAS",
-			"Aug",
-			"AugShort",
-			"Deagle_Gold",
-			"PP19",
-			"M14",
-			"m79",
-			"Crossbow_Black"
-		};
-		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
-		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
-		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
-		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
-		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
-		TStringArray medical = {"Bandage","Rag"};
-		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		player.RemoveAllItems();
 
@@ -228,6 +237,246 @@ class CustomMission: MissionServer
 		if (decide(70) == true) {
 			player.GetInventory().CreateInInventory(nades.GetRandomElement());
 		}
+
+		// Custom gun kits that attempt to use maps as an elegant approach 
+		// to customization for the kits
+		autoptr gunMap = new map<string, map<string, TStringArray>>();
+
+		autoptr makarovKit = new map<string, TStringArray>();
+		makarovKit.Insert("common", {"MakarovIJ70","Mag_IJ70_8Rnd"});
+		makarovKit.Insert("attachments", {"PistolSuppressor"});
+		makarovKit.Insert("extra", {"DryBag_Black","TripwireTrap","ClaymoreMine"});
+		gunMap.Insert("MakarovIJ70", makarovKit);
+
+		autoptr fnx45Kit = new map<string, TStringArray>();
+		fnx45Kit.Insert("common", {"FNX45","Mag_FNX45_15Rnd"});
+		fnx45Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("FNX45", fnx45Kit);
+		
+		autoptr glock19Kit = new map<string, TStringArray>();
+		glock19Kit.Insert("common", {"FNX45","Mag_Glock_15Rnd"});
+		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("Glock19", glock19Kit);
+
+		autoptr mkiiKit = new map<string, TStringArray>();
+		glock19Kit.Insert("common", {"MKII","Mag_MKII_10Rnd"});
+		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("MKII", mkiiKit);
+
+		autoptr colt1911Kit = new map<string, TStringArray>();
+		colt1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
+		colt1911Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("Colt1911", colt1911Kit);
+		
+		autoptr engraved1911Kit = new map<string, TStringArray>();
+		engraved1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
+		engraved1911Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("Engraved1911", engraved1911Kit);
+
+		autoptr izh18Kit = new map<string, TStringArray>();
+		izh18Kit.Insert("common", {"Izh18","Ammo_762x39"});
+		gunMap.Insert("Izh18", izh18Kit);
+
+		autoptr mosin9130Kit = new map<string, TStringArray>();
+		mosin9130Kit.Insert("common", {"Mosin9130","Ammo_762x54"});
+		mosin9130Kit.Insert("attachments", {"PUScopeOptic"});
+		gunMap.Insert("Mosin9130", mosin9130Kit);
+
+		autoptr cz527Kit = new map<string, TStringArray>();
+		cz527Kit.Insert("common", {"CZ527","Mag_CZ527_5rnd"});
+		gunMap.Insert("CZ527", cz527Kit);
+
+		autoptr winchester70Kit = new map<string, TStringArray>();
+		winchester70Kit.Insert("common", {"Winchester70","Ammo_308Win"});
+		winchester70Kit.Insert("attachments", {"HuntingOptic"});
+		gunMap.Insert("Winchester70", winchester70Kit);
+		
+		autoptr sksKit = new map<string, TStringArray>();
+		sksKit.Insert("common", {"SKS","Ammo_762x39"});
+		sksKit.Insert("attachments", {"PUScopeOptic"});
+		gunMap.Insert("SKS", sksKit);
+
+		autoptr mp133Kit = new map<string, TStringArray>();
+		mp133Kit.Insert("common", {"Mp133Shotgun"});
+		mp133Kit.Insert("shotgunAmmo", shotgunAmmo);
+		gunMap.Insert("Mp133Shotgun", mp133Kit);
+
+		autoptr izh43Kit = new map<string, TStringArray>();
+		izh43Kit.Insert("common", {"Izh43Shotgun"});
+		izh43Kit.Insert("shotgunAmmo", shotgunAmmo);
+		gunMap.Insert("Izh43Shotgun", mp133Kit);
+
+		autoptr saigaKit = new map<string, TStringArray>();
+		saigaKit.Insert("common", {"Saiga"});
+		sksKit.Insert("attachments", {"PSO11Optic","Saiga_Bttstck"});
+		saigaKit.Insert("saigaMag", saigaMag);
+		gunMap.Insert("Saiga", saigaKit);
+
+		autoptr cz61Kit = new map<string, TStringArray>();
+		cz61Kit.Insert("common", {"CZ61","Mag_CZ61_20Rnd"});
+		cz61Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("CZ61", cz61Kit);
+
+		autoptr ump45Kit = new map<string, TStringArray>();
+		ump45Kit.Insert("common", {"UMP45","Mag_UMP_25Rnd"});
+		ump45Kit.Insert("attachments", {"PistolSuppressor"});
+		ump45Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("UMP45", ump45Kit);
+
+		autoptr mp5kKit = new map<string, TStringArray>();
+		mp5kKit.Insert("common", {"MP5K","Mag_UMP_25Rnd"});
+		mp5kKit.Insert("attachments", {"PistolSuppressor","MP5_Compensator","MP5_RailHndgrd","MP5k_StockBttstck"});
+		mp5kKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("MP5K", mp5kKit);
+
+		autoptr aks74uKit = new map<string, TStringArray>();
+		aks74uKit.Insert("common", {"AKS74U","Mag_AK74_30Rnd"});
+		aks74uKit.Insert("attachments", {"AK_Suppressor","AKS74U_Bttstck"});
+		gunMap.Insert("AKS74U", aks74uKit);
+
+		autoptr falKit = new map<string, TStringArray>();
+		falKit.Insert("common", {"FAL","Mag_FAL_20Rnd"});
+		falKit.Insert("attachments", {"Fal_FoldingBttstck"});
+		falKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("FAL", falKit);
+
+		autoptr akmKit = new map<string, TStringArray>();
+		akmKit.Insert("common", {"AKM"});
+		akmKit.Insert("attachments", {"AK_Suppressor","AK_PlasticBttstck","AK_PlasticHndgrd"});
+		akmKit.Insert("akmMag", akmMag);
+		akmKit.Insert("sovietOptic", sovietOptic);
+		gunMap.Insert("AKM", akmKit);
+
+		autoptr ak101Kit = new map<string, TStringArray>();
+		ak101Kit.Insert("common", {"AK101","Mag_AK101_30Rnd"});
+		ak101Kit.Insert("attachments", {"AK_Suppressor","PSO11Optic","AK_PlasticBttstck","AK_PlasticHndgrd"});
+		gunMap.Insert("AK101", ak101Kit);
+
+		autoptr ak74Kit = new map<string, TStringArray>();
+		ak74Kit.Insert("common", {"AK74","Mag_AK74_30Rnd"});
+		ak74Kit.Insert("attachments", {"AK_Suppressor","AK74_WoodBttstck","AK74_Hndgrd"});
+		ak74Kit.Insert("sovietOptic", sovietOptic);
+		gunMap.Insert("AK74", ak74Kit);
+
+		autoptr m4a1Kit = new map<string, TStringArray>();
+		m4a1Kit.Insert("common", {"M4A1"});
+		m4a1Kit.Insert("attachments", {"M4_Suppressor","M4_OEBttstck","M4_PlasticHndgrd"});
+		m4a1Kit.Insert("m4Mag", m4Mag);
+		m4a1Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("M4A1", m4a1Kit);
+
+		autoptr vssKit = new map<string, TStringArray>();
+		vssKit.Insert("common", {"VSS","Mag_VSS_10Rnd"});
+		vssKit.Insert("attachments", {"PSO11Optic","Mag_Vikhr_30Rnd"});
+		gunMap.Insert("VSS", vssKit);
+
+		autoptr svdKit = new map<string, TStringArray>();
+		svdKit.Insert("common", {"SVD","Mag_SVD_10Rnd"});
+		svdKit.Insert("attachments", {"PSO11Optic","AK_Suppressor"});
+		gunMap.Insert("SVD", svdKit);
+
+		autoptr asvalKit = new map<string, TStringArray>();
+		asvalKit.Insert("common", {"ASVAL","Mag_Vikhr_30Rnd"});
+		asvalKit.Insert("attachments", {"PSO11Optic"});
+		gunMap.Insert("ASVAL", asvalKit);
+
+		autoptr vikhrKit = new map<string, TStringArray>();
+		vikhrKit.Insert("common", {"Vikhr","Mag_Vikhr_30Rnd"});
+		vikhrKit.Insert("attachments", {"PSO11Optic"});
+		gunMap.Insert("Vikhr", vikhrKit);
+
+		autoptr m16a2Kit = new map<string, TStringArray>();
+		m16a2Kit.Insert("common", {"M16A2"});
+		m16a2Kit.Insert("m4Mag", m4Mag);
+		m16a2Kit.Insert("attachments", {"M4_Suppressor"});
+		gunMap.Insert("M16A2", m16a2Kit);
+
+		autoptr famasKit = new map<string, TStringArray>();
+		famasKit.Insert("common", {"FAMAS","Mag_FAMAS_25Rnd"});
+		gunMap.Insert("FAMAS", famasKit);
+
+		autoptr augKit = new map<string, TStringArray>();
+		augKit.Insert("common", {"Aug","Mag_Aug_30Rnd"});
+		augKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("Aug", augKit);
+
+		autoptr augShortKit = new map<string, TStringArray>();
+		augShortKit.Insert("common", {"AugShort","Mag_Aug_30Rnd"});
+		gunMap.Insert("AugShort", augShortKit);
+
+		autoptr deagleKit = new map<string, TStringArray>();
+		deagleKit.Insert("common", {"Deagle_Gold","Mag_Deagle_9rnd"});
+		deagleKit.Insert("attachments", {"PistolOptic","PistolSuppressor"});
+		gunMap.Insert("Deagle_Gold", deagleKit);
+
+		autoptr pp19Kit = new map<string, TStringArray>();
+		pp19Kit.Insert("common", {"PP19","Mag_PP19_64Rnd"});
+		pp19Kit.Insert("attachments", {"PistolOptic","PistolSuppressor","PP19_Bttstck"});
+		gunMap.Insert("PP19", pp19Kit);
+
+		autoptr m14Kit = new map<string, TStringArray>();
+		m14Kit.Insert("common", {"M14"});
+		m14Kit.Insert("m14Mag", m14Mag);
+		m14Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("M14", m14Kit);
+
+		autoptr m79Kit = new map<string, TStringArray>();
+		m79Kit.Insert("common", {"m79"});
+		m79Kit.Insert("m79Ammo", m79Ammo);
+		gunMap.Insert("m79", m79Kit);
+
+		autoptr crossbowKit = new map<string, TStringArray>();
+		crossbowKit.Insert("common", {"Crossbow_Black","Ammo_HuntingBolt"});
+		gunMap.Insert("Crossbow_Black", crossbowKit);
+
+		// this replaced a horrendous switch statement, you're welcome hoes!
+		gunKit = gunMap.Get(gun.GetRandomElement());
+		common = gunKit.Get("common");
+		weapon = player.GetHumanInventory().CreateInHands(common[0]);
+
+		if (common.Count() > 1) {
+			weapon.GetInventory().CreateAttachment(common[1]);
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(common[1]);
+			}
+		}
+
+		if (gunKit.Find("attachments")) {
+			if (decide(70) == true) {
+				attachments = gunKit.Get("attachments");
+				int i = 0;
+				while (i < attachments.Count()) {
+					weapon.GetInventory().CreateAttachment(attachments[i]);
+					i++;
+				}
+			}
+		}
+
+		if (gunKit.Find("extra")) {
+			if (decide(70) == true) {
+				extra = gunKit.Get("extra");
+				int i = 0;
+				while (i < extra.Count()) {
+					if (extra[i] == "DryBag_Black") {
+						player.GetInventory().CreateInInventory(extra[i]);
+					}
+					player.GetInventory().CreateInInventory(extra[i]).SetQuantity(3);	
+				}
+			}
+		}
+
+		// IF m14Mag
+
+		// IF m79Ammo
+
+		// IF natoOptic
+
+		// IF sovietOptic
+
+		// IF akmMag
+
+		// IF saigaMag
+
 
 		switch(gun.GetRandomElement()) {
 		  case "MakarovIJ70":
@@ -347,17 +596,16 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Ammo_762x39");
 			}
 			break;
-		  case "Mp133Shotgun":
+		  case "Mp133Shotgun": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("Mp133Shotgun");
 			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 			break;
-		  case "Izh43Shotgun":
+		  case "Izh43Shotgun": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("Izh43Shotgun");
 			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 			break;
-		  case "Saiga":
+		  case "Saiga": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("Saiga");
-			TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
 			weapon.GetInventory().CreateAttachment(saigaMag.GetRandomElement());
 			player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
 			if (decide(70) == true) {
@@ -381,7 +629,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
 			}
 			break;
-		  case "UMP45":
+		  case "UMP45": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("UMP45");
 			weapon.GetInventory().CreateAttachment("Mag_UMP_25Rnd");
 			player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
@@ -395,7 +643,7 @@ class CustomMission: MissionServer
 				player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
 			}
 			break;
-		  case "MP5K":
+		  case "MP5K": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("MP5K");
 			weapon.GetInventory().CreateAttachment("Mag_MP5_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
@@ -445,9 +693,8 @@ class CustomMission: MissionServer
 				weapon.GetInventory().CreateAttachment("Fal_FoldingBttstck");
 			}
 			break;
-		  case "AKM":
+		  case "AKM": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("AKM");
-			TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
 			weapon.GetInventory().CreateAttachment(akmMag.GetRandomElement());
 			player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
 			if (decide(70) == true) {
@@ -466,7 +713,7 @@ class CustomMission: MissionServer
 				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
 			}
 			break;
-		  case "AK101":
+		  case "AK101": // TODO
 			weapon = player.GetHumanInventory().CreateInHands("AK101");
 			weapon.GetInventory().CreateAttachment("Mag_AK101_30Rnd");
 			player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
@@ -536,8 +783,6 @@ class CustomMission: MissionServer
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
 			}			
-			break;
-		  case "B95":
 			weapon = player.GetHumanInventory().CreateInHands("B95");
 			weapon.GetInventory().CreateAttachment("Ammo_308Win");
 			player.GetInventory().CreateInInventory("Ammo_308Win");
@@ -648,7 +893,6 @@ class CustomMission: MissionServer
 			break;
 		  case "M14":
 			weapon = player.GetHumanInventory().CreateInHands("M14");
-			TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"}
 			weapon.GetInventory().CreateAttachment(m14Mag.GetRandomElement());
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
@@ -659,10 +903,6 @@ class CustomMission: MissionServer
 			break;
 		  case "m79":
 			weapon = player.GetHumanInventory().CreateInHands("m79");
-			TStringArray m79Ammo = {
-				"Ammo_40mm_Explosive",
-				"Ammo_40mm_POX"
-			}
 			weapon.GetInventory().CreateAttachment(m79Ammo.GetRandomElement());
 			player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
 			if (decide(70) == true) {
