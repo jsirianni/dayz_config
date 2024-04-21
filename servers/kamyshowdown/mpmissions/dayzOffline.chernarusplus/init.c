@@ -436,14 +436,14 @@ class CustomMission: MissionServer
 		if (common.Count() > 1) {
 			weapon.GetInventory().CreateAttachment(common[1]);
 			if (decide(70) == true) {
-				if (gunKit.Find("natoOptic", true)) {
+				if (gunKit.Find("natoOptic", gunKit.Get("natoOptic"))) {
 					weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 				}
 				player.GetInventory().CreateInInventory(common[1]);
 			}
 		}
 
-		if (gunKit.Find("attachments", true)) {
+		if (gunKit.Find("attachments", gunKit.Get("attachments"))) {
 			if (decide(70) == true) {
 				auto attachments = gunKit.Get("attachments");
 				int i = 0;
@@ -496,7 +496,7 @@ class CustomMission: MissionServer
 		}
 
 		// IF shotgun
-		if (shotguns.Find(common[0], true)) {
+		if (shotguns.Find(common[0])) {
 			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 		}
 
