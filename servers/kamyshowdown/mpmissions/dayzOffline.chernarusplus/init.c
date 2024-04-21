@@ -436,16 +436,15 @@ class CustomMission: MissionServer
 		if (common.Count() > 1) {
 			weapon.GetInventory().CreateAttachment(common[1]);
 			if (decide(70) == true) {
-				if (gunKit.Find("natoOptic", gunKit.Get("natoOptic"))) {
+				if (gunKit.Find("natoOptic", natoOptic)) {
 					weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
 				}
 				player.GetInventory().CreateInInventory(common[1]);
 			}
 		}
 
-		if (gunKit.Find("attachments", gunKit.Get("attachments"))) {
+		if (gunKit.Find("attachments", attachments)) {
 			if (decide(70) == true) {
-				auto attachments = gunKit.Get("attachments");
 				int i = 0;
 				while (i < attachments.Count()) {
 					weapon.GetInventory().CreateAttachment(attachments[i]);
