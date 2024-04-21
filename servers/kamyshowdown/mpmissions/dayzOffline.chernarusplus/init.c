@@ -136,7 +136,7 @@ class CustomMission: MissionServer
 			"Crossbow_Black"
 		};
 		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"};
-		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
+		TStringArray melee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
 		TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
 		TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
@@ -431,7 +431,7 @@ class CustomMission: MissionServer
 		// i'd hoped for.
 		auto gunKit = gunMap.Get(gun.GetRandomElement());
 		auto common = gunKit.Get("common");
-		auto attachments;
+		auto attachments = {};
 		weapon = player.GetHumanInventory().CreateInHands(common[0]);
 
 		if (common.Count() > 1) {
@@ -528,7 +528,7 @@ class CustomMission: MissionServer
 
 		player.GetInventory().CreateInInventory("Battery9V");
 		
-		player.GetInventory().CreateInInventory(mellee.GetRandomElement());
+		player.GetInventory().CreateInInventory(melee.GetRandomElement());
 	}
 };
 
