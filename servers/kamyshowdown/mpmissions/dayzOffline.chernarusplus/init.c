@@ -135,20 +135,20 @@ class CustomMission: MissionServer
 			"m79",
 			"Crossbow_Black"
 		};
-		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
+		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"};
 		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
 		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
 		TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
 		TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
 		TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"};
-		TStringArray m79Ammo = {"Ammo_40mm_Explosive","Ammo_40mm_POX"}
+		TStringArray m79Ammo = {"Ammo_40mm_Explosive","Ammo_40mm_POX"};
 		TStringArray shotguns = {"Mp133Shotgun","Izh43Shotgun",};
 
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
 
-		TStringArray attachments = {"PistolSuppressor","PistolOptic","PSO11Optic","KobraOptic","ACOGOptic","M4_T3NRDSOptic","PUScopeOptic","HuntingOptic"}
-		TStringArray explosives = {"TripwireTrap","ClaymoreMine"}
+		TStringArray attachments = {"PistolSuppressor","PistolOptic","PSO11Optic","KobraOptic","ACOGOptic","M4_T3NRDSOptic","PUScopeOptic","HuntingOptic"};
+		TStringArray explosives = {"TripwireTrap","ClaymoreMine"};
 
 		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
 		TStringArray medical = {"Bandage","Rag"};
@@ -431,8 +431,8 @@ class CustomMission: MissionServer
 		// which is part of why I believe it's a better way
 		// even if it doesn't trim as many lines as
 		// i'd hoped for.
-		gunKit = gunMap.Get(gun.GetRandomElement());
-		common = gunKit.Get("common");
+		auto gunKit = gunMap.Get(gun.GetRandomElement());
+		auto common = gunKit.Get("common");
 		weapon = player.GetHumanInventory().CreateInHands(common[0]);
 
 		if (common.Count() > 1) {
@@ -447,7 +447,7 @@ class CustomMission: MissionServer
 
 		if (gunKit.Find("attachments")) {
 			if (decide(70) == true) {
-				attachments = gunKit.Get("attachments");
+				auto attachments = gunKit.Get("attachments");
 				int i = 0;
 				while (i < attachments.Count()) {
 					weapon.GetInventory().CreateAttachment(attachments[i]);
@@ -459,7 +459,7 @@ class CustomMission: MissionServer
 		// IF makarov kit
 		if (common[0] == "MakarovIJ70") {
 			if (decide(70) == true) {
-				extra = gunKit.Get("extra");
+				auto extra = gunKit.Get("extra");
 				int j = 0;
 				while (j < extra.Count()) {
 					if (extra[j] == "DryBag_Black") {
