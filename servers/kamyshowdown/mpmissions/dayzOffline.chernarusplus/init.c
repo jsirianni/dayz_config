@@ -431,7 +431,7 @@ class CustomMission: MissionServer
 		// i'd hoped for.
 		auto gunKit = gunMap.Get(gun.GetRandomElement());
 		auto common = gunKit.Get("common");
-		auto attachments = {""};
+		TStringArray attachments = {};
 		weapon = player.GetHumanInventory().CreateInHands(common[0]);
 
 		if (common.Count() > 1) {
