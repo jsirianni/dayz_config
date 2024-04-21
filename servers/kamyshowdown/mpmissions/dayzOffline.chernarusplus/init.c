@@ -146,8 +146,6 @@ class CustomMission: MissionServer
 
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
-
-		TStringArray attachments = {"PistolSuppressor","PistolOptic","PSO11Optic","KobraOptic","ACOGOptic","M4_T3NRDSOptic","PUScopeOptic","HuntingOptic"};
 		TStringArray explosives = {"TripwireTrap","ClaymoreMine"};
 
 		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
