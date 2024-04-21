@@ -3,7 +3,7 @@ describe file('/opt/dayz-server/serverDZ.cfg') do
 end
 
 describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c') do
-    its('sha256sum') { should eq 'c2ae1eb86ec58fd3dbfc39a728e04f53062cc5167aca87ed05c6da62fb2d904c' }
+    its('sha256sum') { should eq 'ad1012f6069a601c3986544bc3be9cae6dad54e5e648bb94f39dcf011d25ab8b' }
 end
 
 describe file('/opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml') do
