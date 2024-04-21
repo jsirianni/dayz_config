@@ -238,188 +238,188 @@ class CustomMission: MissionServer
 
 		// Custom gun kits that attempt to use maps as an elegant approach 
 		// to customization for the kits
-		autoptr gunMap = new map<string, map<string, TStringArray>>();
+		auto gunMap = new map<string, map<string, TStringArray>>();
 
-		autoptr makarovKit = new map<string, TStringArray>();
+		auto makarovKit = new map<string, TStringArray>();
 		makarovKit.Insert("common", {"MakarovIJ70","Mag_IJ70_8Rnd"});
 		makarovKit.Insert("attachments", {"PistolSuppressor"});
 		makarovKit.Insert("extra", {"DryBag_Black","TripwireTrap","ClaymoreMine"});
 		gunMap.Insert("MakarovIJ70", makarovKit);
 
-		autoptr fnx45Kit = new map<string, TStringArray>();
+		auto fnx45Kit = new map<string, TStringArray>();
 		fnx45Kit.Insert("common", {"FNX45","Mag_FNX45_15Rnd"});
 		fnx45Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
 		gunMap.Insert("FNX45", fnx45Kit);
 		
-		autoptr glock19Kit = new map<string, TStringArray>();
+		auto glock19Kit = new map<string, TStringArray>();
 		glock19Kit.Insert("common", {"FNX45","Mag_Glock_15Rnd"});
 		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
 		gunMap.Insert("Glock19", glock19Kit);
 
-		autoptr mkiiKit = new map<string, TStringArray>();
+		auto mkiiKit = new map<string, TStringArray>();
 		glock19Kit.Insert("common", {"MKII","Mag_MKII_10Rnd"});
 		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
 		gunMap.Insert("MKII", mkiiKit);
 
-		autoptr colt1911Kit = new map<string, TStringArray>();
+		auto colt1911Kit = new map<string, TStringArray>();
 		colt1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
 		colt1911Kit.Insert("attachments", {"PistolSuppressor"});
 		gunMap.Insert("Colt1911", colt1911Kit);
 		
-		autoptr engraved1911Kit = new map<string, TStringArray>();
+		auto engraved1911Kit = new map<string, TStringArray>();
 		engraved1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
 		engraved1911Kit.Insert("attachments", {"PistolSuppressor"});
 		gunMap.Insert("Engraved1911", engraved1911Kit);
 
-		autoptr izh18Kit = new map<string, TStringArray>();
+		auto izh18Kit = new map<string, TStringArray>();
 		izh18Kit.Insert("common", {"Izh18","Ammo_762x39"});
 		gunMap.Insert("Izh18", izh18Kit);
 
-		autoptr mosin9130Kit = new map<string, TStringArray>();
+		auto mosin9130Kit = new map<string, TStringArray>();
 		mosin9130Kit.Insert("common", {"Mosin9130","Ammo_762x54"});
 		mosin9130Kit.Insert("attachments", {"PUScopeOptic"});
 		gunMap.Insert("Mosin9130", mosin9130Kit);
 
-		autoptr cz527Kit = new map<string, TStringArray>();
+		auto cz527Kit = new map<string, TStringArray>();
 		cz527Kit.Insert("common", {"CZ527","Mag_CZ527_5rnd"});
 		gunMap.Insert("CZ527", cz527Kit);
 
-		autoptr winchester70Kit = new map<string, TStringArray>();
+		auto winchester70Kit = new map<string, TStringArray>();
 		winchester70Kit.Insert("common", {"Winchester70","Ammo_308Win"});
 		winchester70Kit.Insert("attachments", {"HuntingOptic"});
 		gunMap.Insert("Winchester70", winchester70Kit);
 		
-		autoptr sksKit = new map<string, TStringArray>();
+		auto sksKit = new map<string, TStringArray>();
 		sksKit.Insert("common", {"SKS","Ammo_762x39"});
 		sksKit.Insert("attachments", {"PUScopeOptic"});
 		gunMap.Insert("SKS", sksKit);
 
-		autoptr mp133Kit = new map<string, TStringArray>();
+		auto mp133Kit = new map<string, TStringArray>();
 		mp133Kit.Insert("common", {"Mp133Shotgun"});
 		gunMap.Insert("Mp133Shotgun", mp133Kit);
 
-		autoptr izh43Kit = new map<string, TStringArray>();
+		auto izh43Kit = new map<string, TStringArray>();
 		izh43Kit.Insert("common", {"Izh43Shotgun"});
 		gunMap.Insert("Izh43Shotgun", mp133Kit);
 
-		autoptr saigaKit = new map<string, TStringArray>();
+		auto saigaKit = new map<string, TStringArray>();
 		saigaKit.Insert("common", {"Saiga"});
 		sksKit.Insert("attachments", {"PSO11Optic","Saiga_Bttstck"});
 		saigaKit.Insert("saigaMag", saigaMag);
 		gunMap.Insert("Saiga", saigaKit);
 
-		autoptr cz61Kit = new map<string, TStringArray>();
+		auto cz61Kit = new map<string, TStringArray>();
 		cz61Kit.Insert("common", {"CZ61","Mag_CZ61_20Rnd"});
 		cz61Kit.Insert("attachments", {"PistolSuppressor"});
 		gunMap.Insert("CZ61", cz61Kit);
 
-		autoptr ump45Kit = new map<string, TStringArray>();
+		auto ump45Kit = new map<string, TStringArray>();
 		ump45Kit.Insert("common", {"UMP45","Mag_UMP_25Rnd"});
 		ump45Kit.Insert("attachments", {"PistolSuppressor"});
 		ump45Kit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("UMP45", ump45Kit);
 
-		autoptr mp5kKit = new map<string, TStringArray>();
+		auto mp5kKit = new map<string, TStringArray>();
 		mp5kKit.Insert("common", {"MP5K","Mag_UMP_25Rnd"});
 		mp5kKit.Insert("attachments", {"PistolSuppressor","MP5_Compensator","MP5_RailHndgrd","MP5k_StockBttstck"});
 		mp5kKit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("MP5K", mp5kKit);
 
-		autoptr aks74uKit = new map<string, TStringArray>();
+		auto aks74uKit = new map<string, TStringArray>();
 		aks74uKit.Insert("common", {"AKS74U","Mag_AK74_30Rnd"});
 		aks74uKit.Insert("attachments", {"AK_Suppressor","AKS74U_Bttstck"});
 		gunMap.Insert("AKS74U", aks74uKit);
 
-		autoptr falKit = new map<string, TStringArray>();
+		auto falKit = new map<string, TStringArray>();
 		falKit.Insert("common", {"FAL","Mag_FAL_20Rnd"});
 		falKit.Insert("attachments", {"Fal_FoldingBttstck"});
 		falKit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("FAL", falKit);
 
-		autoptr akmKit = new map<string, TStringArray>();
+		auto akmKit = new map<string, TStringArray>();
 		akmKit.Insert("common", {"AKM"});
 		akmKit.Insert("attachments", {"AK_Suppressor","AK_PlasticBttstck","AK_PlasticHndgrd"});
 		akmKit.Insert("sovietOptic", sovietOptic);
 		gunMap.Insert("AKM", akmKit);
 
-		autoptr ak101Kit = new map<string, TStringArray>();
+		auto ak101Kit = new map<string, TStringArray>();
 		ak101Kit.Insert("common", {"AK101","Mag_AK101_30Rnd"});
 		ak101Kit.Insert("attachments", {"AK_Suppressor","PSO11Optic","AK_PlasticBttstck","AK_PlasticHndgrd"});
 		gunMap.Insert("AK101", ak101Kit);
 
-		autoptr ak74Kit = new map<string, TStringArray>();
+		auto ak74Kit = new map<string, TStringArray>();
 		ak74Kit.Insert("common", {"AK74","Mag_AK74_30Rnd"});
 		ak74Kit.Insert("attachments", {"AK_Suppressor","AK74_WoodBttstck","AK74_Hndgrd"});
 		ak74Kit.Insert("sovietOptic", sovietOptic);
 		gunMap.Insert("AK74", ak74Kit);
 
-		autoptr m4a1Kit = new map<string, TStringArray>();
+		auto m4a1Kit = new map<string, TStringArray>();
 		m4a1Kit.Insert("common", {"M4A1"});
 		m4a1Kit.Insert("attachments", {"M4_Suppressor","M4_OEBttstck","M4_PlasticHndgrd"});
 		m4a1Kit.Insert("m4Mag", m4Mag);
 		m4a1Kit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("M4A1", m4a1Kit);
 
-		autoptr vssKit = new map<string, TStringArray>();
+		auto vssKit = new map<string, TStringArray>();
 		vssKit.Insert("common", {"VSS","Mag_VSS_10Rnd"});
 		vssKit.Insert("attachments", {"PSO11Optic","Mag_Vikhr_30Rnd"});
 		gunMap.Insert("VSS", vssKit);
 
-		autoptr svdKit = new map<string, TStringArray>();
+		auto svdKit = new map<string, TStringArray>();
 		svdKit.Insert("common", {"SVD","Mag_SVD_10Rnd"});
 		svdKit.Insert("attachments", {"PSO11Optic","AK_Suppressor"});
 		gunMap.Insert("SVD", svdKit);
 
-		autoptr asvalKit = new map<string, TStringArray>();
+		auto asvalKit = new map<string, TStringArray>();
 		asvalKit.Insert("common", {"ASVAL","Mag_Vikhr_30Rnd"});
 		asvalKit.Insert("attachments", {"PSO11Optic"});
 		gunMap.Insert("ASVAL", asvalKit);
 
-		autoptr vikhrKit = new map<string, TStringArray>();
+		auto vikhrKit = new map<string, TStringArray>();
 		vikhrKit.Insert("common", {"Vikhr","Mag_Vikhr_30Rnd"});
 		vikhrKit.Insert("attachments", {"PSO11Optic"});
 		gunMap.Insert("Vikhr", vikhrKit);
 
-		autoptr m16a2Kit = new map<string, TStringArray>();
+		auto m16a2Kit = new map<string, TStringArray>();
 		m16a2Kit.Insert("common", {"M16A2"});
 		m16a2Kit.Insert("m4Mag", m4Mag);
 		m16a2Kit.Insert("attachments", {"M4_Suppressor"});
 		gunMap.Insert("M16A2", m16a2Kit);
 
-		autoptr famasKit = new map<string, TStringArray>();
+		auto famasKit = new map<string, TStringArray>();
 		famasKit.Insert("common", {"FAMAS","Mag_FAMAS_25Rnd"});
 		gunMap.Insert("FAMAS", famasKit);
 
-		autoptr augKit = new map<string, TStringArray>();
+		auto augKit = new map<string, TStringArray>();
 		augKit.Insert("common", {"Aug","Mag_Aug_30Rnd"});
 		augKit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("Aug", augKit);
 
-		autoptr augShortKit = new map<string, TStringArray>();
+		auto augShortKit = new map<string, TStringArray>();
 		augShortKit.Insert("common", {"AugShort","Mag_Aug_30Rnd"});
 		gunMap.Insert("AugShort", augShortKit);
 
-		autoptr deagleKit = new map<string, TStringArray>();
+		auto deagleKit = new map<string, TStringArray>();
 		deagleKit.Insert("common", {"Deagle_Gold","Mag_Deagle_9rnd"});
 		deagleKit.Insert("attachments", {"PistolOptic","PistolSuppressor"});
 		gunMap.Insert("Deagle_Gold", deagleKit);
 
-		autoptr pp19Kit = new map<string, TStringArray>();
+		auto pp19Kit = new map<string, TStringArray>();
 		pp19Kit.Insert("common", {"PP19","Mag_PP19_64Rnd"});
 		pp19Kit.Insert("attachments", {"PistolOptic","PistolSuppressor","PP19_Bttstck"});
 		gunMap.Insert("PP19", pp19Kit);
 
-		autoptr m14Kit = new map<string, TStringArray>();
+		auto m14Kit = new map<string, TStringArray>();
 		m14Kit.Insert("common", {"M14"});
 		m14Kit.Insert("natoOptic", natoOptic);
 		gunMap.Insert("M14", m14Kit);
 
-		autoptr m79Kit = new map<string, TStringArray>();
+		auto m79Kit = new map<string, TStringArray>();
 		m79Kit.Insert("common", {"m79"});
 		m79Kit.Insert("m79Ammo", m79Ammo);
 		gunMap.Insert("m79", m79Kit);
 
-		autoptr crossbowKit = new map<string, TStringArray>();
+		auto crossbowKit = new map<string, TStringArray>();
 		crossbowKit.Insert("common", {"Crossbow_Black","Ammo_HuntingBolt"});
 		gunMap.Insert("Crossbow_Black", crossbowKit);
 
