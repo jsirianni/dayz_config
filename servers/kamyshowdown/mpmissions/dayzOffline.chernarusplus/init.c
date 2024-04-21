@@ -421,14 +421,6 @@ class CustomMission: MissionServer
 		crossbowKit.Insert("common", {"Crossbow_Black","Ammo_HuntingBolt"});
 		gunMap.Insert("Crossbow_Black", crossbowKit);
 
-		// this replaced a horrendous switch statement
-		// and there are some new if statements to account for
-		// cases where kits are doing different things.
-		//
-		// it's not as wild/repetitive as the switch statement
-		// which is part of why I believe it's a better way
-		// even if it doesn't trim as many lines as
-		// i'd hoped for.
 		auto gunKit = gunMap.Get(gun.GetRandomElement());
 		auto common = gunKit.Get("common");
 		TStringArray attachments = {};
