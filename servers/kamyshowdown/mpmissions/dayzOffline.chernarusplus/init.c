@@ -142,7 +142,6 @@ class CustomMission: MissionServer
 		TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
 		TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"};
 		TStringArray m79Ammo = {"Ammo_40mm_Explosive","Ammo_40mm_POX"};
-		TStringArray shotguns = {"Mp133Shotgun","Izh43Shotgun",};
 
 		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
 		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
@@ -488,7 +487,7 @@ class CustomMission: MissionServer
 		}
 
 		// IF shotgun
-		if (shotguns.Find(common[0])) {
+		if (common[0] == "Mp133Shotgun" || common[0] == "Izh43Shotgun") {
 			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
 		}
 
