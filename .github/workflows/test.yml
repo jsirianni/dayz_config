@@ -121,39 +121,49 @@ jobs:
 
     - name: Deploy init.c
       run: |
+        if [ -f servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/init.c ]; then
         sudo cp \
           servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/init.c \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/init.c
+        fi
 
     - name: Deploy cfgplayerspawnpoints.xml
       run: |
+        if [ -f servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml ]; then
         sudo cp \
           servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/cfgplayerspawnpoints.xml
+        fi
 
     - name: Deploy globals.xml
       run: |
+        if [ -f servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/globals.xml ]; then
         sudo cp \
           servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/globals.xml \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/globals.xml
+        fi
 
     - name: Deploy events.xml
       run: |
+        if [ -f servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/events.xml ]; then
         sudo cp \
           servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/db/events.xml \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/db/events.xml
+        fi
 
     - name: Deploy bear_territories.xml
       run: |
+        if [ -f servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml ]; then
         sudo cp \
           servers/${{ matrix.server }}/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml          \
           /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml
         sudo chown dayz:dayz /opt/dayz-server/mpmissions/dayzOffline.chernarusplus/env/bear_territories.xml
-  
+        fi
+
     - run: sudo systemctl start dayz-server
     - run: sleep 10
     - run: sudo systemctl status dayz-server
