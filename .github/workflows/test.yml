@@ -36,6 +36,7 @@ jobs:
       matrix:
         server:
         - kamyshowdown
+        - first-light-chernarus-vanilla
     steps:
     - name: Checkout
       uses: actions/checkout@v2
