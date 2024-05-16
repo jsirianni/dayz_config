@@ -112,10 +112,12 @@ jobs:
 
     - name: Deploy serverDZ.cfg
       run: |
-        sudo cp \
-          servers/${{ matrix.server }}/serverDZ.cfg \
-          /opt/dayz-server/serverDZ.cfg
-        sudo chown dayz:dayz /opt/dayz-server/serverDZ.cfg
+        if [ -f servers/${{ matrix.server }}/serverDZ.cfg ]; then
+          sudo cp \
+            servers/${{ matrix.server }}/serverDZ.cfg \
+            /opt/dayz-server/serverDZ.cfg
+          sudo chown dayz:dayz /opt/dayz-server/serverDZ.cfg
+        fi
 
     - name: Deploy init.c
       run: |
