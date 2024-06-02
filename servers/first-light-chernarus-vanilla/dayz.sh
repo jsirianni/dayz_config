@@ -50,6 +50,8 @@ symlinks() {
 
     # CF and Online Tools share the same key
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_admin_tools/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mode_code_lock/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
