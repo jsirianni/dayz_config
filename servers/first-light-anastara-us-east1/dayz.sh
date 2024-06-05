@@ -39,7 +39,6 @@ mod_fireplace="2976984742"
 mod_crocodile="3013430583"
 mod_zennotes="2857994912"
 mod_windstrides="1797720064"
-mod_heli="2692979668"
 mod_boats="2906371600"
 mod_ear_plugs="2602208478"
 
@@ -65,7 +64,6 @@ dayz() {
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_crocodile" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_zennotes" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_windstrides" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_heli" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_boats" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_ear_plugs" \
     +quit
@@ -91,7 +89,6 @@ symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_crocodile" "/opt/dayz/$mod_crocodile"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_zennotes" "/opt/dayz/$mod_zennotes"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_windstrides" "/opt/dayz/$mod_windstrides"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_heli" "/opt/dayz/$mod_heli"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_boats" "/opt/dayz/$mod_boats"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_ear_plugs" "/opt/dayz/$mod_ear_plugs"
 
@@ -111,7 +108,6 @@ symlinks() {
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_crocodile/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_zennotes/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_windstrides/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_heli/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_boats/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_ear_plugs/Keys/*" /opt/dayz/keys/
 
@@ -130,7 +126,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2301 \
-    -mod="$mod_cf;$mod_online_tools;$mod_admin_tools;$mod_code_lock;$mod_anastara;$mod_anastara_pack;$mod_SimpleSpawner;$mod_SpawnerBubaku;$mod_Dabs;$mod_WindstridesClothingPack;$mod_gebfish;$mod_waterfall;$mod_fireplace;$mod_crocodile;$mod_zennotes;$mod_windstrides;$mod_heli;$mod_boats;$mod_ear_plugs;" \
+    -mod="$mod_cf;$mod_online_tools;$mod_admin_tools;$mod_code_lock;$mod_anastara;$mod_anastara_pack;$mod_SimpleSpawner;$mod_SpawnerBubaku;$mod_Dabs;$mod_WindstridesClothingPack;$mod_gebfish;$mod_waterfall;$mod_fireplace;$mod_crocodile;$mod_zennotes;$mod_windstrides;$mod_boats;$mod_ear_plugs;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
