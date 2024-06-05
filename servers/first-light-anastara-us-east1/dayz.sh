@@ -103,13 +103,13 @@ symlinks() {
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_anastara_pack/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_SimpleSpawner/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_SpawnerBubaku/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_Dabs/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_Dabs/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_WindstridesClothingPack/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_gebfish/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_gebfish/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_waterfall/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_fireplace/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_fireplace/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_crocodile/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_zennotes/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_zennotes/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_windstrides/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_heli/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_boats/Keys/*" /opt/dayz/keys/
