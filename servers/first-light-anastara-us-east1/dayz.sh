@@ -98,7 +98,7 @@ symlinks() {
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_code_lock/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_anastara/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_anastara_pack/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_SimpleSpawner/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_SimpleSpawner/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_SpawnerBubaku/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_Dabs/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_WindstridesClothingPack/Keys/*" /opt/dayz/keys/
@@ -125,7 +125,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 #ExecStartPre=/opt/update.sh
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
-    -port=2301 \
+    -port=2311 \
     -mod="$mod_cf;$mod_online_tools;$mod_admin_tools;$mod_code_lock;$mod_anastara;$mod_anastara_pack;$mod_SimpleSpawner;$mod_SpawnerBubaku;$mod_Dabs;$mod_WindstridesClothingPack;$mod_gebfish;$mod_waterfall;$mod_fireplace;$mod_crocodile;$mod_zennotes;$mod_windstrides;$mod_boats;$mod_ear_plugs;" \
     -BEpath=battleye \
     -profiles=profiles \
