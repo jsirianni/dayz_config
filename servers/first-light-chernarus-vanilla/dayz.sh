@@ -25,7 +25,6 @@ shell_home="/opt/dayz"
 
 mod_cf="1559212036"
 mod_online_tools="1564026768"
-mod_admin_tools="1582756848"
 mod_code_lock="1646187754"
 
 dayz() {
@@ -36,7 +35,6 @@ dayz() {
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_online_tools" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_admin_tools" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_code_lock" \
     +quit
 EOF
@@ -47,12 +45,10 @@ EOF
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_online_tools" "/opt/dayz/$mod_online_tools"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_admin_tools" "/opt/dayz/$mod_admin_tools"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_code_lock" "/opt/dayz/$mod_code_lock"
 
     # CF and Online Tools share the same key
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_admin_tools/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_code_lock/Keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
@@ -70,7 +66,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2301 \
-    -mod="$mod_cf;$mod_online_tools;$mod_admin_tools;$mod_code_lock;" \
+    -mod="$mod_cf;$mod_online_tools;$mod_code_lock;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \

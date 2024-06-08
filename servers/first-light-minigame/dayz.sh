@@ -25,7 +25,6 @@ shell_home="/opt/dayz"
 
 mod_cf="1559212036"
 mod_online_tools="1564026768"
-mod_admin_tools="1582756848"
 mod_trader="1590841260"
 mod_map="1623711988"
 mod_party="1582671564"
@@ -38,7 +37,6 @@ dayz() {
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_online_tools" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_admin_tools" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_trader" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_map" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_party" \
@@ -51,7 +49,6 @@ EOF
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_online_tools" "/opt/dayz/$mod_online_tools"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_admin_tools" "/opt/dayz/$mod_admin_tools"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_trader" "/opt/dayz/$mod_trader"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_map" "/opt/dayz/$mod_map"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party" "/opt/dayz/$mod_party"
@@ -59,7 +56,6 @@ symlinks() {
     # CF and Online Tools share the same keyadmins.cfg
 
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_admin_tools/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_trader/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_map/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party/Keys/*" /opt/dayz/keys/
@@ -79,7 +75,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2501 \
-    -mod="$mod_cf;$mod_online_tools;$mod_admin_tools;$mod_trader;$mod_map;$mod_party;" \
+    -mod="$mod_cf;$mod_online_tools;$mod_trader;$mod_map;$mod_party;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
