@@ -88,7 +88,7 @@ ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s INT \$MAINPID
 User=dayz
 Group=dayz
-Restart=on-failure
+Restart=always
 RestartSec=5s
 
 [Install]
