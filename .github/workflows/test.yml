@@ -102,7 +102,7 @@ jobs:
         LimitNOFILE=100000
         User=dayz
         Group=dayz
-        Restart=on-failure
+        Restart=always
         RestartSec=30s
         
         [Install]
