@@ -24,7 +24,7 @@ DAYZ_WORKSHOP_ID=221100
 shell_home="/opt/dayz"
 
 mod_cf="1559212036"
-mod_online_tools="1564026768"
+#mod_online_tools="1564026768"
 mod_vpp="1828439124"
 mod_trader="1590841260"
 mod_map="1623711988"
@@ -40,7 +40,6 @@ dayz() {
     +login "$STEAM_USER" \
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_online_tools" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_trader" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_map" \
@@ -56,7 +55,6 @@ EOF
 # is capitalized.
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_online_tools" "/opt/dayz/$mod_online_tools"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_trader" "/opt/dayz/$mod_trader"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_map" "/opt/dayz/$mod_map"
@@ -91,7 +89,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2501 \
-    -mod="$mod_cf;$mod_online_tools;$mod_vpp;$mod_trader;$mod_map;$mod_party;$mod_buildanywhere;$mod_moredoors;$mod_bbp;" \
+    -mod="$mod_cf;$mod_vpp;$mod_trader;$mod_map;$mod_party;$mod_buildanywhere;$mod_moredoors;$mod_bbp;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
