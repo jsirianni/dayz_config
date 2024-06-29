@@ -27,7 +27,7 @@ mod_cf="1559212036"
 mod_vpp="1828439124"
 mod_namalsk="2289456201"
 mod_namalsk_survival="2289461232"
-
+mod_lehs_backpack="3018293592"
 
 dayz() {
     sudo -u dayz 'bash' <<EOF
@@ -39,6 +39,7 @@ dayz() {
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_namalsk" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_namalsk_survival" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_lehs_backpack" \
     +quit
 EOF
 }
@@ -50,11 +51,13 @@ symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_namalsk" "/opt/dayz/$mod_namalsk"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_namalsk_survival" "/opt/dayz/$mod_namalsk_survival"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_lehs_backpack" "/opt/dayz/$mod_lehs_backpack"
 
     # CF and Online Tools share the same key
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_namalsk/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_lehs_backpack/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
@@ -71,7 +74,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2311 \
-    -mod="$mod_cf;$mod_vpp;$mod_namalsk;$mod_namalsk_survival;" \
+    -mod="$mod_cf;$mod_vpp;$mod_namalsk;$mod_namalsk_survival;$mod_lehs_backpack" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
