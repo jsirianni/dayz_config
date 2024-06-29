@@ -24,7 +24,6 @@ DAYZ_WORKSHOP_ID=221100
 shell_home="/opt/dayz"
 
 mod_cf="1559212036"
-#mod_online_tools="1564026768"
 mod_vpp="1828439124"
 mod_trader="1590841260"
 mod_map="1623711988"
