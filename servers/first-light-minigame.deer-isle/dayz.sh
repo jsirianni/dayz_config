@@ -25,6 +25,7 @@ shell_home="/opt/dayz"
 
 mod_cf="1559212036"
 mod_vpp="1828439124"
+mod_deerisle="1602372402"
 mod_party="1582671564"
 mod_buildanywhere="1854626456"
 mod_bbp="1710977250"
@@ -37,6 +38,7 @@ dayz() {
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_deerisle" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_party" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_buildanywhere" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_bbp" \
@@ -49,6 +51,7 @@ EOF
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_deerisle" "/opt/dayz/$mod_deerisle"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party" "/opt/dayz/$mod_party"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere" "/opt/dayz/$mod_buildanywhere"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp" "/opt/dayz/$mod_bbp"
@@ -57,6 +60,7 @@ symlinks() {
 
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_deerisle/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp/keys/*" /opt/dayz/keys/
@@ -76,7 +80,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2601 \
-    -mod="$mod_cf;$mod_vpp;$mod_party;$mod_buildanywhere;$mod_bbp;" \
+    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_party;$mod_buildanywhere;$mod_bbp;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
