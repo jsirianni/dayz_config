@@ -25,11 +25,8 @@ shell_home="/opt/dayz"
 
 mod_cf="1559212036"
 mod_vpp="1828439124"
-mod_trader="1590841260"
-mod_map="1623711988"
 mod_party="1582671564"
 mod_buildanywhere="1854626456"
-mod_moredoors="2007175894"
 mod_bbp="1710977250"
 
 dayz() {
@@ -40,11 +37,8 @@ dayz() {
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_trader" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_map" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_party" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_buildanywhere" \
-    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_moredoors" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_bbp" \
     +quit
 EOF
@@ -55,22 +49,16 @@ EOF
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_trader" "/opt/dayz/$mod_trader"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_map" "/opt/dayz/$mod_map"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party" "/opt/dayz/$mod_party"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere" "/opt/dayz/$mod_buildanywhere"
-    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_moredoors" "/opt/dayz/$mod_moredoors"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp" "/opt/dayz/$mod_bbp"
 
     # CF and Online Tools share the same keyadmins.cfg
 
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_trader/keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_map/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_moredoors/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
@@ -87,8 +75,8 @@ After=syslog.target network.target nss-lookup.target network-online.target
 #ExecStartPre=/opt/update.sh
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
-    -port=2501 \
-    -mod="$mod_cf;$mod_vpp;$mod_trader;$mod_map;$mod_party;$mod_buildanywhere;$mod_moredoors;$mod_bbp;" \
+    -port=2601 \
+    -mod="$mod_cf;$mod_vpp;$mod_party;$mod_buildanywhere;$mod_bbp;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
