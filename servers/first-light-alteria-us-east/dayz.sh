@@ -62,8 +62,9 @@ symlinks() {
     # CF and Online Tools share the same key
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_gsc_assets/Keys/*" /opt/dayz/keys/
-    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_alteria/Keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_gsc_assets/keys/*" /opt/dayz/keys/
+    # Alteria mod does not have a key?
+    # eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_alteria/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_code_lock/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp/keys/*" /opt/dayz/keys/
@@ -83,7 +84,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2301 \
-    -mod="$mod_cf;$mod_vpp;$mod_gsc_assets;$mod_alteria;$mod_code_lock;$mod_buildanywhere;$mod_bbp;" \
+    -mod="$mod_cf;$mod_alteria;$mod_gsc_assets;$mod_vpp;$mod_code_lock;$mod_buildanywhere;$mod_bbp;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
