@@ -58,8 +58,6 @@ RestartSec=5s
 [Install]
 WantedBy=multi-user.target
 EOF
-
-sudo systemctl daemon-reload
 }
 
 dayz
