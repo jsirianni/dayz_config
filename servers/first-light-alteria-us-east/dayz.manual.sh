@@ -20,11 +20,26 @@ DAYZ_WORKSHOP_ID=221100
 
 shell_home="/opt/dayz"
 
+mod_cf="1559212036"
+mod_vpp="1828439124"
+mod_gsc_assets="3154500253"
+mod_alteria="2811630720"
+mod_code_lock="1646187754"
+mod_buildanywhere="1854626456"
+mod_bbp="1710977250"
+
 dayz() {
 /usr/games/steamcmd \
     +force_install_dir "$shell_home" \
     +login "$STEAM_USER" \
     +app_update "$DAYZ_APP_ID" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_gsc_assets" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_alteria" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_code_lock" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_buildanywhere" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_bbp" \
     +quit
 }
 
