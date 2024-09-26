@@ -91,7 +91,65 @@ class CustomMission: MissionServer
 		EntityAI weapon;
 		EntityAI weapon2;
 		EntityAI weapon3;
-		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"}
+		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
+		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
+		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
+		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
+		TStringArray gun = {
+			"MakarovIJ70",
+			"FNX45",
+			"Glock19",
+			"MKII",
+			"Colt1911",
+			"Engraved1911",
+			"Izh18",
+			"Mosin9130",
+			"CZ527",
+			"Winchester70",
+			"SKS",
+			"Mp133Shotgun",
+			"Izh43Shotgun",
+			"Saiga",
+			"CZ61",
+			"UMP45",
+			"MP5K",
+			"AKS74U",
+			"FAL",
+			"AKM",
+			"AK101",
+			"AK74",
+			"M4A1",
+			"VSS",
+			"B95",
+			"SVD",
+			// NEW
+			"ASVAL",
+			"Vikhr",
+			"M16A2",
+			"FAMAS",
+			"Aug",
+			"AugShort",
+			"Deagle_Gold",
+			"PP19",
+			"M14",
+			"m79",
+			"Crossbow_Black"
+		};
+		TStringArray m4Mag = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd"};
+		TStringArray melee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
+		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
+		TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
+		TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"};
+		TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"};
+		TStringArray m79Ammo = {"Ammo_40mm_Explosive","Ammo_40mm_POX"};
+
+		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
+		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
+		TStringArray explosives = {"TripwireTrap","ClaymoreMine"};
+
+		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
+		TStringArray medical = {"Bandage","Rag"};
+		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		// 1% chance of getting jugg
 		if (decide(95) == true) {
@@ -146,65 +204,11 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory("BandageDressing");
 			player.GetInventory().CreateInInventory("BandageDressing");
 			player.GetInventory().CreateInInventory("Splint");
-			
-			
 
 			player.GetInventory().CreateInInventory("Battery9V");
 
 			return;
 		}
-
-		TStringArray top = {"PrisonUniformJacket","BDUJacket","NurseDress_Blue","Raincoat_Green","Raincoat_Pink"};
-		TStringArray pants = {"PrisonUniformPants","BDUPants","CargoPants_Beige","ShortJeans_Blue"};
-		TStringArray vest = {"PlateCarrierVest","PoliceVest","PressVest_Blue"};
-		TStringArray shoes = {"AthleticShoes_Black","AthleticShoes_Brown","AthleticShoes_Grey","HikingBootsLow_Beige","HikingBootsLow_Black","HikingBootsLow_Grey","HikingBoots_Black"};
-		TStringArray gun = {
-			"MakarovIJ70",
-			"FNX45",
-			"Glock19",
-			"MKII",
-			"Colt1911",
-			"Engraved1911",
-			"Izh18",
-			"Mosin9130",
-			"CZ527",
-			"Winchester70",
-			"SKS",
-			"Mp133Shotgun",
-			"Izh43Shotgun",
-			"Saiga",
-			"CZ61",
-			"UMP45",
-			"MP5K",
-			"AKS74U",
-			"FAL",
-			"AKM",
-			"AK101",
-			"AK74",
-			"M4A1",
-			"VSS",
-			"B95",
-			"SVD",
-			// NEW
-			"ASVAL",
-			"Vikhr",
-			"M16A2",
-			"FAMAS",
-			"Aug",
-			"AugShort",
-			"Deagle_Gold",
-			"PP19",
-			"M14",
-			"m79",
-			"Crossbow_Black"
-		};
-		TStringArray mellee = {"BrassKnuckles_Shiny", "BaseballBat", "NailedBaseballBat"};
-		TStringArray shotgunAmmo = {"Ammo_12gaPellets","Ammo_12gaRubberSlug","Ammo_12gaSlug"};
-		TStringArray natoOptic = {"ACOGOptic","M4_T3NRDSOptic"};
-		TStringArray sovietOptic = {"PSO11Optic","KobraOptic"};
-		TStringArray helmet = {"BallisticHelmet_Black","BallisticHelmet_UN","ConstructionHelmet_Blue","DarkMotoHelmet_Blue","FirefightersHelmet_Yellow","GorkaHelmet"};
-		TStringArray medical = {"Bandage","Rag"};
-		TStringArray nades = {"RDG2SmokeGrenade_Black","RGD5Grenade","FlashGrenade"};
 
 		player.RemoveAllItems();
 
@@ -229,468 +233,293 @@ class CustomMission: MissionServer
 			player.GetInventory().CreateInInventory(nades.GetRandomElement());
 		}
 
-		switch(gun.GetRandomElement()) {
-		  case "MakarovIJ70":
-		  	weapon = player.GetHumanInventory().CreateInHands("MakarovIJ70");
-			weapon.GetInventory().CreateAttachment("Mag_IJ70_8Rnd");
-			player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_IJ70_8Rnd");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("DryBag_Black");
-				player.GetInventory().CreateInInventory("TripwireTrap");
-				player.GetInventory().CreateInInventory("TripwireTrap");
-				player.GetInventory().CreateInInventory("TripwireTrap");
-				player.GetInventory().CreateInInventory("ClaymoreMine");
-				player.GetInventory().CreateInInventory("ClaymoreMine");
-				player.GetInventory().CreateInInventory("ClaymoreMine");
-			}
-			break;
-		  case "FNX45":
-			weapon = player.GetHumanInventory().CreateInHands("FNX45");
-			weapon.GetInventory().CreateAttachment("Mag_FNX45_15Rnd");
-			player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolOptic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-			}
-			break;
-		  case "Glock19":
-			weapon = player.GetHumanInventory().CreateInHands("Glock19");
-			weapon.GetInventory().CreateAttachment("Mag_Glock_15Rnd");
-			player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolOptic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
-			}
-			break;
-		  case "MKII":
-			weapon = player.GetHumanInventory().CreateInHands("MKII");
-			weapon.GetInventory().CreateAttachment("Mag_MKII_10Rnd");
-			player.GetInventory().CreateInInventory("Mag_MKII_10Rnd");
-			if (decide(10) == true) {
-				player.GetInventory().CreateInInventory("Mag_MKII_10Rnd");
-			}
-			break;
-		  case "Colt1911":
-			weapon = player.GetHumanInventory().CreateInHands("Colt1911");
-			weapon.GetInventory().CreateAttachment("Mag_1911_7Rnd");
-			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(50) == true) {
-				player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-			}
-			break;
-		  case "Engraved1911":
-			weapon = player.GetHumanInventory().CreateInHands("Engraved1911");
-			weapon.GetInventory().CreateAttachment("Mag_1911_7Rnd");
-			player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(50) == true) {
-				player.GetInventory().CreateInInventory("Mag_1911_7Rnd");
-			}
-			break;
-		  case "Izh18":
-			weapon = player.GetHumanInventory().CreateInHands("Izh18");
-			weapon.GetInventory().CreateAttachment("Ammo_762x39");
-			player.GetInventory().CreateInInventory("Ammo_762x39");
-			break;
-		  case "Mosin9130":
-			EntityAI weaponMosin9130 = player.GetHumanInventory().CreateInHands("Mosin9130");
-			weaponMosin9130.GetInventory().CreateAttachment("Ammo_762x54");
-			player.GetInventory().CreateInInventory("Ammo_762x54");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PUScopeOptic");
-			}
-			break;
-		  case "CZ527":
-			weapon = player.GetHumanInventory().CreateInHands("CZ527");
-			weapon.GetInventory().CreateAttachment("Mag_CZ527_5rnd");
-			player.GetInventory().CreateInInventory("Mag_CZ527_5rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("Mag_CZ527_5rnd");
-			}
-			break;
-		  case "Winchester70":
-			weapon = player.GetHumanInventory().CreateInHands("Winchester70");
-			player.GetInventory().CreateInInventory("Ammo_308Win");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("HuntingOptic");
-			}
-			break;
-		  case "SKS":
-			weapon = player.GetHumanInventory().CreateInHands("SKS");
-			weapon.GetInventory().CreateAttachment("Ammo_762x39");
-			player.GetInventory().CreateInInventory("Ammo_762x39");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PUScopeOptic");
-			}
-			if (decide(50) == true) {
-				player.GetInventory().CreateInInventory("Ammo_762x39");
-			}
-			break;
-		  case "Mp133Shotgun":
-			weapon = player.GetHumanInventory().CreateInHands("Mp133Shotgun");
-			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
-			break;
-		  case "Izh43Shotgun":
-			weapon = player.GetHumanInventory().CreateInHands("Izh43Shotgun");
-			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
-			break;
-		  case "Saiga":
-			weapon = player.GetHumanInventory().CreateInHands("Saiga");
-			TStringArray saigaMag = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"}
-			weapon.GetInventory().CreateAttachment(saigaMag.GetRandomElement());
-			player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("Saiga_Bttstck");
-			}
-			break;
-		  case "CZ61":
-			weapon = player.GetHumanInventory().CreateInHands("CZ61");
-			weapon.GetInventory().CreateAttachment("Mag_CZ61_20Rnd");
-			player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_CZ61_20Rnd");
-			}
-			break;
-		  case "UMP45":
-			weapon = player.GetHumanInventory().CreateInHands("UMP45");
-			weapon.GetInventory().CreateAttachment("Mag_UMP_25Rnd");
-			player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(natoOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
-			}
-			break;
-		  case "MP5K":
-			weapon = player.GetHumanInventory().CreateInHands("MP5K");
-			weapon.GetInventory().CreateAttachment("Mag_MP5_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			} else if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("MP5_Compensator");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("MP5k_StockBttstck");
-			}
-			break;
-		  case "AKS74U":
-			weapon = player.GetHumanInventory().CreateInHands("AKS74U");
-			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("AKS74U_Bttstck");
-			}
-			break;
-		  case "FAL":
-			weapon = player.GetHumanInventory().CreateInHands("FAL");
-			weapon.GetInventory().CreateAttachment("Mag_FAL_20Rnd");
-			player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("Fal_FoldingBttstck");
-			}
-			break;
-		  case "AKM":
-			weapon = player.GetHumanInventory().CreateInHands("AKM");
-			TStringArray akmMag = {"Mag_AKM_30Rnd","Mag_AKM_Palm30Rnd","Mag_AKM_Drum75Rnd"}
-			weapon.GetInventory().CreateAttachment(akmMag.GetRandomElement());
-			player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
-			}
-			break;
-		  case "AK101":
-			weapon = player.GetHumanInventory().CreateInHands("AK101");
-			weapon.GetInventory().CreateAttachment("Mag_AK101_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_AK101_30Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_PlasticHndgrd");
-			}
-			break;
-		  case "AK74":
-			weapon = player.GetHumanInventory().CreateInHands("AK74");
-			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK74_Hndgrd");
-			}
-			break;
-		  case "M4A1":
-			weapon = player.GetHumanInventory().CreateInHands("M4A1");
-			weapon.GetInventory().CreateAttachment(m4Mag.GetRandomElement());
-			player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("M4_Suppressor");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("M4_OEBttstck");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("M4_PlasticHndgrd");
-			}
-			break;
-		  case "VSS":
-			weapon = player.GetHumanInventory().CreateInHands("VSS");
-			weapon.GetInventory().CreateAttachment("Mag_VSS_10Rnd");
-			player.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
-			}			
-			break;
-		  case "B95":
-			weapon = player.GetHumanInventory().CreateInHands("B95");
-			weapon.GetInventory().CreateAttachment("Ammo_308Win");
-			player.GetInventory().CreateInInventory("Ammo_308Win");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("HuntingOptic");
-			}
-			break;
-		  case "SVD":
-			weapon = player.GetHumanInventory().CreateInHands("SVD");
-			weapon.GetInventory().CreateAttachment("Mag_SVD_10Rnd");
-			player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
-			}	
-			break;
-		  case "ASVAL":
-			weapon = player.GetHumanInventory().CreateInHands("ASVAL");
-			weapon.GetInventory().CreateAttachment("Mag_Vikhr_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}		
-			break;
-		  case "Vikhr":
-			weapon = player.GetHumanInventory().CreateInHands("Vikhr");
-			weapon.GetInventory().CreateAttachment("Mag_Vikhr_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Vikhr_30Rnd");
-			}	
-			break;
-		  case "M16A2":
-			weapon = player.GetHumanInventory().CreateInHands("M16A2");
-			weapon.GetInventory().CreateAttachment(m4Mag.GetRandomElement());
-			player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory(m4Mag.GetRandomElement());
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("M4_Suppressor");
-			}
-			break;
-		  case "FAMAS":
-			weapon = player.GetHumanInventory().CreateInHands("FAMAS");
-			weapon.GetInventory().CreateAttachment("Mag_FAMAS_25Rnd");
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_FAMAS_25Rnd");
-			}
-			break;
-		  case "Aug":
-			weapon = player.GetHumanInventory().CreateInHands("Aug");
-			weapon.GetInventory().CreateAttachment("Mag_Aug_30Rnd");
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Aug_30Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
-			}
-			break;
-		  case "AugShort":
-			weapon = player.GetHumanInventory().CreateInHands("AugShort");
-			weapon.GetInventory().CreateAttachment("Mag_Aug_30Rnd");
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Aug_30Rnd");
-			}
-			break;
-		  case "Deagle_Gold":
-			weapon = player.GetHumanInventory().CreateInHands("Deagle_Gold");
-			weapon.GetInventory().CreateAttachment("Mag_Deagle_9rnd");
-			player.GetInventory().CreateInInventory("Mag_Deagle_9rnd");
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_Deagle_9rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolOptic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			break;
-		  case "PP19":
-			weapon = player.GetHumanInventory().CreateInHands("PP19");
-			weapon.GetInventory().CreateAttachment("Mag_PP19_64Rnd");
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_PP19_64Rnd");
-			}
-			if (decide(70) == true) {
-				player.GetInventory().CreateInInventory("Mag_PP19_64Rnd");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolOptic");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-			}
-			if (decide(70) == true) {
-				weapon.GetInventory().CreateAttachment("PP19_Bttstck");
-			}
-			break;
-		  case "M14":
-			weapon = player.GetHumanInventory().CreateInHands("M14");
-			TStringArray m14Mag = {"Mag_M14_20Rnd", "Mag_M14_10Rnd"}
+		// Custom gun kits that attempt to use maps as an elegant approach 
+		// to customization for the kits
+		auto gunMap = new map<string, map<string, TStringArray>>();
+
+		auto makarovKit = new map<string, TStringArray>();
+		makarovKit.Insert("common", {"MakarovIJ70","Mag_IJ70_8Rnd"});
+		makarovKit.Insert("attachments", {"PistolSuppressor"});
+		makarovKit.Insert("extra", {"DryBag_Black","TripwireTrap","ClaymoreMine"});
+		gunMap.Insert("MakarovIJ70", makarovKit);
+
+		auto fnx45Kit = new map<string, TStringArray>();
+		fnx45Kit.Insert("common", {"FNX45","Mag_FNX45_15Rnd"});
+		fnx45Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("FNX45", fnx45Kit);
+		
+		auto glock19Kit = new map<string, TStringArray>();
+		glock19Kit.Insert("common", {"FNX45","Mag_Glock_15Rnd"});
+		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("Glock19", glock19Kit);
+
+		auto mkiiKit = new map<string, TStringArray>();
+		glock19Kit.Insert("common", {"MKII","Mag_MKII_10Rnd"});
+		glock19Kit.Insert("attachments", {"PistolSuppressor","PistolOptic"});
+		gunMap.Insert("MKII", mkiiKit);
+
+		auto colt1911Kit = new map<string, TStringArray>();
+		colt1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
+		colt1911Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("Colt1911", colt1911Kit);
+		
+		auto engraved1911Kit = new map<string, TStringArray>();
+		engraved1911Kit.Insert("common", {"Colt1911","Mag_1911_7Rnd"});
+		engraved1911Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("Engraved1911", engraved1911Kit);
+
+		auto izh18Kit = new map<string, TStringArray>();
+		izh18Kit.Insert("common", {"Izh18","Ammo_762x39"});
+		gunMap.Insert("Izh18", izh18Kit);
+
+		auto mosin9130Kit = new map<string, TStringArray>();
+		mosin9130Kit.Insert("common", {"Mosin9130","Ammo_762x54"});
+		mosin9130Kit.Insert("attachments", {"PUScopeOptic"});
+		gunMap.Insert("Mosin9130", mosin9130Kit);
+
+		auto cz527Kit = new map<string, TStringArray>();
+		cz527Kit.Insert("common", {"CZ527","Mag_CZ527_5rnd"});
+		gunMap.Insert("CZ527", cz527Kit);
+
+		auto winchester70Kit = new map<string, TStringArray>();
+		winchester70Kit.Insert("common", {"Winchester70","Ammo_308Win"});
+		winchester70Kit.Insert("attachments", {"HuntingOptic"});
+		gunMap.Insert("Winchester70", winchester70Kit);
+		
+		auto sksKit = new map<string, TStringArray>();
+		sksKit.Insert("common", {"SKS","Ammo_762x39"});
+		sksKit.Insert("attachments", {"PUScopeOptic"});
+		gunMap.Insert("SKS", sksKit);
+
+		auto mp133Kit = new map<string, TStringArray>();
+		mp133Kit.Insert("common", {"Mp133Shotgun"});
+		gunMap.Insert("Mp133Shotgun", mp133Kit);
+
+		auto izh43Kit = new map<string, TStringArray>();
+		izh43Kit.Insert("common", {"Izh43Shotgun"});
+		gunMap.Insert("Izh43Shotgun", mp133Kit);
+
+		auto saigaKit = new map<string, TStringArray>();
+		saigaKit.Insert("common", {"Saiga"});
+		sksKit.Insert("attachments", {"PSO11Optic","Saiga_Bttstck"});
+		saigaKit.Insert("saigaMag", saigaMag);
+		gunMap.Insert("Saiga", saigaKit);
+
+		auto cz61Kit = new map<string, TStringArray>();
+		cz61Kit.Insert("common", {"CZ61","Mag_CZ61_20Rnd"});
+		cz61Kit.Insert("attachments", {"PistolSuppressor"});
+		gunMap.Insert("CZ61", cz61Kit);
+
+		auto ump45Kit = new map<string, TStringArray>();
+		ump45Kit.Insert("common", {"UMP45","Mag_UMP_25Rnd"});
+		ump45Kit.Insert("attachments", {"PistolSuppressor"});
+		ump45Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("UMP45", ump45Kit);
+
+		auto mp5kKit = new map<string, TStringArray>();
+		mp5kKit.Insert("common", {"MP5K","Mag_UMP_25Rnd"});
+		mp5kKit.Insert("attachments", {"PistolSuppressor","MP5_Compensator","MP5_RailHndgrd","MP5k_StockBttstck"});
+		mp5kKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("MP5K", mp5kKit);
+
+		auto aks74uKit = new map<string, TStringArray>();
+		aks74uKit.Insert("common", {"AKS74U","Mag_AK74_30Rnd"});
+		aks74uKit.Insert("attachments", {"AK_Suppressor","AKS74U_Bttstck"});
+		gunMap.Insert("AKS74U", aks74uKit);
+
+		auto falKit = new map<string, TStringArray>();
+		falKit.Insert("common", {"FAL","Mag_FAL_20Rnd"});
+		falKit.Insert("attachments", {"Fal_FoldingBttstck"});
+		falKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("FAL", falKit);
+
+		auto akmKit = new map<string, TStringArray>();
+		akmKit.Insert("common", {"AKM"});
+		akmKit.Insert("attachments", {"AK_Suppressor","AK_PlasticBttstck","AK_PlasticHndgrd"});
+		akmKit.Insert("sovietOptic", sovietOptic);
+		gunMap.Insert("AKM", akmKit);
+
+		auto ak101Kit = new map<string, TStringArray>();
+		ak101Kit.Insert("common", {"AK101","Mag_AK101_30Rnd"});
+		ak101Kit.Insert("attachments", {"AK_Suppressor","PSO11Optic","AK_PlasticBttstck","AK_PlasticHndgrd"});
+		gunMap.Insert("AK101", ak101Kit);
+
+		auto ak74Kit = new map<string, TStringArray>();
+		ak74Kit.Insert("common", {"AK74","Mag_AK74_30Rnd"});
+		ak74Kit.Insert("attachments", {"AK_Suppressor","AK74_WoodBttstck","AK74_Hndgrd"});
+		ak74Kit.Insert("sovietOptic", sovietOptic);
+		gunMap.Insert("AK74", ak74Kit);
+
+		auto m4a1Kit = new map<string, TStringArray>();
+		m4a1Kit.Insert("common", {"M4A1"});
+		m4a1Kit.Insert("attachments", {"M4_Suppressor","M4_OEBttstck","M4_PlasticHndgrd"});
+		m4a1Kit.Insert("m4Mag", m4Mag);
+		m4a1Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("M4A1", m4a1Kit);
+
+		auto vssKit = new map<string, TStringArray>();
+		vssKit.Insert("common", {"VSS","Mag_VSS_10Rnd"});
+		vssKit.Insert("attachments", {"PSO11Optic","Mag_Vikhr_30Rnd"});
+		gunMap.Insert("VSS", vssKit);
+
+		auto svdKit = new map<string, TStringArray>();
+		svdKit.Insert("common", {"SVD","Mag_SVD_10Rnd"});
+		svdKit.Insert("attachments", {"PSO11Optic","AK_Suppressor"});
+		gunMap.Insert("SVD", svdKit);
+
+		auto asvalKit = new map<string, TStringArray>();
+		asvalKit.Insert("common", {"ASVAL","Mag_Vikhr_30Rnd"});
+		asvalKit.Insert("attachments", {"PSO11Optic"});
+		gunMap.Insert("ASVAL", asvalKit);
+
+		auto vikhrKit = new map<string, TStringArray>();
+		vikhrKit.Insert("common", {"Vikhr","Mag_Vikhr_30Rnd"});
+		vikhrKit.Insert("attachments", {"PSO11Optic"});
+		gunMap.Insert("Vikhr", vikhrKit);
+
+		auto m16a2Kit = new map<string, TStringArray>();
+		m16a2Kit.Insert("common", {"M16A2"});
+		m16a2Kit.Insert("m4Mag", m4Mag);
+		m16a2Kit.Insert("attachments", {"M4_Suppressor"});
+		gunMap.Insert("M16A2", m16a2Kit);
+
+		auto famasKit = new map<string, TStringArray>();
+		famasKit.Insert("common", {"FAMAS","Mag_FAMAS_25Rnd"});
+		gunMap.Insert("FAMAS", famasKit);
+
+		auto augKit = new map<string, TStringArray>();
+		augKit.Insert("common", {"Aug","Mag_Aug_30Rnd"});
+		augKit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("Aug", augKit);
+
+		auto augShortKit = new map<string, TStringArray>();
+		augShortKit.Insert("common", {"AugShort","Mag_Aug_30Rnd"});
+		gunMap.Insert("AugShort", augShortKit);
+
+		auto deagleKit = new map<string, TStringArray>();
+		deagleKit.Insert("common", {"Deagle_Gold","Mag_Deagle_9rnd"});
+		deagleKit.Insert("attachments", {"PistolOptic","PistolSuppressor"});
+		gunMap.Insert("Deagle_Gold", deagleKit);
+
+		auto pp19Kit = new map<string, TStringArray>();
+		pp19Kit.Insert("common", {"PP19","Mag_PP19_64Rnd"});
+		pp19Kit.Insert("attachments", {"PistolOptic","PistolSuppressor","PP19_Bttstck"});
+		gunMap.Insert("PP19", pp19Kit);
+
+		auto m14Kit = new map<string, TStringArray>();
+		m14Kit.Insert("common", {"M14"});
+		m14Kit.Insert("natoOptic", natoOptic);
+		gunMap.Insert("M14", m14Kit);
+
+		auto m79Kit = new map<string, TStringArray>();
+		m79Kit.Insert("common", {"m79"});
+		m79Kit.Insert("m79Ammo", m79Ammo);
+		gunMap.Insert("m79", m79Kit);
+
+		auto crossbowKit = new map<string, TStringArray>();
+		crossbowKit.Insert("common", {"Crossbow_Black","Ammo_HuntingBolt"});
+		gunMap.Insert("Crossbow_Black", crossbowKit);
+
+		auto gunKit = gunMap.Get(gun.GetRandomElement());
+		auto common = gunKit.Get("common");
+		TStringArray attachments = {};
+		weapon = player.GetHumanInventory().CreateInHands(common[0]);
+
+		if (common.Count() > 1) {
+			weapon.GetInventory().CreateAttachment(common[1]);
+			if (decide(70) == true) {
+				if (gunKit.Find("natoOptic", natoOptic)) {
+					weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
+				}
+				player.GetInventory().CreateInInventory(common[1]);
+			}
+		}
+
+		if (gunKit.Find("attachments", attachments)) {
+			if (decide(70) == true) {
+				int i = 0;
+				while (i < attachments.Count()) {
+					weapon.GetInventory().CreateAttachment(attachments[i]);
+					i++;
+				}
+			}
+		}
+
+		// IF makarov kit
+		if (common[0] == "MakarovIJ70") {
+			if (decide(70) == true) {
+				auto extra = gunKit.Get("extra");
+				int j = 0;
+				while (j < extra.Count()) {
+					if (extra[j] == "DryBag_Black") {
+						player.GetInventory().CreateInInventory(extra[j]);
+						j++;
+					} else {
+						int k = 0;
+						int quantity = 3;
+						while (k < quantity) {
+							player.GetInventory().CreateInInventory(extra[j]);
+							k++;
+						}
+						j++;
+					}
+				}
+			}
+		}
+
+		// IF M14 kit
+		if (common[0] == "M14") {
 			weapon.GetInventory().CreateAttachment(m14Mag.GetRandomElement());
 			if (decide(70) == true) {
 				weapon.GetInventory().CreateAttachment(natoOptic.GetRandomElement());
-			}
-			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory(m14Mag.GetRandomElement());
 			}
-			break;
-		  case "m79":
-			weapon = player.GetHumanInventory().CreateInHands("m79");
-			TStringArray m79Ammo = {
-				"Ammo_40mm_Explosive",
-				"Ammo_40mm_POX"
-			}
+		}
+
+		// IF M79 kit
+		if (common[0] == "m79") {
 			weapon.GetInventory().CreateAttachment(m79Ammo.GetRandomElement());
 			player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
 			if (decide(70) == true) {
 				player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
 				player.GetInventory().CreateInInventory(m79Ammo.GetRandomElement());
 			}
-			break;
-		  case "Crossbow_Black":
-			weapon = player.GetHumanInventory().CreateInHands("Crossbow_Black");
-			weapon.GetInventory().CreateAttachment("Ammo_HuntingBolt");
-			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
-			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
-			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
-			player.GetInventory().CreateInInventory("Ammo_HuntingBolt");
-			break;
-		  default:
-			weapon = player.GetHumanInventory().CreateInHands("AK74");
-			weapon.GetInventory().CreateAttachment("Mag_AK74_30Rnd");
-			player.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
-			weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");
-			weapon.GetInventory().CreateAttachment("AK74_Hndgrd");
+		}
+
+		// IF shotgun
+		if (common[0] == "Mp133Shotgun" || common[0] == "Izh43Shotgun") {
+			player.GetInventory().CreateInInventory(shotgunAmmo.GetRandomElement());
+		}
+
+		// IF AKM kit
+		if (common[0] == "AKM") {
+			weapon.GetInventory().CreateAttachment(akmMag.GetRandomElement());
+			player.GetInventory().CreateInInventory(akmMag.GetRandomElement());
+			if (decide(70) == true) {
+				weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
+			}
+		}
+
+		// IF AK74 Kit
+		if (common[0] == "AK74") {
+			weapon.GetInventory().CreateAttachment(sovietOptic.GetRandomElement());
+			player.GetInventory().CreateInInventory(common[1]);
+		}
+
+		// IF saiga kit
+		if (common[0] == "Saiga") {
+			weapon.GetInventory().CreateAttachment(saigaMag.GetRandomElement());
+			player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
+			if (decide(70) == true) {
+				player.GetInventory().CreateInInventory(saigaMag.GetRandomElement());
+			}
 		}
 
 		player.SetQuickBarEntityShortcut(weapon, 0);
 
 		player.GetInventory().CreateInInventory("Battery9V");
 		
-		player.GetInventory().CreateInInventory(mellee.GetRandomElement());
+		player.GetInventory().CreateInInventory(melee.GetRandomElement());
 	}
 };
 
