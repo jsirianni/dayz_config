@@ -25,6 +25,7 @@ shell_home="/opt/dayz"
 
 mod_cf="1559212036"
 mod_vpp="1828439124"
+mod_deerisle="1602372402"
 mod_buildanywhere="1854626456"
 
 dayz() {
@@ -35,6 +36,7 @@ dayz() {
     +app_update "$DAYZ_APP_ID" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_deerisle" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_buildanywhere" \
     +quit
 EOF
@@ -45,10 +47,12 @@ EOF
 symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_deerisle" "/opt/dayz/$mod_deerisle"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere" "/opt/dayz/$mod_buildanywhere"
 
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_deerisle/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere/Keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
@@ -66,7 +70,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2801 \
-    -mod="$mod_cf;$mod_vpp;$mod_buildanywhere;" \
+    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_buildanywhere;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
