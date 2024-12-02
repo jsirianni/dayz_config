@@ -2,8 +2,8 @@
 <events>
     <event name="AnimalBear">
         <nominal>0</nominal>
-        <min>1</min><!--vanilla is 2-->
-        <max>2</max><!--vanilla is 2-->
+        <min>0</min><!--vanilla is 2-->
+        <max>0</max><!--vanilla is 2-->
         <lifetime>20</lifetime>
         <restock>0</restock>
         <saferadius>1</saferadius>
