@@ -31,6 +31,7 @@ mod_buildanywhere="1854626456"
 mod_bbp="1710977250"
 mod_snafu_weapons="2443122116"
 mod_mmg="2663169692"
+mod_fortune_vic="3070597058"
 
 dayz() {
     sudo -u dayz 'bash' <<EOF
@@ -46,6 +47,7 @@ dayz() {
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_bbp" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_snafu_weapons" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_mmg" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_fortune_vic" \
     +quit
 EOF
 }
@@ -61,6 +63,7 @@ symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp" "/opt/dayz/$mod_bbp"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_snafu_weapons" "/opt/dayz/$mod_snafu_weapons"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_mmg" "/opt/dayz/$mod_mmg"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_fortune_vic" "/opt/dayz/$mod_fortune_vic"
 
     # CF and Online Tools share the same keyadmins.cfg
 
@@ -72,6 +75,7 @@ symlinks() {
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_snafu_weapons/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_mmg/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_fortune_vic/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
@@ -88,7 +92,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2601 \
-    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_party;$mod_buildanywhere;$mod_bbp;$mod_snafu_weapons;$mod_mmg;" \
+    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_party;$mod_buildanywhere;$mod_bbp;$mod_snafu_weapons;$mod_mmg;$mod_fortune_vic;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
