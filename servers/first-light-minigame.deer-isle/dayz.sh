@@ -29,6 +29,8 @@ mod_deerisle="1602372402"
 mod_party="1582671564"
 mod_buildanywhere="1854626456"
 mod_bbp="1710977250"
+mod_snafu_weapons="2443122116"
+mod_mmg="2663169692"
 
 dayz() {
     sudo -u dayz 'bash' <<EOF
@@ -42,6 +44,8 @@ dayz() {
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_party" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_buildanywhere" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_bbp" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_snafu_weapons" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_mmg" \
     +quit
 EOF
 }
@@ -55,6 +59,8 @@ symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party" "/opt/dayz/$mod_party"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere" "/opt/dayz/$mod_buildanywhere"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp" "/opt/dayz/$mod_bbp"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_snafu_weapons" "/opt/dayz/$mod_snafu_weapons"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_mmg" "/opt/dayz/$mod_mmg"
 
     # CF and Online Tools share the same keyadmins.cfg
 
@@ -64,6 +70,8 @@ symlinks() {
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_party/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_buildanywhere/Keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_bbp/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_snafu_weapons/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_mmg/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
@@ -80,7 +88,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=2601 \
-    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_party;$mod_buildanywhere;$mod_bbp;" \
+    -mod="$mod_cf;$mod_vpp;$mod_deerisle;$mod_party;$mod_buildanywhere;$mod_bbp;$mod_snafu_weapons;$mod_mmg;" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
