@@ -50,8 +50,8 @@
 	{
 		"lightingConfig": 1,
 		"objectSpawnersArr": [],
-		"environmentMinTemps": [-6.0, -6.0, -6.0,-6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0],
-		"environmentMaxTemps": [-6.0, -6.0, -6.0,-6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0, -6.0],
+		"environmentMinTemps": [-10, -10, -10,-10, -10, -10, -10, -10, -10, -10, -10, -10],
+		"environmentMaxTemps": [-10, -10, -10,-10, -10, -10, -10, -10, -10, -10, -10, -10],
 		"wetnessWeightModifiers": [1.0, 1.0, 1.33, 1.66, 2.0]
 	},
 	"BaseBuildingData":
