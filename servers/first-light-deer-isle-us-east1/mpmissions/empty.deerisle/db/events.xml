@@ -55,9 +55,9 @@
         </children>
     </event>
     <event name="AmbientBear">
-        <nominal>7</nominal>
+        <nominal>12</nominal>
         <min>5</min>
-        <max>7</max>
+        <max>20</max>
         <lifetime>180</lifetime>
         <restock>0</restock>
         <saferadius>200</saferadius>
@@ -74,7 +74,7 @@
 	<event name="AmbientPolarbear">
         <nominal>6</nominal>
         <min>3</min>
-        <max>5</max>
+        <max>10</max>
         <lifetime>180</lifetime>
         <restock>0</restock>
         <saferadius>200</saferadius>
@@ -91,7 +91,7 @@
     <event name="AmbientCow">
         <nominal>8</nominal>
         <min>2</min>
-        <max>4</max>
+        <max>10</max>
         <lifetime>180</lifetime>
         <restock>0</restock>
         <saferadius>200</saferadius>
@@ -113,7 +113,7 @@
     <event name="AmbientDeer">
         <nominal>9</nominal>
         <min>3</min>
-        <max>5</max>
+        <max>10</max>
         <lifetime>180</lifetime>
         <restock>0</restock>
         <saferadius>200</saferadius>
@@ -237,9 +237,9 @@
         </children>
     </event>
     <event name="AnimalWolf">
-        <nominal>6</nominal>
+        <nominal>10</nominal>
         <min>4</min>
-        <max>6</max>
+        <max>20</max>
         <lifetime>180</lifetime>
         <restock>0</restock>
         <saferadius>200</saferadius>
@@ -719,9 +719,9 @@
         </children>
     </event>
     <event name="ItemPlanks">
-        <nominal>20</nominal>
-        <min>10</min>
-        <max>20</max>
+        <nominal>30</nominal>
+        <min>15</min>
+        <max>30</max>
         <lifetime>7200</lifetime>
         <restock>0</restock>
         <saferadius>250</saferadius>
@@ -751,9 +751,9 @@
         <children/>
     </event>
     <event name="StaticBonfire">
-        <nominal>1</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>3</nominal>
+        <min>2</min>
+        <max>5</max>
         <lifetime>86400</lifetime>
         <restock>0</restock>
         <saferadius>100</saferadius>
@@ -1026,9 +1026,9 @@
         </children>
     </event>
 	<event name="VehicleBoat">
-        <nominal>10</nominal>
-        <min>8</min>
-        <max>10</max>
+        <nominal>20</nominal>
+        <min>15</min>
+        <max>30</max>
         <lifetime>6000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1063,9 +1063,9 @@
 	  </children>
     </event>
     <event name="VehicleCivilianSedan">
-        <nominal>0</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>2</nominal>
+        <min>1</min>
+        <max>3</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1082,9 +1082,9 @@
         </children>
     </event>
     <event name="VehicleHatchback02">
-        <nominal>0</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>2</nominal>
+        <min>1</min>
+        <max>3</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1101,9 +1101,9 @@
         </children>
     </event>
     <event name="VehicleOffroadHatchback">
-        <nominal>0</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>2</nominal>
+        <min>1</min>
+        <max>3</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1120,9 +1120,9 @@
         </children>
     </event>
     <event name="VehicleSedan02">
-        <nominal>0</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>2</nominal>
+        <min>1</min>
+        <max>3</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1139,9 +1139,9 @@
         </children>
     </event>
     <event name="VehicleTruck01">
-        <nominal>0</nominal>
-        <min>0</min>
-        <max>0</max>
+        <nominal>2</nominal>
+        <min>1</min>
+        <max>3</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1175,9 +1175,9 @@
 		</children>
 	</event>
 	<event name="StaticVanAmbulance">
-		<nominal>1</nominal>
+		<nominal>2</nominal>
 		<min>1</min>
-		<max>1</max>
+		<max>2</max>
 		<lifetime>2500</lifetime>
 		<restock>0</restock>
 		<saferadius>500</saferadius>
@@ -1373,7 +1373,7 @@
     </event>		
 	<event name="VehicleATVCivil">
         <nominal>15</nominal>
-        <min>10</min>
+        <min>5</min>
         <max>15</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
