@@ -19332,10 +19332,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
   </type>
   <type name="Sedan_02_Door_1_1">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19345,10 +19345,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_1_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19358,10 +19358,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_1_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19371,10 +19371,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_1_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19384,10 +19384,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_1_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19397,10 +19397,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_1_YellowRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19410,10 +19410,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19423,10 +19423,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19436,10 +19436,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19449,10 +19449,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19462,10 +19462,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19475,10 +19475,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_1_2_YellowRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19488,10 +19488,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19501,10 +19501,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19514,10 +19514,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19527,10 +19527,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19540,10 +19540,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19553,10 +19553,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_1_YellowRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19566,10 +19566,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19579,10 +19579,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19592,10 +19592,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19605,10 +19605,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19618,10 +19618,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19631,10 +19631,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Door_2_2_YellowRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19646,7 +19646,7 @@
   <type name="Sedan_02_Grey">
     <nominal>0</nominal>
     <lifetime>3</lifetime>
-    <restock>1800</restock>
+    <restock>1080</restock>
     <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
@@ -19654,10 +19654,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
   </type>
   <type name="Sedan_02_Hood">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19667,10 +19667,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Hood_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19680,10 +19680,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Hood_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19693,10 +19693,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Hood_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19706,10 +19706,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Hood_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19719,10 +19719,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Hood_YellowRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19742,10 +19742,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
   </type>
   <type name="Sedan_02_Trunk">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19755,10 +19755,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Trunk_Grey">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19768,10 +19768,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Trunk_GreyRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19781,10 +19781,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Trunk_Red">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19794,10 +19794,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Trunk_RedRust">
-    <nominal>0</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19807,10 +19807,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Trunk_YellowRust">
-    <nominal>4</nominal>
+    <nominal>2</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>2</min>
+    <min>1</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19820,10 +19820,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Wheel">
-    <nominal>0</nominal>
+    <nominal>20</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>10</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
