@@ -11017,10 +11017,10 @@
     <usage name="Firefighter" />
   </type>
   <type name="Heatpack">
-    <nominal>70</nominal>
+    <nominal>140</nominal>
     <lifetime>7200</lifetime>
     <restock>900</restock>
-    <min>30</min>
+    <min>70</min>
     <quantmin>30</quantmin>
     <quantmax>200</quantmax>
     <cost>100</cost>
