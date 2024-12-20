@@ -1,151 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <messages>
-    <!-- Server Shutdown Messages -->
-    <!-- Announcing the daily server shutdowns -->
-
-    <!-- 4am EST restart -->
     <message>
-        <text>The server will restart in 1 hour (4am EST) for maintenance.</text>
-        <hour>3</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>The server will restart in 30 minutes (4am EST) for maintenance.</text>
-        <hour>3</hour>
-        <minute>30</minute>
-    </message>
-    <message>
-        <text>The server will restart in 15 minutes (4am EST) for maintenance.</text>
-        <hour>3</hour>
-        <minute>45</minute>
-    </message>
-    <message>
-        <text>NOTICE: Server restart in five minutes (4am EST). Log out now.</text>
-        <hour>3</hour>
-        <minute>55</minute>
+        <delay>1</delay>
+        <onconnect>1</onconnect>
+        <text>You are playing #name</text>
     </message>
 
-    <!-- 1pm EST restart -->
     <message>
-        <text>The server will restart in 1 hour (1pm EST) for maintenance.</text>
-        <hour>12</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>The server will restart in 30 minutes (1pm EST) for maintenance.</text>
-        <hour>12</hour>
-        <minute>30</minute>
-    </message>
-    <message>
-        <text>The server will restart in 15 minutes (1pm EST) for maintenance.</text>
-        <hour>12</hour>
-        <minute>45</minute>
-    </message>
-    <message>
-        <text>NOTICE: Server restart in five minutes (1pm EST). Log out now.</text>
-        <hour>12</hour>
-        <minute>55</minute>
+        <delay>1</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>Discord: https://discord.gg/jSkRSvZaaM</text>
     </message>
 
-    <!-- Generic restart notice -->
     <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>1</hour>
-        <minute>0</minute>
+        <delay>1</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>Server restarts at 1300 (1pm) and 0400 (4pm) EST</text>
     </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>2</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>5</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>6</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>7</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>8</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>9</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>10</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>11</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>14</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>15</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>16</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>17</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>18</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>19</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>20</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>21</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>22</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>23</hour>
-        <minute>0</minute>
-    </message>
-    <message>
-        <text>This server restarts at 1pm and 4am EST time. https://discord.gg/jSkRSvZaaM</text>
-        <hour>24</hour>
-        <minute>0</minute>
-    </message>
+
 </messages>
