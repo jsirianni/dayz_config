@@ -22302,10 +22302,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Truck_01_Door_1_1_BlueRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22315,10 +22315,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_1_1_GreenRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22328,10 +22328,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_1_1_OrangeRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22341,10 +22341,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1_BlueRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22354,10 +22354,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1_GreenRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22367,10 +22367,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1_OrangeRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22380,10 +22380,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood_BlueRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22393,10 +22393,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood_GreenRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22406,10 +22406,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood_OrangeRust">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22449,10 +22449,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
   </type>
   <type name="Truck_01_Door_1_1">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22462,10 +22462,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_1_1_Blue">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22475,10 +22475,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_1_1_Orange">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22488,10 +22488,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22501,10 +22501,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1_Blue">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22514,10 +22514,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Door_2_1_Orange">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22527,10 +22527,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22540,10 +22540,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood_Blue">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22553,10 +22553,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Hood_Orange">
-    <nominal>0</nominal>
+    <nominal>4</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22566,10 +22566,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Wheel">
-    <nominal>0</nominal>
+    <nominal>12</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>8</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22579,10 +22579,10 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_WheelDouble">
-    <nominal>0</nominal>
+    <nominal>12</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>8</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
