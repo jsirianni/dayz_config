@@ -18592,10 +18592,10 @@
     <value name="Tier1" />
   </type>
   <type name="Roadflare">
-    <nominal>60</nominal>
+    <nominal>120</nominal>
     <lifetime>7200</lifetime>
     <restock>0</restock>
-    <min>50</min>
+    <min>80</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
