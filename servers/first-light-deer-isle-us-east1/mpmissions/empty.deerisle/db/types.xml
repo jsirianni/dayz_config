@@ -22588,6 +22588,8 @@
     <cost>100</cost>
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
     <category name="lootdispatch" />
+    <usage name="Industrial" />
+    <usage name="Farm" />
   </type>
   <type name="Truck_01_WheelDouble_Ruined">
     <nominal>0</nominal>
