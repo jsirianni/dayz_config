@@ -17,7 +17,7 @@
         <delay>1</delay>
         <repeat>60</repeat>
         <onconnect>1</onconnect>
-        <text>Server restarts at 1300 (1pm) and 0400 (4pm) EST</text>
+        <text>Server restarts at 1300 (1pm) and 0400 (4am) EST</text>
     </message>
 
 </messages>
