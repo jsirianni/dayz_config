@@ -61,7 +61,7 @@
 			"disableIsCollidingBBoxCheck": true,
 			"disableIsCollidingPlayerCheck": true,
 			"disableIsClippingRoofCheck": true,
-			"disableIsBaseViableCheck": false,
+			"disableIsBaseViableCheck": true,
 			"disableIsCollidingGPlotCheck": false,
 			"disableIsCollidingAngleCheck": true,
 			"disableIsPlacementPermittedCheck": true,
