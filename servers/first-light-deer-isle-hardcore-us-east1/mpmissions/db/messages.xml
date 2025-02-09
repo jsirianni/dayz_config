@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<messages>
+    <message>
+        <delay>1</delay>
+        <onconnect>1</onconnect>
+        <text>You are playing #name</text>
+    </message>
+    <message>
+        <delay>1</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>This server is known to be unstable. Play at your own risk. See Discord for more details.</text>
+    </message>
+    <message>
+        <delay>1</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>Discord: https://discord.gg/jSkRSvZaaM</text>
+    </message>
+    <message>
+        <delay>1</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>Server restarts at 1300 (1pm) and 0400 (4am) EST</text>
+    </message>
+</messages>
