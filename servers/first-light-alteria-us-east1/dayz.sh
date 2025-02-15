@@ -26,6 +26,7 @@ shell_home="/opt/dayz"
 mod_cf="1559212036"
 mod_vpp="1828439124"
 mod_alteria="3296994216"
+mode_world_assets="3154500253"
 
 dayz() {
     sudo -u dayz 'bash' <<EOF
@@ -36,6 +37,7 @@ dayz() {
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
     +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_alteria" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mode_world_assets" \
     +quit
 EOF
 }
@@ -46,10 +48,12 @@ symlinks() {
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
     sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_alteria" "/opt/dayz/$mod_alteria"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mode_world_assets" "/opt/dayz/$mode_world_assets"
 
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
     eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_alteria/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mode_world_assets/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
@@ -66,7 +70,7 @@ After=syslog.target network.target nss-lookup.target network-online.target
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
     -port=3001 \
-    -mod="$mod_cf;$mod_vpp;$mod_alteria" \
+    -mod="$mod_cf;$mod_vpp;$mod_alteria;$mode_world_assets" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
