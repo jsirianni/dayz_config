@@ -15,12 +15,14 @@ set "MOD_CF=1559212036"
 set "MOD_VPP=1828439124"
 set "MOD_DEERISLE=1602372402"
 set "MOD_CODELOCK=1646187754"
+set "MOD_VEHICLE3PP=2122332595"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
 set "DST_VPP=@VPPAdminTools"
 set "DST_DEERISLE=@DeerIsle"
 set "DST_CODELOCK=@CodeLock"
+set "DST_VEHICLE3PP=@Vehicle3PP"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -39,6 +41,7 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_VPP% validate ^
   +workshop_download_item 221100 %MOD_DEERISLE% validate ^
   +workshop_download_item 221100 %MOD_CODELOCK% validate ^
+  +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -47,9 +50,10 @@ call :syncmod "%MOD_CF%"       "%DST_CF%"
 call :syncmod "%MOD_VPP%"      "%DST_VPP%"
 call :syncmod "%MOD_DEERISLE%" "%DST_DEERISLE%"
 call :syncmod "%MOD_CODELOCK%" "%DST_CODELOCK%"
+call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
