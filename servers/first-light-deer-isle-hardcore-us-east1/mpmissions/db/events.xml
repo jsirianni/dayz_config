@@ -1417,7 +1417,7 @@
 	<event name="VehicleRFWC_Watercraft">
 		<nominal>30</nominal>
 		<min>20</min>
-		<max>40</max>
+		<max>50</max>
 		<lifetime>300</lifetime>
 		<restock>0</restock>
 		<saferadius>500</saferadius>
@@ -1428,9 +1428,9 @@
 		<limit>mixed</limit>
 		<active>1</active>
 		<children>
-			<child min="10" max="15" type="RFWC_Whaler"/>
-			<child min="10" max="15" type="RFWC_CarpBoat"/>
-			<child min="5" max="10" type="RFWC_Zodiac_Black"/>
+			<child min="20" max="20" type="RFWC_Whaler"/>
+			<child min="20" max="20" type="RFWC_CarpBoat"/>
+			<child min="10" max="10" type="RFWC_Zodiac_Black"/>
 			<child min="0" max="0" type="RFWC_Zodiac_Orange"/>
 		</children>
 	</event>
