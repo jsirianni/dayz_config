@@ -1411,5 +1411,27 @@
 			<child lootmax="0" lootmin="0" max="5" min="3" type="jmc_atv_STAG_Red"/>                        
 			<child lootmax="0" lootmin="0" max="5" min="3" type="jmc_atv_STAG_Black"/>                        
         </children>
-    </event>	
+    </event>
+	
+	<!-- RedFalcon Watercraft events additions -->
+	<event name="VehicleRFWC_Watercraft">
+		<nominal>30</nominal>
+		<min>20</min>
+		<max>40</max>
+		<lifetime>300</lifetime>
+		<restock>0</restock>
+		<saferadius>500</saferadius>
+		<distanceradius>500</distanceradius>
+		<cleanupradius>200</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child min="10" max="15" type="RFWC_Whaler"/>
+			<child min="10" max="15" type="RFWC_CarpBoat"/>
+			<child min="5" max="10" type="RFWC_Zodiac_Black"/>
+			<child min="0" max="0" type="RFWC_Zodiac_Orange"/>
+		</children>
+	</event>
 </events>
