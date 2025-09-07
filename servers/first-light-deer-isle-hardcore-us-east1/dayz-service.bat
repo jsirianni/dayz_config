@@ -18,6 +18,9 @@ set "MOD_CODELOCK=1646187754"
 set "MOD_VEHICLE3PP=2122332595"
 set "MOD_REDFALCON=2906371600"
 set "MOD_CROCODILE=3013430583"
+set "MOD_SHARK=3147619641"
+set "MOD_DBO_DINO=3096188434"
+set "MOD_DINO=3162169329"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
@@ -27,6 +30,9 @@ set "DST_CODELOCK=@CodeLock"
 set "DST_VEHICLE3PP=@Vehicle3PP"
 set "DST_REDFALCON=@RedFalconBoat"
 set "DST_CROCODILE=@Crocodile"
+set "DST_SHARK=@Shark"
+set "DST_DBO_DINO=@DboDino"
+set "DST_DINO=@Dino"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -48,6 +54,9 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
   +workshop_download_item 221100 %MOD_REDFALCON% validate ^
   +workshop_download_item 221100 %MOD_CROCODILE% validate ^
+  +workshop_download_item 221100 %MOD_SHARK% validate ^
+  +workshop_download_item 221100 %MOD_DBO_DINO% validate ^
+  +workshop_download_item 221100 %MOD_DINO% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -59,9 +68,12 @@ call :syncmod "%MOD_CODELOCK%" "%DST_CODELOCK%"
 call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 call :syncmod "%MOD_REDFALCON%" "%DST_REDFALCON%"
 call :syncmod "%MOD_CROCODILE%" "%DST_CROCODILE%"
+call :syncmod "%MOD_SHARK%" "%DST_SHARK%"
+call :syncmod "%MOD_DBO_DINO%" "%DST_DBO_DINO%"
+call :syncmod "%MOD_DINO%" "%DST_DINO%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"

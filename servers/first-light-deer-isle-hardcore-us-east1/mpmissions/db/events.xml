@@ -1471,4 +1471,62 @@
 			<child lootmax="0" lootmin="0" max="0" min="100" type="Animal_Crocodile"/>
 		</children>
 	</event>
+	
+	<!-- Shark mod events -->
+	<event name="AmbientShark">
+		<nominal>6</nominal>
+		<min>2</min>
+		<max>10</max>
+		<lifetime>600</lifetime>
+		<restock>0</restock>
+		<saferadius>300</saferadius>
+		<distanceradius>200</distanceradius>
+		<cleanupradius>400</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child lootmax="0" lootmin="0" max="0" min="100" type="Animal_Shark"/>
+		</children>
+	</event>
+	
+	<event name="AmbientSharkDeep">
+		<nominal>20</nominal>
+		<min>1</min>
+		<max>20</max>
+		<lifetime>600</lifetime>
+		<restock>0</restock>
+		<saferadius>500</saferadius>
+		<distanceradius>300</distanceradius>
+		<cleanupradius>600</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child lootmax="0" lootmin="0" max="0" min="100" type="Animal_Shark"/>
+		</children>
+	</event>
+	
+	<!-- Dino mod events - maximum 3 dinos at once -->
+	<event name="AmbientDino">
+		<nominal>2</nominal>
+		<min>1</min>
+		<max>3</max>
+		<lifetime>1800</lifetime>
+		<restock>0</restock>
+		<saferadius>500</saferadius>
+		<distanceradius>300</distanceradius>
+		<cleanupradius>800</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child lootmax="0" lootmin="0" max="0" min="50" type="Animal_dbo_raptor"/>
+			<child lootmax="0" lootmin="0" max="0" min="30" type="Animal_dbo_raptorblue"/>
+			<child lootmax="0" lootmin="0" max="0" min="20" type="Animal_dbo_trex"/>
+		</children>
+	</event>
 </events>
