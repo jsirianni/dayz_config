@@ -3264,10 +3264,10 @@
     <usage name="Military" />
   </type>
   <type name="BandageDressing">
-    <nominal>150</nominal>
+    <nominal>200</nominal>
     <lifetime>5600</lifetime>
     <restock>0</restock>
-    <min>80</min>
+    <min>100</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19050,10 +19050,10 @@
     <usage name="Military" />
   </type>
   <type name="SalineBag">
-    <nominal>25</nominal>
+    <nominal>100</nominal>
     <lifetime>7200</lifetime>
     <restock>0</restock>
-    <min>15</min>
+    <min>35</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -20951,10 +20951,10 @@
     <usage name="Military" />
   </type>
   <type name="StartKitIV">
-    <nominal>30</nominal>
+    <nominal>50</nominal>
     <lifetime>7200</lifetime>
     <restock>0</restock>
-    <min>20</min>
+    <min>30</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -22000,10 +22000,10 @@
     <category name="tools" />
   </type>
   <type name="TetracyclineAntibiotics">
-    <nominal>50</nominal>
+    <nominal>80</nominal>
     <lifetime>2700</lifetime>
     <restock>0</restock>
-    <min>40</min>
+    <min>55</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
