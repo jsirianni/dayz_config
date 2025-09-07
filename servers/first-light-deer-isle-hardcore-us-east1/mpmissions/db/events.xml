@@ -1434,4 +1434,41 @@
 			<child min="0" max="0" type="RFWC_Zodiac_Orange"/>
 		</children>
 	</event>
+	
+	<!-- Crocodile mod events -->
+	<event name="AmbientCrocodile">
+		<nominal>8</nominal>
+		<min>3</min>
+		<max>12</max>
+		<lifetime>300</lifetime>
+		<restock>0</restock>
+		<saferadius>150</saferadius>
+		<distanceradius>100</distanceradius>
+		<cleanupradius>200</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child lootmax="0" lootmin="0" max="0" min="100" type="Animal_Crocodile"/>
+		</children>
+	</event>
+	
+	<event name="AmbientCrocodileSwamp">
+		<nominal>5</nominal>
+		<min>2</min>
+		<max>8</max>
+		<lifetime>300</lifetime>
+		<restock>0</restock>
+		<saferadius>200</saferadius>
+		<distanceradius>150</distanceradius>
+		<cleanupradius>250</cleanupradius>
+		<flags deletable="0" init_random="0" remove_damaged="1"/>
+		<position>fixed</position>
+		<limit>mixed</limit>
+		<active>1</active>
+		<children>
+			<child lootmax="0" lootmin="0" max="0" min="100" type="Animal_Crocodile"/>
+		</children>
+	</event>
 </events>
