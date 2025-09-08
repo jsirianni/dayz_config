@@ -3932,7 +3932,11 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
     <category name="tools" />
     <tag name="shelves" />
+    <usage name="Hunting" />
+    <usage name="Coast" />
+    <usage name="Firefighter" />
     <usage name="Medic" />
+    <usage name="Industrial" />
   </type>
   <type name="BloodBagFull">
     <nominal>0</nominal>
@@ -20961,7 +20965,11 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
     <category name="tools" />
     <tag name="shelves" />
+    <usage name="Hunting" />
+    <usage name="Coast" />
+    <usage name="Firefighter" />
     <usage name="Medic" />
+    <usage name="Industrial" />
   </type>
   <type name="StaticObj_FrozenScientist_DE">
     <nominal>0</nominal>
@@ -23113,10 +23121,10 @@
     <usage name="Coast" />
   </type>
   <type name="WeaponCleaningKit">
-    <nominal>50</nominal>
+    <nominal>100</nominal>
     <lifetime>7200</lifetime>
     <restock>0</restock>
-    <min>40</min>
+    <min>60</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
