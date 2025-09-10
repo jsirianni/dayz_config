@@ -1015,5 +1015,10 @@
     <pos x="14535.827148" y="-0.823982" z="6281.034668" />
     <pos x="14455.978516" y="-0.895486" z="6681.540527" />
   </event>
+  <event name="VehicleMotorHomeRust">
+    <!-- TODO: Add spawn coordinates for MotorHome_Rust vehicles -->
+    <!-- Coordinates need to be filled in later -->
+    <!-- Example format: <pos x="0" z="0" a="0" /> -->
+  </event>
 
 </eventposdef>

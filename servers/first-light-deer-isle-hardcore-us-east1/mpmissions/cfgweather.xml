@@ -9,7 +9,7 @@
         <!-- What is the range of the overcast value (0..1) -->
         <limits min="0" max="9" />
         <!-- How long does it take to the overcast to change from one value to other (time in seconds) -->
-        <timelimits min="450" max="900" />
+        <timelimits min="60" max="900" />
         <!-- How much should the overcast change (0..1) -->
         <changelimits min="0.2" max="2.0" />
     </overcast>
@@ -27,9 +27,9 @@
         <!-- Initial conditions of the rain (target value, time to change, how long will it stay), restricted by thresholds (see below) -->
         <current actual="0" time="25" duration="20" />
         <!-- What is the range of the rain value (0..1) -->
-        <limits min="0" max="6" />
+        <limits min="0" max="10" />
         <!-- How long does it take to the rain to change from one value to other (time in seconds) -->
-        <timelimits min="125" max="250" />
+        <timelimits min="60" max="250" />
         <!-- How much should the rain change (0..1) -->
         <changelimits min="0.12" max="1.2" />
         <!-- What range of the overcast value allows the rain to be preset (min, max overcast value, time in seconds it takes for rain to stop if the overcast is outside of the specified range) -->
@@ -37,7 +37,7 @@
     </rain>
     <wind>
         <!-- Maximum wind speed (in m/s) -->
-        <maxspeed>40</maxspeed>
+        <maxspeed>100</maxspeed>
         <!-- Min and max (relative 0..1) for the wind speed range, frequency of the wind changes -->
         <params min="0.0" max="1.0" frequency="30" />
     </wind>
