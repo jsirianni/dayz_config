@@ -22,6 +22,7 @@ set "MOD_SHARK=3147619641"
 set "MOD_DBO_DINO=3096188434"
 set "MOD_DINO=3162169329"
 set "MOD_FIRESTICKS=3498006019"
+set "MOD_4KBOSSK=3369325490"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
@@ -35,6 +36,7 @@ set "DST_SHARK=@Shark"
 set "DST_DBO_DINO=@DboDino"
 set "DST_DINO=@Dino"
 set "DST_FIRESTICKS=@FireSticks"
+set "DST_4KBOSSK=@4KBOSSKVehicles"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -60,6 +62,7 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_DBO_DINO% validate ^
   +workshop_download_item 221100 %MOD_DINO% validate ^
   +workshop_download_item 221100 %MOD_FIRESTICKS% validate ^
+  +workshop_download_item 221100 %MOD_4KBOSSK% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -75,9 +78,10 @@ call :syncmod "%MOD_SHARK%" "%DST_SHARK%"
 call :syncmod "%MOD_DBO_DINO%" "%DST_DBO_DINO%"
 call :syncmod "%MOD_DINO%" "%DST_DINO%"
 call :syncmod "%MOD_FIRESTICKS%" "%DST_FIRESTICKS%"
+call :syncmod "%MOD_4KBOSSK%" "%DST_4KBOSSK%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino;@FireSticks"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino;@FireSticks;@4KBOSSKVehicles"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
