@@ -1116,4 +1116,6 @@
     <pos x="6367.623535" z="6710.051758" a="82.102837" y="20.834311" />
   </event>
 
+  <event name="AnimalWildDog" />
+
 </eventposdef>
