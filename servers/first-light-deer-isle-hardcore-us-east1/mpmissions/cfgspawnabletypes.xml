@@ -4208,44 +4208,161 @@
   <cargo chance="0.50"><item name="EngineOil" chance="0.50"/></cargo>
   <cargo chance="0.50"><item name="CanisterGasoline" chance="0.50"/></cargo>
 </type>
-	<!-- MotorHome_Rust vehicle configuration -->
-	<type name="MotorHome_Rust">
-		<attachments chance="1.00">
-			<item name="MotorHomeRV_Wheel" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHomeRV_Wheel" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHomeRV_Wheel" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHomeRV_Wheel" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHomeRV_Wheel" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="HeadlightH7" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="HeadlightH7" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="CarBattery" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="CarRadiator" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHome_DriverRust" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHome_HoodRust" chance="1.00" />
-		</attachments>
-		<attachments chance="1.00">
-			<item name="MotorHome_Hood2Rust" chance="1.00" />
-		</attachments>
-	</type>
+
+<!-- MotorHome_Rust vehicle configuration -->
+<type name="MotorHome_Rust">
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarBattery" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarRadiator" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="SparkPlug" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverRust" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverDoor2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_HoodRust" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2Rust" chance="1.00" />
+	</attachments>
+</type>
+
+<!-- MotorHome_GreenCamo vehicle configuration -->
+<type name="MotorHome_GreenCamo">
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarBattery" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarRadiator" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="SparkPlug" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverDoorGreenCamo" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverDoor2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_HoodGreenCamo" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2GreenCamo" chance="1.00" />
+	</attachments>
+</type>
+
+<!-- MotorHome_Apo vehicle configuration -->
+<type name="MotorHome_Apo">
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHomeRV_Wheel" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="HeadlightH7" chance="0.40" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarBattery" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="CarRadiator" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="SparkPlug" chance="0.60" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverDoor" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_DriverDoor2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_HoodApo" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2" chance="1.00" />
+	</attachments>
+	<attachments chance="1.00">
+		<item name="MotorHome_Hood2Apo" chance="1.00" />
+	</attachments>
+</type>
 
 </spawnabletypes>

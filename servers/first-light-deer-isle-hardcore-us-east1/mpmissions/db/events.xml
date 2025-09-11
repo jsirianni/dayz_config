@@ -1546,7 +1546,7 @@
 			<child lootmax="0" lootmin="0" max="0" min="20" type="Animal_dbo_trex"/>
 		</children>
 	</event>
-	<event name="VehicleMotorHomeRust">
+	<event name="VehicleMotorHome">
         <nominal>2</nominal>
         <min>1</min>
         <max>3</max>
@@ -1560,7 +1560,9 @@
         <limit>mixed</limit>
         <active>1</active>
         <children>
-            <child lootmax="0" lootmin="0" max="3" min="1" type="MotorHome_Rust"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MotorHome_Rust"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MotorHome_GreenCamo"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MotorHome_Apo"/>
         </children>
     </event>
 </events>
