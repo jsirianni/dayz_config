@@ -6340,10 +6340,10 @@
     <usage name="Industrial" />
   </type>
   <type name="CivSedanWheel">
-    <nominal>0</nominal>
+    <nominal>30</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -6351,6 +6351,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Town" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanWheel_Ruined">
     <nominal>0</nominal>
@@ -10443,10 +10445,10 @@
     <usage name="Industrial" />
   </type>
   <type name="HatchbackWheel">
-    <nominal>0</nominal>
+    <nominal>30</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -10454,6 +10456,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Town" />
+    <usage name="Village" />
   </type>
   <type name="HatchbackWheel_Ruined">
     <nominal>0</nominal>
@@ -10965,10 +10969,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Hatchback_02_Wheel">
-    <nominal>0</nominal>
+    <nominal>30</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -10976,6 +10980,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Town" />
+    <usage name="Village" />
   </type>
   <type name="Hatchback_02_Wheel_Ruined">
     <nominal>0</nominal>
@@ -16506,10 +16512,10 @@
     <usage name="Military" />
   </type>
   <type name="Offroad_02_Wheel">
-    <nominal>0</nominal>
+    <nominal>30</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -16517,6 +16523,8 @@
     <category name="lootdispatch" />
     <usage name="Military" />
     <usage name="Industrial" />
+    <usage name="Town" />
+    <usage name="Village" />
     <value name="Tier2" />
     <value name="Tier3" />
     <value name="Tier4" />
@@ -19874,10 +19882,10 @@
     <usage name="Industrial" />
   </type>
   <type name="Sedan_02_Wheel">
-    <nominal>0</nominal>
+    <nominal>30</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>0</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -19885,6 +19893,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Town" />
+    <usage name="Village" />
   </type>
   <type name="Sedan_02_Wheel_Ruined">
     <nominal>0</nominal>
@@ -22624,20 +22634,7 @@
     <usage name="Farm" />
   </type>
   <type name="Truck_01_Wheel">
-    <nominal>40</nominal>
-    <lifetime>28800</lifetime>
-    <restock>0</restock>
-    <min>30</min>
-    <quantmin>-1</quantmin>
-    <quantmax>-1</quantmax>
-    <cost>100</cost>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-    <category name="lootdispatch" />
-    <usage name="Industrial" />
-    <usage name="Farm" />
-  </type>
-  <type name="Truck_01_WheelDouble">
-    <nominal>40</nominal>
+    <nominal>30</nominal>
     <lifetime>28800</lifetime>
     <restock>0</restock>
     <min>20</min>
@@ -22646,6 +22643,23 @@
     <cost>100</cost>
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
     <category name="lootdispatch" />
+    <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Town" />
+    <usage name="Village" />
+  </type>
+  <type name="Truck_01_WheelDouble">
+    <nominal>30</nominal>
+    <lifetime>28800</lifetime>
+    <restock>0</restock>
+    <min>20</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <usage name="Town" />
+    <usage name="Village" />
   </type>
   <type name="Truck_01_WheelDouble_Ruined">
     <nominal>0</nominal>
