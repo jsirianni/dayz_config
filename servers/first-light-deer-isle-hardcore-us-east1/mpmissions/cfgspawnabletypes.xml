@@ -2922,16 +2922,16 @@
 	</type>	
 	<type name="Offroad_02">
 		<attachments chance="1.00">
-			<item name="Offroad_02_Wheel" chance="0.80" />
+			<item name="Offroad_02_Wheel" chance="1.00" />
 		</attachments>
 		<attachments chance="1.00">
-			<item name="Offroad_02_Wheel" chance="0.80" />
+			<item name="Offroad_02_Wheel" chance="1.00" />
 		</attachments>
 		<attachments chance="1.00">
-			<item name="Offroad_02_Wheel" chance="0.80" />
+			<item name="Offroad_02_Wheel" chance="1.00" />
 		</attachments>
 		<attachments chance="1.00">
-			<item name="Offroad_02_Wheel" chance="0.80" />
+			<item name="Offroad_02_Wheel" chance="1.00" />
 		</attachments>
 		<attachments chance="1.00">
 			<item name="Offroad_02_Wheel" chance="0.40" />
