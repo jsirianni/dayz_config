@@ -28503,4 +28503,1593 @@
     <cost>100</cost>
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
   </type>
+  <type name="MotorHome_Rust">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="MotorHome_GreenCamo">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="MotorHome_Apo">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="MotorHome_DriverRust">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_DriverDoor">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_DriverDoor2">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_DriverDoorGreenCamo">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_Hood">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_HoodRust">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_HoodGreenCamo">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_HoodApo">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_Hood2">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_Hood2Rust">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_Hood2GreenCamo">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="MotorHome_Hood2Apo">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="ToyotaRunner_BOSS">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="ToyotaRunner_Black">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="ToyotaRunner_camogreen">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="ToyotaRunner_camoblac">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="ToyotaRunner_camowhite">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="ToyotaRunner_blue">
+    <nominal>0</nominal>
+    <lifetime>3</lifetime>
+    <restock>1800</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+  </type>
+  <type name="Runner_Wheel">
+    <nominal>30</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>15</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_pink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo1_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_pink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Cargo2_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_pink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_CoDriver_Door_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_pink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_DriverDoor_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_pink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Hood_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_BOSS">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_blue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camoblack">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camoblue">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camogreen">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camopink">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camopurple">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camored">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_camowhite">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_red">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_white">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+  <type name="Runner_Trunk_yellow">
+    <nominal>2</nominal>
+    <lifetime>10800</lifetime>
+    <restock>0</restock>
+    <min>1</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+    <category name="lootdispatch" />
+    <tag name="floor" />
+    <usage name="Industrial" />
+  </type>
+    <type name="dog_gasmask">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Military"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
+    </type>
+	<type name="dog_collar">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_blue">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_red">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_green">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_white">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_yellow">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_collar_grey">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
+    </type>
+	<type name="dog_vest_sheriff">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_vest_black">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_vest_black_k9">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_vest_blackgreen">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_vest_blackmedic">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_vest_blackgreenz">
+        <nominal>6</nominal>
+        <lifetime>7200</lifetime>
+        <restock>0</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="clothes"/>
+        <usage name="Police"/>
+    </type>
+	<type name="dog_shed_small_kit">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="tools"/>
+        <tag name="floor"/>
+        <usage name="Village"/>
+		<usage name="Town"/>
+        <usage name="Farm"/>
+    </type>
+	<type name="dog_shed_big_kit">
+        <nominal>5</nominal>
+        <lifetime>14400</lifetime>
+        <restock>0</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="tools"/>
+        <tag name="floor"/>
+        <usage name="Village"/>
+		<usage name="Town"/>
+        <usage name="Farm"/>
+    </type>
+	<type name="dog_shed_big">
+        <nominal>0</nominal>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <category name="containers"/>
+    </type>
+	<type name="dog_shed_small">
+        <nominal>0</nominal>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <category name="containers"/>
+    </type>
+	<type name="dog_shed_big_static">
+        <nominal>0</nominal>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <category name="containers"/>
+    </type>
+	<type name="dog_shed_small_static">
+        <nominal>0</nominal>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <category name="containers"/>
+    </type>
 </types>
