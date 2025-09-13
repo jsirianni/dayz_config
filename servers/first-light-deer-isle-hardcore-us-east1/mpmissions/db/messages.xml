@@ -5,6 +5,12 @@
         <onconnect>1</onconnect>
         <text>You are playing #name</text>
     </message>
+    <message>
+        <delay>5</delay>
+        <repeat>60</repeat>
+        <onconnect>1</onconnect>
+        <text>Motor Home's are unstable. Chance of death is very high. Drive at own risk.</text>
+    </message>
     <!-- <message>
         <delay>1</delay>
         <repeat>60</repeat>
