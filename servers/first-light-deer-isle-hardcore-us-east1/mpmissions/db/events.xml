@@ -1526,26 +1526,6 @@
 		</children>
 	</event>
 	
-	<!-- Dino mod events - maximum 3 dinos at once -->
-	<event name="AmbientDino">
-		<nominal>2</nominal>
-		<min>1</min>
-		<max>3</max>
-		<lifetime>1800</lifetime>
-		<restock>0</restock>
-		<saferadius>500</saferadius>
-		<distanceradius>300</distanceradius>
-		<cleanupradius>800</cleanupradius>
-		<flags deletable="0" init_random="0" remove_damaged="1"/>
-		<position>fixed</position>
-		<limit>mixed</limit>
-		<active>1</active>
-		<children>
-			<child lootmax="0" lootmin="0" max="0" min="50" type="Animal_dbo_raptor"/>
-			<child lootmax="0" lootmin="0" max="0" min="30" type="Animal_dbo_raptorblue"/>
-			<child lootmax="0" lootmin="0" max="0" min="20" type="Animal_dbo_trex"/>
-		</children>
-	</event>
     <event name="VehicleMotorHome">
         <nominal>10</nominal>
         <min>5</min>
@@ -1637,6 +1617,75 @@
 		<child lootmax="0" lootmin="0" max="1" min="0" type="Doggo_Wild33"/>
 		<child lootmax="0" lootmin="0" max="1" min="0" type="Doggo_Wild34"/>
 		<child lootmax="0" lootmin="0" max="1" min="0" type="Doggo_Wild35"/>
+        </children>
+    </event>
+
+    <!-- MoreDinos -->
+    <event name="AnimalRaptor">
+        <nominal>10</nominal>
+        <min>3</min>
+        <max>7</max>
+        <lifetime>180</lifetime>
+        <restock>0</restock>
+        <saferadius>200</saferadius>
+        <distanceradius>0</distanceradius>
+        <cleanupradius>0</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1"/>
+        <position>fixed</position>
+        <limit>child</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_raptor"/>
+            <child lootmax="0" lootmin="0" max="2" min="1" type="Animal_dbo_raptor_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_raptor_ADULT"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_raptorblue"/>
+            <child lootmax="0" lootmin="0" max="2" min="1" type="Animal_dbo_raptorblue_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_raptorblue_ADULT"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_raptorB"/>
+            <child lootmax="0" lootmin="0" max="2" min="1" type="Animal_dbo_raptorB_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_raptorB_ADULT"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_idrex"/>
+            <child lootmax="0" lootmin="0" max="2" min="1" type="Animal_dbo_idrex_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_idrex_ADULT"/>
+        </children>
+    </event>
+    <event name="AnimalTricero">
+        <nominal>10</nominal>
+        <min>3</min>
+        <max>7</max>
+        <lifetime>180</lifetime>
+        <restock>0</restock>
+        <saferadius>200</saferadius>
+        <distanceradius>0</distanceradius>
+        <cleanupradius>0</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1"/>
+        <position>fixed</position>
+        <limit>child</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_tricero"/>
+            <child lootmax="0" lootmin="0" max="2" min="1" type="Animal_dbo_tricero_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_tricero_ADULT"/>
+        </children>
+    </event>
+    <event name="AnimalTRex">
+        <nominal>10</nominal>
+        <min>3</min>
+        <max>7</max>
+        <lifetime>180</lifetime>
+        <restock>0</restock>
+        <saferadius>200</saferadius>
+        <distanceradius>0</distanceradius>
+        <cleanupradius>0</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1"/>
+        <position>fixed</position>
+        <limit>child</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_trex"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_trex_BABY"/>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_trex_ADULT"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_trex_GIANTCHICKEN"/>
         </children>
     </event>
 

@@ -408,14 +408,14 @@
     </territory>
     <territory color="1493106815">
         <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="1" dmax="1" x="12310.5" z="9908" r="50" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="9590.7" z="15219.7" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="9226.67" z="14970.7" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="9392" z="14570.7" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="9834.67" z="14394.7" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="9722.67" z="14821.3" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="10010.7" z="15136" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="10128" z="14720" r="200" />
-        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="10" dmax="20" x="8954.67" z="15456" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="9590.7" z="15219.7" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="9226.67" z="14970.7" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="9392" z="14570.7" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="9834.67" z="14394.7" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="9722.67" z="14821.3" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="10010.7" z="15136" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="10128" z="14720" r="200" />
+        <zone name="InfectedArmyHardJMC" smin="0" smax="0" dmin="60" dmax="120" x="8954.67" z="15456" r="200" />
     </territory>
     <territory color="1136576269">
         <zone name="InfectedCity" smin="0" smax="0" dmin="3" dmax="5" x="8554.42" z="8945.13" r="120" />
@@ -532,17 +532,17 @@
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="3" dmax="5" x="10051.5" z="12372.1" r="120" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="3" dmax="5" x="10161.2" z="12553.6" r="75" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="2" dmax="4" x="11156" z="10232" r="50" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="6" dmax="10" x="12752" z="15172" r="120" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="6" dmax="10" x="12872" z="15500" r="120" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="6" dmax="10" x="12992" z="15808" r="120" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="20" dmax="30" x="13460.4" z="13077.2" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="36" dmax="60" x="12752" z="15172" r="120" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="36" dmax="60" x="12872" z="15500" r="120" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="36" dmax="60" x="12992" z="15808" r="120" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="120" dmax="180" x="13460.4" z="13077.2" r="200" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="2" dmax="3" x="9784" z="11092" r="75" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="10" dmax="15" x="12940.8" z="1506.13" r="200" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="1" dmax="2" x="11293.4" z="2789.34" r="50" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="11949.7" z="15124.6" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="11961.1" z="15334.9" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="11940.6" z="15545.1" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="10" dmax="15" x="15523.9" z="15184.6" r="78" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="11949.7" z="15124.6" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="11961.1" z="15334.9" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="11940.6" z="15545.1" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="60" dmax="90" x="15523.9" z="15184.6" r="78" />
         <zone name="InfectedArmyHard" smin="0" smax="0" dmin="2" dmax="4" x="6174" z="13794" r="75" />
         <zone name="InfectedArmy" smin="0" smax="0" dmin="3" dmax="4" x="3184" z="4109.71" r="80" />
         <zone name="InfectedArmy" smin="0" smax="0" dmin="2" dmax="3" x="10206.4" z="4504" r="50" />
@@ -598,59 +598,59 @@
         <zone name="InfectedArmy" smin="0" smax="0" dmin="2" dmax="3" x="7076.57" z="9003.43" r="80" />
         <zone name="InfectedArmy" smin="0" smax="0" dmin="1" dmax="2" x="7531.43" z="8784" r="70" />
         <zone name="InfectedArmy" smin="0" smax="0" dmin="1" dmax="2" x="6896" z="6050.67" r="75" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="20" dmax="30" x="13474" z="14778" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="20" dmax="30" x="14514" z="15668" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="10" dmax="15" x="14096" z="15730" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="20" dmax="30" x="14702" z="13754" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="14380" z="14204" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="14368" z="13448" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="13928" z="13696" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="15576" z="13572" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="14884" z="14168" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="4" dmax="8" x="15656" z="15532" r="200" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13164" z="14864" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13336" z="15084" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13796" z="14904" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13720" z="14524" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="12768" z="14660" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13204" z="14212" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13584" z="14120" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13440" z="13404" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13300" z="13696" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="12884" z="13668" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="12828" z="13268" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13532" z="12736" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13804" z="12536" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="14304" z="12732" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13788" z="13140" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15184" z="14104" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15664" z="13892" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15780" z="14180" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15548" z="14468" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15440" z="14764" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15892" z="14892" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="14848" z="15656" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13548" z="15544" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13868" z="15520" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13992" z="15276" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="12864" z="14268" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="14320" z="14572" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="14560" z="15112" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13960" z="15060" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="13716" z="14284" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="12900" z="12688" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="14724" z="12700" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="15756" z="12996" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11700" z="14972" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11384" z="14880" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11048" z="14900" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11212" z="15168" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11488" z="15180" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11744" z="15300" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11640" z="15572" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11384" z="15428" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="11000" z="15412" r="100" />
-        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="3" dmax="5" x="10912" z="15148" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="120" dmax="180" x="13474" z="14778" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="120" dmax="180" x="14514" z="15668" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="60" dmax="90" x="14096" z="15730" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="120" dmax="180" x="14702" z="13754" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="14380" z="14204" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="14368" z="13448" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="13928" z="13696" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="15576" z="13572" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="14884" z="14168" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="24" dmax="48" x="15656" z="15532" r="200" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13164" z="14864" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13336" z="15084" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13796" z="14904" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13720" z="14524" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="12768" z="14660" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13204" z="14212" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13584" z="14120" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13440" z="13404" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13300" z="13696" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="12884" z="13668" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="12828" z="13268" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13532" z="12736" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13804" z="12536" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="14304" z="12732" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13788" z="13140" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15184" z="14104" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15664" z="13892" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15780" z="14180" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15548" z="14468" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15440" z="14764" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15892" z="14892" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="14848" z="15656" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13548" z="15544" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13868" z="15520" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13992" z="15276" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="12864" z="14268" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="14320" z="14572" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="14560" z="15112" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13960" z="15060" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="13716" z="14284" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="12900" z="12688" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="14724" z="12700" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="15756" z="12996" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11700" z="14972" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11384" z="14880" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11048" z="14900" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11212" z="15168" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11488" z="15180" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11744" z="15300" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11640" z="15572" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11384" z="15428" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="11000" z="15412" r="100" />
+        <zone name="InfectedArmyHardJMCWinter" smin="0" smax="0" dmin="18" dmax="30" x="10912" z="15148" r="100" />
     </territory>
     <territory color="1102461653">
         <zone name="InfectedIndustrial" smin="0" smax="0" dmin="3" dmax="5" x="10694.3" z="3096.47" r="70" />
