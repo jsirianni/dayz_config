@@ -18,6 +18,11 @@ This file contains class names for all in-game items, including vehicles and the
 - `flags`: Control various behaviors (count_in_map, deletable, etc.)
 - `category`: Item category (e.g., "vehicles")
 
+**Important**: You must define ALL vehicle parts in types.xml, not just the main vehicle. This includes:
+- **Color-matched parts**: Doors, hoods, trunks for each color variant
+- **Common parts**: Wheels, bumpers, rollbars (if applicable)
+- **Recommended values**: `nominal: 5`, `min: 2`, `lifetime: 7200` for vehicle parts
+
 **Example Entry:**
 ```xml
 <type name="ToyotaRunner_BOSS">
@@ -78,13 +83,15 @@ Defines dynamic events that control vehicle spawning. Each event can contain mul
 Defines the potential state of each vehicle upon spawning, including attached items and their spawn probabilities.
 
 **Essential Vehicle Components (Recommended Spawn Rates):**
-- **Wheels**: 4-5 wheels at 100% chance (ensures drivability)
+- **Wheels**: 4 wheels at 100% chance, 5th spare wheel at 40% chance (ensures drivability)
 - **Doors**: Front and rear doors at 80-100% chance
 - **Hood/Trunk**: 70-100% chance
-- **Spark Plug**: 90-100% chance (essential for starting)
-- **Radiator**: 90-100% chance (prevents overheating)
-- **Battery**: 90-100% chance (CarBattery for cars, TruckBattery for trucks)
-- **Headlights**: 50-80% chance (optional but useful)
+- **Spark Plug**: 60% chance (essential for starting, but not guaranteed)
+- **Radiator**: 60% chance (prevents overheating, but not guaranteed)
+- **Battery**: 30% chance for trucks (TruckBattery), 60% for cars (CarBattery)
+- **Headlights**: 50% chance each (optional but useful)
+
+**Important**: Essential components like spark plugs, radiators, and batteries should NOT be set to 100% chance. This creates realistic vehicle conditions where players need to scavenge for parts, adding to the survival experience. Base spawn chances on existing vehicle configurations in your cfgspawnabletypes.xml file.
 
 **Example Configuration:**
 ```xml

@@ -4774,4 +4774,200 @@
         </cargo>
     </type>
 
+    <!-- DodgeRam 3500 AJ45 vehicle configuration -->
+    <type name="DodgeRam_3500_AJ45">
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.40">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.30">
+            <item name="TruckBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_DriverDoor_AJ45" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_CoDriverDoor_AJ45" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Hood_AJ45" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Trunk_AJ45" chance="1.00" />
+        </attachments>
+        <attachments chance="0.20">
+            <item name="DodgeRam_3500_FrontBumper" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- DodgeRam 3500 Black vehicle configuration -->
+    <type name="DodgeRam_3500_Black">
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.40">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.30">
+            <item name="TruckBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_DriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_CoDriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Trunk_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="0.20">
+            <item name="DodgeRam_3500_FrontBumper" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- DodgeRam 3500 Grey vehicle configuration -->
+    <type name="DodgeRam_3500_Grey">
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.40">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.30">
+            <item name="TruckBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_DriverDoor_Grey" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_CoDriverDoor_Grey" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Hood_Grey" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Trunk_Grey" chance="1.00" />
+        </attachments>
+        <attachments chance="0.20">
+            <item name="DodgeRam_3500_FrontBumper" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- DodgeRam 3500 M81 vehicle configuration -->
+    <type name="DodgeRam_3500_M81">
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.40">
+            <item name="DodgeRam_3500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.50">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="0.30">
+            <item name="TruckBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="0.60">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_DriverDoor_M81" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_CoDriverDoor_M81" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Hood_M81" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="DodgeRam_3500_Trunk_M81" chance="1.00" />
+        </attachments>
+        <attachments chance="0.20">
+            <item name="DodgeRam_3500_FrontBumper" chance="1.00" />
+        </attachments>
+    </type>
+
 </spawnabletypes>

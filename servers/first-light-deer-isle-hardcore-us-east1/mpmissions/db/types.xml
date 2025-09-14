@@ -30738,4 +30738,258 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
     </type>
 
+  <!-- DodgeRam 3500 Vehicle Types -->
+  <type name="DodgeRam_3500_AJ45">
+    <nominal>0</nominal>
+    <lifetime>3888000</lifetime>
+    <restock>0</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Black">
+    <nominal>0</nominal>
+    <lifetime>3888000</lifetime>
+    <restock>0</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Grey">
+    <nominal>0</nominal>
+    <lifetime>3888000</lifetime>
+    <restock>0</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_M81">
+    <nominal>0</nominal>
+    <lifetime>3888000</lifetime>
+    <restock>0</restock>
+    <min>0</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
+  <!-- DodgeRam 3500 Parts - AJ45 -->
+  <type name="DodgeRam_3500_DriverDoor_AJ45">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_CoDriverDoor_AJ45">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Hood_AJ45">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Trunk_AJ45">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
+  <!-- DodgeRam 3500 Parts - Black -->
+  <type name="DodgeRam_3500_DriverDoor_Black">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_CoDriverDoor_Black">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Hood_Black">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Trunk_Black">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
+  <!-- DodgeRam 3500 Parts - Grey -->
+  <type name="DodgeRam_3500_DriverDoor_Grey">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_CoDriverDoor_Grey">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Hood_Grey">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Trunk_Grey">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
+  <!-- DodgeRam 3500 Parts - M81 -->
+  <type name="DodgeRam_3500_DriverDoor_M81">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_CoDriverDoor_M81">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Hood_M81">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_Trunk_M81">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
+  <!-- DodgeRam 3500 Common Parts -->
+  <type name="DodgeRam_3500_Wheel">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+  <type name="DodgeRam_3500_FrontBumper">
+    <nominal>5</nominal>
+    <lifetime>7200</lifetime>
+    <restock>0</restock>
+    <min>2</min>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
+    <cost>100</cost>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+    <category name="vehicles"/>
+  </type>
+
 </types>

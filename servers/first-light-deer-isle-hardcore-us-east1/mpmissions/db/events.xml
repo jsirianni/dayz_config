@@ -1547,7 +1547,7 @@
     </event>
     <event name="VehicleToyotaRunner">
         <nominal>10</nominal>
-        <min>5</min>
+        <min>6</min>
         <max>10</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
@@ -1686,6 +1686,27 @@
             <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_trex_BABY"/>
             <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_dbo_trex_ADULT"/>
             <child lootmax="0" lootmin="0" max="1" min="1" type="Animal_dbo_trex_GIANTCHICKEN"/>
+        </children>
+    </event>
+
+    <event name="VehicleDodgeRam">
+        <nominal>8</nominal>
+        <min>4</min>
+        <max>8</max>
+        <lifetime>300</lifetime>
+        <restock>0</restock>
+        <saferadius>500</saferadius>
+        <distanceradius>500</distanceradius>
+        <cleanupradius>200</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1"/>
+        <position>fixed</position>
+        <limit>mixed</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="DodgeRam_3500_AJ45"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="DodgeRam_3500_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="DodgeRam_3500_Grey"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="DodgeRam_3500_M81"/>
         </children>
     </event>
 
