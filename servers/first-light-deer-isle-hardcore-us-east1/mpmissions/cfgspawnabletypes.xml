@@ -4053,6 +4053,31 @@
 		  <item name="SparkPlug" chance="1.0" />
 		</attachments>
 	</type>
+	<type name="Van_Airboat_Camo">
+		<attachments chance="0.50">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Van_Airboat_Green">
+		<attachments chance="0.50">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Van_Airboat_Black">
+		<attachments chance="0.50">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Van_Airboat_Orange">
+		<attachments chance="0.50">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Van_RHIB_Black">
+		<attachments chance="0.50"><item name="SparkPlug" chance="0.50"/></attachments>
+	</type>
+	<type name="Van_Sailboat">
+	</type>
 		<type name="ScientificBriefcase">
 		<damage min="0.0" max="0.0" />		
 		<cargo chance="1.0">
