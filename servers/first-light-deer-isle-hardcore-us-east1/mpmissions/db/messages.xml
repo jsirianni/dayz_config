@@ -8,7 +8,7 @@
     <message>
         <delay>3</delay>
         <onconnect>1</onconnect>
-        <text>Server restarts every 5 hours at 9am, 1pm, 6pm, 11pm, 4am EST</text>
+        <text>Server restarts every 5 hours at 2pm, 7pm, 12am, 5am, 10am EST</text>
     </message>
     <message>
         <delay>5</delay>
@@ -20,6 +20,6 @@
         <delay>1</delay>
         <repeat>60</repeat>
         <onconnect>1</onconnect>
-        <text>Server restarts at 1300 (1pm) and 0400 (4am) EST</text>
+        <text>Server restarts at 1400 (2pm) and 0500 (5am) EST</text>
     </message> -->
 </messages>

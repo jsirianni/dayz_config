@@ -1,36 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Scheduler>
-  <!-- 1:00 PM restart -->
-  <job id="w15-1300" time="12:45" cmd="say -1 Server restart in 15 minutes." />
-  <job id="w05-1300" time="12:55" cmd="say -1 Server restart in 5 minutes." />
-  <job id="w02-1300" time="12:58" cmd="say -1 Server restart in 2 minutes." />
-  <job id="w01-1300" time="12:59" cmd="say -1 Server restart in 1 minute." />
-  <job id="r-1300"   time="13:00" cmd="#shutdown" />
+	<!-- 2:00 PM restart -->
+	<job id="0">
+		<day>1,2,3,4,5,6,7</day>
+		<start>13:45:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 15 minutes.</cmd>
+	</job>
+	<job id="1">
+		<day>1,2,3,4,5,6,7</day>
+		<start>13:55:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 5 minutes.</cmd>
+	</job>
+	<job id="2">
+		<day>1,2,3,4,5,6,7</day>
+		<start>13:58:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 2 minutes.</cmd>
+	</job>
+	<job id="3">
+		<day>1,2,3,4,5,6,7</day>
+		<start>13:59:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 1 minute.</cmd>
+	</job>
+	<job id="4">
+		<day>1,2,3,4,5,6,7</day>
+		<start>14:00:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>#shutdown</cmd>
+	</job>
 
-  <!-- 6:00 PM restart -->
-  <job id="w15-1800" time="17:45" cmd="say -1 Server restart in 15 minutes." />
-  <job id="w05-1800" time="17:55" cmd="say -1 Server restart in 5 minutes." />
-  <job id="w02-1800" time="17:58" cmd="say -1 Server restart in 2 minutes." />
-  <job id="w01-1800" time="17:59" cmd="say -1 Server restart in 1 minute." />
-  <job id="r-1800"   time="18:00" cmd="#shutdown" />
+	<!-- 7:00 PM restart -->
+	<job id="5">
+		<day>1,2,3,4,5,6,7</day>
+		<start>18:45:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 15 minutes.</cmd>
+	</job>
+	<job id="6">
+		<day>1,2,3,4,5,6,7</day>
+		<start>18:55:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 5 minutes.</cmd>
+	</job>
+	<job id="7">
+		<day>1,2,3,4,5,6,7</day>
+		<start>18:58:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 2 minutes.</cmd>
+	</job>
+	<job id="8">
+		<day>1,2,3,4,5,6,7</day>
+		<start>18:59:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 1 minute.</cmd>
+	</job>
+	<job id="9">
+		<day>1,2,3,4,5,6,7</day>
+		<start>19:00:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>#shutdown</cmd>
+	</job>
 
-  <!-- 11:00 PM restart -->
-  <job id="w15-2300" time="22:45" cmd="say -1 Server restart in 15 minutes." />
-  <job id="w05-2300" time="22:55" cmd="say -1 Server restart in 5 minutes." />
-  <job id="w02-2300" time="22:58" cmd="say -1 Server restart in 2 minutes." />
-  <job id="w01-2300" time="22:59" cmd="say -1 Server restart in 1 minute." />
-  <job id="r-2300"   time="23:00" cmd="#shutdown" />
+	<!-- 12:00 AM restart -->
+	<job id="10">
+		<day>1,2,3,4,5,6,7</day>
+		<start>23:45:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 15 minutes.</cmd>
+	</job>
+	<job id="11">
+		<day>1,2,3,4,5,6,7</day>
+		<start>23:55:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 5 minutes.</cmd>
+	</job>
+	<job id="12">
+		<day>1,2,3,4,5,6,7</day>
+		<start>23:58:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 2 minutes.</cmd>
+	</job>
+	<job id="13">
+		<day>1,2,3,4,5,6,7</day>
+		<start>23:59:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 1 minute.</cmd>
+	</job>
+	<job id="14">
+		<day>1,2,3,4,5,6,7</day>
+		<start>00:00:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>#shutdown</cmd>
+	</job>
 
-  <!-- 4:00 AM restart -->
-  <job id="w15-0400" time="03:45" cmd="say -1 Server restart in 15 minutes." />
-  <job id="w05-0400" time="03:55" cmd="say -1 Server restart in 5 minutes." />
-  <job id="w02-0400" time="03:58" cmd="say -1 Server restart in 2 minutes." />
-  <job id="w01-0400" time="03:59" cmd="say -1 Server restart in 1 minute." />
-  <job id="r-0400"   time="04:00" cmd="#shutdown" />
+	<!-- 5:00 AM restart -->
+	<job id="15">
+		<day>1,2,3,4,5,6,7</day>
+		<start>04:45:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 15 minutes.</cmd>
+	</job>
+	<job id="16">
+		<day>1,2,3,4,5,6,7</day>
+		<start>04:55:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 5 minutes.</cmd>
+	</job>
+	<job id="17">
+		<day>1,2,3,4,5,6,7</day>
+		<start>04:58:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 2 minutes.</cmd>
+	</job>
+	<job id="18">
+		<day>1,2,3,4,5,6,7</day>
+		<start>04:59:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 1 minute.</cmd>
+	</job>
+	<job id="19">
+		<day>1,2,3,4,5,6,7</day>
+		<start>05:00:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>#shutdown</cmd>
+	</job>
 
-  <!-- 9:00 AM restart -->
-  <job id="w15-0900" time="08:45" cmd="say -1 Server restart in 15 minutes." />
-  <job id="w05-0900" time="08:55" cmd="say -1 Server restart in 5 minutes." />
-  <job id="w02-0900" time="08:58" cmd="say -1 Server restart in 2 minutes." />
-  <job id="w01-0900" time="08:59" cmd="say -1 Server restart in 1 minute." />
-  <job id="r-0900"   time="09:00" cmd="#shutdown" />
+	<!-- 10:00 AM restart -->
+	<job id="20">
+		<day>1,2,3,4,5,6,7</day>
+		<start>09:45:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 15 minutes.</cmd>
+	</job>
+	<job id="21">
+		<day>1,2,3,4,5,6,7</day>
+		<start>09:55:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 5 minutes.</cmd>
+	</job>
+	<job id="22">
+		<day>1,2,3,4,5,6,7</day>
+		<start>09:58:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 2 minutes.</cmd>
+	</job>
+	<job id="23">
+		<day>1,2,3,4,5,6,7</day>
+		<start>09:59:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>say -1 Server restart in 1 minute.</cmd>
+	</job>
+	<job id="24">
+		<day>1,2,3,4,5,6,7</day>
+		<start>10:00:00</start>
+		<runtime>000000</runtime>
+		<loop>0</loop>
+		<cmd>#shutdown</cmd>
+	</job>
 </Scheduler>
