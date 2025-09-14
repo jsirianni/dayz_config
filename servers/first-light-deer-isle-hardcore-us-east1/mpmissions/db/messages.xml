@@ -6,6 +6,11 @@
         <text>You are playing #name</text>
     </message>
     <message>
+        <delay>3</delay>
+        <onconnect>1</onconnect>
+        <text>Server restarts every 5 hours at 9am, 1pm, 6pm, 11pm, 4am EST</text>
+    </message>
+    <message>
         <delay>5</delay>
         <repeat>60</repeat>
         <onconnect>1</onconnect>
