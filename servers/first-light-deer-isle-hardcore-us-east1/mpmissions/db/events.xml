@@ -1433,8 +1433,8 @@
 	<!-- RedFalcon Watercraft events additions -->
 	<event name="VehicleRFWC_Watercraft">
 		<nominal>30</nominal>
-		<min>20</min>
-		<max>50</max>
+		<min>15</min>
+		<max>40</max>
 		<lifetime>300</lifetime>
 		<restock>0</restock>
 		<saferadius>500</saferadius>
@@ -1447,8 +1447,6 @@
 		<children>
 			<child min="20" max="20" type="RFWC_Whaler"/>
 			<child min="20" max="20" type="RFWC_CarpBoat"/>
-			<child min="10" max="10" type="RFWC_Zodiac_Black"/>
-			<child min="0" max="0" type="RFWC_Zodiac_Orange"/>
 		</children>
 	</event>
 	
@@ -1546,9 +1544,9 @@
         </children>
     </event>
     <event name="VehicleToyotaRunner">
-        <nominal>10</nominal>
-        <min>6</min>
-        <max>10</max>
+        <nominal>15</nominal>
+        <min>9</min>
+        <max>15</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -1690,9 +1688,9 @@
     </event>
 
     <event name="VehicleDodgeRam">
-        <nominal>8</nominal>
-        <min>4</min>
-        <max>8</max>
+        <nominal>12</nominal>
+        <min>6</min>
+        <max>12</max>
         <lifetime>300</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
