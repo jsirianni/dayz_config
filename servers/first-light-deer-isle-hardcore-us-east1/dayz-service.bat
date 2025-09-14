@@ -24,6 +24,7 @@ set "MOD_DINO=3162169329"
 set "MOD_FIRESTICKS=3498006019"
 set "MOD_4KBOSSK=3369325490"
 set "MOD_DOG=2471347750"
+set "MOD_YAHT=3354681846"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
@@ -39,6 +40,7 @@ set "DST_DINO=@Dino"
 set "DST_FIRESTICKS=@FireSticks"
 set "DST_4KBOSSK=@4KBOSSKVehicles"
 set "DST_DOG=@Dog"
+set "DST_YAHT=@Yaht"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -66,6 +68,7 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_FIRESTICKS% validate ^
   +workshop_download_item 221100 %MOD_4KBOSSK% validate ^
   +workshop_download_item 221100 %MOD_DOG% validate ^
+  +workshop_download_item 221100 %MOD_YAHT% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -83,9 +86,10 @@ call :syncmod "%MOD_DINO%" "%DST_DINO%"
 call :syncmod "%MOD_FIRESTICKS%" "%DST_FIRESTICKS%"
 call :syncmod "%MOD_4KBOSSK%" "%DST_4KBOSSK%"
 call :syncmod "%MOD_DOG%" "%DST_DOG%"
+call :syncmod "%MOD_YAHT%" "%DST_YAHT%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino;@FireSticks;@4KBOSSKVehicles;@Dog"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino;@FireSticks;@4KBOSSKVehicles;@Dog;@Yaht"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
@@ -109,9 +113,15 @@ if not exist "%SRC%" (
 if not exist "%DST%" mkdir "%DST%"
 robocopy "%SRC%" "%DST%" /MIR >nul
 
-REM copy all .bikey from mod to server\keys (common places)
+REM copy all key files from mod to server\keys (supports multiple key file patterns)
 for %%K in ("%DST%\*.bikey") do copy /Y "%%~fK" "%KEYS%" >nul
-if exist "%DST%\keys" for %%K in ("%DST%\keys\*.bikey") do copy /Y "%%~fK" "%KEYS%" >nul
+for %%K in ("%DST%\*.key") do copy /Y "%%~fK" "%KEYS%" >nul
+for %%K in ("%DST%\*key*") do copy /Y "%%~fK" "%KEYS%" >nul
+if exist "%DST%\keys" (
+  for %%K in ("%DST%\keys\*.bikey") do copy /Y "%%~fK" "%KEYS%" >nul
+  for %%K in ("%DST%\keys\*.key") do copy /Y "%%~fK" "%KEYS%" >nul
+  for %%K in ("%DST%\keys\*key*") do copy /Y "%%~fK" "%KEYS%" >nul
+)
 goto :eof
 
 :steamfail
