@@ -4043,6 +4043,16 @@
 		  <item name="SparkPlug" chance="1.0" />
 		</attachments>
 	</type>
+	<type name="Van_HouseBoat">
+		<attachments chance="0.05">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Van_FishingTrawler">
+		<attachments chance="0.05">
+		  <item name="SparkPlug" chance="1.0" />
+		</attachments>
+	</type>
 		<type name="ScientificBriefcase">
 		<damage min="0.0" max="0.0" />		
 		<cargo chance="1.0">
