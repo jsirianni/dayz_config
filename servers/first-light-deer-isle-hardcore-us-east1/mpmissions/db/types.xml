@@ -5896,6 +5896,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackLeft_Black">
     <nominal>3</nominal>
@@ -5909,6 +5911,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackLeft_BlackRust">
     <nominal>3</nominal>
@@ -5922,6 +5926,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackLeft_WhiteRust">
     <nominal>3</nominal>
@@ -5935,6 +5941,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackLeft_Wine">
     <nominal>3</nominal>
@@ -5948,6 +5956,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackLeft_WineRust">
     <nominal>3</nominal>
@@ -5961,6 +5971,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight">
     <nominal>3</nominal>
@@ -5974,6 +5986,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight_Black">
     <nominal>3</nominal>
@@ -5987,6 +6001,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight_BlackRust">
     <nominal>3</nominal>
@@ -6000,6 +6016,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight_WhiteRust">
     <nominal>3</nominal>
@@ -6013,6 +6031,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight_Wine">
     <nominal>3</nominal>
@@ -6026,6 +6046,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_BackRight_WineRust">
     <nominal>3</nominal>
@@ -6039,6 +6061,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver">
     <nominal>3</nominal>
@@ -6052,6 +6076,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver_Black">
     <nominal>3</nominal>
@@ -6065,6 +6091,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver_BlackRust">
     <nominal>3</nominal>
@@ -6078,6 +6106,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver_WhiteRust">
     <nominal>3</nominal>
@@ -6091,6 +6121,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver_Wine">
     <nominal>3</nominal>
@@ -6104,6 +6136,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_CoDriver_WineRust">
     <nominal>3</nominal>
@@ -6117,6 +6151,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver">
     <nominal>3</nominal>
@@ -6130,6 +6166,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver_Black">
     <nominal>3</nominal>
@@ -6143,6 +6181,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver_BlackRust">
     <nominal>3</nominal>
@@ -6156,6 +6196,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver_WhiteRust">
     <nominal>3</nominal>
@@ -6169,6 +6211,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver_Wine">
     <nominal>3</nominal>
@@ -6182,6 +6226,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanDoors_Driver_WineRust">
     <nominal>3</nominal>
@@ -6195,6 +6241,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood">
     <nominal>4</nominal>
@@ -6208,6 +6256,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood_Black">
     <nominal>4</nominal>
@@ -6221,6 +6271,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood_BlackRust">
     <nominal>3</nominal>
@@ -6234,6 +6286,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood_WhiteRust">
     <nominal>3</nominal>
@@ -6247,6 +6301,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood_Wine">
     <nominal>4</nominal>
@@ -6260,6 +6316,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanHood_WineRust">
     <nominal>4</nominal>
@@ -6273,6 +6331,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk">
     <nominal>4</nominal>
@@ -6286,6 +6346,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk_Black">
     <nominal>4</nominal>
@@ -6299,6 +6361,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk_BlackRust">
     <nominal>3</nominal>
@@ -6312,6 +6376,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk_WhiteRust">
     <nominal>3</nominal>
@@ -6325,6 +6391,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk_Wine">
     <nominal>4</nominal>
@@ -6338,6 +6406,8 @@
     <category name="lootdispatch" />
     <tag name="floor" />
     <usage name="Industrial" />
+    <usage name="Farm" />
+    <usage name="Village" />
   </type>
   <type name="CivSedanTrunk_WineRust">
     <nominal>4</nominal>
