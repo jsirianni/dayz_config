@@ -26076,7 +26076,7 @@
     <nominal>20</nominal>
     <lifetime>1800</lifetime>
     <restock>0</restock>
-    <min>10</min>
+    <min>5</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28619,10 +28619,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
   </type>
   <type name="MotorHome_DriverRust">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28632,10 +28632,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_DriverDoor">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28645,10 +28645,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_DriverDoor2">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28658,10 +28658,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_DriverDoorGreenCamo">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28671,10 +28671,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_Hood">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28684,10 +28684,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_HoodRust">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28697,10 +28697,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_HoodGreenCamo">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28710,10 +28710,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_HoodApo">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28723,10 +28723,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_Hood2">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28736,10 +28736,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_Hood2Rust">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28749,10 +28749,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_Hood2GreenCamo">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -28762,10 +28762,10 @@
     <usage name="Industrial" />
   </type>
   <type name="MotorHome_Hood2Apo">
-    <nominal>2</nominal>
+    <nominal>0</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>1</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
