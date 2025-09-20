@@ -1825,7 +1825,7 @@
     The event should continue spawning exactly 1 vehicle at a time from the 18 predefined 
     locations with random color selection from the 5 Audi RS6 ABT variants."
     -->
-    <event name="RaceCar">
+    <event name="VehicleRaceCar">
         <nominal>1</nominal>
         <min>0</min>
         <max>1</max>
