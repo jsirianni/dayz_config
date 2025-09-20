@@ -1801,4 +1801,95 @@
         </children>
     </event>
 
+    <!-- 
+    RACECAR EVENT - RARE VEHICLE SPAWNING SYSTEM
+    
+    INTENDED BEHAVIOR:
+    - Spawns exactly 1 high-performance vehicle at a time from 18 predefined locations
+    - Creates rare, valuable vehicles that players actively hunt for
+    - 3-hour availability window per spawn (lifetime=10800 seconds)
+    - 1-hour gap between spawns (restock=3600 seconds) for scarcity
+    - Random color selection from 5 Audi RS6 ABT variants
+    - Fully equipped with 100% spawn chance for all parts
+    
+    CONFIGURATION RATIONALE:
+    - nominal=1, min=0, max=1: One vehicle at a time with respawn capability
+    - lifetime=10800: 3 hours gives players time to find and interact
+    - restock=3600: 1-hour gaps create scarcity and excitement
+    - 18 spawn points in cfgeventspawns.xml for geographic variety
+    - 5 color variants for visual diversity
+    
+    USAGE FOR AI/LLM PROMPTS:
+    "Modify the RaceCar event to [specific changes] while maintaining the rare vehicle 
+    spawning behavior with 3-hour availability windows and 1-hour gaps between spawns. 
+    The event should continue spawning exactly 1 vehicle at a time from the 18 predefined 
+    locations with random color selection from the 5 Audi RS6 ABT variants."
+    -->
+    <event name="RaceCar">
+        <nominal>1</nominal>
+        <min>0</min>
+        <max>1</max>
+        <lifetime>10800</lifetime>
+        <restock>3600</restock>
+        <saferadius>500</saferadius>
+        <distanceradius>500</distanceradius>
+        <cleanupradius>200</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1"/>
+        <position>fixed</position>
+        <limit>mixed</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Audi_RS6_ABT_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Audi_RS6_ABT_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Audi_RS6_ABT_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Audi_RS6_ABT_MidNightBlue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Audi_RS6_ABT_Pink"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="BMW_M3_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="BMW_M3_White"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="BMW_M3_MidNightBlue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="BMW_M3_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="BMW_M3_Orange"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Chevrolet_NapalmNova_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Chevrolet_NapalmNova_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Chevrolet_NapalmNova_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Chevrolet_NapalmNova_Red"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Chevrolet_NapalmNova_Yellow"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Civic_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Civic_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Civic_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Civic_RedCustom"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Civic_White"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Ford_Mustang_Shelby_GT500_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Ford_Mustang_Shelby_GT500_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Ford_Mustang_Shelby_GT500_DarkBlue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Ford_Mustang_Shelby_GT500_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Ford_Mustang_Shelby_GT500_Orange"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MitsubishiEVO_FastAnFurious"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MitsubishiEVO_FastAnFurious2"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MitsubishiEVO_darkblue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MitsubishiEVO_pink"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="MitsubishiEVO_bee"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="NissanGTR_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="NissanGTR_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="NissanGTR_Orange"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="NissanGTR_Pink"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="NissanGTR_Red"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Nissan_Skyline_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Nissan_Skyline_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Nissan_Skyline_Orange"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Nissan_Skyline_Pink"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Nissan_Skyline_White"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Porsche_911RWB_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Porsche_911RWB_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Porsche_911RWB_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Porsche_911RWB_Orange"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Porsche_911RWB_Red"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Supra_Black"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Supra_Blue"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Supra_Green"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Supra_Red"/>
+            <child lootmax="0" lootmin="0" max="1" min="1" type="Supra_White"/>
+        </children>
+    </event>
+
 </events>

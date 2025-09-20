@@ -5005,4 +5005,2329 @@
         </attachments>
     </type>
 
+    <!-- Audi RS6 ABT Black vehicle configuration -->
+    <type name="Audi_RS6_ABT_Black">
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Driver_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_CoDriver_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo1_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo2_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Audi RS6 ABT Blue vehicle configuration -->
+    <type name="Audi_RS6_ABT_Blue">
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Driver_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_CoDriver_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo1_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo2_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Audi RS6 ABT Green vehicle configuration -->
+    <type name="Audi_RS6_ABT_Green">
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Driver_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_CoDriver_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo1_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo2_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Audi RS6 ABT MidNightBlue vehicle configuration -->
+    <type name="Audi_RS6_ABT_MidNightBlue">
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Driver_MidNightBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_CoDriver_MidNightBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo1_MidNightBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo2_MidNightBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Hood_MidNightBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Trunk_MidNightBlue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Audi RS6 ABT Pink vehicle configuration -->
+    <type name="Audi_RS6_ABT_Pink">
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Driver_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_CoDriver_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo1_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Cargo2_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Hood_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Audi_RS6_ABT_Trunk_Pink" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- BMW M3 Black vehicle configuration -->
+    <type name="BMW_M3_Black">
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_DriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_CoDriver_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- BMW M3 White vehicle configuration -->
+    <type name="BMW_M3_White">
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_DriverDoor" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_CoDriver" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Hood" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Trunk" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- BMW M3 MidNightBlue vehicle configuration -->
+    <type name="BMW_M3_MidNightBlue">
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_DriverDoor_MidNightblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_CoDriver_MidNightblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Hood_MidNightblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Trunk_MidNightblue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- BMW M3 Blue vehicle configuration -->
+    <type name="BMW_M3_Blue">
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_DriverDoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_CoDriver_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- BMW M3 Orange vehicle configuration -->
+    <type name="BMW_M3_Orange">
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_DriverDoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_CoDriver_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Hood_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="BMW_M3_Trunk_Orange" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Chevrolet NapalmNova Black vehicle configuration -->
+    <type name="Chevrolet_NapalmNova_Black">
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Driverdoor" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_CoDriver" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Hood" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Trunk" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Chevrolet NapalmNova Blue vehicle configuration -->
+    <type name="Chevrolet_NapalmNova_Blue">
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Driverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_CoDriver_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Chevrolet NapalmNova Green vehicle configuration -->
+    <type name="Chevrolet_NapalmNova_Green">
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Driverdoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_CoDriver_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Chevrolet NapalmNova Red vehicle configuration -->
+    <type name="Chevrolet_NapalmNova_Red">
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Driverdoor_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_CoDriver_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Hood_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Trunk_Red" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Chevrolet NapalmNova Yellow vehicle configuration -->
+    <type name="Chevrolet_NapalmNova_Yellow">
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Driverdoor_Yellow" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_CoDriver_Yellow" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Hood_Yellow" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Chevrolet_NapalmNova_Trunk_Yellow" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Ford Mustang Shelby GT500 Black vehicle configuration -->
+    <type name="Ford_Mustang_Shelby_GT500_Black">
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Driverdoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Codriverdoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Ford Mustang Shelby GT500 Blue vehicle configuration -->
+    <type name="Ford_Mustang_Shelby_GT500_Blue">
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Driverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Codriverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Ford Mustang Shelby GT500 DarkBlue vehicle configuration -->
+    <type name="Ford_Mustang_Shelby_GT500_DarkBlue">
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Driverdoor_DarkBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Codriverdoor_DarkBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Hood_DarkBlue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Trunk_DarkBlue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Ford Mustang Shelby GT500 Green vehicle configuration -->
+    <type name="Ford_Mustang_Shelby_GT500_Green">
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Driverdoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Codriverdoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Ford Mustang Shelby GT500 Orange vehicle configuration -->
+    <type name="Ford_Mustang_Shelby_GT500_Orange">
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Driverdoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Codriverdoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Hood_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="FordShelbyGT500_Trunk_Orange" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan GTR Blue vehicle configuration -->
+    <type name="NissanGTR_Blue">
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Driverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Codriverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan GTR Green vehicle configuration -->
+    <type name="NissanGTR_Green">
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Driverdoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Codriverdoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan GTR Orange vehicle configuration -->
+    <type name="NissanGTR_Orange">
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Driverdoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Codriverdoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Hood_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Trunk_Orange" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan GTR Pink vehicle configuration -->
+    <type name="NissanGTR_Pink">
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Driverdoor_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Codriverdoor_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Hood_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Trunk_Pink" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan GTR Red vehicle configuration -->
+    <type name="NissanGTR_Red">
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTRNismo_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Driverdoor_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Codriverdoor_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Hood_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="NissanGTR_Trunk_Red" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan Skyline Black vehicle configuration -->
+    <type name="Nissan_Skyline_Black">
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_driverdoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_codriver_door_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan Skyline Blue vehicle configuration -->
+    <type name="Nissan_Skyline_Blue">
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_driverdoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_codriver_door_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan Skyline Orange vehicle configuration -->
+    <type name="Nissan_Skyline_Orange">
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_driverdoor_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_codriver_door_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Hood_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Trunk_Orange" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan Skyline Pink vehicle configuration -->
+    <type name="Nissan_Skyline_Pink">
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_driverdoor_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_codriver_door_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Hood_Pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Trunk_Pink" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Nissan Skyline White vehicle configuration -->
+    <type name="Nissan_Skyline_White">
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_driverdoor" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_codriver_door" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Hood" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Skyline_Trunk" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Porsche 911RWB Black vehicle configuration -->
+    <type name="Porsche_911RWB_Black">
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Driver_Door_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_CoDriver_Door_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Porsche 911RWB Blue vehicle configuration -->
+    <type name="Porsche_911RWB_Blue">
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Driver_Door_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_CoDriver_Door_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Porsche 911RWB Green vehicle configuration -->
+    <type name="Porsche_911RWB_Green">
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Driver_Door_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_CoDriver_Door_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Porsche 911RWB Orange vehicle configuration -->
+    <type name="Porsche_911RWB_Orange">
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Driver_Door_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_CoDriver_Door_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Hood_Orange" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Trunk_Orange" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Porsche 911RWB Red vehicle configuration -->
+    <type name="Porsche_911RWB_Red">
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Front_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Driver_Door_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_CoDriver_Door_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Hood_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Porsche_911RWB_Trunk_Red" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Supra Black vehicle configuration -->
+    <type name="Supra_Black">
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_DriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_CoDriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Supra Blue vehicle configuration -->
+    <type name="Supra_Blue">
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_DriverDoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_CoDriverDoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Supra Green vehicle configuration -->
+    <type name="Supra_Green">
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_DriverDoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_CoDriverDoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Supra Red vehicle configuration -->
+    <type name="Supra_Red">
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_DriverDoor_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_CoDriverDoor_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Hood_Red" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Trunk_Red" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Supra White vehicle configuration -->
+    <type name="Supra_White">
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_DriverDoor_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_CoDriverDoor_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Hood_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Supra_Trunk_White" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Civic Black vehicle configuration -->
+    <type name="Civic_Black">
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_DriverDoor_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_CoDriver_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Hood_Black" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Trunk_Black" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Civic Blue vehicle configuration -->
+    <type name="Civic_Blue">
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_DriverDoor_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_CoDriver_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Hood_Blue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Trunk_Blue" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Civic Green vehicle configuration -->
+    <type name="Civic_Green">
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_DriverDoor_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_CoDriver_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Hood_Green" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Trunk_Green" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Civic RedCustom vehicle configuration -->
+    <type name="Civic_RedCustom">
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_DriverDoor_RedCustom" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_CoDriver_RedCustom" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Hood_RedCustom" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Trunk_RedCustom" chance="1.00" />
+        </attachments>
+    </type>
+
+    <!-- Civic White vehicle configuration -->
+    <type name="Civic_White">
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_DriverDoor_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_CoDriver_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Hood_White" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Honda_Civic_Trunk_White" chance="1.00" />
+        </attachments>
+    </type>
+    <!-- MitsubishiEVO FastAnFurious vehicle configuration -->
+    <type name="MitsubishiEVO_FastAnFurious">
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Driver_FastAnFurious" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_CoDriver_FastAnFurious" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Hood_FastAnFurious" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Trunk_FastAnFurious" chance="1.00" />
+        </attachments>
+    </type>
+    <!-- MitsubishiEVO FastAnFurious2 vehicle configuration -->
+    <type name="MitsubishiEVO_FastAnFurious2">
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Driver_fast2" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_CoDriver_fast2" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Hood_fast2" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Trunk_fast2" chance="1.00" />
+        </attachments>
+    </type>
+    <!-- MitsubishiEVO darkblue vehicle configuration -->
+    <type name="MitsubishiEVO_darkblue">
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Driver_darkblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_CoDriver_darkblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Hood_darkblue" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Trunk_darkblue" chance="1.00" />
+        </attachments>
+    </type>
+    <!-- MitsubishiEVO pink vehicle configuration -->
+    <type name="MitsubishiEVO_pink">
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Driver_pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_CoDriver_pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Hood_pink" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Trunk_pink" chance="1.00" />
+        </attachments>
+    </type>
+    <!-- MitsubishiEVO bee vehicle configuration -->
+    <type name="MitsubishiEVO_bee">
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Wheel" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="HeadlightH7" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarBattery" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="CarRadiator" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="SparkPlug" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Driver_bee" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_CoDriver_bee" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Hood_bee" chance="1.00" />
+        </attachments>
+        <attachments chance="1.00">
+            <item name="Mitsubishi_LancerEvolutionIX_Trunk_bee" chance="1.00" />
+        </attachments>
+    </type>
+
 </spawnabletypes>
