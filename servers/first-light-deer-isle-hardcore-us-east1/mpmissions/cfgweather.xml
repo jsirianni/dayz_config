@@ -7,11 +7,11 @@
         <!-- Initial conditions of the overcast (target value, time to change, how long will it stay) -->
         <current actual="0.1" time="60" duration="14400" />
         <!-- What is the range of the overcast value (0..1) -->
-        <limits min="0.0" max="0.35" />
+        <limits min="0.0" max="0.9" />
         <!-- How long does it take to the overcast to change from one value to other (time in seconds) -->
-        <timelimits min="3600" max="14400" />
+        <timelimits min="7200" max="18000" />
         <!-- How much should the overcast change (0..1) -->
-        <changelimits min="0.00" max="0.08" />
+        <changelimits min="0.05" max="0.35" />
     </overcast>
     <fog>
         <!-- Initial conditions of the fog (target value, time to change, how long will it stay) -->
@@ -27,13 +27,13 @@
         <!-- Initial conditions of the rain (target value, time to change, how long will it stay), restricted by thresholds (see below) -->
         <current actual="0.0" time="60" duration="3600" />
         <!-- What is the range of the rain value (0..1) -->
-        <limits min="0.0" max="0.35" />
+        <limits min="0.0" max="1.0" />
         <!-- How long does it take to the rain to change from one value to other (time in seconds) -->
-        <timelimits min="7200" max="21600" />
+        <timelimits min="3600" max="3600" />
         <!-- How much should the rain change (0..1) -->
-        <changelimits min="0.00" max="0.10" />
+        <changelimits min="0.20" max="0.70" />
         <!-- What range of the overcast value allows the rain to be preset (min, max overcast value, time in seconds it takes for rain to stop if the overcast is outside of the specified range) -->
-        <thresholds min="0.75" max="1.0" end="600" />
+        <thresholds min="0.6" max="1.0" end="600" />
     </rain>
     <wind>
         <!-- Maximum wind speed (in m/s) -->
@@ -42,7 +42,7 @@
         <params min="0.0" max="0.6" frequency="90" />
     </wind>
     <!-- Lightning density (0..1), threshold for the lightning appearance (tied to the overcast value, 0..1), time (seconds) between the lightning strikes -->
-    <storm density="0.08" threshold="0.9" timeout="300"/>
+    <storm density="0.25" threshold="0.85" timeout="120"/>
 
     <snowfall>
         <current actual="0.0" time="60" duration="120" />
