@@ -23,12 +23,17 @@ DAYZ_WORKSHOP_ID=221100
 
 shell_home="/opt/dayz"
 
+mod_cf="1559212036"
+mod_vpp="1828439124"
+
 dayz() {
     sudo -u dayz 'bash' <<EOF
 /usr/games/steamcmd \
     +force_install_dir "$shell_home" \
     +login "$STEAM_USER" \
     +app_update "$DAYZ_APP_ID" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_cf" \
+    +workshop_download_item "$DAYZ_WORKSHOP_ID" "$mod_vpp" \
     +quit
 EOF
 }
@@ -36,6 +41,11 @@ EOF
 # symlinks links the mod and key directories. NOTE: Sometimes the key directory
 # is capitalized.
 symlinks() {
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf" "/opt/dayz/$mod_cf"
+    sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp" "/opt/dayz/$mod_vpp"
+
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_cf/keys/*" /opt/dayz/keys/
+    eval sudo ln -sf "/opt/dayz/steamapps/workshop/content/221100/$mod_vpp/keys/*" /opt/dayz/keys/
 
     sudo chown -R dayz:dayz /opt/dayz
 }
@@ -51,8 +61,8 @@ After=syslog.target network.target nss-lookup.target network-online.target
 #ExecStartPre=/opt/update.sh
 ExecStart=/opt/dayz/DayZServer \
     -config=serverDZ.cfg \
-    -port=2500 \
-    -mod="" \
+    -port=4001 \
+    -mod="$mod_cf;$mod_vpp" \
     -BEpath=battleye \
     -profiles=profiles \
     -dologs \
