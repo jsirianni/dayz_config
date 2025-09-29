@@ -17,10 +17,6 @@ set "MOD_DEERISLE=1602372402"
 set "MOD_CODELOCK=1646187754"
 set "MOD_VEHICLE3PP=2122332595"
 set "MOD_REDFALCON=2906371600"
-set "MOD_CROCODILE=3013430583"
-set "MOD_SHARK=3147619641"
-set "MOD_DBO_DINO=3096188434"
-set "MOD_DINO=3162169329"
 set "MOD_FIRESTICKS=3498006019"
 set "MOD_4KBOSSK=3369325490"
 set "MOD_DOG=2471347750"
@@ -33,10 +29,6 @@ set "DST_DEERISLE=@DeerIsle"
 set "DST_CODELOCK=@CodeLock"
 set "DST_VEHICLE3PP=@Vehicle3PP"
 set "DST_REDFALCON=@RedFalconBoat"
-set "DST_CROCODILE=@Crocodile"
-set "DST_SHARK=@Shark"
-set "DST_DBO_DINO=@DboDino"
-set "DST_DINO=@Dino"
 set "DST_FIRESTICKS=@FireSticks"
 set "DST_4KBOSSK=@4KBOSSKVehicles"
 set "DST_DOG=@Dog"
@@ -61,10 +53,6 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_CODELOCK% validate ^
   +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
   +workshop_download_item 221100 %MOD_REDFALCON% validate ^
-  +workshop_download_item 221100 %MOD_CROCODILE% validate ^
-  +workshop_download_item 221100 %MOD_SHARK% validate ^
-  +workshop_download_item 221100 %MOD_DBO_DINO% validate ^
-  +workshop_download_item 221100 %MOD_DINO% validate ^
   +workshop_download_item 221100 %MOD_FIRESTICKS% validate ^
   +workshop_download_item 221100 %MOD_4KBOSSK% validate ^
   +workshop_download_item 221100 %MOD_DOG% validate ^
@@ -79,17 +67,13 @@ call :syncmod "%MOD_DEERISLE%" "%DST_DEERISLE%"
 call :syncmod "%MOD_CODELOCK%" "%DST_CODELOCK%"
 call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 call :syncmod "%MOD_REDFALCON%" "%DST_REDFALCON%"
-call :syncmod "%MOD_CROCODILE%" "%DST_CROCODILE%"
-call :syncmod "%MOD_SHARK%" "%DST_SHARK%"
-call :syncmod "%MOD_DBO_DINO%" "%DST_DBO_DINO%"
-call :syncmod "%MOD_DINO%" "%DST_DINO%"
 call :syncmod "%MOD_FIRESTICKS%" "%DST_FIRESTICKS%"
 call :syncmod "%MOD_4KBOSSK%" "%DST_4KBOSSK%"
 call :syncmod "%MOD_DOG%" "%DST_DOG%"
 call :syncmod "%MOD_YAHT%" "%DST_YAHT%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@Crocodile;@Shark;@DboDino;@Dino;@FireSticks;@4KBOSSKVehicles;@Dog;@Yaht"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DeerIsle;@CodeLock;@Vehicle3PP;@RedFalconBoat;@FireSticks;@4KBOSSKVehicles;@Dog;@Yaht"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
