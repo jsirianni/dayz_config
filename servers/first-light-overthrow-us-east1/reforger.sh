@@ -45,10 +45,10 @@ SCENARIO_ID="{3DAD390C31623F04}Missions/24_OVT_Eden.conf"
 MODS_JSON='
     { "modId": "59B657D731E2A11D", "name": "Overthrow", "required": true },
     { "modId": "5D6EA74A94173EDF", "name": "Enfusion Database Framework", "required": true },
-    { "modId": "5D6EBC81EB1842EF", "name": "Enfusion Persistence Framework", "required": true }
+    { "modId": "5D6EBC81EB1842EF", "name": "Enfusion Persistence Framework", "required": true },
+    { "modId": "5D8CAE1570401332", "name": "Overthrow - RHS Compatibility", "required": true }
 '
 
-PUBLIC_ADDRESS="overthrow.reforger.first-light.coffeedns.net"
 SERVER_NAME="[Overthrow] First Light US-EAST1"
 
 # ---- Helpers ----
