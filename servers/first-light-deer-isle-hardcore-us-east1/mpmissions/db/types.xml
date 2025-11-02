@@ -31,10 +31,10 @@
     <usage name="Military" />
   </type>
   <type name="ACOGOptic_6x">
-    <nominal>15</nominal>
+    <nominal>10</nominal>
     <lifetime>14400</lifetime>
     <restock>1800</restock>
-    <min>10</min>
+    <min>6</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -528,10 +528,10 @@
     <usage name="Village" />
   </type>
   <type name="AliceBag_Black">
-    <nominal>3</nominal>
+    <nominal>0</nominal>
     <lifetime>86400</lifetime>
     <restock>1800</restock>
-    <min>2</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -684,10 +684,10 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_308WinTracer_20Rnd">
-    <nominal>50</nominal>
+    <nominal>40</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>35</min>
+    <min>30</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -704,10 +704,10 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_308Win_20Rnd">
-    <nominal>50</nominal>
+    <nominal>40</nominal>
     <lifetime>7200</lifetime>
     <restock>0</restock>
-    <min>35</min>
+    <min>30</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -738,17 +738,16 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier9" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier8" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
   <type name="AmmoBox_380_35rnd">
-    <nominal>50</nominal>
+    <nominal>40</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>30</min>
+    <min>25</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -757,7 +756,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier8" />
     <usage name="Military" />
@@ -782,7 +780,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -807,10 +804,10 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_545x39_20Rnd">
-    <nominal>60</nominal>
+    <nominal>50</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>40</min>
+    <min>35</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -847,7 +844,7 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_556x45_20Rnd">
-    <nominal>60</nominal>
+    <nominal>50</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
     <min>40</min>
@@ -866,7 +863,7 @@
     <usage name="Military" />
   </type>
   <type name="AmmoBox_762x39Tracer_20Rnd">
-    <nominal>60</nominal>
+    <nominal>50</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
     <min>40</min>
@@ -886,7 +883,7 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_762x39_20Rnd">
-    <nominal>50</nominal>
+    <nominal>40</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
     <min>30</min>
@@ -905,10 +902,10 @@
     <usage name="Military" />
   </type>
   <type name="AmmoBox_762x54Tracer_20Rnd">
-    <nominal>50</nominal>
+    <nominal>40</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>30</min>
+    <min>20</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -964,7 +961,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -985,10 +981,10 @@
     <value name="Tier9" />
   </type>
   <type name="AmmoBox_9x39_20Rnd">
-    <nominal>60</nominal>
+    <nominal>50</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>40</min>
+    <min>35</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -1033,8 +1029,8 @@
     <lifetime>10800</lifetime>
     <restock>0</restock>
     <min>0</min>
-    <quantmin>10</quantmin>
-    <quantmax>100</quantmax>
+    <quantmin>-1</quantmin>
+    <quantmax>-1</quantmax>
     <cost>100</cost>
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
     <category name="weapons" />
@@ -1186,10 +1182,10 @@
     <value name="Tier1" />
   </type>
   <type name="Ammo_40mm_Explosive">
-    <nominal>24</nominal>
+    <nominal>15</nominal>
     <lifetime>14400</lifetime>
     <restock>0</restock>
-    <min>12</min>
+    <min>6</min>
     <quantmin>100</quantmin>
     <quantmax>100</quantmax>
     <cost>100</cost>
@@ -1221,10 +1217,10 @@
     <usage name="Police" />
   </type>
   <type name="Ammo_40mm_Smoke_Green">
-    <nominal>6</nominal>
+    <nominal>0</nominal>
     <lifetime>14400</lifetime>
     <restock>0</restock>
-    <min>4</min>
+    <min>0</min>
     <quantmin>100</quantmin>
     <quantmax>100</quantmax>
     <cost>100</cost>
@@ -1234,7 +1230,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
@@ -1252,7 +1247,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
@@ -1270,7 +1264,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
@@ -2948,7 +2941,6 @@
     <usage name="Military" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="BalaclavaMask_Chain">
@@ -3020,10 +3012,10 @@
     <value name="Tier6" />
   </type>
   <type name="BalaclavaMask_Blackskull">
-    <nominal>8</nominal>
+    <nominal>4</nominal>
     <lifetime>10800</lifetime>
     <restock>0</restock>
-    <min>6</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -3139,7 +3131,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
   </type>
   <type name="BallisticHelmet_Green">
     <nominal>0</nominal>
@@ -3192,7 +3183,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
   </type>
   <type name="BallisticHelmet_Woodland">
     <nominal>10</nominal>
@@ -3206,7 +3196,6 @@
     <category name="clothes" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
   </type>
   <type name="BandageDressing">
@@ -7122,7 +7111,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
   </type>
@@ -8115,7 +8103,6 @@
     <usage name="Military" />
     <usage name="Police" />
     <value name="Tier4" />
-    <value name="Tier7" />
     <value name="Tier5" />
     <value name="Tier3" />
     <value name="Tier6" />
@@ -9085,7 +9072,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="GPSReceiver">
@@ -9152,7 +9138,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="GasMask_Filter">
@@ -9212,7 +9197,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -9258,7 +9242,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -9304,7 +9287,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -9351,7 +9333,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier2" />
   </type>
@@ -9396,7 +9377,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -9733,7 +9713,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -9751,7 +9730,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -9769,7 +9747,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -9787,7 +9764,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier9" />
   </type>
@@ -9835,7 +9811,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
   </type>
@@ -9856,7 +9831,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -11132,7 +11106,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <usage name="Military" />
     <usage name="Police" />
@@ -12343,7 +12316,6 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
     <category name="weapons" />
     <value name="Tier4" />
-    <value name="Tier7" />
     <value name="Tier5" />
     <value name="Tier3" />
     <value name="Tier6" />
@@ -12406,7 +12378,6 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
     <category name="weapons" />
     <value name="Tier4" />
-    <value name="Tier7" />
     <value name="Tier5" />
     <value name="Tier3" />
     <value name="Tier6" />
@@ -13849,7 +13820,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
   </type>
@@ -13912,7 +13882,6 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
     <category name="weapons" />
     <value name="Tier4" />
-    <value name="Tier7" />
     <value name="Tier5" />
     <value name="Tier3" />
     <value name="Tier6" />
@@ -16366,7 +16335,6 @@
     <usage name="Police" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="OMNOGloves_Gray">
@@ -16383,7 +16351,6 @@
     <usage name="Police" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="OfficerHat">
@@ -18210,7 +18177,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
@@ -18228,7 +18194,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <usage name="Military" />
     <usage name="Police" />
   </type>
@@ -18247,7 +18212,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
     <usage name="Military" />
@@ -18520,7 +18484,6 @@
     <tag name="shelves" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <usage name="Military" />
     <usage name="Police" />
@@ -18553,7 +18516,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="ReflexVest">
@@ -18660,7 +18622,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <usage name="Town" />
     <usage name="Farm" />
@@ -18764,7 +18725,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="Shemag_Brown">
@@ -20676,7 +20636,6 @@
     <value name="Tier4" />
     <value name="Tier5" />
     <value name="Tier6" />
-    <value name="Tier7" />
     <value name="Tier8" />
     <value name="Tier9" />
   </type>
@@ -21718,7 +21677,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier8" />
   </type>
@@ -21736,7 +21694,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier8" />
   </type>
@@ -21753,7 +21710,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <value name="Tier8" />
     <usage name="Military" />
@@ -21772,7 +21728,6 @@
     <value name="Tier3" />
     <value name="Tier4" />
     <value name="Tier5" />
-    <value name="Tier7" />
     <value name="Tier6" />
     <usage name="Military" />
     <usage name="Police" />
@@ -22004,7 +21959,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
     <value name="Tier6" />
   </type>
   <type name="TannedLeather">
@@ -22972,7 +22926,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
   </type>
   <type name="Ushanka_Blue">
     <nominal>10</nominal>
@@ -22992,7 +22945,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
   </type>
   <type name="Ushanka_Green">
     <nominal>10</nominal>
@@ -23012,7 +22964,6 @@
     <value name="Tier5" />
     <value name="Tier9" />
     <value name="Tier8" />
-    <value name="Tier7" />
   </type>
   <type name="Vikhr">
     <nominal>12</nominal>
@@ -27395,10 +27346,10 @@
     <usage name="Military" />
   </type>
   <type name="SRP_Dynamite_Stack">
-    <nominal>9</nominal>
+    <nominal>4</nominal>
     <lifetime>7200</lifetime>
     <restock>1800</restock>
-    <min>6</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -27779,10 +27730,10 @@
     <usage name="Military" />
   </type>
   <type name="STAG_Teddybear_brown">
-    <nominal>5</nominal>
+    <nominal>3</nominal>
     <lifetime>86400</lifetime>
     <restock>0</restock>
-    <min>3</min>
+    <min>2</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
@@ -27798,10 +27749,10 @@
     <usage name="Military" />
   </type>
   <type name="STAG_Teddybear_black">
-    <nominal>5</nominal>
+    <nominal>0</nominal>
     <lifetime>86400</lifetime>
     <restock>0</restock>
-    <min>3</min>
+    <min>0</min>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
     <cost>100</cost>
