@@ -1,9 +1,9 @@
 {
     "m_Version": 4,
-    "EnableGlobalChat": 1,
-    "EnablePartyChat": 1,
-    "EnableTransportChat": 1,
-    "EnableExpansionChat": 1,
+    "EnableGlobalChat": 0,
+    "EnablePartyChat": 0,
+    "EnableTransportChat": 0,
+    "EnableExpansionChat": 0,
     "ChatColors": {
         "SystemChatColor": "EB45EBFF",
         "AdminChatColor": "FF392BFF",
