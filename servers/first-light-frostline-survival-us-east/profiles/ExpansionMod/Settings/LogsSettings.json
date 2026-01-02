@@ -15,7 +15,7 @@
     "BaseBuildingRaiding": 1,
     "CodeLockRaiding": 1,
     "Territory": 1,
-    "Killfeed": 1,
+    "Killfeed": 0,
     "SpawnSelection": 1,
     "Party": 1,
     "MissionAirdrop": 1,
