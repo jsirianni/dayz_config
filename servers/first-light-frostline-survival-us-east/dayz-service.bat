@@ -18,6 +18,9 @@ set "MOD_VEHICLE3PP=2122332595"
 set "MOD_DABS=2545327648"
 set "MOD_EXPANSION_LICENSED=2116157322"
 set "MOD_EXPANSION_BUNDLE=2572331007"
+set "MOD_TERJECORE=3359676785"
+set "MOD_TERJEMEDICINE=3359677479"
+set "MOD_TERJESKILLS=3359678303"
 
 REM ===== Server @mod folder names (NO SPACES, but dashes are allowed) =====
 set "DST_CF=@CF"
@@ -27,6 +30,9 @@ set "DST_VEHICLE3PP=@Vehicle3PP"
 set "DST_DABS=@DabsFramework"
 set "DST_EXPANSION_LICENSED=@DayZ-Expansion-Licensed"
 set "DST_EXPANSION_BUNDLE=@DayZ-Expansion-Bundle"
+set "DST_TERJECORE=@TerjeCore"
+set "DST_TERJEMEDICINE=@TerjeMedicine"
+set "DST_TERJESKILLS=@TerjeSkills"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -48,6 +54,9 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_DABS% validate ^
   +workshop_download_item 221100 %MOD_EXPANSION_LICENSED% validate ^
   +workshop_download_item 221100 %MOD_EXPANSION_BUNDLE% validate ^
+  +workshop_download_item 221100 %MOD_TERJECORE% validate ^
+  +workshop_download_item 221100 %MOD_TERJEMEDICINE% validate ^
+  +workshop_download_item 221100 %MOD_TERJESKILLS% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -59,10 +68,13 @@ call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 call :syncmod "%MOD_DABS%"     "%DST_DABS%"
 call :syncmod "%MOD_EXPANSION_LICENSED%" "%DST_EXPANSION_LICENSED%"
 call :syncmod "%MOD_EXPANSION_BUNDLE%" "%DST_EXPANSION_BUNDLE%"
+call :syncmod "%MOD_TERJECORE%" "%DST_TERJECORE%"
+call :syncmod "%MOD_TERJEMEDICINE%" "%DST_TERJEMEDICINE%"
+call :syncmod "%MOD_TERJESKILLS%" "%DST_TERJESKILLS%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
 REM Expansion mods must load after CF and DabsFramework, Bundle before Licensed
-set "MODLINE=-mod=@CF;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@VPPAdminTools;@CodeLock;@Vehicle3PP"
+set "MODLINE=-mod=@CF;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@VPPAdminTools;@CodeLock;@Vehicle3PP;@TerjeCore;@TerjeMedicine;@TerjeSkills"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
