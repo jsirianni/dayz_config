@@ -1,6 +1,6 @@
 {
     "m_Version": 8,
-    "EnableParties": 1,
+    "EnableParties": 0,
     "MaxMembersInParty": 10,
     "UseWholeMapForInviteList": 0,
     "ShowPartyMember3DMarkers": 1,
