@@ -73,18 +73,16 @@
         "PrimaryWeapon": {},
         "SecondaryWeapon": {}
     },
-    "UseLoadouts": 0,
+    "UseLoadouts": 1,
     "MaleLoadouts": [
-        {
-            "Loadout": "PlayerSurvivorLoadout",
-            "Chance": 1.0
-        }
+        { "Loadout": "CustomSurvivorMedic", "Chance": 1.0 },
+        { "Loadout": "CustomSurvivorPolice", "Chance": 1.0 },
+        { "Loadout": "CustomSurvivorFirefighter", "Chance": 1.0 }
     ],
     "FemaleLoadouts": [
-        {
-            "Loadout": "PlayerSurvivorLoadout",
-            "Chance": 1.0
-        }
+        { "Loadout": "CustomSurvivorMedic", "Chance": 1.0 },
+        { "Loadout": "CustomSurvivorPolice", "Chance": 1.0 },
+        { "Loadout": "CustomSurvivorFirefighter", "Chance": 1.0 }
     ],
     "SpawnHealthValue": 100.0,
     "SpawnEnergyValue": 500.0,
