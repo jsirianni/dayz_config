@@ -1,0 +1,455 @@
+Position: <10438.695313, 7.624290, 13420.013672>
+Orientation: <-165.896545, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10384.054688, 20.356628, 13210.582031>
+Orientation: <-29.168715, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10283.775391, 18.676495, 13295.296875>
+Orientation: <71.958725, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9883.645508, 2.335000, 13574.894531>
+Orientation: <-123.317352, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9819.610352, 27.478218, 13340.482422>
+Orientation: <-120.705772, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9649.153320, 3.131769, 13555.123047>
+Orientation: <-33.396065, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9298.246094, 2.309964, 13678.962891>
+Orientation: <81.343895, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9423.313477, 11.899352, 13484.125000>
+Orientation: <178.164169, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9464.308594, 27.250431, 13260.694336>
+Orientation: <176.567581, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9346.230469, 50.858532, 13102.852539>
+Orientation: <-154.469421, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9534.930664, 43.932087, 13142.101563>
+Orientation: <-131.276093, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9634.617188, 26.714432, 13270.298828>
+Orientation: <-100.676338, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9645.341797, 15.160081, 13403.487305>
+Orientation: <-60.395058, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9040.208008, 2.310043, 13775.864258>
+Orientation: <-60.395058, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8752.895508, 30.459997, 13617.295898>
+Orientation: <-60.395058, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8545.687500, 9.872001, 13740.600586>
+Orientation: <-136.510223, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8306.661133, 6.270284, 13693.747070>
+Orientation: <-136.507202, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8069.490234, 5.835776, 13583.220703>
+Orientation: <-124.263428, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8051.288086, 7.413692, 13412.003906>
+Orientation: <-124.263084, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7882.634277, 2.738590, 13454.821289>
+Orientation: <21.956697, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7504.099609, 7.043763, 13477.056641>
+Orientation: <62.647625, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6996.235352, 5.775578, 13360.719727>
+Orientation: <-79.616188, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6828.648926, 2.924254, 13398.475586>
+Orientation: <-166.482773, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6884.120117, 14.309277, 13248.728516>
+Orientation: <-166.478607, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6525.682617, 3.161274, 12955.610352>
+Orientation: <-166.482758, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6731.862305, 8.551909, 12740.885742>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6472.296875, 2.732518, 12774.282227>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6347.358887, 2.195316, 12871.530273>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6340.435059, 7.941772, 12715.292969>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6167.310059, 4.907228, 12734.749023>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6020.398438, 25.692324, 12684.500977>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5946.588867, 6.394973, 12772.213867>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5860.111328, 3.459687, 12698.737305>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5835.399902, 8.204705, 12577.897461>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5719.667969, 8.557136, 12511.247070>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5633.719238, 3.333786, 12591.734375>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5644.905273, 11.370963, 11965.031250>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5476.078125, 5.756352, 11857.560547>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5194.098145, 4.325536, 11474.886719>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5170.779785, 2.691187, 11360.212891>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <4997.625488, 2.830019, 11367.139648>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <4853.437500, 4.200024, 11325.036133>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <4795.354980, 4.199993, 11178.877930>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <4965.082520, 4.200008, 11205.769531>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <4941.751953, 2.845955, 11306.978516>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5151.297852, 4.199985, 11264.778320>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5308.231445, 4.199942, 11161.212891>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5427.861328, 12.905419, 11245.227539>
+Orientation: <152.766190, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5386.517090, 18.281017, 11076.998047>
+Orientation: <152.772614, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5616.108398, 12.339351, 11400.943359>
+Orientation: <-160.466858, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5484.173340, 13.507926, 11261.568359>
+Orientation: <-140.943954, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5661.449707, 19.546597, 11192.786133>
+Orientation: <-173.315155, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5617.450684, 2.249911, 10945.012695>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6152.660645, 4.108018, 11135.549805>
+Orientation: <-173.315155, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6001.774902, 10.145100, 10909.080078>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5966.277344, 20.162615, 10707.625977>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5683.884277, 2.980019, 10675.966797>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5868.900391, 6.699999, 10202.574219>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5647.574219, 2.790001, 10263.500977>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <5417.528809, 2.790001, 10226.712891>
+Orientation: <-173.313995, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6053.094238, 2.952176, 7304.623047>
+Orientation: <92.021904, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <6256.645020, 2.953776, 7296.524902>
+Orientation: <92.021904, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7621.402344, 2.600025, 7870.823242>
+Orientation: <103.261452, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7833.373047, 6.219978, 7736.847168>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8025.606934, 21.092169, 7778.726563>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7863.822754, 7.511721, 7574.432617>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <7943.777832, 5.436526, 7388.216309>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8282.374023, 13.551326, 6858.035156>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <8637.810547, 6.502769, 6649.209473>
+Orientation: <132.220612, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9074.867188, 9.799043, 7014.418945>
+Orientation: <66.583839, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <9807.245117, 2.576421, 6400.768066>
+Orientation: <150.583923, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10433.177734, 8.214999, 6322.838867>
+Orientation: <150.583923, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10829.932617, 2.696202, 6415.885254>
+Orientation: <150.583923, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10772.720703, 6.217105, 6282.240723>
+Orientation: <150.583923, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <11294.485352, 19.562389, 5904.190918>
+Orientation: <150.583923, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12809.458984, 8.027730, 7168.955566>
+Orientation: <70.490982, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12679.634766, 14.304973, 7299.900391>
+Orientation: <51.137230, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12968.508789, 1.919968, 7370.836426>
+Orientation: <51.137733, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12807.919922, 5.301463, 7529.944824>
+Orientation: <51.131157, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12408.641602, 31.364717, 7859.584473>
+Orientation: <51.131165, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13110.041992, 3.510008, 7657.559082>
+Orientation: <51.131165, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13240.517578, 3.449984, 7504.324219>
+Orientation: <51.131168, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13469.820313, 10.477437, 7564.150879>
+Orientation: <51.131157, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13967.158203, 5.666132, 8065.051758>
+Orientation: <51.131165, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14018.403320, 3.848049, 8302.324219>
+Orientation: <51.131157, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14130.794922, 5.925099, 8559.517578>
+Orientation: <51.131168, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14440.893555, 3.037500, 8821.022461>
+Orientation: <51.131168, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14342.244141, 11.045043, 8971.557617>
+Orientation: <29.324566, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14563.821289, 7.483356, 9693.006836>
+Orientation: <15.808322, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14558.934570, 10.644510, 9874.184570>
+Orientation: <15.808320, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14451.840820, 17.833193, 10014.569336>
+Orientation: <15.808320, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14631.506836, 14.161386, 10910.286133>
+Orientation: <15.808322, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14310.814453, 44.345890, 10805.148438>
+Orientation: <15.808320, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14501.038086, 22.076307, 11188.644531>
+Orientation: <15.808320, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14339.253906, 4.672475, 11590.902344>
+Orientation: <-57.748005, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14203.966797, 11.030345, 11699.213867>
+Orientation: <-65.912735, 0.000000, 0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <14061.336914, 2.549991, 12204.387695>
+Orientation: <-104.902847, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13898.997070, 2.550124, 11816.333984>
+Orientation: <-104.902855, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13761.972656, 2.549995, 11808.356445>
+Orientation: <-104.902824, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13491.979492, 2.689965, 11692.155273>
+Orientation: <-104.902840, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13445.708984, 2.550001, 12132.819336>
+Orientation: <-104.902847, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13651.553711, 2.549946, 12289.586914>
+Orientation: <-104.902847, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13258.662109, 2.550014, 12063.419922>
+Orientation: <-104.902878, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <13082.676758, 10.457266, 11904.150391>
+Orientation: <-104.902855, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12774.482422, 4.662953, 12553.195313>
+Orientation: <-104.902840, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12535.967773, 3.629291, 12768.007813>
+Orientation: <-104.902855, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <12385.319336, 5.726362, 12669.855469>
+Orientation: <-104.902863, -0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <11173.628906, 6.402964, 13097.535156>
+Orientation: <46.524521, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <11035.444336, 5.784249, 13195.922852>
+Orientation: <46.525574, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10919.814453, 23.347725, 13151.477539>
+Orientation: <46.518860, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10900.712891, 22.582651, 13265.303711>
+Orientation: <46.518860, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10414.659180, 8.290210, 13394.300781>
+Orientation: <46.518864, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10404.620117, 20.947695, 13219.576172>
+Orientation: <46.518860, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko
+
+Position: <10251.288086, 8.935641, 13362.375000>
+Orientation: <46.518860, 0.000000, -0.000000>
+Config-Type: SurvivorF_Keiko

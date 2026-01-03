@@ -1,0 +1,2215 @@
+{
+    "m_Version": 28,
+    "Enabled": 1,
+    "FormationScale": -1.0,
+    "DespawnTime": 600.0,
+    "RespawnTime": -1.0,
+    "MinDistRadius": 400.0,
+    "MaxDistRadius": 1000.0,
+    "DespawnRadius": 1100.0,
+    "AccuracyMin": -1.0,
+    "AccuracyMax": -1.0,
+    "ThreatDistanceLimit": -1.0,
+    "NoiseInvestigationDistanceLimit": -1.0,
+    "MaxFlankingDistance": -1.0,
+    "EnableFlankingOutsideCombat": -1,
+    "DamageMultiplier": -1.0,
+    "DamageReceivedMultiplier": -1.0,
+    "LoadBalancingCategories": {
+        "Global": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 10,
+                "MaxPatrols": 10
+            },
+            {
+                "MinPlayers": 11,
+                "MaxPlayers": 20,
+                "MaxPatrols": 8
+            },
+            {
+                "MinPlayers": 21,
+                "MaxPlayers": 30,
+                "MaxPatrols": 6
+            },
+            {
+                "MinPlayers": 31,
+                "MaxPlayers": 40,
+                "MaxPatrols": 4
+            },
+            {
+                "MinPlayers": 41,
+                "MaxPlayers": 50,
+                "MaxPatrols": 2
+            },
+            {
+                "MinPlayers": 51,
+                "MaxPlayers": 255,
+                "MaxPatrols": 0
+            }
+        ],
+        "Example": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": -1
+            }
+        ],
+        "Quest": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": -1
+            }
+        ],
+        "ObjectPatrol": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": 5
+            }
+        ],
+        "HelicopterWreck": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": 3
+            }
+        ],
+        "ContaminatedArea": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": 2
+            }
+        ],
+        "Patrol": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 255,
+                "MaxPatrols": 5
+            }
+        ]
+    },
+    "Patrols": [
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "West",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 5.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "Wreck_UH1Y",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 5.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "Wreck_Mi8_Crashed",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "PoliceLoadout",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 5.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "Land_Wreck_sed02_aban1_Police_DE",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "PoliceLoadout",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 5.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "Land_Wreck_sed02_aban2_Police_DE",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "NBCLoadout",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "JOG",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 0.0,
+            "MaxSpreadRadius": 150.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "ContaminatedArea_Static",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "NBCLoadout",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "HALT_OR_ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "JOG",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 0.0,
+            "MaxSpreadRadius": 150.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "ContaminatedArea_Dynamic",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 0,
+            "Waypoints": []
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    8288.998046875,
+                    214.8979949951172,
+                    12107.1591796875
+                ],
+                [
+                    7591.82080078125,
+                    144.46200561523438,
+                    11994.0146484375
+                ],
+                [
+                    7194.001953125,
+                    153.7010040283203,
+                    11617.267578125
+                ],
+                [
+                    7781.73291015625,
+                    152.44500732421876,
+                    11257.7041015625
+                ],
+                [
+                    8204.423828125,
+                    97.67900085449219,
+                    10884.2021484375
+                ],
+                [
+                    8453.1337890625,
+                    28.790000915527345,
+                    10419.3837890625
+                ],
+                [
+                    8009.3388671875,
+                    23.783000946044923,
+                    9666.9853515625
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    10200.6591796875,
+                    255.56900024414063,
+                    8671.9326171875
+                ],
+                [
+                    10558.349609375,
+                    194.30999755859376,
+                    8343.568359375
+                ],
+                [
+                    11213.3603515625,
+                    91.88700103759766,
+                    7881.4931640625
+                ],
+                [
+                    10531.716796875,
+                    26.43199920654297,
+                    7083.337890625
+                ],
+                [
+                    9452.4228515625,
+                    41.86800003051758,
+                    7515.39892578125
+                ],
+                [
+                    8581.4970703125,
+                    49.547000885009769,
+                    7691.30322265625
+                ],
+                [
+                    8117.7412109375,
+                    34.45800018310547,
+                    8017.02392578125
+                ],
+                [
+                    8214.1669921875,
+                    70.11100006103516,
+                    8699.115234375
+                ],
+                [
+                    8620.8193359375,
+                    98.71299743652344,
+                    9060.421875
+                ],
+                [
+                    8285.0517578125,
+                    20.000999450683595,
+                    9695.0927734375
+                ],
+                [
+                    8746.9091796875,
+                    22.12700080871582,
+                    10125.138671875
+                ],
+                [
+                    9311.2353515625,
+                    51.97100067138672,
+                    9833.982421875
+                ],
+                [
+                    9987.7001953125,
+                    131.8070068359375,
+                    9327.4287109375
+                ],
+                [
+                    10031.5703125,
+                    210.61300659179688,
+                    8962.5634765625
+                ],
+                [
+                    9906.0576171875,
+                    239.7760009765625,
+                    8792.2470703125
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    4787.60888671875,
+                    28.299999237060548,
+                    4245.39892578125
+                ],
+                [
+                    5014.23388671875,
+                    28.141000747680665,
+                    3898.958984375
+                ],
+                [
+                    5442.4189453125,
+                    2.5789999961853029,
+                    4121.5419921875
+                ],
+                [
+                    5669.90576171875,
+                    3.0209999084472658,
+                    4564.93896484375
+                ],
+                [
+                    5123.23681640625,
+                    2.7279999256134035,
+                    4902.908203125
+                ],
+                [
+                    4751.9501953125,
+                    3.0850000381469728,
+                    4899.630859375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -3,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    3501.14990234375,
+                    32.6349983215332,
+                    6567.94482421875
+                ],
+                [
+                    3381.43505859375,
+                    3.1700000762939455,
+                    6797.85498046875
+                ],
+                [
+                    3248.6669921875,
+                    3.1700000762939455,
+                    7064.38818359375
+                ],
+                [
+                    3023.72900390625,
+                    3.1700000762939455,
+                    7220.32177734375
+                ],
+                [
+                    2799.487060546875,
+                    5.790999889373779,
+                    7303.85791015625
+                ],
+                [
+                    2543.60400390625,
+                    10.244000434875489,
+                    7389.09814453125
+                ],
+                [
+                    2067.675048828125,
+                    37.13399887084961,
+                    7401.283203125
+                ],
+                [
+                    2132.72705078125,
+                    29.908000946044923,
+                    6962.921875
+                ],
+                [
+                    1989.0279541015626,
+                    32.60200119018555,
+                    6976.98193359375
+                ],
+                [
+                    1657.324951171875,
+                    6.065999984741211,
+                    6890.7978515625
+                ],
+                [
+                    1830.4580078125,
+                    2.7160000801086427,
+                    6548.64990234375
+                ],
+                [
+                    1969.0760498046876,
+                    2.619999885559082,
+                    6119.751953125
+                ],
+                [
+                    2417.135009765625,
+                    7.771999835968018,
+                    5891.6240234375
+                ],
+                [
+                    2949.798095703125,
+                    19.184999465942384,
+                    6009.2041015625
+                ],
+                [
+                    3012.716064453125,
+                    43.775001525878909,
+                    6567.35986328125
+                ],
+                [
+                    2918.819091796875,
+                    36.2140007019043,
+                    6914.65380859375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -2,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    6762.0869140625,
+                    2.9089999198913576,
+                    7135.546875
+                ],
+                [
+                    6925.27490234375,
+                    2.4600000381469728,
+                    7130.841796875
+                ],
+                [
+                    6961.26806640625,
+                    2.6600000858306886,
+                    7321.81298828125
+                ],
+                [
+                    7021.68896484375,
+                    2.6600000858306886,
+                    7486.42822265625
+                ],
+                [
+                    6949.923828125,
+                    2.4749999046325685,
+                    7549.416015625
+                ],
+                [
+                    7005.4970703125,
+                    2.6600000858306886,
+                    7667.5439453125
+                ],
+                [
+                    7185.033203125,
+                    2.630000114440918,
+                    7835.80078125
+                ],
+                [
+                    7400.23486328125,
+                    2.630000114440918,
+                    7772.8359375
+                ],
+                [
+                    7480.42578125,
+                    4.728000164031982,
+                    7298.64111328125
+                ],
+                [
+                    7341.81884765625,
+                    2.7039999961853029,
+                    7371.494140625
+                ],
+                [
+                    7299.5380859375,
+                    2.877000093460083,
+                    7159.98681640625
+                ],
+                [
+                    7041.31591796875,
+                    3.7920000553131105,
+                    7058.205078125
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -2,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    8208.6484375,
+                    30.674999237060548,
+                    10260.267578125
+                ],
+                [
+                    8288.1533203125,
+                    30.790000915527345,
+                    10311.5400390625
+                ],
+                [
+                    8339.283203125,
+                    30.768999099731447,
+                    10384.6787109375
+                ],
+                [
+                    8452.333984375,
+                    30.790000915527345,
+                    10307.79296875
+                ],
+                [
+                    8434.1650390625,
+                    30.790000915527345,
+                    10253.83203125
+                ],
+                [
+                    8353.1435546875,
+                    30.790000915527345,
+                    10267.0107421875
+                ],
+                [
+                    8380.400390625,
+                    30.790000915527345,
+                    10200.638671875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": -2,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.5,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    7751.10595703125,
+                    2.609999895095825,
+                    7940.76708984375
+                ],
+                [
+                    7806.55517578125,
+                    2.0439999103546144,
+                    7863.52978515625
+                ],
+                [
+                    7936.52392578125,
+                    6.189000129699707,
+                    7796.56787109375
+                ],
+                [
+                    7943.85205078125,
+                    7.065999984741211,
+                    7716.451171875
+                ],
+                [
+                    7819.7900390625,
+                    6.466000080108643,
+                    7711.98779296875
+                ],
+                [
+                    7732.43310546875,
+                    2.743000030517578,
+                    7790.7041015625
+                ],
+                [
+                    7605.6337890625,
+                    2.5999999046325685,
+                    7887.5869140625
+                ],
+                [
+                    7671.48388671875,
+                    4.056000232696533,
+                    7705.06689453125
+                ],
+                [
+                    7517.05517578125,
+                    2.630000114440918,
+                    7784.10693359375
+                ],
+                [
+                    7464.1748046875,
+                    2.630000114440918,
+                    7845.7978515625
+                ],
+                [
+                    7400.84912109375,
+                    2.630000114440918,
+                    7897.02001953125
+                ],
+                [
+                    7412.89990234375,
+                    2.630000114440918,
+                    7752.3427734375
+                ],
+                [
+                    7389.50390625,
+                    2.75,
+                    7990.60693359375
+                ],
+                [
+                    7379.86279296875,
+                    2.75,
+                    8058.27978515625
+                ],
+                [
+                    7319.712890625,
+                    2.8299999237060549,
+                    8028.64794921875
+                ],
+                [
+                    7211.84423828125,
+                    6.53000020980835,
+                    8060.47216796875
+                ],
+                [
+                    7155.6298828125,
+                    6.53000020980835,
+                    8056.6669921875
+                ],
+                [
+                    7220.5322265625,
+                    2.6489999294281008,
+                    7872.837890625
+                ],
+                [
+                    7252.77978515625,
+                    2.630000114440918,
+                    7838.619140625
+                ],
+                [
+                    7479.2021484375,
+                    2.630000114440918,
+                    7705.203125
+                ],
+                [
+                    7768.701171875,
+                    6.517000198364258,
+                    7712.755859375
+                ],
+                [
+                    7939.18701171875,
+                    6.489999771118164,
+                    7892.673828125
+                ],
+                [
+                    7886.6279296875,
+                    6.933000087738037,
+                    7976.60498046875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    6654.60986328125,
+                    5.284999847412109,
+                    13392.42578125
+                ],
+                [
+                    7229.58984375,
+                    5.617000102996826,
+                    13474.62109375
+                ],
+                [
+                    7571.2099609375,
+                    9.701000213623047,
+                    13599.68359375
+                ],
+                [
+                    7927.490234375,
+                    3.5829999446868898,
+                    13581.7099609375
+                ],
+                [
+                    8278.8232421875,
+                    5.685999870300293,
+                    13684.716796875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    8406.119140625,
+                    2.200000047683716,
+                    13767.6162109375
+                ],
+                [
+                    8601.439453125,
+                    2.9609999656677248,
+                    13829.9951171875
+                ],
+                [
+                    8821.76953125,
+                    1.7610000371932984,
+                    13787.9716796875
+                ],
+                [
+                    8957.2578125,
+                    2.0350000858306886,
+                    13805.658203125
+                ],
+                [
+                    9769.306640625,
+                    1.6109999418258668,
+                    13607.9580078125
+                ],
+                [
+                    9984.609375,
+                    1.9049999713897706,
+                    13577.8671875
+                ],
+                [
+                    10141.310546875,
+                    2.2039999961853029,
+                    13554.6171875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    10564.8740234375,
+                    1.9759999513626099,
+                    13486.1123046875
+                ],
+                [
+                    10833.9169921875,
+                    2.183000087738037,
+                    13445.404296875
+                ],
+                [
+                    11051.1650390625,
+                    2.63100004196167,
+                    13314.4892578125
+                ],
+                [
+                    11262.787109375,
+                    2.1010000705718996,
+                    13158.0234375
+                ],
+                [
+                    11409.1767578125,
+                    2.3580000400543215,
+                    13238.533203125
+                ],
+                [
+                    11589.2109375,
+                    1.4800000190734864,
+                    13200.7080078125
+                ],
+                [
+                    11783.767578125,
+                    2.2920000553131105,
+                    13085.466796875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    12065.16015625,
+                    2.509000062942505,
+                    13038.068359375
+                ],
+                [
+                    12256.5078125,
+                    2.3369998931884767,
+                    12905.626953125
+                ],
+                [
+                    12393.3935546875,
+                    2.431999921798706,
+                    12785.81640625
+                ],
+                [
+                    12548.5869140625,
+                    2.6689999103546144,
+                    12796.5283203125
+                ],
+                [
+                    12623.5830078125,
+                    1.4450000524520875,
+                    12699.05078125
+                ],
+                [
+                    12757.103515625,
+                    1.9989999532699586,
+                    12573.3115234375
+                ],
+                [
+                    12950.8466796875,
+                    2.009000062942505,
+                    12544.0234375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    13123.5009765625,
+                    2.549999952316284,
+                    12463.9873046875
+                ],
+                [
+                    13233.4677734375,
+                    1.569000005722046,
+                    12245.814453125
+                ],
+                [
+                    13381.9384765625,
+                    2.878000020980835,
+                    12313.6845703125
+                ],
+                [
+                    13541.591796875,
+                    2.50600004196167,
+                    12321.443359375
+                ],
+                [
+                    14181.142578125,
+                    4.1539998054504398,
+                    11931.98828125
+                ],
+                [
+                    14286.048828125,
+                    2.2960000038146974,
+                    11675.615234375
+                ],
+                [
+                    14516.447265625,
+                    1.6369999647140504,
+                    11455.939453125
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    14568.9921875,
+                    2.5490000247955324,
+                    11191.166015625
+                ],
+                [
+                    14629.0712890625,
+                    2.184999942779541,
+                    11052.8876953125
+                ],
+                [
+                    14707.978515625,
+                    2.3359999656677248,
+                    10866.92578125
+                ],
+                [
+                    14826.3388671875,
+                    2.140000104904175,
+                    10647.54296875
+                ],
+                [
+                    14790.2958984375,
+                    1.3459999561309815,
+                    10402.2939453125
+                ],
+                [
+                    14715.978515625,
+                    1.534999966621399,
+                    10102.4052734375
+                ],
+                [
+                    14673.603515625,
+                    2.118000030517578,
+                    9534.150390625
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    14654.052734375,
+                    1.6579999923706055,
+                    9211.17578125
+                ],
+                [
+                    14428.2080078125,
+                    1.7339999675750733,
+                    8677.4970703125
+                ],
+                [
+                    14355.7275390625,
+                    5.9039998054504398,
+                    8499.603515625
+                ],
+                [
+                    14135.9150390625,
+                    1.340000033378601,
+                    8400.6943359375
+                ],
+                [
+                    14024.3994140625,
+                    2.1679999828338625,
+                    8073.576171875
+                ],
+                [
+                    14045.2724609375,
+                    5.77400016784668,
+                    7887.21923828125
+                ],
+                [
+                    13732.162109375,
+                    2.992000102996826,
+                    7798.3701171875
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    13661.134765625,
+                    14.904999732971192,
+                    7654.85986328125
+                ],
+                [
+                    13713.67578125,
+                    4.684000015258789,
+                    7437.0478515625
+                ],
+                [
+                    13530.5390625,
+                    3.1679999828338625,
+                    7344.18408203125
+                ],
+                [
+                    13287.7666015625,
+                    1.434999942779541,
+                    7470.30078125
+                ],
+                [
+                    13078.4365234375,
+                    2.5260000228881838,
+                    7459.52490234375
+                ],
+                [
+                    12838.0966796875,
+                    2.3329999446868898,
+                    7126.29296875
+                ],
+                [
+                    12804.625,
+                    3.1700000762939455,
+                    6936.80078125
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    12810.8505859375,
+                    16.385000228881837,
+                    6725.02294921875
+                ],
+                [
+                    12425.9775390625,
+                    13.015000343322754,
+                    6639.09814453125
+                ],
+                [
+                    12048.6689453125,
+                    2.63100004196167,
+                    6525.326171875
+                ],
+                [
+                    11592.7890625,
+                    5.820000171661377,
+                    6341.6708984375
+                ],
+                [
+                    11257.9150390625,
+                    5.948999881744385,
+                    5846.3408203125
+                ],
+                [
+                    10962.4931640625,
+                    2.0399999618530275,
+                    6052.3291015625
+                ],
+                [
+                    10708.1767578125,
+                    2.1710000038146974,
+                    6317.60693359375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    10393.71484375,
+                    2.4779999256134035,
+                    6187.19482421875
+                ],
+                [
+                    9953.9990234375,
+                    1.5570000410079957,
+                    6290.4091796875
+                ],
+                [
+                    9591.3759765625,
+                    1.7079999446868897,
+                    6449.0029296875
+                ],
+                [
+                    9459.9736328125,
+                    1.5989999771118165,
+                    6307.580078125
+                ],
+                [
+                    8982.2822265625,
+                    2.134999990463257,
+                    6393.39111328125
+                ],
+                [
+                    8469.9814453125,
+                    2.930999994277954,
+                    6503.73095703125
+                ],
+                [
+                    8007.05712890625,
+                    1.9119999408721924,
+                    6760.490234375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    7628.9990234375,
+                    4.4019999504089359,
+                    6656.84912109375
+                ],
+                [
+                    7432.77099609375,
+                    2.3350000381469728,
+                    6985.98583984375
+                ],
+                [
+                    6770.72900390625,
+                    3.063999891281128,
+                    6894.994140625
+                ],
+                [
+                    6444.31103515625,
+                    2.631999969482422,
+                    7009.7841796875
+                ],
+                [
+                    6193.43798828125,
+                    2.5460000038146974,
+                    7162.02685546875
+                ],
+                [
+                    5931.583984375,
+                    2.243000030517578,
+                    7291.7470703125
+                ],
+                [
+                    5628.14208984375,
+                    1.968000054359436,
+                    7489.7890625
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    5364.64404296875,
+                    1.9780000448226929,
+                    7650.38623046875
+                ],
+                [
+                    5272.7021484375,
+                    1.7960000038146973,
+                    8261.4951171875
+                ],
+                [
+                    4905.2568359375,
+                    2.7049999237060549,
+                    8524.025390625
+                ],
+                [
+                    4686.26318359375,
+                    2.252000093460083,
+                    8453.3212890625
+                ],
+                [
+                    4549.52392578125,
+                    2.191999912261963,
+                    8217.537109375
+                ],
+                [
+                    4333.69189453125,
+                    2.569000005722046,
+                    8092.423828125
+                ],
+                [
+                    4026.22607421875,
+                    1.6610000133514405,
+                    8275.6484375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    4327.79296875,
+                    2.6740000247955324,
+                    8790.7451171875
+                ],
+                [
+                    4769.15087890625,
+                    1.4149999618530274,
+                    9713.44140625
+                ],
+                [
+                    4842.77099609375,
+                    2.802000045776367,
+                    10198.46484375
+                ],
+                [
+                    4992.02685546875,
+                    2.8299999237060549,
+                    10244.1884765625
+                ],
+                [
+                    5118.5869140625,
+                    2.0490000247955324,
+                    10271.9501953125
+                ],
+                [
+                    4717.81591796875,
+                    1.9709999561309815,
+                    11341.2197265625
+                ],
+                [
+                    4999.01513671875,
+                    1.4730000495910645,
+                    11515.1005859375
+                ]
+            ]
+        },
+        {
+            "Name": "",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "ROAMING",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 0,
+            "MinDistRadius": -1.0,
+            "MaxDistRadius": -1.0,
+            "DespawnRadius": -1.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 0.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    5130.658203125,
+                    2.197999954223633,
+                    11705.24609375
+                ],
+                [
+                    5412.90185546875,
+                    2.065000057220459,
+                    11960.759765625
+                ],
+                [
+                    5498.66015625,
+                    2.005000114440918,
+                    12089.734375
+                ],
+                [
+                    5473.7880859375,
+                    2.003000020980835,
+                    12215.8515625
+                ],
+                [
+                    5499.64990234375,
+                    3.3369998931884767,
+                    12478.439453125
+                ],
+                [
+                    5850.8759765625,
+                    2.694999933242798,
+                    12777.013671875
+                ],
+                [
+                    5958.47998046875,
+                    3.253999948501587,
+                    12828.7919921875
+                ]
+            ]
+        }
+    ]
+}
