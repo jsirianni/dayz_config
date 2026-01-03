@@ -76,7 +76,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -106,7 +106,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -126,7 +126,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -147,7 +147,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -167,7 +167,28 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
+            "Quantity": { "Min": 0.0, "Max": 0.0 },
+            "Health": [],
+            "InventoryAttachments": [
+                {
+                    "SlotName": "Shoulder",
+                    "Items": [
+                        { "ClassName": "Ruger1022", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+                    ]
+                }
+            ],
+            "InventoryCargo": [
+                { "ClassName": "Mag_Ruger1022_15Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "Mag_Ruger1022_15Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "WEAPON",
+            "Include": "",
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -205,7 +226,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 1.0,
+            "Chance": 0.25,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
