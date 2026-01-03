@@ -75,14 +75,20 @@
     },
     "UseLoadouts": 1,
     "MaleLoadouts": [
-        { "Loadout": "CustomSurvivorMedic", "Chance": 1.0 },
-        { "Loadout": "CustomSurvivorPolice", "Chance": 1.0 },
-        { "Loadout": "CustomSurvivorFirefighter", "Chance": 1.0 }
+        { "Loadout": "CustomSurvivorMedic", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorPolice", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorFirefighter", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorMilitia", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorHunter", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorCiv", "Chance": 1.0 }
     ],
     "FemaleLoadouts": [
-        { "Loadout": "CustomSurvivorMedic", "Chance": 1.0 },
-        { "Loadout": "CustomSurvivorPolice", "Chance": 1.0 },
-        { "Loadout": "CustomSurvivorFirefighter", "Chance": 1.0 }
+        { "Loadout": "CustomSurvivorMedic", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorPolice", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorFirefighter", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorMilitia", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorHunter", "Chance": 0.25 },
+        { "Loadout": "CustomSurvivorCiv", "Chance": 1.0 }
     ],
     "SpawnHealthValue": 100.0,
     "SpawnEnergyValue": 500.0,

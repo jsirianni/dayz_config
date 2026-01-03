@@ -1,0 +1,39 @@
+{
+    "ClassName": "CustomSurvivorCiv",
+    "Include": "",
+    "Chance": 1.0,
+    "Quantity": { "Min": 0.0, "Max": 0.0 },
+    "Health": [],
+    "InventoryAttachments": [
+        { "SlotName": "Headgear", "Items": [
+            { "ClassName": "SherpaHat_Black", "Include": "", "Chance": 0.1, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "BeanieHat_Blue", "Include": "", "Chance": 0.1, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "BeanieHat_Green", "Include": "", "Chance": 0.1, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Body", "Items": [
+            { "ClassName": "Raincoat_Green", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Raincoat_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Raincoat_Orange", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Hoodie_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Hoodie_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Sweater_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Sweater_Gray", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Legs", "Items": [
+            { "ClassName": "SlacksPants_Beige", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Jeans_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Jeans_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Feet", "Items": [
+            { "ClassName": "JoggingShoes_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "JoggingShoes_White", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]}
+    ],
+    "InventoryCargo": [
+        { "ClassName": "SteakKnife", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "Rag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 6.0, "Max": 6.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+    ],
+    "ConstructionPartsBuilt": [],
+    "Sets": []
+}
+

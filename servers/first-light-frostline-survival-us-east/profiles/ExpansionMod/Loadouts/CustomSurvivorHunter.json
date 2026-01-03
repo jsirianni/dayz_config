@@ -1,0 +1,54 @@
+{
+    "ClassName": "CustomSurvivorHunter",
+    "Include": "",
+    "Chance": 1.0,
+    "Quantity": { "Min": 0.0, "Max": 0.0 },
+    "Health": [],
+    "InventoryAttachments": [
+        { "SlotName": "Headgear", "Items": [
+            { "ClassName": "LeatherHat_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "SherpaHat_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "BeanieHat_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Body", "Items": [
+            { "ClassName": "HuntingJacket_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HuntingJacket_Winter", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HuntingJacket_Autumn", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Vest", "Items": [
+            { "ClassName": "HuntingVest", "Include": "", "Chance": 0.5, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HuntingVest_Winter", "Include": "", "Chance": 0.5, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Legs", "Items": [
+            { "ClassName": "HunterPants_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HunterPants_Winter", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HunterPants_Spring", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Gloves", "Items": [
+            { "ClassName": "LeatherGloves_Beige", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "LeatherGloves_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Feet", "Items": [
+            { "ClassName": "HikingBoots_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "HikingBoots_Brown", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]},
+        { "SlotName": "Shoulder", "Items": [
+            { "ClassName": "Mosin9130", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [
+                { "ClassName": "PUScopeOptic", "Include": "", "Chance": 0.25, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ], "InventoryCargo": [
+                { "ClassName": "AmmoBox_762x54_20Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "AmmoBox_762x54_20Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ], "ConstructionPartsBuilt": [], "Sets": [] },
+            { "ClassName": "Izh43Shotgun", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [
+                { "ClassName": "AmmoBox_00buck_10rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ], "ConstructionPartsBuilt": [], "Sets": [] }
+        ]}
+    ],
+    "InventoryCargo": [
+        { "ClassName": "BandageDressing", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "HuntingKnife", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+    ],
+    "ConstructionPartsBuilt": [],
+    "Sets": []
+}
+
