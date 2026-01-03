@@ -52,7 +52,7 @@
     "EnableSpawnSelection": 0,
     "SpawnOnTerritory": 0,
     "StartingGear": {
-        "EnableStartingGear": 1,
+        "EnableStartingGear": 0,
         "ApplyEnergySources": 1,
         "SetRandomHealth": 1,
         "UpperGear": [
