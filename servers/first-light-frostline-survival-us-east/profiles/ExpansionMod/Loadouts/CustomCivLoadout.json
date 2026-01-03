@@ -76,7 +76,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -106,7 +106,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -126,7 +126,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -147,7 +147,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -167,7 +167,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -188,7 +188,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [
@@ -226,7 +226,7 @@
         {
             "ClassName": "WEAPON",
             "Include": "",
-            "Chance": 0.25,
+            "Chance": 0.05,
             "Quantity": { "Min": 0.0, "Max": 0.0 },
             "Health": [],
             "InventoryAttachments": [

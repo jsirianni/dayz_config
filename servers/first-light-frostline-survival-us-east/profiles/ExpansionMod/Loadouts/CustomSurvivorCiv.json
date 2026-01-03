@@ -31,7 +31,8 @@
     ],
     "InventoryCargo": [
         { "ClassName": "SteakKnife", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
-        { "ClassName": "Rag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 6.0, "Max": 6.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        { "ClassName": "Rag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 6.0, "Max": 6.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "Matchbox", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
     ],
     "ConstructionPartsBuilt": [],
     "Sets": []
