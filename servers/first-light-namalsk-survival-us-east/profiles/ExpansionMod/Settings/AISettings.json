@@ -7,7 +7,7 @@
     "MaxFlankingDistance": 200.0,
     "EnableFlankingOutsideCombat": 0,
     "DamageMultiplier": 1.0,
-    "DamageReceivedMultiplier": 1.0,
+    "DamageReceivedMultiplier": 2.0,
     "Admins": [],
     "Vaulting": 1,
     "SniperProneDistanceThreshold": 0.0,
