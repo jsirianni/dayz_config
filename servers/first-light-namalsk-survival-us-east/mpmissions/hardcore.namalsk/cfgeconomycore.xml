@@ -18,4 +18,14 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
 	<ce folder="db">
 		<file name="types_dzn.xml" type="types" />
 	</ce>
+
+	<ce folder="expansion_ce">
+		<file name="expansion_types.xml" type="types" />
+		<file name="expansion_spawnabletypes.xml" type="spawnabletypes" />
+	</ce>
+
+	<ce folder="modded_types">
+		<file name="fog.xml" type="types" />
+		<file name="fog_spawnable.xml" type="spawnabletypes" />
+	</ce>
 </economycore>
