@@ -10,6 +10,7 @@
         { "SlotName": "Gloves", "Items": [ { "ClassName": "SurgicalGloves_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }, { "ClassName": "SurgicalGloves_Green", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] } ] },
         { "SlotName": "Feet", "Items": [ { "ClassName": "AthleticShoes_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }, { "ClassName": "AthleticShoes_Blue", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] } ] },
         { "SlotName": "Mask", "Items": [ { "ClassName": "SurgicalMask", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] } ] }
+        ,{ "SlotName": "Back", "Items": [ { "ClassName": "CanvasBag_Medical", "Include": "", "Chance": 1.0, "Quantity": { "Min": 0.0, "Max": 0.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] } ] }
     ],
     "InventoryCargo": [
         { "ClassName": "BandageDressing", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
@@ -19,7 +20,12 @@
         { "ClassName": "VitaminBottle", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
         { "ClassName": "TetracyclineAntibiotics", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
         { "ClassName": "Matchbox", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
-        { "ClassName": "Rag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 6.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+        { "ClassName": "Rag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 6.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeBandageHemostatic", "Include": "", "Chance": 1.0, "Quantity": { "Min": 3.0, "Max": 3.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeSurgicalKit", "Include": "", "Chance": 1.0, "Quantity": { "Min": 2.0, "Max": 2.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "DisinfectantAlcohol", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeAmpouleMorphine", "Include": "", "Chance": 1.0, "Quantity": { "Min": 2.0, "Max": 2.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "PainkillerTablets", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
     ],
     "ConstructionPartsBuilt": [],
     "Sets": []
