@@ -1,0 +1,3157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<types>
+	<type name="TerjeExpressTestAgents">
+		<nominal>30</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeExpressTestVirusZPack">
+		<nominal>30</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeExpressTestSepsisPack">
+		<nominal>30</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeExpressTestRabiesPack">
+		<nominal>30</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeStethoscope">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSleepingBag_Blue">
+		<nominal>25</nominal>
+		<lifetime>604800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSleepingBag_Woodland">
+		<nominal>25</nominal>
+		<lifetime>604800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeHeadgearPsiHelm">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="1" crafted="0" deloot="1" />
+		<category name="weapons" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeImprovisedSyringeEmpty">
+		<nominal>50</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePlaster">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeDrinkMadBull">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="food" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		<value name="Tier1" />
+		<value name="Tier2" />
+		<value name="Tier3" />
+		</type>
+	<type name="TerjeDrinkGang">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="food" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		<value name="Tier1" />
+		<value name="Tier2" />
+		<value name="Tier3" />
+		</type>
+	<type name="TerjeDrinkYaguar">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="food" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		<value name="Tier1" />
+		<value name="Tier2" />
+		<value name="Tier3" />
+		</type>
+	<type name="TerjeDrinkPrayboy">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="food" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		<value name="Tier1" />
+		<value name="Tier2" />
+		<value name="Tier3" />
+		</type>
+	<type name="TerjeDrink6Energy">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="food" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		<value name="Tier1" />
+		<value name="Tier2" />
+		<value name="Tier3" />
+		</type>
+	<type name="TerjePillsAnalgin">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsNimesulid">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsParacetamol">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsIbuprofen">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsNurofen">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsAmoxiclav">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsPiperacylin">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsAmibaktam">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsPolisorb">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsMesalazin">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsFtalazol">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsNoopept">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsVikasol">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsIrovit">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsAgteminol">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsVenlafaxine">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsRombiopental">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleKetarol">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleFlemoclav">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleImipenem">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleMorphine">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleGexobarbital">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleKetamin">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleHeptral">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleMetoclopramid">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleActaparoxetine">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleAmitriptyline">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleRifampicyne">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleZivirol">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorPromidol">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorTopoizomeraza">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorErytromixelin">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorStomaproxidal">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorRabinucoline">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorAmfitalicyne">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorReanimatal">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsPotassiumCyanide">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsArsenic">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsIversan">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpoulePotassiumCyanide">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleArsenic">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleBeladonna">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleStrychnine">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleKonyin">
+		<nominal>25</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSalveFinalgon">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSalveCapsicum">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSalveViprosal">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsMagnesiumSulfate">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjePillsAdepress">
+		<nominal>50</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleAlcohol">
+		<nominal>63</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleAmoxivan">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleNovacaine">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleNeirox">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleErythropoetin">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleAdrenalin">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleMetralindole">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleVaxicam">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleZerivax">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleRabivax">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleRabinoline">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeAmpouleNeirocetal">
+		<nominal>5</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorZivirol">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>100</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorAmoxiclav">
+		<nominal>20</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>16</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorNeirox">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorErythropoietin">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorNovichek">
+		<nominal>6</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeInjectorPropital">
+		<nominal>13</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitAdvance_Black">
+		<nominal>5</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitAdvance_Brown">
+		<nominal>5</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitAdvance_Green">
+		<nominal>5</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitAdvance_Camo">
+		<nominal>5</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitIndividual_Black">
+		<nominal>10</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>8</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitIndividual_Brown">
+		<nominal>10</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>8</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>100</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitIndividual_Green">
+		<nominal>10</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>8</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitIndividual_Camo">
+		<nominal>10</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>8</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitMedium">
+		<nominal>25</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeFirstAidKitLarge">
+		<nominal>13</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="containers" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSyringeNew">
+		<nominal>30</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSyringeEmpty">
+		<nominal>120</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBandageHemostatic">
+		<nominal>30</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSurgicalKit">
+		<nominal>50</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSurgicalTool_White">
+		<nominal>75</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeSurgicalTool_Ceramic">
+		<nominal>75</nominal>
+		<lifetime>14400</lifetime>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="Defibrillator">
+		<nominal>5</nominal>
+		<lifetime>14400</lifetime>
+		<restock>0</restock>
+		<min>1</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>100</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Medic" />
+		</type>
+	<type name="TerjeBookImmunity1">
+		<nominal>8</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookImmunity2">
+		<nominal>4</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookImmunity3">
+		<nominal>3</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookImmunity4">
+		<nominal>1</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>0</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookImmunity5">
+		<nominal>1</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>0</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookMedicine1">
+		<nominal>8</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookMedicine2">
+		<nominal>4</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookMedicine3">
+		<nominal>3</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>2</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookMedicine4">
+		<nominal>1</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>0</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	<type name="TerjeBookMedicine5">
+		<nominal>1</nominal>
+		<lifetime>28800</lifetime>
+		<restock>300</restock>
+		<min>0</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
+		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
+		<category name="tools" />
+		<tag name="shelves" />
+		<usage name="Military" />
+		<usage name="Police" />
+		<usage name="Special" />
+		<usage name="Underground" />
+		<usage name="Medic" />
+		<usage name="Firefighter" />
+		<usage name="Industrial" />
+		<usage name="Town" />
+		<usage name="Village" />
+		<usage name="Office" />
+		<usage name="School" />
+		<usage name="Hunting" />
+		<usage name="Farm" />
+		<usage name="Tenement" />
+		<usage name="Coast" />
+		<usage name="ContaminatedArea" />
+		<usage name="Lunapark" />
+		</type>
+	</types>
+</types>
