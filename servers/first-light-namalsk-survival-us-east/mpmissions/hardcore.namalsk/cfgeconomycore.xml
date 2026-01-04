@@ -25,6 +25,7 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
 	</ce>
 
 	<ce folder="modded_types">
+	    <file name="codelock.xml" type="types" />
 	    <file name="terje.xml" type="types" />
 		<file name="fog.xml" type="types" />
 		<file name="fog_spawnable.xml" type="spawnabletypes" />
