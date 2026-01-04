@@ -1,0 +1,102 @@
+{
+    "ClassName": "CustomRaderLoadout",
+    "Include": "",
+    "Chance": 1.0,
+    "Quantity": {
+        "Min": 0.0,
+        "Max": 0.0
+    },
+    "Health": [],
+    "InventoryAttachments": [
+        {
+            "SlotName": "Back",
+            "Items": [
+                { "ClassName": "SmershBag", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Vest",
+            "Items": [
+                { "ClassName": "PlateCarrierVest", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "PlateCarrierVest_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "PlateCarrierVest_Camo", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "PlateCarrierVest_Green", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "PlateCarrierVest_Winter", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Body",
+            "Items": [
+                { "ClassName": "BDUJacket", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "TTsKOJacket_Camo", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "GorkaEJacket_Flat", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Legs",
+            "Items": [
+                { "ClassName": "BDUPants", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "TTSKOPants", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "GorkaPants_Flat", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Feet",
+            "Items": [
+                { "ClassName": "TTSKOBoots", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Gloves",
+            "Items": [
+                { "ClassName": "TacticalGloves_Beige", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "TacticalGloves_Black", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+                { "ClassName": "TacticalGloves_Green", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Eyewear",
+            "Items": [
+                { "ClassName": "TacticalGoggles", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+            ]
+        },
+        {
+            "SlotName": "Shoulder",
+            "Items": [
+                {
+                    "ClassName": "AKM",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 1.0, "Max": 1.0 },
+                    "Health": [],
+                    "InventoryAttachments": [
+                        {
+                            "SlotName": "",
+                            "Items": [
+                                { "ClassName": "Mag_AKM_Drum75Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+                            ]
+                        }
+                    ],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        }
+    ],
+    "InventoryCargo": [
+        { "ClassName": "TacticalBaconCan", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "Mag_AKM_30Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "Mag_AKM_30Rnd", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "CombatKnife", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeBandageHemostatic", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeBandageHemostatic", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "BloodBagEmpty", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "StartKitIV", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeAmpouleMorphine", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "TerjeAmpouleMorphine", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
+    ],
+    "ConstructionPartsBuilt": [],
+    "Sets": []
+}
+
