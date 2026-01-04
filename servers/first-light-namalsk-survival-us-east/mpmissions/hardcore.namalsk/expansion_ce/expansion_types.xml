@@ -2041,10 +2041,10 @@
 		<tag name="military"/>
     </type>
 	<type name="ExpansionBusWheel">
-        <nominal>5</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>2</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2053,10 +2053,10 @@
         <tag name="industrial"/>
     </type>
 	<type name="ExpansionBusWheelDouble">
-        <nominal>5</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>2</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2065,10 +2065,10 @@
         <tag name="industrial"/>
     </type>
 	<type name="ExpansionUAZWheel">
-        <nominal>25</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2076,10 +2076,10 @@
         <tag name="industrial"/>
     </type>
 	<type name="ExpansionTractorFrontWheel">
-        <nominal>15</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>8</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2088,10 +2088,10 @@
         <tag name="farm"/>
     </type>
 	<type name="ExpansionTractorBackWheel">
-        <nominal>15</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>8</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2100,10 +2100,10 @@
         <tag name="farm"/>
     </type>
 	<type name="ExpansionTractorDoorsDriver">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2112,10 +2112,10 @@
         <tag name="farm"/>
     </type>
 	<type name="ExpansionTractorDoorsCoDriver">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -2124,10 +2124,10 @@
         <tag name="farm"/>
     </type>
 	<type name="ExpansionVodnikWheel">
-        <nominal>25</nominal>
+        <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -3806,162 +3806,6 @@
         <tag name="military"/>
         <value name="Tier3"/>
         <value name="Tier4"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_White">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_Red">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_Green">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_Yellow">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_Purple">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Smoke_Teargas">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_White">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_Red">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_Green">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_Yellow">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_Purple">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
-    </type>
-	<type name="Ammo_Expansion_M203_Sticky_Smoke_Teargas">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>5</min>
-        <quantmin>25</quantmin>
-        <quantmax>100</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="explosives"/>
-        <tag name="military"/>
-        <tag name="police"/>
     </type>
 	<type name="Ammo_Expansion_M203_HE">
         <nominal>10</nominal>
