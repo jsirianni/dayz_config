@@ -110,7 +110,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6964.82373, 43.223629, 11326.634766]
+                [6776.604492, 24.609659, 11406.875]
             ]
         },
         {
@@ -156,7 +156,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6744.745605, 58.108845, 11372.704102]
+                [6874.221191, 37.092564, 11300.012695]
             ]
         },
         {
@@ -202,7 +202,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6868.705078, 58.361679, 11311.487305]
+                [6742.559082, 24.24539, 11206.942383]
             ]
         },
         {
@@ -248,7 +248,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6724.853027, 34.209976, 11278.71875]
+                [6577.970703, 29.514223, 11086.088867]
             ]
         },
         {
@@ -294,7 +294,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6828.6875, 34.43026, 11086.424805]
+                [6736.932129, 29.525906, 11126.798828]
             ]
         },
         {
@@ -340,7 +340,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6698.208496, 42.617851, 11138.052734]
+                [6738.681152, 23.888771, 10977.186523]
             ]
         },
         {
@@ -386,7 +386,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6590.48291, 42.593048, 11039.595703]
+                [6797.741211, 24.714455, 11095.954102]
             ]
         },
         {
@@ -432,7 +432,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6734.772461, 29.242191, 10978.336914]
+                [6989.058594, 30.15542, 11287.650391]
             ]
         },
         {
@@ -478,7 +478,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6664.85791, 27.342436, 11424.382813]
+                [6577.970703, 29.514223, 11086.088867]
             ]
         }
     ]
