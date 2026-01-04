@@ -417,57 +417,6 @@
 		<usage name="Medic" />
 		<usage name="Firefighter" />
 		</type>
-	<type name="AlarmClock_Blue">
-		<nominal>10</nominal>
-		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>7</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-		<category name="tools" />
-		<tag name="shelves" />
-		<usage name="Industrial" />
-		<usage name="Town" />
-		<usage name="Village" />
-		<usage name="Office" />
-		<usage name="School" />
-		</type>
-	<type name="AlarmClock_Green">
-		<nominal>10</nominal>
-		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>7</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-		<category name="tools" />
-		<tag name="shelves" />
-		<usage name="Industrial" />
-		<usage name="Town" />
-		<usage name="Village" />
-		<usage name="Office" />
-		<usage name="School" />
-		</type>
-	<type name="AlarmClock_Red">
-		<nominal>10</nominal>
-		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>7</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-		<category name="tools" />
-		<tag name="shelves" />
-		<usage name="Industrial" />
-		<usage name="Town" />
-		<usage name="Village" />
-		<usage name="Office" />
-		<usage name="School" />
-		</type>
 	<type name="AliceBag_Black">
 		<nominal>3</nominal>
 		<lifetime>28800</lifetime>
@@ -1586,17 +1535,6 @@
 		<category name="containers" />
 		<usage name="SeasonalEvent" />
 		</type>
-	<type name="Anniversary_FireworksLauncher">
-		<nominal>0</nominal>
-		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>0</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-		<category name="tools" />
-		</type>
 	<type name="AntiChemInjector">
 		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
@@ -2698,10 +2636,10 @@
 		<value name="Tier3" />
 		</type>
 	<type name="BandageDressing">
-		<nominal>9</nominal>
+		<nominal>50</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>6</min>
+		<min>30</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -2791,10 +2729,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
 	<type name="BarbedWire">
-		<nominal>35</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>30</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -2919,24 +2857,11 @@
 		<usage name="Industrial" />
 		<usage name="Farm" />
 		</type>
-	<type name="BaseRadio">
+	<type name="BaseballBat">
 		<nominal>10</nominal>
 		<lifetime>14400</lifetime>
-		<restock>1800</restock>
-		<min>5</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
-		<category name="tools" />
-		<usage name="Military" />
-		<value name="Tier3" />
-		</type>
-	<type name="BaseballBat">
-		<nominal>35</nominal>
-		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>30</min>
+		<min>5</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -3108,19 +3033,6 @@
 		<cost>100</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
-	<type name="BearTrap">
-		<nominal>4</nominal>
-		<lifetime>604800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>-1</quantmin>
-		<quantmax>-1</quantmax>
-		<cost>100</cost>
-		<flags count_in_cargo="1" count_in_hoarder="1" count_in_map="1" count_in_player="1" crafted="0" deloot="0" />
-		<category name="tools" />
-		<usage name="Hunting" />
-		<value name="Tier2" />
-		</type>
 	<type name="Bear_Beige">
 		<nominal>9</nominal>
 		<lifetime>14400</lifetime>
@@ -3232,10 +3144,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
 	<type name="BloodTestKit">
-		<nominal>10</nominal>
+		<nominal>20</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>5</min>
+		<min>10</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -3883,10 +3795,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
 	<type name="Broom">
-		<nominal>42</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>32</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4021,10 +3933,10 @@
 		<usage name="Police" />
 		</type>
 	<type name="CableReel">
-		<nominal>45</nominal>
+		<nominal>20</nominal>
 		<lifetime>604800</lifetime>
 		<restock>0</restock>
-		<min>35</min>
+		<min>5</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4033,10 +3945,10 @@
 		<usage name="Industrial" />
 		</type>
 	<type name="Camonet">
-		<nominal>23</nominal>
+		<nominal>15</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>18</min>
+		<min>10</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4414,10 +4326,10 @@
 		<value name="Tier3" />
 		</type>
 	<type name="Chemlight_Blue">
-		<nominal>15</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>10</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4426,10 +4338,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="Chemlight_Green">
-		<nominal>15</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>10</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4438,10 +4350,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="Chemlight_Red">
-		<nominal>15</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>10</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4450,10 +4362,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="Chemlight_White">
-		<nominal>15</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>10</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4462,10 +4374,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="Chemlight_Yellow">
-		<nominal>15</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>10</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -4474,10 +4386,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="ChernarusMap">
-		<nominal>30</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>26</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -5318,10 +5230,10 @@
 		<usage name="Farm" />
 		</type>
 	<type name="Compass">
-		<nominal>25</nominal>
+		<nominal>15</nominal>
 		<lifetime>14400</lifetime>
 		<restock>1800</restock>
-		<min>20</min>
+		<min>10</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -5686,10 +5598,10 @@
 		<usage name="Hunting" />
 		</type>
 	<type name="Crowbar">
-		<nominal>23</nominal>
+		<nominal>15</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>18</min>
+		<min>10</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -8476,10 +8388,10 @@
 		<value name="Tier2" />
 		</type>
 	<type name="HandcuffKeys">
-		<nominal>5</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>3</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -8490,10 +8402,10 @@
 		<usage name="Prison" />
 		</type>
 	<type name="Handcuffs">
-		<nominal>10</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>5</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -13334,10 +13246,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="Megaphone">
-		<nominal>13</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>8</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -13363,10 +13275,10 @@
 		<usage name="Industrial" />
 		</type>
 	<type name="MetalWire">
-		<nominal>28</nominal>
+		<nominal>15</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>20</min>
+		<min>5</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15022,10 +14934,10 @@
 		<usage name="Farm" />
 		</type>
 	<type name="PersonalRadio">
-		<nominal>30</nominal>
+		<nominal>0</nominal>
 		<lifetime>28800</lifetime>
 		<restock>0</restock>
-		<min>25</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15155,10 +15067,10 @@
 		<usage name="Military" />
 		</type>
 	<type name="Pipe">
-		<nominal>45</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>35</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15167,10 +15079,10 @@
 		<usage name="Industrial" />
 		</type>
 	<type name="PipeWrench">
-		<nominal>40</nominal>
+		<nominal>0</nominal>
 		<lifetime>28800</lifetime>
 		<restock>0</restock>
-		<min>35</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15207,10 +15119,10 @@
 		<usage name="Police" />
 		</type>
 	<type name="Pitchfork">
-		<nominal>26</nominal>
+		<nominal>15</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>22</min>
+		<min>10</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15486,10 +15398,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
 	<type name="Pliers">
-		<nominal>35</nominal>
+		<nominal>20</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>29</min>
+		<min>15</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -15610,10 +15522,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
 		</type>
 	<type name="PortableGasLamp">
-		<nominal>12</nominal>
+		<nominal>0</nominal>
 		<lifetime>28800</lifetime>
 		<restock>0</restock>
-		<min>7</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -16213,10 +16125,10 @@
 		<value name="Tier2" />
 		</type>
 	<type name="Rangefinder">
-		<nominal>10</nominal>
+		<nominal>0</nominal>
 		<lifetime>28800</lifetime>
 		<restock>0</restock>
-		<min>5</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -16377,10 +16289,10 @@
 		<value name="Tier3" />
 		</type>
 	<type name="Rope">
-		<nominal>80</nominal>
+		<nominal>25</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>70</min>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -16794,10 +16706,10 @@
 		<usage name="Police" />
 		</type>
 	<type name="Screwdriver">
-		<nominal>55</nominal>
+		<nominal>30</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>50</min>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -17671,10 +17583,10 @@
 		<value name="Tier2" />
 		</type>
 	<type name="Shovel">
-		<nominal>45</nominal>
+		<nominal>20</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>30</min>
+		<min>15</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -17687,10 +17599,10 @@
 		<value name="Tier2" />
 		</type>
 	<type name="Sickle">
-		<nominal>50</nominal>
+		<nominal>40</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>45</min>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -18414,10 +18326,10 @@
 		<usage name="Hunting" />
 		</type>
 	<type name="Spotlight">
-		<nominal>20</nominal>
+		<nominal>15</nominal>
 		<lifetime>604800</lifetime>
 		<restock>0</restock>
-		<min>15</min>
+		<min>8</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -20178,10 +20090,10 @@
 		<value name="Tier3" />
 		</type>
 	<type name="VitaminBottle">
-		<nominal>45</nominal>
+		<nominal>35</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>38</min>
+		<min>20</min>
 		<quantmin>5</quantmin>
 		<quantmax>20</quantmax>
 		<cost>100</cost>
@@ -21217,10 +21129,10 @@
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		</type>
 	<type name="Wrench">
-		<nominal>30</nominal>
+		<nominal>20</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>25</min>
+		<min>15</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -21231,10 +21143,10 @@
 		<usage name="Village" />
 		</type>
 	<type name="XmasLights">
-		<nominal>9</nominal>
+		<nominal>0</nominal>
 		<lifetime>14400</lifetime>
 		<restock>0</restock>
-		<min>6</min>
+		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -23061,11 +22973,11 @@
 	<type name="TerjeExpressTestAgents">
 		<nominal>30</nominal>
 		<lifetime>28800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23090,11 +23002,11 @@
 	<type name="TerjeExpressTestVirusZPack">
 		<nominal>30</nominal>
 		<lifetime>28800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23119,11 +23031,11 @@
 	<type name="TerjeExpressTestSepsisPack">
 		<nominal>30</nominal>
 		<lifetime>28800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23148,11 +23060,11 @@
 	<type name="TerjeExpressTestRabiesPack">
 		<nominal>30</nominal>
 		<lifetime>28800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23175,13 +23087,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeStethoscope">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>3600</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23204,13 +23116,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSleepingBag_Blue">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>604800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<usage name="Military" />
@@ -23232,13 +23144,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSleepingBag_Woodland">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>604800</lifetime>
-		<restock>3600</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23261,13 +23173,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeHeadgearPsiHelm">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="1" crafted="0" deloot="1" />
 		<category name="weapons" />
 		<usage name="Military" />
@@ -23291,11 +23203,11 @@
 	<type name="TerjeImprovisedSyringeEmpty">
 		<nominal>50</nominal>
 		<lifetime>14400</lifetime>
-		<restock>7200</restock>
-		<min>20</min>
+		<restock>300</restock>
+		<min>40</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23318,13 +23230,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePlaster">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23347,13 +23259,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeDrinkMadBull">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="food" />
 		<usage name="Military" />
@@ -23378,13 +23290,13 @@
 		<value name="Tier3" />
 		</type>
 	<type name="TerjeDrinkGang">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="food" />
 		<usage name="Military" />
@@ -23409,13 +23321,13 @@
 		<value name="Tier3" />
 		</type>
 	<type name="TerjeDrinkYaguar">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="food" />
 		<usage name="Military" />
@@ -23440,13 +23352,13 @@
 		<value name="Tier3" />
 		</type>
 	<type name="TerjeDrinkPrayboy">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="food" />
 		<usage name="Military" />
@@ -23471,13 +23383,13 @@
 		<value name="Tier3" />
 		</type>
 	<type name="TerjeDrink6Energy">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="food" />
 		<usage name="Military" />
@@ -23502,13 +23414,13 @@
 		<value name="Tier3" />
 		</type>
 	<type name="TerjePillsAnalgin">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23531,13 +23443,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsNimesulid">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23560,13 +23472,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsParacetamol">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23589,13 +23501,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsIbuprofen">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23618,13 +23530,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsNurofen">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23647,13 +23559,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsAmoxiclav">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23676,13 +23588,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsPiperacylin">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23705,13 +23617,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsAmibaktam">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23734,13 +23646,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsPolisorb">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23763,13 +23675,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsMesalazin">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23792,13 +23704,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsFtalazol">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23821,13 +23733,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsNoopept">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23850,13 +23762,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsVikasol">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23879,13 +23791,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsIrovit">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23908,13 +23820,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsAgteminol">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23937,13 +23849,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsVenlafaxine">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23966,13 +23878,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsRombiopental">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -23995,13 +23907,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleKetarol">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24024,13 +23936,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleFlemoclav">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24053,13 +23965,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleImipenem">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24082,13 +23994,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleMorphine">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24111,13 +24023,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleGexobarbital">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24140,13 +24052,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleKetamin">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24169,13 +24081,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleHeptral">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24198,13 +24110,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleMetoclopramid">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24227,13 +24139,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleActaparoxetine">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24256,13 +24168,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleAmitriptyline">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24285,13 +24197,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleRifampicyne">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24316,11 +24228,11 @@
 	<type name="TerjeAmpouleZivirol">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24345,11 +24257,11 @@
 	<type name="TerjeInjectorPromidol">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24374,11 +24286,11 @@
 	<type name="TerjeInjectorTopoizomeraza">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24403,11 +24315,11 @@
 	<type name="TerjeInjectorErytromixelin">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24432,11 +24344,11 @@
 	<type name="TerjeInjectorStomaproxidal">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24461,11 +24373,11 @@
 	<type name="TerjeInjectorRabinucoline">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24490,11 +24402,11 @@
 	<type name="TerjeInjectorAmfitalicyne">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24519,11 +24431,11 @@
 	<type name="TerjeInjectorReanimatal">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24546,13 +24458,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsPotassiumCyanide">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>24</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24575,13 +24487,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsArsenic">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>24</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24604,13 +24516,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsIversan">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>24</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24633,13 +24545,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpoulePotassiumCyanide">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24662,13 +24574,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleArsenic">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24691,13 +24603,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleBeladonna">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24720,13 +24632,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleStrychnine">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24749,13 +24661,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleKonyin">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>10</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>20</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24778,13 +24690,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSalveFinalgon">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>20</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24807,13 +24719,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSalveCapsicum">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>20</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24836,13 +24748,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSalveViprosal">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>20</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24865,13 +24777,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsMagnesiumSulfate">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>24</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24894,13 +24806,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjePillsAdepress">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>24</min>
-		<quantmin>10</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>48</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24923,13 +24835,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleAlcohol">
-		<nominal>50</nominal>
+		<nominal>63</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>30</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24952,13 +24864,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleAmoxivan">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -24981,13 +24893,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleNovacaine">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25010,13 +24922,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleNeirox">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25039,13 +24951,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleErythropoetin">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25068,13 +24980,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleAdrenalin">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25097,13 +25009,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleMetralindole">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25128,11 +25040,11 @@
 	<type name="TerjeAmpouleVaxicam">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25157,11 +25069,11 @@
 	<type name="TerjeAmpouleZerivax">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25186,11 +25098,11 @@
 	<type name="TerjeAmpouleRabivax">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25213,13 +25125,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleRabinoline">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>12</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25242,13 +25154,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeAmpouleNeirocetal">
-		<nominal>4</nominal>
+		<nominal>5</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
-		<quantmin>20</quantmin>
-		<quantmax>100</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>4</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25273,8 +25185,8 @@
 	<type name="TerjeInjectorZivirol">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -25300,13 +25212,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeInjectorAmoxiclav">
-		<nominal>16</nominal>
+		<nominal>20</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>8</min>
+		<restock>300</restock>
+		<min>16</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25329,13 +25241,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeInjectorNeirox">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25358,13 +25270,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeInjectorErythropoietin">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25389,11 +25301,11 @@
 	<type name="TerjeInjectorNovichek">
 		<nominal>6</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25416,13 +25328,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeInjectorPropital">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25445,13 +25357,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Black">
-		<nominal>4</nominal>
+		<nominal>5</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25474,13 +25386,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Brown">
-		<nominal>4</nominal>
+		<nominal>5</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25503,13 +25415,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Green">
-		<nominal>4</nominal>
+		<nominal>5</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25532,13 +25444,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Camo">
-		<nominal>4</nominal>
+		<nominal>5</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>2</min>
+		<restock>300</restock>
+		<min>4</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25561,13 +25473,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Black">
-		<nominal>8</nominal>
+		<nominal>10</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>4</min>
+		<restock>300</restock>
+		<min>8</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25590,10 +25502,10 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Brown">
-		<nominal>8</nominal>
+		<nominal>10</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>4</min>
+		<restock>300</restock>
+		<min>8</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -25619,13 +25531,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Green">
-		<nominal>8</nominal>
+		<nominal>10</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>4</min>
+		<restock>300</restock>
+		<min>8</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25648,13 +25560,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Camo">
-		<nominal>8</nominal>
+		<nominal>10</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>4</min>
+		<restock>300</restock>
+		<min>8</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25677,13 +25589,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitMedium">
-		<nominal>20</nominal>
+		<nominal>25</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25706,13 +25618,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeFirstAidKitLarge">
-		<nominal>10</nominal>
+		<nominal>13</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>6</min>
+		<restock>300</restock>
+		<min>12</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="containers" />
 		<tag name="shelves" />
@@ -25737,11 +25649,11 @@
 	<type name="TerjeSyringeNew">
 		<nominal>30</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25766,11 +25678,11 @@
 	<type name="TerjeSyringeEmpty">
 		<nominal>120</nominal>
 		<lifetime>14400</lifetime>
-		<restock>7200</restock>
-		<min>30</min>
+		<restock>300</restock>
+		<min>60</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25795,11 +25707,11 @@
 	<type name="TerjeBandageHemostatic">
 		<nominal>30</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>10</min>
+		<restock>300</restock>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25822,13 +25734,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSurgicalKit">
-		<nominal>40</nominal>
+		<nominal>50</nominal>
 		<lifetime>14400</lifetime>
-		<restock>0</restock>
-		<min>20</min>
-		<quantmin>20</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>40</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25851,13 +25763,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSurgicalTool_White">
-		<nominal>60</nominal>
+		<nominal>75</nominal>
 		<lifetime>14400</lifetime>
-		<restock>7200</restock>
-		<min>30</min>
-		<quantmin>20</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25880,13 +25792,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeSurgicalTool_Ceramic">
-		<nominal>60</nominal>
+		<nominal>75</nominal>
 		<lifetime>14400</lifetime>
-		<restock>7200</restock>
-		<min>30</min>
-		<quantmin>20</quantmin>
-		<quantmax>80</quantmax>
-		<cost>100</cost>
+		<restock>300</restock>
+		<min>60</min>
+		<quantmin>-1</quantmin>
+		<quantmax>-1</quantmax>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25924,11 +25836,11 @@
 	<type name="TerjeBookImmunity1">
 		<nominal>8</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25953,11 +25865,11 @@
 	<type name="TerjeBookImmunity2">
 		<nominal>4</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -25980,13 +25892,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeBookImmunity3">
-		<nominal>2</nominal>
+		<nominal>3</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26011,11 +25923,11 @@
 	<type name="TerjeBookImmunity4">
 		<nominal>1</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
+		<restock>300</restock>
 		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26040,11 +25952,11 @@
 	<type name="TerjeBookImmunity5">
 		<nominal>1</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
+		<restock>300</restock>
 		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26069,11 +25981,11 @@
 	<type name="TerjeBookMedicine1">
 		<nominal>8</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26098,11 +26010,11 @@
 	<type name="TerjeBookMedicine2">
 		<nominal>4</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26125,13 +26037,13 @@
 		<usage name="Lunapark" />
 		</type>
 	<type name="TerjeBookMedicine3">
-		<nominal>2</nominal>
+		<nominal>3</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
-		<min>1</min>
+		<restock>300</restock>
+		<min>2</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26156,11 +26068,11 @@
 	<type name="TerjeBookMedicine4">
 		<nominal>1</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
+		<restock>300</restock>
 		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
 		<category name="tools" />
 		<tag name="shelves" />
@@ -26185,11 +26097,11 @@
 	<type name="TerjeBookMedicine5">
 		<nominal>1</nominal>
 		<lifetime>28800</lifetime>
-		<restock>0</restock>
+		<restock>300</restock>
 		<min>0</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
-		<cost>100</cost>
+		<cost>200</cost>
 		<flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="1" />
 		<category name="tools" />
 		<tag name="shelves" />
