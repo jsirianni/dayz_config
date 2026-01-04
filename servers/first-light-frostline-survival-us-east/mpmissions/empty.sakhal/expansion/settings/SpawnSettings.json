@@ -91,8 +91,8 @@
         { "Loadout": "CustomSurvivorCiv", "Chance": 1.0 }
     ],
     "SpawnHealthValue": 100.0,
-    "SpawnEnergyValue": 500.0,
-    "SpawnWaterValue": 500.0,
+    "SpawnEnergyValue": 1200.0,
+    "SpawnWaterValue": 1200.0,
     "EnableRespawnCooldowns": 1,
     "RespawnCooldown": 120,
     "TerritoryRespawnCooldown": 240,
