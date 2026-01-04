@@ -13,6 +13,8 @@ set "WSCONTENT=C:\SteamCMD\steamapps\workshop\content\221100"
 REM ===== Workshop IDs =====
 set "MOD_CF=1559212036"
 set "MOD_VPP=1828439124"
+set "MOD_NAMALSK=2289456201"
+set "MOD_NAMALSK_SURVIVAL=2289461232"
 set "MOD_CODELOCK=1646187754"
 set "MOD_VEHICLE3PP=2122332595"
 set "MOD_DABS=2545327648"
@@ -25,6 +27,8 @@ set "MOD_TERJESKILLS=3359678303"
 REM ===== Server @mod folder names (NO SPACES, but dashes are allowed) =====
 set "DST_CF=@CF"
 set "DST_VPP=@VPPAdminTools"
+set "DST_NAMALSK=@NamalskIsland"
+set "DST_NAMALSK_SURVIVAL=@NamalskSurvival"
 set "DST_CODELOCK=@CodeLock"
 set "DST_VEHICLE3PP=@Vehicle3PP"
 set "DST_DABS=@DabsFramework"
@@ -49,6 +53,8 @@ REM ===== Update workshop mods =====
   +login "stealthowl1" ^
   +workshop_download_item 221100 %MOD_CF% validate ^
   +workshop_download_item 221100 %MOD_VPP% validate ^
+  +workshop_download_item 221100 %MOD_NAMALSK% validate ^
+  +workshop_download_item 221100 %MOD_NAMALSK_SURVIVAL% validate ^
   +workshop_download_item 221100 %MOD_CODELOCK% validate ^
   +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
   +workshop_download_item 221100 %MOD_DABS% validate ^
@@ -63,6 +69,8 @@ if errorlevel 1 goto :steamfail
 REM ===== Sync mods into server @ folders =====
 call :syncmod "%MOD_CF%"       "%DST_CF%"
 call :syncmod "%MOD_VPP%"      "%DST_VPP%"
+call :syncmod "%MOD_NAMALSK%"  "%DST_NAMALSK%"
+call :syncmod "%MOD_NAMALSK_SURVIVAL%" "%DST_NAMALSK_SURVIVAL%"
 call :syncmod "%MOD_CODELOCK%" "%DST_CODELOCK%"
 call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 call :syncmod "%MOD_DABS%"     "%DST_DABS%"
@@ -74,7 +82,7 @@ call :syncmod "%MOD_TERJESKILLS%" "%DST_TERJESKILLS%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
 REM Expansion mods must load after CF and DabsFramework, Bundle before Licensed
-set "MODLINE=-mod=@CF;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@VPPAdminTools;@CodeLock;@Vehicle3PP;@TerjeCore;@TerjeMedicine;@TerjeSkills"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@NamalskIsland;@NamalskSurvival;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@CodeLock;@Vehicle3PP;@TerjeCore;@TerjeMedicine;@TerjeSkills"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
