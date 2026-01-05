@@ -2,7 +2,7 @@
     "m_Version": 8,
     "EnableParties": 1,
     "MaxMembersInParty": 10,
-    "UseWholeMapForInviteList": 0,
+    "UseWholeMapForInviteList": 1,
     "ShowPartyMember3DMarkers": 1,
     "ShowDistanceUnderPartyMembersMarkers": 1,
     "ShowNameOnPartyMembersMarkers": 1,
