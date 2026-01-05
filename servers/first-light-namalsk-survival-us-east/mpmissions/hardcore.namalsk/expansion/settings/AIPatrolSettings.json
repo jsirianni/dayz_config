@@ -1598,6 +1598,52 @@
                 [4823.779297, 13.660988, 10813.092773],
                 [4811.147949, 13.76474, 10830.049805]
             ]
+        },
+        {
+            "Name": "CustomEastM4_Outskirts",
+            "Persist": 0,
+            "Faction": "East",
+            "Formation": "RANDOM",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "CustomEastM4Rifle",
+            "Units": [],
+            "NumberOfAI": 1,
+            "Behaviour": "HALT",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": -1.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 1,
+            "MinDistRadius": 100.0,
+            "MaxDistRadius": 1000.0,
+            "DespawnRadius": 1100.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [12467.625000, 3.527072, 8187.671387]
+            ]
         }
     ]
 }
