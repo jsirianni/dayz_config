@@ -1,0 +1,9 @@
+ExpansionMod loadouts notes (Namalsk First Light)
+
+- Format: Each JSON defines a loadout with `ClassName`, `InventoryAttachments`, `InventoryCargo`, optional `Sets`. Many use 100% chances and empty health/quantity to mean pristine and default counts.
+- Missing IDs: `ClassName` is blank in these files, so nothing can reference them until filled: `YellowKingLoadout.json`, `YeetBrigadeLoadout.json`, `WestLoadout.json`, `TTSKOLoadout.json`, `SurvivorLoadout.json`, `PoliceLoadout.json`, `PlayerSurvivorLoadout.json`.
+- WestLoadout attachment slots: several `InventoryAttachments` entries have `SlotName": ""` (e.g., PlateCarrier pouches/holster). Empty slot names usually fail to mount; set the correct slot or move those items to cargo/Sets.
+- CustomRaderLoadout: Name likely meant “Raider”; spawns Smersh + PlateCarrier + AKM with drum and extra mags/meds at 100% — very high tier for regular AI. Decide on intended difficulty and rename if needed.
+- Baseline customs: `CustomSurvivorCiv/Police/Firefighter/Hunter/Medic` are minimal civilian-themed starter kits; `CustomCivLoadout` slightly richer civ variant; `CustomSurvivorMilitia` not yet reviewed in detail here.
+- New: Added `CustomEastM4Rifle.json` loadout with white FOG uniform, FCPC vest (pouches attached with SlotName ""), FAST helmet/balaclava, and M4A1 (handguard, CQB buttstock, EXPS optic, CMAG attached) plus spare mags, meds, grenades, food, energy drinks, and nail boxes in cargo.
+- Slot name references (from Expansion scripts): valid loadout slot strings include `Headgear`, `Eyewear` (InventorySlots.EYEWEAR), `Mask`, `Body`, `Vest`, `Gloves`, `Legs`, `Hips` (belt slot), `Feet`, `Back`, `Shoulder`, `Melee`, `Armband`. Use `Hips` instead of `Belt` for belt items; `Armband` exists but isn’t used in default loadouts; `Eyewear` exists though rarely used.
