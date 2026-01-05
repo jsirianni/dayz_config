@@ -16,6 +16,7 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
 		<rootclass name="BoatScript" act="car" reportMemoryLOD="no" /> <!-- boats -->
 	</classes>
 	<ce folder="db">
+		<file name="types.xml" type="types" />
 		<file name="types_dzn.xml" type="types" />
 	</ce>
 

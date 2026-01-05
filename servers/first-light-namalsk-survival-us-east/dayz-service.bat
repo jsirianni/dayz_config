@@ -24,6 +24,7 @@ set "MOD_EXPANSION_BUNDLE=2572331007"
 set "MOD_TERJECORE=3359676785"
 set "MOD_TERJEMEDICINE=3359677479"
 set "MOD_TERJESKILLS=3359678303"
+set "MOD_SNAFUWEAPONS=2443122116"
 
 REM ===== Server @mod folder names (NO SPACES, but dashes are allowed) =====
 set "DST_CF=@CF"
@@ -39,6 +40,7 @@ set "DST_EXPANSION_BUNDLE=@DayZ-Expansion-Bundle"
 set "DST_TERJECORE=@TerjeCore"
 set "DST_TERJEMEDICINE=@TerjeMedicine"
 set "DST_TERJESKILLS=@TerjeSkills"
+set "DST_SNAFUWEAPONS=@SNAFUWeapons"
 
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
@@ -66,6 +68,7 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_TERJECORE% validate ^
   +workshop_download_item 221100 %MOD_TERJEMEDICINE% validate ^
   +workshop_download_item 221100 %MOD_TERJESKILLS% validate ^
+  +workshop_download_item 221100 %MOD_SNAFUWEAPONS% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -83,10 +86,11 @@ call :syncmod "%MOD_EXPANSION_BUNDLE%" "%DST_EXPANSION_BUNDLE%"
 call :syncmod "%MOD_TERJECORE%" "%DST_TERJECORE%"
 call :syncmod "%MOD_TERJEMEDICINE%" "%DST_TERJEMEDICINE%"
 call :syncmod "%MOD_TERJESKILLS%" "%DST_TERJESKILLS%"
+call :syncmod "%MOD_SNAFUWEAPONS%" "%DST_SNAFUWEAPONS%"
 
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
 REM Expansion mods must load after CF and DabsFramework, Bundle before Licensed
-set "MODLINE=-mod=@CF;@VPPAdminTools;@NamalskIsland;@NamalskSurvival;@Fog;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@CodeLock;@Vehicle3PP;@TerjeCore;@TerjeMedicine;@TerjeSkills"
+set "MODLINE=-mod=@CF;@VPPAdminTools;@NamalskIsland;@NamalskSurvival;@Fog;@DabsFramework;@DayZ-Expansion-Bundle;@DayZ-Expansion-Licensed;@CodeLock;@Vehicle3PP;@SNAFUWeapons;@TerjeCore;@TerjeMedicine;@TerjeSkills"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
