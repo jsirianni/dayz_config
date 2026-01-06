@@ -1,0 +1,449 @@
+{
+    "ClassName": "CustomEastHeavy",
+    "Include": "",
+    "Chance": 1.0,
+    "Quantity": { "Min": 0.0, "Max": 0.0 },
+    "Health": [],
+    "InventoryAttachments": [
+        {
+            "SlotName": "Body",
+            "Items": [
+                {
+                    "ClassName": "FOG_Gorka_Jacket_White",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Legs",
+            "Items": [
+                {
+                    "ClassName": "FOG_Pants_Crye_G3_White",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Gloves",
+            "Items": [
+                {
+                    "ClassName": "FOG_WinterGloves_White",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Mask",
+            "Items": [
+                {
+                    "ClassName": "FOG_Arcteryx_Balaclava_White",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Eyewear",
+            "Items": [
+                {
+                    "ClassName": "SkiGoggles_WhiteDark",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Headgear",
+            "Items": [
+                {
+                    "ClassName": "FOG_Helmet_Exfil_Black",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Feet",
+            "Items": [
+                {
+                    "ClassName": "FOG_Zypher_Boots_Black_Socks",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Vest",
+            "Items": [
+                {
+                    "ClassName": "FOG_Vest_Thor_Black",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [
+                        {
+                            "SlotName": "",
+                            "Items": [
+                                {
+                                    "ClassName": "FOG_Pouch_IFAK_Black",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                },
+                                {
+                                    "ClassName": "FOG_TV110T_AdminPouch_Black",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                },
+                                {
+                                    "ClassName": "FOG_TV110T_AdminPouch_Black",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                },
+                                {
+                                    "ClassName": "FOG_TV110T_AdminPouch_Black",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                },
+                                {
+                                    "ClassName": "FOG_Pouch_Mag_Dope_Black",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                }
+                            ]
+                        }
+                    ],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Back",
+            "Items": [
+                {
+                    "ClassName": "FOG_Bag_6ShBagT_White",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        },
+        {
+            "SlotName": "Shoulder",
+            "Items": [
+                {
+                    "ClassName": "SNAFU_M60",
+                    "Include": "",
+                    "Chance": 1.0,
+                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                    "Health": [],
+                    "InventoryAttachments": [
+                        {
+                            "SlotName": "weaponHandguard",
+                            "Items": [
+                                {
+                                    "ClassName": "SNAFU_M60_Handguard_E4",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                }
+                            ]
+                        },
+                        {
+                            "SlotName": "weaponOptics",
+                            "Items": [
+                                {
+                                    "ClassName": "ExpansionEXPS3HoloOptic",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                }
+                            ]
+                        },
+                        {
+                            "SlotName": "magazine",
+                            "Items": [
+                                {
+                                    "ClassName": "SNAFU_M60_100rdMag",
+                                    "Include": "",
+                                    "Chance": 1.0,
+                                    "Quantity": { "Min": 0.0, "Max": 0.0 },
+                                    "Health": [],
+                                    "InventoryAttachments": [],
+                                    "InventoryCargo": [],
+                                    "ConstructionPartsBuilt": [],
+                                    "Sets": []
+                                }
+                            ]
+                        }
+                    ],
+                    "InventoryCargo": [],
+                    "ConstructionPartsBuilt": [],
+                    "Sets": []
+                }
+            ]
+        }
+    ],
+    "InventoryCargo": [
+        {
+            "ClassName": "SNAFU_M60_100rdMag",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "SNAFU_M60_100rdMag",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "SNAFU_m60_SscopeMount",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "Morphine",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "Morphine",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "BandageDressing",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "BandageDressing",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "M67Grenade",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "M67Grenade",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "TacticalBaconCan",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "TacticalBaconCan",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "TerjeDrinkMadBull",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "TerjeDrinkMadBull",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "SewingKit",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        },
+        {
+            "ClassName": "LeatherSewingKit",
+            "Include": "",
+            "Chance": 1.0,
+            "Quantity": { "Min": 1.0, "Max": 1.0 },
+            "Health": [],
+            "InventoryAttachments": [],
+            "InventoryCargo": [],
+            "ConstructionPartsBuilt": [],
+            "Sets": []
+        }
+    ],
+    "ConstructionPartsBuilt": [],
+    "Sets": []
+}
+
