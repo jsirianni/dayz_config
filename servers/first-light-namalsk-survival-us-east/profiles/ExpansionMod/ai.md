@@ -15,3 +15,4 @@ ExpansionMod loadouts notes (Namalsk First Light)
   - `CustomRaiderMarksman.json` — RG hoodie/Crye G2, sniper hood (Armband), SPC vest (admin + mag pouch), drawbridge bag, SVD with attached mag plus spares, basic meds/food/drinks, hammer, whetstones.
   - `CustomRaiderHeavy.json` — RG softshell/Crye G3, Exfil helmet, Thor EMR vest (IFAK/admin/mag pouches), 6Sh bag, PKP with attached 250rnd mag plus spares, grenades, meds/food/drinks, sewing kits.
   - `CustomRaiderMedic.json` — RG ISOF shirt/G99 pants, MICH helmet, Osprey vest (IFAK/admin/mag pouches), MR ASAP bag, RPK16 with attached mag plus spares, expanded med kit (Terje ampoules/FAK), food/drinks, epoxy, duct tape.
+- Patrols: All `Raiders` faction patrols now pull from the new raider loadouts (Assult/Marksman/Heavy/Medic), outskirts patrols already set to their respective raider loadouts.
