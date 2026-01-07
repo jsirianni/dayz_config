@@ -1600,13 +1600,13 @@
             ]
         },
         {
-            "Name": "CustomEastM4_Outskirts",
+            "Name": "CustomRaiderAssult__Outskirts",
             "Persist": 0,
             "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "CustomEastM4Rifle",
+            "Loadout": "CustomRaiderAssult",
             "Units": [],
             "NumberOfAI": 1,
             "Behaviour": "HALT",
@@ -1646,13 +1646,13 @@
             ]
         },
         {
-            "Name": "CustomEastMarksman_Outskirts",
+            "Name": "CustomRaiderMarksman__Outskirts",
             "Persist": 0,
             "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "CustomEastMarksman",
+            "Loadout": "CustomRaiderMarksman",
             "Units": [],
             "NumberOfAI": 1,
             "Behaviour": "ROAMING",
@@ -1692,13 +1692,13 @@
             ]
         },
         {
-            "Name": "CustomEastHeavy_Outskirts",
+            "Name": "CustomRaiderHeavy__Outskirts",
             "Persist": 0,
             "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "CustomEastHeavy",
+            "Loadout": "CustomRaiderHeavy",
             "Units": [],
             "NumberOfAI": 1,
             "Behaviour": "ROAMING",
@@ -1738,13 +1738,13 @@
             ]
         },
         {
-            "Name": "CustomEastMedic_Outskirts",
+            "Name": "CustomRaiderMedic__Outskirts",
             "Persist": 0,
             "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "CustomEastMedic",
+            "Loadout": "CustomRaiderMedic",
             "Units": [],
             "NumberOfAI": 1,
             "Behaviour": "ROAMING",
