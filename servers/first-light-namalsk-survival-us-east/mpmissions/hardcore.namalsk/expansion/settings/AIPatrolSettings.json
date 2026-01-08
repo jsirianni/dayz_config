@@ -48,7 +48,7 @@
             {
                 "MinPlayers": 0,
                 "MaxPlayers": 100,
-                "MaxPatrols": 30
+                "MaxPatrols": 50
             }
         ],
         "ContaminatedArea": [
@@ -62,7 +62,7 @@
             {
                 "MinPlayers": 0,
                 "MaxPlayers": 255,
-                "MaxPatrols": 30
+                "MaxPatrols": 50
             }
         ]
     },
@@ -154,13 +154,13 @@
             ]
         },
         {
-            "Name": "voorkuta_raider_patrol_1",
+            "Name": "voorkuta_patrol_2",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "Civilian",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "CustomRaiderAssult",
+            "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 0,
@@ -379,11 +379,11 @@
         {
             "Name": "Airfield_West",
             "Persist": 0,
-            "Faction": "West",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
-            "Loadout": "WestAssault",
+            "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 0,
@@ -1527,7 +1527,7 @@
         {
             "Name": "BK_T07",
             "Persist": 0,
-            "Faction": "West",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -1578,7 +1578,7 @@
         {
             "Name": "BK_T07_patrol",
             "Persist": 0,
-            "Faction": "West",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -1654,7 +1654,7 @@
         {
             "Name": "Sebjan_Dam",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -1705,7 +1705,7 @@
         {
             "Name": "Sebjan_Dam_halt_1",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -1756,7 +1756,7 @@
         {
             "Name": "Sebjan_Dam_halt_2",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -1807,7 +1807,7 @@
         {
             "Name": "Sebjan_Dam_halt_3",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2011,7 +2011,7 @@
         {
             "Name": "Oilrig",
             "Persist": 0,
-            "Faction": "West",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2321,7 +2321,7 @@
         {
             "Name": "BK_Lo2",
             "Persist": 0,
-            "Faction": "West",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2387,7 +2387,7 @@
         {
             "Name": "Athena_2",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2463,7 +2463,7 @@
         {
             "Name": "rensk_Bridge",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2838,7 +2838,7 @@
         {
             "Name": "athena_research",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -2919,7 +2919,7 @@
         {
             "Name": "sebjan_uranium_mine",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
@@ -3229,7 +3229,7 @@
         {
             "Name": "BK-T08",
             "Persist": 0,
-            "Faction": "Raiders",
+            "Faction": "East",
             "Formation": "RANDOM",
             "FormationScale": 0.0,
             "FormationLooseness": 0.0,
