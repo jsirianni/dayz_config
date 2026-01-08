@@ -1,5 +1,5 @@
 {
-    "m_Version": 28,
+    "m_Version": 30,
     "Enabled": 1,
     "FormationScale": -1.0,
     "DespawnTime": 600.0,
@@ -16,13 +16,6 @@
     "DamageMultiplier": -1.0,
     "DamageReceivedMultiplier": -1.0,
     "LoadBalancingCategories": {
-        "Global": [
-            {
-                "MinPlayers": 0,
-                "MaxPlayers": 100,
-                "MaxPatrols": 50
-            }
-        ],
         "Example": [
             {
                 "MinPlayers": 0,
@@ -51,6 +44,13 @@
                 "MaxPatrols": 0
             }
         ],
+        "Global": [
+            {
+                "MinPlayers": 0,
+                "MaxPlayers": 100,
+                "MaxPatrols": 30
+            }
+        ],
         "ContaminatedArea": [
             {
                 "MinPlayers": 0,
@@ -62,7 +62,7 @@
             {
                 "MinPlayers": 0,
                 "MaxPlayers": 255,
-                "MaxPatrols": 50
+                "MaxPatrols": 30
             }
         ]
     },
@@ -77,12 +77,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 5,
+            "NumberOfAIMax": 0,
             "Behaviour": "ALTERNATE",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -110,14 +111,46 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6802.823242, 15.024999, 11662.014648],
-                [6826.611816, 15.134973, 11422.419922],
-                [6780.205078, 15.024989, 11334.474609],
-                [6758.40918, 15.024989, 11319.732422],
-                [6669.899902, 15.060164, 11140.514648],
-                [6685.63623, 15.097882, 11103.766602],
-                [6701.998535, 15.14498, 11073.600586],
-                [6670.803711, 15.144961, 11023.021484]
+                [
+                    6802.8232421875,
+                    15.024998664855957,
+                    11662.0146484375
+                ],
+                [
+                    6826.61181640625,
+                    15.13497257232666,
+                    11422.419921875
+                ],
+                [
+                    6780.205078125,
+                    15.024989128112793,
+                    11334.474609375
+                ],
+                [
+                    6758.4091796875,
+                    15.024989128112793,
+                    11319.732421875
+                ],
+                [
+                    6669.89990234375,
+                    15.060164451599121,
+                    11140.5146484375
+                ],
+                [
+                    6685.63623046875,
+                    15.097882270812989,
+                    11103.7666015625
+                ],
+                [
+                    6701.99853515625,
+                    15.144980430603028,
+                    11073.6005859375
+                ],
+                [
+                    6670.8037109375,
+                    15.1449613571167,
+                    11023.021484375
+                ]
             ]
         },
         {
@@ -130,12 +163,13 @@
             "Loadout": "CustomRaiderAssult",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "LOOP",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -163,19 +197,71 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7108.42041, 15.638071, 10727.179688],
-                [7109.48877, 15.788839, 10771.199219],
-                [7122.59082, 15.726883, 10792.020508],
-                [7178.233398, 15.764997, 10793.229492],
-                [7211.651855, 15.924376, 10821.167969],
-                [7215.287109, 15.170529, 10854.97168],
-                [7204.707031, 12.46745, 10886.81543],
-                [7197.34668, 12.481454, 10901.188477],
-                [7141.362305, 13.542796, 10893.780273],
-                [7071.279785, 14.844859, 10942.775391],
-                [6991.378418, 15.03675, 10947.286133],
-                [7022.22168, 21.836287, 10831.208984],
-                [7089.852539, 15.905706, 10711.191406]
+                [
+                    7108.42041015625,
+                    15.638071060180664,
+                    10727.1796875
+                ],
+                [
+                    7109.48876953125,
+                    15.788839340209961,
+                    10771.19921875
+                ],
+                [
+                    7122.5908203125,
+                    15.726882934570313,
+                    10792.0205078125
+                ],
+                [
+                    7178.2333984375,
+                    15.764996528625489,
+                    10793.2294921875
+                ],
+                [
+                    7211.65185546875,
+                    15.924375534057618,
+                    10821.16796875
+                ],
+                [
+                    7215.287109375,
+                    15.17052936553955,
+                    10854.9716796875
+                ],
+                [
+                    7204.70703125,
+                    12.467450141906739,
+                    10886.8154296875
+                ],
+                [
+                    7197.3466796875,
+                    12.481453895568848,
+                    10901.1884765625
+                ],
+                [
+                    7141.3623046875,
+                    13.54279613494873,
+                    10893.7802734375
+                ],
+                [
+                    7071.27978515625,
+                    14.84485912322998,
+                    10942.775390625
+                ],
+                [
+                    6991.37841796875,
+                    15.036749839782715,
+                    10947.2861328125
+                ],
+                [
+                    7022.2216796875,
+                    21.836286544799806,
+                    10831.208984375
+                ],
+                [
+                    7089.8525390625,
+                    15.905706405639649,
+                    10711.19140625
+                ]
             ]
         },
         {
@@ -188,12 +274,13 @@
             "Loadout": "CustomCivCowboy",
             "Units": [],
             "NumberOfAI": 3,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -221,7 +308,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6599.78418, 15.096026, 11021.018555]
+                [
+                    6599.7841796875,
+                    15.096026420593262,
+                    11021.0185546875
+                ]
             ]
         },
         {
@@ -234,12 +325,13 @@
             "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -267,9 +359,21 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6247.992188, 21.030001, 9153.015625],
-                [6317.133301, 20.890379, 9344.005859],
-                [6311.892578, 21.030556, 9436.363281]
+                [
+                    6247.9921875,
+                    21.030000686645509,
+                    9153.015625
+                ],
+                [
+                    6317.13330078125,
+                    20.890378952026368,
+                    9344.005859375
+                ],
+                [
+                    6311.892578125,
+                    21.030555725097658,
+                    9436.36328125
+                ]
             ]
         },
         {
@@ -282,12 +386,13 @@
             "Loadout": "WestAssault",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -315,10 +420,26 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6231.658203, 20.999992, 9603.371094],
-                [6444.890625, 16.000006, 9305.681641],
-                [6492.894531, 16.024994, 9313.329102],
-                [6531.225098, 15.999996, 9307.374023]
+                [
+                    6231.658203125,
+                    20.99999237060547,
+                    9603.37109375
+                ],
+                [
+                    6444.890625,
+                    16.0000057220459,
+                    9305.681640625
+                ],
+                [
+                    6492.89453125,
+                    16.024993896484376,
+                    9313.3291015625
+                ],
+                [
+                    6531.22509765625,
+                    15.999996185302735,
+                    9307.3740234375
+                ]
             ]
         },
         {
@@ -331,12 +452,13 @@
             "Loadout": "CustomCivPilot",
             "Units": [],
             "NumberOfAI": 5,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -364,9 +486,21 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [8266.023438, 15.271591, 10672.447266],
-                [8096.370117, 70.730003, 11213.900391],
-                [7910.347168, 39.03833, 10676.830078]
+                [
+                    8266.0234375,
+                    15.271591186523438,
+                    10672.447265625
+                ],
+                [
+                    8096.3701171875,
+                    70.7300033569336,
+                    11213.900390625
+                ],
+                [
+                    7910.34716796875,
+                    39.038330078125,
+                    10676.830078125
+                ]
             ]
         },
         {
@@ -379,12 +513,13 @@
             "Loadout": "CustomCivOperator",
             "Units": [],
             "NumberOfAI": 8,
+            "NumberOfAIMax": 0,
             "Behaviour": "ALTERNATE",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -412,26 +547,106 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [8149.479004, 15.244999, 10846.150391],
-                [8141.52002, 15.240208, 10828.286133],
-                [8106.776855, 15.244999, 10841.345703],
-                [8102.198242, 15.244982, 10829.916016],
-                [8089.739258, 15.244991, 10825.932617],
-                [8077.009766, 15.244987, 10836.31543],
-                [8063.076172, 15.316616, 10837.902344],
-                [8099.237793, 15.254164, 10905.737305],
-                [8128.428711, 15.243769, 10891.055664],
-                [8147.134277, 15.239539, 10877.112305],
-                [8182.376953, 15.204985, 10857.887695],
-                [8173.938477, 15.214989, 10833.432617],
-                [8175.770996, 15.25371, 10808.995117],
-                [8195.890625, 15.206745, 10792.859375],
-                [8210.913086, 14.914971, 10785.726563],
-                [8209.484375, 14.891981, 10758.114258],
-                [8248.875, 15.02497, 10743.12793],
-                [8269.460938, 15.013661, 10785.988281],
-                [8296.839844, 15.024999, 10788.036133],
-                [8379.81543, 15.024989, 10730.268555]
+                [
+                    8149.47900390625,
+                    15.244998931884766,
+                    10846.150390625
+                ],
+                [
+                    8141.52001953125,
+                    15.24020767211914,
+                    10828.2861328125
+                ],
+                [
+                    8106.77685546875,
+                    15.244998931884766,
+                    10841.345703125
+                ],
+                [
+                    8102.1982421875,
+                    15.24498176574707,
+                    10829.916015625
+                ],
+                [
+                    8089.7392578125,
+                    15.244991302490235,
+                    10825.9326171875
+                ],
+                [
+                    8077.009765625,
+                    15.244986534118653,
+                    10836.3154296875
+                ],
+                [
+                    8063.076171875,
+                    15.31661605834961,
+                    10837.90234375
+                ],
+                [
+                    8099.23779296875,
+                    15.25416374206543,
+                    10905.7373046875
+                ],
+                [
+                    8128.4287109375,
+                    15.243768692016602,
+                    10891.0556640625
+                ],
+                [
+                    8147.13427734375,
+                    15.23953914642334,
+                    10877.1123046875
+                ],
+                [
+                    8182.376953125,
+                    15.204984664916993,
+                    10857.8876953125
+                ],
+                [
+                    8173.9384765625,
+                    15.214988708496094,
+                    10833.4326171875
+                ],
+                [
+                    8175.77099609375,
+                    15.25370979309082,
+                    10808.9951171875
+                ],
+                [
+                    8195.890625,
+                    15.206745147705079,
+                    10792.859375
+                ],
+                [
+                    8210.9130859375,
+                    14.914971351623536,
+                    10785.7265625
+                ],
+                [
+                    8209.484375,
+                    14.89198112487793,
+                    10758.1142578125
+                ],
+                [
+                    8248.875,
+                    15.024970054626465,
+                    10743.1279296875
+                ],
+                [
+                    8269.4609375,
+                    15.01366138458252,
+                    10785.98828125
+                ],
+                [
+                    8296.83984375,
+                    15.024998664855957,
+                    10788.0361328125
+                ],
+                [
+                    8379.8154296875,
+                    15.024989128112793,
+                    10730.2685546875
+                ]
             ]
         },
         {
@@ -444,12 +659,13 @@
             "Loadout": "CustomCivCowboy",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -477,7 +693,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [8959.748047, 15.024989, 10092.708984]
+                [
+                    8959.748046875,
+                    15.024989128112793,
+                    10092.708984375
+                ]
             ]
         },
         {
@@ -490,12 +710,13 @@
             "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 3,
+            "NumberOfAIMax": 0,
             "Behaviour": "ALTERNATE",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -523,16 +744,56 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7317.849121, 45.513641, 10552.077148],
-                [7286.02832, 45.504974, 10551.950195],
-                [7199.494141, 42.533352, 10553.138672],
-                [7201.412598, 43.523247, 10497.950195],
-                [7251.529785, 46.191967, 10482.708008],
-                [7289.716309, 45.615742, 10477.113281],
-                [7368.874512, 46.068169, 10472.071289],
-                [7384.379395, 44.915833, 10484.50293],
-                [7375.215332, 45.144997, 10509.707031],
-                [7372.954102, 45.151512, 10523.697266]
+                [
+                    7317.84912109375,
+                    45.513641357421878,
+                    10552.0771484375
+                ],
+                [
+                    7286.0283203125,
+                    45.504974365234378,
+                    10551.9501953125
+                ],
+                [
+                    7199.494140625,
+                    42.53335189819336,
+                    10553.138671875
+                ],
+                [
+                    7201.41259765625,
+                    43.52324676513672,
+                    10497.9501953125
+                ],
+                [
+                    7251.52978515625,
+                    46.19196701049805,
+                    10482.7080078125
+                ],
+                [
+                    7289.71630859375,
+                    45.61574172973633,
+                    10477.11328125
+                ],
+                [
+                    7368.87451171875,
+                    46.06816864013672,
+                    10472.0712890625
+                ],
+                [
+                    7384.37939453125,
+                    44.91583251953125,
+                    10484.5029296875
+                ],
+                [
+                    7375.21533203125,
+                    45.144996643066409,
+                    10509.70703125
+                ],
+                [
+                    7372.9541015625,
+                    45.151512145996097,
+                    10523.697265625
+                ]
             ]
         },
         {
@@ -545,12 +806,13 @@
             "Loadout": "CustomSurvivorPolice",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -578,7 +840,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7286.22168, 45.504982, 10539.851563]
+                [
+                    7286.2216796875,
+                    45.504981994628909,
+                    10539.8515625
+                ]
             ]
         },
         {
@@ -591,12 +857,13 @@
             "Loadout": "CustomCivOperator",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -624,7 +891,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7296.552734, 45.504982, 10536.290039]
+                [
+                    7296.552734375,
+                    45.504981994628909,
+                    10536.2900390625
+                ]
             ]
         },
         {
@@ -637,12 +908,13 @@
             "Loadout": "CustomCivPilot",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -670,7 +942,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7318.34668, 45.543709, 10526.6875]
+                [
+                    7318.3466796875,
+                    45.54370880126953,
+                    10526.6875
+                ]
             ]
         },
         {
@@ -683,12 +959,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -716,7 +993,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7325.19043, 45.509838, 10539.766602]
+                [
+                    7325.1904296875,
+                    45.50983810424805,
+                    10539.7666015625
+                ]
             ]
         },
         {
@@ -729,12 +1010,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -762,7 +1044,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5771.047852, 16.884966, 10782.996094]
+                [
+                    5771.0478515625,
+                    16.884965896606447,
+                    10782.99609375
+                ]
             ]
         },
         {
@@ -775,12 +1061,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -808,7 +1095,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5786.036133, 16.859684, 10770.546875]
+                [
+                    5786.0361328125,
+                    16.859683990478517,
+                    10770.546875
+                ]
             ]
         },
         {
@@ -821,12 +1112,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -854,7 +1146,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5791.875, 16.873199, 10796.706055]
+                [
+                    5791.875,
+                    16.873199462890626,
+                    10796.7060546875
+                ]
             ]
         },
         {
@@ -867,12 +1163,13 @@
             "Loadout": "CustomEastHeavy",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -900,7 +1197,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4875.84668, 12.586805, 10851.34082]
+                [
+                    4875.8466796875,
+                    12.58680534362793,
+                    10851.3408203125
+                ]
             ]
         },
         {
@@ -913,12 +1214,13 @@
             "Loadout": "CustomEastHeavy",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "LOOP",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -946,14 +1248,46 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4879.103516, 12.844374, 10867.963867],
-                [4861.862793, 12.909404, 10816.381836],
-                [4863.089355, 12.788933, 10800.474609],
-                [4839.834961, 12.695695, 10766.851563],
-                [4803.575195, 14.887368, 10769.438477],
-                [4760.319824, 15.311712, 10818.631836],
-                [4789.214355, 13.978553, 10870.987305],
-                [4837.505859, 13.102225, 10914.208008]
+                [
+                    4879.103515625,
+                    12.84437370300293,
+                    10867.9638671875
+                ],
+                [
+                    4861.86279296875,
+                    12.909403800964356,
+                    10816.3818359375
+                ],
+                [
+                    4863.08935546875,
+                    12.788932800292969,
+                    10800.474609375
+                ],
+                [
+                    4839.8349609375,
+                    12.695694923400879,
+                    10766.8515625
+                ],
+                [
+                    4803.5751953125,
+                    14.887368202209473,
+                    10769.4384765625
+                ],
+                [
+                    4760.31982421875,
+                    15.311712265014649,
+                    10818.6318359375
+                ],
+                [
+                    4789.21435546875,
+                    13.97855281829834,
+                    10870.9873046875
+                ],
+                [
+                    4837.505859375,
+                    13.102225303649903,
+                    10914.2080078125
+                ]
             ]
         },
         {
@@ -966,12 +1300,13 @@
             "Loadout": "CustomEastHeavy",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -999,7 +1334,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4805.96875, 13.814987, 10792.824219]
+                [
+                    4805.96875,
+                    13.814987182617188,
+                    10792.82421875
+                ]
             ]
         },
         {
@@ -1012,12 +1351,13 @@
             "Loadout": "CustomEastHeavy",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1045,7 +1385,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4855.563965, 13.241701, 10887.845703]
+                [
+                    4855.56396484375,
+                    13.241701126098633,
+                    10887.845703125
+                ]
             ]
         },
         {
@@ -1058,12 +1402,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1091,7 +1436,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4404.880859, 2.832776, 11268.239258]
+                [
+                    4404.880859375,
+                    2.8327760696411135,
+                    11268.2392578125
+                ]
             ]
         },
         {
@@ -1104,12 +1453,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ALTERNATE",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1137,13 +1487,41 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4443.891602, 2.82498, 11288.699219],
-                [4443.699219, 2.855, 11220.199219],
-                [4468.765625, 11.313308, 11141.290039],
-                [4485.469727, 14.397844, 11051.318359],
-                [4501.06543, 15.013471, 11021.583984],
-                [4494.42334, 15.099704, 10989.720703],
-                [4521.569824, 15.074992, 10944.71582]
+                [
+                    4443.8916015625,
+                    2.8249800205230715,
+                    11288.69921875
+                ],
+                [
+                    4443.69921875,
+                    2.8550000190734865,
+                    11220.19921875
+                ],
+                [
+                    4468.765625,
+                    11.313307762145996,
+                    11141.2900390625
+                ],
+                [
+                    4485.4697265625,
+                    14.397844314575196,
+                    11051.318359375
+                ],
+                [
+                    4501.0654296875,
+                    15.013470649719239,
+                    11021.583984375
+                ],
+                [
+                    4494.42333984375,
+                    15.099703788757325,
+                    10989.720703125
+                ],
+                [
+                    4521.56982421875,
+                    15.074992179870606,
+                    10944.7158203125
+                ]
             ]
         },
         {
@@ -1156,12 +1534,13 @@
             "Loadout": "WestAssault",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1189,7 +1568,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4380.544434, 15.014998, 10738.104492]
+                [
+                    4380.54443359375,
+                    15.014998435974121,
+                    10738.1044921875
+                ]
             ]
         },
         {
@@ -1202,12 +1585,13 @@
             "Loadout": "WestAssault",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ALTERNATE",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1235,12 +1619,36 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4411.736816, 15.014995, 10766.0625],
-                [4410.342285, 15.014968, 10751.799805],
-                [4428.518555, 15.004994, 10742.991211],
-                [4411.689941, 15.014995, 10740.567383],
-                [4406.358887, 15.014775, 10727.0625],
-                [4389.776855, 15.014949, 10722.436523]
+                [
+                    4411.73681640625,
+                    15.014994621276856,
+                    10766.0625
+                ],
+                [
+                    4410.34228515625,
+                    15.014967918395996,
+                    10751.7998046875
+                ],
+                [
+                    4428.5185546875,
+                    15.00499439239502,
+                    10742.9912109375
+                ],
+                [
+                    4411.68994140625,
+                    15.014994621276856,
+                    10740.5673828125
+                ],
+                [
+                    4406.35888671875,
+                    15.014775276184082,
+                    10727.0625
+                ],
+                [
+                    4389.77685546875,
+                    15.014948844909668,
+                    10722.4365234375
+                ]
             ]
         },
         {
@@ -1253,12 +1661,13 @@
             "Loadout": "CustomRaiderHeavy",
             "Units": [],
             "NumberOfAI": 3,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1286,7 +1695,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5766.490723, 23.133955, 9800.148438]
+                [
+                    5766.49072265625,
+                    23.133955001831056,
+                    9800.1484375
+                ]
             ]
         },
         {
@@ -1299,12 +1712,13 @@
             "Loadout": "CustomRaiderAssult",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1332,7 +1746,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5713.857422, 21.501808, 9898.81543]
+                [
+                    5713.857421875,
+                    21.501808166503908,
+                    9898.8154296875
+                ]
             ]
         },
         {
@@ -1345,12 +1763,13 @@
             "Loadout": "CustomRaiderMarksman",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1378,7 +1797,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5709.439453, 21.850071, 9860.777344]
+                [
+                    5709.439453125,
+                    21.85007095336914,
+                    9860.77734375
+                ]
             ]
         },
         {
@@ -1391,12 +1814,13 @@
             "Loadout": "CustomRaiderMedic",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1424,7 +1848,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5753.564453, 22.207735, 9831.59082]
+                [
+                    5753.564453125,
+                    22.207735061645509,
+                    9831.5908203125
+                ]
             ]
         },
         {
@@ -1437,12 +1865,13 @@
             "Loadout": "CustomEastMedic",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1470,7 +1899,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6642.983398, 30.075014, 9803.37793]
+                [
+                    6642.9833984375,
+                    30.075014114379884,
+                    9803.3779296875
+                ]
             ]
         },
         {
@@ -1483,12 +1916,13 @@
             "Loadout": "CustomEastMedic",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1516,7 +1950,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6848.521484, 4.566013, 9925.761719]
+                [
+                    6848.521484375,
+                    4.566012859344482,
+                    9925.76171875
+                ]
             ]
         },
         {
@@ -1529,12 +1967,13 @@
             "Loadout": "CustomEastMarksman",
             "Units": [],
             "NumberOfAI": 5,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1562,7 +2001,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [11966.397461, 2.484789, 12054.804688]
+                [
+                    11966.3974609375,
+                    2.4847888946533205,
+                    12054.8046875
+                ]
             ]
         },
         {
@@ -1575,12 +2018,13 @@
             "Loadout": "NBCLoadout",
             "Units": [],
             "NumberOfAI": 3,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1608,7 +2052,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [12059.255859, 1.999895, 7554.050781]
+                [
+                    12059.255859375,
+                    1.9998949766159058,
+                    7554.05078125
+                ]
             ]
         },
         {
@@ -1621,12 +2069,13 @@
             "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 5,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1654,11 +2103,31 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [1199.185791, 1.999999, 11794.980469],
-                [1295.168579, 4.93892, 11783.78125],
-                [1310.739746, 2.000001, 11918.036133],
-                [1207.494751, 3.105001, 11923.246094],
-                [1137.373413, 2.001417, 11874.082031]
+                [
+                    1199.185791015625,
+                    1.9999990463256837,
+                    11794.98046875
+                ],
+                [
+                    1295.1685791015626,
+                    4.938920021057129,
+                    11783.78125
+                ],
+                [
+                    1310.73974609375,
+                    2.0000009536743166,
+                    11918.0361328125
+                ],
+                [
+                    1207.4947509765626,
+                    3.1050009727478029,
+                    11923.24609375
+                ],
+                [
+                    1137.3734130859376,
+                    2.0014169216156008,
+                    11874.08203125
+                ]
             ]
         },
         {
@@ -1671,12 +2140,13 @@
             "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "LOOP",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1704,14 +2174,46 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [1180.040405, 2.124321, 11835.269531],
-                [1167.107422, 2.071312, 11868.283203],
-                [1192.849854, 5.706797, 11888.1875],
-                [1225.462036, 5.111684, 11882.170898],
-                [1253.51062, 3.653458, 11852.172852],
-                [1256.163696, 2.335, 11820.678711],
-                [1220.764648, 2.278872, 11797.915039],
-                [1198.744873, 2.691718, 11816.62207]
+                [
+                    1180.0404052734376,
+                    2.1243209838867189,
+                    11835.26953125
+                ],
+                [
+                    1167.107421875,
+                    2.0713119506835939,
+                    11868.283203125
+                ],
+                [
+                    1192.849853515625,
+                    5.706797122955322,
+                    11888.1875
+                ],
+                [
+                    1225.4620361328126,
+                    5.1116838455200199,
+                    11882.1708984375
+                ],
+                [
+                    1253.5106201171876,
+                    3.6534581184387209,
+                    11852.1728515625
+                ],
+                [
+                    1256.1636962890626,
+                    2.3350000381469728,
+                    11820.6787109375
+                ],
+                [
+                    1220.7646484375,
+                    2.278872013092041,
+                    11797.9150390625
+                ],
+                [
+                    1198.744873046875,
+                    2.691718101501465,
+                    11816.6220703125
+                ]
             ]
         },
         {
@@ -1724,12 +2226,13 @@
             "Loadout": "CustomEastMedic",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1757,7 +2260,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [1225.954102, 2.024987, 11843.834961]
+                [
+                    1225.9541015625,
+                    2.024986982345581,
+                    11843.8349609375
+                ]
             ]
         },
         {
@@ -1770,12 +2277,13 @@
             "Loadout": "CustomEastM4Rifle",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1803,7 +2311,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [1229.37146, 2.274863, 11824.005859]
+                [
+                    1229.3714599609376,
+                    2.2748630046844484,
+                    11824.005859375
+                ]
             ]
         },
         {
@@ -1816,12 +2328,13 @@
             "Loadout": "WestAssault",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1849,10 +2362,26 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [3400.805664, 215.960007, 6740.734375],
-                [3405.994385, 216.332657, 6690.825195],
-                [3460.899658, 216.249176, 6681.819336],
-                [3478.314941, 216.405014, 6712.970703]
+                [
+                    3400.8056640625,
+                    215.9600067138672,
+                    6740.734375
+                ],
+                [
+                    3405.994384765625,
+                    216.33265686035157,
+                    6690.8251953125
+                ],
+                [
+                    3460.899658203125,
+                    216.24917602539063,
+                    6681.8193359375
+                ],
+                [
+                    3478.31494140625,
+                    216.40501403808595,
+                    6712.970703125
+                ]
             ]
         },
         {
@@ -1865,12 +2394,13 @@
             "Loadout": "CustomRaiderMarksman",
             "Units": [],
             "NumberOfAI": 6,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1898,12 +2428,36 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5014.394043, 45.042934, 6521.444336],
-                [4942.539063, 46.156433, 6574.363281],
-                [4940.401855, 45.231964, 6650.342773],
-                [4921.421875, 46.938889, 6701.889648],
-                [4955.896973, 47.400417, 6537.169922],
-                [5022.555664, 48.040974, 6587.569336]
+                [
+                    5014.39404296875,
+                    45.04293441772461,
+                    6521.4443359375
+                ],
+                [
+                    4942.5390625,
+                    46.15643310546875,
+                    6574.36328125
+                ],
+                [
+                    4940.40185546875,
+                    45.231964111328128,
+                    6650.3427734375
+                ],
+                [
+                    4921.421875,
+                    46.93888854980469,
+                    6701.8896484375
+                ],
+                [
+                    4955.89697265625,
+                    47.40041732788086,
+                    6537.169921875
+                ],
+                [
+                    5022.5556640625,
+                    48.04097366333008,
+                    6587.5693359375
+                ]
             ]
         },
         {
@@ -1916,12 +2470,13 @@
             "Loadout": "CustomRaiderHeavy",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -1949,12 +2504,36 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [5154.628906, 41.238457, 6109.016602],
-                [4864.523438, 41.0, 6081.643066],
-                [4848.158691, 41.000004, 6112.114746],
-                [4845.358398, 41.0, 6182.177734],
-                [4849.773926, 40.999996, 6262.399902],
-                [4840.092773, 40.827427, 6030.226563]
+                [
+                    5154.62890625,
+                    41.23845672607422,
+                    6109.0166015625
+                ],
+                [
+                    4864.5234375,
+                    41.0,
+                    6081.64306640625
+                ],
+                [
+                    4848.15869140625,
+                    41.000003814697269,
+                    6112.11474609375
+                ],
+                [
+                    4845.3583984375,
+                    41.0,
+                    6182.177734375
+                ],
+                [
+                    4849.77392578125,
+                    40.999996185302737,
+                    6262.39990234375
+                ],
+                [
+                    4840.0927734375,
+                    40.82742691040039,
+                    6030.2265625
+                ]
             ]
         },
         {
@@ -1967,12 +2546,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2000,10 +2580,26 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [6897.842773, 39.401283, 5834.063477],
-                [7042.045898, 40.000019, 5818.989258],
-                [7117.45166, 40.232407, 5808.315918],
-                [7062.699707, 48.280468, 5934.450195]
+                [
+                    6897.8427734375,
+                    39.401283264160159,
+                    5834.0634765625
+                ],
+                [
+                    7042.0458984375,
+                    40.00001907348633,
+                    5818.9892578125
+                ],
+                [
+                    7117.45166015625,
+                    40.23240661621094,
+                    5808.31591796875
+                ],
+                [
+                    7062.69970703125,
+                    48.28046798706055,
+                    5934.4501953125
+                ]
             ]
         },
         {
@@ -2016,12 +2612,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2049,12 +2646,36 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7247.274414, 84.710533, 7927.186035],
-                [7313.186523, 84.370003, 7995.493652],
-                [7285.556152, 84.349991, 8020.650391],
-                [7216.005859, 85.090889, 7945.135742],
-                [7294.493652, 86.765533, 7874.041504],
-                [7383.487305, 84.029976, 7977.467773]
+                [
+                    7247.2744140625,
+                    84.71053314208985,
+                    7927.18603515625
+                ],
+                [
+                    7313.1865234375,
+                    84.37000274658203,
+                    7995.49365234375
+                ],
+                [
+                    7285.55615234375,
+                    84.34999084472656,
+                    8020.650390625
+                ],
+                [
+                    7216.005859375,
+                    85.09088897705078,
+                    7945.1357421875
+                ],
+                [
+                    7294.49365234375,
+                    86.76553344726563,
+                    7874.04150390625
+                ],
+                [
+                    7383.4873046875,
+                    84.02997589111328,
+                    7977.4677734375
+                ]
             ]
         },
         {
@@ -2067,12 +2688,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2100,13 +2722,41 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [7807.478027, 10.560318, 7611.854492],
-                [7912.777832, 9.607705, 7621.302734],
-                [8044.340332, 9.598194, 7658.943848],
-                [7889.311035, 9.784393, 7731.368164],
-                [7849.664551, 9.928414, 7765.293945],
-                [7811.415039, 11.117368, 7754.978516],
-                [7807.53125, 10.502764, 7665.800781]
+                [
+                    7807.47802734375,
+                    10.560317993164063,
+                    7611.8544921875
+                ],
+                [
+                    7912.77783203125,
+                    9.607705116271973,
+                    7621.302734375
+                ],
+                [
+                    8044.34033203125,
+                    9.598194122314454,
+                    7658.94384765625
+                ],
+                [
+                    7889.31103515625,
+                    9.784393310546875,
+                    7731.3681640625
+                ],
+                [
+                    7849.66455078125,
+                    9.928414344787598,
+                    7765.2939453125
+                ],
+                [
+                    7811.4150390625,
+                    11.1173677444458,
+                    7754.978515625
+                ],
+                [
+                    7807.53125,
+                    10.502763748168946,
+                    7665.80078125
+                ]
             ]
         },
         {
@@ -2119,12 +2769,13 @@
             "Loadout": "CustomCivLoadout",
             "Units": [],
             "NumberOfAI": 2,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2152,12 +2803,36 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [3786.445557, 53.103958, 7443.255371],
-                [3877.091553, 53.000011, 7516.853027],
-                [3914.722168, 53.044292, 7561.586914],
-                [3957.89502, 52.999992, 7522.732422],
-                [3884.26416, 53.000015, 7443.911621],
-                [3984.669434, 53.024933, 7616.20166]
+                [
+                    3786.445556640625,
+                    53.10395812988281,
+                    7443.25537109375
+                ],
+                [
+                    3877.091552734375,
+                    53.0000114440918,
+                    7516.85302734375
+                ],
+                [
+                    3914.72216796875,
+                    53.04429244995117,
+                    7561.5869140625
+                ],
+                [
+                    3957.89501953125,
+                    52.99999237060547,
+                    7522.732421875
+                ],
+                [
+                    3884.26416015625,
+                    53.00001525878906,
+                    7443.91162109375
+                ],
+                [
+                    3984.66943359375,
+                    53.024932861328128,
+                    7616.20166015625
+                ]
             ]
         },
         {
@@ -2170,12 +2845,13 @@
             "Loadout": "CustomRaiderMedic",
             "Units": [],
             "NumberOfAI": 5,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2203,13 +2879,41 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4169.935547, 78.077148, 8081.501465],
-                [4261.927246, 77.474968, 8092.397461],
-                [4370.149902, 78.064476, 8110.678711],
-                [4409.957031, 78.93663, 8056.510742],
-                [4293.789063, 76.121994, 8014.571777],
-                [4467.518555, 78.223007, 8133.370117],
-                [4596.00293, 57.794212, 8103.137695]
+                [
+                    4169.935546875,
+                    78.0771484375,
+                    8081.50146484375
+                ],
+                [
+                    4261.92724609375,
+                    77.47496795654297,
+                    8092.3974609375
+                ],
+                [
+                    4370.14990234375,
+                    78.0644760131836,
+                    8110.6787109375
+                ],
+                [
+                    4409.95703125,
+                    78.93663024902344,
+                    8056.5107421875
+                ],
+                [
+                    4293.7890625,
+                    76.12199401855469,
+                    8014.57177734375
+                ],
+                [
+                    4467.5185546875,
+                    78.22300720214844,
+                    8133.3701171875
+                ],
+                [
+                    4596.0029296875,
+                    57.794212341308597,
+                    8103.1376953125
+                ]
             ]
         },
         {
@@ -2222,12 +2926,13 @@
             "Loadout": "CustomRaderLoadout",
             "Units": [],
             "NumberOfAI": 3,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2255,18 +2960,66 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [4677.147461, 50.0, 8036.750977],
-                [4784.681152, 50.214512, 8001.644531],
-                [4901.082031, 50.100037, 8059.453613],
-                [4979.547363, 39.406452, 8117.613281],
-                [5028.494629, 50.139198, 8020.400879],
-                [4991.222168, 49.999989, 7952.514648],
-                [5691.888672, 21.805529, 10007.736328],
-                [5721.260254, 21.838745, 9873.633789],
-                [5784.918457, 16.863247, 10776.205078],
-                [4861.575195, 13.198416, 10892.197266],
-                [4823.779297, 13.660988, 10813.092773],
-                [4811.147949, 13.76474, 10830.049805]
+                [
+                    4677.1474609375,
+                    50.0,
+                    8036.7509765625
+                ],
+                [
+                    4784.68115234375,
+                    50.21451187133789,
+                    8001.64453125
+                ],
+                [
+                    4901.08203125,
+                    50.10003662109375,
+                    8059.45361328125
+                ],
+                [
+                    4979.54736328125,
+                    39.40645217895508,
+                    8117.61328125
+                ],
+                [
+                    5028.49462890625,
+                    50.139198303222659,
+                    8020.40087890625
+                ],
+                [
+                    4991.22216796875,
+                    49.9999885559082,
+                    7952.5146484375
+                ],
+                [
+                    5691.888671875,
+                    21.80552864074707,
+                    10007.736328125
+                ],
+                [
+                    5721.26025390625,
+                    21.8387451171875,
+                    9873.6337890625
+                ],
+                [
+                    5784.91845703125,
+                    16.86324691772461,
+                    10776.205078125
+                ],
+                [
+                    4861.5751953125,
+                    13.198415756225586,
+                    10892.197265625
+                ],
+                [
+                    4823.779296875,
+                    13.660987854003907,
+                    10813.0927734375
+                ],
+                [
+                    4811.14794921875,
+                    13.764739990234375,
+                    10830.0498046875
+                ]
             ]
         },
         {
@@ -2279,12 +3032,13 @@
             "Loadout": "CustomRaiderAssult",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "HALT",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2312,7 +3066,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [12467.625000, 3.527072, 8187.671387]
+                [
+                    12467.625,
+                    3.527071952819824,
+                    8187.67138671875
+                ]
             ]
         },
         {
@@ -2325,12 +3083,13 @@
             "Loadout": "CustomRaiderMarksman",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2358,7 +3117,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [12467.625000, 3.527072, 8187.671387]
+                [
+                    12467.625,
+                    3.527071952819824,
+                    8187.67138671875
+                ]
             ]
         },
         {
@@ -2371,12 +3134,13 @@
             "Loadout": "CustomRaiderHeavy",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2404,7 +3168,11 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [12467.625000, 3.527072, 8187.671387]
+                [
+                    12467.625,
+                    3.527071952819824,
+                    8187.67138671875
+                ]
             ]
         },
         {
@@ -2417,12 +3185,13 @@
             "Loadout": "CustomRaiderMedic",
             "Units": [],
             "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
             "Behaviour": "ROAMING",
             "LootingBehaviour": "",
             "Speed": "WALK",
             "UnderThreatSpeed": "SPRINT",
             "DefaultStance": "STANDING",
-            "DefaultLookAngle": -1.0,
+            "DefaultLookAngle": 0.0,
             "CanBeLooted": 1,
             "LootDropOnDeath": "",
             "UnlimitedReload": 0,
@@ -2450,7 +3219,82 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 1,
             "Waypoints": [
-                [12467.625000, 3.527072, 8187.671387]
+                [
+                    12467.625,
+                    3.527071952819824,
+                    8187.67138671875
+                ]
+            ]
+        },
+        {
+            "Name": "BK-T08",
+            "Persist": 0,
+            "Faction": "Raiders",
+            "Formation": "RANDOM",
+            "FormationScale": 0.0,
+            "FormationLooseness": 0.0,
+            "Loadout": "CustomRaderLoadout",
+            "Units": [],
+            "NumberOfAI": 1,
+            "NumberOfAIMax": 0,
+            "Behaviour": "ALTERNATE",
+            "LootingBehaviour": "",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": 0.0,
+            "CanBeLooted": 1,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": -1.0,
+            "AccuracyMax": -1.0,
+            "ThreatDistanceLimit": -1.0,
+            "NoiseInvestigationDistanceLimit": -1.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": -1,
+            "DamageMultiplier": -1.0,
+            "DamageReceivedMultiplier": -1.0,
+            "HeadshotResistance": 0.0,
+            "CanBeTriggeredByAI": 1,
+            "MinDistRadius": 100.0,
+            "MaxDistRadius": 1000.0,
+            "DespawnRadius": 1100.0,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 100.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": 1,
+            "Waypoints": [
+                [
+                    3911.31884765625,
+                    5.568624019622803,
+                    10014.970703125
+                ],
+                [
+                    3924.7509765625,
+                    5.678892135620117,
+                    10028.6611328125
+                ],
+                [
+                    3939.755126953125,
+                    5.812839031219482,
+                    10007.978515625
+                ],
+                [
+                    3937.053466796875,
+                    5.890048980712891,
+                    9983.7109375
+                ],
+                [
+                    3951.4296875,
+                    9.362885475158692,
+                    9948.2177734375
+                ]
             ]
         }
     ]
