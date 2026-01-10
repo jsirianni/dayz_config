@@ -4849,7 +4849,7 @@
     <category name="tools" />
     <tag name="industrial" />
   </type>
-  <type name="Pipe">
+  <type name="PipeWrench">
     <nominal>20</nominal>
     <min>10</min>
     <lifetime>5400</lifetime>

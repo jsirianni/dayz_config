@@ -16,7 +16,6 @@ set "MOD_VPP=1828439124"
 set "MOD_NAMALSK=2289456201"
 set "MOD_NAMALSK_SURVIVAL=2289461232"
 set "MOD_FOG=2931560672"
-set "MOD_CODELOCK=1646187754"
 set "MOD_VEHICLE3PP=2122332595"
 set "MOD_DABS=2545327648"
 set "MOD_EXPANSION_LICENSED=2116157322"
@@ -60,7 +59,6 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_NAMALSK% validate ^
   +workshop_download_item 221100 %MOD_NAMALSK_SURVIVAL% validate ^
   +workshop_download_item 221100 %MOD_FOG% validate ^
-  +workshop_download_item 221100 %MOD_CODELOCK% validate ^
   +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
   +workshop_download_item 221100 %MOD_DABS% validate ^
   +workshop_download_item 221100 %MOD_EXPANSION_LICENSED% validate ^
@@ -78,7 +76,6 @@ call :syncmod "%MOD_VPP%"      "%DST_VPP%"
 call :syncmod "%MOD_NAMALSK%"  "%DST_NAMALSK%"
 call :syncmod "%MOD_NAMALSK_SURVIVAL%" "%DST_NAMALSK_SURVIVAL%"
 call :syncmod "%MOD_FOG%" "%DST_FOG%"
-call :syncmod "%MOD_CODELOCK%" "%DST_CODELOCK%"
 call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
 call :syncmod "%MOD_DABS%"     "%DST_DABS%"
 call :syncmod "%MOD_EXPANSION_LICENSED%" "%DST_EXPANSION_LICENSED%"
