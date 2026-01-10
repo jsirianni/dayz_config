@@ -24,7 +24,7 @@
         { "ClassName": "TerjeBandageHemostatic", "Include": "", "Chance": 1.0, "Quantity": { "Min": 3.0, "Max": 3.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
         { "ClassName": "TerjeSurgicalKit", "Include": "", "Chance": 1.0, "Quantity": { "Min": 2.0, "Max": 2.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
         { "ClassName": "DisinfectantAlcohol", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
-        { "ClassName": "TerjeAmpouleMorphine", "Include": "", "Chance": 1.0, "Quantity": { "Min": 2.0, "Max": 2.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
+        { "ClassName": "Morphine", "Include": "", "Chance": 1.0, "Quantity": { "Min": 2.0, "Max": 2.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] },
         { "ClassName": "PainkillerTablets", "Include": "", "Chance": 1.0, "Quantity": { "Min": 1.0, "Max": 1.0 }, "Health": [], "InventoryAttachments": [], "InventoryCargo": [], "ConstructionPartsBuilt": [], "Sets": [] }
     ],
     "ConstructionPartsBuilt": [],
