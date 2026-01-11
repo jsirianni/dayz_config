@@ -6,9 +6,24 @@
         <text>You are playing #name</text>
     </message>
     <message>
-        <delay>3</delay>
-        <onconnect>1</onconnect>
-        <text>Server restarts every 5 hours at 2pm, 7pm, 12am, 5am, 10am EST</text>
+        <!-- no delay -->
+        <delay>0</delay>
+
+        <!-- if the value is larger than 0, then flag Repeat is enabled -->
+        <repeat>0</repeat>
+
+        <!-- if the value is larger than 0, then flag Countdown is enabled,
+             countdown reaches zero in 3 hours -->
+        <deadline>180</deadline>
+
+        <!-- disable On connect flag -->
+        <onconnect>0</onconnect>
+
+        <!-- enable Shutdown flag -->
+        <shutdown>1</shutdown>
+
+        <!-- message itself with placeholders -->
+        <text>This server will restart in #tmin minutes.</text>
     </message>
     <message>
         <delay>5</delay>
@@ -16,10 +31,4 @@
         <onconnect>1</onconnect>
         <text>Motor Home's are unstable. Chance of death is very high. Drive at own risk.</text>
     </message>
-    <!-- <message>
-        <delay>1</delay>
-        <repeat>60</repeat>
-        <onconnect>1</onconnect>
-        <text>Server restarts at 1400 (2pm) and 0500 (5am) EST</text>
-    </message> -->
 </messages>
