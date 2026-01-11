@@ -538,13 +538,13 @@
     <tag />
   </type>
   <type name="dzn_printer_filament_abs">
-    <nominal>1</nominal>
-    <min>1</min>
+    <nominal>5</nominal>
+    <min>2</min>
     <lifetime>5400</lifetime>
     <restock>0</restock>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
-    <cost>100</cost>
+    <cost>105</cost>
     <flags count_in_map="1" count_in_hoarder="0" count_in_cargo="0" count_in_player="0" crafted="0" deloot="0" />
     <usage />
     <value user="Tier3" />
@@ -552,13 +552,13 @@
     <tag name="industrial" />
   </type>
   <type name="dzn_printer_filament_tpc">
-    <nominal>1</nominal>
-    <min>1</min>
+    <nominal>5</nominal>
+    <min>2</min>
     <lifetime>5400</lifetime>
     <restock>0</restock>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
-    <cost>100</cost>
+    <cost>105</cost>
     <flags count_in_map="1" count_in_hoarder="0" count_in_cargo="0" count_in_player="0" crafted="0" deloot="0" />
     <usage />
     <value user="Tier3" />
@@ -572,7 +572,7 @@
     <restock>0</restock>
     <quantmin>-1</quantmin>
     <quantmax>-1</quantmax>
-    <cost>100</cost>
+    <cost>105</cost>
     <flags count_in_map="1" count_in_hoarder="0" count_in_cargo="0" count_in_player="0" crafted="0" deloot="0" />
     <usage />
     <value user="Tier3" />
@@ -580,8 +580,8 @@
     <tag name="industrial" />
   </type>
   <type name="dzn_module_card">
-    <nominal>1</nominal>
-    <min>1</min>
+    <nominal>5</nominal>
+    <min>2</min>
     <lifetime>5400</lifetime>
     <restock>600</restock>
     <quantmin>-1</quantmin>
