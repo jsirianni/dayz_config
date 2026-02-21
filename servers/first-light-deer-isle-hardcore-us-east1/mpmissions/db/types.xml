@@ -12421,7 +12421,7 @@
   </type>
   <type name="LandMineTrap">
     <nominal>1</nominal>
-    <lifetime>7200</lifetime>
+    <lifetime>604800</lifetime>
     <restock>1200</restock>
     <min>0</min>
     <quantmin>-1</quantmin>
