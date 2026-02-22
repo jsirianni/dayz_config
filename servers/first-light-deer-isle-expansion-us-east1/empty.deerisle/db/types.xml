@@ -3805,9 +3805,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
     <category name="food" />
   </type>
+  <!-- CHANGED lifetime from 7200 to 604800 -->
   <type name="BearTrap">
     <nominal>4</nominal>
-    <lifetime>7200</lifetime>
+    <lifetime>604800</lifetime>
     <restock>0</restock>
     <min>2</min>
     <quantmin>-1</quantmin>
@@ -12295,9 +12296,10 @@
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0" />
     <category name="clothes" />
   </type>
+  <!-- CHANGED lifetime from 7200 to 604800 -->
   <type name="LandMineTrap">
     <nominal>1</nominal>
-    <lifetime>7200</lifetime>
+    <lifetime>604800</lifetime>
     <restock>1200</restock>
     <min>0</min>
     <quantmin>-1</quantmin>
