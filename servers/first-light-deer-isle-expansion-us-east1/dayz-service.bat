@@ -12,7 +12,7 @@ set "WSCONTENT=C:\SteamCMD\steamapps\workshop\content\221100"
  
 REM ===== Workshop IDs =====
 set "MOD_CF=1559212036"
-set "MOD_DEERISLE=1602372402"
+set "MOD_DEERISLE=1750506510"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
@@ -39,7 +39,16 @@ if errorlevel 1 goto :steamfail
 
 REM ===== Sync mods into server @ folders =====
 call :syncmod "%MOD_CF%" "%DST_CF%"
-call :syncmod "%MOD_DEERISLE%" "%DST_DEERISLE%"
+REM Deer Isle expansion: do NOT call syncmod for MOD_DEERISLE. The expansion mod
+REM does not ship keys in its mod directory; keys are supplied separately from
+REM C:\DayZ\deer-isle-exp-keys and copied into %KEYS% in the block below.
+REM call :syncmod "%MOD_DEERISLE%" "%DST_DEERISLE%"
+
+REM ===== Copy Deer Isle expansion keys (not in workshop mod) =====
+set "DEERISLE_EXP_KEYS=C:\DayZ\deer-isle-exp-keys"
+if exist "%DEERISLE_EXP_KEYS%" (
+  copy /Y "%DEERISLE_EXP_KEYS%\*" "%KEYS%" >nul
+)
 
 REM ===== Build -mod list (RELATIVE paths, NO SPACES in names) =====
 set "MODLINE=-mod=@CF;@DeerIsle"
