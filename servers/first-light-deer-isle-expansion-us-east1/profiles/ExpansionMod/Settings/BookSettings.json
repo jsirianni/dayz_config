@@ -5,7 +5,7 @@
     "EnableServerInfoTab": 1,
     "EnableServerRulesTab": 1,
     "EnableTerritoryTab": 1,
-    "EnableBookMenu": 1,
+    "EnableBookMenu": 0,
     "CreateBookmarks": 0,
     "ShowHaBStats": 1,
     "ShowPlayerFaction": 0,
