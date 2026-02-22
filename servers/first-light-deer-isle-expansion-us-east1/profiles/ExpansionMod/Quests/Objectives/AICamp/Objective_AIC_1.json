@@ -1,0 +1,14 @@
+{
+    "ConfigVersion": 28,
+    "ID": 1,
+    "ObjectiveType": 8,
+    "ObjectiveText": "Kill all 10 bandits at the marked location",
+    "TimeLimit": -1,
+    "Active": 1,
+    "InfectedDeletionRadius": 500.0,
+    "MaxDistance": -1.0,
+    "MinDistance": -1.0,
+    "AllowedWeapons": [],
+    "AllowedDamageZones": [],
+    "AISpawns": []
+}
