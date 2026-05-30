@@ -966,10 +966,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeAmpouleFlemoclav">
-		<nominal>20</nominal>
+		<nominal>60</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>18</min>
+		<min>35</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
@@ -2242,10 +2242,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeInjectorAmoxiclav">
-		<nominal>30</nominal>
+		<nominal>80</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>24</min>
+		<min>60</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
@@ -2387,10 +2387,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Black">
-		<nominal>8</nominal>
+		<nominal>40</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>6</min>
+		<min>20</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
@@ -2416,10 +2416,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeFirstAidKitAdvance_Brown">
-		<nominal>8</nominal>
+		<nominal>30</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>6</min>
+		<min>15</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
@@ -2503,10 +2503,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Black">
-		<nominal>15</nominal>
+		<nominal>60</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>12</min>
+		<min>40</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
@@ -2532,10 +2532,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeFirstAidKitIndividual_Brown">
-		<nominal>15</nominal>
+		<nominal>60</nominal>
 		<lifetime>28800</lifetime>
 		<restock>300</restock>
-		<min>12</min>
+		<min>40</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>100</cost>
@@ -2764,10 +2764,10 @@
 		<usage name="Lunapark"/>
 		</type>
 	<type name="TerjeSurgicalKit">
-		<nominal>75</nominal>
+		<nominal>120</nominal>
 		<lifetime>14400</lifetime>
 		<restock>300</restock>
-		<min>60</min>
+		<min>90</min>
 		<quantmin>-1</quantmin>
 		<quantmax>-1</quantmax>
 		<cost>200</cost>
