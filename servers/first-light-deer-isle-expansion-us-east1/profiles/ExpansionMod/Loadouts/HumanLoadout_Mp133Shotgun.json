@@ -1,0 +1,640 @@
+{
+    "ClassName":  "",
+    "Include":  "",
+    "Chance":  1.0,
+    "Quantity":  {
+                     "Min":  0.0,
+                     "Max":  0.0
+                 },
+    "Health":  [
+
+               ],
+    "InventoryAttachments":  [
+                                 {
+                                     "SlotName":  "Body",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "HikingJacket_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "HikingJacket_Black",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "HikingJacket_Green",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Legs",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "SlacksPants_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "SlacksPants_Black",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "SlacksPants_DarkGrey",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Feet",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "HikingBootsLow_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "HikingBootsLow_Black",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "HikingBootsLow_Grey",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Back",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "TaloonBag_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Vest",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "PressVest_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Headgear",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "BaseballCap_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "BaseballCap_Black",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   },
+                                                   {
+                                                       "ClassName":  "BaseballCap_Olive",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Gloves",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "SurgicalGloves_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Hips",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "CivilianBelt",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1.0,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Melee",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "BaseballBat",
+                                                       "Include":  "",
+                                                       "Chance":  1.0,
+                                                       "Quantity":  {
+                                                                        "Min":  0.0,
+                                                                        "Max":  0.0
+                                                                    },
+                                                       "Health":  [
+
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Shoulder",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "Mp133Shotgun",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 }
+                             ],
+    "InventoryCargo":  [
+                           {
+                               "ClassName":  "BandageDressing",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "AmmoBox_00buck_10rnd",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "AmmoBox_00buck_10rnd",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           }
+                       ],
+    "ConstructionPartsBuilt":  [
+
+                               ],
+    "Sets":  [
+
+             ]
+}
