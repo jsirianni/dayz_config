@@ -1,0 +1,27 @@
+12:59:27.810 [Expansion Quests] Initialize quest system on the connected client with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.814 [Expansion Quests] Created new persistent player quest data for player UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.814 [Expansion Quests] Create new achievement/auto-start quest for quest ID=8 for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.815 [Expansion Quests] Added new objective data for type=TARGET | Key= | ID=3
+12:59:27.815 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=8
+12:59:27.815 [Expansion Quests] Create new achievement/auto-start quest for quest ID=9 for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.815 [Expansion Quests] Added new objective data for type=TARGET | Key= | ID=2
+12:59:27.815 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=9
+12:59:27.816 [Expansion Quests] Create new achievement/auto-start quest for quest ID=11 for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.816 [Expansion Quests] Added new objective data for type=ACTION | Key= | ID=1
+12:59:27.816 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=11
+12:59:27.816 [Expansion Quests] Create new achievement/auto-start quest for quest ID=14 for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.818 [Expansion Quests] Added new objective data for type=TRAVEL | Key= | ID=3
+12:59:27.818 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=14
+12:59:27.818 [Expansion Quests] Sending VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= quest configs to client for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.819 [Expansion Quests] Sending player quest data for 4 quests to player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=
+12:59:27.820 [Expansion Quests] Added new objective data for type=TRAVEL | Key= | ID=3
+12:59:27.821 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=14
+12:59:27.821 [Expansion Quests] Player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= has completed quest with ID=14
+12:59:27.822 [Expansion Quests] Updated and saved persistent player quest data for player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0= | Quest ID=14
+12:59:29.106 [AI Object Patrol 00011] Spawning 2 West bots at <6721.774902, 42.100845, 2405.406250>
+12:59:29.148 [AI Object Patrol 00011] Global patrol count: 1
+12:59:29.149 [AI Object Patrol 00011] Global Expansion AI count: 2 alive, 0 deceased
+12:59:29.149 [AI Object Patrol 00011] MilitaryRoaming category patrol count: 1
+12:59:58.908 [Expansion Quests] Deleted quest with ID=8 is a of player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=.
+12:59:58.909 [Expansion Quests] Deleted quest with ID=9 is a of player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=.
+12:59:58.910 [Expansion Quests] Deleted quest with ID=11 is a of player with UID=VfT0k3fq3UJe8DZH9rcBeOXDHk7e5QRLoXp7qS4IyH0=.

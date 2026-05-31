@@ -9,16 +9,35 @@ set "PROFILES=C:\DayZ\server\profiles"
 set "CFG=C:\DayZ\server\serverDZ.cfg"
 set "KEYS=C:\DayZ\server\keys"
 set "WSCONTENT=C:\SteamCMD\steamapps\workshop\content\221100"
- 
+
 REM ===== Workshop IDs =====
 set "MOD_CF=1559212036"
 set "MOD_DEERISLE=1602372402"
-
-REM ===== Server @mod folder names (NO SPACES) =====
+set "MOD_VPP=1828439124"
+set "MOD_VEHICLE3PP=2122332595"
+set "MOD_DABS=2545327648"
+set "MOD_EXPANSION_LICENSED=2116157322"
+set "MOD_EXPANSION_CORE=2291785308"
+set "MOD_EXPANSION_AI=2792982069"
+set "MOD_EXPANSION_BASEBUILDING=2792982513"
+set "MOD_TERJECORE=3649957186"
+set "MOD_TERJEMEDICINE=3649957536"
+set "MOD_TERJESKILLS=3649958397"
+set "MOD_4KBOSSK=3369325490"
+REM ===== Server @mod folder names (NO SPACES, but dashes are allowed) =====
 set "DST_CF=@CF"
 set "DST_DEERISLE=@DeerIsle"
-
-
+set "DST_VPP=@VPPAdminTools"
+set "DST_VEHICLE3PP=@Vehicle3PP"
+set "DST_DABS=@DabsFramework"
+set "DST_EXPANSION_LICENSED=@DayZ-Expansion-Licensed"
+set "DST_EXPANSION_CORE=@DayZ-Expansion-Core"
+set "DST_EXPANSION_AI=@DayZ-Expansion-AI"
+set "DST_EXPANSION_BASEBUILDING=@DayZ-Expansion-BaseBuilding"
+set "DST_TERJECORE=@TerjeCore"
+set "DST_TERJEMEDICINE=@TerjeMedicine"
+set "DST_TERJESKILLS=@TerjeSkills"
+set "DST_4KBOSSK=@4KBOSSKVehicles"
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
 if not exist "%PROFILES%" mkdir "%PROFILES%"
@@ -34,16 +53,37 @@ REM ===== Update workshop mods =====
   +login "stealthowl1" ^
   +workshop_download_item 221100 %MOD_CF% validate ^
   +workshop_download_item 221100 %MOD_DEERISLE% validate ^
+  +workshop_download_item 221100 %MOD_VPP% validate ^
+  +workshop_download_item 221100 %MOD_VEHICLE3PP% validate ^
+  +workshop_download_item 221100 %MOD_DABS% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_LICENSED% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_CORE% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_AI% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_BASEBUILDING% validate ^
+  +workshop_download_item 221100 %MOD_TERJECORE% validate ^
+  +workshop_download_item 221100 %MOD_TERJEMEDICINE% validate ^
+  +workshop_download_item 221100 %MOD_TERJESKILLS% validate ^
+  +workshop_download_item 221100 %MOD_4KBOSSK% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
 REM ===== Sync mods into server @ folders =====
-call :syncmod "%MOD_CF%" "%DST_CF%"
+call :syncmod "%MOD_CF%"       "%DST_CF%"
 call :syncmod "%MOD_DEERISLE%" "%DST_DEERISLE%"
-
-REM ===== Build -mod list (RELATIVE paths, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@DeerIsle"
-
+call :syncmod "%MOD_VPP%"      "%DST_VPP%"
+call :syncmod "%MOD_VEHICLE3PP%" "%DST_VEHICLE3PP%"
+call :syncmod "%MOD_DABS%"     "%DST_DABS%"
+call :syncmod "%MOD_EXPANSION_LICENSED%" "%DST_EXPANSION_LICENSED%"
+call :syncmod "%MOD_EXPANSION_CORE%" "%DST_EXPANSION_CORE%"
+call :syncmod "%MOD_EXPANSION_AI%" "%DST_EXPANSION_AI%"
+call :syncmod "%MOD_EXPANSION_BASEBUILDING%" "%DST_EXPANSION_BASEBUILDING%"
+call :syncmod "%MOD_TERJECORE%" "%DST_TERJECORE%"
+call :syncmod "%MOD_TERJEMEDICINE%" "%DST_TERJEMEDICINE%"
+call :syncmod "%MOD_TERJESKILLS%" "%DST_TERJESKILLS%"
+call :syncmod "%MOD_4KBOSSK%" "%DST_4KBOSSK%"
+REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
+REM Expansion mods must load after CF and DabsFramework, Core/AI/BaseBuilding before Licensed
+set "MODLINE=-mod=@CF;@DeerIsle;@VPPAdminTools;@Vehicle3PP;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI;@DayZ-Expansion-BaseBuilding;@DayZ-Expansion-Licensed;@TerjeCore;@TerjeMedicine;@TerjeSkills;@4KBOSSKVehicles"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
@@ -85,3 +125,5 @@ exit /b %ERRORLEVEL%
 :noexe
 echo [ERROR] Missing "%SERVEREXE%"
 exit /b 2
+
+
