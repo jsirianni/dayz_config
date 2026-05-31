@@ -23,7 +23,7 @@ set "MOD_EXPANSION_BASEBUILDING=2792982513"
 set "MOD_TERJECORE=3649957186"
 set "MOD_TERJEMEDICINE=3649957536"
 set "MOD_TERJESKILLS=3649958397"
-
+set "MOD_4KBOSSK=3369325490"
 REM ===== Server @mod folder names (NO SPACES, but dashes are allowed) =====
 set "DST_CF=@CF"
 set "DST_DEERISLE=@DeerIsle"
@@ -37,7 +37,7 @@ set "DST_EXPANSION_BASEBUILDING=@DayZ-Expansion-BaseBuilding"
 set "DST_TERJECORE=@TerjeCore"
 set "DST_TERJEMEDICINE=@TerjeMedicine"
 set "DST_TERJESKILLS=@TerjeSkills"
-
+set "DST_4KBOSSK=@4KBOSSKVehicles"
 REM ===== Prep =====
 if not exist "%INSTALL%"  mkdir "%INSTALL%"
 if not exist "%PROFILES%" mkdir "%PROFILES%"
@@ -63,6 +63,7 @@ REM ===== Update workshop mods =====
   +workshop_download_item 221100 %MOD_TERJECORE% validate ^
   +workshop_download_item 221100 %MOD_TERJEMEDICINE% validate ^
   +workshop_download_item 221100 %MOD_TERJESKILLS% validate ^
+  +workshop_download_item 221100 %MOD_4KBOSSK% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
@@ -79,10 +80,10 @@ call :syncmod "%MOD_EXPANSION_BASEBUILDING%" "%DST_EXPANSION_BASEBUILDING%"
 call :syncmod "%MOD_TERJECORE%" "%DST_TERJECORE%"
 call :syncmod "%MOD_TERJEMEDICINE%" "%DST_TERJEMEDICINE%"
 call :syncmod "%MOD_TERJESKILLS%" "%DST_TERJESKILLS%"
-
+call :syncmod "%MOD_4KBOSSK%" "%DST_4KBOSSK%"
 REM ===== Build -mod list (RELATIVE paths, CF FIRST, NO SPACES in names) =====
 REM Expansion mods must load after CF and DabsFramework, Core/AI/BaseBuilding before Licensed
-set "MODLINE=-mod=@CF;@DeerIsle;@VPPAdminTools;@Vehicle3PP;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI;@DayZ-Expansion-BaseBuilding;@DayZ-Expansion-Licensed;@TerjeCore;@TerjeMedicine;@TerjeSkills"
+set "MODLINE=-mod=@CF;@DeerIsle;@VPPAdminTools;@Vehicle3PP;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI;@DayZ-Expansion-BaseBuilding;@DayZ-Expansion-Licensed;@TerjeCore;@TerjeMedicine;@TerjeSkills;@4KBOSSKVehicles"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
@@ -124,3 +125,5 @@ exit /b %ERRORLEVEL%
 :noexe
 echo [ERROR] Missing "%SERVEREXE%"
 exit /b 2
+
+
