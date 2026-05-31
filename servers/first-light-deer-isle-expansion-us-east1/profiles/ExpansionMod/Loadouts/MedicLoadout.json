@@ -1,0 +1,1155 @@
+{
+    "ClassName":  "",
+    "Include":  "",
+    "Chance":  1,
+    "Quantity":  {
+                     "Min":  0,
+                     "Max":  0
+                 },
+    "Health":  [
+
+               ],
+    "InventoryAttachments":  [
+                                 {
+                                     "SlotName":  "Headgear",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "MedicalScrubsHat_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Mask",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "SurgicalMask",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Body",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "MedicalScrubsShirt_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Legs",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "MedicalScrubsPants_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Feet",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "NBCBootsWhite",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Gloves",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "SurgicalGloves_Blue",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Back",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "DuffelBagSmall_Medical",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Hips",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "HipPack_Medical",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+                                                                      {
+                                                                          "Min":  0.699999988079071,
+                                                                          "Max":  1,
+                                                                          "Zone":  ""
+                                                                      }
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 },
+                                 {
+                                     "SlotName":  "Melee",
+                                     "Items":  [
+                                                   {
+                                                       "ClassName":  "CombatKnife",
+                                                       "Include":  "",
+                                                       "Chance":  1,
+                                                       "Quantity":  {
+                                                                        "Min":  0,
+                                                                        "Max":  0
+                                                                    },
+                                                       "Health":  [
+
+                                                                  ],
+                                                       "InventoryAttachments":  [
+
+                                                                                ],
+                                                       "InventoryCargo":  [
+
+                                                                          ],
+                                                       "ConstructionPartsBuilt":  [
+
+                                                                                  ],
+                                                       "Sets":  [
+
+                                                                ]
+                                                   }
+                                               ]
+                                 }
+                             ],
+    "InventoryCargo":  [
+                           {
+                               "ClassName":  "BandageDressing",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "BandageDressing",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "BandageDressing",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeBandageHemostatic",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeBandageHemostatic",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSurgicalKit",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "StartKitIV",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "StartKitIV",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "BloodBagEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "BloodBagEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "SalineBagIV",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "SalineBagIV",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TetracyclineAntibiotics",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "Epinephrine",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "Epinephrine",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeExpressTestVirusZPack",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeExpressTestVirusZPack",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "DisinfectantAlcohol",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSalveCapsicum",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeAmpouleFlemoclav",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeAmpouleFlemoclav",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeInjectorZivirol",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeInjectorZivirol",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeInjectorAmoxiclav",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "Morphine",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "Morphine",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeAmpouleNovacaine",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeExpressTestSepsisPack",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "SurgicalGloves_Blue",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "SurgicalGloves_Blue",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSyringeEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSyringeEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSyringeEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "TerjeSyringeEmpty",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           },
+                           {
+                               "ClassName":  "SurgicalMask",
+                               "Include":  "",
+                               "Chance":  1,
+                               "Quantity":  {
+                                                "Min":  0,
+                                                "Max":  0
+                                            },
+                               "Health":  [
+
+                                          ],
+                               "InventoryAttachments":  [
+
+                                                        ],
+                               "InventoryCargo":  [
+
+                                                  ],
+                               "ConstructionPartsBuilt":  [
+
+                                                          ],
+                               "Sets":  [
+
+                                        ]
+                           }
+                       ],
+    "ConstructionPartsBuilt":  [
+
+                               ],
+    "Sets":  [
+
+             ]
+}

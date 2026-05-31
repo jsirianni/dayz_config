@@ -338,7 +338,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "WestLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 3,
             "NumberOfAIMax": 3,
@@ -708,7 +708,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "BanditLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1088,7 +1088,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "EastLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 2,
@@ -1295,7 +1295,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mosin9130",
             "Units": [],
             "NumberOfAI": 3,
             "NumberOfAIMax": 3,
@@ -1349,7 +1349,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_SKS",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1403,7 +1403,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1457,7 +1457,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18",
             "Units": [],
             "NumberOfAI": 5,
             "NumberOfAIMax": 5,
@@ -1605,7 +1605,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Ruger1022",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1659,7 +1659,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Repeater",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1713,7 +1713,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1767,7 +1767,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_MakarovIJ70",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1821,7 +1821,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mp133Shotgun",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1875,7 +1875,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18Shotgun",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -1983,7 +1983,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "BanditLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 2,
@@ -2253,7 +2253,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "WestLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 2,
@@ -2307,7 +2307,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mosin9130",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -2361,7 +2361,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_SKS",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -2415,7 +2415,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_CZ527",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -2469,7 +2469,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -2523,7 +2523,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "WestLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -2793,7 +2793,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "WestLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 2,
@@ -3063,7 +3063,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "WestLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 2,
             "NumberOfAIMax": 2,
@@ -3333,7 +3333,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3441,7 +3441,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Repeater",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3549,7 +3549,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Glock19",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3603,7 +3603,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3657,7 +3657,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_MakarovIJ70",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3765,7 +3765,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mp133Shotgun",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -3873,7 +3873,7 @@
             "Formation": "",
             "FormationScale": 1.5,
             "FormationLooseness": 0.0,
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Units": [],
             "NumberOfAI": 1,
             "NumberOfAIMax": 1,
@@ -4019,7 +4019,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mosin9130",
             "Waypoints": [
                 [
                     6379.13,
@@ -4073,7 +4073,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_SKS",
             "Waypoints": [
                 [
                     5755.22,
@@ -4181,7 +4181,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Brawlers",
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     5591.09,
@@ -4235,7 +4235,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_CZ527",
             "Waypoints": [
                 [
                     6310.99,
@@ -4289,7 +4289,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18",
             "Waypoints": [
                 [
                     5351.13,
@@ -4343,7 +4343,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Ruger1022",
             "Waypoints": [
                 [
                     5327.13,
@@ -4451,7 +4451,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     4415.27,
@@ -4667,7 +4667,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Glock19",
             "Waypoints": [
                 [
                     10246.4,
@@ -4721,7 +4721,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Guards",
-            "Loadout": "PoliceLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     10482.36,
@@ -4829,7 +4829,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_MakarovIJ70",
             "Waypoints": [
                 [
                     6538.95,
@@ -4883,7 +4883,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mp133Shotgun",
             "Waypoints": [
                 [
                     3559.4,
@@ -4937,7 +4937,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18Shotgun",
             "Waypoints": [
                 [
                     3395.42,
@@ -4991,7 +4991,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     3391.42,
@@ -5045,7 +5045,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_SKS",
             "Waypoints": [
                 [
                     6918.89,
@@ -5207,7 +5207,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_CZ527",
             "Waypoints": [
                 [
                     14148.88,
@@ -5261,7 +5261,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Guards",
-            "Loadout": "PoliceLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     4534.32,
@@ -5315,7 +5315,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18",
             "Waypoints": [
                 [
                     5414.19,
@@ -5531,7 +5531,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Guards",
-            "Loadout": "PoliceLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     4719.14,
@@ -5639,7 +5639,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Ruger1022",
             "Waypoints": [
                 [
                     4763.56,
@@ -5801,7 +5801,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Brawlers",
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     6951.81,
@@ -5855,7 +5855,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Repeater",
             "Waypoints": [
                 [
                     7098.79,
@@ -5909,7 +5909,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Glock19",
             "Waypoints": [
                 [
                     6714.85,
@@ -6071,7 +6071,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Brawlers",
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     6778.84,
@@ -6179,7 +6179,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_MakarovIJ70",
             "Waypoints": [
                 [
                     6992.8,
@@ -6233,7 +6233,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mp133Shotgun",
             "Waypoints": [
                 [
                     6694.85,
@@ -6341,7 +6341,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     5479.95,
@@ -6395,7 +6395,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Mosin9130",
             "Waypoints": [
                 [
                     5507.95,
@@ -6503,7 +6503,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_SKS",
             "Waypoints": [
                 [
                     3292.28,
@@ -6611,7 +6611,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Brawlers",
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     11137.81,
@@ -6773,7 +6773,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_CZ527",
             "Waypoints": [
                 [
                     10817.86,
@@ -6881,7 +6881,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Brawlers",
-            "Loadout": "FireFighterLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     12791.56,
@@ -6989,7 +6989,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Izh18",
             "Waypoints": [
                 [
                     14093.37,
@@ -7097,7 +7097,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Civilian",
-            "Loadout": "HumanLoadout",
+            "Loadout": "HumanLoadout_Ruger1022",
             "Waypoints": [
                 [
                     13934.79,
@@ -7151,7 +7151,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Guards",
-            "Loadout": "PoliceLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     15662.34,
@@ -7421,7 +7421,7 @@
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": 0,
             "Faction": "Guards",
-            "Loadout": "PoliceLoadout",
+            "Loadout": "MedicLoadout",
             "Waypoints": [
                 [
                     7189.34,
