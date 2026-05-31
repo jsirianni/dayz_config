@@ -57,9 +57,9 @@ For `HALT` patrols, the AI hold position unless combat or threat behavior causes
 | West | 21 | 45 | `WestLoadout` |
 | Raiders | 11 | 15 | `BanditLoadout` |
 | East | 4 | 8 | `EastLoadout` |
-| Mercenaries | 4 | 4 | `West` |
+| Mercenaries | 4 | 4 | `WestLoadout` |
 
-Note: The four Mercenary patrols reference `Loadout: "West"`, but there is no `profiles/ExpansionMod/Loadouts/West.json`. There is a `WestLoadout.json`. Unless Expansion has an internal fallback named `West`, these patrols likely have a missing or unintended loadout.
+Note: The four Mercenary patrols previously referenced `Loadout: "West"`, but no `profiles/ExpansionMod/Loadouts/West.json` exists. They now reference the existing `WestLoadout.json` equipment set.
 
 ### By Behavior
 
@@ -76,10 +76,9 @@ Note: The four Mercenary patrols reference `Loadout: "West"`, but there is no `p
 | `HumanLoadout` | 45 | 76 |
 | `PoliceLoadout` | 23 | 46 |
 | `FireFighterLoadout` | 22 | 39 |
-| `WestLoadout` | 21 | 45 |
+| `WestLoadout` | 25 | 49 |
 | `BanditLoadout` | 11 | 15 |
 | `EastLoadout` | 4 | 8 |
-| `West` | 4 | 4 |
 
 ## Main Spawn Areas
 
@@ -144,7 +143,7 @@ Expansion loadout JSON is a nested item tree. Clothing and gear are usually in `
 
 ### `WestLoadout`
 
-Used by West patrols.
+Used by West and Mercenary patrols.
 
 Gear theme:
 
@@ -299,7 +298,7 @@ Patrol-level values are mostly `-1`, which means they inherit the global AI sett
 
 ## Things To Watch
 
-- Fix or intentionally document the Mercenary `Loadout: "West"` mismatch.
+- Mercenary patrols now use `WestLoadout`; keep future patrol loadout names aligned with files in `profiles/ExpansionMod/Loadouts`.
 - Do not assume all 130 patrols are active at once. The `Patrol` category cap is 5.
 - Do not confuse `AILocationSettings.json` with direct spawn points. It names local roaming areas; actual patrol spawn points are in `AIPatrolSettings.json`.
 - `ROAMING_LOCAL` patrols with a single waypoint can still move widely inside the nearest local roaming area.

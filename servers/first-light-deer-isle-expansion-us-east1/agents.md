@@ -34,7 +34,7 @@ This repository contains a DayZ server configuration for Deer Isle with DayZ Exp
 - Most patrols are `ROAMING_LOCAL`.
 - A smaller number are fixed `LOOP` routes around oil rig/deepwater areas and Portland.
 - One East patrol is `HALT`.
-- The four Mercenary patrols reference `Loadout: "West"`, but no `profiles/ExpansionMod/Loadouts/West.json` file exists. There is a `WestLoadout.json`. Treat this as a likely misconfiguration unless the user says it is intentional.
+- The four Mercenary patrols use `Loadout: "WestLoadout"`. This resolves a previous `Loadout: "West"` reference that had no matching `West.json` file.
 
 ## Useful Validation Commands
 
