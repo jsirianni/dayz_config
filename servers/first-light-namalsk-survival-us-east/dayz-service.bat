@@ -47,13 +47,13 @@ if not exist "%PROFILES%" mkdir "%PROFILES%"
 if not exist "%KEYS%"     mkdir "%KEYS%"
 
 REM ===== Update DayZ server =====
-"%STEAMCMD%" +force_install_dir "%INSTALL%" +login "stealthowl1servers" +app_update 223350 validate +quit
+"%STEAMCMD%" +force_install_dir "%INSTALL%" +login "stealthowl3" +app_update 223350 validate +quit
 if errorlevel 1 goto :steamfail
 if not exist "%SERVEREXE%" goto :noexe
 
 REM ===== Update workshop mods =====
 "%STEAMCMD%" ^
-  +login "stealthowl1servers" ^
+  +login "stealthowl3" ^
   +workshop_download_item 221100 %MOD_CF% validate ^
   +workshop_download_item 221100 %MOD_VPP% validate ^
   +workshop_download_item 221100 %MOD_NAMALSK% validate ^
