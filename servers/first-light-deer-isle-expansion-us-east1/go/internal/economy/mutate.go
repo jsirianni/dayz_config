@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/fs"
 	"os"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
@@ -61,6 +62,11 @@ type UserLimitGroupOptions struct {
 	Members   []string
 	Member    string
 	Action    UserGroupAction
+}
+
+type UserLimitGroup struct {
+	Name    string
+	Members []string
 }
 
 type elementRange struct {
@@ -120,6 +126,45 @@ func UpdateTypesFile(path string, options TypeUpdateOptions) (FileMutation, erro
 		return FileMutation{}, err
 	}
 	return FileMutation{Data: updated, Mode: mode, Changed: changed}, nil
+}
+
+func ResolveTypesFileForType(economyCorePath string, typeName string) (string, error) {
+	if strings.TrimSpace(typeName) == "" {
+		return "", fmt.Errorf("type name is required")
+	}
+	core, err := cevalidate.ParseEconomyCoreFile(economyCorePath)
+	if err != nil {
+		return "", err
+	}
+	missionDir := filepath.Dir(filepath.Clean(economyCorePath))
+	typeFiles := []string{filepath.Join(missionDir, "db", "types.xml")}
+	for _, ref := range core.TypeFileRefs() {
+		typeFiles = append(typeFiles, filepath.Join(missionDir, ref.Folder, ref.Name))
+	}
+
+	var matches []string
+	for _, path := range typeFiles {
+		types, err := cevalidate.ParseTypesFile(path)
+		if err != nil {
+			return "", err
+		}
+		for _, entry := range types.Types {
+			if entry.Name == typeName {
+				matches = append(matches, path)
+				break
+			}
+		}
+	}
+
+	sort.Strings(matches)
+	switch len(matches) {
+	case 0:
+		return "", fmt.Errorf("type %q not found in %s", typeName, economyCorePath)
+	case 1:
+		return matches[0], nil
+	default:
+		return "", fmt.Errorf("type %q appears in %d files; provide --file", typeName, len(matches))
+	}
 }
 
 func UpdateTypesXML(data []byte, options TypeUpdateOptions) ([]byte, bool, error) {
@@ -256,6 +301,55 @@ func WriteFileMutation(path string, mutation FileMutation) error {
 		return nil
 	}
 	return os.WriteFile(path, mutation.Data, mutation.Mode)
+}
+
+func ListLimitNamesFile(path string, kind string) ([]string, error) {
+	limits, err := cevalidate.ParseLimitsDefinitionFile(path)
+	if err != nil {
+		return nil, err
+	}
+	switch kind {
+	case "category":
+		return sortedMapKeys(limits.Categories), nil
+	case "tag":
+		return sortedMapKeys(limits.Tags), nil
+	case "usage":
+		return sortedMapKeys(limits.Usages), nil
+	case "value":
+		return sortedMapKeys(limits.Values), nil
+	default:
+		return nil, fmt.Errorf("unsupported limits kind %q", kind)
+	}
+}
+
+func ListUserLimitGroupsFile(path string, kind string) ([]UserLimitGroup, error) {
+	spec, ok := userLimitSpecs[kind]
+	if !ok {
+		return nil, fmt.Errorf("unsupported user limits kind %q; only usage and value are supported", kind)
+	}
+	data, _, err := readMutableFile(path)
+	if err != nil {
+		return nil, err
+	}
+	if err := validateUserLimitsData(data); err != nil {
+		return nil, err
+	}
+	targetRange, err := findElementRange(data, spec.Section)
+	if err != nil {
+		return nil, err
+	}
+	groups, err := decodeUserGroups(data[targetRange.Start:targetRange.End], spec.Element)
+	if err != nil {
+		return nil, err
+	}
+	result := make([]UserLimitGroup, 0, len(groups))
+	for _, group := range groups {
+		result = append(result, UserLimitGroup{Name: group.Name, Members: append([]string(nil), group.Members...)})
+	}
+	sort.Slice(result, func(left, right int) bool {
+		return result[left].Name < result[right].Name
+	})
+	return result, nil
 }
 
 func readMutableFile(path string) ([]byte, fs.FileMode, error) {
@@ -933,4 +1027,13 @@ func findGroupIndex(groups []userGroup, groupName string) int {
 		}
 	}
 	return -1
+}
+
+func sortedMapKeys(values map[string]bool) []string {
+	keys := make([]string, 0, len(values))
+	for key := range values {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
 }

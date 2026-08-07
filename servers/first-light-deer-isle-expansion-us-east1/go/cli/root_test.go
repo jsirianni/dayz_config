@@ -7,6 +7,8 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+
+	"github.com/spf13/cobra"
 )
 
 func TestMainExitsOnFailure(t *testing.T) {
@@ -30,9 +32,11 @@ func TestRunWithoutCommandShowsRootHelp(t *testing.T) {
 	assertEqual(t, stderr.String(), "")
 	assertContains(t, stdout.String(), "Tools for DayZ server configuration")
 	assertContains(t, stdout.String(), "Available Commands:")
-	assertContains(t, stdout.String(), "economy")
-	assertContains(t, stdout.String(), "expansion")
-	assertContains(t, stdout.String(), "xml")
+	assertContains(t, stdout.String(), "create")
+	assertContains(t, stdout.String(), "delete")
+	assertContains(t, stdout.String(), "get")
+	assertContains(t, stdout.String(), "update")
+	assertContains(t, stdout.String(), "validate")
 }
 
 func TestRunReturnsUnknownCommandFailure(t *testing.T) {
@@ -50,7 +54,7 @@ func TestRunReturnsMissingValidateArgumentFailure(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"economy", "validate"}, &stdout, &stderr)
+	code := Run([]string{"validate", "economy"}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stdout.String(), "")
@@ -61,7 +65,7 @@ func TestRunReportsEconomyCoreParseFailure(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"economy", "validate", fixturePath(t, "mission", "mods", "valid_types.xml")}, &stdout, &stderr)
+	code := Run([]string{"validate", "economy", fixturePath(t, "mission", "mods", "valid_types.xml")}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stdout.String(), "")
@@ -72,7 +76,7 @@ func TestRunReportsEachTypesFile(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"economy", "validate", fixturePath(t, "mission", "cfgeconomycore.xml")}, &stdout, &stderr)
+	code := Run([]string{"validate", "economy", fixturePath(t, "mission", "cfgeconomycore.xml")}, &stdout, &stderr)
 
 	assertEqual(t, code, SuccessExitCode)
 	assertEqual(t, stderr.String(), "")
@@ -88,7 +92,7 @@ func TestRunReturnsFailureWhenAReferencedTypesFileFails(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"economy", "validate", fixturePath(t, "mission", "cfgeconomycore_bad_ref.xml")}, &stdout, &stderr)
+	code := Run([]string{"validate", "economy", fixturePath(t, "mission", "cfgeconomycore_bad_ref.xml")}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stderr.String(), "")
@@ -100,7 +104,7 @@ func TestRunReportsEachGenericXMLFile(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"xml", "validate", fixturePath(t, "xml", "valid")}, &stdout, &stderr)
+	code := Run([]string{"validate", "xml", fixturePath(t, "xml", "valid")}, &stdout, &stderr)
 
 	assertEqual(t, code, SuccessExitCode)
 	assertEqual(t, stderr.String(), "")
@@ -114,7 +118,7 @@ func TestRunXMLValidateReturnsFailureForInvalidXML(t *testing.T) {
 	var stderr bytes.Buffer
 	dir := mixedXMLDir(t)
 
-	code := Run([]string{"xml", "validate", dir}, &stdout, &stderr)
+	code := Run([]string{"validate", "xml", dir}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stderr.String(), "")
@@ -126,13 +130,32 @@ func TestNewRootCommandMetadata(t *testing.T) {
 	command := NewRootCommand(&bytes.Buffer{}, &bytes.Buffer{})
 
 	assertEqual(t, command.Use, "dzcli")
-	if len(command.Commands()) != 3 {
-		t.Fatalf("root command count = %d, want 3", len(command.Commands()))
+	if len(command.Commands()) != 5 {
+		t.Fatalf("root command count = %d, want 5", len(command.Commands()))
 	}
-	uses := []string{command.Commands()[0].Use, command.Commands()[1].Use, command.Commands()[2].Use}
-	assertContains(t, strings.Join(uses, ","), "economy")
-	assertContains(t, strings.Join(uses, ","), "expansion")
-	assertContains(t, strings.Join(uses, ","), "xml")
+	uses := commandUses(command.Commands())
+	assertContains(t, uses, "create")
+	assertContains(t, uses, "delete")
+	assertContains(t, uses, "get")
+	assertContains(t, uses, "update")
+	assertContains(t, uses, "validate")
+}
+
+func TestOldNounFirstCommandsFail(t *testing.T) {
+	for _, args := range [][]string{
+		{"economy", "types", "update"},
+		{"expansion", "ai", "validate"},
+		{"xml", "validate"},
+	} {
+		var stdout bytes.Buffer
+		var stderr bytes.Buffer
+
+		code := Run(args, &stdout, &stderr)
+
+		assertEqual(t, code, FailureExitCode)
+		assertEqual(t, stdout.String(), "")
+		assertContains(t, stderr.String(), "unknown command")
+	}
 }
 
 func fixturePath(t *testing.T, parts ...string) string {
@@ -187,4 +210,12 @@ func assertEqual[T comparable](t *testing.T, got T, want T) {
 	if got != want {
 		t.Fatalf("got %#v, want %#v", got, want)
 	}
+}
+
+func commandUses(commands []*cobra.Command) string {
+	uses := make([]string, 0, len(commands))
+	for _, command := range commands {
+		uses = append(uses, command.Use)
+	}
+	return strings.Join(uses, ",")
 }

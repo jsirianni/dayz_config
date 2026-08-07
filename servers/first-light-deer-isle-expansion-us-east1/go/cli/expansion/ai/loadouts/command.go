@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -15,6 +16,7 @@ import (
 
 var writeFileMutation = expansion.WriteFileMutation
 var deleteLoadoutFile = expansion.DeleteLoadoutFile
+var getwd = os.Getwd
 
 var prefabStringFlags = map[string]string{
 	"class-name": "ClassName",
@@ -25,82 +27,81 @@ var prefabFloatFlags = map[string]string{
 	"chance": "Chance",
 }
 
-func NewCommand(stdout io.Writer) *cobra.Command {
-	return NewCommandWithInput(os.Stdin, stdout)
-}
-
-func NewCommandWithInput(stdin io.Reader, stdout io.Writer) *cobra.Command {
-	command := &cobra.Command{
-		Use:   "loadouts",
-		Short: "Modify DayZ Expansion AI loadout files",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cmd.Help()
-		},
-	}
-	command.SetOut(stdout)
-	command.AddCommand(newCreateCommand(stdout))
-	command.AddCommand(newUpdateCommand(stdout))
-	command.AddCommand(newDeleteCommand(stdin, stdout))
-	command.AddCommand(newItemCommand(stdout))
-	return command
-}
-
-func newCreateCommand(stdout io.Writer) *cobra.Command {
+func NewCreateCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	command := &cobra.Command{
-		Use:   "create <loadout.json>",
+		Use:   "loadouts <name>",
 		Short: "Create a loadout file",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
+			targetFile, err := resolveNewLoadoutFile(args[0], file)
+			if err != nil {
+				return err
+			}
 			patch, err := prefabPatchFromCommand(cmd)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.CreateLoadoutFile(args[0], patch)
+			mutation, err := expansion.CreateLoadoutFile(targetFile, patch)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "loadouts", mutation, dryRun, stdout)
+			return outputMutation(targetFile, "loadouts", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addLoadoutFileFlags(command, &file, &dryRun)
 	addPrefabFieldFlags(command)
+	command.AddCommand(newItemAddCommand(stdout))
 	return command
 }
 
-func newUpdateCommand(stdout io.Writer) *cobra.Command {
+func NewUpdateCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	command := &cobra.Command{
-		Use:   "update <loadout.json>",
+		Use:   "loadouts <name>",
 		Short: "Modify the root object in a loadout file",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
+			targetFile, err := resolveLoadoutFile(args[0], file)
+			if err != nil {
+				return err
+			}
 			patch, err := prefabPatchFromCommand(cmd)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.UpdateLoadoutFile(args[0], patch)
+			mutation, err := expansion.UpdateLoadoutFile(targetFile, patch)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "loadouts", mutation, dryRun, stdout)
+			return outputMutation(targetFile, "loadouts", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addLoadoutFileFlags(command, &file, &dryRun)
 	addPrefabFieldFlags(command)
+	command.AddCommand(newItemUpdateCommand(stdout))
 	return command
 }
 
-func newDeleteCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
+func NewDeleteCommandWithInput(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	var dryRun bool
 	var force bool
+	var file string
 	var patrolsFile string
 	command := &cobra.Command{
-		Use:   "delete <loadout.json>",
+		Use:   "loadouts <name>",
 		Short: "Delete a loadout file",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			plan, err := expansion.PlanLoadoutDelete(args[0], patrolsFile)
+			targetFile, err := resolveLoadoutFile(args[0], file)
+			if err != nil {
+				return err
+			}
+			plan, err := expansion.PlanLoadoutDelete(targetFile, patrolsFile)
 			if err != nil {
 				return err
 			}
@@ -114,45 +115,34 @@ func newDeleteCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 					return err
 				}
 				if !confirmed {
-					fmt.Fprintf(stdout, "loadouts %s not deleted\n", args[0])
+					fmt.Fprintf(stdout, "loadouts %s not deleted\n", targetFile)
 					return nil
 				}
 			}
-			if err := deleteLoadoutFile(args[0]); err != nil {
+			if err := deleteLoadoutFile(targetFile); err != nil {
 				return err
 			}
-			fmt.Fprintf(stdout, "loadouts %s ok\n", args[0])
+			fmt.Fprintf(stdout, "loadouts %s ok\n", targetFile)
 			return nil
 		},
 	}
+	command.SetOut(stdout)
+	command.Flags().StringVar(&file, "file", "", "loadout JSON path")
 	command.Flags().BoolVar(&dryRun, "dry-run", false, "print planned delete without deleting")
 	command.Flags().BoolVar(&force, "force", false, "delete without prompting")
 	command.Flags().StringVar(&patrolsFile, "patrols-file", "", "AIPatrolSettings.json path for reference checks")
-	return command
-}
-
-func newItemCommand(stdout io.Writer) *cobra.Command {
-	command := &cobra.Command{
-		Use:   "item",
-		Short: "Modify nested loadout items",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cmd.Help()
-		},
-	}
-	command.SetOut(stdout)
-	command.AddCommand(newItemAddCommand(stdout))
-	command.AddCommand(newItemUpdateCommand(stdout))
 	command.AddCommand(newItemRemoveCommand(stdout))
 	return command
 }
 
 func newItemAddCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	var parent string
 	var container string
 	var slot string
 	command := &cobra.Command{
-		Use:   "add <loadout.json>",
+		Use:   "item <loadout-name>",
 		Short: "Add a nested loadout item",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -162,11 +152,15 @@ func newItemAddCommand(stdout io.Writer) *cobra.Command {
 			if container == "" {
 				return fmt.Errorf("--container is required")
 			}
+			targetFile, err := resolveLoadoutFile(args[0], file)
+			if err != nil {
+				return err
+			}
 			patch, err := prefabPatchFromCommand(cmd)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.AddLoadoutItemFile(args[0], expansion.LoadoutItemAddOptions{
+			mutation, err := expansion.AddLoadoutItemFile(targetFile, expansion.LoadoutItemAddOptions{
 				ParentPath: parent,
 				Container:  container,
 				Slot:       slot,
@@ -175,10 +169,11 @@ func newItemAddCommand(stdout io.Writer) *cobra.Command {
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "loadouts", mutation, dryRun, stdout)
+			return outputMutation(targetFile, "loadouts", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addLoadoutFileFlags(command, &file, &dryRun)
 	command.Flags().StringVar(&parent, "parent", "", "parent item path")
 	command.Flags().StringVar(&container, "container", "", "attachment, cargo, or set")
 	command.Flags().StringVar(&slot, "slot", "", "attachment slot name")
@@ -188,43 +183,60 @@ func newItemAddCommand(stdout io.Writer) *cobra.Command {
 
 func newItemUpdateCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	command := &cobra.Command{
-		Use:   "update <loadout.json> <path>",
+		Use:   "item <loadout-name> <path>",
 		Short: "Modify a nested loadout item",
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
+			targetFile, err := resolveLoadoutFile(args[0], file)
+			if err != nil {
+				return err
+			}
 			patch, err := prefabPatchFromCommand(cmd)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.UpdateLoadoutItemFile(args[0], args[1], patch)
+			mutation, err := expansion.UpdateLoadoutItemFile(targetFile, args[1], patch)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "loadouts", mutation, dryRun, stdout)
+			return outputMutation(targetFile, "loadouts", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addLoadoutFileFlags(command, &file, &dryRun)
 	addPrefabFieldFlags(command)
 	return command
 }
 
 func newItemRemoveCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	command := &cobra.Command{
-		Use:   "remove <loadout.json> <path>",
+		Use:   "item <loadout-name> <path>",
 		Short: "Remove a nested loadout item",
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			mutation, err := expansion.RemoveLoadoutItemFile(args[0], args[1])
+			targetFile, err := resolveLoadoutFile(args[0], file)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "loadouts", mutation, dryRun, stdout)
+			mutation, err := expansion.RemoveLoadoutItemFile(targetFile, args[1])
+			if err != nil {
+				return err
+			}
+			return outputMutation(targetFile, "loadouts", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addLoadoutFileFlags(command, &file, &dryRun)
 	return command
+}
+
+func addLoadoutFileFlags(command *cobra.Command, file *string, dryRun *bool) {
+	command.Flags().StringVar(file, "file", "", "loadout JSON path")
+	command.Flags().BoolVar(dryRun, "dry-run", false, "print modified JSON without writing")
 }
 
 func addPrefabFieldFlags(command *cobra.Command) {
@@ -291,6 +303,32 @@ func prefabPatchFromCommand(cmd *cobra.Command) (expansion.PrefabObjectPatch, er
 	patch.ConstructionParts.Remove, _ = flags.GetStringArray("remove-construction-part")
 	patch.ConstructionParts.Clear, _ = flags.GetBool("clear-construction-parts")
 	return patch, nil
+}
+
+func resolveNewLoadoutFile(name string, file string) (string, error) {
+	if file != "" {
+		return file, nil
+	}
+	wd, err := getwd()
+	if err != nil {
+		return "", err
+	}
+	dir, err := expansion.FindAILoadoutsDirNear(wd)
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(dir, expansion.NormalizeLoadoutName(name)+".json"), nil
+}
+
+func resolveLoadoutFile(name string, file string) (string, error) {
+	if file != "" {
+		return file, nil
+	}
+	wd, err := getwd()
+	if err != nil {
+		return "", err
+	}
+	return expansion.FindAILoadoutFileNear(name, wd)
 }
 
 func parseHealth(value string) (string, expansion.MinMax, error) {

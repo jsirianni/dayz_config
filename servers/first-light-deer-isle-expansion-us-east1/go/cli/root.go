@@ -6,10 +6,8 @@ import (
 	"io"
 	"os"
 
-	"dzcli/cli/economy"
-	"dzcli/cli/expansion"
 	"dzcli/cli/validation"
-	xmlcommand "dzcli/cli/xml"
+	"dzcli/cli/verbs"
 
 	"github.com/spf13/cobra"
 )
@@ -49,18 +47,21 @@ func NewRootCommand(stdout io.Writer, stderr io.Writer) *cobra.Command {
 
 func NewRootCommandWithInput(stdin io.Reader, stdout io.Writer, stderr io.Writer) *cobra.Command {
 	root := &cobra.Command{
-		Use:           "dzcli",
-		Short:         "Tools for DayZ server configuration",
-		SilenceUsage:  true,
-		SilenceErrors: true,
+		Use:               "dzcli",
+		Short:             "Tools for DayZ server configuration",
+		SilenceUsage:      true,
+		SilenceErrors:     true,
+		CompletionOptions: cobra.CompletionOptions{DisableDefaultCmd: true},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()
 		},
 	}
 	root.SetOut(stdout)
 	root.SetErr(stderr)
-	root.AddCommand(economy.NewCommand(stdout))
-	root.AddCommand(expansion.NewCommandWithInput(stdin, stdout))
-	root.AddCommand(xmlcommand.NewCommand(stdout))
+	root.AddCommand(verbs.NewGetCommand(stdout))
+	root.AddCommand(verbs.NewCreateCommand(stdout))
+	root.AddCommand(verbs.NewUpdateCommand(stdout))
+	root.AddCommand(verbs.NewDeleteCommand(stdin, stdout))
+	root.AddCommand(verbs.NewValidateCommand(stdout))
 	return root
 }

@@ -94,6 +94,89 @@ func TestDiscoverAIConfigFilesErrors(t *testing.T) {
 	}
 }
 
+func TestDiscoverAIConfigFilesNearAndNamedHelpers(t *testing.T) {
+	root := fixturePath(t, "expansionai", "valid")
+	files, err := DiscoverAIConfigFilesNear(filepath.Join(root, "profiles", "ExpansionMod", "Loadouts", "TestLoadout.json"))
+	if err != nil {
+		t.Fatalf("DiscoverAIConfigFilesNear returned error: %v", err)
+	}
+	if len(files) == 0 {
+		t.Fatal("DiscoverAIConfigFilesNear returned no files")
+	}
+
+	patrolsFile, err := FindAIPatrolsFileNear(root)
+	if err != nil {
+		t.Fatalf("FindAIPatrolsFileNear returned error: %v", err)
+	}
+	assertContains(t, patrolsFile, "AIPatrolSettings.json")
+
+	loadoutsDir, err := FindAILoadoutsDirNear(filepath.Join(root, "profiles", "ExpansionMod", "Loadouts", "NewLoadout.json"))
+	if err != nil {
+		t.Fatalf("FindAILoadoutsDirNear returned error: %v", err)
+	}
+	assertContains(t, loadoutsDir, filepath.Join("profiles", "ExpansionMod", "Loadouts"))
+
+	loadoutFile, err := FindAILoadoutFileNear("TestLoadout.json", root)
+	if err != nil {
+		t.Fatalf("FindAILoadoutFileNear returned error: %v", err)
+	}
+	assertEqual(t, LoadoutName(loadoutFile), "TestLoadout")
+	assertEqual(t, NormalizeLoadoutName("TestLoadout.json"), "TestLoadout")
+	assertEqual(t, NormalizeLoadoutName("TestLoadout"), "TestLoadout")
+	assertEqual(t, CountPrefabItems(PrefabObject{Chance: 1, InventoryCargo: []PrefabObject{{Chance: 1}}}), 2)
+}
+
+func TestDiscoverAIConfigFilesNearErrors(t *testing.T) {
+	if _, err := DiscoverAIConfigFilesNear(t.TempDir()); err == nil {
+		t.Fatal("DiscoverAIConfigFilesNear missing err = nil")
+	}
+	if _, err := FindAILoadoutsDirNear(t.TempDir()); err == nil {
+		t.Fatal("FindAILoadoutsDirNear missing err = nil")
+	}
+	if _, err := FindAIPatrolsFileNear(t.TempDir()); err == nil {
+		t.Fatal("FindAIPatrolsFileNear discovery err = nil")
+	}
+	if _, err := FindAILoadoutFileNear("Missing", t.TempDir()); err == nil {
+		t.Fatal("FindAILoadoutFileNear discovery err = nil")
+	}
+
+	root := t.TempDir()
+	writeTestFile(t, filepath.Join(root, "profiles", "ExpansionMod", "Loadouts", "Only.json"), `{}`)
+	if _, err := FindAIPatrolsFileNear(root); err == nil {
+		t.Fatal("FindAIPatrolsFileNear missing err = nil")
+	}
+	if _, err := FindAILoadoutFileNear("Missing", root); err == nil {
+		t.Fatal("FindAILoadoutFileNear missing err = nil")
+	}
+
+	writeTestFile(t, filepath.Join(root, "first", "expansion", "settings", "AIPatrolSettings.json"), `{}`)
+	writeTestFile(t, filepath.Join(root, "second", "expansion", "settings", "AIPatrolSettings.json"), `{}`)
+	if _, err := FindAIPatrolsFileNear(root); err == nil {
+		t.Fatal("FindAIPatrolsFileNear ambiguous err = nil")
+	}
+}
+
+func TestDiscoverySmallHelpers(t *testing.T) {
+	dir := t.TempDir()
+	file := writeTestFile(t, filepath.Join(dir, "file.json"), `{}`)
+	assertEqual(t, nearestExistingDir(file), dir)
+	assertEqual(t, nearestExistingDir(filepath.Join(dir, "missing.json")), dir)
+	assertEqual(t, nearestExistingDir(filepath.Join(dir, "missing")), filepath.Join(dir, "missing"))
+
+	path, err := requireSinglePath([]string{"b", "a"}, "resource", "--file")
+	if err == nil || path != "" {
+		t.Fatal("requireSinglePath many should return ambiguity")
+	}
+	path, err = requireSinglePath([]string{"only"}, "resource", "--file")
+	if err != nil || path != "only" {
+		t.Fatalf("requireSinglePath one = %q, %v", path, err)
+	}
+	_, err = requireSinglePath(nil, "resource", "--file")
+	if err == nil {
+		t.Fatal("requireSinglePath none err = nil")
+	}
+}
+
 func TestInspectAIPathReturnsDiscoveryError(t *testing.T) {
 	_, err := InspectAIPath(filepath.Join(t.TempDir(), "missing"))
 

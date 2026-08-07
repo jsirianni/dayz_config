@@ -349,6 +349,105 @@ func DiscoverAIConfigFiles(path string) ([]AIFile, error) {
 	return files, nil
 }
 
+func DiscoverAIConfigFilesNear(start string) ([]AIFile, error) {
+	dir := nearestExistingDir(start)
+	for {
+		files, err := DiscoverAIConfigFiles(dir)
+		if err == nil {
+			return files, nil
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			return nil, fmt.Errorf("no Expansion AI config files found near %s", filepath.Clean(start))
+		}
+		dir = parent
+	}
+}
+
+func FindAIPatrolsFileNear(start string) (string, error) {
+	files, err := DiscoverAIConfigFilesNear(start)
+	if err != nil {
+		return "", err
+	}
+	var matches []string
+	for _, file := range files {
+		if file.Kind == KindAIPatrols {
+			matches = append(matches, file.Path)
+		}
+	}
+	return requireSinglePath(matches, "AIPatrolSettings.json", "--file")
+}
+
+func FindAILoadoutsDirNear(start string) (string, error) {
+	dir := nearestExistingDir(start)
+	for {
+		candidate := filepath.Join(dir, "profiles", "ExpansionMod", "Loadouts")
+		info, err := stat(candidate)
+		if err == nil && info.IsDir() {
+			return candidate, nil
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			return "", fmt.Errorf("no Expansion AI loadouts directory found near %s; provide --file", filepath.Clean(start))
+		}
+		dir = parent
+	}
+}
+
+func FindAILoadoutFileNear(name string, start string) (string, error) {
+	targetName := NormalizeLoadoutName(name)
+	files, err := DiscoverAIConfigFilesNear(start)
+	if err != nil {
+		return "", err
+	}
+	var matches []string
+	for _, file := range files {
+		if file.Kind == KindAILoadout && LoadoutName(file.Path) == targetName {
+			matches = append(matches, file.Path)
+		}
+	}
+	return requireSinglePath(matches, "loadout "+targetName, "--file")
+}
+
+func LoadoutName(path string) string {
+	return loadoutName(path)
+}
+
+func NormalizeLoadoutName(name string) string {
+	trimmed := strings.TrimSpace(name)
+	if strings.EqualFold(filepath.Ext(trimmed), ".json") {
+		return strings.TrimSuffix(trimmed, filepath.Ext(trimmed))
+	}
+	return trimmed
+}
+
+func nearestExistingDir(start string) string {
+	clean := filepath.Clean(start)
+	info, err := stat(clean)
+	if err == nil {
+		if info.IsDir() {
+			return clean
+		}
+		return filepath.Dir(clean)
+	}
+	if filepath.Ext(clean) != "" {
+		return filepath.Dir(clean)
+	}
+	return clean
+}
+
+func requireSinglePath(matches []string, resource string, flag string) (string, error) {
+	sort.Strings(matches)
+	switch len(matches) {
+	case 0:
+		return "", fmt.Errorf("%s not found; provide %s", resource, flag)
+	case 1:
+		return matches[0], nil
+	default:
+		return "", fmt.Errorf("%s is ambiguous (%d matches); provide %s", resource, len(matches), flag)
+	}
+}
+
 func addMissionSettings(found map[string]string, root string) {
 	settingsPath := filepath.Join(root, "expansion", "settings")
 	addIfExists(found, filepath.Join(settingsPath, "AILocationSettings.json"), KindAILocations)
@@ -457,6 +556,10 @@ func ParseLoadoutFile(path string) (PrefabObject, error) {
 func ParseLootDropFile(path string) ([]PrefabObject, error) {
 	var lootDrop []PrefabObject
 	return lootDrop, parseJSONFile(path, &lootDrop)
+}
+
+func CountPrefabItems(object PrefabObject) int {
+	return countPrefabItems(object)
 }
 
 func parseJSONFile(path string, target any) error {

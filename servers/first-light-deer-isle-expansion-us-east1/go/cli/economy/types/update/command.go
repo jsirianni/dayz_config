@@ -30,18 +30,24 @@ func NewCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
 	var occurrence int
 	var rename string
+	var file string
+	var economyCore string
 	scalarValues := map[string]*int{}
 
 	command := &cobra.Command{
-		Use:   "update <types.xml> <type-name>",
+		Use:   "types <type-name>",
 		Short: "Modify a type entry in a types XML file",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			options, err := updateOptionsFromCommand(cmd, args[1], occurrence, rename, scalarValues)
+			targetFile, err := resolveTypesFile(file, economyCore, args[0])
 			if err != nil {
 				return err
 			}
-			mutation, err := economy.UpdateTypesFile(args[0], options)
+			options, err := updateOptionsFromCommand(cmd, args[0], occurrence, rename, scalarValues)
+			if err != nil {
+				return err
+			}
+			mutation, err := economy.UpdateTypesFile(targetFile, options)
 			if err != nil {
 				return err
 			}
@@ -49,15 +55,18 @@ func NewCommand(stdout io.Writer) *cobra.Command {
 				_, err := stdout.Write(mutation.Data)
 				return err
 			}
-			if err := writeFileMutation(args[0], mutation); err != nil {
+			if err := writeFileMutation(targetFile, mutation); err != nil {
 				return err
 			}
-			fmt.Fprintf(stdout, "types %s ok\n", args[0])
+			fmt.Fprintf(stdout, "types %s ok\n", targetFile)
 			return nil
 		},
 	}
 
+	command.SetOut(stdout)
 	flags := command.Flags()
+	flags.StringVar(&file, "file", "", "types.xml path")
+	flags.StringVar(&economyCore, "cfgeconomycore", "", "cfgeconomycore.xml path used to discover the unique types file containing the type")
 	flags.BoolVar(&dryRun, "dry-run", false, "print modified XML without writing")
 	flags.IntVar(&occurrence, "occurrence", 0, "select a duplicate type occurrence")
 	flags.StringVar(&rename, "rename", "", "rename the type")
@@ -76,6 +85,19 @@ func NewCommand(stdout io.Writer) *cobra.Command {
 		flags.Bool("clear-"+collection.Plural, false, "remove all "+collection.Field+" references")
 	}
 	return command
+}
+
+func resolveTypesFile(file string, economyCore string, typeName string) (string, error) {
+	if file != "" && economyCore != "" {
+		return "", fmt.Errorf("use --file or --cfgeconomycore, not both")
+	}
+	if file != "" {
+		return file, nil
+	}
+	if economyCore != "" {
+		return economy.ResolveTypesFileForType(economyCore, typeName)
+	}
+	return "", fmt.Errorf("--file or --cfgeconomycore is required")
 }
 
 func updateOptionsFromCommand(cmd *cobra.Command, typeName string, occurrence int, rename string, scalarValues map[string]*int) (economy.TypeUpdateOptions, error) {

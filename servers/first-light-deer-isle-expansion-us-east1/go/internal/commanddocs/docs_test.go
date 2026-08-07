@@ -36,7 +36,7 @@ func TestRunGeneratesDocsWithConfiguredOutput(t *testing.T) {
 		t.Fatalf("Run returned error: %v", err)
 	}
 	assertContains(t, stdout.String(), filepath.Join(outputDir, "commands.md"))
-	assertContains(t, readFile(t, filepath.Join(outputDir, "commands.md")), "dzcli economy types update")
+	assertContains(t, readFile(t, filepath.Join(outputDir, "commands.md")), "dzcli update economy types")
 }
 
 func TestRunRejectsInvalidArgs(t *testing.T) {

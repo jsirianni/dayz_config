@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -14,7 +15,7 @@ import (
 func TestNewCommandMetadata(t *testing.T) {
 	command := NewCommand(&bytes.Buffer{})
 
-	if command.Use != "update <types.xml> <type-name>" {
+	if command.Use != "types <type-name>" {
 		t.Fatalf("Use = %q, want update usage", command.Use)
 	}
 	if command.Short == "" {
@@ -27,8 +28,8 @@ func TestNewCommandDryRunPrintsModifiedXML(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewCommand(&stdout)
 	command.SetArgs([]string{
-		path,
 		"ACOGOptic",
+		"--file", path,
 		"--dry-run",
 		"--rename", "ACOGOpticFixed",
 		"--occurrence", "1",
@@ -72,7 +73,7 @@ func TestNewCommandWritesInPlace(t *testing.T) {
 	path := writeTypesFile(t, `<types><type name="Apple"><nominal>1</nominal></type></types>`)
 	var stdout bytes.Buffer
 	command := NewCommand(&stdout)
-	command.SetArgs([]string{path, "Apple", "--nominal", "2"})
+	command.SetArgs([]string{"Apple", "--file", path, "--nominal", "2"})
 
 	err := command.Execute()
 
@@ -85,7 +86,7 @@ func TestNewCommandWritesInPlace(t *testing.T) {
 
 func TestNewCommandReturnsOptionError(t *testing.T) {
 	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{writeTypesFile(t, `<types><type name="Apple" /></types>`), "Apple", "--flag", "broken"})
+	command.SetArgs([]string{"Apple", "--file", writeTypesFile(t, `<types><type name="Apple" /></types>`), "--flag", "broken"})
 
 	err := command.Execute()
 
@@ -97,7 +98,7 @@ func TestNewCommandReturnsOptionError(t *testing.T) {
 
 func TestNewCommandReturnsMutationError(t *testing.T) {
 	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{filepath.Join(t.TempDir(), "missing.xml"), "Apple"})
+	command.SetArgs([]string{"Apple", "--file", filepath.Join(t.TempDir(), "missing.xml")})
 
 	err := command.Execute()
 
@@ -116,7 +117,7 @@ func TestNewCommandReturnsWriteError(t *testing.T) {
 	defer func() { writeFileMutation = original }()
 
 	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{path, "Apple", "--nominal", "2"})
+	command.SetArgs([]string{"Apple", "--file", path, "--nominal", "2"})
 
 	err := command.Execute()
 
@@ -130,6 +131,35 @@ func TestSplitFlagExpressionRejectsMissingValue(t *testing.T) {
 	_, _, err := splitFlagExpression("count_in_map=")
 	if err == nil {
 		t.Fatal("err = nil, want missing value error")
+	}
+}
+
+func TestNewCommandDiscoversTypesFileFromEconomyCore(t *testing.T) {
+	var stdout bytes.Buffer
+	command := NewCommand(&stdout)
+	command.SetArgs([]string{"ModdedItem", "--cfgeconomycore", fixturePath(t, "mission", "cfgeconomycore.xml"), "--nominal", "2", "--dry-run"})
+
+	err := command.Execute()
+
+	if err != nil {
+		t.Fatalf("Execute returned error: %v", err)
+	}
+	assertContains(t, stdout.String(), `<type name="ModdedItem">`)
+	assertContains(t, stdout.String(), `<nominal>2</nominal>`)
+}
+
+func TestResolveTypesFileErrors(t *testing.T) {
+	if _, err := resolveTypesFile("types.xml", "cfgeconomycore.xml", "Apple"); err == nil {
+		t.Fatal("resolveTypesFile both flags err = nil")
+	}
+	if _, err := resolveTypesFile("", "", "Apple"); err == nil {
+		t.Fatal("resolveTypesFile missing flags err = nil")
+	}
+
+	command := NewCommand(&bytes.Buffer{})
+	command.SetArgs([]string{"Apple"})
+	if err := command.Execute(); err == nil {
+		t.Fatal("command missing file err = nil")
 	}
 }
 
@@ -156,4 +186,14 @@ func assertContains(t *testing.T, haystack string, needle string) {
 	if !strings.Contains(haystack, needle) {
 		t.Fatalf("%q does not contain %q", haystack, needle)
 	}
+}
+
+func fixturePath(t *testing.T, parts ...string) string {
+	t.Helper()
+	_, file, _, ok := runtime.Caller(0)
+	if !ok {
+		t.Fatal("runtime.Caller failed")
+	}
+	args := append([]string{filepath.Dir(file), "..", "..", "..", "..", "testdata"}, parts...)
+	return filepath.Clean(filepath.Join(args...))
 }

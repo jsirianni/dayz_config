@@ -11,7 +11,7 @@ func TestMainFunctionSuccessPath(t *testing.T) {
 	originalArgs := os.Args
 	t.Cleanup(func() { os.Args = originalArgs })
 
-	os.Args = []string{"dzcli", "economy", "validate", fixturePath(t, "mission", "cfgeconomycore.xml")}
+	os.Args = []string{"dzcli", "validate", "economy", fixturePath(t, "mission", "cfgeconomycore.xml")}
 	main()
 }
 

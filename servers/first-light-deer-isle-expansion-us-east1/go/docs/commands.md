@@ -16,55 +16,60 @@ dzcli
 
 | Command | Description |
 | --- | --- |
-| `economy` | Inspect DayZ central economy configuration |
-| `expansion` | Inspect DayZ Expansion mod configuration |
-| `xml` | Inspect XML files |
+| `create` | Create DayZ configuration resources |
+| `delete` | Delete DayZ configuration resources |
+| `get` | List DayZ configuration resources |
+| `update` | Update DayZ configuration resources |
+| `validate` | Validate DayZ configuration files |
 
-## dzcli economy
+## dzcli create
 
-Inspect DayZ central economy configuration
+Create DayZ configuration resources
 
 ### Usage
 
 ```text
-dzcli economy
+dzcli create
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `limits` | Modify DayZ central economy limits definition files |
-| `types` | Modify DayZ types XML files |
-| `validate` | Validate cfgeconomycore.xml and referenced types files |
+| `economy` | Modify DayZ central economy resources |
+| `expansion` | Modify DayZ Expansion mod resources |
 
-## dzcli economy limits
+## dzcli create economy
 
-Modify DayZ central economy limits definition files
+Modify DayZ central economy resources
 
 ### Usage
 
 ```text
-dzcli economy limits
+dzcli create economy
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `add` | add a base limits definition |
-| `group` | Modify user limits groups |
-| `remove` | remove a base limits definition |
+| `limits` | create a base limits definition |
 
-## dzcli economy limits add
+## dzcli create economy limits
 
-add a base limits definition
+create a base limits definition
 
 ### Usage
 
 ```text
-dzcli economy limits add <category|tag|usage|value> <name> [flags]
+dzcli create economy limits <category|tag|usage|value> <name> [flags]
 ```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `group` | create a user limits group |
 
 ### Flags
 
@@ -73,33 +78,21 @@ dzcli economy limits add <category|tag|usage|value> <name> [flags]
 | `--dry-run` | `false` | print modified XML without writing |
 | `--file` | `` | cfglimitsdefinition.xml path |
 
-## dzcli economy limits group
+## dzcli create economy limits group
 
-Modify user limits groups
+create a user limits group
 
 ### Usage
 
 ```text
-dzcli economy limits group
+dzcli create economy limits group <usage|value> <group-name> [flags]
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `add` | Add a user limits group |
-| `member` | Modify user limits group members |
-| `remove` | Remove a user limits group |
-
-## dzcli economy limits group add
-
-Add a user limits group
-
-### Usage
-
-```text
-dzcli economy limits group add <usage|value> <group-name> [flags]
-```
+| `member` | create a user limits group member |
 
 ### Flags
 
@@ -109,83 +102,240 @@ dzcli economy limits group add <usage|value> <group-name> [flags]
 | `--file` | `` | cfglimitsdefinitionuser.xml path |
 | `--member` | `[]` | group member name |
 
-## dzcli economy limits group member
+## dzcli create economy limits group member
 
-Modify user limits group members
+create a user limits group member
 
 ### Usage
 
 ```text
-dzcli economy limits group member
+dzcli create economy limits group member <usage|value> <group-name> <member-name> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified XML without writing |
+| `--file` | `` | cfglimitsdefinitionuser.xml path |
+
+## dzcli create expansion
+
+Modify DayZ Expansion mod resources
+
+### Usage
+
+```text
+dzcli create expansion
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `add` | add a user limits group member |
-| `remove` | remove a user limits group member |
+| `ai` | Modify DayZ Expansion AI resources |
 
-## dzcli economy limits group member add
+## dzcli create expansion ai
 
-add a user limits group member
+Modify DayZ Expansion AI resources
 
 ### Usage
 
 ```text
-dzcli economy limits group member add <usage|value> <group-name> <member-name> [flags]
+dzcli create expansion ai
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `loadouts` | Create a loadout file |
+| `patrols` | Append a patrol definition |
+
+## dzcli create expansion ai loadouts
+
+Create a loadout file
+
+### Usage
+
+```text
+dzcli create expansion ai loadouts <name> [flags]
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `item` | Add a nested loadout item |
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | loadout JSON path |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+
+## dzcli create expansion ai loadouts item
+
+Add a nested loadout item
+
+### Usage
+
+```text
+dzcli create expansion ai loadouts item <loadout-name> [flags]
 ```
 
 ### Flags
 
 | Flag | Default | Description |
 | --- | --- | --- |
-| `--dry-run` | `false` | print modified XML without writing |
-| `--file` | `` | cfglimitsdefinitionuser.xml path |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--container` | `` | attachment, cargo, or set |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | loadout JSON path |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--parent` | `` | parent item path |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+| `--slot` | `` | attachment slot name |
 
-## dzcli economy limits group member remove
+## dzcli create expansion ai patrols
 
-remove a user limits group member
+Append a patrol definition
 
 ### Usage
 
 ```text
-dzcli economy limits group member remove <usage|value> <group-name> <member-name> [flags]
+dzcli create expansion ai patrols <name> [flags]
 ```
 
 ### Flags
 
 | Flag | Default | Description |
 | --- | --- | --- |
-| `--dry-run` | `false` | print modified XML without writing |
-| `--file` | `` | cfglimitsdefinitionuser.xml path |
+| `--accuracy-max` | `0` | set accuracy-max |
+| `--accuracy-min` | `0` | set accuracy-min |
+| `--add-unit` | `[]` | add a unit class name |
+| `--add-waypoint` | `[]` | append waypoint x,y,z |
+| `--behaviour` | `` | set behaviour |
+| `--can-be-looted` | `0` | set can-be-looted as 0 or 1 |
+| `--can-be-triggered-by-ai` | `0` | set can-be-triggered-by-ai as 0 or 1 |
+| `--can-spawn-in-contaminated-area` | `0` | set can-spawn-in-contaminated-area as 0 or 1 |
+| `--chance` | `0` | set chance |
+| `--clear-units` | `false` | remove all units |
+| `--clear-waypoints` | `false` | remove all waypoints |
+| `--damage-multiplier` | `0` | set damage-multiplier |
+| `--damage-received-multiplier` | `0` | set damage-received-multiplier |
+| `--default-look-angle` | `0` | set default-look-angle |
+| `--default-stance` | `` | set default-stance |
+| `--despawn-radius` | `0` | set despawn-radius |
+| `--despawn-time` | `0` | set despawn-time |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--enable-flanking-outside-combat` | `0` | set enable-flanking-outside-combat as -1, 0, or 1 |
+| `--faction` | `` | set faction |
+| `--file` | `` | AIPatrolSettings.json path |
+| `--formation` | `` | set formation |
+| `--formation-looseness` | `0` | set formation-looseness |
+| `--formation-scale` | `0` | set formation-scale |
+| `--headshot-resistance` | `0` | set headshot-resistance |
+| `--load-balancing-category` | `` | set load-balancing-category |
+| `--loadout` | `` | set loadout |
+| `--loot-drop-on-death` | `` | set loot-drop-on-death |
+| `--looting-behaviour` | `` | set looting-behaviour |
+| `--max-dist-radius` | `0` | set max-dist-radius |
+| `--max-flanking-distance` | `0` | set max-flanking-distance |
+| `--max-spread-radius` | `0` | set max-spread-radius |
+| `--min-dist-radius` | `0` | set min-dist-radius |
+| `--min-spread-radius` | `0` | set min-spread-radius |
+| `--noise-investigation-distance-limit` | `0` | set noise-investigation-distance-limit |
+| `--number-of-ai` | `0` | set number-of-ai |
+| `--number-of-ai-max` | `0` | set number-of-ai-max |
+| `--object-class-name` | `` | set object-class-name |
+| `--persist` | `0` | set persist as 0 or 1 |
+| `--remove-unit` | `[]` | remove a unit class name |
+| `--remove-waypoint` | `[]` | remove 1-based waypoint index |
+| `--respawn-time` | `0` | set respawn-time |
+| `--set-unit` | `[]` | replace Units with this class name |
+| `--set-waypoint` | `[]` | update waypoint as n=x,y,z |
+| `--shoryuken-chance` | `0` | set shoryuken-chance |
+| `--shoryuken-damage-multiplier` | `0` | set shoryuken-damage-multiplier |
+| `--sniper-prone-distance-threshold` | `0` | set sniper-prone-distance-threshold |
+| `--speed` | `` | set speed |
+| `--threat-distance-limit` | `0` | set threat-distance-limit |
+| `--under-threat-speed` | `` | set under-threat-speed |
+| `--unlimited-reload` | `0` | set unlimited-reload |
+| `--use-random-waypoint-as-start-point` | `0` | set use-random-waypoint-as-start-point as 0 or 1 |
+| `--waypoint` | `[]` | replace Waypoints with x,y,z |
+| `--waypoint-interpolation` | `` | set waypoint-interpolation |
 
-## dzcli economy limits group remove
+## dzcli delete
 
-Remove a user limits group
+Delete DayZ configuration resources
 
 ### Usage
 
 ```text
-dzcli economy limits group remove <usage|value> <group-name> [flags]
+dzcli delete
 ```
 
-### Flags
+### Commands
 
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--dry-run` | `false` | print modified XML without writing |
-| `--file` | `` | cfglimitsdefinitionuser.xml path |
+| Command | Description |
+| --- | --- |
+| `economy` | Modify DayZ central economy resources |
+| `expansion` | Modify DayZ Expansion mod resources |
 
-## dzcli economy limits remove
+## dzcli delete economy
 
-remove a base limits definition
+Modify DayZ central economy resources
 
 ### Usage
 
 ```text
-dzcli economy limits remove <category|tag|usage|value> <name> [flags]
+dzcli delete economy
 ```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `limits` | delete a base limits definition |
+
+## dzcli delete economy limits
+
+delete a base limits definition
+
+### Usage
+
+```text
+dzcli delete economy limits <category|tag|usage|value> <name> [flags]
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `group` | delete a user limits group |
 
 ### Flags
 
@@ -194,30 +344,336 @@ dzcli economy limits remove <category|tag|usage|value> <name> [flags]
 | `--dry-run` | `false` | print modified XML without writing |
 | `--file` | `` | cfglimitsdefinition.xml path |
 
-## dzcli economy types
+## dzcli delete economy limits group
 
-Modify DayZ types XML files
+delete a user limits group
 
 ### Usage
 
 ```text
-dzcli economy types
+dzcli delete economy limits group <usage|value> <group-name> [flags]
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `update` | Modify a type entry in a types XML file |
+| `member` | delete a user limits group member |
 
-## dzcli economy types update
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified XML without writing |
+| `--file` | `` | cfglimitsdefinitionuser.xml path |
+
+## dzcli delete economy limits group member
+
+delete a user limits group member
+
+### Usage
+
+```text
+dzcli delete economy limits group member <usage|value> <group-name> <member-name> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified XML without writing |
+| `--file` | `` | cfglimitsdefinitionuser.xml path |
+
+## dzcli delete expansion
+
+Modify DayZ Expansion mod resources
+
+### Usage
+
+```text
+dzcli delete expansion
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `ai` | Modify DayZ Expansion AI resources |
+
+## dzcli delete expansion ai
+
+Modify DayZ Expansion AI resources
+
+### Usage
+
+```text
+dzcli delete expansion ai
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `loadouts` | Delete a loadout file |
+| `patrols` | Remove a patrol definition |
+
+## dzcli delete expansion ai loadouts
+
+Delete a loadout file
+
+### Usage
+
+```text
+dzcli delete expansion ai loadouts <name> [flags]
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `item` | Remove a nested loadout item |
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print planned delete without deleting |
+| `--file` | `` | loadout JSON path |
+| `--force` | `false` | delete without prompting |
+| `--patrols-file` | `` | AIPatrolSettings.json path for reference checks |
+
+## dzcli delete expansion ai loadouts item
+
+Remove a nested loadout item
+
+### Usage
+
+```text
+dzcli delete expansion ai loadouts item <loadout-name> <path> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | loadout JSON path |
+
+## dzcli delete expansion ai patrols
+
+Remove a patrol definition
+
+### Usage
+
+```text
+dzcli delete expansion ai patrols [name] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | AIPatrolSettings.json path |
+| `--index` | `0` | select a 1-based patrol index |
+| `--occurrence` | `0` | select a duplicate patrol name occurrence |
+
+## dzcli get
+
+List DayZ configuration resources
+
+### Usage
+
+```text
+dzcli get
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `economy` | List DayZ central economy resources |
+| `expansion` | List DayZ Expansion mod resources |
+
+## dzcli get economy
+
+List DayZ central economy resources
+
+### Usage
+
+```text
+dzcli get economy
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `limits` | List base limits definitions |
+| `types` | List type entries |
+
+## dzcli get economy limits
+
+List base limits definitions
+
+### Usage
+
+```text
+dzcli get economy limits <category|tag|usage|value> [name] [flags]
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `group` | List user limits groups |
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | cfglimitsdefinition.xml path |
+
+## dzcli get economy limits group
+
+List user limits groups
+
+### Usage
+
+```text
+dzcli get economy limits group <usage|value> [name] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | cfglimitsdefinitionuser.xml path |
+
+## dzcli get economy types
+
+List type entries
+
+### Usage
+
+```text
+dzcli get economy types [name] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--cfgeconomycore` | `` | cfgeconomycore.xml path |
+| `--file` | `` | types.xml path |
+
+## dzcli get expansion
+
+List DayZ Expansion mod resources
+
+### Usage
+
+```text
+dzcli get expansion
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `ai` | Modify DayZ Expansion AI resources |
+
+## dzcli get expansion ai
+
+Modify DayZ Expansion AI resources
+
+### Usage
+
+```text
+dzcli get expansion ai
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `loadouts` | List DayZ Expansion AI loadouts |
+| `patrols` | List DayZ Expansion AI patrols |
+
+## dzcli get expansion ai loadouts
+
+List DayZ Expansion AI loadouts
+
+### Usage
+
+```text
+dzcli get expansion ai loadouts [name] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | loadout JSON path |
+| `--path` | `` | repo or server root path |
+
+## dzcli get expansion ai patrols
+
+List DayZ Expansion AI patrols
+
+### Usage
+
+```text
+dzcli get expansion ai patrols [name] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | AIPatrolSettings.json path |
+
+## dzcli update
+
+Update DayZ configuration resources
+
+### Usage
+
+```text
+dzcli update
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `economy` | Modify DayZ central economy resources |
+| `expansion` | Modify DayZ Expansion mod resources |
+
+## dzcli update economy
+
+Modify DayZ central economy resources
+
+### Usage
+
+```text
+dzcli update economy
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `types` | Modify a type entry in a types XML file |
+
+## dzcli update economy types
 
 Modify a type entry in a types XML file
 
 ### Usage
 
 ```text
-dzcli economy types update <types.xml> <type-name> [flags]
+dzcli update economy types <type-name> [flags]
 ```
 
 ### Flags
@@ -228,12 +684,14 @@ dzcli economy types update <types.xml> <type-name> [flags]
 | `--add-tag` | `[]` | add a tag reference |
 | `--add-usage` | `[]` | add a usage reference |
 | `--add-value` | `[]` | add a value reference |
+| `--cfgeconomycore` | `` | cfgeconomycore.xml path used to discover the unique types file containing the type |
 | `--clear-categories` | `false` | remove all category references |
 | `--clear-tags` | `false` | remove all tag references |
 | `--clear-usages` | `false` | remove all usage references |
 | `--clear-values` | `false` | remove all value references |
 | `--cost` | `0` | set cost |
 | `--dry-run` | `false` | print modified XML without writing |
+| `--file` | `` | types.xml path |
 | `--flag` | `[]` | set a flags attribute as name=0\|1 |
 | `--lifetime` | `0` | set lifetime |
 | `--min` | `0` | set min |
@@ -254,222 +712,82 @@ dzcli economy types update <types.xml> <type-name> [flags]
 | `--set-usage` | `[]` | replace usage references |
 | `--set-value` | `[]` | replace value references |
 
-## dzcli economy validate
+## dzcli update expansion
 
-Validate cfgeconomycore.xml and referenced types files
-
-### Usage
-
-```text
-dzcli economy validate <cfgeconomycore.xml>
-```
-
-## dzcli expansion
-
-Inspect DayZ Expansion mod configuration
+Modify DayZ Expansion mod resources
 
 ### Usage
 
 ```text
-dzcli expansion
+dzcli update expansion
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `ai` | Inspect DayZ Expansion AI configuration |
+| `ai` | Modify DayZ Expansion AI resources |
 
-## dzcli expansion ai
+## dzcli update expansion ai
 
-Inspect DayZ Expansion AI configuration
-
-Inspect, validate, and mutate DayZ Expansion AI configuration.
-
-Commands accept explicit file paths and work the same from a git repo checkout
-or a live server directory. Nearby path discovery is only used for optional
-reference validation when enough context exists.
+Modify DayZ Expansion AI resources
 
 ### Usage
 
 ```text
-dzcli expansion ai
+dzcli update expansion ai
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `loadouts` | Modify DayZ Expansion AI loadout files |
-| `patrols` | Modify DayZ Expansion AI patrol definitions |
-| `validate` | Validate DayZ Expansion AI patrol and loadout files |
+| `loadouts` | Modify the root object in a loadout file |
+| `patrols` | Modify a patrol definition |
 
-## dzcli expansion ai loadouts
-
-Modify DayZ Expansion AI loadout files
-
-### Usage
-
-```text
-dzcli expansion ai loadouts
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `create` | Create a loadout file |
-| `delete` | Delete a loadout file |
-| `item` | Modify nested loadout items |
-| `update` | Modify the root object in a loadout file |
-
-## dzcli expansion ai loadouts create
-
-Create a loadout file
-
-### Usage
-
-```text
-dzcli expansion ai loadouts create <loadout.json> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--add-construction-part` | `[]` | add a construction part |
-| `--chance` | `0` | set chance |
-| `--class-name` | `` | set class-name |
-| `--clear-construction-parts` | `false` | remove all construction parts |
-| `--clear-health` | `false` | remove all health entries |
-| `--dry-run` | `false` | print modified JSON without writing |
-| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
-| `--include` | `` | set include |
-| `--quantity-max` | `0` | set Quantity.Max |
-| `--quantity-min` | `0` | set Quantity.Min |
-| `--remove-construction-part` | `[]` | remove a construction part |
-| `--remove-health` | `[]` | remove health by zone |
-| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
-
-## dzcli expansion ai loadouts delete
-
-Delete a loadout file
-
-### Usage
-
-```text
-dzcli expansion ai loadouts delete <loadout.json> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--dry-run` | `false` | print planned delete without deleting |
-| `--force` | `false` | delete without prompting |
-| `--patrols-file` | `` | AIPatrolSettings.json path for reference checks |
-
-## dzcli expansion ai loadouts item
-
-Modify nested loadout items
-
-### Usage
-
-```text
-dzcli expansion ai loadouts item
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `add` | Add a nested loadout item |
-| `remove` | Remove a nested loadout item |
-| `update` | Modify a nested loadout item |
-
-## dzcli expansion ai loadouts item add
-
-Add a nested loadout item
-
-### Usage
-
-```text
-dzcli expansion ai loadouts item add <loadout.json> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--add-construction-part` | `[]` | add a construction part |
-| `--chance` | `0` | set chance |
-| `--class-name` | `` | set class-name |
-| `--clear-construction-parts` | `false` | remove all construction parts |
-| `--clear-health` | `false` | remove all health entries |
-| `--container` | `` | attachment, cargo, or set |
-| `--dry-run` | `false` | print modified JSON without writing |
-| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
-| `--include` | `` | set include |
-| `--parent` | `` | parent item path |
-| `--quantity-max` | `0` | set Quantity.Max |
-| `--quantity-min` | `0` | set Quantity.Min |
-| `--remove-construction-part` | `[]` | remove a construction part |
-| `--remove-health` | `[]` | remove health by zone |
-| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
-| `--slot` | `` | attachment slot name |
-
-## dzcli expansion ai loadouts item remove
-
-Remove a nested loadout item
-
-### Usage
-
-```text
-dzcli expansion ai loadouts item remove <loadout.json> <path> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--dry-run` | `false` | print modified JSON without writing |
-
-## dzcli expansion ai loadouts item update
-
-Modify a nested loadout item
-
-### Usage
-
-```text
-dzcli expansion ai loadouts item update <loadout.json> <path> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--add-construction-part` | `[]` | add a construction part |
-| `--chance` | `0` | set chance |
-| `--class-name` | `` | set class-name |
-| `--clear-construction-parts` | `false` | remove all construction parts |
-| `--clear-health` | `false` | remove all health entries |
-| `--dry-run` | `false` | print modified JSON without writing |
-| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
-| `--include` | `` | set include |
-| `--quantity-max` | `0` | set Quantity.Max |
-| `--quantity-min` | `0` | set Quantity.Min |
-| `--remove-construction-part` | `[]` | remove a construction part |
-| `--remove-health` | `[]` | remove health by zone |
-| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
-
-## dzcli expansion ai loadouts update
+## dzcli update expansion ai loadouts
 
 Modify the root object in a loadout file
 
 ### Usage
 
 ```text
-dzcli expansion ai loadouts update <loadout.json> [flags]
+dzcli update expansion ai loadouts <name> [flags]
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `item` | Modify a nested loadout item |
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | loadout JSON path |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+
+## dzcli update expansion ai loadouts item
+
+Modify a nested loadout item
+
+### Usage
+
+```text
+dzcli update expansion ai loadouts item <loadout-name> <path> [flags]
 ```
 
 ### Flags
@@ -482,6 +800,7 @@ dzcli expansion ai loadouts update <loadout.json> [flags]
 | `--clear-construction-parts` | `false` | remove all construction parts |
 | `--clear-health` | `false` | remove all health entries |
 | `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | loadout JSON path |
 | `--health` | `[]` | set health as zone=min,max; use =min,max for global |
 | `--include` | `` | set include |
 | `--quantity-max` | `0` | set Quantity.Max |
@@ -490,120 +809,14 @@ dzcli expansion ai loadouts update <loadout.json> [flags]
 | `--remove-health` | `[]` | remove health by zone |
 | `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
 
-## dzcli expansion ai patrols
-
-Modify DayZ Expansion AI patrol definitions
-
-### Usage
-
-```text
-dzcli expansion ai patrols
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `create` | Append a patrol definition |
-| `delete` | Remove a patrol definition |
-| `update` | Modify a patrol definition |
-
-## dzcli expansion ai patrols create
-
-Append a patrol definition
-
-### Usage
-
-```text
-dzcli expansion ai patrols create <AIPatrolSettings.json> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--accuracy-max` | `0` | set accuracy-max |
-| `--accuracy-min` | `0` | set accuracy-min |
-| `--add-unit` | `[]` | add a unit class name |
-| `--add-waypoint` | `[]` | append waypoint x,y,z |
-| `--behaviour` | `` | set behaviour |
-| `--can-be-looted` | `0` | set can-be-looted as 0 or 1 |
-| `--can-be-triggered-by-ai` | `0` | set can-be-triggered-by-ai as 0 or 1 |
-| `--can-spawn-in-contaminated-area` | `0` | set can-spawn-in-contaminated-area as 0 or 1 |
-| `--chance` | `0` | set chance |
-| `--clear-units` | `false` | remove all units |
-| `--clear-waypoints` | `false` | remove all waypoints |
-| `--damage-multiplier` | `0` | set damage-multiplier |
-| `--damage-received-multiplier` | `0` | set damage-received-multiplier |
-| `--default-look-angle` | `0` | set default-look-angle |
-| `--default-stance` | `` | set default-stance |
-| `--despawn-radius` | `0` | set despawn-radius |
-| `--despawn-time` | `0` | set despawn-time |
-| `--dry-run` | `false` | print modified JSON without writing |
-| `--enable-flanking-outside-combat` | `0` | set enable-flanking-outside-combat as -1, 0, or 1 |
-| `--faction` | `` | set faction |
-| `--formation` | `` | set formation |
-| `--formation-looseness` | `0` | set formation-looseness |
-| `--formation-scale` | `0` | set formation-scale |
-| `--headshot-resistance` | `0` | set headshot-resistance |
-| `--load-balancing-category` | `` | set load-balancing-category |
-| `--loadout` | `` | set loadout |
-| `--loot-drop-on-death` | `` | set loot-drop-on-death |
-| `--looting-behaviour` | `` | set looting-behaviour |
-| `--max-dist-radius` | `0` | set max-dist-radius |
-| `--max-flanking-distance` | `0` | set max-flanking-distance |
-| `--max-spread-radius` | `0` | set max-spread-radius |
-| `--min-dist-radius` | `0` | set min-dist-radius |
-| `--min-spread-radius` | `0` | set min-spread-radius |
-| `--name` | `` | set patrol name |
-| `--noise-investigation-distance-limit` | `0` | set noise-investigation-distance-limit |
-| `--number-of-ai` | `0` | set number-of-ai |
-| `--number-of-ai-max` | `0` | set number-of-ai-max |
-| `--object-class-name` | `` | set object-class-name |
-| `--persist` | `0` | set persist as 0 or 1 |
-| `--remove-unit` | `[]` | remove a unit class name |
-| `--remove-waypoint` | `[]` | remove 1-based waypoint index |
-| `--respawn-time` | `0` | set respawn-time |
-| `--set-unit` | `[]` | replace Units with this class name |
-| `--set-waypoint` | `[]` | update waypoint as n=x,y,z |
-| `--shoryuken-chance` | `0` | set shoryuken-chance |
-| `--shoryuken-damage-multiplier` | `0` | set shoryuken-damage-multiplier |
-| `--sniper-prone-distance-threshold` | `0` | set sniper-prone-distance-threshold |
-| `--speed` | `` | set speed |
-| `--threat-distance-limit` | `0` | set threat-distance-limit |
-| `--under-threat-speed` | `` | set under-threat-speed |
-| `--unlimited-reload` | `0` | set unlimited-reload |
-| `--use-random-waypoint-as-start-point` | `0` | set use-random-waypoint-as-start-point as 0 or 1 |
-| `--waypoint` | `[]` | replace Waypoints with x,y,z |
-| `--waypoint-interpolation` | `` | set waypoint-interpolation |
-
-## dzcli expansion ai patrols delete
-
-Remove a patrol definition
-
-### Usage
-
-```text
-dzcli expansion ai patrols delete <AIPatrolSettings.json> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--dry-run` | `false` | print modified JSON without writing |
-| `--index` | `0` | select a 1-based patrol index |
-| `--name` | `` | select a patrol by name |
-| `--occurrence` | `0` | select a duplicate patrol name occurrence |
-
-## dzcli expansion ai patrols update
+## dzcli update expansion ai patrols
 
 Modify a patrol definition
 
 ### Usage
 
 ```text
-dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
+dzcli update expansion ai patrols [name] [flags]
 ```
 
 ### Flags
@@ -630,6 +843,7 @@ dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
 | `--dry-run` | `false` | print modified JSON without writing |
 | `--enable-flanking-outside-combat` | `0` | set enable-flanking-outside-combat as -1, 0, or 1 |
 | `--faction` | `` | set faction |
+| `--file` | `` | AIPatrolSettings.json path |
 | `--formation` | `` | set formation |
 | `--formation-looseness` | `0` | set formation-looseness |
 | `--formation-scale` | `0` | set formation-scale |
@@ -644,7 +858,6 @@ dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
 | `--max-spread-radius` | `0` | set max-spread-radius |
 | `--min-dist-radius` | `0` | set min-dist-radius |
 | `--min-spread-radius` | `0` | set min-spread-radius |
-| `--name` | `` | select a patrol by name |
 | `--noise-investigation-distance-limit` | `0` | set noise-investigation-distance-limit |
 | `--number-of-ai` | `0` | set number-of-ai |
 | `--number-of-ai-max` | `0` | set number-of-ai-max |
@@ -654,7 +867,7 @@ dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
 | `--remove-unit` | `[]` | remove a unit class name |
 | `--remove-waypoint` | `[]` | remove 1-based waypoint index |
 | `--respawn-time` | `0` | set respawn-time |
-| `--set-name` | `` | set patrol name |
+| `--set-name` | `` | set set-name |
 | `--set-unit` | `[]` | replace Units with this class name |
 | `--set-waypoint` | `[]` | update waypoint as n=x,y,z |
 | `--shoryuken-chance` | `0` | set shoryuken-chance |
@@ -668,39 +881,67 @@ dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
 | `--waypoint` | `[]` | replace Waypoints with x,y,z |
 | `--waypoint-interpolation` | `` | set waypoint-interpolation |
 
-## dzcli expansion ai validate
+## dzcli validate
 
-Validate DayZ Expansion AI patrol and loadout files
-
-### Usage
-
-```text
-dzcli expansion ai validate [path]
-```
-
-## dzcli xml
-
-Inspect XML files
+Validate DayZ configuration files
 
 ### Usage
 
 ```text
-dzcli xml
+dzcli validate
 ```
 
 ### Commands
 
 | Command | Description |
 | --- | --- |
-| `validate` | Validate XML files recursively |
+| `economy` | Validate cfgeconomycore.xml and referenced types files |
+| `expansion` | Validate DayZ Expansion mod configuration |
+| `xml` | Validate XML files recursively |
 
-## dzcli xml validate
+## dzcli validate economy
+
+Validate cfgeconomycore.xml and referenced types files
+
+### Usage
+
+```text
+dzcli validate economy <cfgeconomycore.xml>
+```
+
+## dzcli validate expansion
+
+Validate DayZ Expansion mod configuration
+
+### Usage
+
+```text
+dzcli validate expansion
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `ai` | Validate DayZ Expansion AI patrol and loadout files |
+
+## dzcli validate expansion ai
+
+Validate DayZ Expansion AI patrol and loadout files
+
+### Usage
+
+```text
+dzcli validate expansion ai [path]
+```
+
+## dzcli validate xml
 
 Validate XML files recursively
 
 ### Usage
 
 ```text
-dzcli xml validate [path]
+dzcli validate xml [path]
 ```
 

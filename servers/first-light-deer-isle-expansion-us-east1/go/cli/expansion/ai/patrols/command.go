@@ -3,6 +3,7 @@ package patrols
 import (
 	"fmt"
 	"io"
+	"os"
 	"strconv"
 	"strings"
 
@@ -12,6 +13,7 @@ import (
 )
 
 var writeFileMutation = expansion.WriteFileMutation
+var getwd = os.Getwd
 
 var patrolStringFlags = map[string]string{
 	"set-name":                "Name",
@@ -72,105 +74,117 @@ var patrolInheritBoolFlags = map[string]string{
 	"enable-flanking-outside-combat": "EnableFlankingOutsideCombat",
 }
 
-func NewCommand(stdout io.Writer) *cobra.Command {
-	command := &cobra.Command{
-		Use:   "patrols",
-		Short: "Modify DayZ Expansion AI patrol definitions",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cmd.Help()
-		},
-	}
-	command.SetOut(stdout)
-	command.AddCommand(newCreateCommand(stdout))
-	command.AddCommand(newUpdateCommand(stdout))
-	command.AddCommand(newDeleteCommand(stdout))
-	return command
-}
-
-func newCreateCommand(stdout io.Writer) *cobra.Command {
+func NewCreateCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	command := &cobra.Command{
-		Use:   "create <AIPatrolSettings.json>",
+		Use:   "patrols <name>",
 		Short: "Append a patrol definition",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			patch, err := patrolPatchFromCommand(cmd, "name")
+			targetFile, err := resolvePatrolsFile(file)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.CreatePatrolFile(args[0], patch)
+			patch, err := patrolPatchFromCommand(cmd)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "patrols", mutation, dryRun, stdout)
+			patch.Strings["Name"] = args[0]
+			mutation, err := expansion.CreatePatrolFile(targetFile, patch)
+			if err != nil {
+				return err
+			}
+			return outputMutation(targetFile, "patrols", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
-	addPatrolFieldFlags(command, "name")
+	command.SetOut(stdout)
+	addCommonFlags(command, &file, &dryRun)
+	addPatrolFieldFlags(command, false)
 	return command
 }
 
-func newUpdateCommand(stdout io.Writer) *cobra.Command {
+func NewUpdateCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	var index int
-	var name string
 	var occurrence int
 	command := &cobra.Command{
-		Use:   "update <AIPatrolSettings.json>",
+		Use:   "patrols [name]",
 		Short: "Modify a patrol definition",
-		Args:  cobra.ExactArgs(1),
+		Args:  cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			patch, err := patrolPatchFromCommand(cmd, "set-name")
+			targetFile, err := resolvePatrolsFile(file)
 			if err != nil {
 				return err
 			}
-			mutation, err := expansion.UpdatePatrolFile(args[0], expansion.PatrolUpdateOptions{
-				Selector: expansion.PatrolSelector{Index: index, Name: name, Occurrence: occurrence},
+			patch, err := patrolPatchFromCommand(cmd)
+			if err != nil {
+				return err
+			}
+			selector := expansion.PatrolSelector{Index: index, Occurrence: occurrence}
+			if len(args) == 1 {
+				selector.Name = args[0]
+			}
+			mutation, err := expansion.UpdatePatrolFile(targetFile, expansion.PatrolUpdateOptions{
+				Selector: selector,
 				Patch:    patch,
 			})
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "patrols", mutation, dryRun, stdout)
+			return outputMutation(targetFile, "patrols", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addCommonFlags(command, &file, &dryRun)
 	command.Flags().IntVar(&index, "index", 0, "select a 1-based patrol index")
-	command.Flags().StringVar(&name, "name", "", "select a patrol by name")
 	command.Flags().IntVar(&occurrence, "occurrence", 0, "select a duplicate patrol name occurrence")
-	addPatrolFieldFlags(command, "set-name")
+	addPatrolFieldFlags(command, true)
 	return command
 }
 
-func newDeleteCommand(stdout io.Writer) *cobra.Command {
+func NewDeleteCommand(stdout io.Writer) *cobra.Command {
 	var dryRun bool
+	var file string
 	var index int
-	var name string
 	var occurrence int
 	command := &cobra.Command{
-		Use:   "delete <AIPatrolSettings.json>",
+		Use:   "patrols [name]",
 		Short: "Remove a patrol definition",
-		Args:  cobra.ExactArgs(1),
+		Args:  cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			mutation, err := expansion.DeletePatrolFile(args[0], expansion.PatrolSelector{Index: index, Name: name, Occurrence: occurrence})
+			targetFile, err := resolvePatrolsFile(file)
 			if err != nil {
 				return err
 			}
-			return outputMutation(args[0], "patrols", mutation, dryRun, stdout)
+			selector := expansion.PatrolSelector{Index: index, Occurrence: occurrence}
+			if len(args) == 1 {
+				selector.Name = args[0]
+			}
+			mutation, err := expansion.DeletePatrolFile(targetFile, selector)
+			if err != nil {
+				return err
+			}
+			return outputMutation(targetFile, "patrols", mutation, dryRun, stdout)
 		},
 	}
-	command.Flags().BoolVar(&dryRun, "dry-run", false, "print modified JSON without writing")
+	command.SetOut(stdout)
+	addCommonFlags(command, &file, &dryRun)
 	command.Flags().IntVar(&index, "index", 0, "select a 1-based patrol index")
-	command.Flags().StringVar(&name, "name", "", "select a patrol by name")
 	command.Flags().IntVar(&occurrence, "occurrence", 0, "select a duplicate patrol name occurrence")
 	return command
 }
 
-func addPatrolFieldFlags(command *cobra.Command, nameFlag string) {
+func addCommonFlags(command *cobra.Command, file *string, dryRun *bool) {
+	command.Flags().StringVar(file, "file", "", "AIPatrolSettings.json path")
+	command.Flags().BoolVar(dryRun, "dry-run", false, "print modified JSON without writing")
+}
+
+func addPatrolFieldFlags(command *cobra.Command, includeRename bool) {
 	flags := command.Flags()
-	flags.String(nameFlag, "", "set patrol name")
 	for flag := range patrolStringFlags {
-		if flag != "set-name" {
+		if flag != "set-name" || includeRename {
 			flags.String(flag, "", "set "+flag)
 		}
 	}
@@ -197,7 +211,7 @@ func addPatrolFieldFlags(command *cobra.Command, nameFlag string) {
 	flags.Bool("clear-waypoints", false, "remove all waypoints")
 }
 
-func patrolPatchFromCommand(cmd *cobra.Command, nameFlag string) (expansion.PatrolPatch, error) {
+func patrolPatchFromCommand(cmd *cobra.Command) (expansion.PatrolPatch, error) {
 	flags := cmd.Flags()
 	patch := expansion.PatrolPatch{
 		Strings:         map[string]string{},
@@ -206,10 +220,6 @@ func patrolPatchFromCommand(cmd *cobra.Command, nameFlag string) (expansion.Patr
 		BoolInts:        map[string]int{},
 		InheritBools:    map[string]int{},
 		UpdateWaypoints: map[int]expansion.Vector{},
-	}
-	if flags.Changed(nameFlag) {
-		value, _ := flags.GetString(nameFlag)
-		patch.Strings["Name"] = value
 	}
 	for flag, field := range patrolStringFlags {
 		if flags.Changed(flag) {
@@ -271,6 +281,17 @@ func patrolPatchFromCommand(cmd *cobra.Command, nameFlag string) (expansion.Patr
 	patch.RemoveWaypoints, _ = flags.GetIntSlice("remove-waypoint")
 	patch.ClearWaypoints, _ = flags.GetBool("clear-waypoints")
 	return patch, nil
+}
+
+func resolvePatrolsFile(file string) (string, error) {
+	if file != "" {
+		return file, nil
+	}
+	wd, err := getwd()
+	if err != nil {
+		return "", err
+	}
+	return expansion.FindAIPatrolsFileNear(wd)
 }
 
 func parseVectorsFlag(values []string) ([]expansion.Vector, error) {

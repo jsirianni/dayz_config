@@ -17,37 +17,44 @@ import (
 
 func TestNewCommandMetadataAndHelp(t *testing.T) {
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
+	command := NewCreateCommand(&stdout)
 
-	if command.Use != "loadouts" {
+	if command.Use != "loadouts <name>" {
 		t.Fatalf("Use = %q, want loadouts", command.Use)
 	}
-	if len(command.Commands()) != 4 {
-		t.Fatalf("subcommand count = %d, want 4", len(command.Commands()))
+	if len(command.Commands()) != 1 {
+		t.Fatalf("subcommand count = %d, want 1", len(command.Commands()))
 	}
-	if err := command.RunE(command, nil); err != nil {
-		t.Fatalf("RunE returned error: %v", err)
+	if err := command.Help(); err != nil {
+		t.Fatalf("Help returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "create")
+	assertContains(t, stdout.String(), "--file")
 	assertContains(t, stdout.String(), "item")
 
 	var itemOut bytes.Buffer
 	itemCommand := findCommand(t, command, "item")
 	itemCommand.SetOut(&itemOut)
-	if err := itemCommand.RunE(itemCommand, nil); err != nil {
-		t.Fatalf("item RunE returned error: %v", err)
+	if err := itemCommand.Help(); err != nil {
+		t.Fatalf("item Help returned error: %v", err)
 	}
-	assertContains(t, itemOut.String(), "add")
-	assertContains(t, itemOut.String(), "remove")
+	assertContains(t, itemOut.String(), "--parent")
+
+	if NewUpdateCommand(&bytes.Buffer{}).Use != "loadouts <name>" {
+		t.Fatal("update command use changed")
+	}
+	if NewDeleteCommandWithInput(strings.NewReader(""), &bytes.Buffer{}).Use != "loadouts <name>" {
+		t.Fatal("delete command use changed")
+	}
 }
 
 func TestCreateUpdateItemAndDeleteCommands(t *testing.T) {
 	loadoutPath := copyLoadoutFixture(t, "TestLoadout.json")
 
 	var createOut bytes.Buffer
-	create := NewCommand(&createOut)
+	create := NewCreateCommand(&createOut)
 	create.SetArgs([]string{
-		"create", filepath.Join(t.TempDir(), "NewLoadout.json"),
+		"NewLoadout",
+		"--file", filepath.Join(t.TempDir(), "NewLoadout.json"),
 		"--dry-run",
 		"--class-name", "SurvivorM_Mirek",
 		"--chance", "1",
@@ -65,32 +72,32 @@ func TestCreateUpdateItemAndDeleteCommands(t *testing.T) {
 	assertContains(t, createOut.String(), `"PartB"`)
 
 	var updateOut bytes.Buffer
-	update := NewCommand(&updateOut)
-	update.SetArgs([]string{"update", loadoutPath, "--include", "", "--clear-health", "--clear-construction-parts", "--add-construction-part", "PartC"})
+	update := NewUpdateCommand(&updateOut)
+	update.SetArgs([]string{"TestLoadout", "--file", loadoutPath, "--include", "", "--clear-health", "--clear-construction-parts", "--add-construction-part", "PartC"})
 	if err := update.Execute(); err != nil {
 		t.Fatalf("update Execute returned error: %v", err)
 	}
 	assertContains(t, updateOut.String(), "loadouts "+loadoutPath+" ok")
 
 	var addOut bytes.Buffer
-	add := NewCommand(&addOut)
-	add.SetArgs([]string{"item", "add", loadoutPath, "--parent", "root", "--container", "cargo", "--class-name", "Apple"})
+	add := NewCreateCommand(&addOut)
+	add.SetArgs([]string{"item", "TestLoadout", "--file", loadoutPath, "--parent", "root", "--container", "cargo", "--class-name", "Apple"})
 	if err := add.Execute(); err != nil {
 		t.Fatalf("item add Execute returned error: %v", err)
 	}
 	assertContains(t, addOut.String(), "ok")
 
 	var itemUpdateOut bytes.Buffer
-	itemUpdate := NewCommand(&itemUpdateOut)
-	itemUpdate.SetArgs([]string{"item", "update", loadoutPath, "root/cargo:1", "--class-name", "Pear", "--dry-run"})
+	itemUpdate := NewUpdateCommand(&itemUpdateOut)
+	itemUpdate.SetArgs([]string{"item", "TestLoadout", "root/cargo:1", "--file", loadoutPath, "--class-name", "Pear", "--dry-run"})
 	if err := itemUpdate.Execute(); err != nil {
 		t.Fatalf("item update Execute returned error: %v", err)
 	}
 	assertContains(t, itemUpdateOut.String(), `"ClassName": "Pear"`)
 
 	var removeOut bytes.Buffer
-	remove := NewCommand(&removeOut)
-	remove.SetArgs([]string{"item", "remove", loadoutPath, "root/cargo:1"})
+	remove := NewDeleteCommandWithInput(strings.NewReader(""), &removeOut)
+	remove.SetArgs([]string{"item", "TestLoadout", "root/cargo:1", "--file", loadoutPath})
 	if err := remove.Execute(); err != nil {
 		t.Fatalf("item remove Execute returned error: %v", err)
 	}
@@ -98,8 +105,8 @@ func TestCreateUpdateItemAndDeleteCommands(t *testing.T) {
 
 	forcePath := copyLoadoutFixture(t, "IncludedLoadout.json")
 	var forceOut bytes.Buffer
-	forceDelete := NewCommand(&forceOut)
-	forceDelete.SetArgs([]string{"delete", forcePath, "--force"})
+	forceDelete := NewDeleteCommandWithInput(strings.NewReader(""), &forceOut)
+	forceDelete.SetArgs([]string{"IncludedLoadout", "--file", forcePath, "--force"})
 	if err := forceDelete.Execute(); err != nil {
 		t.Fatalf("force delete Execute returned error: %v", err)
 	}
@@ -114,8 +121,8 @@ func TestDeleteDryRunAndPrompts(t *testing.T) {
 	patrolsPath := fixturePath(t, "expansionai", "valid", "empty.deerisle", "expansion", "settings", "AIPatrolSettings.json")
 
 	var dryRunOut bytes.Buffer
-	dryRun := NewCommandWithInput(strings.NewReader(""), &dryRunOut)
-	dryRun.SetArgs([]string{"delete", loadoutPath, "--dry-run", "--patrols-file", patrolsPath})
+	dryRun := NewDeleteCommandWithInput(strings.NewReader(""), &dryRunOut)
+	dryRun.SetArgs([]string{"TestLoadout", "--file", loadoutPath, "--dry-run", "--patrols-file", patrolsPath})
 	if err := dryRun.Execute(); err != nil {
 		t.Fatalf("dry-run delete Execute returned error: %v", err)
 	}
@@ -123,8 +130,8 @@ func TestDeleteDryRunAndPrompts(t *testing.T) {
 	assertContains(t, dryRunOut.String(), "1 patrol references")
 
 	var noOut bytes.Buffer
-	noDelete := NewCommandWithInput(strings.NewReader("no\n"), &noOut)
-	noDelete.SetArgs([]string{"delete", loadoutPath, "--patrols-file", patrolsPath})
+	noDelete := NewDeleteCommandWithInput(strings.NewReader("no\n"), &noOut)
+	noDelete.SetArgs([]string{"TestLoadout", "--file", loadoutPath, "--patrols-file", patrolsPath})
 	if err := noDelete.Execute(); err != nil {
 		t.Fatalf("no delete Execute returned error: %v", err)
 	}
@@ -133,8 +140,8 @@ func TestDeleteDryRunAndPrompts(t *testing.T) {
 
 	yesPath := copyLoadoutFixture(t, "IncludedLoadout.json")
 	var yesOut bytes.Buffer
-	yesDelete := NewCommandWithInput(strings.NewReader("yes\n"), &yesOut)
-	yesDelete.SetArgs([]string{"delete", yesPath})
+	yesDelete := NewDeleteCommandWithInput(strings.NewReader("yes\n"), &yesOut)
+	yesDelete.SetArgs([]string{"IncludedLoadout", "--file", yesPath})
 	if err := yesDelete.Execute(); err != nil {
 		t.Fatalf("yes delete Execute returned error: %v", err)
 	}
@@ -146,27 +153,28 @@ func TestCommandErrorsAndHelpers(t *testing.T) {
 	loadoutPath := copyLoadoutFixture(t, "TestLoadout.json")
 
 	tests := []struct {
-		name string
-		args []string
-		want string
+		name        string
+		constructor func(io.Reader, io.Writer) *cobra.Command
+		args        []string
+		want        string
 	}{
-		{name: "create parse", args: []string{"create", filepath.Join(t.TempDir(), "New.json"), "--health", "bad"}, want: "health must"},
-		{name: "create mutation", args: []string{"create", loadoutPath}, want: "already exists"},
-		{name: "update parse", args: []string{"update", loadoutPath, "--health", "=bad,1"}, want: "health min"},
-		{name: "update mutation", args: []string{"update", filepath.Join(t.TempDir(), "missing.json"), "--class-name", "Missing"}, want: "stat"},
-		{name: "item add parent", args: []string{"item", "add", loadoutPath, "--container", "cargo"}, want: "--parent"},
-		{name: "item add container", args: []string{"item", "add", loadoutPath, "--parent", "root"}, want: "--container"},
-		{name: "item add parse", args: []string{"item", "add", loadoutPath, "--parent", "root", "--container", "cargo", "--health", "bad"}, want: "health must"},
-		{name: "item add mutation", args: []string{"item", "add", loadoutPath, "--parent", "bad", "--container", "cargo"}, want: "path must start"},
-		{name: "item update parse", args: []string{"item", "update", loadoutPath, "root", "--health", "bad"}, want: "health must"},
-		{name: "item update mutation", args: []string{"item", "update", loadoutPath, "bad"}, want: "path must start"},
-		{name: "item remove mutation", args: []string{"item", "remove", loadoutPath, "root"}, want: "cannot remove root"},
-		{name: "delete mutation", args: []string{"delete", filepath.Join(t.TempDir(), "missing.json"), "--force"}, want: "stat"},
+		{name: "create parse", constructor: createConstructor, args: []string{"New", "--file", filepath.Join(t.TempDir(), "New.json"), "--health", "bad"}, want: "health must"},
+		{name: "create mutation", constructor: createConstructor, args: []string{"TestLoadout", "--file", loadoutPath}, want: "already exists"},
+		{name: "update parse", constructor: updateConstructor, args: []string{"TestLoadout", "--file", loadoutPath, "--health", "=bad,1"}, want: "health min"},
+		{name: "update mutation", constructor: updateConstructor, args: []string{"Missing", "--file", filepath.Join(t.TempDir(), "missing.json"), "--class-name", "Missing"}, want: "stat"},
+		{name: "item add parent", constructor: createConstructor, args: []string{"item", "TestLoadout", "--file", loadoutPath, "--container", "cargo"}, want: "--parent"},
+		{name: "item add container", constructor: createConstructor, args: []string{"item", "TestLoadout", "--file", loadoutPath, "--parent", "root"}, want: "--container"},
+		{name: "item add parse", constructor: createConstructor, args: []string{"item", "TestLoadout", "--file", loadoutPath, "--parent", "root", "--container", "cargo", "--health", "bad"}, want: "health must"},
+		{name: "item add mutation", constructor: createConstructor, args: []string{"item", "TestLoadout", "--file", loadoutPath, "--parent", "bad", "--container", "cargo"}, want: "path must start"},
+		{name: "item update parse", constructor: updateConstructor, args: []string{"item", "TestLoadout", "root", "--file", loadoutPath, "--health", "bad"}, want: "health must"},
+		{name: "item update mutation", constructor: updateConstructor, args: []string{"item", "TestLoadout", "bad", "--file", loadoutPath}, want: "path must start"},
+		{name: "item remove mutation", constructor: deleteConstructor, args: []string{"item", "TestLoadout", "root", "--file", loadoutPath}, want: "cannot remove root"},
+		{name: "delete mutation", constructor: deleteConstructor, args: []string{"Missing", "--file", filepath.Join(t.TempDir(), "missing.json"), "--force"}, want: "stat"},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			command := NewCommandWithInput(strings.NewReader(""), &bytes.Buffer{})
+			command := test.constructor(strings.NewReader(""), &bytes.Buffer{})
 			command.SetArgs(test.args)
 			err := command.Execute()
 			if err == nil {
@@ -192,8 +200,8 @@ func TestCommandErrorsAndHelpers(t *testing.T) {
 	if err == nil {
 		t.Fatal("confirmDelete read error = nil")
 	}
-	errorPrompt := NewCommandWithInput(errorReader{}, &bytes.Buffer{})
-	errorPrompt.SetArgs([]string{"delete", loadoutPath})
+	errorPrompt := NewDeleteCommandWithInput(errorReader{}, &bytes.Buffer{})
+	errorPrompt.SetArgs([]string{"TestLoadout", "--file", loadoutPath})
 	if err := errorPrompt.Execute(); err == nil {
 		t.Fatal("delete prompt read error = nil")
 	}
@@ -209,10 +217,79 @@ func TestCommandErrorsAndHelpers(t *testing.T) {
 		t.Fatal("outputMutation write error = nil")
 	}
 	deleteLoadoutFile = func(string) error { return errors.New("delete failed") }
-	deleteCommand := NewCommandWithInput(strings.NewReader(""), &bytes.Buffer{})
-	deleteCommand.SetArgs([]string{"delete", loadoutPath, "--force"})
+	deleteCommand := NewDeleteCommandWithInput(strings.NewReader(""), &bytes.Buffer{})
+	deleteCommand.SetArgs([]string{"TestLoadout", "--file", loadoutPath, "--force"})
 	if err := deleteCommand.Execute(); err == nil {
 		t.Fatal("delete command delete error = nil")
+	}
+}
+
+func TestResolveLoadoutDiscovery(t *testing.T) {
+	root := fixturePath(t, "expansionai", "valid")
+	t.Chdir(root)
+
+	resolved, err := resolveLoadoutFile("TestLoadout", "")
+	if err != nil {
+		t.Fatalf("resolveLoadoutFile returned error: %v", err)
+	}
+	assertContains(t, resolved, filepath.Join("profiles", "ExpansionMod", "Loadouts", "TestLoadout.json"))
+
+	newPath, err := resolveNewLoadoutFile("NewLoadout", "")
+	if err != nil {
+		t.Fatalf("resolveNewLoadoutFile returned error: %v", err)
+	}
+	assertContains(t, newPath, filepath.Join("profiles", "ExpansionMod", "Loadouts", "NewLoadout.json"))
+}
+
+func TestResolveLoadoutDiscoveryErrors(t *testing.T) {
+	original := getwd
+	defer func() { getwd = original }()
+	getwd = func() (string, error) { return "", errors.New("cwd failed") }
+
+	if _, err := resolveLoadoutFile("TestLoadout", ""); err == nil {
+		t.Fatal("resolveLoadoutFile getwd error = nil")
+	}
+	if _, err := resolveNewLoadoutFile("TestLoadout", ""); err == nil {
+		t.Fatal("resolveNewLoadoutFile getwd error = nil")
+	}
+	create := NewCreateCommand(&bytes.Buffer{})
+	create.SetArgs([]string{"NewLoadout"})
+	if err := create.Execute(); err == nil {
+		t.Fatal("create getwd error = nil")
+	}
+	update := NewUpdateCommand(&bytes.Buffer{})
+	update.SetArgs([]string{"TestLoadout"})
+	if err := update.Execute(); err == nil {
+		t.Fatal("update getwd error = nil")
+	}
+	deleteCommand := NewDeleteCommandWithInput(strings.NewReader(""), &bytes.Buffer{})
+	deleteCommand.SetArgs([]string{"TestLoadout", "--force"})
+	if err := deleteCommand.Execute(); err == nil {
+		t.Fatal("delete getwd error = nil")
+	}
+	itemAdd := NewCreateCommand(&bytes.Buffer{})
+	itemAdd.SetArgs([]string{"item", "TestLoadout", "--parent", "root", "--container", "cargo"})
+	if err := itemAdd.Execute(); err == nil {
+		t.Fatal("item add getwd error = nil")
+	}
+	itemUpdate := NewUpdateCommand(&bytes.Buffer{})
+	itemUpdate.SetArgs([]string{"item", "TestLoadout", "root"})
+	if err := itemUpdate.Execute(); err == nil {
+		t.Fatal("item update getwd error = nil")
+	}
+	itemRemove := NewDeleteCommandWithInput(strings.NewReader(""), &bytes.Buffer{})
+	itemRemove.SetArgs([]string{"item", "TestLoadout", "root"})
+	if err := itemRemove.Execute(); err == nil {
+		t.Fatal("item remove getwd error = nil")
+	}
+
+	t.Chdir(t.TempDir())
+	getwd = original
+	if _, err := resolveLoadoutFile("TestLoadout", ""); err == nil {
+		t.Fatal("resolveLoadoutFile missing discovery error = nil")
+	}
+	if _, err := resolveNewLoadoutFile("TestLoadout", ""); err == nil {
+		t.Fatal("resolveNewLoadoutFile missing discovery error = nil")
 	}
 }
 
@@ -235,6 +312,18 @@ func copyLoadoutFixture(t *testing.T, name string) string {
 		t.Fatalf("write temp fixture: %v", err)
 	}
 	return target
+}
+
+func createConstructor(_ io.Reader, stdout io.Writer) *cobra.Command {
+	return NewCreateCommand(stdout)
+}
+
+func updateConstructor(_ io.Reader, stdout io.Writer) *cobra.Command {
+	return NewUpdateCommand(stdout)
+}
+
+func deleteConstructor(stdin io.Reader, stdout io.Writer) *cobra.Command {
+	return NewDeleteCommandWithInput(stdin, stdout)
 }
 
 func fixturePath(t *testing.T, parts ...string) string {

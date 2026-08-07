@@ -6,6 +6,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -652,8 +653,111 @@ func TestSmallHelpers(t *testing.T) {
 	assertEqual(t, strings.Join(members, ","), "a")
 }
 
+func TestResolveTypesFileForType(t *testing.T) {
+	corePath := fixturePath(t, "mission", "cfgeconomycore.xml")
+
+	resolved, err := ResolveTypesFileForType(corePath, "ModdedItem")
+
+	if err != nil {
+		t.Fatalf("ResolveTypesFileForType returned error: %v", err)
+	}
+	assertContains(t, resolved, filepath.Join("mods", "valid_types.xml"))
+
+	_, err = ResolveTypesFileForType(corePath, "")
+	if err == nil {
+		t.Fatal("ResolveTypesFileForType empty type err = nil")
+	}
+	_, err = ResolveTypesFileForType(filepath.Join(t.TempDir(), "missing.xml"), "Apple")
+	if err == nil {
+		t.Fatal("ResolveTypesFileForType missing core err = nil")
+	}
+	_, err = ResolveTypesFileForType(corePath, "Missing")
+	if err == nil {
+		t.Fatal("ResolveTypesFileForType missing type err = nil")
+	}
+
+	root := t.TempDir()
+	writeTestFile(t, filepath.Join(root, "cfgeconomycore.xml"), `<?xml version="1.0" encoding="UTF-8"?><economycore><ce folder="mods"><file name="dup.xml" type="types" /></ce></economycore>`)
+	writeTestFile(t, filepath.Join(root, "db", "types.xml"), `<?xml version="1.0" encoding="UTF-8"?><types><type name="Dup" /></types>`)
+	writeTestFile(t, filepath.Join(root, "mods", "dup.xml"), `<?xml version="1.0" encoding="UTF-8"?><types><type name="Dup" /></types>`)
+	_, err = ResolveTypesFileForType(filepath.Join(root, "cfgeconomycore.xml"), "Dup")
+	if err == nil {
+		t.Fatal("ResolveTypesFileForType duplicate err = nil")
+	}
+
+	badRefRoot := t.TempDir()
+	writeTestFile(t, filepath.Join(badRefRoot, "cfgeconomycore.xml"), `<?xml version="1.0" encoding="UTF-8"?><economycore><ce folder="mods"><file name="bad.xml" type="types" /></ce></economycore>`)
+	writeTestFile(t, filepath.Join(badRefRoot, "db", "types.xml"), `<?xml version="1.0" encoding="UTF-8"?><types></types>`)
+	writeTestFile(t, filepath.Join(badRefRoot, "mods", "bad.xml"), `<?xml version="1.0" encoding="UTF-8"?><types>`)
+	if _, err := ResolveTypesFileForType(filepath.Join(badRefRoot, "cfgeconomycore.xml"), "Broken"); err == nil {
+		t.Fatal("ResolveTypesFileForType bad referenced types err = nil")
+	}
+}
+
+func TestListLimitNamesFile(t *testing.T) {
+	path := fixturePath(t, "mission", "cfglimitsdefinition.xml")
+	for _, kind := range []string{"category", "tag", "usage", "value"} {
+		names, err := ListLimitNamesFile(path, kind)
+		if err != nil {
+			t.Fatalf("ListLimitNamesFile(%s) returned error: %v", kind, err)
+		}
+		if len(names) == 0 {
+			t.Fatalf("ListLimitNamesFile(%s) returned no names", kind)
+		}
+	}
+	if _, err := ListLimitNamesFile(path, "bad"); err == nil {
+		t.Fatal("ListLimitNamesFile unsupported kind err = nil")
+	}
+	if _, err := ListLimitNamesFile(filepath.Join(t.TempDir(), "missing.xml"), "tag"); err == nil {
+		t.Fatal("ListLimitNamesFile missing file err = nil")
+	}
+}
+
+func TestListUserLimitGroupsFile(t *testing.T) {
+	path := fixturePath(t, "mission", "cfglimitsdefinitionuser.xml")
+	groups, err := ListUserLimitGroupsFile(path, "usage")
+	if err != nil {
+		t.Fatalf("ListUserLimitGroupsFile returned error: %v", err)
+	}
+	assertEqual(t, groups[0].Name, "CustomUsageGroup")
+	assertEqual(t, groups[0].Members[0], "Military")
+
+	groups, err = ListUserLimitGroupsFile(path, "value")
+	if err != nil {
+		t.Fatalf("ListUserLimitGroupsFile value returned error: %v", err)
+	}
+	assertEqual(t, groups[0].Name, "CustomValueGroup")
+
+	if _, err := ListUserLimitGroupsFile(path, "tag"); err == nil {
+		t.Fatal("ListUserLimitGroupsFile unsupported kind err = nil")
+	}
+	if _, err := ListUserLimitGroupsFile(filepath.Join(t.TempDir(), "missing.xml"), "usage"); err == nil {
+		t.Fatal("ListUserLimitGroupsFile missing file err = nil")
+	}
+	if _, err := ListUserLimitGroupsFile(writeTempXML(t, `<user_lists>`), "usage"); err == nil {
+		t.Fatal("ListUserLimitGroupsFile malformed err = nil")
+	}
+	if _, err := ListUserLimitGroupsFile(writeTempXML(t, `<?xml version="1.0" encoding="UTF-8"?><user_lists><valueflags /></user_lists>`), "usage"); err == nil {
+		t.Fatal("ListUserLimitGroupsFile missing section err = nil")
+	}
+	if _, err := ListUserLimitGroupsFile(writeTempXML(t, `<?xml version="1.0" encoding="UTF-8"?><user_lists><usageflags><user name="A"><tag name="x" /></user></usageflags><valueflags /></user_lists>`), "usage"); err == nil {
+		t.Fatal("ListUserLimitGroupsFile bad member err = nil")
+	}
+
+	sortedPath := writeTempXML(t, `<?xml version="1.0" encoding="UTF-8"?><user_lists><usageflags><user name="B"><usage name="Village" /></user><user name="A"><usage name="Town" /></user></usageflags><valueflags /></user_lists>`)
+	groups, err = ListUserLimitGroupsFile(sortedPath, "usage")
+	if err != nil {
+		t.Fatalf("ListUserLimitGroupsFile sorted returned error: %v", err)
+	}
+	assertEqual(t, groups[0].Name, "A")
+	assertEqual(t, groups[1].Name, "B")
+}
+
 func writeTestFile(t *testing.T, path string, content string) {
 	t.Helper()
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		t.Fatalf("make test dir %s: %v", filepath.Dir(path), err)
+	}
 	if err := os.WriteFile(path, []byte(content), 0o600); err != nil {
 		t.Fatalf("write test file %s: %v", path, err)
 	}
@@ -687,4 +791,21 @@ func assertEqual[T comparable](t *testing.T, got T, want T) {
 	if got != want {
 		t.Fatalf("got %#v, want %#v", got, want)
 	}
+}
+
+func fixturePath(t *testing.T, parts ...string) string {
+	t.Helper()
+	_, file, _, ok := runtime.Caller(0)
+	if !ok {
+		t.Fatal("runtime.Caller failed")
+	}
+	args := append([]string{filepath.Dir(file), "..", "..", "testdata"}, parts...)
+	return filepath.Clean(filepath.Join(args...))
+}
+
+func writeTempXML(t *testing.T, content string) string {
+	t.Helper()
+	path := filepath.Join(t.TempDir(), "file.xml")
+	writeTestFile(t, path, content)
+	return path
 }

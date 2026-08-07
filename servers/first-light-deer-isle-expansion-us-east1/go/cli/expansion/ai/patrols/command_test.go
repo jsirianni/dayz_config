@@ -3,6 +3,7 @@ package patrols
 import (
 	"bytes"
 	"errors"
+	"io"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -10,35 +11,42 @@ import (
 	"testing"
 
 	"dzcli/internal/expansion"
+
+	"github.com/spf13/cobra"
 )
 
 func TestNewCommandMetadataAndHelp(t *testing.T) {
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
+	command := NewCreateCommand(&stdout)
 
-	if command.Use != "patrols" {
+	if command.Use != "patrols <name>" {
 		t.Fatalf("Use = %q, want patrols", command.Use)
 	}
-	if len(command.Commands()) != 3 {
-		t.Fatalf("subcommand count = %d, want 3", len(command.Commands()))
+	if len(command.Commands()) != 0 {
+		t.Fatalf("subcommand count = %d, want 0", len(command.Commands()))
 	}
-	if err := command.RunE(command, nil); err != nil {
-		t.Fatalf("RunE returned error: %v", err)
+	if err := command.Help(); err != nil {
+		t.Fatalf("Help returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "create")
-	assertContains(t, stdout.String(), "update")
-	assertContains(t, stdout.String(), "delete")
+	assertContains(t, stdout.String(), "--file")
+
+	if NewUpdateCommand(&bytes.Buffer{}).Use != "patrols [name]" {
+		t.Fatal("update command use changed")
+	}
+	if NewDeleteCommand(&bytes.Buffer{}).Use != "patrols [name]" {
+		t.Fatal("delete command use changed")
+	}
 }
 
 func TestCreateUpdateDeleteCommands(t *testing.T) {
 	patrolsPath := copyPatrolFixture(t)
 
 	var createOut bytes.Buffer
-	create := NewCommand(&createOut)
+	create := NewCreateCommand(&createOut)
 	create.SetArgs([]string{
-		"create", patrolsPath,
+		"Created",
+		"--file", patrolsPath,
 		"--dry-run",
-		"--name", "Created",
 		"--faction", "West",
 		"--loadout", "TestLoadout",
 		"--behaviour", "HALT",
@@ -64,9 +72,9 @@ func TestCreateUpdateDeleteCommands(t *testing.T) {
 	assertContains(t, createOut.String(), `"UnitB"`)
 
 	var updateOut bytes.Buffer
-	update := NewCommand(&updateOut)
+	update := NewUpdateCommand(&updateOut)
 	update.SetArgs([]string{
-		"update", patrolsPath,
+		"--file", patrolsPath,
 		"--index", "1",
 		"--set-name", "Updated",
 		"--formation", "Vee",
@@ -78,9 +86,17 @@ func TestCreateUpdateDeleteCommands(t *testing.T) {
 	}
 	assertContains(t, updateOut.String(), "patrols "+patrolsPath+" ok")
 
+	var nameUpdateOut bytes.Buffer
+	nameUpdate := NewUpdateCommand(&nameUpdateOut)
+	nameUpdate.SetArgs([]string{"Updated", "--file", patrolsPath, "--formation", "RANDOM"})
+	if err := nameUpdate.Execute(); err != nil {
+		t.Fatalf("name update Execute returned error: %v", err)
+	}
+	assertContains(t, nameUpdateOut.String(), "ok")
+
 	var deleteOut bytes.Buffer
-	deleteCommand := NewCommand(&deleteOut)
-	deleteCommand.SetArgs([]string{"delete", patrolsPath, "--name", "Updated", "--dry-run"})
+	deleteCommand := NewDeleteCommand(&deleteOut)
+	deleteCommand.SetArgs([]string{"Updated", "--file", patrolsPath, "--dry-run"})
 	if err := deleteCommand.Execute(); err != nil {
 		t.Fatalf("delete Execute returned error: %v", err)
 	}
@@ -91,21 +107,22 @@ func TestCommandErrorsAndHelpers(t *testing.T) {
 	patrolsPath := copyPatrolFixture(t)
 
 	tests := []struct {
-		name string
-		args []string
-		want string
+		name        string
+		constructor func(io.Writer) *cobra.Command
+		args        []string
+		want        string
 	}{
-		{name: "create parse", args: []string{"create", patrolsPath, "--waypoint", "1,2"}, want: "waypoint must be x,y,z"},
-		{name: "create add waypoint parse", args: []string{"create", patrolsPath, "--add-waypoint", "1,bad,3"}, want: "waypoint coordinate"},
-		{name: "create mutation", args: []string{"create", filepath.Join(t.TempDir(), "missing.json")}, want: "stat"},
-		{name: "update parse", args: []string{"update", patrolsPath, "--index", "1", "--set-waypoint", "bad"}, want: "set-waypoint"},
-		{name: "update mutation", args: []string{"update", patrolsPath}, want: "--index or --name"},
-		{name: "delete mutation", args: []string{"delete", patrolsPath}, want: "--index or --name"},
+		{name: "create parse", constructor: NewCreateCommand, args: []string{"Created", "--file", patrolsPath, "--waypoint", "1,2"}, want: "waypoint must be x,y,z"},
+		{name: "create add waypoint parse", constructor: NewCreateCommand, args: []string{"Created", "--file", patrolsPath, "--add-waypoint", "1,bad,3"}, want: "waypoint coordinate"},
+		{name: "create mutation", constructor: NewCreateCommand, args: []string{"Created", "--file", filepath.Join(t.TempDir(), "missing.json")}, want: "stat"},
+		{name: "update parse", constructor: NewUpdateCommand, args: []string{"Fixture patrol", "--file", patrolsPath, "--set-waypoint", "bad"}, want: "set-waypoint"},
+		{name: "update mutation", constructor: NewUpdateCommand, args: []string{"--file", patrolsPath}, want: "--index or --name"},
+		{name: "delete mutation", constructor: NewDeleteCommand, args: []string{"--file", patrolsPath}, want: "--index or --name"},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			command := NewCommand(&bytes.Buffer{})
+			command := test.constructor(&bytes.Buffer{})
 			command.SetArgs(test.args)
 			err := command.Execute()
 			if err == nil {
@@ -136,6 +153,52 @@ func TestCommandErrorsAndHelpers(t *testing.T) {
 	writeFileMutation = func(string, expansion.FileMutation) error { return errors.New("write failed") }
 	if err := outputMutation("file.json", "patrols", expansion.FileMutation{Changed: true}, false, &bytes.Buffer{}); err == nil {
 		t.Fatal("outputMutation write error = nil")
+	}
+}
+
+func TestResolvePatrolsFileDiscovery(t *testing.T) {
+	patrolsPath := copyPatrolFixture(t)
+	root := filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(patrolsPath))))
+	t.Chdir(root)
+
+	resolved, err := resolvePatrolsFile("")
+
+	if err != nil {
+		t.Fatalf("resolvePatrolsFile returned error: %v", err)
+	}
+	if resolved != patrolsPath {
+		t.Fatalf("resolved = %q, want %q", resolved, patrolsPath)
+	}
+}
+
+func TestResolvePatrolsFileErrors(t *testing.T) {
+	original := getwd
+	defer func() { getwd = original }()
+	getwd = func() (string, error) { return "", errors.New("cwd failed") }
+
+	if _, err := resolvePatrolsFile(""); err == nil {
+		t.Fatal("resolvePatrolsFile getwd error = nil")
+	}
+	create := NewCreateCommand(&bytes.Buffer{})
+	create.SetArgs([]string{"Created"})
+	if err := create.Execute(); err == nil {
+		t.Fatal("create getwd error = nil")
+	}
+	update := NewUpdateCommand(&bytes.Buffer{})
+	update.SetArgs([]string{"Fixture patrol"})
+	if err := update.Execute(); err == nil {
+		t.Fatal("update getwd error = nil")
+	}
+	deleteCommand := NewDeleteCommand(&bytes.Buffer{})
+	deleteCommand.SetArgs([]string{"Fixture patrol"})
+	if err := deleteCommand.Execute(); err == nil {
+		t.Fatal("delete getwd error = nil")
+	}
+
+	t.Chdir(t.TempDir())
+	getwd = original
+	if _, err := resolvePatrolsFile(""); err == nil {
+		t.Fatal("resolvePatrolsFile missing discovery error = nil")
 	}
 }
 

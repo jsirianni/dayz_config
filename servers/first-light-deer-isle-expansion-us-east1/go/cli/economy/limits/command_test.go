@@ -3,57 +3,63 @@ package limits
 import (
 	"bytes"
 	"errors"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	"dzcli/internal/economy"
+
+	"github.com/spf13/cobra"
 )
 
 func TestNewCommandMetadata(t *testing.T) {
-	command := NewCommand(&bytes.Buffer{})
+	command := NewCreateCommand(&bytes.Buffer{})
 
-	if command.Use != "limits" {
-		t.Fatalf("Use = %q, want limits", command.Use)
+	if command.Use != "limits <category|tag|usage|value> <name>" {
+		t.Fatalf("Use = %q, want limits resource use", command.Use)
 	}
-	if len(command.Commands()) != 3 {
-		t.Fatalf("subcommand count = %d, want 3", len(command.Commands()))
+	if len(command.Commands()) != 1 {
+		t.Fatalf("subcommand count = %d, want 1", len(command.Commands()))
 	}
-	uses := []string{command.Commands()[0].Use, command.Commands()[1].Use, command.Commands()[2].Use}
-	assertContains(t, strings.Join(uses, ","), "add <category|tag|usage|value> <name>")
-	assertContains(t, strings.Join(uses, ","), "remove <category|tag|usage|value> <name>")
+	uses := []string{command.Commands()[0].Use}
 	assertContains(t, strings.Join(uses, ","), "group")
+
+	deleteCommand := NewDeleteCommand(&bytes.Buffer{})
+	if deleteCommand.Short != "delete a base limits definition" {
+		t.Fatalf("delete short = %q", deleteCommand.Short)
+	}
 }
 
 func TestParentCommandsShowHelp(t *testing.T) {
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
-	if err := command.RunE(command, nil); err != nil {
+	command := NewCreateCommand(&stdout)
+	if err := command.Help(); err != nil {
 		t.Fatalf("limits help returned error: %v", err)
 	}
 	assertContains(t, stdout.String(), "group")
 
 	stdout.Reset()
-	group := newGroupCommand(&stdout)
-	if err := group.RunE(group, nil); err != nil {
+	group := newGroupCommand(economy.UserGroupAdd, economy.UserGroupMemberAdd, &stdout)
+	if err := group.Help(); err != nil {
 		t.Fatalf("group help returned error: %v", err)
 	}
 	assertContains(t, stdout.String(), "member")
 
 	stdout.Reset()
-	member := newMemberCommand(&stdout)
-	if err := member.RunE(member, nil); err != nil {
+	member := newMemberCommand(economy.UserGroupMemberRemove, &stdout)
+	if err := member.Help(); err != nil {
 		t.Fatalf("member help returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "remove")
+	assertContains(t, stdout.String(), "delete")
 }
 
 func TestBaseAddDryRunPrintsModifiedXML(t *testing.T) {
 	path := writeLimitsFile(t)
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
-	command.SetArgs([]string{"add", "tag", "fishing", "--file", path, "--dry-run"})
+	command := NewCreateCommand(&stdout)
+	command.SetArgs([]string{"tag", "fishing", "--file", path, "--dry-run"})
 
 	err := command.Execute()
 
@@ -67,8 +73,8 @@ func TestBaseAddDryRunPrintsModifiedXML(t *testing.T) {
 func TestBaseRemoveWritesInPlace(t *testing.T) {
 	path := writeLimitsFile(t)
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
-	command.SetArgs([]string{"remove", "tag", "floor", "--file", path})
+	command := NewDeleteCommand(&stdout)
+	command.SetArgs([]string{"tag", "floor", "--file", path})
 
 	err := command.Execute()
 
@@ -80,8 +86,8 @@ func TestBaseRemoveWritesInPlace(t *testing.T) {
 }
 
 func TestBaseCommandRequiresFile(t *testing.T) {
-	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{"add", "tag", "fishing"})
+	command := NewCreateCommand(&bytes.Buffer{})
+	command.SetArgs([]string{"tag", "fishing"})
 
 	err := command.Execute()
 
@@ -92,8 +98,8 @@ func TestBaseCommandRequiresFile(t *testing.T) {
 }
 
 func TestBaseCommandReturnsMutationError(t *testing.T) {
-	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{"add", "tag", "fishing", "--file", filepath.Join(t.TempDir(), "missing.xml")})
+	command := NewCreateCommand(&bytes.Buffer{})
+	command.SetArgs([]string{"tag", "fishing", "--file", filepath.Join(t.TempDir(), "missing.xml")})
 
 	err := command.Execute()
 
@@ -106,25 +112,25 @@ func TestBaseCommandReturnsMutationError(t *testing.T) {
 func TestGroupCommandsMutateUserLimits(t *testing.T) {
 	path := writeUserLimitsFile(t)
 
-	runLimitsCommand(t, []string{"group", "add", "usage", "Tenement", "--file", path, "--member", "Town", "--member", "Village"})
+	runLimitsCommand(t, NewCreateCommand, []string{"group", "usage", "Tenement", "--file", path, "--member", "Town", "--member", "Village"})
 	assertContains(t, readFile(t, path), `<user name="Tenement">`)
 	assertContains(t, readFile(t, path), `<usage name="Village" />`)
 
-	runLimitsCommand(t, []string{"group", "member", "add", "usage", "Tenement", "Coast", "--file", path})
+	runLimitsCommand(t, NewCreateCommand, []string{"group", "member", "usage", "Tenement", "Coast", "--file", path})
 	assertContains(t, readFile(t, path), `<usage name="Coast" />`)
 
-	runLimitsCommand(t, []string{"group", "member", "remove", "usage", "Tenement", "Coast", "--file", path})
+	runLimitsCommand(t, NewDeleteCommand, []string{"group", "member", "usage", "Tenement", "Coast", "--file", path})
 	assertNotContains(t, readFile(t, path), `<usage name="Coast" />`)
 
-	runLimitsCommand(t, []string{"group", "remove", "usage", "Tenement", "--file", path})
+	runLimitsCommand(t, NewDeleteCommand, []string{"group", "usage", "Tenement", "--file", path})
 	assertNotContains(t, readFile(t, path), `<user name="Tenement">`)
 }
 
 func TestGroupAddDryRunPrintsModifiedXML(t *testing.T) {
 	path := writeUserLimitsFile(t)
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
-	command.SetArgs([]string{"group", "add", "value", "TierGroup", "--file", path, "--member", "Tier1", "--dry-run"})
+	command := NewCreateCommand(&stdout)
+	command.SetArgs([]string{"group", "value", "TierGroup", "--file", path, "--member", "Tier1", "--dry-run"})
 
 	err := command.Execute()
 
@@ -136,8 +142,8 @@ func TestGroupAddDryRunPrintsModifiedXML(t *testing.T) {
 }
 
 func TestGroupCommandRequiresFile(t *testing.T) {
-	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{"group", "add", "usage", "Tenement"})
+	command := NewCreateCommand(&bytes.Buffer{})
+	command.SetArgs([]string{"group", "usage", "Tenement"})
 
 	err := command.Execute()
 
@@ -149,8 +155,8 @@ func TestGroupCommandRequiresFile(t *testing.T) {
 
 func TestGroupCommandReturnsMutationError(t *testing.T) {
 	path := writeUserLimitsFile(t)
-	command := NewCommand(&bytes.Buffer{})
-	command.SetArgs([]string{"group", "member", "add", "usage", "Missing", "Town", "--file", path})
+	command := NewCreateCommand(&bytes.Buffer{})
+	command.SetArgs([]string{"group", "member", "usage", "Missing", "Town", "--file", path})
 
 	err := command.Execute()
 
@@ -173,12 +179,13 @@ func TestOutputMutationReturnsWriteError(t *testing.T) {
 		t.Fatal("err = nil, want write error")
 	}
 	assertContains(t, err.Error(), "write failed")
+	assertContains(t, verb("unknown"), "modify")
 }
 
-func runLimitsCommand(t *testing.T, args []string) {
+func runLimitsCommand(t *testing.T, constructor func(io.Writer) *cobra.Command, args []string) {
 	t.Helper()
 	var stdout bytes.Buffer
-	command := NewCommand(&stdout)
+	command := constructor(&stdout)
 	command.SetArgs(args)
 	if err := command.Execute(); err != nil {
 		t.Fatalf("Execute(%v) returned error: %v", args, err)
