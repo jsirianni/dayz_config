@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<economycore>
+  <classes>
+    <rootclass name="DefaultWeapon" />
+  </classes>
+  <ce folder="mods">
+    <file name="valid_types.xml" type="types" />
+    <file name="attachments.xml" type="spawnabletypes" />
+  </ce>
+</economycore>

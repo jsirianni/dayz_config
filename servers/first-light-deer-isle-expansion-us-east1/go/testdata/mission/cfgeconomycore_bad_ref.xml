@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<economycore>
+  <ce folder="badmods">
+    <file name="invalid_types.badxml" type="types" />
+  </ce>
+</economycore>
