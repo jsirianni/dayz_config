@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 
 	"dzcli/cli/economy"
 	"dzcli/cli/expansion"
@@ -19,14 +20,18 @@ const (
 )
 
 func Main(args []string, stdout io.Writer, stderr io.Writer, exit func(int)) {
-	code := Run(args, stdout, stderr)
+	code := RunWithInput(args, os.Stdin, stdout, stderr)
 	if code != SuccessExitCode {
 		exit(code)
 	}
 }
 
 func Run(args []string, stdout io.Writer, stderr io.Writer) int {
-	command := NewRootCommand(stdout, stderr)
+	return RunWithInput(args, os.Stdin, stdout, stderr)
+}
+
+func RunWithInput(args []string, stdin io.Reader, stdout io.Writer, stderr io.Writer) int {
+	command := NewRootCommandWithInput(stdin, stdout, stderr)
 	command.SetArgs(args)
 
 	if err := command.Execute(); err != nil {
@@ -39,6 +44,10 @@ func Run(args []string, stdout io.Writer, stderr io.Writer) int {
 }
 
 func NewRootCommand(stdout io.Writer, stderr io.Writer) *cobra.Command {
+	return NewRootCommandWithInput(os.Stdin, stdout, stderr)
+}
+
+func NewRootCommandWithInput(stdin io.Reader, stdout io.Writer, stderr io.Writer) *cobra.Command {
 	root := &cobra.Command{
 		Use:           "dzcli",
 		Short:         "Tools for DayZ server configuration",
@@ -51,7 +60,7 @@ func NewRootCommand(stdout io.Writer, stderr io.Writer) *cobra.Command {
 	root.SetOut(stdout)
 	root.SetErr(stderr)
 	root.AddCommand(economy.NewCommand(stdout))
-	root.AddCommand(expansion.NewCommand(stdout))
+	root.AddCommand(expansion.NewCommandWithInput(stdin, stdout))
 	root.AddCommand(xmlcommand.NewCommand(stdout))
 	return root
 }

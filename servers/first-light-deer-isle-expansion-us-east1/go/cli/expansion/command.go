@@ -2,6 +2,7 @@ package expansion
 
 import (
 	"io"
+	"os"
 
 	"dzcli/cli/expansion/ai"
 
@@ -9,6 +10,10 @@ import (
 )
 
 func NewCommand(stdout io.Writer) *cobra.Command {
+	return NewCommandWithInput(os.Stdin, stdout)
+}
+
+func NewCommandWithInput(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	command := &cobra.Command{
 		Use:   "expansion",
 		Short: "Inspect DayZ Expansion mod configuration",
@@ -17,6 +22,6 @@ func NewCommand(stdout io.Writer) *cobra.Command {
 		},
 	}
 	command.SetOut(stdout)
-	command.AddCommand(ai.NewCommand(stdout))
+	command.AddCommand(ai.NewCommandWithInput(stdin, stdout))
 	return command
 }

@@ -284,6 +284,12 @@ dzcli expansion
 
 Inspect DayZ Expansion AI configuration
 
+Inspect, validate, and mutate DayZ Expansion AI configuration.
+
+Commands accept explicit file paths and work the same from a git repo checkout
+or a live server directory. Nearby path discovery is only used for optional
+reference validation when enough context exists.
+
 ### Usage
 
 ```text
@@ -294,7 +300,373 @@ dzcli expansion ai
 
 | Command | Description |
 | --- | --- |
+| `loadouts` | Modify DayZ Expansion AI loadout files |
+| `patrols` | Modify DayZ Expansion AI patrol definitions |
 | `validate` | Validate DayZ Expansion AI patrol and loadout files |
+
+## dzcli expansion ai loadouts
+
+Modify DayZ Expansion AI loadout files
+
+### Usage
+
+```text
+dzcli expansion ai loadouts
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `create` | Create a loadout file |
+| `delete` | Delete a loadout file |
+| `item` | Modify nested loadout items |
+| `update` | Modify the root object in a loadout file |
+
+## dzcli expansion ai loadouts create
+
+Create a loadout file
+
+### Usage
+
+```text
+dzcli expansion ai loadouts create <loadout.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+
+## dzcli expansion ai loadouts delete
+
+Delete a loadout file
+
+### Usage
+
+```text
+dzcli expansion ai loadouts delete <loadout.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print planned delete without deleting |
+| `--force` | `false` | delete without prompting |
+| `--patrols-file` | `` | AIPatrolSettings.json path for reference checks |
+
+## dzcli expansion ai loadouts item
+
+Modify nested loadout items
+
+### Usage
+
+```text
+dzcli expansion ai loadouts item
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `add` | Add a nested loadout item |
+| `remove` | Remove a nested loadout item |
+| `update` | Modify a nested loadout item |
+
+## dzcli expansion ai loadouts item add
+
+Add a nested loadout item
+
+### Usage
+
+```text
+dzcli expansion ai loadouts item add <loadout.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--container` | `` | attachment, cargo, or set |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--parent` | `` | parent item path |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+| `--slot` | `` | attachment slot name |
+
+## dzcli expansion ai loadouts item remove
+
+Remove a nested loadout item
+
+### Usage
+
+```text
+dzcli expansion ai loadouts item remove <loadout.json> <path> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified JSON without writing |
+
+## dzcli expansion ai loadouts item update
+
+Modify a nested loadout item
+
+### Usage
+
+```text
+dzcli expansion ai loadouts item update <loadout.json> <path> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+
+## dzcli expansion ai loadouts update
+
+Modify the root object in a loadout file
+
+### Usage
+
+```text
+dzcli expansion ai loadouts update <loadout.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--add-construction-part` | `[]` | add a construction part |
+| `--chance` | `0` | set chance |
+| `--class-name` | `` | set class-name |
+| `--clear-construction-parts` | `false` | remove all construction parts |
+| `--clear-health` | `false` | remove all health entries |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--health` | `[]` | set health as zone=min,max; use =min,max for global |
+| `--include` | `` | set include |
+| `--quantity-max` | `0` | set Quantity.Max |
+| `--quantity-min` | `0` | set Quantity.Min |
+| `--remove-construction-part` | `[]` | remove a construction part |
+| `--remove-health` | `[]` | remove health by zone |
+| `--set-construction-part` | `[]` | replace ConstructionPartsBuilt |
+
+## dzcli expansion ai patrols
+
+Modify DayZ Expansion AI patrol definitions
+
+### Usage
+
+```text
+dzcli expansion ai patrols
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `create` | Append a patrol definition |
+| `delete` | Remove a patrol definition |
+| `update` | Modify a patrol definition |
+
+## dzcli expansion ai patrols create
+
+Append a patrol definition
+
+### Usage
+
+```text
+dzcli expansion ai patrols create <AIPatrolSettings.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--accuracy-max` | `0` | set accuracy-max |
+| `--accuracy-min` | `0` | set accuracy-min |
+| `--add-unit` | `[]` | add a unit class name |
+| `--add-waypoint` | `[]` | append waypoint x,y,z |
+| `--behaviour` | `` | set behaviour |
+| `--can-be-looted` | `0` | set can-be-looted as 0 or 1 |
+| `--can-be-triggered-by-ai` | `0` | set can-be-triggered-by-ai as 0 or 1 |
+| `--can-spawn-in-contaminated-area` | `0` | set can-spawn-in-contaminated-area as 0 or 1 |
+| `--chance` | `0` | set chance |
+| `--clear-units` | `false` | remove all units |
+| `--clear-waypoints` | `false` | remove all waypoints |
+| `--damage-multiplier` | `0` | set damage-multiplier |
+| `--damage-received-multiplier` | `0` | set damage-received-multiplier |
+| `--default-look-angle` | `0` | set default-look-angle |
+| `--default-stance` | `` | set default-stance |
+| `--despawn-radius` | `0` | set despawn-radius |
+| `--despawn-time` | `0` | set despawn-time |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--enable-flanking-outside-combat` | `0` | set enable-flanking-outside-combat as -1, 0, or 1 |
+| `--faction` | `` | set faction |
+| `--formation` | `` | set formation |
+| `--formation-looseness` | `0` | set formation-looseness |
+| `--formation-scale` | `0` | set formation-scale |
+| `--headshot-resistance` | `0` | set headshot-resistance |
+| `--load-balancing-category` | `` | set load-balancing-category |
+| `--loadout` | `` | set loadout |
+| `--loot-drop-on-death` | `` | set loot-drop-on-death |
+| `--looting-behaviour` | `` | set looting-behaviour |
+| `--max-dist-radius` | `0` | set max-dist-radius |
+| `--max-flanking-distance` | `0` | set max-flanking-distance |
+| `--max-spread-radius` | `0` | set max-spread-radius |
+| `--min-dist-radius` | `0` | set min-dist-radius |
+| `--min-spread-radius` | `0` | set min-spread-radius |
+| `--name` | `` | set patrol name |
+| `--noise-investigation-distance-limit` | `0` | set noise-investigation-distance-limit |
+| `--number-of-ai` | `0` | set number-of-ai |
+| `--number-of-ai-max` | `0` | set number-of-ai-max |
+| `--object-class-name` | `` | set object-class-name |
+| `--persist` | `0` | set persist as 0 or 1 |
+| `--remove-unit` | `[]` | remove a unit class name |
+| `--remove-waypoint` | `[]` | remove 1-based waypoint index |
+| `--respawn-time` | `0` | set respawn-time |
+| `--set-unit` | `[]` | replace Units with this class name |
+| `--set-waypoint` | `[]` | update waypoint as n=x,y,z |
+| `--shoryuken-chance` | `0` | set shoryuken-chance |
+| `--shoryuken-damage-multiplier` | `0` | set shoryuken-damage-multiplier |
+| `--sniper-prone-distance-threshold` | `0` | set sniper-prone-distance-threshold |
+| `--speed` | `` | set speed |
+| `--threat-distance-limit` | `0` | set threat-distance-limit |
+| `--under-threat-speed` | `` | set under-threat-speed |
+| `--unlimited-reload` | `0` | set unlimited-reload |
+| `--use-random-waypoint-as-start-point` | `0` | set use-random-waypoint-as-start-point as 0 or 1 |
+| `--waypoint` | `[]` | replace Waypoints with x,y,z |
+| `--waypoint-interpolation` | `` | set waypoint-interpolation |
+
+## dzcli expansion ai patrols delete
+
+Remove a patrol definition
+
+### Usage
+
+```text
+dzcli expansion ai patrols delete <AIPatrolSettings.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--index` | `0` | select a 1-based patrol index |
+| `--name` | `` | select a patrol by name |
+| `--occurrence` | `0` | select a duplicate patrol name occurrence |
+
+## dzcli expansion ai patrols update
+
+Modify a patrol definition
+
+### Usage
+
+```text
+dzcli expansion ai patrols update <AIPatrolSettings.json> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--accuracy-max` | `0` | set accuracy-max |
+| `--accuracy-min` | `0` | set accuracy-min |
+| `--add-unit` | `[]` | add a unit class name |
+| `--add-waypoint` | `[]` | append waypoint x,y,z |
+| `--behaviour` | `` | set behaviour |
+| `--can-be-looted` | `0` | set can-be-looted as 0 or 1 |
+| `--can-be-triggered-by-ai` | `0` | set can-be-triggered-by-ai as 0 or 1 |
+| `--can-spawn-in-contaminated-area` | `0` | set can-spawn-in-contaminated-area as 0 or 1 |
+| `--chance` | `0` | set chance |
+| `--clear-units` | `false` | remove all units |
+| `--clear-waypoints` | `false` | remove all waypoints |
+| `--damage-multiplier` | `0` | set damage-multiplier |
+| `--damage-received-multiplier` | `0` | set damage-received-multiplier |
+| `--default-look-angle` | `0` | set default-look-angle |
+| `--default-stance` | `` | set default-stance |
+| `--despawn-radius` | `0` | set despawn-radius |
+| `--despawn-time` | `0` | set despawn-time |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--enable-flanking-outside-combat` | `0` | set enable-flanking-outside-combat as -1, 0, or 1 |
+| `--faction` | `` | set faction |
+| `--formation` | `` | set formation |
+| `--formation-looseness` | `0` | set formation-looseness |
+| `--formation-scale` | `0` | set formation-scale |
+| `--headshot-resistance` | `0` | set headshot-resistance |
+| `--index` | `0` | select a 1-based patrol index |
+| `--load-balancing-category` | `` | set load-balancing-category |
+| `--loadout` | `` | set loadout |
+| `--loot-drop-on-death` | `` | set loot-drop-on-death |
+| `--looting-behaviour` | `` | set looting-behaviour |
+| `--max-dist-radius` | `0` | set max-dist-radius |
+| `--max-flanking-distance` | `0` | set max-flanking-distance |
+| `--max-spread-radius` | `0` | set max-spread-radius |
+| `--min-dist-radius` | `0` | set min-dist-radius |
+| `--min-spread-radius` | `0` | set min-spread-radius |
+| `--name` | `` | select a patrol by name |
+| `--noise-investigation-distance-limit` | `0` | set noise-investigation-distance-limit |
+| `--number-of-ai` | `0` | set number-of-ai |
+| `--number-of-ai-max` | `0` | set number-of-ai-max |
+| `--object-class-name` | `` | set object-class-name |
+| `--occurrence` | `0` | select a duplicate patrol name occurrence |
+| `--persist` | `0` | set persist as 0 or 1 |
+| `--remove-unit` | `[]` | remove a unit class name |
+| `--remove-waypoint` | `[]` | remove 1-based waypoint index |
+| `--respawn-time` | `0` | set respawn-time |
+| `--set-name` | `` | set patrol name |
+| `--set-unit` | `[]` | replace Units with this class name |
+| `--set-waypoint` | `[]` | update waypoint as n=x,y,z |
+| `--shoryuken-chance` | `0` | set shoryuken-chance |
+| `--shoryuken-damage-multiplier` | `0` | set shoryuken-damage-multiplier |
+| `--sniper-prone-distance-threshold` | `0` | set sniper-prone-distance-threshold |
+| `--speed` | `` | set speed |
+| `--threat-distance-limit` | `0` | set threat-distance-limit |
+| `--under-threat-speed` | `` | set under-threat-speed |
+| `--unlimited-reload` | `0` | set unlimited-reload |
+| `--use-random-waypoint-as-start-point` | `0` | set use-random-waypoint-as-start-point as 0 or 1 |
+| `--waypoint` | `[]` | replace Waypoints with x,y,z |
+| `--waypoint-interpolation` | `` | set waypoint-interpolation |
 
 ## dzcli expansion ai validate
 

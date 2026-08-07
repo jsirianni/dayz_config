@@ -12,11 +12,14 @@ func TestNewCommandMetadata(t *testing.T) {
 	if command.Use != "ai" {
 		t.Fatalf("Use = %q, want ai", command.Use)
 	}
-	if len(command.Commands()) != 1 {
-		t.Fatalf("subcommand count = %d, want 1", len(command.Commands()))
+	if len(command.Commands()) != 3 {
+		t.Fatalf("subcommand count = %d, want 3", len(command.Commands()))
 	}
-	if command.Commands()[0].Use != "validate [path]" {
-		t.Fatalf("validate Use = %q", command.Commands()[0].Use)
+	uses := strings.Join([]string{command.Commands()[0].Use, command.Commands()[1].Use, command.Commands()[2].Use}, ",")
+	for _, want := range []string{"loadouts", "patrols", "validate [path]"} {
+		if !strings.Contains(uses, want) {
+			t.Fatalf("subcommands %q does not contain %q", uses, want)
+		}
 	}
 }
 
@@ -31,5 +34,11 @@ func TestNewCommandWithoutSubcommandShowsHelp(t *testing.T) {
 	}
 	if !strings.Contains(stdout.String(), "validate") {
 		t.Fatalf("%q does not contain validate", stdout.String())
+	}
+	if !strings.Contains(stdout.String(), "patrols") {
+		t.Fatalf("%q does not contain patrols", stdout.String())
+	}
+	if !strings.Contains(stdout.String(), "loadouts") {
+		t.Fatalf("%q does not contain loadouts", stdout.String())
 	}
 }

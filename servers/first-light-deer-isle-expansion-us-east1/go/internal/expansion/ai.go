@@ -224,6 +224,13 @@ func (value *boolInt) UnmarshalJSON(data []byte) error {
 	}
 }
 
+func (value boolInt) MarshalJSON() ([]byte, error) {
+	if value {
+		return []byte("1"), nil
+	}
+	return []byte("0"), nil
+}
+
 type inheritBool int
 
 func (value *inheritBool) UnmarshalJSON(data []byte) error {
@@ -236,6 +243,10 @@ func (value *inheritBool) UnmarshalJSON(data []byte) error {
 	}
 	*value = inheritBool(number)
 	return nil
+}
+
+func (value inheritBool) MarshalJSON() ([]byte, error) {
+	return []byte(fmt.Sprintf("%d", value)), nil
 }
 
 type validateContext struct {
