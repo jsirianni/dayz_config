@@ -17,6 +17,7 @@ dzcli
 | Command | Description |
 | --- | --- |
 | `economy` | Inspect DayZ central economy configuration |
+| `expansion` | Inspect DayZ Expansion mod configuration |
 | `xml` | Inspect XML files |
 
 ## dzcli economy
@@ -261,6 +262,48 @@ Validate cfgeconomycore.xml and referenced types files
 
 ```text
 dzcli economy validate <cfgeconomycore.xml>
+```
+
+## dzcli expansion
+
+Inspect DayZ Expansion mod configuration
+
+### Usage
+
+```text
+dzcli expansion
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `ai` | Inspect DayZ Expansion AI configuration |
+
+## dzcli expansion ai
+
+Inspect DayZ Expansion AI configuration
+
+### Usage
+
+```text
+dzcli expansion ai
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `validate` | Validate DayZ Expansion AI patrol and loadout files |
+
+## dzcli expansion ai validate
+
+Validate DayZ Expansion AI patrol and loadout files
+
+### Usage
+
+```text
+dzcli expansion ai validate [path]
 ```
 
 ## dzcli xml

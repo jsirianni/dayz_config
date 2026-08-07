@@ -31,6 +31,7 @@ func TestRunWithoutCommandShowsRootHelp(t *testing.T) {
 	assertContains(t, stdout.String(), "Tools for DayZ server configuration")
 	assertContains(t, stdout.String(), "Available Commands:")
 	assertContains(t, stdout.String(), "economy")
+	assertContains(t, stdout.String(), "expansion")
 	assertContains(t, stdout.String(), "xml")
 }
 
@@ -125,11 +126,12 @@ func TestNewRootCommandMetadata(t *testing.T) {
 	command := NewRootCommand(&bytes.Buffer{}, &bytes.Buffer{})
 
 	assertEqual(t, command.Use, "dzcli")
-	if len(command.Commands()) != 2 {
-		t.Fatalf("root command count = %d, want 2", len(command.Commands()))
+	if len(command.Commands()) != 3 {
+		t.Fatalf("root command count = %d, want 3", len(command.Commands()))
 	}
-	uses := []string{command.Commands()[0].Use, command.Commands()[1].Use}
+	uses := []string{command.Commands()[0].Use, command.Commands()[1].Use, command.Commands()[2].Use}
 	assertContains(t, strings.Join(uses, ","), "economy")
+	assertContains(t, strings.Join(uses, ","), "expansion")
 	assertContains(t, strings.Join(uses, ","), "xml")
 }
 

@@ -6,6 +6,7 @@ import (
 	"io"
 
 	"dzcli/cli/economy"
+	"dzcli/cli/expansion"
 	"dzcli/cli/validation"
 	xmlcommand "dzcli/cli/xml"
 
@@ -50,6 +51,7 @@ func NewRootCommand(stdout io.Writer, stderr io.Writer) *cobra.Command {
 	root.SetOut(stdout)
 	root.SetErr(stderr)
 	root.AddCommand(economy.NewCommand(stdout))
+	root.AddCommand(expansion.NewCommand(stdout))
 	root.AddCommand(xmlcommand.NewCommand(stdout))
 	return root
 }

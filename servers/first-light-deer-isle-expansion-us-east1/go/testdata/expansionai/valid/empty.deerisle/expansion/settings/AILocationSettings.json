@@ -1,0 +1,31 @@
+{
+  "m_Version": 4,
+  "RoamingLocations": [
+    {
+      "Name": "KP_Test",
+      "Position": [
+        100.0,
+        0.0,
+        200.0
+      ],
+      "Radius": 100.0,
+      "Type": "NameVillage",
+      "Enabled": 1
+    }
+  ],
+  "ExcludedRoamingBuildings": [
+    "Land_Test"
+  ],
+  "NoGoAreas": [
+    {
+      "Name": "NoGo",
+      "Position": [
+        150.0,
+        0.0,
+        250.0
+      ],
+      "Radius": 25.0,
+      "Height": 10.0
+    }
+  ]
+}
