@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playerspawnpoints>
+  <fresh>
+    <generator type="grid">
+      <spawn id="1">
+        <pos x="100.5" z="200.5" />
+      </spawn>
+    </generator>
+  </fresh>
+</playerspawnpoints>

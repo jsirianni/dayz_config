@@ -1,0 +1,94 @@
+{
+  "m_Version": 32,
+  "Enabled": 1,
+  "FormationScale": -1.0,
+  "DespawnTime": -1.0,
+  "RespawnTime": -1.0,
+  "MinDistRadius": -1.0,
+  "MaxDistRadius": -1.0,
+  "DespawnRadius": 1100.0,
+  "AccuracyMin": -1.0,
+  "AccuracyMax": -1.0,
+  "ThreatDistanceLimit": -1.0,
+  "NoiseInvestigationDistanceLimit": -1.0,
+  "MaxFlankingDistance": -1.0,
+  "EnableFlankingOutsideCombat": -1,
+  "DamageMultiplier": -1.0,
+  "DamageReceivedMultiplier": -1.0,
+  "ShoryukenChance": 0.01,
+  "ShoryukenDamageMultiplier": 3.0,
+  "LoadBalancingCategories": {
+    "Patrol": [
+      {
+        "MinPlayers": 0,
+        "MaxPlayers": 255,
+        "MaxPatrols": 5
+      }
+    ],
+    "Global": [
+      {
+        "MinPlayers": 0,
+        "MaxPlayers": 255,
+        "MaxPatrols": -1
+      }
+    ]
+  },
+  "Patrols": [
+    {
+      "Name": "Fixture patrol",
+      "Persist": 0,
+      "Faction": "West",
+      "Formation": "Vee",
+      "FormationScale": -1.0,
+      "FormationLooseness": 0.5,
+      "Loadout": "TestLoadout",
+      "Units": [
+        "eAI_SurvivorM_Mirek"
+      ],
+      "NumberOfAI": 1,
+      "NumberOfAIMax": 2,
+      "Behaviour": "ROAMING_LOCAL",
+      "LootingBehaviour": "DEFAULT | CLOTHING_BODY",
+      "Speed": "RANDOM_NONSTATIC",
+      "UnderThreatSpeed": "SPRINT",
+      "DefaultStance": "STANDING",
+      "DefaultLookAngle": 90.0,
+      "CanBeLooted": 1,
+      "LootDropOnDeath": "Drop.json",
+      "UnlimitedReload": 6,
+      "SniperProneDistanceThreshold": 0.0,
+      "AccuracyMin": -1.0,
+      "AccuracyMax": -1.0,
+      "ThreatDistanceLimit": -1.0,
+      "NoiseInvestigationDistanceLimit": -1.0,
+      "MaxFlankingDistance": -1.0,
+      "EnableFlankingOutsideCombat": -1,
+      "DamageMultiplier": -1.0,
+      "DamageReceivedMultiplier": -1.0,
+      "HeadshotResistance": 0.0,
+      "ShoryukenChance": -1.0,
+      "ShoryukenDamageMultiplier": -1.0,
+      "CanSpawnInContaminatedArea": false,
+      "CanBeTriggeredByAI": true,
+      "MinDistRadius": -1.0,
+      "MaxDistRadius": -1.0,
+      "DespawnRadius": -1.0,
+      "MinSpreadRadius": 10.0,
+      "MaxSpreadRadius": 20.0,
+      "Chance": 0.99,
+      "DespawnTime": -1.0,
+      "RespawnTime": -2.0,
+      "LoadBalancingCategory": "Patrol",
+      "ObjectClassName": "",
+      "WaypointInterpolation": "CatmullRom",
+      "UseRandomWaypointAsStartPoint": 0,
+      "Waypoints": [
+        [
+          100.0,
+          0.0,
+          200.0
+        ]
+      ]
+    }
+  ]
+}

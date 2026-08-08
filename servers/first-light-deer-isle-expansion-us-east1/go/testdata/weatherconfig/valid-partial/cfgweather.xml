@@ -1,0 +1,7 @@
+<weather enable="1">
+    <storm>
+        <density>0.2</density>
+        <threshold>0.9</threshold>
+        <timeout>45</timeout>
+    </storm>
+</weather>

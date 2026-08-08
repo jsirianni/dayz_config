@@ -1,0 +1,5 @@
+<weather>
+    <windDirection>
+        <limits min="3.14" max="-3.14" />
+    </windDirection>
+</weather>

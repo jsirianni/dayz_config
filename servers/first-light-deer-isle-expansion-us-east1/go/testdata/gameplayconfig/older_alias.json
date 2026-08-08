@@ -1,0 +1,11 @@
+{
+	"version": 122,
+	"BaseBuildingData": {
+		"HologramData": {
+			"disableColdAreaBuildingCheck": false
+		}
+	},
+	"WorldsData": {
+		"lightingConfig": 1
+	}
+}

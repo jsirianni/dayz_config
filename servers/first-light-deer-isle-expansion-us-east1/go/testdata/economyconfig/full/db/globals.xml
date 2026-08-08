@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variables>
+  <var name="AnimalMaxCount" type="0" value="200" />
+  <var name="LootDamageMin" type="1" value="0.1" />
+  <var name="LootDamageMax" type="1" value="0.9" />
+  <var name="TimeLogin" type="0" value="15" />
+  <var name="TimeLogout" type="0" value="15" />
+</variables>

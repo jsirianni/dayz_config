@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+  <type name="Apple">
+    <nominal>10</nominal>
+  </type>
+  <type name="BandageDressing">
+    <nominal>20</nominal>
+  </type>
+</types>
