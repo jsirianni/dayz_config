@@ -1,8 +1,0 @@
-<weather>
-    <rain>
-        <limits min="0">
-            <min>0.2</min>
-            <max>1</max>
-        </limits>
-    </rain>
-</weather>
