@@ -19,6 +19,7 @@ import (
 	aivalidate "dzcli/cli/expansion/ai/validate"
 	serverconfigcmd "dzcli/cli/server/config"
 	servergameplaycmd "dzcli/cli/server/gameplay"
+	serverweathercmd "dzcli/cli/server/weather"
 	xmlvalidate "dzcli/cli/xml/validate"
 	"dzcli/internal/economy"
 	"dzcli/internal/expansion"
@@ -67,7 +68,7 @@ func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command := newParent("validate", "Validate DayZ configuration files")
 	command.SetOut(stdout)
 	command.AddCommand(initvalidate.NewCommand(stdout))
-	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout), servergameplaycmd.NewValidateCommand(stdout)))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout), servergameplaycmd.NewValidateCommand(stdout), serverweathercmd.NewValidateCommand(stdout)))
 	command.AddCommand(&cobra.Command{
 		Use:   "economy <cfgeconomycore.xml>",
 		Short: "Validate cfgeconomycore.xml and referenced types files",

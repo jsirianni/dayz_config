@@ -51,6 +51,7 @@ func TestValidateCommands(t *testing.T) {
 		{name: "expansion ai", args: []string{"expansion", "ai", fixturePath(t, "expansionai", "valid")}, want: "expansion-ai-patrols"},
 		{name: "init", args: []string{"init", fixturePath(t, "dayzinit", "valid", "init.c")}, want: "init"},
 		{name: "server gameplay", args: []string{"server", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, want: "server-gameplay"},
+		{name: "server weather", args: []string{"server", "weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, want: "server-weather"},
 		{name: "xml", args: []string{"xml", fixturePath(t, "xml", "valid")}, want: "root.xml ok"},
 	}
 
@@ -392,6 +393,7 @@ func TestValidateServerParentHelp(t *testing.T) {
 	}
 	assertContains(t, stdout.String(), "config")
 	assertContains(t, stdout.String(), "gameplay")
+	assertContains(t, stdout.String(), "weather")
 }
 
 func fixturePath(t *testing.T, parts ...string) string {

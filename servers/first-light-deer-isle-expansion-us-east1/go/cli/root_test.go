@@ -155,6 +155,27 @@ func TestRunReportsGameplayValidation(t *testing.T) {
 	assertContains(t, stdout.String(), "unknown field")
 }
 
+func TestRunReportsWeatherValidation(t *testing.T) {
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	code := Run([]string{"validate", "server", "weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, &stdout, &stderr)
+
+	assertEqual(t, code, SuccessExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "server-weather")
+	assertContains(t, stdout.String(), " ok")
+
+	stdout.Reset()
+	stderr.Reset()
+	code = Run([]string{"validate", "server", "weather", fixturePath(t, "weatherconfig", "invalid-range", "cfgweather.xml")}, &stdout, &stderr)
+
+	assertEqual(t, code, FailureExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "failed")
+	assertContains(t, stdout.String(), "less than or equal")
+}
+
 func TestRunXMLValidateReturnsFailureForInvalidXML(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer

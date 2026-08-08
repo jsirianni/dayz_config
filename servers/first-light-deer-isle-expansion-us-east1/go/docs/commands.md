@@ -1123,6 +1123,7 @@ dzcli validate server
 | --- | --- |
 | `config` | Validate serverDZ.cfg |
 | `gameplay` | Validate cfggameplay.json |
+| `weather` | Validate cfgweather.xml |
 
 ## dzcli validate server config
 
@@ -1142,6 +1143,16 @@ Validate cfggameplay.json
 
 ```text
 dzcli validate server gameplay <cfggameplay.json>
+```
+
+## dzcli validate server weather
+
+Validate cfgweather.xml
+
+### Usage
+
+```text
+dzcli validate server weather <cfgweather.xml>
 ```
 
 ## dzcli validate xml
