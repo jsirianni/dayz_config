@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <eventposdef>
-  <event name="AmbientFox" />
-  <event name="AmbientHare" />
-  <event name="AnimalDeer" />
-  <event name="AnimalCow" />
-  <event name="AnimalSheep" />
-  <event name="AnimalRoeDeer" />
-  <event name="AnimalReindeer" />
-  <event name="AnimalWolf" />
-  <event name="AnimalWildBoar" />
+  <event name="AmbientFox">
+    <zone smin="0" smax="0" dmin="0" dmax="0" r="0" />
+</event>
+  
+  
+  
+  
+  
+  <event name="AnimalReindeer">
+    <zone smin="0" smax="0" dmin="0" dmax="0" r="0" />
+</event>
+  
+  
   <event name="StaticBoatSubmarine">
 		<pos x="3135.844" z="14343.03" y="0" a="0" />
 		<pos x="353.6406" z="16199.31" y="0" a="0" />
@@ -270,7 +274,7 @@
 		<pos x="7743.016" z="13440.03" a="0" />
 		<pos x="904.9531" z="11691.01" a="0" />
   </event>
-  <event name="StaticChristmasTree"></event>
+  
   <event name="StaticBonfire">
     <zone smin="3" smax="5" dmin="3" dmax="5" r="55" />
     <pos x="3934.656" z="3258.147" a="0" />
@@ -337,7 +341,9 @@
 	<pos x="3904" z="10460" />    
 	
   </event>
-  <event name="Loot" />
+  <event name="Loot">
+    <zone smin="0" smax="0" dmin="0" dmax="0" r="0" />
+</event>
   <event name="VehicleOffroadHatchback">
     <pos x="7353.891" z="1940.002" a="142.9673" />
     <pos x="3284.484" z="6329.61" a="343.3632" />
@@ -505,14 +511,14 @@
     <pos x="6509.141" z="1860.178" a="340.1471" />
     <pos x="9844.422" z="10783.52" a="342.3926" />
   </event>  
-  <event name="InfectedVillage" />
-  <event name="InfectedSolitude" />
-  <event name="InfectedArmy" />
-  <event name="InfectedCity" />
-  <event name="InfectedMedic" />
-  <event name="InfectedPolice" />
-  <event name="InfectedFirefighter" />
-  <event name="InfectedPrisoner" />  
+  
+  
+  
+  
+  
+  
+  
+    
   <event name="StaticPlantFernA">
     <pos x="356.2" z="1625.4" a="0" />
   </event>
