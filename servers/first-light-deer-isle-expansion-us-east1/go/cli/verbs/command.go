@@ -18,6 +18,7 @@ import (
 	"dzcli/cli/expansion/ai/patrols"
 	aivalidate "dzcli/cli/expansion/ai/validate"
 	serverconfigcmd "dzcli/cli/server/config"
+	servergameplaycmd "dzcli/cli/server/gameplay"
 	xmlvalidate "dzcli/cli/xml/validate"
 	"dzcli/internal/economy"
 	"dzcli/internal/expansion"
@@ -32,7 +33,7 @@ func NewGetCommand(stdout io.Writer) *cobra.Command {
 	command.SetOut(stdout)
 	command.AddCommand(newGetEconomyCommand(stdout))
 	command.AddCommand(newGetExpansionCommand(stdout))
-	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewGetCommand(stdout)))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewGetCommand(stdout), servergameplaycmd.NewGetCommand(stdout)))
 	return command
 }
 
@@ -49,7 +50,7 @@ func NewUpdateCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	command.SetOut(stdout)
 	command.AddCommand(newEconomyParent(stdout, typeupdate.NewCommand(stdout)))
 	command.AddCommand(newExpansionParent(stdout, newAIParent(stdout, patrols.NewUpdateCommand(stdout), loadouts.NewUpdateCommand(stdout))))
-	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewUpdateCommand(stdin, stdout)))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewUpdateCommand(stdin, stdout), servergameplaycmd.NewUpdateCommand(stdin, stdout)))
 	return command
 }
 
@@ -58,7 +59,7 @@ func NewDeleteCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	command.SetOut(stdout)
 	command.AddCommand(newEconomyParent(stdout, limits.NewDeleteCommand(stdout)))
 	command.AddCommand(newExpansionParent(stdout, newAIParent(stdout, patrols.NewDeleteCommand(stdout), loadouts.NewDeleteCommandWithInput(stdin, stdout))))
-	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewDeleteCommand(stdout)))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewDeleteCommand(stdout), servergameplaycmd.NewDeleteCommand(stdout)))
 	return command
 }
 
@@ -66,7 +67,7 @@ func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command := newParent("validate", "Validate DayZ configuration files")
 	command.SetOut(stdout)
 	command.AddCommand(initvalidate.NewCommand(stdout))
-	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout)))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout), servergameplaycmd.NewValidateCommand(stdout)))
 	command.AddCommand(&cobra.Command{
 		Use:   "economy <cfgeconomycore.xml>",
 		Short: "Validate cfgeconomycore.xml and referenced types files",

@@ -494,6 +494,7 @@ dzcli delete server
 | Command | Description |
 | --- | --- |
 | `config` | Remove a serverDZ.cfg field |
+| `gameplay` | Remove a cfggameplay.json field |
 
 ## dzcli delete server config
 
@@ -511,6 +512,23 @@ dzcli delete server config <field> [flags]
 | --- | --- | --- |
 | `--dry-run` | `false` | print modified config without writing |
 | `--file` | `` | serverDZ.cfg path |
+
+## dzcli delete server gameplay
+
+Remove a cfggameplay.json field
+
+### Usage
+
+```text
+dzcli delete server gameplay <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | cfggameplay.json path |
 
 ## dzcli get
 
@@ -683,6 +701,7 @@ dzcli get server
 | Command | Description |
 | --- | --- |
 | `config` | List serverDZ.cfg fields |
+| `gameplay` | List cfggameplay.json fields |
 
 ## dzcli get server config
 
@@ -699,6 +718,22 @@ dzcli get server config [field] [flags]
 | Flag | Default | Description |
 | --- | --- | --- |
 | `--file` | `` | serverDZ.cfg path |
+
+## dzcli get server gameplay
+
+List cfggameplay.json fields
+
+### Usage
+
+```text
+dzcli get server gameplay [field] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | cfggameplay.json path |
 
 ## dzcli update
 
@@ -964,6 +999,7 @@ dzcli update server
 | Command | Description |
 | --- | --- |
 | `config` | Set a serverDZ.cfg field |
+| `gameplay` | Set a cfggameplay.json field |
 
 ## dzcli update server config
 
@@ -984,6 +1020,26 @@ dzcli update server config <field> [flags]
 | `--file` | `` | serverDZ.cfg path |
 | `--force` | `false` | overwrite without prompting |
 | `--value` | `[]` | field value; repeat for motd |
+
+## dzcli update server gameplay
+
+Set a cfggameplay.json field
+
+### Usage
+
+```text
+dzcli update server gameplay <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--clear` | `false` | set an array field to [] |
+| `--dry-run` | `false` | print modified JSON without writing |
+| `--file` | `` | cfggameplay.json path |
+| `--force` | `false` | overwrite without prompting |
+| `--value` | `[]` | field value; repeat for arrays |
 
 ## dzcli validate
 
@@ -1066,6 +1122,7 @@ dzcli validate server
 | Command | Description |
 | --- | --- |
 | `config` | Validate serverDZ.cfg |
+| `gameplay` | Validate cfggameplay.json |
 
 ## dzcli validate server config
 
@@ -1075,6 +1132,16 @@ Validate serverDZ.cfg
 
 ```text
 dzcli validate server config <server-config.cfg>
+```
+
+## dzcli validate server gameplay
+
+Validate cfggameplay.json
+
+### Usage
+
+```text
+dzcli validate server gameplay <cfggameplay.json>
 ```
 
 ## dzcli validate xml

@@ -50,6 +50,7 @@ func TestValidateCommands(t *testing.T) {
 		{name: "economy", args: []string{"economy", fixturePath(t, "mission", "cfgeconomycore.xml")}, want: "cfgeconomycore"},
 		{name: "expansion ai", args: []string{"expansion", "ai", fixturePath(t, "expansionai", "valid")}, want: "expansion-ai-patrols"},
 		{name: "init", args: []string{"init", fixturePath(t, "dayzinit", "valid", "init.c")}, want: "init"},
+		{name: "server gameplay", args: []string{"server", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, want: "server-gameplay"},
 		{name: "xml", args: []string{"xml", fixturePath(t, "xml", "valid")}, want: "root.xml ok"},
 	}
 
@@ -377,6 +378,20 @@ func TestValidateExpansionParentHelp(t *testing.T) {
 		t.Fatalf("Execute returned error: %v", err)
 	}
 	assertContains(t, stdout.String(), "ai")
+}
+
+func TestValidateServerParentHelp(t *testing.T) {
+	var stdout bytes.Buffer
+	command := NewValidateCommand(&stdout)
+	command.SetArgs([]string{"server"})
+
+	err := command.Execute()
+
+	if err != nil {
+		t.Fatalf("Execute returned error: %v", err)
+	}
+	assertContains(t, stdout.String(), "config")
+	assertContains(t, stdout.String(), "gameplay")
 }
 
 func fixturePath(t *testing.T, parts ...string) string {

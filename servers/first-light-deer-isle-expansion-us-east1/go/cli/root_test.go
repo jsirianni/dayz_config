@@ -134,6 +134,27 @@ func TestRunReportsInitValidation(t *testing.T) {
 	assertContains(t, stdout.String(), "DZI")
 }
 
+func TestRunReportsGameplayValidation(t *testing.T) {
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	code := Run([]string{"validate", "server", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, &stdout, &stderr)
+
+	assertEqual(t, code, SuccessExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "server-gameplay")
+	assertContains(t, stdout.String(), " ok")
+
+	stdout.Reset()
+	stderr.Reset()
+	code = Run([]string{"validate", "server", "gameplay", fixturePath(t, "gameplayconfig", "unknown.json")}, &stdout, &stderr)
+
+	assertEqual(t, code, FailureExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "failed")
+	assertContains(t, stdout.String(), "unknown field")
+}
+
 func TestRunXMLValidateReturnsFailureForInvalidXML(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
