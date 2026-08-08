@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env>
+  <territories>
+    <file path="env/wolf_territories.xml" />
+    <file path="env/missing_territories.xml" />
+    <territory type="Herd" name="Wolf" behavior="DZWolfGroupBeh" x="1" z="2" width="3" height="4">
+      <file usable="wolf_territories" />
+      <file usable="missing_territories" />
+      <file usable="unregistered_territories" />
+    </territory>
+  </territories>
+</env>

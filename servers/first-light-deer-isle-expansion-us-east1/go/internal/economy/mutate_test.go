@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	cevalidate "dzcli/cli/economy/validate"
+	"dzcli/internal/economyconfig"
 )
 
 func TestUpdateTypesXMLModifiesSelectedDuplicateType(t *testing.T) {
@@ -580,8 +580,8 @@ func TestInjectedGuardErrors(t *testing.T) {
 		decodeFlatListNamesFunc = originalDecodeFlatListNames
 	}()
 
-	parseTypesData = func([]byte, string) (cevalidate.TypesFile, error) {
-		return cevalidate.TypesFile{}, nil
+	parseTypesData = func([]byte, string) (economyconfig.TypesFile, error) {
+		return economyconfig.TypesFile{}, nil
 	}
 	if _, _, err := UpdateTypesXML([]byte(`<`), TypeUpdateOptions{TypeName: "Bad"}); err == nil {
 		t.Fatal("UpdateTypesXML find ranges err = nil, want error")
@@ -597,12 +597,12 @@ func TestInjectedGuardErrors(t *testing.T) {
 	parseTypesData = originalParseTypesData
 
 	parseLimitsCalls := 0
-	parseLimitsDefinitionData = func([]byte, string) (cevalidate.LimitsDefinition, error) {
+	parseLimitsDefinitionData = func([]byte, string) (economyconfig.LimitsDefinition, error) {
 		parseLimitsCalls++
 		if parseLimitsCalls == 2 {
-			return cevalidate.LimitsDefinition{}, errors.New("post limits validation failed")
+			return economyconfig.LimitsDefinition{}, errors.New("post limits validation failed")
 		}
-		return cevalidate.LimitsDefinition{}, nil
+		return economyconfig.LimitsDefinition{}, nil
 	}
 	if _, _, err := UpdateLimitsXML([]byte(`<?xml version="1.0" encoding="UTF-8"?><lists><tags /></lists>`), "tag", "fishing", LimitAdd); err == nil {
 		t.Fatal("UpdateLimitsXML post validation err = nil, want error")
@@ -618,7 +618,7 @@ func TestInjectedGuardErrors(t *testing.T) {
 	decodeFlatListNamesFunc = originalDecodeFlatListNames
 
 	appendUserCalls := 0
-	appendUserLimitsDefinitionData = func([]byte, string, *cevalidate.LimitsDefinition) error {
+	appendUserLimitsDefinitionData = func([]byte, string, *economyconfig.LimitsDefinition) error {
 		appendUserCalls++
 		if appendUserCalls == 2 {
 			return errors.New("post user validation failed")

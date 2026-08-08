@@ -22,6 +22,7 @@ import (
 	serverweathercmd "dzcli/cli/server/weather"
 	xmlvalidate "dzcli/cli/xml/validate"
 	"dzcli/internal/economy"
+	"dzcli/internal/economyconfig"
 	"dzcli/internal/expansion"
 
 	"github.com/spf13/cobra"
@@ -74,14 +75,7 @@ func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command.AddCommand(serverconfigcmd.NewValidateCommand(stdout))
 	command.AddCommand(servergameplaycmd.NewValidateCommand(stdout))
 	command.AddCommand(serverweathercmd.NewValidateCommand(stdout))
-	command.AddCommand(&cobra.Command{
-		Use:   "economy <cfgeconomycore.xml>",
-		Short: "Validate cfgeconomycore.xml and referenced types files",
-		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return cevalidate.ValidateEconomyCore(args[0], stdout)
-		},
-	})
+	command.AddCommand(cevalidate.NewCommand(stdout))
 	expansionCommand := newParent("expansion", "Validate DayZ Expansion mod configuration")
 	expansionCommand.AddCommand(&cobra.Command{
 		Use:   "ai [path]",
@@ -226,7 +220,7 @@ func listEconomyTypes(file string, economyCore string, filter string, stdout io.
 	}
 	var rows [][]string
 	for _, path := range files {
-		types, err := cevalidate.ParseTypesFile(path)
+		types, err := economyconfig.ParseTypesFile(path)
 		if err != nil {
 			return err
 		}
@@ -251,7 +245,7 @@ func economyTypeFiles(file string, economyCore string) ([]string, error) {
 	if economyCore == "" {
 		return nil, fmt.Errorf("--file or --cfgeconomycore is required")
 	}
-	core, err := cevalidate.ParseEconomyCoreFile(economyCore)
+	core, err := economyconfig.ParseEconomyCoreFile(economyCore)
 	if err != nil {
 		return nil, err
 	}

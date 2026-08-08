@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<economycore>
+  <ce folder="mods">
+    <file name="mod_types.xml" type="types" />
+    <file name="mod_spawnabletypes.xml" type="spawnabletypes" />
+  </ce>
+</economycore>

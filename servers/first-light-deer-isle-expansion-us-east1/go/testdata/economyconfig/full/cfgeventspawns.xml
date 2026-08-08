@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventposdef>
+  <event name="StaticEvent">
+    <pos x="10.5" z="20.25" a="180" />
+    <zone smin="0" smax="1" dmin="0" dmax="1" r="45" />
+  </event>
+</eventposdef>

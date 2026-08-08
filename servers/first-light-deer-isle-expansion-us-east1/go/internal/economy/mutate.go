@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	cevalidate "dzcli/cli/economy/validate"
+	"dzcli/internal/economyconfig"
 )
 
 type FileMutation struct {
@@ -110,9 +110,9 @@ var userLimitSpecs = map[string]listSpec{
 	"value": {Section: "valueflags", Element: "value"},
 }
 
-var parseTypesData = cevalidate.ParseTypesData
-var parseLimitsDefinitionData = cevalidate.ParseLimitsDefinitionData
-var appendUserLimitsDefinitionData = cevalidate.AppendUserLimitsDefinitionData
+var parseTypesData = economyconfig.ParseTypesData
+var parseLimitsDefinitionData = economyconfig.ParseLimitsDefinitionData
+var appendUserLimitsDefinitionData = economyconfig.AppendUserLimitsDefinitionData
 var decodeEditableTypeFunc = decodeEditableType
 var decodeFlatListNamesFunc = decodeFlatListNames
 
@@ -132,7 +132,7 @@ func ResolveTypesFileForType(economyCorePath string, typeName string) (string, e
 	if strings.TrimSpace(typeName) == "" {
 		return "", fmt.Errorf("type name is required")
 	}
-	core, err := cevalidate.ParseEconomyCoreFile(economyCorePath)
+	core, err := economyconfig.ParseEconomyCoreFile(economyCorePath)
 	if err != nil {
 		return "", err
 	}
@@ -144,7 +144,7 @@ func ResolveTypesFileForType(economyCorePath string, typeName string) (string, e
 
 	var matches []string
 	for _, path := range typeFiles {
-		types, err := cevalidate.ParseTypesFile(path)
+		types, err := economyconfig.ParseTypesFile(path)
 		if err != nil {
 			return "", err
 		}
@@ -304,7 +304,7 @@ func WriteFileMutation(path string, mutation FileMutation) error {
 }
 
 func ListLimitNamesFile(path string, kind string) ([]string, error) {
-	limits, err := cevalidate.ParseLimitsDefinitionFile(path)
+	limits, err := economyconfig.ParseLimitsDefinitionFile(path)
 	if err != nil {
 		return nil, err
 	}
@@ -365,7 +365,7 @@ func readMutableFile(path string) ([]byte, fs.FileMode, error) {
 }
 
 func validateUserLimitsData(data []byte) error {
-	limits := cevalidate.LimitsDefinition{
+	limits := economyconfig.LimitsDefinition{
 		Categories: map[string]bool{},
 		Tags:       map[string]bool{},
 		Usages:     map[string]bool{},

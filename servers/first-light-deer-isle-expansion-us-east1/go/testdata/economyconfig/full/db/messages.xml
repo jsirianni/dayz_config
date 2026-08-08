@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+  <message deadline="30" shutdown="0" text="Restart soon" />
+  <message>
+    <deadline>60</deadline>
+    <shutdown>1</shutdown>
+    <text>Server restarting</text>
+    <repeat>0</repeat>
+  </message>
+</messages>

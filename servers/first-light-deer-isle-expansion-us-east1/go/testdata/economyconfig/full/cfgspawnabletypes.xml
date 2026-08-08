@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spawnabletypes>
+  <type name="Backpack">
+    <cargo preset="food" />
+    <attachments chance="0.5">
+      <item name="Battery9V" chance="1" />
+    </attachments>
+    <cargo preset="missingPreset" />
+  </type>
+  <type name="Barrel">
+    <hoarder>
+      <item name="Apple" count_in_hoarder="1" />
+    </hoarder>
+  </type>
+</spawnabletypes>

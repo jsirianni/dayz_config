@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user_lists>
+  <usageflags>
+    <user name="CustomTown">
+      <usage name="Town" />
+    </user>
+  </usageflags>
+  <valueflags>
+    <user name="CustomTier">
+      <value name="Tier1" />
+    </user>
+  </valueflags>
+</user_lists>

@@ -1007,7 +1007,7 @@ dzcli validate
 
 | Command | Description |
 | --- | --- |
-| `economy` | Validate cfgeconomycore.xml and referenced types files |
+| `economy` | Validate central economy files |
 | `expansion` | Validate DayZ Expansion mod configuration |
 | `gameplay` | Validate cfggameplay.json |
 | `init` | Validate DayZ mission init.c |
@@ -1017,12 +1017,12 @@ dzcli validate
 
 ## dzcli validate economy
 
-Validate cfgeconomycore.xml and referenced types files
+Validate central economy files
 
 ### Usage
 
 ```text
-dzcli validate economy <cfgeconomycore.xml>
+dzcli validate economy <mission-root|cfgeconomycore.xml|economy-file>
 ```
 
 ## dzcli validate expansion

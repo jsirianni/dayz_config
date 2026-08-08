@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<randompresets>
+  <cargo chance="0.5" name="food">
+    <item name="Apple" chance="2" />
+  </cargo>
+  <attachments name="parts">
+    <item name="Battery9V" chance="1" />
+  </attachments>
+</randompresets>

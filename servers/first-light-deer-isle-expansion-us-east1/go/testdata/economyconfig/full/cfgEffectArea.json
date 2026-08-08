@@ -1,0 +1,24 @@
+{
+  "Areas": [
+    {
+      "AreaName": "Toxic",
+      "Type": "ContaminatedArea_Static",
+      "TriggerType": "ContaminatedTrigger",
+      "Data": {
+        "Pos": [1, 2, 3],
+        "Radius": 100,
+        "PosHeight": 10,
+        "NegHeight": 10,
+        "VerticalOffset": 0,
+        "InnerRingRatio": 0.5,
+        "OuterRingRatio": 1
+      },
+      "PlayerData": {
+        "AroundPartName": "around",
+        "TinyPartName": "tiny",
+        "PPERequesterType": "ppe"
+      }
+    }
+  ],
+  "SafePositions": [[1, 2]]
+}
