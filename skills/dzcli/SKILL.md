@@ -23,6 +23,32 @@ The installer checks the installed version, queries the latest GitHub release, a
 
 If running outside PowerShell, still use the installed binary at `.tools/dzcli/dzcli.exe` on Windows. On non-Windows hosts, read the installer first and adapt the binary path it reports.
 
+## PowerShell Invocation Guardrails
+
+When scripting multiple `dzcli` calls in PowerShell, keep command arguments in a plainly named array and splat that variable directly:
+
+```powershell
+$argList = @("validate", "server", "servers/example/serverDZ.cfg")
+& $dz @argList
+```
+
+For batch harnesses, use a property named `ArgList`, not `Args`, and recover it as `[object[]]` before invocation:
+
+```powershell
+$command = [pscustomobject]@{
+    ArgList = [object[]]@("validate", "economy", $missionRoot)
+}
+$argList = [object[]]$command.ArgList
+& $dz @argList
+```
+
+Avoid hand-rolled loops that pass array literals positionally into functions or use a property/parameter named `Args`; PowerShell can bind or expand those arrays in surprising ways and leave `dzcli` receiving no subcommand, which prints top-level help and can look like a false pass. For repository-wide validation, prefer the maintained helper:
+
+```powershell
+.\skills\dzcli\scripts\validate-all.ps1
+.\skills\dzcli\scripts\validate-all.ps1 -Json
+```
+
 ## Default Workflow
 
 1. Identify the server root under `servers/<server-name>` and the specific mission/config file.
@@ -59,6 +85,14 @@ Prefer these command families:
 ## Repository Patterns
 
 Mission roots in this repo vary by server. Locate them by finding `db/types.xml`, `cfgeconomycore.xml`, `cfggameplay.json`, or `cfgweather.xml` under the target server directory.
+
+For validating every server directory, use:
+
+```powershell
+.\skills\dzcli\scripts\validate-all.ps1
+```
+
+The script discovers supported config targets, invokes `dzcli` read-only validators, reports warnings and failures, validates server-wide XML trees so loose XML is not missed, and skips economy validation for partial mission folders that have economy XML but no `cfgeconomycore.xml` because the current `dzcli validate economy` command requires mission core discovery.
 
 Example server config change:
 

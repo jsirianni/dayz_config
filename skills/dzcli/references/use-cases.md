@@ -7,6 +7,40 @@ Use the installed binary's help as the source of truth for exact flags:
 & $dz <command> --help
 ```
 
+## PowerShell Patterns
+
+Invoke a single command by splatting a named argument array:
+
+```powershell
+$argList = @("validate", "server", "servers/example/serverDZ.cfg")
+& $dz @argList
+```
+
+When storing commands for a loop, avoid a property or parameter named `Args`; `$args` is a PowerShell automatic variable and array binding can become ambiguous. Prefer `ArgList` plus named parameters. If a mandatory parameter receives an initially empty collection, add `[AllowEmptyCollection()]`.
+
+```powershell
+function Add-DzcliCommand {
+    param(
+        [AllowEmptyCollection()][System.Collections.Generic.List[object]]$CommandList,
+        [object[]]$ArgList
+    )
+
+    $CommandList.Add([pscustomobject]@{
+        ArgList = [object[]]$ArgList
+    }) | Out-Null
+}
+
+$commands = New-Object System.Collections.Generic.List[object]
+Add-DzcliCommand -CommandList $commands -ArgList @("validate", "xml", $missionRoot)
+
+foreach ($command in $commands) {
+    $argList = [object[]]$command.ArgList
+    & $dz @argList
+}
+```
+
+If a batch validation prints the top-level `dzcli` help for every target, stop and test one command directly; `dzcli` likely received an empty or malformed argument list.
+
 ## Inspection Before Mutation
 
 Use `get` commands to locate and inspect existing resources before editing:
@@ -54,6 +88,15 @@ Always validate after a modification, whether it was made by `dzcli` or by direc
 Economy validation warnings may print scoped remediation commands. Preview those commands with `--dry-run` when supported. A `validation-only` notice means `dzcli` cannot safely perform the edit and a manual change is required.
 
 Run baseline validation before edits when practical. If baseline validation already fails, keep the output and rerun the same validation after the requested change. Fix pre-existing failures only when they are part of the task or block safe completion.
+
+For a read-only repository-wide validation report, run:
+
+```powershell
+.\skills\dzcli\scripts\validate-all.ps1
+.\skills\dzcli\scripts\validate-all.ps1 -Json
+```
+
+The helper discovers `serverDZ.cfg`, root and mission config files, server-wide XML trees, and Expansion AI roots under `servers/`. It reports skipped economy checks when a partial mission folder contains economy XML but lacks `cfgeconomycore.xml`, because the current `dzcli validate economy` behavior cannot validate those folders cleanly.
 
 ## Direct Edit Escapes
 
