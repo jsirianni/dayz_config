@@ -304,6 +304,7 @@ dzcli delete
 | --- | --- |
 | `economy` | Modify DayZ central economy resources |
 | `expansion` | Modify DayZ Expansion mod resources |
+| `server` | Modify DayZ server configuration resources |
 
 ## dzcli delete economy
 
@@ -478,6 +479,39 @@ dzcli delete expansion ai patrols [name] [flags]
 | `--index` | `0` | select a 1-based patrol index |
 | `--occurrence` | `0` | select a duplicate patrol name occurrence |
 
+## dzcli delete server
+
+Modify DayZ server configuration resources
+
+### Usage
+
+```text
+dzcli delete server
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `config` | Remove a serverDZ.cfg field |
+
+## dzcli delete server config
+
+Remove a serverDZ.cfg field
+
+### Usage
+
+```text
+dzcli delete server config <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified config without writing |
+| `--file` | `` | serverDZ.cfg path |
+
 ## dzcli get
 
 List DayZ configuration resources
@@ -494,6 +528,7 @@ dzcli get
 | --- | --- |
 | `economy` | List DayZ central economy resources |
 | `expansion` | List DayZ Expansion mod resources |
+| `server` | Modify DayZ server configuration resources |
 
 ## dzcli get economy
 
@@ -633,6 +668,38 @@ dzcli get expansion ai patrols [name] [flags]
 | --- | --- | --- |
 | `--file` | `` | AIPatrolSettings.json path |
 
+## dzcli get server
+
+Modify DayZ server configuration resources
+
+### Usage
+
+```text
+dzcli get server
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `config` | List serverDZ.cfg fields |
+
+## dzcli get server config
+
+List serverDZ.cfg fields
+
+### Usage
+
+```text
+dzcli get server config [field] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | serverDZ.cfg path |
+
 ## dzcli update
 
 Update DayZ configuration resources
@@ -649,6 +716,7 @@ dzcli update
 | --- | --- |
 | `economy` | Modify DayZ central economy resources |
 | `expansion` | Modify DayZ Expansion mod resources |
+| `server` | Modify DayZ server configuration resources |
 
 ## dzcli update economy
 
@@ -881,6 +949,42 @@ dzcli update expansion ai patrols [name] [flags]
 | `--waypoint` | `[]` | replace Waypoints with x,y,z |
 | `--waypoint-interpolation` | `` | set waypoint-interpolation |
 
+## dzcli update server
+
+Modify DayZ server configuration resources
+
+### Usage
+
+```text
+dzcli update server
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `config` | Set a serverDZ.cfg field |
+
+## dzcli update server config
+
+Set a serverDZ.cfg field
+
+### Usage
+
+```text
+dzcli update server config <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--allow-unknown` | `false` | allow inserting an undocumented field |
+| `--dry-run` | `false` | print modified config without writing |
+| `--file` | `` | serverDZ.cfg path |
+| `--force` | `false` | overwrite without prompting |
+| `--value` | `[]` | field value; repeat for motd |
+
 ## dzcli validate
 
 Validate DayZ configuration files
@@ -897,6 +1001,7 @@ dzcli validate
 | --- | --- |
 | `economy` | Validate cfgeconomycore.xml and referenced types files |
 | `expansion` | Validate DayZ Expansion mod configuration |
+| `server` | Modify DayZ server configuration resources |
 | `xml` | Validate XML files recursively |
 
 ## dzcli validate economy
@@ -933,6 +1038,32 @@ Validate DayZ Expansion AI patrol and loadout files
 
 ```text
 dzcli validate expansion ai [path]
+```
+
+## dzcli validate server
+
+Modify DayZ server configuration resources
+
+### Usage
+
+```text
+dzcli validate server
+```
+
+### Commands
+
+| Command | Description |
+| --- | --- |
+| `config` | Validate serverDZ.cfg |
+
+## dzcli validate server config
+
+Validate serverDZ.cfg
+
+### Usage
+
+```text
+dzcli validate server config <server-config.cfg>
 ```
 
 ## dzcli validate xml
