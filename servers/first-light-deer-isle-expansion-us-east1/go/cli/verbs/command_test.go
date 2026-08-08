@@ -25,7 +25,7 @@ func TestVerbCommandMetadataAndHelp(t *testing.T) {
 		{name: "create", command: NewCreateCommand(&bytes.Buffer{}), want: "expansion"},
 		{name: "update", command: NewUpdateCommand(strings.NewReader(""), &bytes.Buffer{}), want: "economy"},
 		{name: "delete", command: NewDeleteCommand(strings.NewReader(""), &bytes.Buffer{}), want: "expansion"},
-		{name: "validate", command: NewValidateCommand(&bytes.Buffer{}), want: "xml"},
+		{name: "validate", command: NewValidateCommand(&bytes.Buffer{}), want: "init"},
 	}
 
 	for _, test := range tests {
@@ -49,6 +49,7 @@ func TestValidateCommands(t *testing.T) {
 	}{
 		{name: "economy", args: []string{"economy", fixturePath(t, "mission", "cfgeconomycore.xml")}, want: "cfgeconomycore"},
 		{name: "expansion ai", args: []string{"expansion", "ai", fixturePath(t, "expansionai", "valid")}, want: "expansion-ai-patrols"},
+		{name: "init", args: []string{"init", fixturePath(t, "dayzinit", "valid", "init.c")}, want: "init"},
 		{name: "xml", args: []string{"xml", fixturePath(t, "xml", "valid")}, want: "root.xml ok"},
 	}
 

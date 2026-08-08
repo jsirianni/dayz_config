@@ -10,6 +10,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	initvalidate "dzcli/cli/dayzinit/validate"
 	"dzcli/cli/economy/limits"
 	typeupdate "dzcli/cli/economy/types/update"
 	cevalidate "dzcli/cli/economy/validate"
@@ -64,6 +65,7 @@ func NewDeleteCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command := newParent("validate", "Validate DayZ configuration files")
 	command.SetOut(stdout)
+	command.AddCommand(initvalidate.NewCommand(stdout))
 	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout)))
 	command.AddCommand(&cobra.Command{
 		Use:   "economy <cfgeconomycore.xml>",

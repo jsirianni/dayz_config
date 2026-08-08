@@ -1001,6 +1001,7 @@ dzcli validate
 | --- | --- |
 | `economy` | Validate cfgeconomycore.xml and referenced types files |
 | `expansion` | Validate DayZ Expansion mod configuration |
+| `init` | Validate DayZ mission init.c |
 | `server` | Modify DayZ server configuration resources |
 | `xml` | Validate XML files recursively |
 
@@ -1038,6 +1039,16 @@ Validate DayZ Expansion AI patrol and loadout files
 
 ```text
 dzcli validate expansion ai [path]
+```
+
+## dzcli validate init
+
+Validate DayZ mission init.c
+
+### Usage
+
+```text
+dzcli validate init <init.c>
 ```
 
 ## dzcli validate server

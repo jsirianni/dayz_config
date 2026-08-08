@@ -113,6 +113,27 @@ func TestRunReportsEachGenericXMLFile(t *testing.T) {
 	assertNotContains(t, stdout.String(), "ignored.txt")
 }
 
+func TestRunReportsInitValidation(t *testing.T) {
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	code := Run([]string{"validate", "init", fixturePath(t, "dayzinit", "valid", "init.c")}, &stdout, &stderr)
+
+	assertEqual(t, code, SuccessExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "init ")
+	assertContains(t, stdout.String(), " ok")
+
+	stdout.Reset()
+	stderr.Reset()
+	code = Run([]string{"validate", "init", fixturePath(t, "dayzinit", "invalid", "init.c")}, &stdout, &stderr)
+
+	assertEqual(t, code, FailureExitCode)
+	assertEqual(t, stderr.String(), "")
+	assertContains(t, stdout.String(), "failed")
+	assertContains(t, stdout.String(), "DZI")
+}
+
 func TestRunXMLValidateReturnsFailureForInvalidXML(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
