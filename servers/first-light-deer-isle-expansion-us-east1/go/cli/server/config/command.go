@@ -18,7 +18,7 @@ var writeFileMutation = serverconfig.WriteFileMutation
 func NewGetCommand(stdout io.Writer) *cobra.Command {
 	var file string
 	command := &cobra.Command{
-		Use:   "config [field]",
+		Use:   "server [field]",
 		Short: "List serverDZ.cfg fields",
 		Args:  cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -36,7 +36,7 @@ func NewGetCommand(stdout io.Writer) *cobra.Command {
 
 func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command := &cobra.Command{
-		Use:   "config <server-config.cfg>",
+		Use:   "server <serverDZ.cfg>",
 		Short: "Validate serverDZ.cfg",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,7 +54,7 @@ func NewUpdateCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	var dryRun bool
 	var allowUnknown bool
 	command := &cobra.Command{
-		Use:   "config <field>",
+		Use:   "server <field>",
 		Short: "Set a serverDZ.cfg field",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -73,7 +73,7 @@ func NewUpdateCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 					return err
 				}
 				if !confirmed {
-					fmt.Fprintf(stdout, "server-config %s not modified\n", file)
+					fmt.Fprintf(stdout, "server %s not modified\n", file)
 					return nil
 				}
 			}
@@ -93,7 +93,7 @@ func NewDeleteCommand(stdout io.Writer) *cobra.Command {
 	var file string
 	var dryRun bool
 	command := &cobra.Command{
-		Use:   "config <field>",
+		Use:   "server <field>",
 		Short: "Remove a serverDZ.cfg field",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -115,10 +115,10 @@ func NewDeleteCommand(stdout io.Writer) *cobra.Command {
 
 func ValidateConfig(path string, stdout io.Writer) error {
 	if err := serverconfig.ValidateFile(path); err != nil {
-		fmt.Fprintf(stdout, "server-config %s failed: %v\n", path, err)
+		fmt.Fprintf(stdout, "server %s failed: %v\n", path, err)
 		return validation.ErrFailed
 	}
-	fmt.Fprintf(stdout, "server-config %s ok\n", path)
+	fmt.Fprintf(stdout, "server %s ok\n", path)
 	return nil
 }
 
@@ -165,7 +165,7 @@ func outputMutation(path string, mutation serverconfig.FileMutation, dryRun bool
 	if err := writeFileMutation(path, mutation); err != nil {
 		return err
 	}
-	fmt.Fprintf(stdout, "server-config %s ok\n", path)
+	fmt.Fprintf(stdout, "server %s ok\n", path)
 	return nil
 }
 

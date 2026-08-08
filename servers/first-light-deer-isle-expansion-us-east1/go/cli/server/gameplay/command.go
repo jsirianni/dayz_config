@@ -71,7 +71,7 @@ func NewUpdateCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 					return err
 				}
 				if !confirmed {
-					fmt.Fprintf(stdout, "server-gameplay %s not modified\n", file)
+					fmt.Fprintf(stdout, "gameplay %s not modified\n", file)
 					return nil
 				}
 			}
@@ -113,10 +113,10 @@ func NewDeleteCommand(stdout io.Writer) *cobra.Command {
 
 func ValidateGameplay(path string, stdout io.Writer) error {
 	if err := gameplayconfig.ValidateFile(path); err != nil {
-		fmt.Fprintf(stdout, "server-gameplay %s failed: %v\n", path, err)
+		fmt.Fprintf(stdout, "gameplay %s failed: %v\n", path, err)
 		return validation.ErrFailed
 	}
-	fmt.Fprintf(stdout, "server-gameplay %s ok\n", path)
+	fmt.Fprintf(stdout, "gameplay %s ok\n", path)
 	return nil
 }
 
@@ -168,7 +168,7 @@ func outputMutation(path string, mutation gameplayconfig.FileMutation, dryRun bo
 	if err := writeFileMutation(path, mutation); err != nil {
 		return err
 	}
-	fmt.Fprintf(stdout, "server-gameplay %s ok\n", path)
+	fmt.Fprintf(stdout, "gameplay %s ok\n", path)
 	return nil
 }
 

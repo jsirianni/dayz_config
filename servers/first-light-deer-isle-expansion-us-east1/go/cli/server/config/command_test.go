@@ -19,10 +19,10 @@ func TestCommandMetadata(t *testing.T) {
 		use  string
 		cmd  func(*bytes.Buffer) any
 	}{
-		{name: "get", use: "config [field]", cmd: func(stdout *bytes.Buffer) any { return NewGetCommand(stdout) }},
-		{name: "validate", use: "config <server-config.cfg>", cmd: func(stdout *bytes.Buffer) any { return NewValidateCommand(stdout) }},
-		{name: "update", use: "config <field>", cmd: func(stdout *bytes.Buffer) any { return NewUpdateCommand(strings.NewReader(""), stdout) }},
-		{name: "delete", use: "config <field>", cmd: func(stdout *bytes.Buffer) any { return NewDeleteCommand(stdout) }},
+		{name: "get", use: "server [field]", cmd: func(stdout *bytes.Buffer) any { return NewGetCommand(stdout) }},
+		{name: "validate", use: "server <serverDZ.cfg>", cmd: func(stdout *bytes.Buffer) any { return NewValidateCommand(stdout) }},
+		{name: "update", use: "server <field>", cmd: func(stdout *bytes.Buffer) any { return NewUpdateCommand(strings.NewReader(""), stdout) }},
+		{name: "delete", use: "server <field>", cmd: func(stdout *bytes.Buffer) any { return NewDeleteCommand(stdout) }},
 	}
 
 	for _, test := range tests {
@@ -48,7 +48,7 @@ func TestValidateConfig(t *testing.T) {
 	if err := command.Execute(); err != nil {
 		t.Fatalf("validate command returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "server-config")
+	assertContains(t, stdout.String(), "server ")
 	assertContains(t, stdout.String(), "ok")
 
 	stdout.Reset()
@@ -56,7 +56,7 @@ func TestValidateConfig(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ValidateConfig returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "server-config")
+	assertContains(t, stdout.String(), "server ")
 	assertContains(t, stdout.String(), "ok")
 
 	stdout.Reset()

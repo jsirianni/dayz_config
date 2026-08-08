@@ -50,8 +50,9 @@ func TestValidateCommands(t *testing.T) {
 		{name: "economy", args: []string{"economy", fixturePath(t, "mission", "cfgeconomycore.xml")}, want: "cfgeconomycore"},
 		{name: "expansion ai", args: []string{"expansion", "ai", fixturePath(t, "expansionai", "valid")}, want: "expansion-ai-patrols"},
 		{name: "init", args: []string{"init", fixturePath(t, "dayzinit", "valid", "init.c")}, want: "init"},
-		{name: "server gameplay", args: []string{"server", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, want: "server-gameplay"},
-		{name: "server weather", args: []string{"server", "weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, want: "server-weather"},
+		{name: "server", args: []string{"server", fixturePath(t, "serverconfig", "valid.cfg")}, want: "server"},
+		{name: "gameplay", args: []string{"gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, want: "gameplay"},
+		{name: "weather", args: []string{"weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, want: "weather"},
 		{name: "xml", args: []string{"xml", fixturePath(t, "xml", "valid")}, want: "root.xml ok"},
 	}
 
@@ -381,17 +382,17 @@ func TestValidateExpansionParentHelp(t *testing.T) {
 	assertContains(t, stdout.String(), "ai")
 }
 
-func TestValidateServerParentHelp(t *testing.T) {
+func TestValidateTopLevelHelpListsPromotedResources(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewValidateCommand(&stdout)
-	command.SetArgs([]string{"server"})
+	command.SetArgs([]string{})
 
 	err := command.Execute()
 
 	if err != nil {
 		t.Fatalf("Execute returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "config")
+	assertContains(t, stdout.String(), "server")
 	assertContains(t, stdout.String(), "gameplay")
 	assertContains(t, stdout.String(), "weather")
 }

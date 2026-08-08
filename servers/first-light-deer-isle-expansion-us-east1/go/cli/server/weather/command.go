@@ -25,9 +25,9 @@ func NewValidateCommand(stdout io.Writer) *cobra.Command {
 
 func ValidateWeather(path string, stdout io.Writer) error {
 	if err := weatherconfig.ValidateFile(path); err != nil {
-		fmt.Fprintf(stdout, "server-weather %s failed: %v\n", path, err)
+		fmt.Fprintf(stdout, "weather %s failed: %v\n", path, err)
 		return validation.ErrFailed
 	}
-	fmt.Fprintf(stdout, "server-weather %s ok\n", path)
+	fmt.Fprintf(stdout, "weather %s ok\n", path)
 	return nil
 }

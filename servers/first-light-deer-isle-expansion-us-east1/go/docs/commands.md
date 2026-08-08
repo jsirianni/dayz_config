@@ -304,7 +304,8 @@ dzcli delete
 | --- | --- |
 | `economy` | Modify DayZ central economy resources |
 | `expansion` | Modify DayZ Expansion mod resources |
-| `server` | Modify DayZ server configuration resources |
+| `gameplay` | Remove a cfggameplay.json field |
+| `server` | Remove a serverDZ.cfg field |
 
 ## dzcli delete economy
 
@@ -479,48 +480,14 @@ dzcli delete expansion ai patrols [name] [flags]
 | `--index` | `0` | select a 1-based patrol index |
 | `--occurrence` | `0` | select a duplicate patrol name occurrence |
 
-## dzcli delete server
-
-Modify DayZ server configuration resources
-
-### Usage
-
-```text
-dzcli delete server
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `config` | Remove a serverDZ.cfg field |
-| `gameplay` | Remove a cfggameplay.json field |
-
-## dzcli delete server config
-
-Remove a serverDZ.cfg field
-
-### Usage
-
-```text
-dzcli delete server config <field> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--dry-run` | `false` | print modified config without writing |
-| `--file` | `` | serverDZ.cfg path |
-
-## dzcli delete server gameplay
+## dzcli delete gameplay
 
 Remove a cfggameplay.json field
 
 ### Usage
 
 ```text
-dzcli delete server gameplay <field> [flags]
+dzcli delete gameplay <field> [flags]
 ```
 
 ### Flags
@@ -529,6 +496,23 @@ dzcli delete server gameplay <field> [flags]
 | --- | --- | --- |
 | `--dry-run` | `false` | print modified JSON without writing |
 | `--file` | `` | cfggameplay.json path |
+
+## dzcli delete server
+
+Remove a serverDZ.cfg field
+
+### Usage
+
+```text
+dzcli delete server <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--dry-run` | `false` | print modified config without writing |
+| `--file` | `` | serverDZ.cfg path |
 
 ## dzcli get
 
@@ -546,7 +530,8 @@ dzcli get
 | --- | --- |
 | `economy` | List DayZ central economy resources |
 | `expansion` | List DayZ Expansion mod resources |
-| `server` | Modify DayZ server configuration resources |
+| `gameplay` | List cfggameplay.json fields |
+| `server` | List serverDZ.cfg fields |
 
 ## dzcli get economy
 
@@ -686,47 +671,14 @@ dzcli get expansion ai patrols [name] [flags]
 | --- | --- | --- |
 | `--file` | `` | AIPatrolSettings.json path |
 
-## dzcli get server
-
-Modify DayZ server configuration resources
-
-### Usage
-
-```text
-dzcli get server
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `config` | List serverDZ.cfg fields |
-| `gameplay` | List cfggameplay.json fields |
-
-## dzcli get server config
-
-List serverDZ.cfg fields
-
-### Usage
-
-```text
-dzcli get server config [field] [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--file` | `` | serverDZ.cfg path |
-
-## dzcli get server gameplay
+## dzcli get gameplay
 
 List cfggameplay.json fields
 
 ### Usage
 
 ```text
-dzcli get server gameplay [field] [flags]
+dzcli get gameplay [field] [flags]
 ```
 
 ### Flags
@@ -734,6 +686,22 @@ dzcli get server gameplay [field] [flags]
 | Flag | Default | Description |
 | --- | --- | --- |
 | `--file` | `` | cfggameplay.json path |
+
+## dzcli get server
+
+List serverDZ.cfg fields
+
+### Usage
+
+```text
+dzcli get server [field] [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--file` | `` | serverDZ.cfg path |
 
 ## dzcli update
 
@@ -751,7 +719,8 @@ dzcli update
 | --- | --- |
 | `economy` | Modify DayZ central economy resources |
 | `expansion` | Modify DayZ Expansion mod resources |
-| `server` | Modify DayZ server configuration resources |
+| `gameplay` | Set a cfggameplay.json field |
+| `server` | Set a serverDZ.cfg field |
 
 ## dzcli update economy
 
@@ -984,51 +953,14 @@ dzcli update expansion ai patrols [name] [flags]
 | `--waypoint` | `[]` | replace Waypoints with x,y,z |
 | `--waypoint-interpolation` | `` | set waypoint-interpolation |
 
-## dzcli update server
-
-Modify DayZ server configuration resources
-
-### Usage
-
-```text
-dzcli update server
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `config` | Set a serverDZ.cfg field |
-| `gameplay` | Set a cfggameplay.json field |
-
-## dzcli update server config
-
-Set a serverDZ.cfg field
-
-### Usage
-
-```text
-dzcli update server config <field> [flags]
-```
-
-### Flags
-
-| Flag | Default | Description |
-| --- | --- | --- |
-| `--allow-unknown` | `false` | allow inserting an undocumented field |
-| `--dry-run` | `false` | print modified config without writing |
-| `--file` | `` | serverDZ.cfg path |
-| `--force` | `false` | overwrite without prompting |
-| `--value` | `[]` | field value; repeat for motd |
-
-## dzcli update server gameplay
+## dzcli update gameplay
 
 Set a cfggameplay.json field
 
 ### Usage
 
 ```text
-dzcli update server gameplay <field> [flags]
+dzcli update gameplay <field> [flags]
 ```
 
 ### Flags
@@ -1040,6 +972,26 @@ dzcli update server gameplay <field> [flags]
 | `--file` | `` | cfggameplay.json path |
 | `--force` | `false` | overwrite without prompting |
 | `--value` | `[]` | field value; repeat for arrays |
+
+## dzcli update server
+
+Set a serverDZ.cfg field
+
+### Usage
+
+```text
+dzcli update server <field> [flags]
+```
+
+### Flags
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `--allow-unknown` | `false` | allow inserting an undocumented field |
+| `--dry-run` | `false` | print modified config without writing |
+| `--file` | `` | serverDZ.cfg path |
+| `--force` | `false` | overwrite without prompting |
+| `--value` | `[]` | field value; repeat for motd |
 
 ## dzcli validate
 
@@ -1057,8 +1009,10 @@ dzcli validate
 | --- | --- |
 | `economy` | Validate cfgeconomycore.xml and referenced types files |
 | `expansion` | Validate DayZ Expansion mod configuration |
+| `gameplay` | Validate cfggameplay.json |
 | `init` | Validate DayZ mission init.c |
-| `server` | Modify DayZ server configuration resources |
+| `server` | Validate serverDZ.cfg |
+| `weather` | Validate cfgweather.xml |
 | `xml` | Validate XML files recursively |
 
 ## dzcli validate economy
@@ -1097,6 +1051,16 @@ Validate DayZ Expansion AI patrol and loadout files
 dzcli validate expansion ai [path]
 ```
 
+## dzcli validate gameplay
+
+Validate cfggameplay.json
+
+### Usage
+
+```text
+dzcli validate gameplay <cfggameplay.json>
+```
+
 ## dzcli validate init
 
 Validate DayZ mission init.c
@@ -1109,50 +1073,22 @@ dzcli validate init <init.c>
 
 ## dzcli validate server
 
-Modify DayZ server configuration resources
-
-### Usage
-
-```text
-dzcli validate server
-```
-
-### Commands
-
-| Command | Description |
-| --- | --- |
-| `config` | Validate serverDZ.cfg |
-| `gameplay` | Validate cfggameplay.json |
-| `weather` | Validate cfgweather.xml |
-
-## dzcli validate server config
-
 Validate serverDZ.cfg
 
 ### Usage
 
 ```text
-dzcli validate server config <server-config.cfg>
+dzcli validate server <serverDZ.cfg>
 ```
 
-## dzcli validate server gameplay
-
-Validate cfggameplay.json
-
-### Usage
-
-```text
-dzcli validate server gameplay <cfggameplay.json>
-```
-
-## dzcli validate server weather
+## dzcli validate weather
 
 Validate cfgweather.xml
 
 ### Usage
 
 ```text
-dzcli validate server weather <cfgweather.xml>
+dzcli validate weather <cfgweather.xml>
 ```
 
 ## dzcli validate xml

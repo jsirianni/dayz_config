@@ -37,7 +37,7 @@ func TestValidateWeather(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ValidateWeather returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "server-weather "+valid+" ok")
+	assertContains(t, stdout.String(), "weather "+valid+" ok")
 
 	stdout.Reset()
 	invalid := fixturePath(t, "invalid-range", "cfgweather.xml")
@@ -46,7 +46,7 @@ func TestValidateWeather(t *testing.T) {
 	if !errors.Is(err, validation.ErrFailed) {
 		t.Fatalf("ValidateWeather error = %v, want validation.ErrFailed", err)
 	}
-	assertContains(t, stdout.String(), "server-weather "+invalid+" failed")
+	assertContains(t, stdout.String(), "weather "+invalid+" failed")
 	assertContains(t, stdout.String(), "less than or equal")
 }
 

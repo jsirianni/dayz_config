@@ -138,16 +138,16 @@ func TestRunReportsGameplayValidation(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"validate", "server", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, &stdout, &stderr)
+	code := Run([]string{"validate", "gameplay", fixturePath(t, "gameplayconfig", "valid.json")}, &stdout, &stderr)
 
 	assertEqual(t, code, SuccessExitCode)
 	assertEqual(t, stderr.String(), "")
-	assertContains(t, stdout.String(), "server-gameplay")
+	assertContains(t, stdout.String(), "gameplay")
 	assertContains(t, stdout.String(), " ok")
 
 	stdout.Reset()
 	stderr.Reset()
-	code = Run([]string{"validate", "server", "gameplay", fixturePath(t, "gameplayconfig", "unknown.json")}, &stdout, &stderr)
+	code = Run([]string{"validate", "gameplay", fixturePath(t, "gameplayconfig", "unknown.json")}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stderr.String(), "")
@@ -159,16 +159,16 @@ func TestRunReportsWeatherValidation(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
 
-	code := Run([]string{"validate", "server", "weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, &stdout, &stderr)
+	code := Run([]string{"validate", "weather", fixturePath(t, "weatherconfig", "valid-modern", "cfgweather.xml")}, &stdout, &stderr)
 
 	assertEqual(t, code, SuccessExitCode)
 	assertEqual(t, stderr.String(), "")
-	assertContains(t, stdout.String(), "server-weather")
+	assertContains(t, stdout.String(), "weather")
 	assertContains(t, stdout.String(), " ok")
 
 	stdout.Reset()
 	stderr.Reset()
-	code = Run([]string{"validate", "server", "weather", fixturePath(t, "weatherconfig", "invalid-range", "cfgweather.xml")}, &stdout, &stderr)
+	code = Run([]string{"validate", "weather", fixturePath(t, "weatherconfig", "invalid-range", "cfgweather.xml")}, &stdout, &stderr)
 
 	assertEqual(t, code, FailureExitCode)
 	assertEqual(t, stderr.String(), "")

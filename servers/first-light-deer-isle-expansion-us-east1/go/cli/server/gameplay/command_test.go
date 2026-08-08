@@ -48,7 +48,7 @@ func TestValidateGameplayCommand(t *testing.T) {
 	if err := command.Execute(); err != nil {
 		t.Fatalf("validate command returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "server-gameplay")
+	assertContains(t, stdout.String(), "gameplay")
 	assertContains(t, stdout.String(), "ok")
 
 	stdout.Reset()
