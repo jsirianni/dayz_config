@@ -23,7 +23,7 @@ func TestVerbCommandMetadataAndHelp(t *testing.T) {
 	}{
 		{name: "get", command: NewGetCommand(&bytes.Buffer{}), want: "economy"},
 		{name: "create", command: NewCreateCommand(&bytes.Buffer{}), want: "expansion"},
-		{name: "update", command: NewUpdateCommand(&bytes.Buffer{}), want: "economy"},
+		{name: "update", command: NewUpdateCommand(strings.NewReader(""), &bytes.Buffer{}), want: "economy"},
 		{name: "delete", command: NewDeleteCommand(strings.NewReader(""), &bytes.Buffer{}), want: "expansion"},
 		{name: "validate", command: NewValidateCommand(&bytes.Buffer{}), want: "xml"},
 	}
@@ -71,16 +71,21 @@ func TestValidateCommands(t *testing.T) {
 func TestGetEconomyTypes(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewGetCommand(&stdout)
-	command.SetArgs([]string{"economy", "types", "--file", fixturePath(t, "mission", "db", "types.xml")})
+	typesFile := fixturePath(t, "mission", "db", "types.xml")
+	command.SetArgs([]string{"economy", "types", "--file", typesFile})
 
 	err := command.Execute()
 
 	if err != nil {
 		t.Fatalf("Execute returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "KIND")
+	assertNotContains(t, firstOutputLine(stdout.String()), "KIND")
+	assertContains(t, firstOutputLine(stdout.String()), "NAME")
+	assertNotContains(t, firstOutputLine(stdout.String()), "OCCURRENCE")
 	assertContains(t, stdout.String(), "Apple")
 	assertContains(t, stdout.String(), "BandageDressing")
+	assertContains(t, stdout.String(), "types.xml")
+	assertNotContains(t, stdout.String(), typesFile)
 
 	stdout.Reset()
 	command = NewGetCommand(&stdout)
@@ -95,24 +100,30 @@ func TestGetEconomyTypes(t *testing.T) {
 func TestGetEconomyLimitsAndGroups(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewGetCommand(&stdout)
-	command.SetArgs([]string{"economy", "limits", "category", "--file", fixturePath(t, "mission", "cfglimitsdefinition.xml")})
+	limitsFile := fixturePath(t, "mission", "cfglimitsdefinition.xml")
+	command.SetArgs([]string{"economy", "limits", "category", "--file", limitsFile})
 
 	err := command.Execute()
 
 	if err != nil {
 		t.Fatalf("Execute returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "category")
+	assertNotContains(t, firstOutputLine(stdout.String()), "KIND")
+	assertContains(t, firstOutputLine(stdout.String()), "NAME")
+	assertNotContains(t, firstOutputLine(stdout.String()), "FILE")
 	assertContains(t, stdout.String(), "tools")
 	assertContains(t, stdout.String(), "weapons")
 
 	stdout.Reset()
 	command = NewGetCommand(&stdout)
-	command.SetArgs([]string{"economy", "limits", "group", "usage", "CustomUsageGroup", "--file", fixturePath(t, "mission", "cfglimitsdefinitionuser.xml")})
+	userLimitsFile := fixturePath(t, "mission", "cfglimitsdefinitionuser.xml")
+	command.SetArgs([]string{"economy", "limits", "group", "usage", "CustomUsageGroup", "--file", userLimitsFile})
 	if err := command.Execute(); err != nil {
 		t.Fatalf("group Execute returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "usage-group")
+	assertNotContains(t, firstOutputLine(stdout.String()), "KIND")
+	assertContains(t, firstOutputLine(stdout.String()), "MEMBERS")
+	assertNotContains(t, firstOutputLine(stdout.String()), "FILE")
 	assertContains(t, stdout.String(), "Military")
 
 	stdout.Reset()
@@ -128,16 +139,22 @@ func TestGetEconomyLimitsAndGroups(t *testing.T) {
 func TestGetExpansionAI(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewGetCommand(&stdout)
-	command.SetArgs([]string{"expansion", "ai", "patrols", "Fixture patrol", "--file", fixturePath(t, "expansionai", "valid", "empty.deerisle", "expansion", "settings", "AIPatrolSettings.json")})
+	patrolsFile := fixturePath(t, "expansionai", "valid", "empty.deerisle", "expansion", "settings", "AIPatrolSettings.json")
+	command.SetArgs([]string{"expansion", "ai", "patrols", "Fixture patrol", "--file", patrolsFile})
 
 	err := command.Execute()
 
 	if err != nil {
 		t.Fatalf("patrols Execute returned error: %v", err)
 	}
-	assertContains(t, stdout.String(), "patrol")
+	assertNotContains(t, firstOutputLine(stdout.String()), "KIND")
+	assertContains(t, firstOutputLine(stdout.String()), "INDEX")
+	assertContains(t, firstOutputLine(stdout.String()), "COORDINATES")
+	assertNotContains(t, firstOutputLine(stdout.String()), "FILE")
+	assertNotContains(t, firstOutputLine(stdout.String()), "OCCURRENCE")
 	assertContains(t, stdout.String(), "Fixture patrol")
 	assertContains(t, stdout.String(), "TestLoadout")
+	assertContains(t, stdout.String(), "100,0,200")
 
 	stdout.Reset()
 	command = NewGetCommand(&stdout)
@@ -145,17 +162,47 @@ func TestGetExpansionAI(t *testing.T) {
 	if err := command.Execute(); err != nil {
 		t.Fatalf("loadouts Execute returned error: %v", err)
 	}
+	assertNotContains(t, firstOutputLine(stdout.String()), "KIND")
+	assertContains(t, firstOutputLine(stdout.String()), "ITEMS")
+	assertNotContains(t, firstOutputLine(stdout.String()), "FILE")
 	assertContains(t, stdout.String(), "IncludedLoadout")
 	assertContains(t, stdout.String(), "TestLoadout")
 
 	stdout.Reset()
 	command = NewGetCommand(&stdout)
-	command.SetArgs([]string{"expansion", "ai", "loadouts", "TestLoadout", "--file", fixturePath(t, "expansionai", "valid", "profiles", "ExpansionMod", "Loadouts", "TestLoadout.json")})
+	loadoutFile := fixturePath(t, "expansionai", "valid", "profiles", "ExpansionMod", "Loadouts", "TestLoadout.json")
+	command.SetArgs([]string{"expansion", "ai", "loadouts", "TestLoadout", "--file", loadoutFile})
 	if err := command.Execute(); err != nil {
 		t.Fatalf("loadout file Execute returned error: %v", err)
 	}
 	assertContains(t, stdout.String(), "4")
 	assertNotContains(t, stdout.String(), "IncludedLoadout")
+	assertNotContains(t, stdout.String(), "TestLoadout.json")
+	assertNotContains(t, stdout.String(), loadoutFile)
+}
+
+func TestGetExpansionAIPatrolsDropsEmptyNameColumn(t *testing.T) {
+	patrolsFile := writeTempFile(t, `{
+  "Patrols": [
+    {"Name": "", "Loadout": "WestLoadout", "Faction": "West", "Behaviour": "ROAMING_LOCAL", "Waypoints": [[10,0,10]]},
+    {"Name": "", "Loadout": "MedicLoadout", "Faction": "Raiders", "Behaviour": "LOOP", "Waypoints": [[2.5,0,3.75]]}
+  ]
+}`)
+
+	var stdout bytes.Buffer
+	if err := listExpansionAIPatrols(patrolsFile, "", &stdout); err != nil {
+		t.Fatalf("listExpansionAIPatrols returned error: %v", err)
+	}
+
+	header := firstOutputLine(stdout.String())
+	assertNotContains(t, header, "NAME")
+	assertNotContains(t, header, "FILE")
+	assertNotContains(t, header, "OCCURRENCE")
+	assertContains(t, header, "INDEX")
+	assertContains(t, header, "COORDINATES")
+	assertContains(t, stdout.String(), "WestLoadout")
+	assertContains(t, stdout.String(), "10,0,10")
+	assertContains(t, stdout.String(), "2.5,0,3.75")
 }
 
 func TestGetDiscoveryFromWorkingDirectory(t *testing.T) {
@@ -268,6 +315,56 @@ func TestLoadoutFilesPathErrors(t *testing.T) {
 	}
 }
 
+func TestDropEmptyNameColumnIgnoresTablesWithoutName(t *testing.T) {
+	headers, rows := dropEmptyNameColumn([]string{"INDEX"}, [][]string{{"1"}})
+
+	if headers[0] != "INDEX" {
+		t.Fatalf("header = %q, want INDEX", headers[0])
+	}
+	if rows[0][0] != "1" {
+		t.Fatalf("row = %q, want 1", rows[0][0])
+	}
+}
+
+func TestSortNamelessIndexRowsUsesNumericOrder(t *testing.T) {
+	rows := [][]string{
+		{"10", "ten"},
+		{"2", "two"},
+		{"1", "one"},
+	}
+
+	sortNamelessIndexRows([]string{"INDEX", "LOADOUT"}, rows)
+
+	if got := strings.Join([]string{rows[0][0], rows[1][0], rows[2][0]}, ","); got != "1,2,10" {
+		t.Fatalf("index order = %s, want 1,2,10", got)
+	}
+
+	namedRows := [][]string{{"B", "2"}, {"A", "1"}}
+	sortNamelessIndexRows([]string{"NAME", "INDEX"}, namedRows)
+	if namedRows[0][0] != "B" {
+		t.Fatalf("named rows changed: %#v", namedRows)
+	}
+
+	unindexedRows := [][]string{{"ten"}, {"two"}}
+	sortNamelessIndexRows([]string{"LOADOUT"}, unindexedRows)
+	if unindexedRows[0][0] != "ten" {
+		t.Fatalf("unindexed rows changed: %#v", unindexedRows)
+	}
+}
+
+func TestFormatPatrolCoordinates(t *testing.T) {
+	if got := formatPatrolCoordinates(expansion.AIPatrol{}); got != "" {
+		t.Fatalf("empty coordinates = %q, want blank", got)
+	}
+
+	patrol := expansion.AIPatrol{
+		Waypoints: []expansion.Vector{{1.25, 0, 3}},
+	}
+	if got := formatPatrolCoordinates(patrol); got != "1.25,0,3" {
+		t.Fatalf("coordinates = %q, want 1.25,0,3", got)
+	}
+}
+
 func TestValidateExpansionParentHelp(t *testing.T) {
 	var stdout bytes.Buffer
 	command := NewValidateCommand(&stdout)
@@ -303,6 +400,11 @@ func assertNotContains(t *testing.T, haystack string, needle string) {
 	if strings.Contains(haystack, needle) {
 		t.Fatalf("%q contains %q", haystack, needle)
 	}
+}
+
+func firstOutputLine(output string) string {
+	line, _, _ := strings.Cut(output, "\n")
+	return line
 }
 
 func writeTempFile(t *testing.T, content string) string {

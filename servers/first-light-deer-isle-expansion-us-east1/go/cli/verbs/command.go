@@ -16,6 +16,7 @@ import (
 	"dzcli/cli/expansion/ai/loadouts"
 	"dzcli/cli/expansion/ai/patrols"
 	aivalidate "dzcli/cli/expansion/ai/validate"
+	serverconfigcmd "dzcli/cli/server/config"
 	xmlvalidate "dzcli/cli/xml/validate"
 	"dzcli/internal/economy"
 	"dzcli/internal/expansion"
@@ -30,6 +31,7 @@ func NewGetCommand(stdout io.Writer) *cobra.Command {
 	command.SetOut(stdout)
 	command.AddCommand(newGetEconomyCommand(stdout))
 	command.AddCommand(newGetExpansionCommand(stdout))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewGetCommand(stdout)))
 	return command
 }
 
@@ -41,11 +43,12 @@ func NewCreateCommand(stdout io.Writer) *cobra.Command {
 	return command
 }
 
-func NewUpdateCommand(stdout io.Writer) *cobra.Command {
+func NewUpdateCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	command := newParent("update", "Update DayZ configuration resources")
 	command.SetOut(stdout)
 	command.AddCommand(newEconomyParent(stdout, typeupdate.NewCommand(stdout)))
 	command.AddCommand(newExpansionParent(stdout, newAIParent(stdout, patrols.NewUpdateCommand(stdout), loadouts.NewUpdateCommand(stdout))))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewUpdateCommand(stdin, stdout)))
 	return command
 }
 
@@ -54,12 +57,14 @@ func NewDeleteCommand(stdin io.Reader, stdout io.Writer) *cobra.Command {
 	command.SetOut(stdout)
 	command.AddCommand(newEconomyParent(stdout, limits.NewDeleteCommand(stdout)))
 	command.AddCommand(newExpansionParent(stdout, newAIParent(stdout, patrols.NewDeleteCommand(stdout), loadouts.NewDeleteCommandWithInput(stdin, stdout))))
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewDeleteCommand(stdout)))
 	return command
 }
 
 func NewValidateCommand(stdout io.Writer) *cobra.Command {
 	command := newParent("validate", "Validate DayZ configuration files")
 	command.SetOut(stdout)
+	command.AddCommand(newServerParent(stdout, serverconfigcmd.NewValidateCommand(stdout)))
 	command.AddCommand(&cobra.Command{
 		Use:   "economy <cfgeconomycore.xml>",
 		Short: "Validate cfgeconomycore.xml and referenced types files",
@@ -211,7 +216,6 @@ func listEconomyTypes(file string, economyCore string, filter string, stdout io.
 		return err
 	}
 	var rows [][]string
-	occurrences := map[string]int{}
 	for _, path := range files {
 		types, err := cevalidate.ParseTypesFile(path)
 		if err != nil {
@@ -221,12 +225,11 @@ func listEconomyTypes(file string, economyCore string, filter string, stdout io.
 			if filter != "" && entry.Name != filter {
 				continue
 			}
-			occurrences[entry.Name]++
-			rows = append(rows, []string{"type", entry.Name, path, strconv.Itoa(occurrences[entry.Name])})
+			rows = append(rows, []string{entry.Name, displayFileName(path)})
 		}
 	}
-	sortRows(rows, 1, 2, 3)
-	return printMatchedRows(stdout, []string{"KIND", "NAME", "FILE", "OCCURRENCE"}, rows, "type", filter)
+	sortRows(rows, 0, 1)
+	return printMatchedRows(stdout, []string{"NAME", "FILE"}, rows, "type", filter)
 }
 
 func economyTypeFiles(file string, economyCore string) ([]string, error) {
@@ -262,10 +265,10 @@ func listEconomyLimits(file string, kind string, filter string, stdout io.Writer
 	var rows [][]string
 	for _, name := range names {
 		if filter == "" || name == filter {
-			rows = append(rows, []string{kind, name, file})
+			rows = append(rows, []string{name})
 		}
 	}
-	return printMatchedRows(stdout, []string{"KIND", "NAME", "FILE"}, rows, kind, filter)
+	return printMatchedRows(stdout, []string{"NAME"}, rows, kind, filter)
 }
 
 func listEconomyLimitGroups(file string, kind string, filter string, stdout io.Writer) error {
@@ -279,10 +282,10 @@ func listEconomyLimitGroups(file string, kind string, filter string, stdout io.W
 	var rows [][]string
 	for _, group := range groups {
 		if filter == "" || group.Name == filter {
-			rows = append(rows, []string{kind + "-group", group.Name, file, strings.Join(group.Members, ",")})
+			rows = append(rows, []string{group.Name, strings.Join(group.Members, ",")})
 		}
 	}
-	return printMatchedRows(stdout, []string{"KIND", "NAME", "FILE", "MEMBERS"}, rows, kind+" group", filter)
+	return printMatchedRows(stdout, []string{"NAME", "MEMBERS"}, rows, kind+" group", filter)
 }
 
 func listExpansionAIPatrols(file string, filter string, stdout io.Writer) error {
@@ -295,25 +298,21 @@ func listExpansionAIPatrols(file string, filter string, stdout io.Writer) error 
 		return err
 	}
 	var rows [][]string
-	occurrences := map[string]int{}
 	for index, patrol := range settings.Patrols {
-		occurrences[patrol.Name]++
 		if filter != "" && patrol.Name != filter {
 			continue
 		}
 		rows = append(rows, []string{
-			"patrol",
 			patrol.Name,
-			targetFile,
 			strconv.Itoa(index + 1),
-			strconv.Itoa(occurrences[patrol.Name]),
 			patrol.Loadout,
 			patrol.Faction,
 			patrol.Behaviour,
+			formatPatrolCoordinates(patrol),
 		})
 	}
-	sortRows(rows, 1, 3)
-	return printMatchedRows(stdout, []string{"KIND", "NAME", "FILE", "INDEX", "OCCURRENCE", "LOADOUT", "FACTION", "BEHAVIOUR"}, rows, "patrol", filter)
+	sortRows(rows, 0, 1)
+	return printMatchedRows(stdout, []string{"NAME", "INDEX", "LOADOUT", "FACTION", "BEHAVIOUR", "COORDINATES"}, rows, "patrol", filter)
 }
 
 func listExpansionAILoadouts(file string, path string, filter string, stdout io.Writer) error {
@@ -331,10 +330,10 @@ func listExpansionAILoadouts(file string, path string, filter string, stdout io.
 		if err != nil {
 			return err
 		}
-		rows = append(rows, []string{"loadout", name, loadoutFile, strconv.Itoa(expansion.CountPrefabItems(loadout))})
+		rows = append(rows, []string{name, strconv.Itoa(expansion.CountPrefabItems(loadout))})
 	}
-	sortRows(rows, 1, 2)
-	return printMatchedRows(stdout, []string{"KIND", "NAME", "FILE", "ITEMS"}, rows, "loadout", filter)
+	sortRows(rows, 0)
+	return printMatchedRows(stdout, []string{"NAME", "ITEMS"}, rows, "loadout", filter)
 }
 
 func loadoutFiles(file string, path string) ([]string, error) {
@@ -381,6 +380,26 @@ func resolvePatrolsFile(file string) (string, error) {
 	return expansion.FindAIPatrolsFileNear(wd)
 }
 
+func formatPatrolCoordinates(patrol expansion.AIPatrol) string {
+	if len(patrol.Waypoints) == 0 {
+		return ""
+	}
+	waypoint := patrol.Waypoints[0]
+	return strings.Join([]string{
+		formatCoordinate(waypoint[0]),
+		formatCoordinate(waypoint[1]),
+		formatCoordinate(waypoint[2]),
+	}, ",")
+}
+
+func formatCoordinate(value float64) string {
+	return strconv.FormatFloat(value, 'f', -1, 64)
+}
+
+func displayFileName(path string) string {
+	return filepath.Base(filepath.Clean(path))
+}
+
 func printMatchedRows(stdout io.Writer, headers []string, rows [][]string, resource string, filter string) error {
 	if len(rows) == 0 {
 		if filter != "" {
@@ -388,8 +407,60 @@ func printMatchedRows(stdout io.Writer, headers []string, rows [][]string, resou
 		}
 		return fmt.Errorf("no %s resources found", resource)
 	}
+	headers, rows = dropEmptyNameColumn(headers, rows)
+	sortNamelessIndexRows(headers, rows)
 	printTable(stdout, headers, rows)
 	return nil
+}
+
+func dropEmptyNameColumn(headers []string, rows [][]string) ([]string, [][]string) {
+	nameColumn := headerIndex(headers, "NAME")
+	if nameColumn == -1 {
+		return headers, rows
+	}
+	for _, row := range rows {
+		if nameColumn < len(row) && strings.TrimSpace(row[nameColumn]) != "" {
+			return headers, rows
+		}
+	}
+
+	trimmedHeaders := removeColumn(headers, nameColumn)
+	trimmedRows := make([][]string, 0, len(rows))
+	for _, row := range rows {
+		trimmedRows = append(trimmedRows, removeColumn(row, nameColumn))
+	}
+	return trimmedHeaders, trimmedRows
+}
+
+func sortNamelessIndexRows(headers []string, rows [][]string) {
+	if headerIndex(headers, "NAME") != -1 {
+		return
+	}
+	indexColumn := headerIndex(headers, "INDEX")
+	if indexColumn == -1 {
+		return
+	}
+	sort.SliceStable(rows, func(left, right int) bool {
+		leftIndex, _ := strconv.Atoi(rows[left][indexColumn])
+		rightIndex, _ := strconv.Atoi(rows[right][indexColumn])
+		return leftIndex < rightIndex
+	})
+}
+
+func headerIndex(headers []string, name string) int {
+	for index, header := range headers {
+		if header == name {
+			return index
+		}
+	}
+	return -1
+}
+
+func removeColumn(values []string, index int) []string {
+	trimmed := make([]string, 0, len(values)-1)
+	trimmed = append(trimmed, values[:index]...)
+	trimmed = append(trimmed, values[index+1:]...)
+	return trimmed
 }
 
 func printTable(stdout io.Writer, headers []string, rows [][]string) {
@@ -422,6 +493,13 @@ func newEconomyParent(stdout io.Writer, children ...*cobra.Command) *cobra.Comma
 
 func newExpansionParent(stdout io.Writer, children ...*cobra.Command) *cobra.Command {
 	command := newParent("expansion", "Modify DayZ Expansion mod resources")
+	command.SetOut(stdout)
+	command.AddCommand(children...)
+	return command
+}
+
+func newServerParent(stdout io.Writer, children ...*cobra.Command) *cobra.Command {
+	command := newParent("server", "Modify DayZ server configuration resources")
 	command.SetOut(stdout)
 	command.AddCommand(children...)
 	return command

@@ -621,6 +621,25 @@ func TestInspectEconomyCoreAddsDuplicateTypeWarnings(t *testing.T) {
 	assertContains(t, strings.Join(statuses[2].Warnings, "\n"), "duplicates a type")
 }
 
+func TestValidateEconomyCorePrintsSameFileDuplicateTypeWarnings(t *testing.T) {
+	dir := t.TempDir()
+	writeTestFile(t, filepath.Join(dir, "cfglimitsdefinition.xml"), validLimitsXML())
+	if err := os.Mkdir(filepath.Join(dir, "db"), 0o700); err != nil {
+		t.Fatalf("mkdir db: %v", err)
+	}
+	writeTestFile(t, filepath.Join(dir, "cfgeconomycore.xml"), `<?xml version="1.0" encoding="UTF-8"?><economycore />`)
+	writeTestFile(t, filepath.Join(dir, "db", "types.xml"), `<?xml version="1.0" encoding="UTF-8"?><types><type name="Duplicate"><nominal>1</nominal></type><type name="Duplicate"><nominal>2</nominal></type></types>`)
+
+	var stdout bytes.Buffer
+	err := ValidateEconomyCore(filepath.Join(dir, "cfgeconomycore.xml"), &stdout)
+
+	if err != nil {
+		t.Fatalf("ValidateEconomyCore returned error: %v", err)
+	}
+	assertContains(t, stdout.String(), "base-types")
+	assertContains(t, stdout.String(), `warning: type "Duplicate" duplicates a type already loaded from`)
+}
+
 func TestAddTypeIdentityWarningsSkipsUnparseableStatus(t *testing.T) {
 	statuses := []FileStatus{
 		{Kind: "cfgeconomycore", Path: "core.xml"},
