@@ -341,9 +341,6 @@
 	<pos x="3904" z="10460" />    
 	
   </event>
-  <event name="Loot">
-    <zone smin="0" smax="0" dmin="0" dmax="0" r="0" />
-</event>
   <event name="VehicleOffroadHatchback">
     <pos x="7353.891" z="1940.002" a="142.9673" />
     <pos x="3284.484" z="6329.61" a="343.3632" />
