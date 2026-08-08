@@ -1,0 +1,4 @@
+interface:
+  display_name: "dzcli DayZ Config"
+  short_description: "Install and use dzcli for DayZ config"
+  default_prompt: "Use $dzcli to inspect, update, and validate a DayZ server config change."
