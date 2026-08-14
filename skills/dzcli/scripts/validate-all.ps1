@@ -232,7 +232,7 @@ foreach ($serverDirInfo in $serverDirs) {
             (Test-Path -LiteralPath $cfgeconomycore)
 
         if (Test-Path -LiteralPath $cfgeconomycore) {
-            Add-ValidationCommand -CommandList $commands -Server $serverName -Kind "economy" -ArgList @("validate", "economy", $missionRoot) -Target $missionRoot
+            Add-ValidationCommand -CommandList $commands -Server $serverName -Kind "economy" -ArgList @("validate", "economy", $missionRoot, "--warnings", "compact") -Target $missionRoot
         } elseif ($hasEconomyFiles) {
             Add-SkippedValidation -SkipList $skipped -Server $serverName -Kind "economy" -Target $missionRoot -Reason "cfgeconomycore.xml is missing; dzcli validate economy currently requires mission core discovery."
         }

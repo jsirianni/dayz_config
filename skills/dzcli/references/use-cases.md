@@ -98,6 +98,15 @@ For a read-only repository-wide validation report, run:
 
 The helper discovers `serverDZ.cfg`, root and mission config files, server-wide XML trees, and Expansion AI roots under `servers/`. It reports skipped economy checks when a partial mission folder contains economy XML but lacks `cfgeconomycore.xml`, because the current `dzcli validate economy` behavior cannot validate those folders cleanly.
 
+dzcli v0.0.5 adds global JSON output and compact validation warnings:
+
+```powershell
+& $dz validate economy $mission --warnings compact
+& $dz -o json validate server "$server/serverDZ.cfg"
+```
+
+Use `--warnings full` only when per-item remediation is needed. For very noisy economy trees, compact text is currently more practical than JSON because JSON still includes the complete warning/remediation arrays.
+
 ## Direct Edit Escapes
 
 Use direct edits when the desired change is outside the command surface, such as unsupported weather modifications, mission script changes, comments, or complex mod-management batch scripts. Keep direct edits local and structured, then run the closest validation command before finishing.

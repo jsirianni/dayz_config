@@ -94,6 +94,15 @@ For validating every server directory, use:
 
 The script discovers supported config targets, invokes `dzcli` read-only validators, reports warnings and failures, validates server-wide XML trees so loose XML is not missed, and skips economy validation for partial mission folders that have economy XML but no `cfgeconomycore.xml` because the current `dzcli validate economy` command requires mission core discovery.
 
+With dzcli v0.0.5 or newer, validation supports compact warning output and JSON:
+
+```powershell
+& $dz validate economy $mission --warnings compact
+& $dz -o json validate server "$server/serverDZ.cfg"
+```
+
+Prefer compact text for high-warning economy trees until JSON warning compaction is available; JSON currently preserves full warning/remediation detail.
+
 Example server config change:
 
 ```powershell
