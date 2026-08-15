@@ -1,0 +1,2 @@
+call %SCRIPT%
+goto %TARGET%
