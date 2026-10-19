@@ -1,7 +1,9 @@
 # First Light Badlands Nasdara
 
-Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara-us-east`.
+Custom Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara-us-east`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
+The mission directory contains only custom overrides for a complete installed
+stock Nasdara mission.
 
 ## Server settings and ports
 
@@ -25,21 +27,26 @@ installation directory. VPP's
 Only the configured game port is confirmed from repository files. Query/RCon
 listeners and existing router/firewall forwarding require checking on the host.
 
-## Mission provenance
+## Mission override and provenance
 
-All 51 files under `mpmissions/dayzOffline.nasdara/` were imported from
+The only retained mission file is `mpmissions/dayzOffline.nasdara/db/messages.xml`.
+It contains Frostline's server-name greeting, Discord invite, and restart
+announcement. Provision the full stock mission on the host, then copy this file
+into its existing `db` directory.
+
+The original 51-file mission import came from
 [BohemiaInteractive/DayZ-Central-Economy](https://github.com/BohemiaInteractive/DayZ-Central-Economy/tree/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara).
 
 - Upstream commit: `f220b2918b1d79a5055b1ee9be70c0ec1516e876`.
 - Pristine import commit: `d206bc5`.
 - Pristine mission Git tree: `1644633799219b52320e9220ead3fa1c8e1e90d3`.
 
-The import commit preserves every upstream path, file mode, and byte, including
-line endings. All 51 files remain present. The only subsequent mission change
-is `db/messages.xml`, copied from Frostline to retain the server-name greeting,
-Discord invite, and restart announcement. The other 50 files remain identical
-to upstream, including the Nasdara loot economy, environment, weather, map data,
-gameplay JSON, and initialization script.
+The pristine import preserved every upstream path, file mode, and byte. A
+comparison of Git blobs and modes confirmed that the other 50 files were still
+unchanged stock files. They have been removed from this directory, including
+`areaflags.map`, the economy databases, environment territories, map placement
+data, stock XML/JSON settings, weather, and `init.c`. The installed stock mission
+supplies these files. The original complete import remains in Git history.
 
 The restart announcement is informational. This configuration does not install
 a timed restart scheduler.
@@ -99,13 +106,18 @@ reference. Keep all path variables and `-BEpath` consistent if adjusting them on
 the host. Give Badlands its own installation directory if other servers use the
 default location. The scripts take no command-line parameters.
 
-1. Provision the Windows DayZ installation and deploy `serverDZ.cfg` and the
-   complete `mpmissions/dayzOffline.nasdara/` tree into the corresponding locations
-   under `C:\DayZ\server`. Before the first modded start, copy
+1. Provision the Windows DayZ installation and a complete stock Nasdara mission
+   under `C:\DayZ\server\mpmissions\dayzOffline.nasdara\`, using the server
+   distribution or the complete official upstream mission linked above. Deploy
+   `serverDZ.cfg` to `C:\DayZ\server\serverDZ.cfg`, then copy this directory's
+   `mpmissions\dayzOffline.nasdara\db\messages.xml` over the installed mission's
+   `db\messages.xml`, retaining all other installed mission files. Before the
+   first modded start, copy
    `profiles/VPPAdminTools/` to `C:\DayZ\server\profiles\VPPAdminTools\`. Retain
    existing deployed VPP settings and credentials on subsequent deployments.
-   As with the reference, SteamCMD updates use `validate`; review/reapply mission
-   customizations if Steam replaces those files during updates.
+   As with the reference, SteamCMD updates use `validate`; reapply the custom
+   messages if Steam replaces that file during updates. The repository mission
+   folder is a partial overlay; use file copies that preserve the stock mission.
 
 2. From this server's repository directory in Command Prompt, run one
    update/start cycle:
@@ -165,7 +177,8 @@ Economy validation rejects empty event-spawn entries and Nasdara's
 territory containing no live spawn zones. Gameplay validation rejects the
 upstream lighting value and fields for construction, vehicles, bunker
 broadcasts, external locks, and sandstorms. These failures were already present
-before customization; the official files are preserved for engine compatibility.
+before customization. These historical checks describe the original full import;
+the host's complete stock mission now supplies the uncustomized files.
 
 Frostline's original server config also fails v0.0.5 validation on the unannotated
 `vppDisablePassword` field. The initial vanilla config omits that field and passes; it remains unchanged.
@@ -191,6 +204,7 @@ checks were not performed for that change.
 
 ## Windows batch launcher validation
 
+These historical checks cover the batch conversion before stock-file cleanup.
 The batch conversion branch starts from merged `main` commit `c44448c` (PR #55).
 
 - Repo-local `dzcli` was installed/checked for updates at v0.0.5.
@@ -207,3 +221,24 @@ The batch conversion branch starts from merged `main` commit `c44448c` (PR #55).
 
 SteamCMD downloads, synchronization, process exit/restart behavior, VPP login,
 and live network listeners still require verification on the Windows host.
+
+## Custom override cleanup validation
+
+The cleanup branch starts from merged `main` commit `585e16a` (PR #56).
+Repo-local `dzcli` was checked for updates at v0.0.5.
+
+- All 50 removed files match the pinned upstream Git blobs and modes exactly.
+  `db/messages.xml` is the only customized mission file and remains unchanged.
+- Server configuration and the remaining XML pass validation before and after
+  cleanup. Both batch launchers, server settings, VPP profiles, and the authored
+  historical validation logs remain unchanged. Other servers are unchanged.
+- A standalone economy check on the partial repository mission reports the
+  intentionally absent `cfgeconomycore.xml`. Validate a complete deployed mission.
+- For comparison, a temporary full mission was assembled from the pinned stock
+  files plus the retained messages override. XML, weather, and initialization
+  validation pass. Economy/gameplay retain the inherited failures described
+  above. All six validator outputs match the pre-cleanup baseline after
+  normalizing mission paths.
+
+The temporary validation mission and new logs are ignored under `.tools/`.
+No installed server files, persistence, or live services were changed.
