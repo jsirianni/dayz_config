@@ -1,7 +1,6 @@
 # First Light Badlands Nasdara
 
-Vanilla Nasdara configuration in `first-light-badlands-sakhal-us-east`.
-The directory name retains the requested `sakhal` suffix; the mission runs Nasdara.
+Vanilla Nasdara configuration in `first-light-badlands-nasdara-us-east`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
 
 ## Server settings and ports
@@ -84,9 +83,11 @@ and announcement changes.
 | Frostline preservation | Unchanged Git tree versus branch baseline and unchanged working-file SHA-256 hashes |
 | Economy and gameplay | Failures inherited from pristine upstream; final output identical to baseline |
 
-Exact baseline outputs are preserved in
+Baseline diagnostics are preserved in
 [validation/baseline-economy.txt](validation/baseline-economy.txt) and
 [validation/baseline-gameplay.txt](validation/baseline-gameplay.txt).
+Validation-log directory prefixes were updated with the Nasdara directory rename;
+diagnostic content is unchanged.
 
 Economy validation rejects empty event-spawn entries and Nasdara's
 `OilPitArea`/`OilPitTrigger` values. It also warns about the upstream cattle
