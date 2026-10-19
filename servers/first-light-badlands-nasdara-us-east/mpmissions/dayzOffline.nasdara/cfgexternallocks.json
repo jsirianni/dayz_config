@@ -1,9 +1,0 @@
-{
-	"locksSettings":
-	{
-		"protectionCountStageOne": 3,
-		"protectionCountStageTwo": 1,
-		"protectionTime": 30,
-		"protectionResetTime": 3600
-	}
-}
