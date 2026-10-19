@@ -17,8 +17,9 @@ Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara
 | Time | System time, 2x day acceleration, 5x night multiplier, persistent |
 | Mods | CF (`1559212036`), then VPPAdminTools (`1828439124`) |
 
-The remaining server settings, Linux paths, logging, BattlEye path, service user,
-restart policy, and shutdown signals mirror Frostline. VPP's
+The remaining server configuration settings mirror Frostline. The Windows
+launchers retain logging and BattlEye options, with profiles beneath the Windows
+installation directory. VPP's
 `vppDisablePassword` field remains omitted, so VPP password authentication is enabled.
 
 Only the configured game port is confirmed from repository files. Query/RCon
@@ -45,7 +46,7 @@ a timed restart scheduler.
 
 ## Base mods and admin access
 
-The launcher installs/updates these official Workshop mods through SteamCMD's
+`dayz-service.ps1` installs/updates these official Workshop mods through SteamCMD's
 DayZ application `221100`:
 
 | Load order | Mod | Workshop ID |
@@ -53,10 +54,13 @@ DayZ application `221100`:
 | 1 | [CF (Community Framework)](https://steamcommunity.com/sharedfiles/filedetails/?id=1559212036) | `1559212036` |
 | 2 | [VPPAdminTools](https://steamcommunity.com/sharedfiles/filedetails/?id=1828439124) | `1828439124` |
 
-VPP requires CF on both the server and connecting clients. The launcher links
-both downloaded mod directories into `/opt/dayz`, links their `.bikey` files into
-`/opt/dayz/keys`, and loads `-mod="1559212036;1828439124"`. It accepts `keys` or
-`Keys` directories and stops if either mod or its signing keys are missing.
+VPP requires CF on both the server and connecting clients. The Windows launcher
+mirrors the downloaded mods into `@CF` and `@VPPAdminTools` beneath the install
+directory, copies their public `.bikey` files into `keys`, and loads
+`-mod=@CF;@VPPAdminTools`. It accepts keys at the mod root or in `keys`/`Keys`
+directories and stops if either mod or its signing keys are missing. Mirror
+operations remove stale files only from these dedicated mod directories;
+Robocopy exit codes 0-7 are successful, while codes 8 or greater stop startup.
 Clients must load both mods in the same order. See the
 [VPP installation guide](https://github.com/VanillaPlusPlus/VPP-Admin-Tools/wiki/Installation-%26-Configuration).
 
@@ -69,7 +73,7 @@ is included.
 VPP's additional password prompt stays enabled. Use the VPP credential from the
 copied `Permissions/credentials.txt`; this is separate from DayZ's `passwordAdmin`.
 VPP hashes the deployed plaintext credential file on startup. Manage credential changes
-on the host when deploying, then restart the service to
+on the host when deploying, then restart the server to
 apply any changes. The existing profile readme describes Frostline's previous
 password setup; Badlands requires the credential because password checks remain on.
 
@@ -77,31 +81,70 @@ CF's Workshop installation notes require clean persistence when first enabling
 CF. If this server has already run, back up its existing persistence and plan
 that change during deployment. This repository change does not delete storage.
 
-## Host setup
+## Windows host setup
 
-Use a Linux host with the `dayz` user/group, sudo access, SteamCMD at
-`/usr/games/steamcmd`, and a stable DayZ dedicated server build supporting Nasdara.
-The install location remains `/opt/dayz`, and the service remains `dayz.service`.
+Use Windows PowerShell 5.1 or PowerShell 7 on Windows, SteamCMD, Robocopy, and
+a stable DayZ dedicated server build supporting Nasdara. The scripts follow the
+two batch launchers in `../first-light-deer-isle-vanilla-us-east1/`.
 
-1. Run `sudo bash dayz.sh STEAM_USERNAME` with the intended Steam account. The
-   script installs/updates DayZ and both Workshop mods, links mods and signing
-   keys, restores ownership to `dayz:dayz`, writes the systemd unit, and reloads
-   systemd.
-2. Deploy this directory's `serverDZ.cfg` to `/opt/dayz/serverDZ.cfg` and the
-   complete `mpmissions/dayzOffline.nasdara/` tree to the corresponding mission
-   location under `/opt/dayz/mpmissions/`. Deploy `profiles/VPPAdminTools/` into
-   `/opt/dayz/profiles/VPPAdminTools/` before the first modded start, retaining
-   ownership by `dayz:dayz`.
-3. Enable/start the service through the host's existing deployment procedure.
+| Parameter | Default |
+| --- | --- |
+| `SteamUsername` | Required; SteamCMD prompts for password/Steam Guard as needed |
+| `SteamCmdPath` | `C:\SteamCMD\steamcmd.exe` |
+| `InstallDirectory` | `C:\DayZ\server` |
+| `WorkshopDirectory` | `steamapps\workshop\content\221100` beneath the SteamCMD directory |
+| `RestartDelaySeconds` (manager only) | `10` |
 
-The launcher does not create the service account, copy repository configuration,
-enable/start the service, or migrate Frostline persistence. Server logs and
-profiles use `/opt/dayz/profiles`, including the supplied VPP admin configuration.
+Use absolute paths for installation and Workshop overrides. Give Badlands its own
+installation directory if other servers use the default location. Run these
+commands from this server's repository directory in a console with write access
+to the installation and SteamCMD directories:
+
+1. Install/update the server and mods without starting DayZ:
+
+   ```powershell
+   .\dayz-service.ps1 -SteamUsername YOUR_STEAM_USERNAME -UpdateOnly
+   ```
+
+2. Deploy `serverDZ.cfg` and the complete `mpmissions/dayzOffline.nasdara/` tree
+   into the corresponding locations under `C:\DayZ\server`. Before the first
+   modded start, copy `profiles/VPPAdminTools/` to
+   `C:\DayZ\server\profiles\VPPAdminTools\`. Retain existing deployed VPP settings
+   and credentials on subsequent deployments. Review/reapply the repository
+   mission customization after Steam updates, before starting the server.
+
+3. Run one update/start cycle:
+
+   ```powershell
+   .\dayz-service.ps1 -SteamUsername YOUR_STEAM_USERNAME
+   ```
+
+   Or supervise repeated cycles:
+
+   ```powershell
+   .\dayz-service-manager.ps1 -SteamUsername YOUR_STEAM_USERNAME
+   ```
+
+   Both scripts accept the path parameters above. The manager retries after
+   every server exit or failed update, with a 10-second default delay. Each
+   cycle updates DayZ and both mods, synchronizes mod folders and signing keys,
+   and runs `DayZServer_x64.exe` from the installation directory. Press Ctrl+C
+   to stop the console manager; run only one manager per installation.
+
+The launcher checks for the deployed config, Nasdara initialization script, and
+VPP admin/credential files before starting. Logs and profiles use
+`C:\DayZ\server\profiles`. This is a console supervisor, not a registered Windows
+service or timed restart scheduler. Configuration/profile deployment is manual;
+the launcher only mirrors mod directories and never copies over admin profiles.
 No host deployment or live network verification was performed for this change.
+
+See [DayZ launch parameters](https://community.bistudio.com/wiki/DayZ:Server_Configuration)
+and [Robocopy return codes](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy).
 
 ## Initial mission validation
 
-Validated with repo-local `dzcli` v0.0.5. Baseline checks ran against the pristine
+These historical checks cover the initial Linux setup. Validated with repo-local
+`dzcli` v0.0.5. Baseline checks ran against the pristine
 upstream import before customization, and final checks ran after configuration
 and announcement changes.
 
@@ -138,6 +181,7 @@ A successful live Nasdara startup and actual listener ports remain unverified.
 
 ## Base mod change validation
 
+These historical checks cover the base mod change before the Windows conversion.
 The base mod branch starts from merged `main` commit `38c17cf`. Repo-local
 `dzcli` was checked for updates and remains at v0.0.5.
 
@@ -151,4 +195,20 @@ The base mod branch starts from merged `main` commit `38c17cf`. Repo-local
 - Game port remains `2301`; query and RCon ports remain unspecified and unverified.
 
 Mod downloads, server startup, client connections, VPP login, and live network
-checks require deployment on the Linux host and have not been performed.
+checks were not performed for that change.
+
+## Windows launcher validation
+
+The Windows branch starts from merged `main` commit `b62ef4a` (PR #54).
+
+- Repo-local `dzcli` was installed/checked for updates at v0.0.5.
+- `dzcli validate server` passes before and after the launcher replacement.
+- Both PowerShell scripts parse with Windows PowerShell 5.1; neither was executed.
+- The launcher selects `DayZServer_x64.exe`, port `2301`, CF then VPP, the
+  existing logging flags, `battleye`, and `profiles` from the install directory.
+- `serverDZ.cfg`, all mission/economy files, and VPP profiles remain unchanged
+  from `main`; hostname, Nasdara mission, and VPP password checks are preserved.
+- Frostline, Deer Isle, and all other server directories remain unchanged.
+
+SteamCMD downloads, synchronization, process exit/restart behavior, VPP login,
+and live network listeners still require verification on the Windows host.
