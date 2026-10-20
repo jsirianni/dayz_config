@@ -108,7 +108,8 @@ and [patrol fields](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26
 Serialized defaults are included; internal `NonSerialized` fields are omitted.
 Accuracy, damage, aggression timeouts (120/150 seconds), lighting visibility,
 and other unrelated settings retain stock defaults. Patrol override sentinels
-inherit the root/global defaults where appropriate.
+inherit the root/global defaults where appropriate. The agreed combat tiers
+below are planned overrides; they have not been applied to these configurations.
 
 ### Starting outfits and supplies
 
@@ -304,6 +305,34 @@ relationship, not immunity from combat. Assistance eligibility and aggression
 expiry use stock behavior in this phase (120 seconds, guard 150 seconds) and
 still require runtime checks.
 
+### Agreed combat tiers (pending configuration)
+
+The following values are selected for future implementation, ordered from
+lowest to highest accuracy. They replace the pending accuracy decision.
+
+| Tier | Patrol role | `AccuracyMin` | `AccuracyMax` | `EnableFlankingOutsideCombat` |
+| --- | --- | --- | --- | --- |
+| 1 | Civilian | 0.25 | 0.75 | 0 (disabled) |
+| 2 | Tribesman | 0.30 | 0.85 | 0 (disabled) |
+| 3 | Warlord | 0.35 | 0.95 | 0 (disabled) |
+| 4 | Western Mercenaries (`Western_Merc`) | 0.45 | 0.95 | 1 (enabled) |
+
+Warlords use the inspected stock accuracy range. Western Mercenaries have a
+higher minimum while retaining the stock maximum. These are selected gameplay
+settings, not measured hit percentages or verified combat outcomes.
+
+Future implementation must set explicit `AccuracyMin` and `AccuracyMax`
+overrides on every patrol according to its role, including Civilian and
+Tribesman patrols that share the stock `Civilian` faction. Enable flanking
+outside combat only for Western Mercenaries; keep it disabled globally and
+explicitly disabled for the other roles. All roles may still flank in combat.
+
+Later validation must check the assigned settings for every patrol and compare
+combat behavior with matching weapons, distances, and target movement across
+the four roles. Confirm that only Western Mercenaries flank outside combat.
+Configuration changes and runtime checks are deferred; this decision updates
+the broader plan only.
+
 ### What existing Expansion factions provide
 
 Research used public `release` commit
@@ -414,6 +443,11 @@ Sources: [Badlands release notes](https://dayz.com/article/general/dayz-badlands
 
 ### Implementation work identified by research
 
+- [x] Select accuracy ranges and flanking outside combat policy for all four
+      roles; see the agreed combat tiers above.
+- [ ] Future phase: apply explicit per-role accuracy and flanking overrides,
+      then validate assignments and compare combat behavior under matching
+      weapons, distances, and target movement.
 - [ ] Future phase: decide whether to authorize a custom Warlord faction and
       exact neutral targeting; neither is included in this stock-only phase.
 - [ ] Future phase: implement Western_Merc after its separate loadout and
@@ -625,6 +659,7 @@ to the decisions they support.
 | 2026-10-19 | Native local roaming is accepted without a hard boundary. | 500 m is an activation radius/roaming aim, not an enforced travel limit. |
 | 2026-10-19 | dzcli v0.0.5 JSON mutations do not write, and server-root discovery misses nested mission settings. | Apply in text mode after JSON dry runs, compare written files with previews, and validate both profile/server and mission roots. |
 | 2026-10-19 | Configuration validators and the requested static audit pass. | Deployment and runtime acceptance remain pending; no server or game was launched. |
+| 2026-10-19 | Agreed accuracy tiers: Civilian 0.25-0.75, Tribesman 0.30-0.85, Warlord 0.35-0.95, Western_Merc 0.45-0.95; only Western_Merc enables flanking outside combat. | Record explicit per-role overrides for future implementation; configurations and runtime checks remain unchanged and deferred. |
 
 ## References
 
