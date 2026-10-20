@@ -1,6 +1,8 @@
-# First Light Badlands Nasdara
+# First Light Badlands Nasdara Staging
 
-Custom Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara-us-east`.
+Password-protected Nasdara staging configuration with CF and VPPAdminTools in
+`first-light-badlands-nasdara-staging-us-east`, copied from
+`../first-light-badlands-nasdara-us-east/` at main commit `5c6306f`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
 The mission directory contains only custom overrides for a complete installed
 stock Nasdara mission.
@@ -9,23 +11,28 @@ stock Nasdara mission.
 
 | Setting | Value |
 | --- | --- |
-| Public hostname | `First Light | Badlands Nasdara | us-east1` |
+| Public hostname | `First Light | Badlands Nasdara | STAGING | us-east1` |
+| Join password | `sillypassword` (intentionally public; discourages casual joins) |
 | Mission template | `dayzOffline.nasdara` |
-| Game port | `2301` (`-port=2301`, matching Frostline) |
-| Steam query port | Unspecified, matching Frostline; runtime/default value unverified |
+| Game port | `2901` (`-port=2901`) |
+| Client port | `2903` (`clientPort = 2903`) |
+| Steam query port | `27018` (`steamQueryPort = 27018`) |
 | RCon port | Unspecified, matching Frostline; runtime/default value unverified |
 | Maximum players | 60 |
 | Player view | First person; crosshair disabled |
 | Time | System time, 2x day acceleration, 5x night multiplier, persistent |
 | Mods | CF (`1559212036`), then VPPAdminTools (`1828439124`) |
 
-The remaining server configuration settings mirror Frostline. The Windows
+The remaining server configuration settings mirror the production Nasdara server. The Windows
 launchers retain logging and BattlEye options, with profiles beneath the Windows
 installation directory. VPP's
 `vppDisablePassword` field remains omitted, so VPP password authentication is enabled.
 
-Only the configured game port is confirmed from repository files. Query/RCon
-listeners and existing router/firewall forwarding require checking on the host.
+The configured game, client, and query ports are confirmed from repository files;
+live listeners and router/firewall rules require checking on the host. RCon is
+unchanged. The join password does not change DayZ admin or VPP credentials.
+Deer Isle vanilla also uses game port 2901 and query port 27018; these servers
+need separate host/IP bindings when run concurrently.
 
 ## Mission override and provenance
 
@@ -89,9 +96,9 @@ that change during deployment. This repository change does not delete storage.
 ## Windows host setup
 
 Use Windows Command Prompt, SteamCMD, Robocopy, and a stable DayZ dedicated server
-build supporting Nasdara. The scripts are copied from the two batch launchers in
+build supporting Nasdara. The scripts originate from the two batch launchers in
 `../first-light-deer-isle-vanilla-us-east1/`. The manager is unchanged; the service
-script changes only Deer Isle's mod entries to VPP and the game port to `2301`.
+script uses CF/VPP and staging game port `2901`.
 
 | Script setting | Value |
 | --- | --- |
@@ -103,8 +110,11 @@ script changes only Deer Isle's mod entries to VPP and the game port to `2301`.
 
 Paths and Steam login are configured directly in `dayz-service.bat`, like the
 reference. Keep all path variables and `-BEpath` consistent if adjusting them on
-the host. Give Badlands its own installation directory if other servers use the
-default location. The scripts take no command-line parameters.
+the host. The staging launcher deliberately retains `C:\DayZ\server`, including
+profiles, keys, config, and BattlEye paths. Deploy it to the intended staging
+host/installation; it does not provide isolation for a second process sharing
+that directory. SteamCMD, Workshop paths, and `instanceId = 1` are unchanged.
+The scripts take no command-line parameters.
 
 1. Provision the Windows DayZ installation and a complete stock Nasdara mission
    under `C:\DayZ\server\mpmissions\dayzOffline.nasdara\`, using the server
@@ -119,7 +129,10 @@ default location. The scripts take no command-line parameters.
    messages if Steam replaces that file during updates. The repository mission
    folder is a partial overlay; use file copies that preserve the stock mission.
 
-2. From this server's repository directory in Command Prompt, run one
+2. Allow the staging network ports on the host and any relevant router/firewall.
+   No RCon configuration is added.
+
+3. From this staging server's repository directory in Command Prompt, run one
    update/start cycle:
 
    ```bat
@@ -143,7 +156,25 @@ Configuration/profile deployment is manual; the launcher mirrors mod directories
 and never copies over admin profiles.
 No host deployment or live network verification was performed for this change.
 
+After startup, verify browser visibility and join with `sillypassword`; check
+that an empty or incorrect password is rejected. Check the live port bindings,
+mission messages, and existing VPP access.
+
 See [DayZ launch parameters](https://community.bistudio.com/wiki/DayZ:Server_Configuration).
+
+## Staging baseline validation
+
+The staging baseline was copied exactly from production at main `5c6306f`
+before changing its hostname, game/client/query ports, and join password.
+Repo-local `dzcli` v0.0.5 server and XML validation pass for both the source
+and staging copy. Launchers were inspected without executing SteamCMD or DayZ.
+VPP profiles, mission messages, historical validation reports, and unrelated
+configuration remain unchanged. Live ports, password enforcement, VPP access,
+and client connections still require deployment checks.
+
+The sections below and `validation/baseline-*.txt` are historical production
+records copied for provenance; their original names, paths, and results are
+preserved and do not describe a staging runtime test.
 
 ## Initial mission validation
 
