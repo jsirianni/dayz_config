@@ -1,6 +1,6 @@
 # First Light Badlands Nasdara Staging
 
-Password-protected Nasdara staging configuration with CF and VPPAdminTools in
+Password-protected Nasdara staging configuration with CF, VPPAdminTools, and Expansion AI in
 `first-light-badlands-nasdara-staging-us-east`, copied from
 `../first-light-badlands-nasdara-us-east/` at main commit `5c6306f`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
@@ -25,7 +25,7 @@ server remains at its main baseline. Deployment and runtime testing are pending.
 | Maximum players | 60 |
 | Player view | First person; crosshair disabled |
 | Time | System time, 2x day acceleration, 5x night multiplier, persistent |
-| Mods | CF (`1559212036`), then VPPAdminTools (`1828439124`) |
+| Mods | CF, VPPAdminTools, Dabs Framework, Expansion Core, Expansion AI (in that order) |
 
 The remaining server configuration settings mirror the production Nasdara server. The Windows
 launchers retain logging and BattlEye options, with profiles beneath the Windows
@@ -42,9 +42,10 @@ need separate host/IP bindings when run concurrently.
 
 The mission overlay includes `mpmissions/dayzOffline.nasdara/db/messages.xml` and
 `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`.
-It contains Frostline's server-name greeting, Discord invite, and restart
-announcement. Provision the full stock mission on the host, then copy this file
-into its existing `db` directory.
+The messages contain Frostline's server-name greeting, Discord invite, and restart
+announcement. Provision the full stock mission on the host, then copy messages
+into its existing `db` directory and the patrol settings into its
+`expansion/settings` directory, preserving all stock mission files.
 
 The original 51-file mission import came from
 [BohemiaInteractive/DayZ-Central-Economy](https://github.com/BohemiaInteractive/DayZ-Central-Economy/tree/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara).
@@ -72,13 +73,19 @@ DayZ application `221100`:
 | --- | --- | --- |
 | 1 | [CF (Community Framework)](https://steamcommunity.com/sharedfiles/filedetails/?id=1559212036) | `1559212036` |
 | 2 | [VPPAdminTools](https://steamcommunity.com/sharedfiles/filedetails/?id=1828439124) | `1828439124` |
+| 3 | [Dabs Framework](https://steamcommunity.com/sharedfiles/filedetails/?id=2545327648) | `2545327648` |
+| 4 | [DayZ-Expansion-Core](https://steamcommunity.com/sharedfiles/filedetails/?id=2291785308) | `2291785308` |
+| 5 | [DayZ-Expansion-AI](https://steamcommunity.com/sharedfiles/filedetails/?id=2792982069) | `2792982069` |
 
 VPP requires CF on both the server and connecting clients. The Windows launcher
-mirrors the downloaded mods into `@CF` and `@VPPAdminTools` beneath the install
+mirrors the downloaded mods into the five matching `@mod` folders beneath the install
 directory, copies signing files into `keys` using the reference script's key
-patterns, and loads `-mod=@CF;@VPPAdminTools`. The synchronization helper and
+patterns, and loads
+`-mod=@CF;@VPPAdminTools;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI`.
+The synchronization helper and
 error handling match the Deer Isle batch reference.
-Clients must load both mods in the same order. See the
+Clients must install compatible versions of all five mods and load them in the
+same order. See the
 [VPP installation guide](https://github.com/VanillaPlusPlus/VPP-Admin-Tools/wiki/Installation-%26-Configuration).
 
 `profiles/VPPAdminTools/` copies all three files from Frostline byte for byte,
@@ -230,9 +237,12 @@ mission data and unrelated existing profile settings; review any existing AI
 settings before replacing them. Stock roaming-location settings generated for
 Nasdara still require runtime inspection.
 
-No mod installation, launcher changes, custom mod or DayZ startup was performed.
-The current batch launchers do not activate this AI configuration. Enabling
-the dependencies and completing the runtime checklist are later deployment work.
+The staging launcher now installs/updates, synchronizes, and loads these AI
+dependencies alongside CF/VPP. It copies their signing keys using the existing
+helper. No custom mod is added. The launcher was inspected without running
+SteamCMD or DayZ; actual installation, startup, and runtime acceptance remain
+deployment work. The `codex/nasdara-staging` baseline branch retains CF/VPP only;
+deploy `codex/nasdara-ai-plan` for this AI-enabled version.
 
 ### Configuration validation
 
@@ -253,6 +263,10 @@ staging validator output is recorded in
 [staging-ai-relocation.txt](validation/staging-ai-relocation.txt), with counts
 and preservation checks in
 [staging-ai-relocation-audit.json](validation/staging-ai-relocation-audit.json).
+The launcher and inherited server settings were checked separately in
+[staging-launcher-audit.json](validation/staging-launcher-audit.json): all five
+mods have matching download/sync/load entries, the requested ports are set,
+and existing paths, signing-key handling, and unrelated settings are preserved.
 
 Repo-local `dzcli` v0.0.5 baseline validation reported no AI files, as expected;
 the exact failure is preserved in
@@ -273,7 +287,7 @@ mutation commands are unavailable.
 
 See [final validator output](validation/final-expansion-ai.txt) and the
 [static audit](validation/expansion-ai-static-audit.json). All 12 configuration
-JSON files parse; the audit confirms 10 loadouts, 40 single-AI patrols, 45
+JSON files in the original phase parse; that historical audit confirms 10 loadouts, 40 single-AI patrols, 45
 allowlisted inventory classes, exact copied coordinates, cycling, caps,
 quantities/chances, behavior and looting flags. No tests were added.
 In-game placement, capacity, firearm loading, unlimited reload, scavenging,
@@ -284,7 +298,7 @@ movement, detection and relationships remain unverified.
 Use Windows Command Prompt, SteamCMD, Robocopy, and a stable DayZ dedicated server
 build supporting Nasdara. The scripts originate from the two batch launchers in
 `../first-light-deer-isle-vanilla-us-east1/`. The manager is unchanged; the service
-script uses CF/VPP and staging game port `2901`.
+script uses the five mods listed above and staging game port `2901`.
 
 | Script setting | Value |
 | --- | --- |
@@ -309,8 +323,15 @@ The scripts take no command-line parameters.
    `mpmissions\dayzOffline.nasdara\db\messages.xml` over the installed mission's
    `db\messages.xml`, retaining all other installed mission files. Before the
    first modded start, copy
-   `profiles/VPPAdminTools/` to `C:\DayZ\server\profiles\VPPAdminTools\`. Retain
-   existing deployed VPP settings and credentials on subsequent deployments.
+   `profiles/VPPAdminTools/` to `C:\DayZ\server\profiles\VPPAdminTools\`,
+   `profiles/ExpansionMod/` to `C:\DayZ\server\profiles\ExpansionMod\`, and
+   `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json` to
+   `C:\DayZ\server\mpmissions\dayzOffline.nasdara\expansion\settings\AIPatrolSettings.json`.
+   Create missing overlay directories. Retain
+   existing deployed VPP settings and credentials on subsequent deployments,
+   and review existing AI settings before replacing them. Keep a single
+   `profiles` directory level; deploy the overlay without mirroring/deleting
+   the stock mission or unrelated profile files.
    As with the reference, SteamCMD updates use `validate`; reapply the custom
    messages if Steam replaces that file during updates. The repository mission
    folder is a partial overlay; use file copies that preserve the stock mission.
@@ -332,19 +353,25 @@ The scripts take no command-line parameters.
    ```
 
    The manager retries after every exit, with a 10-second delay. Each
-   cycle updates DayZ and both mods, synchronizes mod folders and signing keys,
+   cycle updates DayZ and all five mods, synchronizes mod folders and signing keys,
    and runs `DayZServer_x64.exe` from the installation directory. Press Ctrl+C
    to stop the console manager; run only one manager per installation.
 
 Logs and profiles use `C:\DayZ\server\profiles`. This is a console supervisor,
 not a registered Windows service or timed restart scheduler.
 Configuration/profile deployment is manual; the launcher mirrors mod directories
-and never copies over admin profiles.
+and never copies over admin profiles, AI settings, loadouts, or mission overrides.
 No host deployment or live network verification was performed for this change.
 
 After startup, verify browser visibility and join with `sillypassword`; check
 that an empty or incorrect password is rejected. Check the live port bindings,
 mission messages, and existing VPP access.
+With matching client mods loaded, check that the 40 configured patrols activate
+near their spawn areas and verify the runtime checklist in
+[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#configuration-validation-and-later-acceptance).
+Only the original ten loadouts are assigned; the 32 additional definitions
+remain available for later assignments. No new factions or combat-tier
+overrides are introduced by enabling the launcher.
 
 See [DayZ launch parameters](https://community.bistudio.com/wiki/DayZ:Server_Configuration).
 

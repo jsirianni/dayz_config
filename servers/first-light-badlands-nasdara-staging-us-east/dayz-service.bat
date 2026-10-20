@@ -13,10 +13,16 @@ set "WSCONTENT=C:\SteamCMD\steamapps\workshop\content\221100"
 REM ===== Workshop IDs =====
 set "MOD_CF=1559212036"
 set "MOD_VPP=1828439124"
+set "MOD_DABS=2545327648"
+set "MOD_EXPANSION_CORE=2291785308"
+set "MOD_EXPANSION_AI=2792982069"
 
 REM ===== Server @mod folder names (NO SPACES) =====
 set "DST_CF=@CF"
 set "DST_VPP=@VPPAdminTools"
+set "DST_DABS=@DabsFramework"
+set "DST_EXPANSION_CORE=@DayZ-Expansion-Core"
+set "DST_EXPANSION_AI=@DayZ-Expansion-AI"
 
 
 REM ===== Prep =====
@@ -34,15 +40,22 @@ REM ===== Update workshop mods =====
   +login "stealthowl3" ^
   +workshop_download_item 221100 %MOD_CF% validate ^
   +workshop_download_item 221100 %MOD_VPP% validate ^
+  +workshop_download_item 221100 %MOD_DABS% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_CORE% validate ^
+  +workshop_download_item 221100 %MOD_EXPANSION_AI% validate ^
   +quit
 if errorlevel 1 goto :steamfail
 
 REM ===== Sync mods into server @ folders =====
 call :syncmod "%MOD_CF%" "%DST_CF%"
 call :syncmod "%MOD_VPP%" "%DST_VPP%"
+call :syncmod "%MOD_DABS%" "%DST_DABS%"
+call :syncmod "%MOD_EXPANSION_CORE%" "%DST_EXPANSION_CORE%"
+call :syncmod "%MOD_EXPANSION_AI%" "%DST_EXPANSION_AI%"
 
 REM ===== Build -mod list (RELATIVE paths, NO SPACES in names) =====
-set "MODLINE=-mod=@CF;@VPPAdminTools"
+REM Expansion Core/AI must load after CF and DabsFramework, with Core before AI
+set "MODLINE=-mod=@CF;@VPPAdminTools;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI"
 
 
 REM ===== Launch DayZ =====

@@ -16,6 +16,13 @@ is recorded in `validation/staging-ai-relocation.txt` and
 `validation/staging-ai-relocation-audit.json`. Equipment policy, patrol assignments, combat tiers,
 faction implementation, and scanner scope are unchanged by the relocation.
 
+The staging launcher now installs, synchronizes, and loads CF, VPPAdminTools,
+Dabs Framework, Expansion Core, and Expansion AI in that order. The baseline
+branch `codex/nasdara-staging` remains CF/VPP only; PR #58's branch
+`codex/nasdara-ai-plan` is the AI-enabled deployment candidate. Profile/mission
+overlays must still be copied manually as described in README. No dependency
+download, DayZ startup, deployment, or runtime acceptance was performed here.
+
 Status: configuration now includes 42 loadout definitions: 4 Civilian,
 9 Tribesman, 13 Warlord, and 16 Western_Merc. The existing 40 single-AI patrol
 definitions still reference only the original Civilian/Tribesman loadouts at
@@ -45,14 +52,15 @@ must not be transferred to Nasdara.
 The initial patrol phase used the user's approved configuration-only alternative:
 copy the official player spawn centers and let stock Expansion resolve height
 and apply small spawn spreads. No new coordinates, geometry scanner, custom
-mod, launcher changes, dependency installation, or game/server launch are part
-of this phase. The centers have not passed the scanner acceptance rules below.
+mod, launcher changes, dependency installation, or game/server launch were part
+of that original phase. Staging launcher activation was added after relocation;
+the centers have not passed the scanner acceptance rules below.
 
 ## Current evidence and constraints
 
-- The launchers currently load CF and VPPAdminTools. Expansion AI configuration
-  and its deployment prerequisites are documented, but the mods have not been
-  added to the launchers or installed. See [README.md](README.md#expansion-ai-configuration).
+- The staging launcher is configured to install/load CF, VPPAdminTools, Dabs
+  Framework, Expansion Core, and Expansion AI. It has not been executed or
+  deployed. See [README.md](README.md#expansion-ai-configuration).
 - The checked-in mission is an override of an installed stock Nasdara mission;
   it now contains `db/messages.xml` and `expansion/settings/AIPatrolSettings.json`.
   Obtain the complete matching mission data for analysis rather than assuming
@@ -274,7 +282,8 @@ Deployment prerequisites are listed in the
 install and load compatible stock CF, Dabs Framework, Expansion Core and
 Expansion AI on the host/clients, deploy this partial mission overlay and
 profile files, and retain the complete installed stock Nasdara mission.
-The existing launchers still activate only CF and VPPAdminTools.
+The original phase's launchers activated only CF and VPPAdminTools. The staging
+launcher now includes the required AI dependencies; deployment remains pending.
 
 Later runtime acceptance remains pending:
 
@@ -306,7 +315,8 @@ original ten definitions, there are **42 loadouts**. The original four Civilian
 and six Tribesman files are preserved byte for byte. These new definitions are
 **not assigned to patrols**. The existing 40 patrols, their coordinates,
 settings, loadout cycling, faction assignments, and the planned combat tiers
-are unchanged. No launchers, mods, or custom faction implementation are added.
+are unchanged. That loadout-only phase added no launchers, mods, or custom
+faction implementation. Staging launcher dependencies were added later.
 
 The explicit inventory class allowlist remains the pinned official Nasdara
 `types.xml` above. Weapon compatibility, native capacities, slots, quantities,
@@ -927,7 +937,8 @@ validated Expansion patrol configuration when its gameplay policy is defined.
 
 ## Next implementation work
 
-1. Arrange separate deployment of the required stock mods and prepared files.
+1. Deploy the AI-enabled staging branch, its profile/mission overlays, and
+   compatible client mods using the documented launcher and manual file copies.
 2. Complete the runtime acceptance checklist for this 40-patrol phase.
 3. When scanner work is authorized, establish the offline environment/query
    prerequisite, define its schemas and implement a small end-to-end batch.
@@ -975,6 +986,7 @@ to the decisions they support.
 | 2026-10-19 | Configuration validators and the requested static audit pass. | Deployment and runtime acceptance remain pending; no server or game was launched. |
 | 2026-10-19 | Agreed accuracy tiers: Civilian 0.25-0.75, Tribesman 0.30-0.85, Warlord 0.35-0.95, Western_Merc 0.45-0.95; only Western_Merc enables flanking outside combat. | Record explicit per-role overrides for future implementation; configurations and runtime checks remain unchanged and deferred. |
 | 2026-10-20 | Added 13 Warlord, 16 Western_Merc (including MP5 medic), and three Tribesman .380 loadout definitions. | Keep 42 prepared loadouts separate from the original 40 patrol assignments; all combat tiers, coordinates, behavior, factions, and deployment remain unchanged. |
+| 2026-10-20 | Rebased PR #58 onto the staging baseline and moved all AI files/documentation into staging. Enabled Dabs Framework, Expansion Core, and Expansion AI in the staging launcher. | All 44 AI JSON files and six historical reports are preserved; production matches main. The baseline branch stays CF/VPP only. Launcher execution and runtime acceptance remain pending. |
 | 2026-10-20 | Native build 25956772 inventory and compatibility inspected without launching DayZ. | Use ten-shell buckshot capacity, compatible full magazines and attachments, explicit medical quantities, single 5% food gates, and deferred engine acceptance; original six Tribesman JSON files remain unchanged. |
 
 ## References
