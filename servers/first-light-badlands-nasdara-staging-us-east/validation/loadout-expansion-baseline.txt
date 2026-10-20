@@ -1,0 +1,11 @@
+Recorded baseline results before the loadout expansion, 2026-10-20.
+HEAD: 1912402; dzcli v0.0.5.
+This is a result summary of the observed pre-edit commands, not a raw-output transcript.
+
+dzcli validate expansion ai servers/first-light-badlands-nasdara-us-east
+EXIT: 0; PASS: 10 existing loadouts and profile AISettings.json.
+
+dzcli validate expansion ai servers/first-light-badlands-nasdara-us-east/mpmissions/dayzOffline.nasdara
+EXIT: 0; PASS: AIPatrolSettings.json with 40 patrols.
+
+No baseline failures. No DayZ process was launched.

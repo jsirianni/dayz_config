@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-20",
+  "status": "PASS",
+  "scope": "Static configuration and launcher inspection; launcher not executed",
+  "configured_game_port": 2901,
+  "configured_client_port": 2903,
+  "configured_steam_query_port": 27018,
+  "hostname": "First Light | Badlands Nasdara | STAGING | us-east1",
+  "join_password_matches_requested_value": true,
+  "unrelated_server_settings_match_production": true,
+  "install_paths_match_staging_baseline": true,
+  "workshop_ids": {
+    "CF": "1559212036",
+    "VPP": "1828439124",
+    "DABS": "2545327648",
+    "EXPANSION_CORE": "2291785308",
+    "EXPANSION_AI": "2792982069"
+  },
+  "workshop_downloads": 5,
+  "synchronized_mods": 5,
+  "mod_order": [
+    "@CF",
+    "@VPPAdminTools",
+    "@DabsFramework",
+    "@DayZ-Expansion-Core",
+    "@DayZ-Expansion-AI"
+  ],
+  "signing_key_sync_and_error_handlers_unchanged": true,
+  "no_game_or_steamcmd_process_launched": true
+}

@@ -1,0 +1,536 @@
+{
+  "date": "2026-10-20",
+  "status": "PASS",
+  "scope": "static configuration and analytic stock Expansion probabilities; not runtime verification",
+  "types_commit": "f220b2918b1d79a5055b1ee9be70c0ec1516e876",
+  "types_sha256": "b9efd7cbe36675faec703c4ecc963aa246f404b4367c234b073217c5ec6181fa",
+  "role_counts": {
+    "Civilian": 4,
+    "Tribesman": 9,
+    "Warlord": 13,
+    "Western_Merc": 16
+  },
+  "new_loadouts": 32,
+  "total_loadouts": 42,
+  "explicit_inventory_classes": [
+    "ACOGOptic",
+    "ACOGOptic_6x",
+    "AK74",
+    "AK74_Black",
+    "AK74_Green",
+    "AK74_Hndgrd",
+    "AK74_WoodBttstck",
+    "AKM",
+    "AKM_Gold",
+    "AKS74U",
+    "AKS74U_Black",
+    "AKS74U_Bttstck",
+    "AKS74U_Green",
+    "AK_Bayonet",
+    "AK_RailHndgrd",
+    "AK_WoodBttstck",
+    "AK_WoodBttstck_Gold",
+    "AK_WoodHndgrd",
+    "AK_WoodHndgrd_Gold",
+    "ASVAL",
+    "Ammo_12gaPellets",
+    "Ammo_762x39",
+    "Ammo_762x54",
+    "AntiChemInjector",
+    "Aug",
+    "AugShort",
+    "BUISOptic",
+    "BandageDressing",
+    "Battery9V",
+    "BloodBagEmpty",
+    "BloodTestKit",
+    "CZ61",
+    "Canteen",
+    "CanvasBag_Medical",
+    "CanvasBag_Olive",
+    "CharcoalTablets",
+    "ChelatingTablets",
+    "ChestRigVest_Khaki",
+    "ChestRigVest_Olive",
+    "ChestRigVest_Tan",
+    "CombatKnife",
+    "CoyoteBag_Desert",
+    "Crackers",
+    "DisinfectantAlcohol",
+    "DisinfectantSpray",
+    "Epinephrine",
+    "FAL",
+    "FAMAS",
+    "Fal_OeBttstck",
+    "Flashlight",
+    "GlassBottle",
+    "HalvaCan",
+    "HipPack_Medical",
+    "IodineTincture",
+    "Izh18Shotgun",
+    "Izh43Shotgun",
+    "KameezShirt_Beige",
+    "KameezShirt_Brown",
+    "KameezShirt_Grey",
+    "KameezShirt_NavyBlue",
+    "KameezShirt_Olive",
+    "KashtanOptic",
+    "KobraOptic",
+    "LeeEnfield",
+    "M14",
+    "M16A2",
+    "M4A1",
+    "M4A1_Black",
+    "M4A1_Green",
+    "M4_MPBttstck",
+    "M4_RISHndgrd",
+    "M4_Suppressor",
+    "M4_T3NRDSOptic",
+    "M68Optic",
+    "M9A1_Bayonet",
+    "MK4Optic_Green",
+    "MP5K",
+    "MP5_Compensator",
+    "MP5_RailHndgrd",
+    "MP5k_StockBttstck",
+    "Mag_AK74_30Rnd",
+    "Mag_AKM_30Rnd",
+    "Mag_AKM_30Rnd_Gold",
+    "Mag_Aug_30Rnd",
+    "Mag_CZ61_20Rnd",
+    "Mag_FAL_20Rnd",
+    "Mag_FAMAS_25Rnd",
+    "Mag_LeeEnfield_10Rnd",
+    "Mag_M14_20Rnd",
+    "Mag_MP5_30Rnd",
+    "Mag_PM73_15Rnd",
+    "Mag_PM73_25Rnd",
+    "Mag_PP19_64Rnd",
+    "Mag_SCARH_20Rnd",
+    "Mag_SCARH_20Rnd_Black",
+    "Mag_STANAG_30Rnd",
+    "Mag_SV98_10Rnd",
+    "Mag_SVD_10Rnd",
+    "Mag_Saiga_8Rnd",
+    "Mag_Scout_5Rnd",
+    "Mag_Vikhr_30Rnd",
+    "MensShalwarPants_Beige",
+    "MensShalwarPants_Brown",
+    "MensShalwarPants_Grey",
+    "MensShalwarPants_NavyBlue",
+    "MensShalwarPants_White",
+    "Mich2001Helmet",
+    "MilitaryBoots_Beige",
+    "Morphine",
+    "Mosin9130",
+    "Mosin9130_Black",
+    "Mosin9130_Camo",
+    "Mosin9130_Green",
+    "Mosin_Bayonet",
+    "Mosin_Compensator",
+    "Mp133Shotgun",
+    "NVGoggles",
+    "P1907_Bayonet",
+    "PM73Rak",
+    "PP19",
+    "PP19_Bttstck",
+    "PSO1Optic",
+    "PUScopeOptic",
+    "PainkillerTablets",
+    "PakolHat_Beige",
+    "PakolHat_Brown",
+    "PakolHat_Grey",
+    "PersonalRadio",
+    "PistolSuppressor",
+    "PlateCarrierPouches",
+    "PlateCarrierVest",
+    "PressVest_Blue",
+    "PressVest_LightBlue",
+    "PurificationTablets",
+    "R12",
+    "Rangefinder",
+    "ReflexOptic",
+    "SCARH",
+    "SCARH_Black",
+    "SCARL",
+    "SCARL_Black",
+    "SCAR_StockBttstck",
+    "SCAR_StockBttstck_Black",
+    "SKS",
+    "SKS_Bayonet",
+    "SKS_Black",
+    "SKS_Desert",
+    "SKS_Green",
+    "SKS_Winter",
+    "SKS_Woodland",
+    "SV98",
+    "SVD",
+    "SVD_Wooden",
+    "Saiga",
+    "Saiga_Bttstck",
+    "SalineBag",
+    "SandalsShoes_Black",
+    "SandalsShoes_Brown",
+    "SarmaCan",
+    "Scout",
+    "Scout_Chernarus",
+    "Scout_Livonia",
+    "Splint",
+    "StartKitIV",
+    "SurgicalGloves_White",
+    "SurgicalMask",
+    "TacticalBaconCan",
+    "TacticalGloves_Beige",
+    "TetracyclineAntibiotics",
+    "Thermometer",
+    "TraditionalSandalShoes_LightBrown",
+    "TurbanHat_Beige",
+    "TurbanHat_White",
+    "USMCJacket_Desert",
+    "USMCPants_Desert",
+    "UniversalLight",
+    "Vikhr",
+    "VitaminBottle",
+    "WaterBottle",
+    "ZagorkyChocolate"
+  ],
+  "checks": [
+    {
+      "name": "Nasdara_Tribesman_07"
+    },
+    {
+      "name": "Nasdara_Tribesman_08"
+    },
+    {
+      "name": "Nasdara_Tribesman_09"
+    },
+    {
+      "name": "Nasdara_Warlord_01",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_02",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_03",
+      "effective_gold_probability": 0.01,
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_04",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_05",
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_06",
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_07",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_08",
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_09",
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_10",
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_11",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_12",
+      "magazine_counts": {
+        "2": 0.5,
+        "3": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Warlord_13",
+      "magazine_counts": {
+        "1": 0.5,
+        "2": 0.5
+      },
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_01",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_02",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_03",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_04",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_05",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_06",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_07",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_08",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_09",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_10",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_11_Medic",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_12",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_13",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_14",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_15",
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    },
+    {
+      "name": "Nasdara_Western_Merc_16",
+      "magazine_counts": {
+        "3": 0.333333333333,
+        "4": 0.333333333333,
+        "5": 0.333333333333
+      },
+      "effective_nvg_probability": 0.01,
+      "food_distribution": {
+        "0": 0.95,
+        "1": 0.05
+      }
+    }
+  ],
+  "existing_json_preserved": true
+}

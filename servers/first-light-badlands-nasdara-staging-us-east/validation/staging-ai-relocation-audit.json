@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-20",
+  "status": "PASS",
+  "scope": "AI relocation only; no DayZ process launched",
+  "original_ai_head": "14c804762febaf11fec2809cec4bed76dbef2530",
+  "main_baseline": "5c6306fa240f16326d94ef883f2dbaf5b75ff3fd",
+  "staging_baseline": "c69d9a8241370a147935004b5ba971260cd0267f",
+  "role_counts": {
+    "Civilian": 4,
+    "Tribesman": 9,
+    "Warlord": 13,
+    "Western_Merc": 16
+  },
+  "total_loadouts": 42,
+  "patrols": 40,
+  "single_ai_patrols": 40,
+  "valid_loadout_references": 40,
+  "ai_json_sha256_matches": 44,
+  "ai_json_contents_unchanged": true,
+  "historical_ai_reports_preserved": 6,
+  "production_restored_to_main": true,
+  "runtime_acceptance": "PENDING"
+}
