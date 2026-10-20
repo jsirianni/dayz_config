@@ -14,10 +14,13 @@
     </message>
 
     <message>
-        <delay>1</delay>
-        <repeat>60</repeat>
-        <onconnect>1</onconnect>
-        <text>Server restarts at 1300 (1pm) and 0400 (4am) EST</text>
+        <!-- Graceful shutdown after three hours of uptime, matching Deer Isle Expansion. -->
+        <delay>0</delay>
+        <repeat>0</repeat>
+        <deadline>180</deadline>
+        <onconnect>0</onconnect>
+        <shutdown>1</shutdown>
+        <text>This server will restart in #tmin minutes.</text>
     </message>
 
 </messages>
