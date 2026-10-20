@@ -42,8 +42,8 @@ need separate host/IP bindings when run concurrently.
 
 The mission overlay includes `mpmissions/dayzOffline.nasdara/db/messages.xml` and
 `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`.
-The messages contain Frostline's server-name greeting, Discord invite, and restart
-announcement. Provision the full stock mission on the host, then copy messages
+The messages retain Frostline's server-name greeting and Discord invite, and add
+a graceful shutdown countdown. Provision the full stock mission on the host, then copy messages
 into its existing `db` directory and the patrol settings into its
 `expansion/settings` directory, preserving all stock mission files.
 
@@ -61,8 +61,21 @@ unchanged stock files. They have been removed from this directory, including
 data, stock XML/JSON settings, weather, and `init.c`. The installed stock mission
 supplies these files. The original complete import remains in Git history.
 
-The restart announcement is informational. This configuration does not install
-a timed restart scheduler.
+The mission's `db/messages.xml` uses DayZ's built-in graceful shutdown countdown,
+with `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
+The deadline is three hours of server uptime and resets on each start; it is not
+a fixed wall-clock schedule. DayZ broadcasts warnings at 90, 60, 45, 30, 20, 15,
+10, 5, 2, and 1 minute remaining, then shuts down gracefully. The old 1 PM/4 AM
+EST announcement has been replaced by the countdown message. See the
+[official server-message documentation](https://community.bistudio.com/wiki/DayZ:Server_Messages).
+
+Run `dayz-service-manager.bat` to complete the restart cycle: after DayZ exits,
+the manager waits 10 seconds, updates the server/mods, and launches it again.
+Update/download time adds to downtime. Running `dayz-service.bat` alone leaves
+the server stopped after the countdown. Deploy the updated messages into
+`C:\DayZ\server\mpmissions\dayzOffline.nasdara\db\messages.xml` before starting
+the server, and verify warnings, shutdown, persistence, and relaunch on the host.
+No BEC, RCon scheduler, or Windows scheduled task is required.
 
 ## Base mods and admin access
 
