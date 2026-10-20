@@ -1,6 +1,20 @@
-# Nasdara Expansion AI Implementation
+# Nasdara Staging Expansion AI Implementation
 
 Last updated: 2026-10-20
+
+## Staging relocation
+
+This plan and the complete AI configuration now belong to
+`servers/first-light-badlands-nasdara-staging-us-east`. They were relocated
+from PR #58 head `14c8047` after rebasing onto the staging baseline. All 42
+loadouts, profile AI settings, and the 40-patrol mission file retain their
+original contents. Production Nasdara is restored to main `5c6306f`.
+
+The six AI validation reports under `validation/` are preserved historical
+records, including their original production paths. Current staging validation
+is recorded in `validation/staging-ai-relocation.txt` and
+`validation/staging-ai-relocation-audit.json`. Equipment policy, patrol assignments, combat tiers,
+faction implementation, and scanner scope are unchanged by the relocation.
 
 Status: configuration now includes 42 loadout definitions: 4 Civilian,
 9 Tribesman, 13 Warlord, and 16 Western_Merc. The existing 40 single-AI patrol
