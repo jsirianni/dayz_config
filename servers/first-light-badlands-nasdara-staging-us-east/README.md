@@ -7,9 +7,10 @@ Password-protected Nasdara staging configuration with CF, VPPAdminTools, and Exp
 The mission directory contains only custom overrides for a complete installed
 stock Nasdara mission.
 
-PR #58 adds the complete AI overlay to this staging server. Its 42 loadouts
-and 40 patrol definitions are unchanged by relocation; the original production
-server remains at its main baseline. Deployment and runtime testing are pending.
+PR #58's AI overlay was merged to main. The operator reports that staging is
+deployed on its own VM, starts successfully, and shows the correct DZSA mod
+list. The new object-patrol update described below is configuration-only and
+has not been deployed or verified in game by this change. Production is untouched.
 
 ## Server settings and ports
 
@@ -120,14 +121,15 @@ that change during deployment. This repository change does not delete storage.
 
 ## Expansion AI configuration
 
-The overlay provides **42 loadout definitions**: four Civilian, nine Tribesman,
-13 Warlord, and 16 Western_Merc, including one MP5 medic. The original 40
-single-AI patrol definitions still reference only the original four Civilian
-and six Tribesman loadouts at the 20 official player spawn-area centers. The
-32 new loadout definitions are prepared for later assignment; Warlord/Merc
-factions, patrols, accuracy overrides, and deployment remain pending. Full
-equipment tables, probabilities, sources, and acceptance limits are recorded in
-[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#loadout-expansion-phase-2026-10-20).
+The overlay provides **44 loadout files**: four Civilian, nine Tribesman,
+13 Warlord, 16 Western_Merc (including one MP5 medic), and two Merc selectors.
+There are **142 patrol definitions**: the original 40 single-AI Civilian/Tribesman
+entries at 20 official player spawn-area centers and 102 two-AI Merc object
+entries covering all 51 selected military-related building/object classes.
+All original 42 equipment files and 40 patrol entries are preserved. Warlord
+patrols, original Civilian/Tribesman accuracy-tier overrides, and the geometry
+scanner remain future work. Full equipment tables and the current object-patrol
+design are in [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#western-merc-object-patrol-phase-2026-10-20).
 
 | Repository path | Deployment destination |
 | --- | --- |
@@ -135,6 +137,7 @@ equipment tables, probabilities, sources, and acceptance limits are recorded in
 | `profiles/ExpansionMod/Loadouts/Nasdara_Tribesman_01.json` through `09.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
 | `profiles/ExpansionMod/Loadouts/Nasdara_Warlord_01.json` through `13.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
 | `profiles/ExpansionMod/Loadouts/Nasdara_Western_Merc_01.json` through `16.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames; 11 is `Nasdara_Western_Merc_11_Medic.json` |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Western_Merc_BoltAction_Random.json` and `Nasdara_Western_Merc_Regular_Random.json` | `<active-profile>/ExpansionMod/Loadouts/`, both files required by the new patrols |
 | `profiles/ExpansionMod/Settings/AISettings.json` | `<active-profile>/ExpansionMod/Settings/AISettings.json` |
 | `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json` | Same path beneath the DayZ installation |
 
@@ -151,7 +154,7 @@ AI settings use schema 20, inspected at Expansion commit
 | Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Firearms, melee, bandages and clothing upgrades |
 | Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; original shotgun/Mosin/SKS definitions plus three .380 SMG additions | Existing patrols retain their original six loadouts and looting policy |
 | Warlord | Traditional regional clothing; probabilistic tactical/ballistic vest; Soviet weapons and regional additions, full magazines or limited loose ammunition | New loadout definitions only; patrol behavior deferred |
-| Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | New loadout definitions only; patrol behavior deferred |
+| Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | Firearms, melee, bandages, clothing, upgrades; object patrols use stock Raiders |
 
 All starting items are pristine. Explicit inventory class names use
 the pinned official Nasdara
@@ -173,14 +176,66 @@ outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
 300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
-persist across restarts. Caps are 40 globally, 20 Civilian and 20 Tribesman
-patrols for every player count from 0 through 255.
+persist across restarts. Their category caps remain 20 Civilian and 20 Tribesman
+single-AI patrols for every player count from 0 through 255. The global cap is
+now 60 patrols, with a separate 10-patrol Merc category cap (two AI per patrol).
+Category caps together permit at most **50 active patrols / 60 living AI**.
+Unused category capacity is not borrowed by other roles.
 
 `PlayerFactions: ["West"]` provides friendship with these Civilian-faction
 patrols. Friendly/guard recruitment is disabled. Stock retaliation and friendly
 assistance remain enabled; existing persisted player-group factions may need
-separate attention during deployment. Warlord and Western_Merc faction/patrol
-implementation remains deferred, while their loadout definitions are included.
+separate attention during deployment. Warlord faction/patrol implementation
+remains deferred. Merc pairs now use stock `Raiders`: members cooperate within
+the pair, while separate Merc patrols are hostile to one another and other
+implemented factions. Stock Civilian targeting can react to a hostile faction
+before being hit; exact neutral first-fire restraint still needs custom work.
+
+### Western Merc object patrols
+
+[validation/merc-object-classes.csv](validation/merc-object-classes.csv) records
+the exact 51 selected classes, source order, counts, and pinned CE revision.
+All selected classes are included, including fuel tanks. Official
+[map placements](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/mapgrouppos.xml)
+list **460 objects** across those classes. Runtime spawner counts and safe ground
+are unverified. Class matching is not restricted to named military bases.
+
+Each class has an ordered pair of definitions with empty `Waypoints`:
+`BoltAction` first (chance 0.0625), then `Regular` (chance 0.4666666666666667).
+First-success selection gives nominal 50% object eligibility and conditional
+12.5%/87.5% profile weights. BoltAction uniformly selects SV98 or Scout;
+Regular uniformly selects the other 14 Merc kits. Each member rolls independently,
+giving all 16 kits equal nominal weighting overall. Eligibility/profile selection
+happens when the object spawner initializes; respawns retain the profile and
+reroll equipment within it. Actual active kit counts need not be equal.
+
+| Merc setting | Value |
+| --- | --- |
+| Group / category | 2 AI / `Western_Merc`, capped at 10 patrols |
+| Faction / behavior | `Raiders` / `ROAMING_LOCAL` |
+| Normal / threat speed | `JOG` / `SPRINT` |
+| Accuracy | 0.45-0.95; selected settings, not measured hit rates |
+| Threat / noise / flanking range | 200 / 100 / 200 m |
+| Flanking outside combat | Enabled for Mercs only |
+| Sniper prone threshold | BoltAction 190 m; Regular 0 |
+| Activation / despawn distance | 250-1000 / 1200 m |
+| Native spawn spread | 40-80 m around the object |
+| Despawn / respawn time | 300 / 1800 seconds |
+| Lootable / unlimited reload | Enabled / enabled |
+| Persistence / AI-triggered spawn / contaminated-area spawn | Disabled / disabled / disabled |
+
+Merc scavenging allows firearms, melee weapons, bandages, clothing, and upgrades.
+Scavenging never changes the assigned behavior profile. SV98's MK4 qualifies for
+automatic sniper-prone shooting; Scout's required 4x ACOG does not. Facing the
+target and no recent hit are also required. Regular profiles disable automatic
+sniper-prone behavior; other prone cover behavior remains possible.
+
+Empty waypoints and spread do not establish flat, outdoor, unobstructed ground.
+Several structures in one base can generate several eligible spawners. Local
+roaming can leave the compound. Stock lifecycle settings do not guarantee
+continuous presence or exact wall-clock transitions. All 51 native class
+definitions/inheritance were checked against installed build 25956772 without
+launching DayZ; deployed-version parity still matters.
 
 ### Additional loadout inventory
 
@@ -241,7 +296,7 @@ and [installation guide](https://steamcommunity.com/sharedfiles/filedetails/?id=
 | 3 | [DayZ-Expansion-Core](https://steamcommunity.com/sharedfiles/filedetails/?id=2291785308) | `2291785308` |
 | 4 | [DayZ-Expansion-AI](https://steamcommunity.com/sharedfiles/filedetails/?id=2792982069) | `2792982069` |
 
-For a later deployment, install compatible versions on the server and connecting
+For deployment, install compatible versions on the server and connecting
 clients, load dependencies before Expansion AI, and deploy their signing keys
 following the official guide. Keep VPP's existing CF dependency. Copy this
 server's `profiles/ExpansionMod` overlay to the active profile directory and
@@ -250,16 +305,35 @@ mission data and unrelated existing profile settings; review any existing AI
 settings before replacing them. Stock roaming-location settings generated for
 Nasdara still require runtime inspection.
 
-The staging launcher now installs/updates, synchronizes, and loads these AI
-dependencies alongside CF/VPP. It copies their signing keys using the existing
-helper. No custom mod is added. The launcher was inspected without running
-SteamCMD or DayZ; actual installation, startup, and runtime acceptance remain
-deployment work. The `codex/nasdara-staging` baseline branch retains CF/VPP only;
-deploy `codex/nasdara-ai-plan` for this AI-enabled version.
+The staging launcher installs/updates, synchronizes, and loads these AI
+dependencies alongside CF/VPP, using the existing signing-key helper. The
+operator reports a successful prior deployment/startup on a separate VM and
+correct DZSA mod list. The launcher is unchanged by this object-patrol phase.
+Stop staging, copy the updated patrol file and both selector loadouts (or the
+complete loadout overlay) into their existing destinations, then restart with
+the existing launcher. Preserve stock mission files, unrelated profile data,
+and persistence. This update does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-The following original baseline/final reports cover the initial ten-loadout
+Current object-patrol validation is recorded in
+[merc-object-baseline.txt](validation/merc-object-baseline.txt),
+[merc-object-final.txt](validation/merc-object-final.txt), and
+[merc-object-audit.json](validation/merc-object-audit.json). Checks cover JSON
+parsing, 142 patrol definitions, 44 loadout files, all 51 classes, selector
+references, profile order/probabilities, category caps, Merc settings, and
+preservation of the original entries/equipment, AI settings, launchers, and
+production. Profile/server and mission-root validators are both required.
+No tests or custom scripts are added; no server launch or deployment is performed.
+
+Later staging checks must cover ground placement, paired spawning and all kit
+possibilities, inventory/capacity, the 60-AI ceiling, activation/despawn ranges
+and timers, detection, prone behavior, scavenging, unlimited reload, movement,
+hostile-group relationships, and host performance. These configuration checks
+are not in-game verification. See the
+[current acceptance checklist](AI_IMPLEMENTATION.md#configuration-checks-and-later-staging-acceptance).
+
+The following historical baseline/final reports cover the initial ten-loadout
 patrol phase. The later expansion uses separate `loadout-expansion-baseline.txt`,
 `loadout-expansion-final.txt`, and `loadout-expansion-static-audit.json` reports
 under `validation/`. Baseline and final profile/mission validation and the
@@ -379,12 +453,12 @@ No host deployment or live network verification was performed for this change.
 After startup, verify browser visibility and join with `sillypassword`; check
 that an empty or incorrect password is rejected. Check the live port bindings,
 mission messages, and existing VPP access.
-With matching client mods loaded, check that the 40 configured patrols activate
-near their spawn areas and verify the runtime checklist in
-[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#configuration-validation-and-later-acceptance).
-Only the original ten loadouts are assigned; the 32 additional definitions
-remain available for later assignments. No new factions or combat-tier
-overrides are introduced by enabling the launcher.
+With matching client mods loaded, check the original 40 patrols near their spawn
+areas and the new Merc pairs around eligible objects. Follow both the original
+and [Merc acceptance checklist](AI_IMPLEMENTATION.md#configuration-checks-and-later-staging-acceptance).
+All 16 Merc kits are referenced through selectors; Warlord and added Tribesman
+.380 kits remain available for later assignments. The object definitions add
+stock Raiders and explicit Merc combat overrides without changing the launcher.
 
 See [DayZ launch parameters](https://community.bistudio.com/wiki/DayZ:Server_Configuration).
 
