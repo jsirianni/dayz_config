@@ -47,7 +47,7 @@ set "MODLINE=-mod=@CF;@VPPAdminTools"
 
 REM ===== Launch DayZ =====
 pushd "%INSTALL%"
-set "ARGS=-config=%CFG% -port=2301 -profiles=%PROFILES% -dologs -adminlog -netlog -freezecheck -BEpath=C:\DayZ\server\battleye %MODLINE%"
+set "ARGS=-config=%CFG% -port=2901 -profiles=%PROFILES% -dologs -adminlog -netlog -freezecheck -BEpath=C:\DayZ\server\battleye %MODLINE%"
 echo Starting DayZ with: %MODLINE%
 "%SERVEREXE%" %ARGS%
 set "EXITCODE=%ERRORLEVEL%"
