@@ -1,11 +1,13 @@
 # Nasdara Expansion AI Implementation
 
-Last updated: 2026-10-19
+Last updated: 2026-10-20
 
-Status: the approved configuration phase is implemented: 4 Civilian loadouts,
-6 Tribesman loadouts, and 40 single-AI patrols at 20 copied official spawn-area
-centers. Static validation passes. Deployment, runtime acceptance, the scanner,
-Warlords, and Western_Merc remain pending.
+Status: configuration now includes 42 loadout definitions: 4 Civilian,
+9 Tribesman, 13 Warlord, and 16 Western_Merc. The existing 40 single-AI patrol
+definitions still reference only the original Civilian/Tribesman loadouts at
+20 copied official spawn-area centers. New loadout assignment, Warlord/Merc
+factions and patrols, deployment, runtime acceptance, and the scanner remain
+pending. The loadout expansion validation is recorded separately below.
 
 ## Objective and scope
 
@@ -26,7 +28,7 @@ Nasdara is the target for all implementation work in this plan. Patrol and
 equipment patterns from other servers may inform design; their coordinates
 must not be transferred to Nasdara.
 
-The current phase uses the user's approved configuration-only alternative:
+The initial patrol phase used the user's approved configuration-only alternative:
 copy the official player spawn centers and let stock Expansion resolve height
 and apply small spawn spreads. No new coordinates, geometry scanner, custom
 mod, launcher changes, dependency installation, or game/server launch are part
@@ -80,6 +82,9 @@ of this phase. The centers have not passed the scanner acceptance rules below.
   Individual rejected points do not become operator review tasks.
 
 ## Implemented configuration phase
+
+This section records the original ten-loadout/40-patrol phase. The later
+loadout-only expansion below adds definitions without changing those patrols.
 
 ### Files and pinned inputs
 
@@ -146,14 +151,14 @@ Bottles use normalized quantities 0.35-0.65 and native liquid defaults. Other
 supplies use 0/0, preserving native initial quantities. No bottles or supplies
 are guaranteed and the three loadouts marked None have no helper supplies.
 
-Each Tribesman also has one guaranteed loose-ammo stack; there are no ammo boxes
+Each of the original six Tribesman loadouts also has one guaranteed loose-ammo stack; there are no ammo boxes
 or extra ammo types:
 
-| Firearm | Ammo class | Quantity Min/Max | Intended initial rounds for a 20-round stack |
+| Firearm | Ammo class | Quantity Min/Max | Initial rounds at native stack capacity |
 | --- | --- | --- | --- |
-| Izh18/Izh43 | `Ammo_12gaPellets` | 0.20 / 0.20 | About 4 |
-| Mosin | `Ammo_762x54` | 0.25 / 0.25 | About 5 |
-| SKS/SKS_Desert | `Ammo_762x39` | 0.40 / 0.40 | About 8 |
+| Izh18/Izh43 | `Ammo_12gaPellets` | 0.20 / 0.20 | 2 (10-round shell stack) |
+| Mosin | `Ammo_762x54` | 0.25 / 0.25 | 5 (20-round stack) |
+| SKS/SKS_Desert | `Ammo_762x39` | 0.40 / 0.40 | 8 (20-round stack) |
 
 Expansion prefab quantities are fractions of maximum capacity, as shown by
 the pinned [prefab implementation](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/Core/Scripts/4_World/DayZExpansion_Core/Classes/Prefab/ExpansionPrefabObject.c).
@@ -275,6 +280,296 @@ Later runtime acceptance remains pending:
 - [ ] Check sight/hearing/flanking around 45.72 m, player friendship,
       retaliation, friendly assistance, existing player-group factions and
       disabled recruitment.
+
+## Loadout expansion phase (2026-10-20)
+
+### Scope, naming, and provenance
+
+This phase adds **32 loadout files**: `Nasdara_Warlord_01`-`13`,
+`Nasdara_Western_Merc_01`-`16` (11 is named `Nasdara_Western_Merc_11_Medic`),
+and `Nasdara_Tribesman_07`-`09`, each with a `.json` extension in `profiles/ExpansionMod/Loadouts/`. Together with the
+original ten definitions, there are **42 loadouts**. The original four Civilian
+and six Tribesman files are preserved byte for byte. These new definitions are
+**not assigned to patrols**. The existing 40 patrols, their coordinates,
+settings, loadout cycling, faction assignments, and the planned combat tiers
+are unchanged. No launchers, mods, or custom faction implementation are added.
+
+The explicit inventory class allowlist remains the pinned official Nasdara
+`types.xml` above. Weapon compatibility, native capacities, slots, quantities,
+and food states were inspected in memory from the installed DayZ Steam build
+**25956772**, without starting DayZ. Native implicit `AugShort` scope and SCAR front
+sight behavior are the approved exception to the allowlist: these are engine
+weapon parts, not manually added unlisted inventory items. Named Expansion
+sets are probability groups rather than item class references.
+
+All new starting items are pristine. Ordinary finish alternatives are uniform;
+the Warlord KA-M gold branch is the explicit 1% exception. Full detachable
+magazines use normalized `Quantity.Min/Max: 1/1`. Internal-magazine firearms
+receive loose cartridges for native AI loading; immediate loaded/chambered
+readiness is not established by configuration validation.
+
+### Tribesman .380 exception
+
+| New loadout | Existing outfit/supplies copied from | Firearm | Guaranteed full attached magazine | Other weapon parts |
+| --- | --- | --- | --- | --- |
+| `Nasdara_Tribesman_07` | `Nasdara_Tribesman_01` | `CZ61` | `Mag_CZ61_20Rnd` (20) | Native fixed parts |
+| `Nasdara_Tribesman_08` | `Nasdara_Tribesman_02` | `PM73Rak` | `Mag_PM73_15Rnd` (15) | Native fixed parts |
+| `Nasdara_Tribesman_09` | `Nasdara_Tribesman_03` | `PP19` | `Mag_PP19_64Rnd` (64) | `PP19_Bttstck` |
+
+These three additions provide .380 ammunition representation. They receive no
+spare magazines, loose ammunition, optics, suppressors, or food. Outfit pools
+and existing optional helper probabilities are copied from their stated base
+loadouts. The six original firearms remain restricted to their approved
+shotgun/Mosin/SKS loadouts. Existing patrol assignments still cycle 01-06.
+The original shotgun quantity 0.20 means **two shells**, because native
+`Ammo_12gaPellets` stacks contain ten; the original JSON quantity is unchanged.
+
+### Warlord weapons, ammunition, and attachments
+
+| Suffix | Firearm family | Ammunition | Starting ammunition | Optional weapon equipment |
+| --- | --- | --- | --- | --- |
+| 01 | KA-74 (`AK74` family) | 5.45x39 | Full attached 30-round magazine; 1 or 2 full spares | Bayonet 50%; mounted light 25% with compatible rail handguard |
+| 02 | KA-74U (`AKS74U` family) | 5.45x39 | Full attached 30-round magazine; 1 or 2 full spares | Required native buttstock |
+| 03 | KA-M (`AKM` family) | 7.62x39 | Full attached 30-round magazine; 1 or 2 full spares | Bayonet 50%; ordinary finishes may have mounted light 25% |
+| 04 | VSD (`SVD`) | 7.62x54 | Full attached 10-round magazine; 1 or 2 full spares | Iron sights; no optic or suppressor |
+| 05 | Mosin (`Mosin9130` family) | 7.62x54 | 20 loose rounds | PU scope 30%; bayonet 30%, compensator 30%, neither 40% |
+| 06 | SKS family | 7.62x39 | 20 loose rounds | PU scope 30%; bayonet 50% |
+| 07 | Lee Enfield | 7.62x54R | Full attached 10-round magazine; 1 or 2 full spares | 1907 bayonet 50% |
+| 08 | Pump shotgun (`Mp133Shotgun`) | 12 gauge | 20 loose buckshot shells | Native fixed parts |
+| 09 | Double barrel (`Izh43Shotgun`) | 12 gauge | 20 loose buckshot shells | Native fixed parts |
+| 10 | Single barrel (`Izh18Shotgun`) | 12 gauge | 20 loose buckshot shells | Native fixed parts |
+| 11 | `CZ61` | .380 | Full attached 20-round magazine; 1 or 2 full spares | Native fixed parts |
+| 12 | `PM73Rak` | .380 | Full attached 25-round magazine; 1 or 2 full spares | Native fixed parts |
+| 13 | `PP19` | .380 | Full attached 64-round magazine; 0 or 1 full spare | `PP19_Bttstck`; guaranteed `CanvasBag_Olive` |
+
+For ordinary detachable magazines, one and two spares each have a 50% chance.
+Bizon zero/one spare is also 50/50. No 75-round KA-M magazines or shotgun drums
+are included. Loose rifle ammunition is one 20-round stack; loose shotgun
+ammunition is two full ten-shell `Ammo_12gaPellets` stacks. No ammunition boxes
+or secondary firearms are added. Warlords have no suppressors. PU scopes on
+Mosin/SKS are their only possible optics. KA-74/KA-M handguards and buttstocks
+are complete and compatible; gold KA-M uses matching gold/dark intricate
+furniture and its full gold 30-round magazine, with no mounted light.
+
+KA-M chooses ordinary finishes with a combined 99% chance and gold with 1%.
+Its JSON gold candidate eligibility is 0.02 against an always-eligible ordinary
+candidate with the same set name. When both are eligible, stock Expansion picks
+one uniformly, so the effective gold probability is 0.02 x 0.5 = 0.01. The raw
+2% eligibility is not the final spawn probability.
+Ordinary finish candidates are uniform within their branch. Other supported
+weapon finish alternatives are uniform. Magazine/furniture choices match
+weapon compatibility; the gold magazine and furniture remain in its branch.
+
+### Warlord clothing and supplies
+
+One of the five traditional top/pants pairs from Tribesman_01 through _05 is
+chosen uniformly, together as an outfit. Existing regional headwear and sandal
+pools are retained. These Warlord outfit choices do not include the OBR uniform.
+
+| Vest outcome | Probability | Selection |
+| --- | --- | --- |
+| No vest | 30% | No vest is created |
+| Chest rig | 40% | Uniform `ChestRigVest_Khaki`, `_Olive`, `_Tan` |
+| Press ballistic vest | 20% | Uniform blue/light-blue variants |
+| Plate carrier with pouches | 10% | Compatible carrier and pouch pair |
+
+Only the Bizon Warlord always receives `CanvasBag_Olive`; other Warlords have no
+backpack. Each loadout independently rolls one `BandageDressing` at 50%, one
+`PersonalRadio` at 25%, one `Flashlight` at 25%, and one water container at 50%.
+A successful water roll selects `Canteen` or `WaterBottle` uniformly, filled to
+35-65% capacity using native liquid defaults. Radio and flashlight rolls include
+one full `Battery9V` attached to that device. They do not spawn loose batteries
+or a second water container.
+
+### Western Mercenary weapons and attachments
+
+| Suffix | Firearm | Caliber | Removable optic policy | Removable suppressor policy |
+| --- | --- | --- | --- | --- |
+| 01 | M4 (`M4A1` family) | 5.56x45 | 90% western AR pool | 60% `M4_Suppressor` |
+| 02 | `M16A2` | 5.56x45 | Native sights only | 60% `M4_Suppressor` |
+| 03 | `FAMAS` | 5.56x45 | Native sights only | None supported |
+| 04 | `Aug` | 5.56x45 | 90% western AR pool | 60% `M4_Suppressor` |
+| 05 | `AugShort` | 5.56x45 | Integral native scope | None supported |
+| 06 | SCR16 (`SCARL` family) | 5.56x45 | 90% western AR pool | 60% `M4_Suppressor` |
+| 07 | SCR17 (`SCARH` family) | .308 | 90% .308 pool | None supported |
+| 08 | `FAL` | .308 | 90% .308 pool | None supported |
+| 09 | `M14` | .308 | 90% .308 pool | None supported |
+| 10 | `SV98` | 7.62x54 | 100% `MK4Optic_Green` | None supported |
+| 11_Medic | `MP5K` (medic) | 9x19 | 90% Reflex | 60% `PistolSuppressor` |
+| 12 | `ASVAL` | 9x39 | 90% Reflex/4x ACOG, uniform | Integral suppression always present |
+| 13 | `Vikhr` | 9x39 | 90% Kashtan/PSO-1, uniform | None supported |
+| 14 | `Scout` family | 5.56x45 | **100% 4x `ACOGOptic`** | 60% `M4_Suppressor` |
+| 15 | `R12` | 12 gauge | 90% Reflex | None supported |
+| 16 | `Saiga` | 12 gauge | 90% Kobra | None supported |
+
+The western AR optic pool is `M68Optic`, `ReflexOptic`, `M4_T3NRDSOptic`, and
+4x `ACOGOptic`, uniformly selected
+when the 90% optic roll succeeds. The .308 pool is 4x/6x ACOG, uniformly selected.
+SV98 always receives its compatible `MK4Optic_Green` and full battery. SV98 has no compatible
+stock removable suppressor; no improvised suppressor is substituted. The
+unsupported suppressor entries above are explicit exclusions. The VSS proposal
+was removed; there is only one SVAL/ASVAL loadout.
+
+Every detachable-magazine weapon has one full attached magazine plus exactly
+2, 3, or 4 full spare magazines with equal probability. SVAL uses the compatible
+30-round Vikhr magazine, Vikhr uses 30-round magazines, and Saiga uses eight-round
+magazines. No high-capacity STANAG alternatives or drums are used. R12 instead
+has 40 loose buckshot shells in four full ten-shell stacks. Each loadout uses
+one ammunition caliber. No pistols or additional firearms are included.
+
+| Merc suffixes | Full magazine class / capacity |
+| --- | --- |
+| 01, 02, 06 | `Mag_STANAG_30Rnd` / 30 |
+| 03 | `Mag_FAMAS_25Rnd` / 25 |
+| 04, 05 | `Mag_Aug_30Rnd` / 30 |
+| 07 | `Mag_SCARH_20Rnd` or `_Black`, matching finish / 20 |
+| 08 | `Mag_FAL_20Rnd` / 20 |
+| 09 | `Mag_M14_20Rnd` / 20 |
+| 10 | `Mag_SV98_10Rnd` / 10 |
+| 11_Medic | `Mag_MP5_30Rnd` / 30 |
+| 12, 13 | `Mag_Vikhr_30Rnd` / 30 |
+| 14 | `Mag_Scout_5Rnd` / 5 |
+| 15 | No detachable magazine; four full buckshot stacks / 40 shells |
+| 16 | `Mag_Saiga_8Rnd` / 8 |
+
+M4 finish alternatives are `M4A1`, `M4A1_Black`, and `M4A1_Green`; SCR16 and
+SCR17 choose their standard/black variants, with matching stocks and SCR17
+magazines. Scout chooses `Scout`, `Scout_Chernarus`, or `Scout_Livonia`.
+Each of these finish pools is uniform; other Merc firearms use their fixed
+approved class. M4 has `M4_RISHndgrd` and `M4_MPBttstck`; other removable
+furniture follows each weapon's native compatible slots.
+
+All required handguards and stocks are present. Compatible mounted lights roll
+at 75% for M4, MP5, AUG, SCR16, SCR17, ASVAL, and R12. M4/M16 bayonets roll at
+75% only when no suppressor is selected; the MP5 compensator similarly rolls
+at 75% only without its suppressor. M4 BUIS is present only in the 10% branch
+without a removable optic. Scoped SV98 and Scout guarantees supersede the
+ordinary 90% optic rule.
+
+### Western Mercenary clothing, utilities, and medical equipment
+
+Every Merc wears matching `USMCJacket_Desert` and `USMCPants_Desert`, a guaranteed
+coyote `PlateCarrierVest` with `PlateCarrierPouches`, `Mich2001Helmet`, `MilitaryBoots_Beige`, and
+`TacticalGloves_Beige`. `CoyoteBag_Desert` is the guaranteed ordinary backpack. NVGs have a 1% chance and
+include a full battery. The medic retains the same uniform, helmet, boots, and
+plate carrier but uses `SurgicalGloves_White`, `SurgicalMask`,
+`CanvasBag_Medical`, and `HipPack_Medical`.
+
+All Mercs receive a knife and one water container. Water selects `Canteen` or
+`WaterBottle` uniformly at 75-100% capacity. Optional utilities are a radio at
+75%, flashlight at 50%, and rangefinder at 20%; each powered item includes a
+full attached battery. Radio uses the backpack's compatible external radio slot,
+rangefinder its compatible chemlight slot, and `CombatKnife` the military
+boots' knife slot. Utility rolls are independent.
+
+| Medical item | Ordinary Merc | MP5 medic |
+| --- | --- | --- |
+| `BandageDressing` | 1 full roll, guaranteed | 3 full rolls, guaranteed |
+| `StartKitIV` | 1 at 25% | 2 guaranteed |
+| `BloodBagEmpty` | 1 at 25% | 2 guaranteed |
+| `SalineBag` | 1 at 25% | 2 guaranteed |
+| `Epinephrine` | 1 at 25% | 2 guaranteed |
+| `Morphine` | 1 at 25% | 2 guaranteed |
+| `TetracyclineAntibiotics` | 1 full pack at 25% | 1 full 12-tablet pack, guaranteed |
+| Each of the 12 additional items below | 1 at 25%, independently | 1 at 25%, independently |
+
+The 12 additional medical items are `BloodTestKit`, `CharcoalTablets`,
+`PainkillerTablets`, `VitaminBottle`, `PurificationTablets`, `ChelatingTablets`,
+`DisinfectantAlcohol`, `DisinfectantSpray`, `IodineTincture`, `Thermometer`,
+`Splint`, and `AntiChemInjector`. Thus ordinary Mercs have 18 independent
+optional medical rolls, while the medic has 12. No rags, heatpacks, first-aid
+containers, prefilled blood bags, or prepared `SalineBagIV` items are added.
+
+A full bandage roll has four uses. Native full packs have 12 tetra/charcoal/
+painkiller tablets, 50 vitamins, 10 purification tablets, or 20 chelation tablets.
+Other medical items preserve native initial quantities. Empty blood bags stay
+empty. A separate `StartKitIV` and `SalineBag` must be combined to make a usable
+saline IV, consuming both; using both medic IV kits for saline leaves none for
+collected blood. Chelation tablets are allowlisted even though their pinned CE
+nominal is zero. Carrying medical items does not establish autonomous AI use:
+stock self-bandaging is supported, while advanced treatment and medic healing
+behavior have not been implemented or demonstrated. These supplies are carried
+inventory and potential loot.
+
+#### Medic container bindings
+
+Cargo is explicitly assigned to its container so optional items cannot fill a
+required item's space in another container. The native cargo capacities below
+total 90 cells; quantities and independent optional chances remain as specified
+in the medical table. The worst case includes all optional medicines, four
+spare MP5 magazines, flashlight, canteen, and a four-cell food item.
+
+| Medic container | Native cargo | Worst-case used | Assigned contents |
+| --- | --- | --- | --- |
+| `USMCJacket_Desert` | 6x4 (24 cells) | 22 | 3 bandage rolls; 2 IV kits; 2 empty blood bags; 2 epinephrine; 2 morphine |
+| `USMCPants_Desert` | 5x4 (20 cells) | 19 | 2 saline bags; optional vitamins, purification, chelation, alcohol, iodine, blood test kit |
+| `PlateCarrierPouches` | 5x3 (15 cells) | 15 | 2/3/4 spare MP5 magazines; optional disinfectant spray |
+| `CanvasBag_Medical` | 5x5 (25 cells) | 23 | Optional splint, thermometer, PO-X injector and flashlight; guaranteed water choice; single 5% food choice |
+| `HipPack_Medical` | 3x2 (6 cells) | 6 | Guaranteed tetra pack; optional charcoal and painkillers |
+
+The worst case is **85/90 cells** with a canteen, or 84/90 with a water bottle.
+The radio attaches externally to the medical backpack's `WalkieTalkie` slot and
+the rangefinder to its compatible `Chemlight` slot. Both include their batteries
+and use no backpack cargo cells. The knife attaches to the military boots'
+`Knife` slot; helmet NVGs attach to `NVG`. Weapon-mounted optics and light carry
+their own attached batteries. These bindings express the intended packing;
+engine spawning and physical inventory acceptance still require runtime checks.
+
+### Food probability and native state
+
+Every Warlord and Merc, including the medic, has **one 5% food roll**. A successful
+roll selects exactly one item uniformly from its role's pool:
+
+| Role | Food alternatives | Starting state |
+| --- | --- | --- |
+| Warlord | `HalvaCan`, `SarmaCan` | Sealed, native contents; 250 g after opening |
+| Merc | `TacticalBaconCan`, `Crackers`, `ZagorkyChocolate` | Sealed can or full native snack; 400 g/50 g/100 g respectively |
+
+An outer 5% Expansion set gates named, guaranteed alternatives so there is one
+uniform choice, rather than several independent 5% rolls. Closed can quantity
+0/0 preserves its native state; it does not mean an empty can. Snacks retain
+native full quantities. No food is added to Civilian or Tribesman loadouts.
+Figs were excluded because they are perishable fruit and loadout JSON cannot
+guarantee their dried food stage.
+
+### Static checks and deferred runtime acceptance
+
+The phase uses repo-local dzcli v0.0.5. All **2,544 configuration mutations**
+(1,076 Warlord, 1,458 Merc, and 10 Tribesman) used supported CLI commands, each
+with a `--dry-run` preview, a text-mode application, and comparison of the written
+JSON with its preview. JSON-mode mutations do not write in this version. The
+three Tribesman additions first copy approved existing files because the CLI
+has no clone command. No direct JSON settings/probability edits were needed. No
+new tests were added and no server/game was launched.
+
+Expanded baseline/final validation and the static audit are recorded separately
+as `validation/loadout-expansion-baseline.txt`,
+`validation/loadout-expansion-final.txt`, and
+`validation/loadout-expansion-static-audit.json`. **Baseline and final profile/
+mission validations pass**, as does the independent static audit. The baseline
+report is an explicitly labeled summary of observed pre-edit command results,
+not a reconstructed raw transcript. The final report contains command output.
+The audit confirms 32 additions, 42 total loadouts, 180 distinct explicit
+inventory classes across the new files, all in the pinned allowlist, analytic
+probabilities and native compatibility, and preservation of existing JSON.
+Original reports above remain historical evidence for the ten-loadout patrol
+phase; their 45-class count describes that earlier subset.
+
+Required static checks cover JSON parsing, 42 loadouts and 32 additions, explicit
+class allowlist membership, weapon/magazine/attachment compatibility, native
+quantities, full magazines, all probability branches, one food outcome, medical
+counts, and unchanged original files/settings/patrols. Native configuration
+inspection and packing analysis do not establish in-game inventory placement.
+The medic's worst case was statically packed at **85/90 cells**, including all
+optional outcomes and the largest selected food; this remains a feasibility
+calculation rather than an engine placement guarantee.
+
+Later runtime acceptance must check all optional branches, clothing/attachment
+slots and cargo capacity, full magazine attachment and spare accessibility,
+internal-magazine/chamber loading, RAK open-bolt readiness, reloads, supported
+optics and suppressors, integral weapon parts, light/NVG batteries, medical
+quantities and looting, and sealed food behavior. The original placement,
+movement, detection, combat-tier and faction acceptance work remains deferred.
 
 ## Faction and loadout design
 
@@ -419,7 +714,8 @@ Research on 2026-10-19 checked the Badlands 1.30 release notes, the earlier
 families include Kameez and Shalwar clothing, Pakol and Turban headwear,
 Keffiyehs, linen and robe vests, chest rigs, OBR and FNO uniforms, desert gear,
 SCR16/SCR17 rifles, Lee Enfield, Luger, MP18, and regional melee weapons.
-The implemented subset is the ten approved loadouts above.
+The original phase implemented ten approved loadouts; the loadout expansion
+above increases the prepared set to 42.
 
 Verified class examples include `KameezShirt_Beige`, `MensShalwarPants_Brown`,
 `PakolHat_Beige`, `RobeVest_Beige`, `FNOJacket`, `FNOPants`, `SCARL` (SCR16),
@@ -432,7 +728,9 @@ which is present in the earlier official Chernarus economy at
 `b86c1b71cbad4b62c4ca004f6ec7c8d4bbaccead`. That research distinguishes an
 engine class catalog from a mission economy catalog. The user subsequently
 chose the pinned Nasdara economy as the strict allowlist for this phase, so
-unlisted classes are excluded even when the engine supplies them. Item
+unlisted explicit inventory classes are excluded even when the engine supplies
+them. The later approved exceptions are native implicit AUG/SCAR parts, as
+documented in the loadout expansion section. Item
 presence does not demonstrate Expansion AI weapon handling or a working loadout.
 
 Sources: [Badlands release notes](https://dayz.com/article/general/dayz-badlands-out-now/dayz-steam-patch-notes),
@@ -450,8 +748,10 @@ Sources: [Badlands release notes](https://dayz.com/article/general/dayz-badlands
       weapons, distances, and target movement.
 - [ ] Future phase: decide whether to authorize a custom Warlord faction and
       exact neutral targeting; neither is included in this stock-only phase.
-- [ ] Future phase: implement Western_Merc after its separate loadout and
-      targeting policy are approved.
+- [x] Define 13 Warlord and 16 Western_Merc loadouts, plus the three approved
+      Tribesman .380 additions; no patrols are assigned these definitions.
+- [ ] Future phase: implement Warlord/Western_Merc factions, patrol assignments,
+      and targeting behavior under the approved relationship policy.
 - [x] Configure West players, stock aggression expiry, and disabled recruitment
       for the two implemented populations; runtime behavior remains unchecked.
 - [x] Define ten starting loadouts and explicit per-role looting policies.
@@ -660,6 +960,8 @@ to the decisions they support.
 | 2026-10-19 | dzcli v0.0.5 JSON mutations do not write, and server-root discovery misses nested mission settings. | Apply in text mode after JSON dry runs, compare written files with previews, and validate both profile/server and mission roots. |
 | 2026-10-19 | Configuration validators and the requested static audit pass. | Deployment and runtime acceptance remain pending; no server or game was launched. |
 | 2026-10-19 | Agreed accuracy tiers: Civilian 0.25-0.75, Tribesman 0.30-0.85, Warlord 0.35-0.95, Western_Merc 0.45-0.95; only Western_Merc enables flanking outside combat. | Record explicit per-role overrides for future implementation; configurations and runtime checks remain unchanged and deferred. |
+| 2026-10-20 | Added 13 Warlord, 16 Western_Merc (including MP5 medic), and three Tribesman .380 loadout definitions. | Keep 42 prepared loadouts separate from the original 40 patrol assignments; all combat tiers, coordinates, behavior, factions, and deployment remain unchanged. |
+| 2026-10-20 | Native build 25956772 inventory and compatibility inspected without launching DayZ. | Use ten-shell buckshot capacity, compatible full magazines and attachments, explicit medical quantities, single 5% food gates, and deferred engine acceptance; original six Tribesman JSON files remain unchanged. |
 
 ## References
 

@@ -92,16 +92,21 @@ that change during deployment. This repository change does not delete storage.
 
 ## Expansion AI configuration
 
-This configuration-only phase provides four Civilian loadouts, six Tribesman
-loadouts and 40 single-AI patrols. Each of the 20 official Nasdara player spawn
-area centers has one patrol of each role. The full design, settings, sources,
-limitations and pending runtime acceptance checks are recorded in
-[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#implemented-configuration-phase).
+The overlay provides **42 loadout definitions**: four Civilian, nine Tribesman,
+13 Warlord, and 16 Western_Merc, including one MP5 medic. The original 40
+single-AI patrol definitions still reference only the original four Civilian
+and six Tribesman loadouts at the 20 official player spawn-area centers. The
+32 new loadout definitions are prepared for later assignment; Warlord/Merc
+factions, patrols, accuracy overrides, and deployment remain pending. Full
+equipment tables, probabilities, sources, and acceptance limits are recorded in
+[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#loadout-expansion-phase-2026-10-20).
 
 | Repository path | Deployment destination |
 | --- | --- |
 | `profiles/ExpansionMod/Loadouts/Nasdara_Civilian_01.json` through `04.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
-| `profiles/ExpansionMod/Loadouts/Nasdara_Tribesman_01.json` through `06.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Tribesman_01.json` through `09.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Warlord_01.json` through `13.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Western_Merc_01.json` through `16.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames; 11 is `Nasdara_Western_Merc_11_Medic.json` |
 | `profiles/ExpansionMod/Settings/AISettings.json` | `<active-profile>/ExpansionMod/Settings/AISettings.json` |
 | `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json` | Same path beneath the DayZ installation |
 
@@ -116,24 +121,26 @@ AI settings use schema 20, inspected at Expansion commit
 | Role | Starting clothing and equipment | Scavenging |
 | --- | --- | --- |
 | Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Firearms, melee, bandages and clothing upgrades |
-| Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; break-action shotgun, Mosin or SKS | Melee, bandages and clothing upgrades; keeps starting firearm |
+| Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; original shotgun/Mosin/SKS definitions plus three .380 SMG additions | Existing patrols retain their original six loadouts and looting policy |
+| Warlord | Traditional regional clothing; probabilistic tactical/ballistic vest; Soviet weapons and regional additions, full magazines or limited loose ammunition | New loadout definitions only; patrol behavior deferred |
+| Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | New loadout definitions only; patrol behavior deferred |
 
-All starting items are pristine and all 45 inventory class names are present in
+All starting items are pristine. Explicit inventory class names use
 the pinned official Nasdara
 [types.xml](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/db/types.xml).
-Headwear, footwear and vests choose uniformly among approved alternatives;
+The original ten loadouts choose headwear, footwear and vests uniformly;
 Tribesman_06 has a fixed OBR cap. Some loadouts independently roll bottles,
 bandages or matches; three have no helper supplies. Civilians start without
 firearms/ammunition but can acquire firearms while scavenging. Clothing and
 corpse contents can change after spawning.
 
-Tribesmen start with one small compatible loose-ammo stack: normalized quantity
+The original six Tribesman loadouts start with one small compatible loose-ammo stack: normalized quantity
 0.20 for shotgun shells, 0.25 for Mosin cartridges or 0.40 for SKS cartridges
-(about 4/5/8 rounds with 20-round stacks). `UnlimitedReload: 1` replenishes
+(2 buckshot shells in a ten-shell stack, or 5/8 rifle rounds in 20-round stacks). `UnlimitedReload: 1` replenishes
 ammunition during use and can leave more ammo on a corpse than initially given.
 Bottles start at 35-65% capacity with native liquid defaults.
 
-Both roles use stock `Civilian` faction behavior and `ROAMING_LOCAL`, walk
+The existing Civilian/Tribesman patrols use stock `Civilian` faction behavior and `ROAMING_LOCAL`, walk
 outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
@@ -144,7 +151,42 @@ patrols for every player count from 0 through 255.
 `PlayerFactions: ["West"]` provides friendship with these Civilian-faction
 patrols. Friendly/guard recruitment is disabled. Stock retaliation and friendly
 assistance remain enabled; existing persisted player-group factions may need
-separate attention during deployment. Warlords and Western_Merc are deferred.
+separate attention during deployment. Warlord and Western_Merc faction/patrol
+implementation remains deferred, while their loadout definitions are included.
+
+### Additional loadout inventory
+
+The original ten loadout files are preserved. Tribesman_07/08/09 copy the approved
+01/02/03 clothing and supplies with CZ61, RAK, or Bizon respectively, one full
+attached magazine, no spares, and no loose ammunition. The Bizon includes its
+buttstock. Existing patrol assignments are unchanged.
+
+Warlords have 13 weapon families, complete compatible furniture, no suppressors,
+and only optional PU scopes on Mosin/SKS. They carry one full magazine plus one
+or two spares (Bizon zero or one), or 20 loose rounds/shells for internal-magazine
+weapons. Their vest roll is 30% none, 40% chest rig, 20% press vest, 10% plate
+carrier with pouches. Gold KA-M is a 1% branch; only Bizon has a backpack.
+
+Mercs have 16 firearm loadouts, two to four full spare magazines uniformly, or
+40 loose buckshot shells for R12. Compatible removable optics roll at 90% and
+suppressors at 60%; Scout always has 4x ACOG and SV98 always has its compatible
+scope. Unsupported stock suppressors are excluded. SVAL has integral
+suppression. NVGs roll at 1%. Batteries are full and attached to powered items.
+
+Ordinary Mercs have one full bandage roll guaranteed and 18 optional medical
+items, each independently at 25%. The MP5 medic has medical canvas backpack,
+medical hip pack, white surgical gloves and surgical mask, with three full
+bandage rolls, two IV kits, two empty blood bags, two saline bags, two epinephrine,
+two morphine and one full 12-tablet tetra pack guaranteed. Twelve other medical
+items each roll at 25%. Advanced healing behavior is not supplied by a loadout;
+these are carried supplies and potential loot.
+
+Every Warlord/Merc has one 5% food gate selecting at most one faction-appropriate
+food uniformly: sealed halva/sarma for Warlords; tactical bacon, crackers or
+chocolate for Mercs. No Civilian/Tribesman food is added. See the full plan for
+utility probabilities, native quantities, conditional attachments, and complete
+weapon/medical tables. Static capacity feasibility remains subject to native
+engine acceptance.
 
 ### Placement and deployment prerequisites
 
@@ -185,6 +227,16 @@ The current batch launchers do not activate this AI configuration. Enabling
 the dependencies and completing the runtime checklist are later deployment work.
 
 ### Configuration validation
+
+The following original baseline/final reports cover the initial ten-loadout
+patrol phase. The later expansion uses separate `loadout-expansion-baseline.txt`,
+`loadout-expansion-final.txt`, and `loadout-expansion-static-audit.json` reports
+under `validation/`. Baseline and final profile/mission validation and the
+independent static audit pass: 32 additions, 42 total loadouts, and 180 distinct
+explicit inventory classes across the new files, all allowlisted. The baseline
+file is a labeled summary of observed pre-edit results; the final report records
+command output. Original JSON files are preserved. No tests or in-game checks
+were performed for the loadout expansion.
 
 Repo-local `dzcli` v0.0.5 baseline validation reported no AI files, as expected;
 the exact failure is preserved in
