@@ -1,6 +1,8 @@
 # First Light Badlands Nasdara
 
 Custom Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara-us-east`.
+Expansion AI loadouts and patrol settings are prepared for a later deployment;
+the existing launchers still load only CF and VPPAdminTools.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
 The mission directory contains only custom overrides for a complete installed
 stock Nasdara mission.
@@ -29,10 +31,12 @@ listeners and existing router/firewall forwarding require checking on the host.
 
 ## Mission override and provenance
 
-The only retained mission file is `mpmissions/dayzOffline.nasdara/db/messages.xml`.
-It contains Frostline's server-name greeting, Discord invite, and restart
-announcement. Provision the full stock mission on the host, then copy this file
-into its existing `db` directory.
+The mission overlay contains `mpmissions/dayzOffline.nasdara/db/messages.xml`
+and `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`.
+The messages contain Frostline's server-name greeting, Discord invite, and
+restart announcement. Provision the full stock mission on the host, then copy
+the messages into its existing `db` directory. Deploy the patrol file as part
+of the separate Expansion setup below, preserving the rest of the stock mission.
 
 The original 51-file mission import came from
 [BohemiaInteractive/DayZ-Central-Economy](https://github.com/BohemiaInteractive/DayZ-Central-Economy/tree/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara).
@@ -85,6 +89,127 @@ password setup; Badlands requires the credential because password checks remain 
 CF's Workshop installation notes require clean persistence when first enabling
 CF. If this server has already run, back up its existing persistence and plan
 that change during deployment. This repository change does not delete storage.
+
+## Expansion AI configuration
+
+This configuration-only phase provides four Civilian loadouts, six Tribesman
+loadouts and 40 single-AI patrols. Each of the 20 official Nasdara player spawn
+area centers has one patrol of each role. The full design, settings, sources,
+limitations and pending runtime acceptance checks are recorded in
+[AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#implemented-configuration-phase).
+
+| Repository path | Deployment destination |
+| --- | --- |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Civilian_01.json` through `04.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
+| `profiles/ExpansionMod/Loadouts/Nasdara_Tribesman_01.json` through `06.json` | `<active-profile>/ExpansionMod/Loadouts/`, same filenames |
+| `profiles/ExpansionMod/Settings/AISettings.json` | `<active-profile>/ExpansionMod/Settings/AISettings.json` |
+| `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json` | Same path beneath the DayZ installation |
+
+For loadouts, copy the `ExpansionMod/Loadouts` portion beneath the selected
+profile directory, e.g. `C:\DayZ\server\profiles\ExpansionMod\Loadouts\`.
+Do not add another nested `profiles` directory. Patrol settings use schema 32;
+AI settings use schema 20, inspected at Expansion commit
+`0d26645ca31bc574bc3ebee1d4bc9192727f3c43`. Use a compatible deployed release.
+
+### Starting equipment and patrol behavior
+
+| Role | Starting clothing and equipment | Scavenging |
+| --- | --- | --- |
+| Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Firearms, melee, bandages and clothing upgrades |
+| Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; break-action shotgun, Mosin or SKS | Melee, bandages and clothing upgrades; keeps starting firearm |
+
+All starting items are pristine and all 45 inventory class names are present in
+the pinned official Nasdara
+[types.xml](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/db/types.xml).
+Headwear, footwear and vests choose uniformly among approved alternatives;
+Tribesman_06 has a fixed OBR cap. Some loadouts independently roll bottles,
+bandages or matches; three have no helper supplies. Civilians start without
+firearms/ammunition but can acquire firearms while scavenging. Clothing and
+corpse contents can change after spawning.
+
+Tribesmen start with one small compatible loose-ammo stack: normalized quantity
+0.20 for shotgun shells, 0.25 for Mosin cartridges or 0.40 for SKS cartridges
+(about 4/5/8 rounds with 20-round stacks). `UnlimitedReload: 1` replenishes
+ammunition during use and can leave more ammo on a corpse than initially given.
+Bottles start at 35-65% capacity with native liquid defaults.
+
+Both roles use stock `Civilian` faction behavior and `ROAMING_LOCAL`, walk
+outside combat, and sprint under threat. Threat, noise investigation and
+flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
+Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
+300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
+persist across restarts. Caps are 40 globally, 20 Civilian and 20 Tribesman
+patrols for every player count from 0 through 255.
+
+`PlayerFactions: ["West"]` provides friendship with these Civilian-faction
+patrols. Friendly/guard recruitment is disabled. Stock retaliation and friendly
+assistance remain enabled; existing persisted player-group factions may need
+separate attention during deployment. Warlords and Western_Merc are deferred.
+
+### Placement and deployment prerequisites
+
+The coordinates copy `fresh/generator_posbubbles/group/pos` in the official
+[player spawn file](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/cfgplayerspawnpoints.xml)
+at CE commit `f220b2918b1d79a5055b1ee9be70c0ec1516e876`. The duplicate `hop` and
+`travel` lists are excluded. X/Z precision and source order are preserved with
+waypoint Y=0 for Expansion elevation resolution. Civilian native spread is
+1-2 m; Tribesman spread is 4-5 m around the same anchor.
+
+These are **unverified spawn-area centers**. Neither Y=0 nor native spread
+establishes flat, outdoor, clear ground or safe elevation. The desired 500 m
+roaming area is not a hard boundary: activation radius does not enforce a
+movement leash, and stock local roaming can choose farther destinations.
+
+The stock Expansion AI Workshop dependency list requires the following mods;
+see the [official AI page](https://steamcommunity.com/sharedfiles/filedetails/?id=2792982069)
+and [installation guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2430317812).
+
+| Dependency order | Mod | Workshop ID |
+| --- | --- | --- |
+| 1 | [CF](https://steamcommunity.com/sharedfiles/filedetails/?id=1559212036), already in the launcher | `1559212036` |
+| 2 | [Dabs Framework](https://steamcommunity.com/sharedfiles/filedetails/?id=2545327648) | `2545327648` |
+| 3 | [DayZ-Expansion-Core](https://steamcommunity.com/sharedfiles/filedetails/?id=2291785308) | `2291785308` |
+| 4 | [DayZ-Expansion-AI](https://steamcommunity.com/sharedfiles/filedetails/?id=2792982069) | `2792982069` |
+
+For a later deployment, install compatible versions on the server and connecting
+clients, load dependencies before Expansion AI, and deploy their signing keys
+following the official guide. Keep VPP's existing CF dependency. Copy this
+server's `profiles/ExpansionMod` overlay to the active profile directory and
+the patrol file to the installed stock Nasdara mission. Preserve installed
+mission data and unrelated existing profile settings; review any existing AI
+settings before replacing them. Stock roaming-location settings generated for
+Nasdara still require runtime inspection.
+
+No mod installation, launcher changes, custom mod or DayZ startup was performed.
+The current batch launchers do not activate this AI configuration. Enabling
+the dependencies and completing the runtime checklist are later deployment work.
+
+### Configuration validation
+
+Repo-local `dzcli` v0.0.5 baseline validation reported no AI files, as expected;
+the exact failure is preserved in
+[validation/baseline-expansion-ai.txt](validation/baseline-expansion-ai.txt).
+Final validation passes for the profiles and the mission patrol file:
+
+```powershell
+$dz = Join-Path (Get-Location) '.tools\dzcli\dzcli.exe'
+& $dz validate expansion ai servers/first-light-badlands-nasdara-us-east
+& $dz validate expansion ai servers/first-light-badlands-nasdara-us-east/mpmissions/dayzOffline.nasdara
+```
+
+Both commands are required with v0.0.5: server-root discovery does not reach the
+nested mission settings. Supported mutations used dry-run previews; text mode
+was required to apply them because this version's JSON mutation output does
+not write files. AI settings and patrol-root settings used direct edits where
+mutation commands are unavailable.
+
+See [final validator output](validation/final-expansion-ai.txt) and the
+[static audit](validation/expansion-ai-static-audit.json). All 12 configuration
+JSON files parse; the audit confirms 10 loadouts, 40 single-AI patrols, 45
+allowlisted inventory classes, exact copied coordinates, cycling, caps,
+quantities/chances, behavior and looting flags. No tests were added.
+In-game placement, capacity, firearm loading, unlimited reload, scavenging,
+movement, detection and relationships remain unverified.
 
 ## Windows host setup
 

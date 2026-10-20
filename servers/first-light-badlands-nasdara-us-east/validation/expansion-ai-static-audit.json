@@ -1,0 +1,40 @@
+{
+  "scope": "Static configuration audit only; no DayZ process or runtime checks",
+  "official_ce_commit": "f220b2918b1d79a5055b1ee9be70c0ec1516e876",
+  "source_sha256": {
+    "types.xml": "b9efd7cbe36675faec703c4ecc963aa246f404b4367c234b073217c5ec6181fa",
+    "cfgplayerspawnpoints.xml": "d6edf317ed1508385994a928f86df2da8d812a382a22af594d03cf6df907764d"
+  },
+  "json_files_parsed": 12,
+  "loadout_files": 10,
+  "patrols": 40,
+  "official_spawn_centers": 20,
+  "unique_inventory_classes_in_pinned_types": 45,
+  "inventory_class_occurrences": 153,
+  "loadout_assignment_counts": {
+    "Nasdara_Civilian_01": 5,
+    "Nasdara_Civilian_02": 5,
+    "Nasdara_Civilian_03": 5,
+    "Nasdara_Civilian_04": 5,
+    "Nasdara_Tribesman_01": 4,
+    "Nasdara_Tribesman_02": 4,
+    "Nasdara_Tribesman_03": 3,
+    "Nasdara_Tribesman_04": 3,
+    "Nasdara_Tribesman_05": 3,
+    "Nasdara_Tribesman_06": 3
+  },
+  "checks_passed": [
+    "Every item exists in pinned official Nasdara types.xml; no other map item catalog used",
+    "All starting clothing exactly matches the approved Badlands slots and alternatives; pristine health",
+    "Civilian tool-only starting inventory; Tribesman starting guns, single compatible loose ammo stack and normalized quantities",
+    "Independent optional supply probabilities, no duplicate supplies; bottle capacities 35-65 percent",
+    "Exact Decimal comparison of all copied X/Z coordinates and source order, Y=0; hop/travel duplicates excluded",
+    "40 unique single-AI patrols, cyclic loadout assignments, role spread, behavior and all shared patrol flags",
+    "Global/Civilian/Tribesman caps 40/20/20 for player counts 0-255",
+    "Distinct looting allowlists, West player assignment, recruitment disabled and native aggression timeouts",
+    "Complete serialized field sets match inspected Expansion AI v20 and patrol v32 source schemas",
+    "All 12 new JSON documents parse",
+    "All changes confined to the Nasdara server; no launchers, serverDZ, VPP profiles, stock mission XML or other servers changed"
+  ],
+  "runtime_acceptance": "PENDING: ground placement, inventory capacity, firearm loading, unlimited reload, looting, walking and detection distances"
+}

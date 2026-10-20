@@ -1,0 +1,20 @@
+dzcli v0.0.5
+Static configuration validation only; no DayZ runtime checks.
+
+Command: dzcli validate expansion ai servers/first-light-badlands-nasdara-us-east
+Exit code: 0
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Civilian_01.json ok (17 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Civilian_02.json ok (15 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Civilian_03.json ok (17 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Civilian_04.json ok (16 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_01.json ok (17 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_02.json ok (16 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_03.json ok (18 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_04.json ok (18 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_05.json ok (16 items)
+expansion-ai-loadout servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Loadouts\Nasdara_Tribesman_06.json ok (13 items)
+expansion-ai-settings servers\first-light-badlands-nasdara-us-east\profiles\ExpansionMod\Settings\AISettings.json ok
+
+Command: dzcli validate expansion ai servers/first-light-badlands-nasdara-us-east/mpmissions/dayzOffline.nasdara
+Exit code: 0
+expansion-ai-patrols servers\first-light-badlands-nasdara-us-east\mpmissions\dayzOffline.nasdara\expansion\settings\AIPatrolSettings.json ok (40 patrols)
