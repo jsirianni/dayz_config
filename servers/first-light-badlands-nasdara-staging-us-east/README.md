@@ -43,7 +43,7 @@ need separate host/IP bindings when run concurrently.
 The mission overlay includes `mpmissions/dayzOffline.nasdara/db/messages.xml` and
 `mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`.
 The messages retain Frostline's server-name greeting and Discord invite, and add
-the Deer Isle Expansion shutdown countdown. Provision the full stock mission on the host, then copy messages
+a graceful shutdown countdown. Provision the full stock mission on the host, then copy messages
 into its existing `db` directory and the patrol settings into its
 `expansion/settings` directory, preserving all stock mission files.
 
@@ -62,7 +62,7 @@ data, stock XML/JSON settings, weather, and `init.c`. The installed stock missio
 supplies these files. The original complete import remains in Git history.
 
 The mission's `db/messages.xml` uses DayZ's built-in graceful shutdown countdown,
-matching Deer Isle Expansion: `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
+with `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
 The deadline is three hours of server uptime and resets on each start; it is not
 a fixed wall-clock schedule. DayZ broadcasts warnings at 90, 60, 45, 30, 20, 15,
 10, 5, 2, and 1 minute remaining, then shuts down gracefully. The old 1 PM/4 AM

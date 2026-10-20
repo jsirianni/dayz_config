@@ -14,7 +14,7 @@
     </message>
 
     <message>
-        <!-- Graceful shutdown after three hours of uptime, matching Deer Isle Expansion. -->
+        <!-- Graceful shutdown after three hours of uptime. -->
         <delay>0</delay>
         <repeat>0</repeat>
         <deadline>180</deadline>

@@ -31,7 +31,7 @@ listeners and existing router/firewall forwarding require checking on the host.
 
 The only retained mission file is `mpmissions/dayzOffline.nasdara/db/messages.xml`.
 It retains Frostline's server-name greeting and Discord invite, and adds the
-Deer Isle Expansion shutdown countdown. Provision the full stock mission on the host, then copy this file
+a graceful shutdown countdown. Provision the full stock mission on the host, then copy this file
 into its existing `db` directory.
 
 The original 51-file mission import came from
@@ -49,7 +49,7 @@ data, stock XML/JSON settings, weather, and `init.c`. The installed stock missio
 supplies these files. The original complete import remains in Git history.
 
 The mission's `db/messages.xml` uses DayZ's built-in graceful shutdown countdown,
-matching Deer Isle Expansion: `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
+with `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
 The deadline is three hours of server uptime and resets on each start; it is not
 a fixed wall-clock schedule. DayZ broadcasts warnings at 90, 60, 45, 30, 20, 15,
 10, 5, 2, and 1 minute remaining, then shuts down gracefully. The old 1 PM/4 AM
