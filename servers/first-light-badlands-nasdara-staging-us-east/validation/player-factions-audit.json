@@ -1,0 +1,144 @@
+{
+  "Status": "passed",
+  "BaseCommit": "8978a6b",
+  "PatrolDefinitions": 143,
+  "LoadoutFiles": 45,
+  "FactionOnlyMutations": 20,
+  "AllMutationsPreviewed": true,
+  "AllAppliedFilesMatchedPreviews": true,
+  "ExistingPatrolFieldsOtherwiseUnchanged": true,
+  "ExistingProfileAndLoadoutsUnchanged": true,
+  "AssasinPatrolUnchanged": true,
+  "PopulationCapsUnchanged": true,
+  "MaximumLivingAI": 61,
+  "MaximumActivePatrols": 51,
+  "PlayerFaction": "West",
+  "CivilianRoleFaction": "Civilian",
+  "TribesmanRoleFaction": "Civilian",
+  "MercRoleFaction": "East",
+  "PlannedWarlordFaction": "Mercenaries",
+  "ExistingWarlordPatrolDefinitions": 0,
+  "WarlordAndMercEncounterPolicy": "Hostile to one another and players; own-faction patrols cooperate",
+  "CivilianAndTribesmanPlayerPolicy": "Initially friendly; stock retaliation and assistance preserved",
+  "ActualFactionCounts": [
+    {
+      "Faction": "Civilian",
+      "Definitions": 40
+    },
+    {
+      "Faction": "East",
+      "Definitions": 102
+    },
+    {
+      "Faction": "Raiders",
+      "Definitions": 1
+    }
+  ],
+  "Mutations": [
+    {
+      "Patrol": "Nasdara_Tribesman_P01",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P02",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P03",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P04",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P05",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P06",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P07",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P08",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P09",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P10",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P11",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P12",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P13",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P14",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P15",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P16",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P17",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P18",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P19",
+      "Before": "West",
+      "After": "Civilian"
+    },
+    {
+      "Patrol": "Nasdara_Tribesman_P20",
+      "Before": "West",
+      "After": "Civilian"
+    }
+  ],
+  "ServerValidation": "passed; matches baseline",
+  "MissionValidation": "passed; matches baseline",
+  "RuntimeVerificationPerformed": false,
+  "ServerLaunched": false,
+  "Deployed": false
+}
