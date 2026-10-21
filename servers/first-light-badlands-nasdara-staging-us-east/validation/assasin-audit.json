@@ -1,0 +1,145 @@
+{
+  "Status": "passed",
+  "BaseCommit": "9337bbd",
+  "PatrolDefinitions": 143,
+  "ExistingPatrolsUnchanged": 142,
+  "LoadoutFiles": 45,
+  "InventoryItems": 19,
+  "AllInventoryClassesInPinnedTypes": true,
+  "AllStartingItemsGuaranteedPristine": true,
+  "StartingRounds": 20,
+  "OriginalLoadoutFilesUnchanged": 44,
+  "MaximumLivingAI": 61,
+  "MaximumActivePatrols": 51,
+  "AssasinMaximumLivingAI": 1,
+  "SpawnCandidates": 460,
+  "SpawnClasses": 51,
+  "ExactCoordinateCorrespondence": true,
+  "SourceRevision": "f220b2918b1d79a5055b1ee9be70c0ec1516e876",
+  "SourceMapGroupPositionsSHA256": "4C1C1BA3C58371866805AC9B9CD7F00363529D022F436AD859A282E3D552F05E",
+  "SourceTypesSHA256": "B9EFD7CBE36675FAEC703C4ECC963AA246F404B4367C234B073217C5EC6181FA",
+  "DzcLiVersion": "v0.0.5",
+  "SupportedMutationsPreviewedAndMatched": 21,
+  "UnsupportedDirectEdits": [
+    "LoadBalancingCategories.Assasin",
+    "LoadBalancingCategories.Global[0].MaxPatrols"
+  ],
+  "ApprovedPatrolValues": {
+    "Faction": "Raiders",
+    "Persist": 1,
+    "NumberOfAI": 1,
+    "NumberOfAIMax": 0,
+    "Behaviour": "ROAMING",
+    "Loadout": "Nasdara_Assasin",
+    "LoadBalancingCategory": "Assasin",
+    "Speed": "JOG",
+    "UnderThreatSpeed": "SPRINT",
+    "AccuracyMin": 0.85,
+    "AccuracyMax": 0.95,
+    "ThreatDistanceLimit": 1000,
+    "NoiseInvestigationDistanceLimit": 1000,
+    "MaxFlankingDistance": 1000,
+    "EnableFlankingOutsideCombat": 1,
+    "SniperProneDistanceThreshold": 600,
+    "MinDistRadius": 3000,
+    "MaxDistRadius": 25000,
+    "DespawnRadius": 25000,
+    "MinSpreadRadius": 40,
+    "MaxSpreadRadius": 80,
+    "DespawnTime": 300,
+    "RespawnTime": 1800,
+    "Chance": 1,
+    "CanBeLooted": 1,
+    "UnlimitedReload": 1,
+    "LootingBehaviour": "BANDAGES",
+    "CanBeTriggeredByAI": 0,
+    "CanSpawnInContaminatedArea": 0,
+    "UseRandomWaypointAsStartPoint": 1,
+    "ObjectClassName": "",
+    "DamageMultiplier": 1,
+    "DamageReceivedMultiplier": 1,
+    "HeadshotResistance": 0,
+    "ShoryukenChance": 0
+  },
+  "Inventory": [
+    {
+      "ClassName": "USMCJacket_Desert",
+      "Path": "root/Body/0"
+    },
+    {
+      "ClassName": "Rangefinder",
+      "Path": "root/Body/0/cargo/0"
+    },
+    {
+      "ClassName": "Battery9V",
+      "Path": "root/Body/0/cargo/0/BatteryD/0"
+    },
+    {
+      "ClassName": "Canteen",
+      "Path": "root/Body/0/cargo/1"
+    },
+    {
+      "ClassName": "USMCPants_Desert",
+      "Path": "root/Legs/0"
+    },
+    {
+      "ClassName": "BandageDressing",
+      "Path": "root/Legs/0/cargo/0"
+    },
+    {
+      "ClassName": "Mag_SVD_10Rnd",
+      "Path": "root/Legs/0/cargo/1"
+    },
+    {
+      "ClassName": "MilitaryBoots_Beige",
+      "Path": "root/Feet/0"
+    },
+    {
+      "ClassName": "TacticalGloves_Beige",
+      "Path": "root/Gloves/0"
+    },
+    {
+      "ClassName": "GhillieHood_Desert",
+      "Path": "root/Headgear/0"
+    },
+    {
+      "ClassName": "GhillieSuit_Desert",
+      "Path": "root/Back/0"
+    },
+    {
+      "ClassName": "TacticalGoggles",
+      "Path": "root/Eyewear/0"
+    },
+    {
+      "ClassName": "BalaclavaMask_Beige",
+      "Path": "root/Mask/0"
+    },
+    {
+      "ClassName": "SVD",
+      "Path": "root/Shoulder/0"
+    },
+    {
+      "ClassName": "Mag_SVD_10Rnd",
+      "Path": "root/Shoulder/0/magazine/0"
+    },
+    {
+      "ClassName": "PSO6Optic",
+      "Path": "root/Shoulder/0/weaponOpticsAK/0"
+    },
+    {
+      "ClassName": "Battery9V",
+      "Path": "root/Shoulder/0/weaponOpticsAK/0/BatteryD/0"
+    },
+    {
+      "ClassName": "AK_Suppressor",
+      "Path": "root/Shoulder/0/weaponMuzzleAK/0"
+    },
+    {
+      "ClassName": "GhillieAtt_Desert",
+      "Path": "root/Shoulder/0/weaponWrap/0"
+    }
+  ],
+  "InGameVerificationPerformed": false,
+  "ServerLaunched": false,
+  "Deployed": false
+}
