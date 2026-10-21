@@ -1,0 +1,77 @@
+{
+  "Status": "passed",
+  "BaseCommit": "137098c3947946dc52534aa9e03fa690d788b867",
+  "Branch": "codex/nasdara-assasin-remote-spawn",
+  "PairPhaseBaselineIncludesRemoteAssasinAnchor": true,
+  "PairPhasePatrolFieldsChanged": [
+    "NumberOfAI on 20 Civilian definitions",
+    "NumberOfAI on 20 Tribesman definitions"
+  ],
+  "PairPhaseGlobalChange": "LoadBalancingCategories.Global[0].MaxPatrols: 61 -> 101",
+  "SupportedMutationPreviewsMatched": 40,
+  "UnsupportedDirectEdits": [
+    "LoadBalancingCategories.Global[0].MaxPatrols"
+  ],
+  "AllOtherPatrolValuesUnchanged": true,
+  "AllOtherRoleCapsUnchanged": true,
+  "CombinedBranchOnlyConfigChanges": [
+    "assasin.Waypoints: 460 military anchors -> 1 remote mausoleum anchor",
+    "40 Civilian/Tribesman NumberOfAI values: 1 -> 2",
+    "Global.MaxPatrols: 61 -> 101"
+  ],
+  "AssasinUnchangedFromPairBaseline": true,
+  "OtherPatrolsUnchangedFromPairBaseline": 103,
+  "PatrolDefinitions": 143,
+  "LoadoutFiles": 45,
+  "JsonFilesParsed": 47,
+  "GlobalMaxPatrols": 101,
+  "MaximumActivePatrols": 51,
+  "MaximumLivingAI": 101,
+  "Categories": [
+    {
+      "Category": "Civilian",
+      "Definitions": 20,
+      "MaxPatrols": 20,
+      "NumberOfAI": 2,
+      "NumberOfAIMax": 0,
+      "MaximumLivingAI": 40,
+      "MinPlayers": 0,
+      "MaxPlayers": 255
+    },
+    {
+      "Category": "Tribesman",
+      "Definitions": 20,
+      "MaxPatrols": 20,
+      "NumberOfAI": 2,
+      "NumberOfAIMax": 0,
+      "MaximumLivingAI": 40,
+      "MinPlayers": 0,
+      "MaxPlayers": 255
+    },
+    {
+      "Category": "Western_Merc",
+      "Definitions": 102,
+      "MaxPatrols": 10,
+      "NumberOfAI": 2,
+      "NumberOfAIMax": 0,
+      "MaximumLivingAI": 20,
+      "MinPlayers": 0,
+      "MaxPlayers": 255
+    },
+    {
+      "Category": "Assasin",
+      "Definitions": 1,
+      "MaxPatrols": 1,
+      "NumberOfAI": 1,
+      "NumberOfAIMax": 0,
+      "MaximumLivingAI": 1,
+      "MinPlayers": 0,
+      "MaxPlayers": 255
+    }
+  ],
+  "ServerValidation": "passed",
+  "MissionValidation": "passed",
+  "FinalOutputsMatchBaselines": true,
+  "DzcLiVersion": "v0.0.5",
+  "RuntimeVerified": false
+}

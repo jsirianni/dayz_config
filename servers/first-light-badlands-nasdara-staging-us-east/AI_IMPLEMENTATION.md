@@ -24,6 +24,109 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## Civilian and Tribesman pair update (2026-10-20)
+
+All **20 Civilian and 20 Tribesman patrol definitions** now use
+`NumberOfAI: 2`, with `NumberOfAIMax: 0` retained for a fixed two AI per patrol.
+Their category caps remain 20 patrols each. Raise `Global.MaxPatrols` from 61
+to **101** across player counts 0-255. Role caps enforce the living-AI ceiling;
+Expansion's global setting itself counts patrols.
+
+| Category | Maximum patrols | AI per patrol | Maximum living AI |
+| --- | ---: | ---: | ---: |
+| Civilian | 20 | 2 | 40 |
+| Tribesman | 20 | 2 | 40 |
+| Western_Merc | 10 | 2 | 20 |
+| Assasin | 1 | 1 | 1 |
+| Total | **51** | | **101** |
+
+The assassin retains its newly selected remote mausoleum anchor, persistence
+and other settings. Civilian/Tribesman coordinates, native spreads, loadouts,
+factions, recruitment restrictions and behavior are unchanged. Existing
+143 patrol definitions and 45 loadouts remain; Warlord spawning is deferred.
+
+Each of the 40 supported patrol mutations was previewed with `dzcli --dry-run`
+and its result matched to the intended `NumberOfAI` change before applying.
+The global category setting was edited directly because dzcli v0.0.5 does not
+expose load-balancing-category mutations. Baseline and final server/mission
+AI validation pass with identical output. See
+[server baseline](validation/civilian-tribesman-pairs-baseline.txt),
+[mission baseline](validation/civilian-tribesman-pairs-mission-baseline.txt),
+[server final](validation/civilian-tribesman-pairs-final.txt),
+[mission final](validation/civilian-tribesman-pairs-mission-final.txt), and
+[static audit](validation/civilian-tribesman-pairs-audit.json).
+
+Deploy the updated mission `AIPatrolSettings.json` with staging stopped, then
+restart using the existing launcher; retain all profile/loadout/persistence
+data. Civilian and Tribesman patrols remain nonpersistent and spawn fresh
+under their existing activation rules. The living persistent assassin still
+restores its saved position until a fresh spawn. No deployment is performed.
+Later staging checks must confirm both members spawn with valid ground and
+formation clearance, group cooperation, the 20/20 category limits, the 101-AI
+ceiling, and host performance. These configuration checks are not in-game
+verification; no tests, scripts, server launch or launcher changes are added.
+
+## assasin spawn relocation (2026-10-20)
+
+Replace the original 460 military-object starting waypoints with **one
+uncommon-object anchor**, using the user's definition of an uncommon map
+object/building. The spawn-relocation phase changed only
+`assasin.Waypoints`. The subsequent pair update above changes 40 group sizes
+and the global cap; all loadouts and profile settings retain their prior values.
+
+| Selection | Value |
+| --- | --- |
+| Official class | `Land_Mausoleum_Small1_Dam1` |
+| Class placements listed in official CE file | 2 |
+| Selected source group index (one-based) | 13009 |
+| Source X / Y / Z | `12170.946289 / 168.229233 / 2173.485107` |
+| Configured waypoint | `[12170.946289, 0, 2173.485107]` |
+| Nearest Merc object | `Land_Mil_Guardhouse2` at X `10866.722656`, Z `3305.604248` |
+| Horizontal separation between anchors | **1727.05 m** |
+
+Selection evaluated **324 listed placements across 138 classes**, considering
+classes with one through five entries in the pinned official `mapgrouppos.xml`.
+For each candidate, calculate the horizontal distance to the nearest of all
+**460 Merc object placements**. The selected placement has the greatest such
+distance in that candidate set. The other mausoleum of this class is only
+83.47 m from a Merc object and is excluded. Counts describe CE placement
+entries, not a census of every terrain object.
+
+Coordinates and precision come directly from CE commit
+`f220b2918b1d79a5055b1ee9be70c0ec1516e876`, with placement-file SHA-256
+`4c1c1ba3c58371866805ac9b9cd7f00363529d022f436ad859a282e3d552f05e`.
+See the [official placement file](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/mapgrouppos.xml),
+[current spawn manifest](validation/assasin-remote-spawn-points.csv), and
+[selection/configuration audit](validation/assasin-remote-spawn-audit.json).
+The earlier `assasin-spawn-points.csv` is retained as the historical 460-point
+pool and the Merc-placement comparison record.
+
+The patrol remains coordinate-based with `ObjectClassName: ""` and `Persist: 1`.
+One waypoint means there is no choice among start anchors; existing 40-80 m
+native spread still varies the initial position. Y=0 delegates elevation to
+Expansion. This does not verify slope, outdoor clearance or ground placement.
+Subtracting both patrols' maximum 80 m initial spreads gives about 1567 m of
+geometric separation, subject to native placement behavior. Roaming can later
+bring the assassin and Mercs together; separation is not a roaming boundary.
+
+For deployment, stop staging and replace only the mission
+`mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`, then
+restart with the existing launcher. Retain profile settings, all loadouts and
+persistence. **A living persisted assasin restores its old saved position; a
+restart alone does not relocate it.** The new anchor applies to its next fresh
+spawn after death/removal. No persistence reset or deployment is performed here.
+The existing 3000 m minimum player distance still gates spawning/restoration.
+
+Validation records: [server baseline](validation/assasin-remote-spawn-baseline.txt),
+[mission baseline](validation/assasin-remote-spawn-mission-baseline.txt),
+[server final](validation/assasin-remote-spawn-final.txt), and
+[mission final](validation/assasin-remote-spawn-mission-final.txt).
+Both final validators pass with output matching baseline; the static audit
+confirms the waypoint-only change and source/distance correspondence. These
+are configuration checks. Later staging checks must verify a fresh spawn near
+this anchor, terrain clearance/elevation, persistence, and subsequent roaming.
+No server launch, deployment, tests, launcher edits or custom scripts are added.
+
 ## Player relationship update (2026-10-20)
 
 The current mapping supersedes the earlier West alliance for Tribesmen and
@@ -47,10 +150,11 @@ relationships do not prevent later combat. This replaces the earlier plan
 for Tribesmen and Warlords to cooperate. Warlords and Mercs are enemies of
 each other and players; no custom faction or targeting code is added.
 
-All other settings are preserved: **143 patrol definitions / 45 loadout
-files**, existing loadout assignments, coordinates, behavior, accuracy,
-61-living-AI ceiling, and assasin persistence/spawn settings. Warlord spawning
-remains future work. No tests, server launch, or deployment are performed.
+The player-relationship phase preserved **143 patrol definitions / 45 loadout
+files**, loadout assignments, coordinates, behavior, accuracy and the then-current
+61-living-AI ceiling. The later pair update raises that ceiling to 101; the spawn
+relocation changes the assasin anchor. Warlord spawning remains future work.
+No tests, server launch, or deployment are performed.
 
 Configuration records:
 
@@ -92,13 +196,13 @@ Load-balancing caps apply across player counts 0-255:
 
 | Category | Maximum patrols | AI per patrol | Maximum living AI |
 | --- | ---: | ---: | ---: |
-| Civilian | 20 | 1 | 20 |
-| Tribesman | 20 | 1 | 20 |
+| Civilian | 20 | 2 | 40 |
+| Tribesman | 20 | 2 | 40 |
 | Western_Merc | 10 | 2 | 20 |
 | Assasin | 1 | 1 | 1 |
 
-`Global.MaxPatrols` becomes **61**. Category caps permit at most **51 active
-patrols / 61 living AI**. Existing categories keep their previous limits;
+`Global.MaxPatrols` is now **101** after the pair update. Category caps permit **51 active
+patrols / 101 living AI**. Existing categories keep their previous patrol limits;
 unused category capacity is not borrowed. Spawn rules can keep actual counts
 below these ceilings.
 
@@ -121,25 +225,21 @@ starting firearm and outfit. Unlimited reload can increase corpse ammunition
 above the initial 20-round allocation. The existing 44 equipment/selector
 files are unchanged.
 
-### Spawn pool and roaming
+### Spawn anchor and roaming
 
-The single patrol has **460 waypoints**, copied from the official Nasdara
-`mapgrouppos.xml` placements belonging to all 51 selected Merc classes.
-[validation/assasin-spawn-points.csv](validation/assasin-spawn-points.csv)
-records each source group index, class, original X/Y/Z, emitted X/0/Z, and
-source revision. The pinned CE commit is
-`f220b2918b1d79a5055b1ee9be70c0ec1516e876`; source SHA-256 is
-`4c1c1ba3c58371866805ac9b9cd7f00363529d022f436ad859a282e3d552f05e`.
-See the [official placement file](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/mapgrouppos.xml).
+The single patrol now has **one waypoint**, copied from the remote official
+`Land_Mausoleum_Small1_Dam1` placement at `[12170.946289, 0, 2173.485107]`.
+The [spawn relocation](#assasin-spawn-relocation-2026-10-20) above records
+selection criteria, source precision, 1727.05 m nearest-Merc separation,
+validation and deployment implications. The former 460 military-object
+waypoints are preserved only in the historical manifest/audit.
 
-`UseRandomWaypointAsStartPoint: 1` selects uniformly from these source
-placements when a fresh patrol initializes, including after death/respawn.
-The selected start must qualify for the 3000-25000 m player activation ring.
-If it does not, spawning may wait; selection does not choose the pool point
-closest to a player. This is a military-object placement pool, not arbitrary
-points across the whole map. `ObjectClassName` is empty; existing Merc object spawners are
-unchanged. Waypoint Y=0 delegates elevation to Expansion, and native 40-80 m
-spread does not establish safe, flat, outdoor, unobstructed placement.
+`UseRandomWaypointAsStartPoint: 1` is retained; with one waypoint it always
+selects this anchor on fresh initialization, including after death/respawn.
+The start must qualify for the 3000-25000 m player activation ring; otherwise
+spawning may wait. `ObjectClassName` is empty; existing Merc object spawners
+are unchanged. Waypoint Y=0 delegates elevation to Expansion, and native
+40-80 m spread does not establish safe, flat, outdoor, unobstructed placement.
 
 `ROAMING` selects map named locations after spawning. It does not provide an
 omniscient hunter that always knows player positions. The 25 km activation
@@ -185,9 +285,9 @@ The 600 m threshold does not guarantee a prone shot in every encounter.
   [mission final](validation/assasin-mission-final.txt).
 - [Static audit](validation/assasin-audit.json).
 
-Both final `dzcli` validators pass, including mission validation of all
-143 patrol definitions. The static audit covers 143/45 counts, the 61-AI ceiling,
-category isolation, exact 460-source correspondence, random start/persistence
+The original assasin-phase final validators passed, including all 143 patrol
+definitions. Its historical audit covers 143/45 counts, the 61-AI ceiling,
+category isolation, the former 460-source pool, random start/persistence
 settings, inventory compatibility/quantities, and preservation of every
 existing patrol and loadout. These are configuration checks, not in-game checks.
 No tests, custom scripts/mods, launcher changes, server launch, or deployment
@@ -195,9 +295,9 @@ are part of this update.
 
 Later staging acceptance must check:
 
-- [ ] Outdoor ground support, clearance/elevation, 40-80 m spread, and selection
-      across the source pool after death and fresh initialization.
-- [ ] Exactly one living assasin, 61-AI total ceiling, existing category limits,
+- [ ] Outdoor ground support, clearance/elevation and 40-80 m spread around
+      the selected mausoleum anchor after death and fresh initialization.
+- [ ] Exactly one living assasin, 101-AI total ceiling, existing category limits,
       and expected 3000-25000 m activation, map roaming, and despawn/respawn behavior.
 - [ ] Hostility toward every implemented faction and players, with the current
       baseline relationships between other patrol roles retained.
@@ -206,7 +306,7 @@ Later staging acceptance must check:
 - [ ] Unlimited reload, long-range detection, 600 m sniper-prone eligibility,
       flanking, jogging outside combat, and sprinting under threat.
 - [ ] Living-patrol position/equipment persistence across restart and a fresh
-      random start after death/respawn, without duplicate restored patrols.
+      start at the selected anchor after death/respawn, without duplicates.
 
 For deployment, stop staging and copy the updated mission
 `AIPatrolSettings.json` and new `Nasdara_Assasin.json` into their existing
@@ -258,7 +358,7 @@ the existing launcher; retain existing profile data and loadouts.
 ### Current status and population limits
 
 The staging configuration now contains **143 patrol definitions**: the original
-40 single-AI Civilian/Tribesman entries, **102 two-AI Merc entries**, and the
+40 two-AI Civilian/Tribesman entries, **102 two-AI Merc entries**, and the
 single-AI `assasin`. Its **45 loadout files** comprise the 42 original equipment
 definitions, two Merc selectors, and `Nasdara_Assasin.json`. The object-patrol phase preserved the original 40 patrol entries,
 all 42 equipment files, profile `AISettings.json`, launchers, and production
@@ -270,13 +370,13 @@ Load balancing applies across player counts 0-255:
 
 | Category | Maximum patrols | AI per patrol | Maximum living AI |
 | --- | ---: | ---: | ---: |
-| Civilian | 20 | 1 | 20 |
-| Tribesman | 20 | 1 | 20 |
+| Civilian | 20 | 2 | 40 |
+| Tribesman | 20 | 2 | 40 |
 | Western_Merc | 10 | 2 | 20 |
 | Assasin | 1 | 1 | 1 |
 
-`Global.MaxPatrols` is **61**. It counts patrols, not individual AI; the category
-caps above enforce at most **51 active patrols / 61 living AI**. Unused category
+`Global.MaxPatrols` is **101**. It counts patrols, not individual AI; the category
+caps above enforce at most **51 active patrols / 101 living AI**. Unused category
 capacity is not borrowed by another role. Player proximity, object eligibility,
 and native spawn rules can keep the actual population below those ceilings.
 
@@ -398,7 +498,7 @@ Later staging acceptance remains pending:
       40-80 m spread around selected structures; inspect any rejected spawns.
 - [ ] Confirm pairs, distinct per-member equipment rolls, selector references,
       medic inventory, and all 16 kit possibilities across sufficient spawns.
-- [ ] Confirm category limits, the current 61-AI ceiling, object eligibility
+- [ ] Confirm category limits, the current 101-AI ceiling, object eligibility
       across restarts, and activation at 250-1000 m as players move among dense bases.
 - [ ] Confirm 1200 m despawn range and native 300/1800-second lifecycle behavior.
 - [ ] Compare 200 m threat range, 100 m investigation, 200 m flanking, JOG/SPRINT,
@@ -478,7 +578,7 @@ the centers have not passed the scanner acceptance rules below.
 - For future scanner-accepted positions, begin with fixed, checked placement
   and zero random spread, accounting for formation offsets separately. The
   current unverified-center phase explicitly supersedes that choice with
-  Civilian 1-2 m and Tribesman 4-5 m native spread and one AI per patrol.
+  Civilian 1-2 m and Tribesman 4-5 m native spread, now with two AI per patrol.
 - Preserve source provenance, map/build information, configuration, results,
   and checkpoints so a scan can be audited and resumed.
 - Keep target counts and area quotas configurable. A request for 300 accepted
@@ -599,6 +699,10 @@ spread do not reproduce that filter or establish flat, outdoor, clear ground.
 No coordinates have been geometrically accepted.
 
 ### Shared behavior and native limits
+
+This table records the original singleton phase. The current pair update
+supersedes its group size with two AI per patrol and global cap with 101;
+Civilian/Tribesman category caps remain 20 patrols each.
 
 | Setting | Configured value |
 | --- | --- |
@@ -1350,9 +1454,9 @@ validated Expansion patrol configuration when its gameplay policy is defined.
    prerequisite, define its schemas and implement a small end-to-end batch.
 4. Use that batch's evidence to refine Steps 1-6 before scaling to hundreds.
 
-Current category caps are 20 Civilian singletons, 20 Tribesman singletons,
+Current category caps are 20 Civilian pairs, 20 Tribesman pairs,
 10 Merc pairs, and one assasin, with their approved native spreads. These permit
-at most 51 patrols / 61 living AI. Warlord patrols are not yet implemented.
+at most 51 patrols / 101 living AI. Warlord patrols are not yet implemented.
 Future scanner decisions include area quotas, formation policy, minimum separation, numerical acceptance
 thresholds, map-version matching, collision readiness detection, and packaging.
 
@@ -1402,6 +1506,8 @@ to the decisions they support.
 | 2026-10-20 | Alliance policy supersedes prior Warlord/Merc infighting and the custom Warlord faction proposal: Tribesmen and future Warlords use West; Mercs use East; Civilians remain Civilian; players remain West. | Change only Faction on 20 Tribesman and 102 Merc definitions. Warlord patrols remain deferred. Preserve stock retaliation/assistance and verify allied groups, West/East hostility, and Civilian responses later in staging. |
 | 2026-10-20 | Add a single persistent hostile Raiders patrol named assasin, with fixed suppressed VSD/PSO6/desert-ghillie equipment and a uniform random start from 460 official military-object placements. | Add Assasin cap 1 and Global.MaxPatrols 61; retain existing caps and patrols. Use 143 definitions / 45 loadouts, ROAMING, 1000 m detection, 600 m sniper prone, 0.85/0.95 accuracy, bandage-only scavenging, and later runtime/persistence checks. |
 | 2026-10-20 | Player relationship policy supersedes the earlier West Tribesman/Warlord alliance. | Change only Faction on 20 Tribesman patrols to Civilian; retain West players, Civilian civilians, East Mercs and Raiders assasin. Plan future Warlords as stock Mercenaries: hostile to players and Mercs, cooperative across Warlord groups. Preserve all other configuration and defer runtime checks. |
+| 2026-10-20 | Replace assasin's 460 military-object start pool with one remote Land_Mausoleum_Small1_Dam1 anchor. | Select the most separated candidate among 324 placements of 138 uncommon CE classes: X 12170.946289 / Z 2173.485107, 1727.05 m from the nearest Merc object. Preserve every other setting; living persisted patrols move only on a future fresh spawn. |
+| 2026-10-20 | Increase all 20 Civilian and 20 Tribesman patrols from singletons to pairs. | Set NumberOfAI 2 with NumberOfAIMax 0, retain 20/20 role patrol caps, and raise Global.MaxPatrols to 101. Current limits permit 51 patrols / 101 living AI; preserve the remote assassin anchor and every other setting. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 
