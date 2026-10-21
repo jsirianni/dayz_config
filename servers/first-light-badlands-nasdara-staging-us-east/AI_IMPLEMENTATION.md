@@ -24,6 +24,40 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## Restore single-AI Civilian and Tribesman patrols (2026-10-20)
+
+Reduce `NumberOfAI` from 2 to **1** on all **20 Civilian and 20 Tribesman
+patrol definitions**; retain `NumberOfAIMax: 0` for a fixed one AI per patrol.
+Both roles retain `LootingBehaviour: NONE` and `CanBeLooted: 1`. Category caps
+stay at 20 patrols each, while `Global.MaxPatrols` returns from 101 to **61**
+across player counts 0-255. This supersedes the earlier pair-size increase.
+
+| Category | Maximum patrols | AI per patrol | Maximum living AI |
+| --- | ---: | ---: | ---: |
+| Civilian | 20 | 1 | 20 |
+| Tribesman | 20 | 1 | 20 |
+| Western_Merc | 10 | 2 | 20 |
+| Assasin | 1 | 1 | 1 |
+| Total | **51** | | **61** |
+
+The follow-up changes only 40 `NumberOfAI` fields and the global cap. All
+other settings, 143 patrol definitions and 45 loadouts are preserved.
+All 40 supported mutations were previewed with dzcli and matched to the
+applied output. The global cap required a direct edit because dzcli v0.0.5
+has no load-balancing-category mutation. Baseline/final server and mission
+validation pass with matching output. Records:
+[server baseline](validation/civilian-tribesman-singletons-baseline.txt),
+[mission baseline](validation/civilian-tribesman-singletons-mission-baseline.txt),
+[server final](validation/civilian-tribesman-singletons-final.txt),
+[mission final](validation/civilian-tribesman-singletons-mission-final.txt), and
+[static audit](validation/civilian-tribesman-singletons-audit.json).
+
+Deploy only the mission `AIPatrolSettings.json` with staging stopped, then
+restart using the existing launcher. Retain profiles, loadouts and persistence.
+Later staging acceptance must confirm one AI per Civilian/Tribesman patrol,
+no scavenging, lootable corpses and the 61-AI population ceiling. No server
+launch, deployment or tests are performed; these are configuration checks.
+
 ## Disable Civilian and Tribesman scavenging (2026-10-20)
 
 Set `LootingBehaviour: "NONE"` on all **20 Civilian and 20 Tribesman patrol
@@ -32,9 +66,10 @@ allowlists, including Civilian firearm pickup and both roles' clothing upgrades.
 `CanBeLooted: 1` remains: players can still loot their corpses. Merc scavenging
 and the assasin's `BANDAGES` setting retain their current values.
 
-This changes only those 40 `LootingBehaviour` fields. All two-AI group sizes,
-loadouts, factions, coordinates, spawn rules, combat settings, profile settings,
-45 loadout files, and the 101-living-AI ceiling are preserved. The configuration
+The scavenging phase changed only those 40 `LootingBehaviour` fields and
+preserved the then-current pair sizes and 101-AI ceiling. The follow-up above
+restores one AI per patrol and the 61-AI ceiling. All loadouts, factions,
+coordinates, spawn rules, combat and profile settings are preserved. The configuration
 still contains 143 patrol definitions; Warlord patrols remain deferred.
 
 All 40 mutations used supported dzcli commands with reviewed `--dry-run`
@@ -55,7 +90,11 @@ acceptance must confirm they ignore dropped weapons, bandages and clothing,
 retain their starting kit, and have lootable corpses. These are configuration
 checks; no tests, server launch or deployment are performed.
 
-## Civilian and Tribesman pair update (2026-10-20)
+## Civilian and Tribesman pair update (2026-10-20, historical)
+
+This section records the earlier pair-size increase. The current single-AI
+update above supersedes its group sizes and 101-AI ceiling; its audit remains
+a historical record.
 
 All **20 Civilian and 20 Tribesman patrol definitions** now use
 `NumberOfAI: 2`, with `NumberOfAIMax: 0` retained for a fixed two AI per patrol.
@@ -183,7 +222,7 @@ each other and players; no custom faction or targeting code is added.
 
 The player-relationship phase preserved **143 patrol definitions / 45 loadout
 files**, loadout assignments, coordinates, behavior, accuracy and the then-current
-61-living-AI ceiling. The later pair update raises that ceiling to 101; the spawn
+61-living-AI ceiling. The pair phase raised it to 101; the latest reduction restores 61. The spawn
 relocation changes the assasin anchor. Warlord spawning remains future work.
 No tests, server launch, or deployment are performed.
 
@@ -227,13 +266,13 @@ Load-balancing caps apply across player counts 0-255:
 
 | Category | Maximum patrols | AI per patrol | Maximum living AI |
 | --- | ---: | ---: | ---: |
-| Civilian | 20 | 2 | 40 |
-| Tribesman | 20 | 2 | 40 |
+| Civilian | 20 | 1 | 20 |
+| Tribesman | 20 | 1 | 20 |
 | Western_Merc | 10 | 2 | 20 |
 | Assasin | 1 | 1 | 1 |
 
-`Global.MaxPatrols` is now **101** after the pair update. Category caps permit **51 active
-patrols / 101 living AI**. Existing categories keep their previous patrol limits;
+`Global.MaxPatrols` is now **61** after the size reduction. Category caps permit **51 active
+patrols / 61 living AI**. Existing categories keep their previous patrol limits;
 unused category capacity is not borrowed. Spawn rules can keep actual counts
 below these ceilings.
 
@@ -328,7 +367,7 @@ Later staging acceptance must check:
 
 - [ ] Outdoor ground support, clearance/elevation and 40-80 m spread around
       the selected mausoleum anchor after death and fresh initialization.
-- [ ] Exactly one living assasin, 101-AI total ceiling, existing category limits,
+- [ ] Exactly one living assasin, 61-AI total ceiling, existing category limits,
       and expected 3000-25000 m activation, map roaming, and despawn/respawn behavior.
 - [ ] Hostility toward every implemented faction and players, with the current
       baseline relationships between other patrol roles retained.
@@ -389,7 +428,7 @@ the existing launcher; retain existing profile data and loadouts.
 ### Current status and population limits
 
 The staging configuration now contains **143 patrol definitions**: the original
-40 two-AI Civilian/Tribesman entries, **102 two-AI Merc entries**, and the
+40 single-AI Civilian/Tribesman entries, **102 two-AI Merc entries**, and the
 single-AI `assasin`. Its **45 loadout files** comprise the 42 original equipment
 definitions, two Merc selectors, and `Nasdara_Assasin.json`. The object-patrol phase preserved the original 40 patrol entries,
 all 42 equipment files, profile `AISettings.json`, launchers, and production
@@ -401,13 +440,13 @@ Load balancing applies across player counts 0-255:
 
 | Category | Maximum patrols | AI per patrol | Maximum living AI |
 | --- | ---: | ---: | ---: |
-| Civilian | 20 | 2 | 40 |
-| Tribesman | 20 | 2 | 40 |
+| Civilian | 20 | 1 | 20 |
+| Tribesman | 20 | 1 | 20 |
 | Western_Merc | 10 | 2 | 20 |
 | Assasin | 1 | 1 | 1 |
 
-`Global.MaxPatrols` is **101**. It counts patrols, not individual AI; the category
-caps above enforce at most **51 active patrols / 101 living AI**. Unused category
+`Global.MaxPatrols` is **61**. It counts patrols, not individual AI; the category
+caps above enforce at most **51 active patrols / 61 living AI**. Unused category
 capacity is not borrowed by another role. Player proximity, object eligibility,
 and native spawn rules can keep the actual population below those ceilings.
 
@@ -529,7 +568,7 @@ Later staging acceptance remains pending:
       40-80 m spread around selected structures; inspect any rejected spawns.
 - [ ] Confirm pairs, distinct per-member equipment rolls, selector references,
       medic inventory, and all 16 kit possibilities across sufficient spawns.
-- [ ] Confirm category limits, the current 101-AI ceiling, object eligibility
+- [ ] Confirm category limits, the current 61-AI ceiling, object eligibility
       across restarts, and activation at 250-1000 m as players move among dense bases.
 - [ ] Confirm 1200 m despawn range and native 300/1800-second lifecycle behavior.
 - [ ] Compare 200 m threat range, 100 m investigation, 200 m flanking, JOG/SPRINT,
@@ -609,7 +648,7 @@ the centers have not passed the scanner acceptance rules below.
 - For future scanner-accepted positions, begin with fixed, checked placement
   and zero random spread, accounting for formation offsets separately. The
   current unverified-center phase explicitly supersedes that choice with
-  Civilian 1-2 m and Tribesman 4-5 m native spread, now with two AI per patrol.
+  Civilian 1-2 m and Tribesman 4-5 m native spread, now with one AI per patrol.
 - Preserve source provenance, map/build information, configuration, results,
   and checkpoints so a scan can be audited and resumed.
 - Keep target counts and area quotas configurable. A request for 300 accepted
@@ -731,8 +770,8 @@ No coordinates have been geometrically accepted.
 
 ### Shared behavior and native limits
 
-This table records the original singleton phase. The current pair update
-supersedes its group size with two AI per patrol and global cap with 101;
+This table records the original singleton phase. Current patrols again use
+one AI each, with the global cap now 61 and scavenging disabled. Both
 Civilian/Tribesman category caps remain 20 patrols each.
 
 | Setting | Configured value |
@@ -1486,9 +1525,9 @@ validated Expansion patrol configuration when its gameplay policy is defined.
    prerequisite, define its schemas and implement a small end-to-end batch.
 4. Use that batch's evidence to refine Steps 1-6 before scaling to hundreds.
 
-Current category caps are 20 Civilian pairs, 20 Tribesman pairs,
+Current category caps are 20 Civilian singletons, 20 Tribesman singletons,
 10 Merc pairs, and one assasin, with their approved native spreads. These permit
-at most 51 patrols / 101 living AI. Warlord patrols are not yet implemented.
+at most 51 patrols / 61 living AI. Warlord patrols are not yet implemented.
 Future scanner decisions include area quotas, formation policy, minimum separation, numerical acceptance
 thresholds, map-version matching, collision readiness detection, and packaging.
 
@@ -1541,6 +1580,7 @@ to the decisions they support.
 | 2026-10-20 | Replace assasin's 460 military-object start pool with one remote Land_Mausoleum_Small1_Dam1 anchor. | Select the most separated candidate among 324 placements of 138 uncommon CE classes: X 12170.946289 / Z 2173.485107, 1727.05 m from the nearest Merc object. Preserve every other setting; living persisted patrols move only on a future fresh spawn. |
 | 2026-10-20 | Increase all 20 Civilian and 20 Tribesman patrols from singletons to pairs. | Set NumberOfAI 2 with NumberOfAIMax 0, retain 20/20 role patrol caps, and raise Global.MaxPatrols to 101. Current limits permit 51 patrols / 101 living AI; preserve the remote assassin anchor and every other setting. |
 | 2026-10-20 | Disable town-loot scavenging for Civilians and Tribesmen. | Set LootingBehaviour NONE on all 40 definitions, superseding earlier allowlists. Preserve corpse lootability, Merc/assasin scavenging, pair sizes and the 101-AI ceiling. |
+| 2026-10-20 | Restore Civilian and Tribesman patrols to one AI each while retaining disabled scavenging. | Set NumberOfAI 1 on all 40 definitions with NumberOfAIMax 0, retain 20/20 role caps, and restore Global.MaxPatrols 61. Category caps permit 51 patrols / 61 living AI. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 

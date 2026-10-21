@@ -124,7 +124,7 @@ that change during deployment. This repository change does not delete storage.
 The overlay provides **45 loadout files**: four Civilian, nine Tribesman,
 13 Warlord, 16 Western_Merc (including one MP5 medic), two Merc selectors, and
 `Nasdara_Assasin.json`. There are **143 patrol definitions**: the original 40
-two-AI Civilian/Tribesman entries at 20 official player spawn-area centers,
+single-AI Civilian/Tribesman entries at 20 official player spawn-area centers,
 102 two-AI Merc object entries covering all 51 selected military-related
 building/object classes, and one single-AI patrol named exactly `assasin`.
 The player relationship phase changed the faction on 20
@@ -186,26 +186,26 @@ flanking distances are 45.72 m (50 yards), with flanking outside combat disabled
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
 300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
 persist across restarts. Their category caps remain 20 Civilian and 20 Tribesman
-two-AI patrols for every player count from 0 through 255. The global cap is
-now 101 patrols, with a separate 10-patrol Merc cap (two AI per patrol) and
+single-AI patrols for every player count from 0 through 255. The global cap is
+now 61 patrols, with a separate 10-patrol Merc cap (two AI per patrol) and
 `Assasin` cap 1. Category caps together permit at most **51 active patrols /
-101 living AI**. The assasin uses persistence across restarts; existing patrols
+61 living AI**. The assasin uses persistence across restarts; existing patrols
 retain their prior nonpersistent settings.
 Unused category capacity is not borrowed by other roles.
 
 
 | Role | Patrol cap | AI per patrol | Maximum living AI |
 | --- | ---: | ---: | ---: |
-| Civilian | 20 | 2 | 40 |
-| Tribesman | 20 | 2 | 40 |
+| Civilian | 20 | 1 | 20 |
+| Tribesman | 20 | 1 | 20 |
 | Western_Merc | 10 | 2 | 20 |
 | assasin | 1 | 1 | 1 |
-| Total | **51** | | **101** |
+| Total | **51** | | **61** |
 
-The pair update changes `NumberOfAI` on all 40 Civilian/Tribesman definitions;
-`NumberOfAIMax` remains 0 for a fixed size. Coordinates, native spread and
-behavior are unchanged. Verify both members' ground/formation clearance in
-staging. Deploy the mission patrol file with staging stopped and restart
+The current size reduction sets `NumberOfAI: 1` on all 40 Civilian/Tribesman
+definitions; `NumberOfAIMax` remains 0 for a fixed one AI per patrol. Scavenging
+remains disabled. Coordinates, native spread and behavior are unchanged.
+Verify single-AI spawning and ground clearance in staging. Deploy the mission patrol file with staging stopped and restart
 using the existing launcher, retaining profiles, loadouts and persistence.
 
 ### Faction alliances (2026-10-20)
@@ -423,7 +423,18 @@ does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Current no-scavenging records are
+Latest size-reduction records are
+[server baseline](validation/civilian-tribesman-singletons-baseline.txt),
+[mission baseline](validation/civilian-tribesman-singletons-mission-baseline.txt),
+[server final](validation/civilian-tribesman-singletons-final.txt),
+[mission final](validation/civilian-tribesman-singletons-mission-final.txt), and
+[static audit](validation/civilian-tribesman-singletons-audit.json). Both validators
+pass with output matching baseline. Forty fixed single-AI definitions retain
+`LootingBehaviour: NONE` and `CanBeLooted: 1`; role caps remain 20/20 and the
+global cap is 61. Other settings and equipment are unchanged. Runtime checks
+must verify one AI per patrol, no scavenging, and the 61-AI population ceiling.
+
+Scavenging-phase records are
 [server baseline](validation/civilian-tribesman-no-looting-baseline.txt),
 [mission baseline](validation/civilian-tribesman-no-looting-mission-baseline.txt),
 [server final](validation/civilian-tribesman-no-looting-final.txt),
@@ -501,7 +512,7 @@ production during that phase. Profile/server and mission-root validators are bot
 No tests or custom scripts are added; no server launch or deployment is performed.
 
 Later staging checks must cover ground placement, paired spawning and all kit
-possibilities, inventory/capacity, the 101-AI ceiling, activation/despawn ranges
+possibilities, inventory/capacity, the 61-AI ceiling, activation/despawn ranges
 and timers, detection, prone behavior, scavenging, unlimited reload, movement,
 player friendship with Civilians/Tribesmen, player/Merc hostility, cooperation
 across Merc patrols, Civilian/Tribesman retaliation and friendly assistance,
