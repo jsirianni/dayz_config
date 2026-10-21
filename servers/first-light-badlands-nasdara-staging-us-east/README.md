@@ -124,10 +124,10 @@ that change during deployment. This repository change does not delete storage.
 The overlay provides **45 loadout files**: four Civilian, nine Tribesman,
 13 Warlord, 16 Western_Merc (including one MP5 medic), two Merc selectors, and
 `Nasdara_Assasin.json`. There are **143 patrol definitions**: the original 40
-single-AI Civilian/Tribesman entries at 20 official player spawn-area centers,
+two-AI Civilian/Tribesman entries at 20 official player spawn-area centers,
 102 two-AI Merc object entries covering all 51 selected military-related
 building/object classes, and one single-AI patrol named exactly `assasin`.
-The current player relationship update changes only the faction on 20
+The player relationship phase changed the faction on 20
 Tribesman patrols to Civilian. Players remain West, Mercs East, Civilians
 Civilian, and assasin Raiders; future Warlords use stock Mercenaries.
 Warlord patrols, original Civilian/Tribesman accuracy-tier overrides,
@@ -184,12 +184,27 @@ flanking distances are 45.72 m (50 yards), with flanking outside combat disabled
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
 300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
 persist across restarts. Their category caps remain 20 Civilian and 20 Tribesman
-single-AI patrols for every player count from 0 through 255. The global cap is
-now 61 patrols, with a separate 10-patrol Merc cap (two AI per patrol) and
+two-AI patrols for every player count from 0 through 255. The global cap is
+now 101 patrols, with a separate 10-patrol Merc cap (two AI per patrol) and
 `Assasin` cap 1. Category caps together permit at most **51 active patrols /
-61 living AI**. The assasin uses persistence across restarts; existing patrols
+101 living AI**. The assasin uses persistence across restarts; existing patrols
 retain their prior nonpersistent settings.
 Unused category capacity is not borrowed by other roles.
+
+
+| Role | Patrol cap | AI per patrol | Maximum living AI |
+| --- | ---: | ---: | ---: |
+| Civilian | 20 | 2 | 40 |
+| Tribesman | 20 | 2 | 40 |
+| Western_Merc | 10 | 2 | 20 |
+| assasin | 1 | 1 | 1 |
+| Total | **51** | | **101** |
+
+The pair update changes `NumberOfAI` on all 40 Civilian/Tribesman definitions;
+`NumberOfAIMax` remains 0 for a fixed size. Coordinates, native spread and
+behavior are unchanged. Verify both members' ground/formation clearance in
+staging. Deploy the mission patrol file with staging stopped and restart
+using the existing launcher, retaining profiles, loadouts and persistence.
 
 ### Faction alliances (2026-10-20)
 
@@ -247,15 +262,21 @@ canteen. Bandage-only scavenging preserves its starting rifle and outfit.
 | Lootable / unlimited reload / persistence | Enabled / enabled / enabled |
 | Scavenging | `BANDAGES` only |
 
-The 460 starting waypoints are `[source X, 0, source Z]` copied from the pinned
-CE military-object placement pool used by the 51 selected Merc classes. The
-[spawn manifest](validation/assasin-spawn-points.csv) records raw coordinates,
-source indices and provenance. Uniform random start selection applies to a
-fresh patrol, including after death/respawn. The selected start must qualify
-for the 3000-25000 m player activation ring; otherwise spawning may wait. It
-does not select the closest pool point to a player. Neither native elevation
-nor spread establishes safe placement.
-No object matching is used for this patrol; Merc object spawners are unchanged.
+The starting waypoint is **`[12170.946289, 0, 2173.485107]`**, copied from a
+`Land_Mausoleum_Small1_Dam1` placement in the pinned official CE file. Only two
+placements of this class are listed; this selected one is **1727.05 m from the
+nearest Merc object**. It is the most separated of 324 placements across 138
+classes with one through five listed instances. The other same-class placement
+is only 83.47 m from a Merc object and is excluded.
+
+The [current manifest](validation/assasin-remote-spawn-points.csv) records
+coordinates, source index and nearest-Merc distance. The former
+[460-point manifest](validation/assasin-spawn-points.csv) remains historical.
+See [selection and provenance](AI_IMPLEMENTATION.md#assasin-spawn-relocation-2026-10-20).
+One anchor replaces the random choice among military objects; existing 40-80 m
+native spread still varies initial placement. The 3000-25000 m player activation
+ring still applies, and neither native elevation nor spread verifies safe ground.
+The patrol remains coordinate-based and persistent; Merc object spawners are unchanged.
 
 `ROAMING` chooses map named locations; it does not always know player positions.
 The 25 km activation maximum/despawn radius aims to retain the patrol anywhere
@@ -384,7 +405,14 @@ The staging launcher installs/updates, synchronizes, and loads these AI
 dependencies alongside CF/VPP, using the existing signing-key helper. The
 operator reports a successful prior deployment/startup on a separate VM and
 correct DZSA mod list. The launcher is unchanged by this object-patrol phase.
-For the assasin update, stop staging and copy the updated
+For this spawn relocation, stop staging and replace only the mission
+`mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`, then
+restart with the existing launcher. **A living persisted assasin retains its
+saved position; restarting alone does not move it.** The new anchor takes effect
+on its next fresh spawn after death/removal. Retain all profile data, loadouts
+and persistence. This change does not reset persistence or deploy itself.
+
+For the original assasin installation, stop staging and copy the updated
 `AIPatrolSettings.json` into the existing mission `expansion/settings` directory.
 Copy `Nasdara_Assasin.json` into the active profile's `ExpansionMod/Loadouts`
 directory, retaining the other 44 files, then restart with the existing launcher.
@@ -393,7 +421,30 @@ does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Current player relationship records are
+Current Civilian/Tribesman pair-update records are
+[server baseline](validation/civilian-tribesman-pairs-baseline.txt),
+[mission baseline](validation/civilian-tribesman-pairs-mission-baseline.txt),
+[server final](validation/civilian-tribesman-pairs-final.txt),
+[mission final](validation/civilian-tribesman-pairs-mission-final.txt), and
+[static audit](validation/civilian-tribesman-pairs-audit.json). Both final
+validators pass and match baseline. Checks confirm 40 fixed-size pairs,
+unchanged 20/20 role patrol caps, global cap 101, the 101-living-AI ceiling,
+and preservation of all other settings, including the new assassin anchor.
+The combined branch changes the assassin's waypoint, 40 patrol sizes and
+one global cap. Runtime pair placement and performance remain unverified.
+
+Spawn-relocation phase records are
+[server baseline](validation/assasin-remote-spawn-baseline.txt),
+[mission baseline](validation/assasin-remote-spawn-mission-baseline.txt),
+[server final](validation/assasin-remote-spawn-final.txt),
+[mission final](validation/assasin-remote-spawn-mission-final.txt), and
+[static audit](validation/assasin-remote-spawn-audit.json). Both final validators
+pass and match baseline. Static checks confirm exact official coordinates,
+rarity and separation selection, 143 patrols / 45 loadouts, and that only the
+assasin's `Waypoints` changed. All other patrol/profile/loadout values remain
+unchanged. Placement and behavior require later staging verification.
+
+Player relationship records are
 [server baseline](validation/player-factions-baseline.txt),
 [mission baseline](validation/player-factions-mission-baseline.txt),
 [server final](validation/player-factions-final.txt),
@@ -436,7 +487,7 @@ production during that phase. Profile/server and mission-root validators are bot
 No tests or custom scripts are added; no server launch or deployment is performed.
 
 Later staging checks must cover ground placement, paired spawning and all kit
-possibilities, inventory/capacity, the 61-AI ceiling, activation/despawn ranges
+possibilities, inventory/capacity, the 101-AI ceiling, activation/despawn ranges
 and timers, detection, prone behavior, scavenging, unlimited reload, movement,
 player friendship with Civilians/Tribesmen, player/Merc hostility, cooperation
 across Merc patrols, Civilian/Tribesman retaliation and friendly assistance,

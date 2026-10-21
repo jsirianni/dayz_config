@@ -1,0 +1,57 @@
+{
+  "Status": "passed",
+  "BaseCommit": "137098c3947946dc52534aa9e03fa690d788b867",
+  "Branch": "codex/nasdara-assasin-remote-spawn",
+  "PatrolDefinitions": 143,
+  "LoadoutFiles": 45,
+  "ChangedPatrol": "assasin",
+  "ChangedFields": [
+    "Waypoints"
+  ],
+  "ExistingOtherPatrolsUnchanged": 142,
+  "PreviousWaypoints": 460,
+  "CurrentWaypoints": 1,
+  "AllOtherAssasinSettingsUnchanged": true,
+  "MercObjectClasses": 51,
+  "MercObjectPlacements": 460,
+  "MercManifestMatchesPinnedSource": true,
+  "UncommonClassMaximumListedInstances": 5,
+  "UncommonClasses": 138,
+  "UncommonPlacementCandidates": 324,
+  "Selection": "Greatest horizontal distance to the nearest Merc object among classes with 1-5 official listed placements",
+  "SelectedSourceGroupIndex": 13009,
+  "SelectedClass": "Land_Mausoleum_Small1_Dam1",
+  "SelectedClassListedInstances": 2,
+  "SelectedPosition": [
+    12170.946289,
+    168.229233,
+    2173.485107
+  ],
+  "ConfiguredWaypoint": [
+    12170.946289,
+    0,
+    2173.485107
+  ],
+  "NearestMercClass": "Land_Mil_Guardhouse2",
+  "NearestMercPosition": [
+    10866.722656,
+    0,
+    3305.604248
+  ],
+  "NearestMercHorizontalDistanceM": 1727.0474904571374,
+  "ConservativeAnchorDistanceMinusBoth80mSpreadsM": 1567.0474904571374,
+  "MaximumLivingAI": 61,
+  "AssasinPersist": 1,
+  "AssasinMinPlayerDistanceM": 3000,
+  "SourceRevision": "f220b2918b1d79a5055b1ee9be70c0ec1516e876",
+  "SourceMapGroupPositionsSHA256": "4C1C1BA3C58371866805AC9B9CD7F00363529D022F436AD859A282E3D552F05E",
+  "DzcLiVersion": "v0.0.5",
+  "MutationPreviewMatchedAppliedFile": true,
+  "RuntimeVerified": false,
+  "Limitations": [
+    "Official CE placement counts do not count every terrain object",
+    "No terrain slope, clearance or placement runtime verification",
+    "Initial anchor separation does not constrain later roaming",
+    "A living persisted assasin restores its saved position instead of moving to the new anchor"
+  ]
+}
