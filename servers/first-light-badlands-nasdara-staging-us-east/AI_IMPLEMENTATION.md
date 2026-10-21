@@ -24,6 +24,44 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## Civilian and Tribesman 75% spawn chance (2026-10-20)
+
+Set `Chance: 0.75` on all **20 Civilian and 20 Tribesman definitions**. Both
+roles retain one AI per patrol, disabled scavenging, lootable corpses and the
+existing faction relationships. Population caps still permit 51 patrols / 61
+living AI; 75% eligibility does not guarantee that exactly 75% are active.
+
+The stock patrol manager rolls `Chance` when initializing a patrol definition.
+This is not a new roll each time a player enters the activation radius.
+Successful patrols still obey distance, capacity and lifecycle conditions.
+See [patrol initialization](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/4_World/DayZExpansion_AI/Classes/Patrols/PatrolManager.c#L25).
+
+The requested switch to Police was conditional on preserving gameplay.
+**Stock Expansion has no Police faction.** `PoliceLoadout` is the default kit
+of stock `Guards`, which sets `m_IsGuard: true` and accepts guard/passive
+factions; Civilian accepts all factions. Switching to Guards would change
+friendship and guard behavior. Tribesmen therefore remain `Faction: Civilian`,
+with their existing Tribesman kits. No custom faction or loadout is added.
+Sources: [Guards](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Factions/eAIFactionGuards.c),
+[Civilian](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Factions/eAIFactionCivilian.c), and
+[stock faction sources](https://github.com/salutesh/DayZ-Expansion-Scripts/tree/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Factions).
+
+Only the 40 `Chance` fields change in this follow-up. Every supported mutation
+was previewed with dzcli and matched to the applied output. Baseline/final
+validation passes for both roots with identical output. Records:
+[server baseline](validation/civilian-tribesman-chance-baseline.txt),
+[mission baseline](validation/civilian-tribesman-chance-mission-baseline.txt),
+[server final](validation/civilian-tribesman-chance-final.txt),
+[mission final](validation/civilian-tribesman-chance-mission-final.txt), and
+[static audit](validation/civilian-tribesman-chance-audit.json).
+
+Deploy the mission patrol file with staging stopped and restart through the
+existing launcher. Retain profile settings, loadouts and persistence. Later
+staging acceptance should inspect eligibility over repeated initialization
+cycles and confirm player friendship, single-AI groups and disabled scavenging.
+No tests, server launch or deployment are performed; these are configuration
+and source checks, not in-game verification.
+
 ## Restore single-AI Civilian and Tribesman patrols (2026-10-20)
 
 Reduce `NumberOfAI` from 2 to **1** on all **20 Civilian and 20 Tribesman
@@ -771,8 +809,8 @@ No coordinates have been geometrically accepted.
 ### Shared behavior and native limits
 
 This table records the original singleton phase. Current patrols again use
-one AI each, with the global cap now 61 and scavenging disabled. Both
-Civilian/Tribesman category caps remain 20 patrols each.
+one AI each, with the global cap now 61, scavenging disabled and Chance 0.75.
+Both Civilian/Tribesman category caps remain 20 patrols each.
 
 | Setting | Configured value |
 | --- | --- |
@@ -1581,6 +1619,7 @@ to the decisions they support.
 | 2026-10-20 | Increase all 20 Civilian and 20 Tribesman patrols from singletons to pairs. | Set NumberOfAI 2 with NumberOfAIMax 0, retain 20/20 role patrol caps, and raise Global.MaxPatrols to 101. Current limits permit 51 patrols / 101 living AI; preserve the remote assassin anchor and every other setting. |
 | 2026-10-20 | Disable town-loot scavenging for Civilians and Tribesmen. | Set LootingBehaviour NONE on all 40 definitions, superseding earlier allowlists. Preserve corpse lootability, Merc/assasin scavenging, pair sizes and the 101-AI ceiling. |
 | 2026-10-20 | Restore Civilian and Tribesman patrols to one AI each while retaining disabled scavenging. | Set NumberOfAI 1 on all 40 definitions with NumberOfAIMax 0, retain 20/20 role caps, and restore Global.MaxPatrols 61. Category caps permit 51 patrols / 61 living AI. |
+| 2026-10-20 | Reduce Civilian and Tribesman Chance to 0.75. Keep Tribesmen Civilian under the conditional Police request. | Stock Police is not a faction; Guards uses PoliceLoadout and different friendship/guard behavior. Change only 40 Chance values; preserve single-AI groups, disabled scavenging and the 61-AI ceiling. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 
