@@ -24,6 +24,41 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## Faction alliance update (2026-10-20)
+
+This update changes only `Faction` on **122 existing patrol definitions**:
+20 Tribesman patrols use `West`, and 102 Western_Merc object definitions use
+`East`. The 20 Civilian patrols remain `Civilian`. Players remain assigned
+`West`. Future Warlord patrols must use `West`; the user's Taliban reference
+means this existing Warlord role, whose 13 loadouts still have no patrols.
+
+West patrols cooperate across groups and fight East. Merc patrols cooperate
+across groups. Both sides accept Civilians initially. This supersedes the
+previous Warlord/Merc infighting policy and custom-faction proposal. It does
+not merge patrols or change recruitment, equipment, coordinates, population
+caps, movement, combat attributes, or spawn/lifecycle settings.
+
+Stock retaliation and friendly assistance remain enabled and can draw
+Civilians into nearby battles; faction friendship is not a guarantee they
+never fight. Later staging checks must confirm separate Merc patrols remain
+friendly, West patrols cooperate, East and West engage, players retain their
+expected relationships, and Civilian retaliation/assistance behaves acceptably.
+Warlord encounters require later patrol implementation.
+
+Validation records:
+
+- [Baseline server-root validation](validation/faction-alliances-baseline.txt).
+- [Final server-root validation](validation/faction-alliances-final.txt).
+- [Final mission-root validation](validation/faction-alliances-mission-final.txt).
+
+Both final validators pass; server-root output matches the baseline. Static
+comparison confirms only the 122 intended `Faction` values changed and all
+other patrol fields and loadouts are preserved. These are configuration checks,
+not in-game verification. No tests, custom scripts/mods, server launch, or
+deployment are part of this update. Deploy the
+updated mission `AIPatrolSettings.json` with staging stopped, then restart using
+the existing launcher; retain existing profile data and loadouts.
+
 ## Western Merc object patrol phase (2026-10-20)
 
 ### Current status and population limits
@@ -31,8 +66,10 @@ overlays still require the manual copies described in README.
 The staging configuration now contains **142 patrol definitions**: the original
 40 single-AI Civilian/Tribesman entries plus **102 two-AI Merc entries**. Its
 **44 loadout files** comprise the 42 original equipment definitions and two
-selectors. The original 40 patrol entries, all 42 equipment files, profile
-`AISettings.json`, launchers, and production server are unchanged by this phase.
+selectors. The object-patrol phase preserved the original 40 patrol entries,
+all 42 equipment files, profile `AISettings.json`, launchers, and production
+server. The later alliance update changes only the patrol factions described
+above.
 Warlord patrols and the six-step geometry scanner remain future work.
 
 Load balancing applies across player counts 0-255:
@@ -105,7 +142,7 @@ medic supplies, are preserved.
 
 | Setting | Value |
 | --- | --- |
-| `Faction` / `LoadBalancingCategory` | `Raiders` / `Western_Merc` |
+| `Faction` / `LoadBalancingCategory` | `East` / `Western_Merc` |
 | `NumberOfAI` / `NumberOfAIMax` | 2 / 0 |
 | `Behaviour` / `Speed` / `UnderThreatSpeed` | `ROAMING_LOCAL` / `JOG` / `SPRINT` |
 | `AccuracyMin` / `AccuracyMax` | 0.45 / 0.95 |
@@ -121,9 +158,9 @@ medic supplies, are preserved.
 Scavenging is explicitly
 `WEAPONS_FIREARMS | WEAPONS_MELEE | BANDAGES | CLOTHING | UPGRADE`.
 Other fields retain the existing patrol template's defaults. Merc pair members
-cooperate; separate Raiders patrols are hostile to one another and other
-implemented factions. Stock Civilian targeting can react to this hostility
-before being hit; the stricter neutral first-fire policy remains future work.
+and separate Merc patrols cooperate through stock `East`. They fight `West`
+Tribesmen, future Warlords, and players, while initially accepting Civilians.
+Stock retaliation and friendly assistance still apply.
 
 Automatic sniper-prone shooting requires qualifying optics, facing the target,
 and no recent hit. The SV98's MK4 qualifies; the Scout's required 4x ACOG does
@@ -174,7 +211,8 @@ Later staging acceptance remains pending:
 - [ ] Confirm eligible SV98 prone shooting beyond 190 m, Scout/Regular exceptions,
       prone cover, and unchanged behavior profile after scavenging a new weapon.
 - [ ] Confirm unlimited reload, lootable corpses, scavenging/clothing changes,
-      same-pair cooperation, and hostility between Merc patrols and other roles.
+      cooperation within/between Merc patrols, hostility toward West patrols
+      and players, and initial Civilian friendship with retaliation/assistance.
 - [ ] Check local roaming departures and host performance; no base boundary or
       safe-placement scanner is implemented by these object definitions.
 
@@ -287,7 +325,8 @@ Accuracy, damage, aggression timeouts (120/150 seconds), lighting visibility,
 and other unrelated settings retain stock defaults. Patrol override sentinels
 inherit the root/global defaults where appropriate. The agreed combat tiers
 below are planned overrides for Civilian/Tribesman/Warlord. Merc overrides
-are now explicit in the object patrols; these original entries remain unchanged.
+are now explicit in the object patrols. The alliance update later changes only
+Tribesman factions in these original entries.
 
 ### Starting outfits and supplies
 
@@ -401,7 +440,7 @@ connect-time default does not guarantee reassignment of those groups.
 Both `CanRecruitFriendly` and `CanRecruitGuards` are 0 so players cannot recruit
 these individuals into larger patrols. Stock retaliation, aggression expiry,
 and assistance to friendly patrols are preserved. This phase adds neither the
-custom targeting rules discussed below nor Warlord/Western_Merc patrols.
+custom targeting rules nor Warlord/Western_Merc patrols.
 
 ### Configuration validation and later acceptance
 
@@ -753,30 +792,25 @@ movement, detection, combat-tier and faction acceptance work remains deferred.
 ### Confirmed gameplay policy
 
 The requested setting uses Tribesmen, Civilians, Warlords, and `Western_Merc`
-patrols. `Western_Merc` replaces the earlier NATO patrol concept and retains
-NATO-style equipment. The following table describes intended behavior toward
-other patrols and players. Civilian/Tribesman populations use stock `Civilian`
-and Merc object patrols now use stock `Raiders`. Warlords and exact neutral
-first-fire targeting remain future work.
+patrols. `Western_Merc` retains NATO-style equipment. The 2026-10-20 alliance
+update supersedes the earlier infighting policy: Tribesmen and future Warlords
+use `West`; Mercs use `East`; Civilians use `Civilian`; players remain `West`.
+Warlord patrols are still future work. No custom faction is required for this
+agreed baseline relationship policy.
 
 | Acting patrol | Tribesmen | Civilians | Warlords | Western_Merc | Players |
 | --- | --- | --- | --- | --- | --- |
-| Tribesmen | Neutral* | Neutral* | Neutral* | Neutral* | Neutral* |
-| Civilians | Neutral* | Neutral* | Neutral* | Neutral* | Neutral* |
-| Warlords | Neutral* | Neutral* | Hostile | Hostile | Hostile |
-| Western_Merc | Hostile | Hostile | Hostile | Hostile | Hostile |
+| Tribesmen | Friendly* | Friendly* | Friendly* | Hostile | Friendly* |
+| Civilians | Friendly* | Friendly* | Friendly* | Friendly* | Friendly* |
+| Warlords (planned) | Friendly* | Friendly* | Friendly* | Hostile | Friendly* |
+| Western_Merc | Hostile | Friendly* | Hostile | Friendly* | Hostile |
 
-*Neutral means no unprovoked engagement, with retaliation and assistance to
-friendly patrols allowed. The user explicitly chose assistance beyond the
-attacked patrol. Cross-patrol fighting is intended between Warlord groups and
-between Western_Merc groups. Members of the same patrol remain a group; this
-does not request infighting within a patrol.
-
-Helping friendly patrols can pull neutral populations into nearby battles,
-including fights between Warlord groups. Neutrality is therefore an initial
-relationship, not immunity from combat. Assistance eligibility and aggression
-expiry use stock behavior in this phase (120 seconds, guard 150 seconds) and
-still require runtime checks.
+*Friendly describes baseline faction relationships. Stock retaliation and
+assistance beyond the attacked patrol remain enabled. Helping friendly
+patrols can pull Civilians into nearby battles; friendship is not immunity
+from combat. Separate allied patrols remain separate groups and do not
+recruit or merge. Assistance eligibility and aggression expiry retain stock
+behavior (120 seconds, guard 150 seconds) and require runtime checks.
 
 ### Agreed combat tiers (Merc implemented; other roles pending)
 
@@ -796,8 +830,8 @@ higher minimum while retaining the stock maximum. These are selected gameplay
 settings, not measured hit percentages or verified combat outcomes.
 
 Future implementation must set explicit `AccuracyMin` and `AccuracyMax`
-overrides on the remaining roles, including Civilian and Tribesman patrols
-sharing the stock `Civilian` faction. Merc patrols already use 0.45/0.95 and
+overrides on the remaining roles, independently of their assigned stock
+faction. Merc patrols already use 0.45/0.95 and
 `EnableFlankingOutsideCombat: 1`. It remains disabled globally and on every
 existing Civilian/Tribesman patrol; keep it disabled for future Warlords.
 All roles may still flank in combat.
@@ -818,22 +852,17 @@ This is source inspection; no game session or faction encounter was run.
 
 | Role | Starting point | Required work or limitation |
 | --- | --- | --- |
-| Tribesmen | `Civilian` behavior with armed local loadouts | Implemented for this phase; exact restraint against later hostile factions would need the targeting work below. |
-| Civilians | Same behavior as Tribesmen, separate civilian loadouts | Implemented with tool-only starting inventory; the approved looting policy permits later firearm pickup. |
-| Warlords | Custom registered faction | Preserve neutrality with civilian populations while allowing hostility between different Warlord groups. |
-| Western_Merc | `Raiders`, with Western military loadouts | Implemented by two-AI object patrols; separate groups are hostile. Exact neutral first-fire restraint still needs the targeting work below. |
+| Tribesmen | `West`, with armed local loadouts | Implemented on all 20 patrols; allied with West players and future Warlords, hostile to East Mercs. |
+| Civilians | `Civilian`, with civilian loadouts | All 20 patrols retain tool-only starting inventory; approved looting permits later firearm pickup. |
+| Warlords | `West`, with existing Warlord loadouts | Required assignment for future patrols; cooperate with Tribesmen and other West groups. |
+| Western_Merc | `East`, with Western military loadouts | Implemented on all 102 object definitions; separate Merc patrols cooperate. |
 
 - `Civilian.IsFriendly` returns true for every faction. `East` and `West`
-  accept their own faction and Civilian-derived factions. Consequently,
-  `East` cannot provide the requested Warlord infighting.
-- `Raiders` only exempts passive factions; it does not exempt ordinary
-  `Civilian`. It fits Western_Merc's broad hostility, but needs modification
-  to fit Warlords. Stock `Mercenaries` accepts its own faction, so it does not
-  provide the requested fighting between Western_Merc patrols.
-- A proposed Warlord faction would recognize Civilian-derived factions and
-  passive factions, and omit a friendship exception for its own faction.
-  Keep the same-group protection provided by Expansion. This design needs a
-  registered script class, not just a new string in patrol JSON.
+  accept their own faction and Civilian-derived factions, and oppose each
+  other. These stock factions provide the agreed baseline alliances.
+- `Raiders` previously allowed Merc infighting and broad hostility. The
+  alliance update replaces it with `East` and supersedes the former custom
+  Warlord faction proposal. No faction scripts are added.
 
 Sources: [Civilian](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Factions/eAIFactionCivilian.c),
 [East](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Factions/eAIFactionEast.c),
@@ -843,19 +872,18 @@ Sources: [Civilian](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26
 
 ### Targeting and retaliation limits
 
-The stock relationship system does not guarantee a neutral faction will wait
-to be hit by a hostile faction. `PlayerIsEnemy` checks the target's faction
-attitude toward the evaluating AI and also reacts to the other AI's cached
-threat. Inference: Civilian versus Raiders can enter combat before Civilian
-receives damage. Exact one-way restraint requires additional targeting rules;
-the suggested faction mapping alone is an approximation.
+The previous Civilian-versus-Raiders concern is historical: Mercs now use
+`East`, which initially accepts Civilians. Stock retaliation and friendly
+assistance remain enabled; this mapping does not guarantee Civilians never
+join combat. Exact permanent noncombatant behavior is not part of this update.
 
 The hit handler can alert friendly AI outside the victim's group.
 `AddFriendlyAI` requires mutual faction friendship for those other groups and
 can propagate hostility to AI already aware of the aggressor. This supports
-the requested assistance, with runtime limits; it is not a guarantee every
-friendly patrol across the map joins the fight. Decide whether standard mutual
-friendship or a separate support policy governs custom neutral targeting.
+West cooperation and assistance across Merc groups, subject to runtime limits;
+it does not guarantee every friendly patrol across the map joins a fight.
+Later encounters must check Civilians near fighting West/East patrols and
+player attacks on initially friendly groups.
 
 Sources: [enemy selection](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/4_World/DayZExpansion_AI/Entities/AI/eAIBase.c#L969),
 [hit response](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/4_World/DayZExpansion_AI/Entities/DayZPlayerImplement.c#L472),
@@ -864,9 +892,9 @@ Sources: [enemy selection](https://github.com/salutesh/DayZ-Expansion-Scripts/bl
 ### Equipment and player relationships
 
 `Faction`, patrol `Name`, and `Loadout` are separate fields. A populated
-`Loadout` overrides the faction's default equipment. Tribesmen and Civilians
-can share a behavior faction while using different equipment files. A patrol
-named `Western_Merc_01` can use `Faction: Raiders` and a Western loadout; a
+`Loadout` overrides the faction's default equipment. Tribesmen and future
+Warlords share `West` while using different equipment files. A patrol
+named `Western_Merc_01` uses `Faction: East` and a Western loadout; a
 literal `Faction: Western_Merc` requires registering that faction first.
 
 For a future civilian role intended to remain unarmed, a weapon-free loadout
@@ -877,10 +905,11 @@ Unarmed AI may still use melee when hostile; fleeing-only behavior is not
 established by omitting a gun. `Passive` and `Observers` are unsuitable for the
 requested normal retaliation role.
 
-The approved player assignment is `PlayerFactions: ["West"]`. Do not put every
-player in `Civilian` if future Warlords exempt that faction. The `West` name
-does not require NATO equipment or a NATO patrol role. Existing persistent
-player groups may already have a faction and must be considered separately.
+The approved player assignment remains `PlayerFactions: ["West"]`, giving
+players friendship with Tribesmen/future Warlords and hostility with East Mercs.
+The `West` name does not require NATO equipment or a NATO patrol role.
+Existing persistent player groups may already have a faction and must be
+considered separately.
 
 Sources: [patrol fields](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/3_Game/DayZExpansion_AI/Settings/Patrols/ExpansionAIPatrolBase.c),
 [patrol spawning and loadout fallback](https://github.com/salutesh/DayZ-Expansion-Scripts/blob/0d26645ca31bc574bc3ebee1d4bc9192727f3c43/DayZExpansion/AI/Scripts/4_World/DayZExpansion_AI/Classes/Patrols/eAIDynamicPatrol.c#L599),
@@ -924,24 +953,24 @@ Sources: [Badlands release notes](https://dayz.com/article/general/dayz-badlands
 - [x] Select accuracy ranges and flanking outside combat policy for all four
       roles; see the agreed combat tiers above.
 - [x] Apply explicit Merc accuracy and outside-combat flanking overrides to
-      all 102 object definitions; original Civilian/Tribesman entries are preserved.
+      all 102 object definitions; Civilian/Tribesman combat settings are preserved.
 - [ ] Future phase: apply the remaining per-role accuracy overrides and compare
       combat behavior under matching weapons, distances, and target movement.
-- [ ] Future phase: decide whether to authorize a custom Warlord faction and
-      exact neutral targeting; neither is included in this stock-only phase.
+- [x] Adopt stock West for Tribesmen/future Warlords and East for Mercs;
+      supersede custom Warlord factions and same-role infighting requirements.
 - [x] Define 13 Warlord and 16 Western_Merc loadouts, plus the three approved
       Tribesman .380 additions; all 16 Merc kits now have selector assignments.
 - [x] Implement 102 Merc object definitions across all 51 selected classes,
-      using stock Raiders, paired AI, two behavior profiles, and category caps.
-- [ ] Future phase: implement Warlord factions/patrol assignments and exact
-      neutral targeting under the approved relationship policy.
+      using stock East, paired AI, two behavior profiles, and category caps.
+- [ ] Future phase: implement Warlord patrol assignments using stock West
+      under the approved alliance policy; loadouts are already defined.
 - [x] Configure West players, stock aggression expiry, and disabled recruitment
       for Civilian/Tribesman populations; runtime behavior remains unchecked.
 - [x] Define ten starting loadouts and explicit per-role looting policies.
       Civilian firearm pickup is deliberately allowed.
 - [ ] Include encounter scenarios in the later automated runtime validation:
-      each faction pair, player attacks, friendly assistance, separate hostile
-      groups, same-group protection, and civilians near dropped weapons.
+      each faction pair, player attacks, friendly assistance, separate allied
+      groups, West/East hostility, and civilians near dropped weapons.
 
 These tasks do not replace the six spawn-scanning steps below. They provide
 the gameplay policy and runtime behavior required by the Step 6 generator.
@@ -1151,6 +1180,7 @@ to the decisions they support.
 | 2026-10-20 | Operator reports merged work deployed on a separate staging VM, successful startup, and correct DZSA mod list. | Prior deployment is operator-reported; no object-patrol runtime verification is implied. |
 | 2026-10-20 | Added all 51 military-related object classes (460 listed placements), 102 Merc definitions, and two uniform selectors. | Preserve the original 40 patrol entries and 42 kits; use 142 definitions / 44 loadout files and explicit Merc combat overrides. |
 | 2026-10-20 | Global patrol cap raised to 60; category caps are Civilian 20, Tribesman 20, Merc 10. | Singletons plus Merc pairs yield a 60-living-AI ceiling and at most 50 active patrols; unused category capacity stays reserved. |
+| 2026-10-20 | Alliance policy supersedes prior Warlord/Merc infighting and the custom Warlord faction proposal: Tribesmen and future Warlords use West; Mercs use East; Civilians remain Civilian; players remain West. | Change only Faction on 20 Tribesman and 102 Merc definitions. Warlord patrols remain deferred. Preserve stock retaliation/assistance and verify allied groups, West/East hostility, and Civilian responses later in staging. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 

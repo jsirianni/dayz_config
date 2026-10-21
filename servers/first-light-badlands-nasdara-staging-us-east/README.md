@@ -9,7 +9,7 @@ stock Nasdara mission.
 
 PR #58's AI overlay was merged to main. The operator reports that staging is
 deployed on its own VM, starts successfully, and shows the correct DZSA mod
-list. The new object-patrol update described below is configuration-only and
+list. The faction-alliance update described below is configuration-only and
 has not been deployed or verified in game by this change. Production is untouched.
 
 ## Server settings and ports
@@ -126,10 +126,12 @@ The overlay provides **44 loadout files**: four Civilian, nine Tribesman,
 There are **142 patrol definitions**: the original 40 single-AI Civilian/Tribesman
 entries at 20 official player spawn-area centers and 102 two-AI Merc object
 entries covering all 51 selected military-related building/object classes.
-All original 42 equipment files and 40 patrol entries are preserved. Warlord
-patrols, original Civilian/Tribesman accuracy-tier overrides, and the geometry
-scanner remain future work. Full equipment tables and the current object-patrol
-design are in [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md#western-merc-object-patrol-phase-2026-10-20).
+All original 42 equipment files are preserved. The alliance update changes only
+`Faction` on 20 Tribesman and 102 Merc entries; all 20 Civilian entries remain
+unchanged. Warlord patrols, original Civilian/Tribesman accuracy-tier overrides,
+and the geometry scanner remain future work. Full equipment tables and the
+[current alliance policy](AI_IMPLEMENTATION.md#faction-alliance-update-2026-10-20)
+are in [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md).
 
 | Repository path | Deployment destination |
 | --- | --- |
@@ -154,7 +156,7 @@ AI settings use schema 20, inspected at Expansion commit
 | Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Firearms, melee, bandages and clothing upgrades |
 | Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; original shotgun/Mosin/SKS definitions plus three .380 SMG additions | Existing patrols retain their original six loadouts and looting policy |
 | Warlord | Traditional regional clothing; probabilistic tactical/ballistic vest; Soviet weapons and regional additions, full magazines or limited loose ammunition | New loadout definitions only; patrol behavior deferred |
-| Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | Firearms, melee, bandages, clothing, upgrades; object patrols use stock Raiders |
+| Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | Firearms, melee, bandages, clothing, upgrades; object patrols use stock East |
 
 All starting items are pristine. Explicit inventory class names use
 the pinned official Nasdara
@@ -171,8 +173,8 @@ The original six Tribesman loadouts start with one small compatible loose-ammo s
 ammunition during use and can leave more ammo on a corpse than initially given.
 Bottles start at 35-65% capacity with native liquid defaults.
 
-The existing Civilian/Tribesman patrols use stock `Civilian` faction behavior and `ROAMING_LOCAL`, walk
-outside combat, and sprint under threat. Threat, noise investigation and
+Civilian patrols use stock `Civilian`; Tribesmen use `West`. Both use
+`ROAMING_LOCAL`, walk outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
 300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
@@ -182,14 +184,26 @@ now 60 patrols, with a separate 10-patrol Merc category cap (two AI per patrol).
 Category caps together permit at most **50 active patrols / 60 living AI**.
 Unused category capacity is not borrowed by other roles.
 
-`PlayerFactions: ["West"]` provides friendship with these Civilian-faction
-patrols. Friendly/guard recruitment is disabled. Stock retaliation and friendly
-assistance remain enabled; existing persisted player-group factions may need
-separate attention during deployment. Warlord faction/patrol implementation
-remains deferred. Merc pairs now use stock `Raiders`: members cooperate within
-the pair, while separate Merc patrols are hostile to one another and other
-implemented factions. Stock Civilian targeting can react to a hostile faction
-before being hit; exact neutral first-fire restraint still needs custom work.
+### Faction alliances (2026-10-20)
+
+| Role | Stock Expansion faction | Baseline relationships |
+| --- | --- | --- |
+| Civilian | `Civilian` | Friendly to both sides |
+| Tribesman | `West` | Cooperates with West groups; fights East Mercs |
+| Warlord (future patrols) | `West` | Cooperates with Tribesmen and West groups; fights East Mercs |
+| Western_Merc | `East` | Cooperates across Merc patrols; fights West groups; accepts Civilians |
+| Players | `West` | Friendly to Tribesmen/future Warlords and Civilians; hostile to Mercs |
+
+The user's Taliban reference means the existing Warlord role. Its loadouts are
+ready; patrol spawning remains deferred. This update changes only `Faction`
+on 20 Tribesman and 102 Merc definitions. It supersedes earlier Merc/Warlord
+infighting and custom-faction plans. All 20 Civilian entries remain unchanged.
+
+Friendly/guard recruitment stays disabled. Stock retaliation and friendly
+assistance remain enabled and can draw Civilians into nearby battles; initial
+friendship is not a guarantee they never fight. Existing persistent player-group
+factions may need separate attention during deployment. No custom mod is required
+for these baseline alliances. Runtime relationship checks remain pending.
 
 ### Western Merc object patrols
 
@@ -212,7 +226,7 @@ reroll equipment within it. Actual active kit counts need not be equal.
 | Merc setting | Value |
 | --- | --- |
 | Group / category | 2 AI / `Western_Merc`, capped at 10 patrols |
-| Faction / behavior | `Raiders` / `ROAMING_LOCAL` |
+| Faction / behavior | `East` / `ROAMING_LOCAL` |
 | Normal / threat speed | `JOG` / `SPRINT` |
 | Accuracy | 0.45-0.95; selected settings, not measured hit rates |
 | Threat / noise / flanking range | 200 / 100 / 200 m |
@@ -242,7 +256,7 @@ launching DayZ; deployed-version parity still matters.
 The original ten loadout files are preserved. Tribesman_07/08/09 copy the approved
 01/02/03 clothing and supplies with CZ61, RAK, or Bizon respectively, one full
 attached magazine, no spares, and no loose ammunition. The Bizon includes its
-buttstock. Existing patrol assignments are unchanged.
+buttstock. Existing patrol loadout assignments are unchanged.
 
 Warlords have 13 weapon families, complete compatible furniture, no suppressors,
 and only optional PU scopes on Mosin/SKS. They carry one full magazine plus one
@@ -309,27 +323,38 @@ The staging launcher installs/updates, synchronizes, and loads these AI
 dependencies alongside CF/VPP, using the existing signing-key helper. The
 operator reports a successful prior deployment/startup on a separate VM and
 correct DZSA mod list. The launcher is unchanged by this object-patrol phase.
-Stop staging, copy the updated patrol file and both selector loadouts (or the
-complete loadout overlay) into their existing destinations, then restart with
-the existing launcher. Preserve stock mission files, unrelated profile data,
-and persistence. This update does not add a custom mod or deploy itself.
+For this faction-only update, stop staging, copy the updated
+`AIPatrolSettings.json` into the existing mission `expansion/settings` directory,
+then restart with the existing launcher. Retain profile data and all existing
+loadouts, including both selectors. Preserve stock mission files and persistence.
+This update does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Current object-patrol validation is recorded in
+Current faction-alliance validation records are
+[faction-alliances-baseline.txt](validation/faction-alliances-baseline.txt),
+[faction-alliances-final.txt](validation/faction-alliances-final.txt), and
+[faction-alliances-mission-final.txt](validation/faction-alliances-mission-final.txt).
+Checks cover the 122 faction changes, unchanged Civilian entries, role counts,
+and preservation of other patrol fields and loadouts. Both final validators
+pass; server-root output matches the baseline. These are configuration checks,
+not in-game verification.
+
+Historical object-patrol validation is recorded in
 [merc-object-baseline.txt](validation/merc-object-baseline.txt),
 [merc-object-final.txt](validation/merc-object-final.txt), and
 [merc-object-audit.json](validation/merc-object-audit.json). Checks cover JSON
 parsing, 142 patrol definitions, 44 loadout files, all 51 classes, selector
 references, profile order/probabilities, category caps, Merc settings, and
 preservation of the original entries/equipment, AI settings, launchers, and
-production. Profile/server and mission-root validators are both required.
+production during that phase. Profile/server and mission-root validators are both required.
 No tests or custom scripts are added; no server launch or deployment is performed.
 
 Later staging checks must cover ground placement, paired spawning and all kit
 possibilities, inventory/capacity, the 60-AI ceiling, activation/despawn ranges
 and timers, detection, prone behavior, scavenging, unlimited reload, movement,
-hostile-group relationships, and host performance. These configuration checks
+cooperation across allied patrols, West/East hostility, Civilian retaliation/
+assistance, and host performance. These configuration checks
 are not in-game verification. See the
 [current acceptance checklist](AI_IMPLEMENTATION.md#configuration-checks-and-later-staging-acceptance).
 
@@ -458,7 +483,7 @@ areas and the new Merc pairs around eligible objects. Follow both the original
 and [Merc acceptance checklist](AI_IMPLEMENTATION.md#configuration-checks-and-later-staging-acceptance).
 All 16 Merc kits are referenced through selectors; Warlord and added Tribesman
 .380 kits remain available for later assignments. The object definitions add
-stock Raiders and explicit Merc combat overrides without changing the launcher.
+stock East and explicit Merc combat overrides without changing the launcher.
 
 See [DayZ launch parameters](https://community.bistudio.com/wiki/DayZ:Server_Configuration).
 
