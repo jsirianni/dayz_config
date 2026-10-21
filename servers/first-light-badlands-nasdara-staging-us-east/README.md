@@ -183,6 +183,10 @@ Civilian and Tribesman patrols both use stock `Civilian`, with scavenging
 disabled (`LootingBehaviour: NONE`) and lootable corpses (`CanBeLooted: 1`). Both use
 `ROAMING_LOCAL`, walk outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
+Both roles have `Chance: 0.75` (75% at patrol initialization); this does not
+guarantee a fixed active population. Tribesmen retain stock `Civilian`: there
+is no stock Police faction, and `Guards` would change gameplay relationships.
+See [the conditional Police decision](AI_IMPLEMENTATION.md#civilian-and-tribesman-75-spawn-chance-2026-10-20).
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
 300 seconds and respawn time 1800 seconds. Patrols are lootable and do not
 persist across restarts. Their category caps remain 20 Civilian and 20 Tribesman
@@ -423,7 +427,17 @@ does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Latest size-reduction records are
+Latest spawn-chance records are
+[server baseline](validation/civilian-tribesman-chance-baseline.txt),
+[mission baseline](validation/civilian-tribesman-chance-mission-baseline.txt),
+[server final](validation/civilian-tribesman-chance-final.txt),
+[mission final](validation/civilian-tribesman-chance-mission-final.txt), and
+[static audit](validation/civilian-tribesman-chance-audit.json). Both validators
+pass and match baseline. The follow-up changes only 40 `Chance` values to
+0.75. Factions, one-AI sizes, disabled scavenging, equipment and caps remain
+unchanged. Police source research is recorded in the implementation plan.
+
+Size-reduction records are
 [server baseline](validation/civilian-tribesman-singletons-baseline.txt),
 [mission baseline](validation/civilian-tribesman-singletons-mission-baseline.txt),
 [server final](validation/civilian-tribesman-singletons-final.txt),
