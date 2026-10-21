@@ -1,6 +1,19 @@
-# Nasdara Staging Expansion AI Implementation
+# Nasdara Expansion AI Implementation
 
 Last updated: 2026-10-20
+
+## Promotion to a public server (2026-10-20)
+
+The former staging server is promoted to full-time public use with hostname
+`First Light | Badlands Nasdara | Expansion AI | us-east1` and no join password.
+Its repository/deployment directory remains
+`servers/first-light-badlands-nasdara-staging-us-east`. A customized stock Nasdara
+`init.c` adds twelve independent 5% player spawn-gear categories; see
+[the player gear and deployment details](README.md#public-promotion-and-player-spawn-gear-2026-10-20).
+All AI patrols, loadouts, factions, 75% town-patrol chance, population caps and
+the six-step scanner plan are unchanged. Historical staging references below
+retain the context of their original changes. No deployment or server launch
+is performed by this change.
 
 ## Staging relocation (historical)
 

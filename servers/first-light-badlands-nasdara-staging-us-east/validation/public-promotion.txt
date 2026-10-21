@@ -1,0 +1,31 @@
+Public Nasdara promotion and player spawn gear
+Base: d3e5d503c10ee519763a32bcaf430586f26f11f5
+dzcli: v0.0.5
+
+BASELINE SERVER
+server servers/first-light-badlands-nasdara-staging-us-east/serverDZ.cfg ok
+
+BASELINE PINNED OFFICIAL INIT.C
+init C:\Users\FIREFO~1\AppData\Local\Temp\nasdara-public-spawn-gear\baseline\init.c ok
+
+FINAL SERVER
+server servers/first-light-badlands-nasdara-staging-us-east/serverDZ.cfg ok
+
+FINAL CUSTOM INIT.C
+init servers/first-light-badlands-nasdara-staging-us-east/mpmissions/dayzOffline.nasdara/init.c ok
+
+STATIC CONFIGURATION REVIEW
+All 101 explicit inventory classes exist in pinned official Nasdara types.xml.
+Twelve independent category rolls use Math.RandomFloat01() < 0.05.
+Variant choices are uniform within each category.
+The stock initializer is preserved except bonus methods and their call.
+Hostname and join password mutations were previewed with dzcli before applying.
+dzcli does not expose init.c editing; initializer changed directly.
+The obsolete password comment was updated directly.
+AI settings, patrols, loadouts, launchers and other servers are unchanged.
+
+LIMITS
+No tests, DayZ launch, Enforce compilation, deployment, or runtime verification.
+Runtime acceptance: public server name/join; fresh-character rolls; item slots;
+usable water; loaded IJ-70/no spare ammo; shotgun/full buckshot stack;
+hip-pack extra bandage; inventory/hands/ground fallback.

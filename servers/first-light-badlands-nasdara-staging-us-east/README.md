@@ -1,6 +1,6 @@
-# First Light Badlands Nasdara Staging
+# First Light Badlands Nasdara Expansion AI
 
-Password-protected Nasdara staging configuration with CF, VPPAdminTools, and Expansion AI in
+Public Nasdara configuration with CF, VPPAdminTools, and Expansion AI in
 `first-light-badlands-nasdara-staging-us-east`, copied from
 `../first-light-badlands-nasdara-us-east/` at main commit `5c6306f`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
@@ -10,14 +10,16 @@ stock Nasdara mission.
 PR #58's AI overlay was merged to main. The operator reports that staging is
 deployed on its own VM, starts successfully, and shows the correct DZSA mod
 list. The assasin update described below is configuration-only and
-has not been deployed or verified in game by this change. Production is untouched.
+has not been deployed or verified in game by this change. This configuration
+is promoted to full-time public use; the separate original Nasdara
+configuration is untouched.
 
 ## Server settings and ports
 
 | Setting | Value |
 | --- | --- |
-| Public hostname | `First Light | Badlands Nasdara | STAGING | us-east1` |
-| Join password | `sillypassword` (intentionally public; discourages casual joins) |
+| Public hostname | `First Light \| Badlands Nasdara \| Expansion AI \| us-east1` |
+| Join password | None (`password = ""`); public joining is enabled |
 | Mission template | `dayzOffline.nasdara` |
 | Game port | `2901` (`-port=2901`) |
 | Client port | `2903` (`clientPort = 2903`) |
@@ -35,18 +37,75 @@ installation directory. VPP's
 
 The configured game, client, and query ports are confirmed from repository files;
 live listeners and router/firewall rules require checking on the host. RCon is
-unchanged. The join password does not change DayZ admin or VPP credentials.
+unchanged. Public joining does not change DayZ admin or VPP credentials.
 Deer Isle vanilla also uses game port 2901 and query port 27018; these servers
 need separate host/IP bindings when run concurrently.
+
+## Public promotion and player spawn gear (2026-10-20)
+
+The advertised hostname replaces `STAGING` with `Expansion AI`. The existing
+repository directory keeps its deployment path. Joining requires no password;
+admin/VPP authentication, ports, mods and all AI configuration are unchanged.
+
+`mpmissions/dayzOffline.nasdara/init.c` is based on the pinned official Nasdara
+initializer. It preserves the stock economy/date initialization, random regional
+shirt/pants/sandals, chemlight, soda, figs, one bandage and starting water/energy.
+Only fresh characters receive the additions below; reconnecting with an existing
+character does not reroll gear.
+
+Every row has its own **independent 5% chance**, with at most one selection from
+that row. Multiple rows can succeed, or none can succeed. Item variants within
+a row have equal probability; this is not 5% per variant.
+
+| Bonus category | Selection / contents |
+| --- | --- |
+| Water container | `WaterBottle`, `GlassBottle`, `Canteen`, `FilteringBottle`, `SmallGlassBottle_Afza`, `SmallGlassBottle_Jallab`, `WineBottle`, `AyranBottle`; filled with clean water rather than native drink contents |
+| .380 pistol | `MakarovIJ70` with one full attached `Mag_IJ70_8Rnd` and a chambered round; no loose .380 ammunition or spare magazine |
+| Badlands vest | Six Linen Vest colors, five Robe Vest colors, or three Chest Rig colors |
+| Kitchen knife | `KitchenKnife` |
+| Goggles | Two Dust Goggles, Tactical Goggles, or three Ski Goggles variants; no night vision |
+| Face mask | Eight Keffiyeh colors, beige/black/green Balaclava Masks, Surgical Mask or NIOSH Face Mask |
+| Single-barrel shotgun | `Izh18Shotgun` (unloaded) plus one full `Ammo_12gaPellets` stack; stack size uses the item's native maximum |
+| Low-tier backpack | `CourierBag` or blue/green/orange/violet `TaloonBag` |
+| Medical hip pack | `HipPack_Medical`, with one extra `BandageDressing` placed inside where possible, in addition to the stock bandage |
+| Road flare | `Roadflare` |
+| Compass | `Compass` or `OrienteeringCompass` |
+| Lee-Enfield | `LeeEnfield` only; no magazine or ammunition added |
+
+Bonus gear starts pristine. Storage rolls run first. Successful item rolls try
+inventory, then hands, then placement on the ground at the player if space is
+exhausted. The medical bandage tries the hip pack first. Creation failures log a
+`[SpawnGear]` message; no additional chance rolls or replacement items are used.
+
+Stop the server, back up the deployed initializer, then copy this directory's
+`serverDZ.cfg` and `mpmissions/dayzOffline.nasdara/init.c` over the matching files
+under the DayZ installation. Retain the host's other stock mission files,
+profiles, AI settings/loadouts and persistence. Restart using the existing
+launcher. No profile or player-data wipe is needed.
+
+Baseline stock initialization and final custom initialization pass `dzcli
+validate init`; the server configuration passes before and after. All explicit
+inventory classes were checked against pinned official Nasdara `types.xml`.
+See [promotion validation](validation/public-promotion.txt) and the
+[static audit](validation/public-promotion-audit.json). These are configuration
+checks, not an Enforce compilation or in-game verification. After deployment,
+confirm the public name/join access, new-character gear, loaded IJ-70, complete
+buckshot stack, usable water, equipment slots, and inventory-overflow handling.
+
+Sources: [stock initializer](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/init.c),
+[official item classes](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/db/types.xml),
+and [official weapon-loading API](https://github.com/BohemiaInteractive/DayZ-Script-Diff/blob/e3dda95b2b9730bdc0dba931abb35304b484bbfc/scripts/4_world/entities/firearms/weapon_base.c).
 
 ## Mission override and provenance
 
 The mission overlay includes `mpmissions/dayzOffline.nasdara/db/messages.xml` and
-`mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`.
+`mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`, plus a customized
+`mpmissions/dayzOffline.nasdara/init.c`.
 The messages retain Frostline's server-name greeting and Discord invite, and add
-a graceful shutdown countdown. Provision the full stock mission on the host, then copy messages
-into its existing `db` directory and the patrol settings into its
-`expansion/settings` directory, preserving all stock mission files.
+a graceful shutdown countdown. Provision the full stock mission on the host, then
+copy messages into its existing `db` directory, patrol settings into its
+`expansion/settings` directory, and the customized `init.c` into the mission
+root. Preserve the remaining stock mission files.
 
 The original 51-file mission import came from
 [BohemiaInteractive/DayZ-Central-Economy](https://github.com/BohemiaInteractive/DayZ-Central-Economy/tree/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara).
@@ -59,8 +118,9 @@ The pristine import preserved every upstream path, file mode, and byte. A
 comparison of Git blobs and modes confirmed that the other 50 files were still
 unchanged stock files. They have been removed from this directory, including
 `areaflags.map`, the economy databases, environment territories, map placement
-data, stock XML/JSON settings, weather, and `init.c`. The installed stock mission
-supplies these files. The original complete import remains in Git history.
+data, stock XML/JSON settings, weather, and the then-stock `init.c`. This public-server
+update restores `init.c` as a customized override. The installed stock mission
+supplies the remaining files. The original complete import remains in Git history.
 
 The mission's `db/messages.xml` uses DayZ's built-in graceful shutdown countdown,
 with `<deadline>180</deadline>` and `<shutdown>1</shutdown>`.
