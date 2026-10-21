@@ -24,6 +24,37 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## Disable Civilian and Tribesman scavenging (2026-10-20)
+
+Set `LootingBehaviour: "NONE"` on all **20 Civilian and 20 Tribesman patrol
+definitions** so they stop collecting town loot. This supersedes the original
+allowlists, including Civilian firearm pickup and both roles' clothing upgrades.
+`CanBeLooted: 1` remains: players can still loot their corpses. Merc scavenging
+and the assasin's `BANDAGES` setting retain their current values.
+
+This changes only those 40 `LootingBehaviour` fields. All two-AI group sizes,
+loadouts, factions, coordinates, spawn rules, combat settings, profile settings,
+45 loadout files, and the 101-living-AI ceiling are preserved. The configuration
+still contains 143 patrol definitions; Warlord patrols remain deferred.
+
+All 40 mutations used supported dzcli commands with reviewed `--dry-run`
+previews matching applied output. Baseline/final AI validation passes for both
+server and mission roots, with identical output. See
+[server baseline](validation/civilian-tribesman-no-looting-baseline.txt),
+[mission baseline](validation/civilian-tribesman-no-looting-mission-baseline.txt),
+[server final](validation/civilian-tribesman-no-looting-final.txt),
+[mission final](validation/civilian-tribesman-no-looting-mission-final.txt), and
+[static audit](validation/civilian-tribesman-no-looting-audit.json).
+The [Expansion patrol guide](https://github.com/salutesh/DayZ-Expansion-Scripts/wiki/%5BServer-Hosting%5D-How-to-create-AI-Patrols#lootingbehaviour)
+documents `NONE` separately from corpse lootability.
+
+Deploy only the updated mission `AIPatrolSettings.json` with staging stopped,
+then restart using the existing launcher; preserve profiles, loadouts and
+persistence. Civilian/Tribesman groups remain nonpersistent. Later staging
+acceptance must confirm they ignore dropped weapons, bandages and clothing,
+retain their starting kit, and have lootable corpses. These are configuration
+checks; no tests, server launch or deployment are performed.
+
 ## Civilian and Tribesman pair update (2026-10-20)
 
 All **20 Civilian and 20 Tribesman patrol definitions** now use
@@ -727,12 +758,12 @@ generated for the deployed world still require runtime inspection.
 The 45.72 m detection/investigation/flanking settings likewise do not limit
 travel to a wandering destination or replace stock combat/assistance logic.
 
-Civilian scavenging is explicitly
-`WEAPONS_FIREARMS | WEAPONS_MELEE | BANDAGES | CLOTHING | UPGRADE`.
-Tribesman scavenging is
-`WEAPONS_MELEE | BANDAGES | CLOTHING | UPGRADE`, excluding firearm replacement.
-These allowlists intentionally omit launchers. Starting outfits and corpse
-contents can change through scavenging; civilians can acquire firearms.
+The original phase enabled Civilian scavenging through
+`WEAPONS_FIREARMS | WEAPONS_MELEE | BANDAGES | CLOTHING | UPGRADE` and Tribesman
+scavenging through `WEAPONS_MELEE | BANDAGES | CLOTHING | UPGRADE`.
+The current no-scavenging update supersedes both allowlists with
+`LootingBehaviour: NONE`; both roles now retain their starting equipment
+without looting replacements. Corpses remain lootable through `CanBeLooted: 1`.
 
 `PlayerFactions: ["West"]` supplies mutual friendship with stock Civilian
 patrols. Existing persisted player groups can already have a faction; the
@@ -1161,7 +1192,7 @@ This is source inspection; no game session or faction encounter was run.
 | Role | Starting point | Required work or limitation |
 | --- | --- | --- |
 | Tribesmen | `Civilian`, with armed local loadouts | Implemented on all 20 patrols; initially friendly to West players, Civilians and East Mercs; future Mercenaries Warlords are hostile. |
-| Civilians | `Civilian`, with civilian loadouts | All 20 patrols retain tool-only starting inventory; approved looting permits later firearm pickup. |
+| Civilians | `Civilian`, with civilian loadouts | All 20 patrols retain tool-only starting inventory; scavenging is disabled with LootingBehaviour NONE. |
 | Warlords | `Mercenaries`, with existing Warlord loadouts | Required assignment for future patrols; cooperate across Warlord patrols, attack players, East Mercs and Civilian-faction roles. |
 | Western_Merc | `East`, with Western military loadouts | Implemented on all 102 object definitions; separate Merc patrols cooperate. |
 
@@ -1214,10 +1245,11 @@ stock `Mercenaries` with their existing regional equipment. A patrol
 named `Western_Merc_01` uses `Faction: East` and a Western loadout; a
 literal `Faction: Western_Merc` requires registering that faction first.
 
-For a future civilian role intended to remain unarmed, a weapon-free loadout
-also needs an allowlist without weapon flags or `LootingBehaviour: NONE`.
-The approved current Civilian role instead starts without firearms and may
-scavenge them. Default looting permits weapons, and roaming can default to `ALL`.
+The current Civilian role starts without firearms and uses
+`LootingBehaviour: NONE`, preventing firearm pickup and other scavenging.
+Tribesmen also use `NONE` and retain their starting firearms. Both roles have
+explicit patrol overrides; default looting permits weapons and roaming can
+default to `ALL` when no override is supplied.
 Unarmed AI may still use melee when hostile; fleeing-only behavior is not
 established by omitting a gun. `Passive` and `Observers` are unsuitable for the
 requested normal retaliation role.
@@ -1287,7 +1319,7 @@ Sources: [Badlands release notes](https://dayz.com/article/general/dayz-badlands
 - [x] Configure West players, stock aggression expiry, and disabled recruitment
       for Civilian/Tribesman populations; runtime behavior remains unchecked.
 - [x] Define ten starting loadouts and explicit per-role looting policies.
-      Civilian firearm pickup is deliberately allowed.
+      Current Civilian/Tribesman scavenging is disabled with NONE; corpses stay lootable.
 - [ ] Include encounter scenarios in the later automated runtime validation:
       each faction pair, player attacks, friendly assistance, separate allied
       groups, player/Merc hostility, future Warlord hostility toward both,
@@ -1508,6 +1540,7 @@ to the decisions they support.
 | 2026-10-20 | Player relationship policy supersedes the earlier West Tribesman/Warlord alliance. | Change only Faction on 20 Tribesman patrols to Civilian; retain West players, Civilian civilians, East Mercs and Raiders assasin. Plan future Warlords as stock Mercenaries: hostile to players and Mercs, cooperative across Warlord groups. Preserve all other configuration and defer runtime checks. |
 | 2026-10-20 | Replace assasin's 460 military-object start pool with one remote Land_Mausoleum_Small1_Dam1 anchor. | Select the most separated candidate among 324 placements of 138 uncommon CE classes: X 12170.946289 / Z 2173.485107, 1727.05 m from the nearest Merc object. Preserve every other setting; living persisted patrols move only on a future fresh spawn. |
 | 2026-10-20 | Increase all 20 Civilian and 20 Tribesman patrols from singletons to pairs. | Set NumberOfAI 2 with NumberOfAIMax 0, retain 20/20 role patrol caps, and raise Global.MaxPatrols to 101. Current limits permit 51 patrols / 101 living AI; preserve the remote assassin anchor and every other setting. |
+| 2026-10-20 | Disable town-loot scavenging for Civilians and Tribesmen. | Set LootingBehaviour NONE on all 40 definitions, superseding earlier allowlists. Preserve corpse lootability, Merc/assasin scavenging, pair sizes and the 101-AI ceiling. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 

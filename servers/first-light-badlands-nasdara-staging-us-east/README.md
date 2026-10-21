@@ -157,8 +157,8 @@ AI settings use schema 20, inspected at Expansion commit
 
 | Role | Starting clothing and equipment | Scavenging |
 | --- | --- | --- |
-| Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Firearms, melee, bandages and clothing upgrades |
-| Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; original shotgun/Mosin/SKS definitions plus three .380 SMG additions | Existing patrols retain their original six loadouts and looting policy |
+| Civilian | Badlands Kameez/short-sleeve tops, Shalwar pants, regional hats/sandals/vests; one knife, hatchet or pipe | Disabled (`NONE`); corpse remains lootable |
+| Tribesman | Badlands Kameez/Shalwar or olive OBR outfit, regional hats/sandals and chest rigs; original shotgun/Mosin/SKS definitions plus three .380 SMG additions | Disabled (`NONE`); existing patrols retain their original six loadouts |
 | Warlord | Traditional regional clothing; probabilistic tactical/ballistic vest; Soviet weapons and regional additions, full magazines or limited loose ammunition | New loadout definitions only; patrol behavior deferred |
 | Western_Merc | Matching USMC desert uniform, plate carrier/pouches, helmet, backpack; western firearms, optics and compatible suppressors, medical supplies | Firearms, melee, bandages, clothing, upgrades; object patrols use stock East |
 | assasin | Desert ghillie suit/hood over USMC desert clothing; suppressed VSD with PSO6/wrap, two full magazines, rangefinder, bandage, full-water canteen | Bandages only; retains starting rifle and outfit |
@@ -169,8 +169,9 @@ the pinned official Nasdara
 The original ten loadouts choose headwear, footwear and vests uniformly;
 Tribesman_06 has a fixed OBR cap. Some loadouts independently roll bottles,
 bandages or matches; three have no helper supplies. Civilians start without
-firearms/ammunition but can acquire firearms while scavenging. Clothing and
-corpse contents can change after spawning.
+firearms/ammunition. Civilian and Tribesman patrols use `LootingBehaviour: NONE`
+and do not scavenge weapons, bandages or clothing. Their corpses remain lootable;
+unlimited reload can still change the ammunition left on a corpse.
 
 The original six Tribesman loadouts start with one small compatible loose-ammo stack: normalized quantity
 0.20 for shotgun shells, 0.25 for Mosin cartridges or 0.40 for SKS cartridges
@@ -178,7 +179,8 @@ The original six Tribesman loadouts start with one small compatible loose-ammo s
 ammunition during use and can leave more ammo on a corpse than initially given.
 Bottles start at 35-65% capacity with native liquid defaults.
 
-Civilian and Tribesman patrols both use stock `Civilian`. Both use
+Civilian and Tribesman patrols both use stock `Civilian`, with scavenging
+disabled (`LootingBehaviour: NONE`) and lootable corpses (`CanBeLooted: 1`). Both use
 `ROAMING_LOCAL`, walk outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
@@ -421,7 +423,19 @@ does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Current Civilian/Tribesman pair-update records are
+Current no-scavenging records are
+[server baseline](validation/civilian-tribesman-no-looting-baseline.txt),
+[mission baseline](validation/civilian-tribesman-no-looting-mission-baseline.txt),
+[server final](validation/civilian-tribesman-no-looting-final.txt),
+[mission final](validation/civilian-tribesman-no-looting-mission-final.txt), and
+[static audit](validation/civilian-tribesman-no-looting-audit.json). Both validators
+pass with output matching baseline. Exactly 40 Civilian/Tribesman
+`LootingBehaviour` fields change to `NONE`; all other settings remain unchanged.
+After deploying the mission patrol file with staging stopped and restarting,
+verify they ignore town loot while their corpses remain lootable. No server
+launch or deployment was performed.
+
+Earlier Civilian/Tribesman pair-update records are
 [server baseline](validation/civilian-tribesman-pairs-baseline.txt),
 [mission baseline](validation/civilian-tribesman-pairs-mission-baseline.txt),
 [server final](validation/civilian-tribesman-pairs-final.txt),
@@ -430,7 +444,7 @@ Current Civilian/Tribesman pair-update records are
 validators pass and match baseline. Checks confirm 40 fixed-size pairs,
 unchanged 20/20 role patrol caps, global cap 101, the 101-living-AI ceiling,
 and preservation of all other settings, including the new assassin anchor.
-The combined branch changes the assassin's waypoint, 40 patrol sizes and
+That earlier phase changed the assassin's waypoint, 40 patrol sizes and
 one global cap. Runtime pair placement and performance remain unverified.
 
 Spawn-relocation phase records are
