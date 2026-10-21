@@ -24,9 +24,143 @@ correct mod list in DZSA. This is an operator report of the prior deployment,
 not runtime verification of the object-patrol changes below. Profile/mission
 overlays still require the manual copies described in README.
 
+## assasin patrol update (2026-10-20)
+
+Add one single-AI patrol named exactly `assasin`, with loadout
+`Nasdara_Assasin.json` and category `Assasin`. It uses stock `Raiders`, hostile
+to players and every implemented AI faction, including Civilians. Existing
+West/East alliances and all 142 existing patrol definitions are preserved.
+Warlord patrols remain future work.
+
+The configuration now contains **143 patrol definitions / 45 loadout files**.
+Load-balancing caps apply across player counts 0-255:
+
+| Category | Maximum patrols | AI per patrol | Maximum living AI |
+| --- | ---: | ---: | ---: |
+| Civilian | 20 | 1 | 20 |
+| Tribesman | 20 | 1 | 20 |
+| Western_Merc | 10 | 2 | 20 |
+| Assasin | 1 | 1 | 1 |
+
+`Global.MaxPatrols` becomes **61**. Category caps permit at most **51 active
+patrols / 61 living AI**. Existing categories keep their previous limits;
+unused category capacity is not borrowed. Spawn rules can keep actual counts
+below these ceilings.
+
+### Fixed equipment
+
+All 19 inventory items are guaranteed and pristine. The in-game VSD is class
+`SVD`: one full `Mag_SVD_10Rnd` is attached, with one full spare magazine
+(20 rounds initially). The spare supplies compatible ammunition for
+`UnlimitedReload: 1`. Its equipment includes:
+
+- `AK_Suppressor` in `weaponMuzzleAK`, `PSO6Optic` with a full `Battery9V`,
+  and `GhillieAtt_Desert` in `weaponWrap`.
+- `GhillieSuit_Desert` and `GhillieHood_Desert`, with USMC desert top/pants,
+  beige boots/gloves, `TacticalGoggles`, and a beige balaclava.
+- A rangefinder with a full battery, one full bandage roll, and a full-water
+  `Canteen`.
+
+`LootingBehaviour: BANDAGES` permits bandage pickup while preserving the
+starting firearm and outfit. Unlimited reload can increase corpse ammunition
+above the initial 20-round allocation. The existing 44 equipment/selector
+files are unchanged.
+
+### Spawn pool and roaming
+
+The single patrol has **460 waypoints**, copied from the official Nasdara
+`mapgrouppos.xml` placements belonging to all 51 selected Merc classes.
+[validation/assasin-spawn-points.csv](validation/assasin-spawn-points.csv)
+records each source group index, class, original X/Y/Z, emitted X/0/Z, and
+source revision. The pinned CE commit is
+`f220b2918b1d79a5055b1ee9be70c0ec1516e876`; source SHA-256 is
+`4c1c1ba3c58371866805ac9b9cd7f00363529d022f436ad859a282e3d552f05e`.
+See the [official placement file](https://github.com/BohemiaInteractive/DayZ-Central-Economy/blob/f220b2918b1d79a5055b1ee9be70c0ec1516e876/dayzOffline.nasdara/mapgrouppos.xml).
+
+`UseRandomWaypointAsStartPoint: 1` selects uniformly from these source
+placements when a fresh patrol initializes, including after death/respawn.
+The selected start must qualify for the 3000-25000 m player activation ring.
+If it does not, spawning may wait; selection does not choose the pool point
+closest to a player. This is a military-object placement pool, not arbitrary
+points across the whole map. `ObjectClassName` is empty; existing Merc object spawners are
+unchanged. Waypoint Y=0 delegates elevation to Expansion, and native 40-80 m
+spread does not establish safe, flat, outdoor, unobstructed placement.
+
+`ROAMING` selects map named locations after spawning. It does not provide an
+omniscient hunter that always knows player positions. The 25 km activation
+maximum and despawn radius aim to keep this patrol active anywhere on Nasdara
+while players are online. `Persist: 1` preserves a living patrol across server
+restarts, including its position and equipment; restoration does not reroll
+its initial spawn. Restoring the saved position also obeys the 3000 m minimum;
+a nearby player can delay restoration. Runtime persistence and lifecycle
+behavior remain unchecked.
+
+### Patrol settings
+
+| Setting | Value |
+| --- | --- |
+| `Name` / `Faction` / `LoadBalancingCategory` | `assasin` / `Raiders` / `Assasin` |
+| `NumberOfAI` / `NumberOfAIMax` | 1 / 0 |
+| `Behaviour` / `Speed` / `UnderThreatSpeed` | `ROAMING` / `JOG` / `SPRINT` |
+| `AccuracyMin` / `AccuracyMax` | 0.85 / 0.95 |
+| `ThreatDistanceLimit` / `NoiseInvestigationDistanceLimit` | 1000 / 1000 m |
+| `MaxFlankingDistance` / `EnableFlankingOutsideCombat` | 1000 m / 1 |
+| `SniperProneDistanceThreshold` | 600 m |
+| `MinDistRadius` | 3000 m |
+| `MaxDistRadius` / `DespawnRadius` | 25000 / 25000 m |
+| `MinSpreadRadius` / `MaxSpreadRadius` | 40 / 80 m |
+| `DespawnTime` / `RespawnTime` | 300 / 1800 seconds |
+| `CanBeLooted` / `UnlimitedReload` / `Persist` | 1 / 1 / 1 |
+| `Chance` / `CanBeTriggeredByAI` / `CanSpawnInContaminatedArea` | 1 / 0 / 0 |
+| `LootingBehaviour` | `BANDAGES` |
+| `DamageMultiplier` / `DamageReceivedMultiplier` | 1 / 1 (explicit) |
+| `HeadshotResistance` / `ShoryukenChance` | 0 / 0 |
+
+Accuracy values are gameplay settings, not measured hit percentages.
+Detection at 1000 m remains subject to visibility and stock target evaluation.
+The PSO6's 1000 m maximum zeroing meets Expansion's optic qualification for
+sniper-prone shooting; facing the target and no recent hit are also required.
+The 600 m threshold does not guarantee a prone shot in every encounter.
+
+### Configuration records and later acceptance
+
+- [Server baseline](validation/assasin-baseline.txt) and
+  [mission baseline](validation/assasin-mission-baseline.txt).
+- [Server final](validation/assasin-final.txt) and
+  [mission final](validation/assasin-mission-final.txt).
+- [Static audit](validation/assasin-audit.json).
+
+Both final `dzcli` validators pass, including mission validation of all
+143 patrol definitions. The static audit covers 143/45 counts, the 61-AI ceiling,
+category isolation, exact 460-source correspondence, random start/persistence
+settings, inventory compatibility/quantities, and preservation of every
+existing patrol and loadout. These are configuration checks, not in-game checks.
+No tests, custom scripts/mods, launcher changes, server launch, or deployment
+are part of this update.
+
+Later staging acceptance must check:
+
+- [ ] Outdoor ground support, clearance/elevation, 40-80 m spread, and selection
+      across the source pool after death and fresh initialization.
+- [ ] Exactly one living assasin, 61-AI total ceiling, existing category limits,
+      and expected 3000-25000 m activation, map roaming, and despawn/respawn behavior.
+- [ ] Hostility toward every implemented faction and players, with existing
+      West/East cooperation retained.
+- [ ] VSD/PSO6/suppressor/wrap, full ghillie outfit, battery-powered equipment,
+      inventory capacity, bandage-only scavenging, and lootable corpses.
+- [ ] Unlimited reload, long-range detection, 600 m sniper-prone eligibility,
+      flanking, jogging outside combat, and sprinting under threat.
+- [ ] Living-patrol position/equipment persistence across restart and a fresh
+      random start after death/respawn, without duplicate restored patrols.
+
+For deployment, stop staging and copy the updated mission
+`AIPatrolSettings.json` and new `Nasdara_Assasin.json` into their existing
+mission/profile destinations. Retain existing loadouts, profile data, and
+persistence, then restart with the existing launcher.
+
 ## Faction alliance update (2026-10-20)
 
-This update changes only `Faction` on **122 existing patrol definitions**:
+The earlier alliance phase changed only `Faction` on **122 existing patrol definitions**:
 20 Tribesman patrols use `West`, and 102 Western_Merc object definitions use
 `East`. The 20 Civilian patrols remain `Civilian`. Players remain assigned
 `West`. Future Warlord patrols must use `West`; the user's Taliban reference
@@ -63,10 +197,10 @@ the existing launcher; retain existing profile data and loadouts.
 
 ### Current status and population limits
 
-The staging configuration now contains **142 patrol definitions**: the original
-40 single-AI Civilian/Tribesman entries plus **102 two-AI Merc entries**. Its
-**44 loadout files** comprise the 42 original equipment definitions and two
-selectors. The object-patrol phase preserved the original 40 patrol entries,
+The staging configuration now contains **143 patrol definitions**: the original
+40 single-AI Civilian/Tribesman entries, **102 two-AI Merc entries**, and the
+single-AI `assasin`. Its **45 loadout files** comprise the 42 original equipment
+definitions, two Merc selectors, and `Nasdara_Assasin.json`. The object-patrol phase preserved the original 40 patrol entries,
 all 42 equipment files, profile `AISettings.json`, launchers, and production
 server. The later alliance update changes only the patrol factions described
 above.
@@ -79,9 +213,10 @@ Load balancing applies across player counts 0-255:
 | Civilian | 20 | 1 | 20 |
 | Tribesman | 20 | 1 | 20 |
 | Western_Merc | 10 | 2 | 20 |
+| Assasin | 1 | 1 | 1 |
 
-`Global.MaxPatrols` is **60**. It counts patrols, not individual AI; the category
-caps above enforce at most **50 active patrols / 60 living AI**. Unused category
+`Global.MaxPatrols` is **61**. It counts patrols, not individual AI; the category
+caps above enforce at most **51 active patrols / 61 living AI**. Unused category
 capacity is not borrowed by another role. Player proximity, object eligibility,
 and native spawn rules can keep the actual population below those ceilings.
 
@@ -185,8 +320,8 @@ unsupported patrol-root/category changes use direct edits. Validation records:
 - [Final validator output](validation/merc-object-final.txt).
 - [Static audit](validation/merc-object-audit.json).
 
-The audit covers JSON parsing, 142 patrols, 44 loadout files, exact 51-class
-coverage/order and placement-count sum, the two selector reference pools,
+That historical object-patrol audit covers JSON parsing, 142 patrols,
+44 loadout files, exact 51-class coverage/order and placement-count sum, the two selector reference pools,
 profile order/probability calculations, caps, all Merc overrides, and preservation
 of original equipment, patrol entries, AI settings, launchers, and production.
 These are configuration checks; they do not establish in-game behavior.
@@ -203,8 +338,8 @@ Later staging acceptance remains pending:
       40-80 m spread around selected structures; inspect any rejected spawns.
 - [ ] Confirm pairs, distinct per-member equipment rolls, selector references,
       medic inventory, and all 16 kit possibilities across sufficient spawns.
-- [ ] Confirm category limits, 60-AI ceiling, object eligibility across restarts,
-      and activation at 250-1000 m as players move among dense bases.
+- [ ] Confirm category limits, the current 61-AI ceiling, object eligibility
+      across restarts, and activation at 250-1000 m as players move among dense bases.
 - [ ] Confirm 1200 m despawn range and native 300/1800-second lifecycle behavior.
 - [ ] Compare 200 m threat range, 100 m investigation, 200 m flanking, JOG/SPRINT,
       and outside-combat flanking under controlled encounters.
@@ -796,7 +931,8 @@ patrols. `Western_Merc` retains NATO-style equipment. The 2026-10-20 alliance
 update supersedes the earlier infighting policy: Tribesmen and future Warlords
 use `West`; Mercs use `East`; Civilians use `Civilian`; players remain `West`.
 Warlord patrols are still future work. No custom faction is required for this
-agreed baseline relationship policy.
+agreed baseline relationship policy. The additional `assasin` uses `Raiders`
+and is hostile to all these roles and players, including Civilians.
 
 | Acting patrol | Tribesmen | Civilians | Warlords | Western_Merc | Players |
 | --- | --- | --- | --- | --- | --- |
@@ -838,9 +974,12 @@ All roles may still flank in combat.
 
 Later validation must check the assigned settings for every patrol and compare
 combat behavior with matching weapons, distances, and target movement across
-the four roles. Confirm that only Western Mercenaries flank outside combat.
-The Merc configuration is implemented. Remaining role overrides and all
-comparative runtime checks are deferred.
+the four roles. Western Mercenaries retain outside-combat flanking; the
+additional `assasin` also enables it. Civilians, Tribesmen, and future Warlords
+keep it disabled.
+The Merc configuration is implemented. The separate `assasin` role uses
+0.85/0.95 accuracy and does not alter the four agreed tiers above. Remaining
+role overrides and all comparative runtime checks are deferred.
 
 ### What existing Expansion factions provide
 
@@ -1125,25 +1264,27 @@ validated Expansion patrol configuration when its gameplay policy is defined.
 
 ## Next implementation work
 
-1. Deploy the new object-patrol mission file and selector loadouts to the
-   existing staging host using the documented manual overlay copies.
-2. Complete the current Merc and original Civilian/Tribesman runtime checklists.
+1. Deploy the updated mission patrol file and `Nasdara_Assasin.json` to the
+   existing staging host using the documented manual overlay copies; retain
+   all existing loadouts and persistence.
+2. Complete the assasin, Merc, and original Civilian/Tribesman runtime checklists.
 3. When scanner work is authorized, establish the offline environment/query
    prerequisite, define its schemas and implement a small end-to-end batch.
 4. Use that batch's evidence to refine Steps 1-6 before scaling to hundreds.
 
-Current category caps are 20 Civilian singletons, 20 Tribesman singletons, and
-10 Merc pairs, with their approved native spreads. Warlord patrols are not yet
-implemented. Future scanner decisions
-include area quotas, formation policy, minimum separation, numerical acceptance
+Current category caps are 20 Civilian singletons, 20 Tribesman singletons,
+10 Merc pairs, and one assasin, with their approved native spreads. These permit
+at most 51 patrols / 61 living AI. Warlord patrols are not yet implemented.
+Future scanner decisions include area quotas, formation policy, minimum separation, numerical acceptance
 thresholds, map-version matching, collision readiness detection, and packaging.
 
 Follow the repository `dzcli` skill when inspecting or changing supported DayZ
 configuration: bootstrap the local tool, inspect current values, preview
 mutations with `--dry-run`, preserve baseline failures, and run matching
 validators after changes. The six scanner steps remain unimplemented; the
-current patrols use copied unverified centers and native object-relative
-placement rather than an accepted scanner inventory.
+current patrols use copied unverified centers, the official military-object
+placement pool, and native object-relative placement rather than an accepted
+scanner inventory.
 
 ## Maintaining this plan
 
@@ -1181,6 +1322,7 @@ to the decisions they support.
 | 2026-10-20 | Added all 51 military-related object classes (460 listed placements), 102 Merc definitions, and two uniform selectors. | Preserve the original 40 patrol entries and 42 kits; use 142 definitions / 44 loadout files and explicit Merc combat overrides. |
 | 2026-10-20 | Global patrol cap raised to 60; category caps are Civilian 20, Tribesman 20, Merc 10. | Singletons plus Merc pairs yield a 60-living-AI ceiling and at most 50 active patrols; unused category capacity stays reserved. |
 | 2026-10-20 | Alliance policy supersedes prior Warlord/Merc infighting and the custom Warlord faction proposal: Tribesmen and future Warlords use West; Mercs use East; Civilians remain Civilian; players remain West. | Change only Faction on 20 Tribesman and 102 Merc definitions. Warlord patrols remain deferred. Preserve stock retaliation/assistance and verify allied groups, West/East hostility, and Civilian responses later in staging. |
+| 2026-10-20 | Add a single persistent hostile Raiders patrol named assasin, with fixed suppressed VSD/PSO6/desert-ghillie equipment and a uniform random start from 460 official military-object placements. | Add Assasin cap 1 and Global.MaxPatrols 61; retain existing caps and patrols. Use 143 definitions / 45 loadouts, ROAMING, 1000 m detection, 600 m sniper prone, 0.85/0.95 accuracy, bandage-only scavenging, and later runtime/persistence checks. |
 | 2026-10-20 | Ordered object probabilities and fixed profiles selected. | 50% nominal eligibility; conditional profile weights 12.5% BoltAction / 87.5% Regular; reroll equipment within the retained profile at respawn. |
 | 2026-10-20 | Native building classes and optic thresholds inspected without launching DayZ. | SV98 qualifies for configured sniper-prone behavior; Scout 4x does not. Placement, lifecycle, combat, and host performance remain runtime acceptance work. |
 

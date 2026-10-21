@@ -1,0 +1,1 @@
+expansion-ai-patrols servers\first-light-badlands-nasdara-staging-us-east\mpmissions\dayzOffline.nasdara\expansion\settings\AIPatrolSettings.json ok (142 patrols)
