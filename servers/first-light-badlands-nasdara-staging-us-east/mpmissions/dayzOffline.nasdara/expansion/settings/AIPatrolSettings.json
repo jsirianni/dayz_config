@@ -105,7 +105,7 @@
     {
       "Name": "Nasdara_Tribesman_P01",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -213,7 +213,7 @@
     {
       "Name": "Nasdara_Tribesman_P02",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -321,7 +321,7 @@
     {
       "Name": "Nasdara_Tribesman_P03",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -429,7 +429,7 @@
     {
       "Name": "Nasdara_Tribesman_P04",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -537,7 +537,7 @@
     {
       "Name": "Nasdara_Tribesman_P05",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -645,7 +645,7 @@
     {
       "Name": "Nasdara_Tribesman_P06",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -753,7 +753,7 @@
     {
       "Name": "Nasdara_Tribesman_P07",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -861,7 +861,7 @@
     {
       "Name": "Nasdara_Tribesman_P08",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -969,7 +969,7 @@
     {
       "Name": "Nasdara_Tribesman_P09",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1077,7 +1077,7 @@
     {
       "Name": "Nasdara_Tribesman_P10",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1185,7 +1185,7 @@
     {
       "Name": "Nasdara_Tribesman_P11",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1293,7 +1293,7 @@
     {
       "Name": "Nasdara_Tribesman_P12",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1401,7 +1401,7 @@
     {
       "Name": "Nasdara_Tribesman_P13",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1509,7 +1509,7 @@
     {
       "Name": "Nasdara_Tribesman_P14",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1617,7 +1617,7 @@
     {
       "Name": "Nasdara_Tribesman_P15",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1725,7 +1725,7 @@
     {
       "Name": "Nasdara_Tribesman_P16",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1833,7 +1833,7 @@
     {
       "Name": "Nasdara_Tribesman_P17",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -1941,7 +1941,7 @@
     {
       "Name": "Nasdara_Tribesman_P18",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2049,7 +2049,7 @@
     {
       "Name": "Nasdara_Tribesman_P19",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2157,7 +2157,7 @@
     {
       "Name": "Nasdara_Tribesman_P20",
       "Persist": 0,
-      "Faction": "Civilian",
+      "Faction": "West",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2211,7 +2211,7 @@
     {
       "Name": "Nasdara_Western_Merc_O01_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2259,7 +2259,7 @@
     {
       "Name": "Nasdara_Western_Merc_O01_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2307,7 +2307,7 @@
     {
       "Name": "Nasdara_Western_Merc_O02_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2355,7 +2355,7 @@
     {
       "Name": "Nasdara_Western_Merc_O02_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2403,7 +2403,7 @@
     {
       "Name": "Nasdara_Western_Merc_O03_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2451,7 +2451,7 @@
     {
       "Name": "Nasdara_Western_Merc_O03_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2499,7 +2499,7 @@
     {
       "Name": "Nasdara_Western_Merc_O04_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2547,7 +2547,7 @@
     {
       "Name": "Nasdara_Western_Merc_O04_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2595,7 +2595,7 @@
     {
       "Name": "Nasdara_Western_Merc_O05_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2643,7 +2643,7 @@
     {
       "Name": "Nasdara_Western_Merc_O05_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2691,7 +2691,7 @@
     {
       "Name": "Nasdara_Western_Merc_O06_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2739,7 +2739,7 @@
     {
       "Name": "Nasdara_Western_Merc_O06_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2787,7 +2787,7 @@
     {
       "Name": "Nasdara_Western_Merc_O07_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2835,7 +2835,7 @@
     {
       "Name": "Nasdara_Western_Merc_O07_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2883,7 +2883,7 @@
     {
       "Name": "Nasdara_Western_Merc_O08_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2931,7 +2931,7 @@
     {
       "Name": "Nasdara_Western_Merc_O08_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -2979,7 +2979,7 @@
     {
       "Name": "Nasdara_Western_Merc_O09_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3027,7 +3027,7 @@
     {
       "Name": "Nasdara_Western_Merc_O09_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3075,7 +3075,7 @@
     {
       "Name": "Nasdara_Western_Merc_O10_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3123,7 +3123,7 @@
     {
       "Name": "Nasdara_Western_Merc_O10_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3171,7 +3171,7 @@
     {
       "Name": "Nasdara_Western_Merc_O11_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3219,7 +3219,7 @@
     {
       "Name": "Nasdara_Western_Merc_O11_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3267,7 +3267,7 @@
     {
       "Name": "Nasdara_Western_Merc_O12_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3315,7 +3315,7 @@
     {
       "Name": "Nasdara_Western_Merc_O12_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3363,7 +3363,7 @@
     {
       "Name": "Nasdara_Western_Merc_O13_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3411,7 +3411,7 @@
     {
       "Name": "Nasdara_Western_Merc_O13_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3459,7 +3459,7 @@
     {
       "Name": "Nasdara_Western_Merc_O14_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3507,7 +3507,7 @@
     {
       "Name": "Nasdara_Western_Merc_O14_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3555,7 +3555,7 @@
     {
       "Name": "Nasdara_Western_Merc_O15_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3603,7 +3603,7 @@
     {
       "Name": "Nasdara_Western_Merc_O15_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3651,7 +3651,7 @@
     {
       "Name": "Nasdara_Western_Merc_O16_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3699,7 +3699,7 @@
     {
       "Name": "Nasdara_Western_Merc_O16_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3747,7 +3747,7 @@
     {
       "Name": "Nasdara_Western_Merc_O17_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3795,7 +3795,7 @@
     {
       "Name": "Nasdara_Western_Merc_O17_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3843,7 +3843,7 @@
     {
       "Name": "Nasdara_Western_Merc_O18_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3891,7 +3891,7 @@
     {
       "Name": "Nasdara_Western_Merc_O18_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3939,7 +3939,7 @@
     {
       "Name": "Nasdara_Western_Merc_O19_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -3987,7 +3987,7 @@
     {
       "Name": "Nasdara_Western_Merc_O19_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4035,7 +4035,7 @@
     {
       "Name": "Nasdara_Western_Merc_O20_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4083,7 +4083,7 @@
     {
       "Name": "Nasdara_Western_Merc_O20_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4131,7 +4131,7 @@
     {
       "Name": "Nasdara_Western_Merc_O21_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4179,7 +4179,7 @@
     {
       "Name": "Nasdara_Western_Merc_O21_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4227,7 +4227,7 @@
     {
       "Name": "Nasdara_Western_Merc_O22_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4275,7 +4275,7 @@
     {
       "Name": "Nasdara_Western_Merc_O22_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4323,7 +4323,7 @@
     {
       "Name": "Nasdara_Western_Merc_O23_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4371,7 +4371,7 @@
     {
       "Name": "Nasdara_Western_Merc_O23_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4419,7 +4419,7 @@
     {
       "Name": "Nasdara_Western_Merc_O24_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4467,7 +4467,7 @@
     {
       "Name": "Nasdara_Western_Merc_O24_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4515,7 +4515,7 @@
     {
       "Name": "Nasdara_Western_Merc_O25_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4563,7 +4563,7 @@
     {
       "Name": "Nasdara_Western_Merc_O25_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4611,7 +4611,7 @@
     {
       "Name": "Nasdara_Western_Merc_O26_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4659,7 +4659,7 @@
     {
       "Name": "Nasdara_Western_Merc_O26_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4707,7 +4707,7 @@
     {
       "Name": "Nasdara_Western_Merc_O27_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4755,7 +4755,7 @@
     {
       "Name": "Nasdara_Western_Merc_O27_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4803,7 +4803,7 @@
     {
       "Name": "Nasdara_Western_Merc_O28_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4851,7 +4851,7 @@
     {
       "Name": "Nasdara_Western_Merc_O28_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4899,7 +4899,7 @@
     {
       "Name": "Nasdara_Western_Merc_O29_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4947,7 +4947,7 @@
     {
       "Name": "Nasdara_Western_Merc_O29_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -4995,7 +4995,7 @@
     {
       "Name": "Nasdara_Western_Merc_O30_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5043,7 +5043,7 @@
     {
       "Name": "Nasdara_Western_Merc_O30_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5091,7 +5091,7 @@
     {
       "Name": "Nasdara_Western_Merc_O31_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5139,7 +5139,7 @@
     {
       "Name": "Nasdara_Western_Merc_O31_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5187,7 +5187,7 @@
     {
       "Name": "Nasdara_Western_Merc_O32_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5235,7 +5235,7 @@
     {
       "Name": "Nasdara_Western_Merc_O32_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5283,7 +5283,7 @@
     {
       "Name": "Nasdara_Western_Merc_O33_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5331,7 +5331,7 @@
     {
       "Name": "Nasdara_Western_Merc_O33_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5379,7 +5379,7 @@
     {
       "Name": "Nasdara_Western_Merc_O34_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5427,7 +5427,7 @@
     {
       "Name": "Nasdara_Western_Merc_O34_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5475,7 +5475,7 @@
     {
       "Name": "Nasdara_Western_Merc_O35_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5523,7 +5523,7 @@
     {
       "Name": "Nasdara_Western_Merc_O35_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5571,7 +5571,7 @@
     {
       "Name": "Nasdara_Western_Merc_O36_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5619,7 +5619,7 @@
     {
       "Name": "Nasdara_Western_Merc_O36_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5667,7 +5667,7 @@
     {
       "Name": "Nasdara_Western_Merc_O37_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5715,7 +5715,7 @@
     {
       "Name": "Nasdara_Western_Merc_O37_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5763,7 +5763,7 @@
     {
       "Name": "Nasdara_Western_Merc_O38_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5811,7 +5811,7 @@
     {
       "Name": "Nasdara_Western_Merc_O38_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5859,7 +5859,7 @@
     {
       "Name": "Nasdara_Western_Merc_O39_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5907,7 +5907,7 @@
     {
       "Name": "Nasdara_Western_Merc_O39_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -5955,7 +5955,7 @@
     {
       "Name": "Nasdara_Western_Merc_O40_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6003,7 +6003,7 @@
     {
       "Name": "Nasdara_Western_Merc_O40_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6051,7 +6051,7 @@
     {
       "Name": "Nasdara_Western_Merc_O41_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6099,7 +6099,7 @@
     {
       "Name": "Nasdara_Western_Merc_O41_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6147,7 +6147,7 @@
     {
       "Name": "Nasdara_Western_Merc_O42_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6195,7 +6195,7 @@
     {
       "Name": "Nasdara_Western_Merc_O42_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6243,7 +6243,7 @@
     {
       "Name": "Nasdara_Western_Merc_O43_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6291,7 +6291,7 @@
     {
       "Name": "Nasdara_Western_Merc_O43_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6339,7 +6339,7 @@
     {
       "Name": "Nasdara_Western_Merc_O44_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6387,7 +6387,7 @@
     {
       "Name": "Nasdara_Western_Merc_O44_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6435,7 +6435,7 @@
     {
       "Name": "Nasdara_Western_Merc_O45_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6483,7 +6483,7 @@
     {
       "Name": "Nasdara_Western_Merc_O45_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6531,7 +6531,7 @@
     {
       "Name": "Nasdara_Western_Merc_O46_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6579,7 +6579,7 @@
     {
       "Name": "Nasdara_Western_Merc_O46_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6627,7 +6627,7 @@
     {
       "Name": "Nasdara_Western_Merc_O47_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6675,7 +6675,7 @@
     {
       "Name": "Nasdara_Western_Merc_O47_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6723,7 +6723,7 @@
     {
       "Name": "Nasdara_Western_Merc_O48_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6771,7 +6771,7 @@
     {
       "Name": "Nasdara_Western_Merc_O48_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6819,7 +6819,7 @@
     {
       "Name": "Nasdara_Western_Merc_O49_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6867,7 +6867,7 @@
     {
       "Name": "Nasdara_Western_Merc_O49_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6915,7 +6915,7 @@
     {
       "Name": "Nasdara_Western_Merc_O50_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -6963,7 +6963,7 @@
     {
       "Name": "Nasdara_Western_Merc_O50_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -7011,7 +7011,7 @@
     {
       "Name": "Nasdara_Western_Merc_O51_BoltAction",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
@@ -7059,7 +7059,7 @@
     {
       "Name": "Nasdara_Western_Merc_O51_Regular",
       "Persist": 0,
-      "Faction": "Raiders",
+      "Faction": "East",
       "Formation": "Vee",
       "FormationScale": 1.5,
       "FormationLooseness": 0,
