@@ -127,12 +127,13 @@ The overlay provides **45 loadout files**: four Civilian, nine Tribesman,
 single-AI Civilian/Tribesman entries at 20 official player spawn-area centers,
 102 two-AI Merc object entries covering all 51 selected military-related
 building/object classes, and one single-AI patrol named exactly `assasin`.
-All existing 142 patrol definitions and 44 loadout files are unchanged by the
-assasin update. The earlier alliance phase assigned Tribesmen to West and
-Mercs to East; Civilians remain Civilian. Warlord patrols, original Civilian/Tribesman accuracy-tier overrides,
+The current player relationship update changes only the faction on 20
+Tribesman patrols to Civilian. Players remain West, Mercs East, Civilians
+Civilian, and assasin Raiders; future Warlords use stock Mercenaries.
+Warlord patrols, original Civilian/Tribesman accuracy-tier overrides,
 and the geometry scanner remain future work. Full equipment tables,
 [assasin settings](AI_IMPLEMENTATION.md#assasin-patrol-update-2026-10-20), and
-[alliance policy](AI_IMPLEMENTATION.md#faction-alliance-update-2026-10-20)
+[player relationship policy](AI_IMPLEMENTATION.md#player-relationship-update-2026-10-20)
 are in [AI_IMPLEMENTATION.md](AI_IMPLEMENTATION.md).
 
 | Repository path | Deployment destination |
@@ -177,7 +178,7 @@ The original six Tribesman loadouts start with one small compatible loose-ammo s
 ammunition during use and can leave more ammo on a corpse than initially given.
 Bottles start at 35-65% capacity with native liquid defaults.
 
-Civilian patrols use stock `Civilian`; Tribesmen use `West`. Both use
+Civilian and Tribesman patrols both use stock `Civilian`. Both use
 `ROAMING_LOCAL`, walk outside combat, and sprint under threat. Threat, noise investigation and
 flanking distances are 45.72 m (50 yards), with flanking outside combat disabled.
 Activation distances are 45.72-500 m; despawn distance is 600 m, despawn time
@@ -194,17 +195,26 @@ Unused category capacity is not borrowed by other roles.
 
 | Role | Stock Expansion faction | Baseline relationships |
 | --- | --- | --- |
-| Civilian | `Civilian` | Friendly to both sides |
-| Tribesman | `West` | Cooperates with West groups; fights East Mercs |
-| Warlord (future patrols) | `West` | Cooperates with Tribesmen and West groups; fights East Mercs |
-| Western_Merc | `East` | Cooperates across Merc patrols; fights West groups; accepts Civilians |
-| Players | `West` | Friendly to Tribesmen/future Warlords and Civilians; hostile to Mercs |
+| Civilian | `Civilian` | Initially friendly to players, Tribesmen and Mercs; future Warlords can attack them |
+| Tribesman | `Civilian` | Initially friendly to players, Civilians and Mercs; future Warlords can attack them |
+| Warlord (future patrols) | `Mercenaries` | Cooperates across Warlord patrols; attacks players, Mercs, Civilians and Tribesmen |
+| Western_Merc | `East` | Cooperates across Merc patrols; fights players and future Warlords; initially accepts Civilians/Tribesmen |
+| Players | `West` | Initially friendly to Civilians/Tribesmen; hostile to Mercs and future Warlords |
 | assasin | `Raiders` | Hostile to players and all implemented AI factions, including Civilians |
 
-The user's Taliban reference means the existing Warlord role. Its loadouts are
-ready; patrol spawning remains deferred. The earlier alliance update changed
-only `Faction` on 20 Tribesman and 102 Merc definitions. It supersedes earlier Merc/Warlord
-infighting and custom-faction plans. All 20 Civilian entries remain unchanged.
+The user's Taliban reference means the existing Warlord role. Its 13 loadouts
+are ready; patrol spawning remains deferred. This update changes only
+`Faction` on the 20 Tribesman patrol definitions from `West` to `Civilian`.
+It supersedes the previous West Tribesman/Warlord alliance: future Warlords
+must use stock `Mercenaries`, making them enemies of players and East Mercs.
+Merc patrols retain `East`; players retain `PlayerFactions: ["West"]`.
+All 45 loadouts, other patrol fields, population limits and assasin settings
+are preserved. No custom faction is required.
+
+For this update, stop staging and replace only mission
+`mpmissions/dayzOffline.nasdara/expansion/settings/AIPatrolSettings.json`, then
+restart using the existing launcher. Retain profile `AISettings.json`,
+loadouts and persistence. This update performs no deployment or data reset.
 
 Friendly/guard recruitment stays disabled. Stock retaliation and friendly
 assistance remain enabled and can draw Civilians into nearby battles; initial
@@ -383,7 +393,19 @@ does not add a custom mod or deploy itself.
 
 ### Configuration validation
 
-Current assasin configuration records are
+Current player relationship records are
+[server baseline](validation/player-factions-baseline.txt),
+[mission baseline](validation/player-factions-mission-baseline.txt),
+[server final](validation/player-factions-final.txt),
+[mission final](validation/player-factions-mission-final.txt), and
+[static audit](validation/player-factions-audit.json). These records cover the
+20 Tribesman faction changes, exact current mapping, 143 patrols / 45 loadouts,
+and preservation of other patrol fields, profile settings, population caps and
+all equipment. Both final `dzcli` validators pass and match their baselines;
+the audit confirms only the 20 intended `Faction` values changed. These are
+configuration checks; runtime relationships remain unverified.
+
+Historical assasin configuration records are
 [server baseline](validation/assasin-baseline.txt),
 [mission baseline](validation/assasin-mission-baseline.txt),
 [server final](validation/assasin-final.txt),
@@ -416,8 +438,11 @@ No tests or custom scripts are added; no server launch or deployment is performe
 Later staging checks must cover ground placement, paired spawning and all kit
 possibilities, inventory/capacity, the 61-AI ceiling, activation/despawn ranges
 and timers, detection, prone behavior, scavenging, unlimited reload, movement,
-cooperation across allied patrols, West/East hostility, Civilian retaliation/
-assistance, assasin hostility/roaming/restart persistence, and host performance.
+player friendship with Civilians/Tribesmen, player/Merc hostility, cooperation
+across Merc patrols, Civilian/Tribesman retaliation and friendly assistance,
+assasin hostility/roaming/restart persistence, and host performance. When
+Warlord patrols are added, verify their cooperation and hostility toward
+players, Mercs, Civilians and Tribesmen.
 These configuration checks are not in-game verification. See the
 [assasin acceptance checklist](AI_IMPLEMENTATION.md#configuration-records-and-later-acceptance)
 and the
