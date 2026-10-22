@@ -1,5 +1,67 @@
 # First Light Badlands Nasdara Expansion AI
 
+<!-- merc-stack-current:start -->
+## Current active configuration — Merc stack layer 1 (2026-10-21)
+
+This section is authoritative. Older sections below record historical decisions
+where superseded here, including town patrols, previous caps, and player bonus gear.
+The broader Warlord research and six-step spawn scanner plan are retained.
+
+### Population and relationships
+
+The 40 Civilian/Tribesman patrols and their balancing categories are removed.
+Their loadout files remain unassigned. The persistent **assasin stays unchanged**
+as the explicit exception to military-site Merc patrols.
+
+| Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMin–Max |
+| --- | ---: | ---: | ---: | --- |
+| Regular Merc | 10 | 2 | 20 | 0.45–0.95 |
+| assasin | 1 | 1 | 1 | 0.85–0.95 |
+| **Total** | **11** | | **21** | |
+
+`Global.MaxPatrols` is **11**: Expansion counts patrols, not individual AI.
+Category caps apply across player counts 0–255; unused capacity is not borrowed.
+Mercs have `NumberOfAIMax: 0`. Totals: **103 definitions / 45 loadout files**.
+
+All Merc variants use `East`, cooperate with other Mercs, and are hostile to players
+assigned `West`. Existing equipment files and profile `AISettings.json` are unchanged.
+The assasin retains Raiders, its remote anchor, singleton, persistence and equipment.
+
+### Object spawning and behavior
+
+All 51 classes / 460 officially listed placements remain in use; provenance is in
+`validation/merc-object-classes.csv`. Object profiles have empty waypoints and
+`Persist: 0`.
+Existing BoltAction/Regular ordering and chances are unchanged.
+Eligibility/profile selection happens at object initialization; respawns retain
+the profile. Caps are maxima, not guaranteed populations. A full category does not
+make its objects switch to another profile.
+
+Preserve local roaming, JOG/SPRINT, threat/flanking 200 m, noise investigation 100 m,
+outside-combat flanking, activation 250–1000 m, despawn 1200 m / 300 s, respawn
+1800 s, spread 40–80 m, unlimited reload, lootable corpses, no AI triggering and
+no contaminated-area spawning. Full firearm/melee/bandage/clothing/upgrade scavenging
+also applies to new variants, so equipment can change. Roaming can leave military
+sites; generated placement does not establish safe terrain.
+
+### Validation and deployment
+
+Evidence: `validation/merc-stack-01.txt` and `merc-stack-01-audit.json`.
+Preview/apply supported mutations with dzcli. Category maps and profile ordering
+require direct edits because dzcli has no sufficient interface; initializer code
+also requires direct edits. Audit original loadout hashes, unchanged assassin and
+profile settings, counts, item allowlist, probabilities, classes, caps and behavior.
+
+For deployment, stop the server, back up config/profile, and copy mission patrol
+settings and the complete profile loadout directory into the existing installation.
+Retain persistence so the assassin stays intact.
+Use the existing launcher afterward. This change does not deploy, install mods,
+change launchers or launch DayZ. Later acceptance: group sizes, **21-AI ceiling**,
+placement, faction behavior, accuracy, lifecycle timing and scavenging.
+Configuration validation is not Enforce compilation or in-game verification.
+
+<!-- merc-stack-current:end -->
+
 Public Nasdara configuration with CF, VPPAdminTools, and Expansion AI in
 `first-light-badlands-nasdara-staging-us-east`, copied from
 `../first-light-badlands-nasdara-us-east/` at main commit `5c6306f`.
