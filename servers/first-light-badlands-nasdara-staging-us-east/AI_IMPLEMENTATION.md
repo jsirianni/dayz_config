@@ -1,7 +1,7 @@
 # Nasdara Expansion AI Implementation
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 3 (2026-10-21)
+## Current active configuration — Merc stack layer 4 (2026-10-21)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -17,12 +17,13 @@ as the explicit exception to military-site Merc patrols.
 | --- | ---: | ---: | ---: | --- |
 | Regular Merc | 10 | 2 | 20 | 0.30–0.85 |
 | Spec Ops | 6 | 2 | 12 | 0.35–0.95 |
+| Juggernaut | 1 | 2 | 2 | 0.35–0.95 |
 | assasin | 1 | 1 | 1 | 0.85–0.95 |
-| **Total** | **17** | | **33** | |
+| **Total** | **18** | | **35** | |
 
-`Global.MaxPatrols` is **17**: Expansion counts patrols, not individual AI.
+`Global.MaxPatrols` is **18**: Expansion counts patrols, not individual AI.
 Category caps apply across player counts 0–255; unused capacity is not borrowed.
-Mercs have `NumberOfAIMax: 0`. Totals: **154 definitions / 46 loadout files**.
+Mercs have `NumberOfAIMax: 0`. Totals: **205 definitions / 47 loadout files**.
 
 All Merc variants use `East`, cooperate with other Mercs, and are hostile to players
 assigned `West`. Existing equipment files and profile `AISettings.json` are unchanged.
@@ -33,10 +34,18 @@ The assasin retains Raiders, its remote anchor, singleton, persistence and equip
 All 51 classes / 460 officially listed placements remain in use; provenance is in
 `validation/merc-object-classes.csv`. Object profiles have empty waypoints and
 `Persist: 0`.
-Per class, use SpecOps, BoltAction, Regular in order with conditional chances
-**0.1875**, **0.04807692307692308**, **0.35353535353535354**. First-success selection
-preserves 50% eligibility and 6:10 Spec Ops:ordinary weighting. The ordinary pool
-retains its 12.5%/87.5% BoltAction/Regular split and original selectors.
+Each class has four ordered profiles. Chance is conditional on earlier failures.
+
+| Profile order | Conditional Chance | Exact ratio |
+| --- | ---: | --- |
+| Juggernaut | 0.029411764705882353 | 1/34 |
+| SpecOps | 0.18181818181818182 | 2/11 |
+| BoltAction | 0.046296296296296294 | 5/108 |
+| Regular | 0.33980582524271846 | 35/103 |
+
+First-success selection preserves **50% eligibility** and nominal **10 ordinary :
+6 Spec Ops : 1 Juggernaut** weighting. Ordinary kits retain their 12.5%/87.5%
+BoltAction/Regular split and uniform original 16-kit weighting.
 Eligibility/profile selection happens at object initialization; respawns retain
 the profile. Caps are maxima, not guaranteed populations. A full category does not
 make its objects switch to another profile.
@@ -57,6 +66,14 @@ Wear `TacticalShirt_Black` / `CargoPants_Black`, black military boots, tactical
 gloves, plate carrier/pouches, `AssaultBag_Black`, and `BalaclavaMask_Black`.
 `Mich2001Helmet` is the approved non-black exception, with powered `NVGoggles`.
 
+`Nasdara_Western_Merc_Juggernaut`: standard `AKM` with iron sights,
+`AK_RailHndgrd_Black` / `AK_PlasticBttstck_Black`, full attached
+`Mag_AKM_Drum75Rnd` plus two full spares (225 magazine rounds).
+Every squad member wears `Chainmail` / `Chainmail_Leggings`, `GreatHelm`, black
+military boots/gloves, plate carrier/pouches and assault backpack. No suppressor,
+optic, NVG, face covering or coif. The selected medieval Great Helm replaces the
+ballistic-helmet proposal; it is not the strongest ballistic helmet.
+
 Both kits start pristine, with one full bandage and a full native-water canteen.
 No other medicine, food, radio, rangefinder, knife, flashlight or weapon light.
 Required batteries are full. Explicit accuracy is 0.35–0.95 and sniper-prone
@@ -71,7 +88,7 @@ and firearm readiness still require runtime acceptance.
 
 ### Validation and deployment
 
-Evidence: `validation/merc-stack-03.txt` and `merc-stack-03-audit.json`.
+Evidence: `validation/merc-stack-04.txt` and `merc-stack-04-audit.json`.
 Preview/apply supported mutations with dzcli. Category maps and profile ordering
 require direct edits because dzcli has no sufficient interface; initializer code
 also requires direct edits. Audit original loadout hashes, unchanged assassin and
@@ -81,7 +98,7 @@ For deployment, stop the server, back up config/profile, and copy mission patrol
 settings and the complete profile loadout directory into the existing installation.
 Retain persistence so the assassin stays intact.
 Use the existing launcher afterward. This change does not deploy, install mods,
-change launchers or launch DayZ. Later acceptance: group sizes, **33-AI ceiling**,
+change launchers or launch DayZ. Later acceptance: group sizes, **35-AI ceiling**,
 placement, faction behavior, accuracy, lifecycle timing and scavenging.
 Check special equipment, powered optics/NVGs, supply counts and full drum storage.
 Configuration validation is not Enforce compilation or in-game verification.
