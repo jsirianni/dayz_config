@@ -1,7 +1,7 @@
 # First Light Badlands Nasdara Expansion AI
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 1 (2026-10-21)
+## Current active configuration â€” Merc stack layer 1 (2026-10-21)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -13,14 +13,14 @@ The 40 Civilian/Tribesman patrols and their balancing categories are removed.
 Their loadout files remain unassigned. The persistent **assasin stays unchanged**
 as the explicit exception to military-site Merc patrols.
 
-| Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMin–Max |
+| Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMinâ€“Max |
 | --- | ---: | ---: | ---: | --- |
-| Regular Merc | 10 | 2 | 20 | 0.45–0.95 |
-| assasin | 1 | 1 | 1 | 0.85–0.95 |
+| Regular Merc | 10 | 2 | 20 | 0.45â€“0.95 |
+| assasin | 1 | 1 | 1 | 0.85â€“0.95 |
 | **Total** | **11** | | **21** | |
 
 `Global.MaxPatrols` is **11**: Expansion counts patrols, not individual AI.
-Category caps apply across player counts 0–255; unused capacity is not borrowed.
+Category caps apply across player counts 0â€“255; unused capacity is not borrowed.
 Mercs have `NumberOfAIMax: 0`. Totals: **103 definitions / 45 loadout files**.
 
 All Merc variants use `East`, cooperate with other Mercs, and are hostile to players
@@ -38,8 +38,8 @@ the profile. Caps are maxima, not guaranteed populations. A full category does n
 make its objects switch to another profile.
 
 Preserve local roaming, JOG/SPRINT, threat/flanking 200 m, noise investigation 100 m,
-outside-combat flanking, activation 250–1000 m, despawn 1200 m / 300 s, respawn
-1800 s, spread 40–80 m, unlimited reload, lootable corpses, no AI triggering and
+outside-combat flanking, activation 250â€“1000 m, despawn 1200 m / 300 s, respawn
+1800 s, spread 40â€“80 m, unlimited reload, lootable corpses, no AI triggering and
 no contaminated-area spawning. Full firearm/melee/bandage/clothing/upgrade scavenging
 also applies to new variants, so equipment can change. Roaming can leave military
 sites; generated placement does not establish safe terrain.
