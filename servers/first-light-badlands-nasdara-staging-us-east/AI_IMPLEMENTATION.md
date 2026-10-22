@@ -1,7 +1,7 @@
 # Nasdara Expansion AI Implementation
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 4 (2026-10-21)
+## Current active configuration — Merc stack layer 5 (2026-10-21)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -15,11 +15,11 @@ as the explicit exception to military-site Merc patrols.
 
 | Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMin–Max |
 | --- | ---: | ---: | ---: | --- |
-| Regular Merc | 10 | 2 | 20 | 0.30–0.85 |
-| Spec Ops | 6 | 2 | 12 | 0.35–0.95 |
-| Juggernaut | 1 | 2 | 2 | 0.35–0.95 |
+| Regular Merc | 10 | 5 | 50 | 0.30–0.85 |
+| Spec Ops | 6 | 5 | 30 | 0.35–0.95 |
+| Juggernaut | 1 | 5 | 5 | 0.35–0.95 |
 | assasin | 1 | 1 | 1 | 0.85–0.95 |
-| **Total** | **18** | | **35** | |
+| **Total** | **18** | | **86** | |
 
 `Global.MaxPatrols` is **18**: Expansion counts patrols, not individual AI.
 Category caps apply across player counts 0–255; unused capacity is not borrowed.
@@ -88,7 +88,7 @@ and firearm readiness still require runtime acceptance.
 
 ### Validation and deployment
 
-Evidence: `validation/merc-stack-04.txt` and `merc-stack-04-audit.json`.
+Evidence: `validation/merc-stack-05.txt` and `merc-stack-05-audit.json`.
 Preview/apply supported mutations with dzcli. Category maps and profile ordering
 require direct edits because dzcli has no sufficient interface; initializer code
 also requires direct edits. Audit original loadout hashes, unchanged assassin and
@@ -98,7 +98,7 @@ For deployment, stop the server, back up config/profile, and copy mission patrol
 settings and the complete profile loadout directory into the existing installation.
 Retain persistence so the assassin stays intact.
 Use the existing launcher afterward. This change does not deploy, install mods,
-change launchers or launch DayZ. Later acceptance: group sizes, **35-AI ceiling**,
+change launchers or launch DayZ. Later acceptance: group sizes, **86-AI ceiling**,
 placement, faction behavior, accuracy, lifecycle timing and scavenging.
 Check special equipment, powered optics/NVGs, supply counts and full drum storage.
 Configuration validation is not Enforce compilation or in-game verification.
