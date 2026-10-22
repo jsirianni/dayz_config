@@ -1,7 +1,7 @@
 # First Light Badlands Nasdara Expansion AI
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 6 (2026-10-21)
+## Current active configuration — Startup and accuracy update (2026-10-22)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -10,15 +10,15 @@ The broader Warlord research and six-step spawn scanner plan are retained.
 ### Population and relationships
 
 The 40 Civilian/Tribesman patrols and their balancing categories are removed.
-Their loadout files remain unassigned. The persistent **assasin stays unchanged**
+Their loadout files remain unassigned. The persistent **assasin remains**
 as the explicit exception to military-site Merc patrols.
 
 | Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMin–Max |
 | --- | ---: | ---: | ---: | --- |
-| Regular Merc | 10 | 5 | 50 | 0.30–0.85 |
-| Spec Ops | 6 | 5 | 30 | 0.35–0.95 |
-| Juggernaut | 1 | 5 | 5 | 0.35–0.95 |
-| assasin | 1 | 1 | 1 | 0.85–0.95 |
+| Regular Merc | 10 | 5 | 50 | 0.30–0.7225 |
+| Spec Ops | 6 | 5 | 30 | 0.35–0.8075 |
+| Juggernaut | 1 | 5 | 5 | 0.35–0.8075 |
+| assasin | 1 | 1 | 1 | 0.7225–0.8075 |
 | **Total** | **18** | | **86** | |
 
 `Global.MaxPatrols` is **18**: Expansion counts patrols, not individual AI.
@@ -28,6 +28,20 @@ Mercs have `NumberOfAIMax: 0`. Totals: **205 definitions / 47 loadout files**.
 All Merc variants use `East`, cooperate with other Mercs, and are hostile to players
 assigned `West`. Existing equipment files and profile `AISettings.json` are unchanged.
 The assasin retains Raiders, its remote anchor, singleton, persistence and equipment.
+
+### Startup updates and accuracy reduction (2026-10-22)
+
+The game-server SteamCMD command retains `app_update 223350` and removes its
+`validate` flag. Routine startups continue checking for and installing updates,
+without forcing restoration of modified stock files on every start. Workshop
+validation is unchanged. Actual game updates can still replace shipped mission
+files; review and reapply the custom mission overlay after an update if needed.
+
+Every patrol's `AccuracyMax` is reduced by 15% relative to its previous value
+(`old maximum * 0.85`): 0.85 becomes 0.7225; 0.95 becomes 0.8075.
+Merc minimums remain unchanged. The assassin's minimum also falls by 15%, from
+0.85 to 0.7225, as agreed, so it stays below its new 0.8075 maximum.
+These are gameplay settings, not measured hit percentages.
 
 ### Object spawning and behavior
 
@@ -76,7 +90,7 @@ ballistic-helmet proposal; it is not the strongest ballistic helmet.
 
 Both kits start pristine, with one full bandage and a full native-water canteen.
 No other medicine, food, radio, rangefinder, knife, flashlight or weapon light.
-Required batteries are full. Explicit accuracy is 0.35–0.95 and sniper-prone
+Required batteries are full. Explicit accuracy is 0.35–0.8075 and sniper-prone
 threshold 0. Accuracy values are gameplay settings, not hit percentages.
 Unlimited reload can increase later corpse ammunition; scavenging can introduce
 replacement equipment or lights. These restrictions describe starting equipment.
@@ -114,18 +128,26 @@ Only `StartingEquipSetup` supplies fresh characters; reconnects retain inventori
 
 ### Validation and deployment
 
-Evidence: `validation/merc-stack-06.txt` and `merc-stack-06-audit.json`.
+Historical stack evidence: `validation/merc-stack-06.txt` and `merc-stack-06-audit.json`.
+The startup/accuracy update passed baseline and final `dzcli validate expansion ai`
+checks against both the server root and `mpmissions/dayzOffline.nasdara`. Every
+supported accuracy edit was previewed with `--dry-run` and applied through dzcli.
+The static audit confirms all 205 maximums fell by exactly 15%, all ranges remain
+valid, only the agreed assassin minimum changed, and other patrol fields are
+unchanged. Launcher comparison confirms game updates and Workshop validation
+remain enabled. These checks do not establish runtime behavior.
 Preview/apply supported mutations with dzcli. Category maps and profile ordering
 require direct edits because dzcli has no sufficient interface; initializer code
-also requires direct edits. Audit original loadout hashes, unchanged assassin and
+also requires direct edits. Audit original loadout hashes, assassin non-accuracy fields and
 profile settings, counts, item allowlist, probabilities, classes, caps and behavior.
 
 For deployment, stop the server, back up config/profile, and copy mission patrol
 settings and the complete profile loadout directory into the existing installation.
 Retain persistence so the assassin stays intact.
 Also back up and replace the deployed mission `init.c`; no persistence wipe is needed.
-Use the existing launcher afterward. This change does not deploy, install mods,
-change launchers or launch DayZ. Later acceptance: group sizes, **86-AI ceiling**,
+Deploy the updated `dayz-service.bat` alongside the mission overlay. The launcher
+updates the game server without forced SteamCMD validation. This repository change
+does not deploy or launch DayZ. Later acceptance: group sizes, **86-AI ceiling**,
 placement, faction behavior, accuracy, lifecycle timing and scavenging.
 Check special equipment, powered optics/NVGs, supply counts and full drum storage.
 Check both player rifles and scope outcomes, exact ammo/medicine, pistol readiness,
@@ -818,8 +840,9 @@ The scripts take no command-line parameters.
    and review existing AI settings before replacing them. Keep a single
    `profiles` directory level; deploy the overlay without mirroring/deleting
    the stock mission or unrelated profile files.
-   As with the reference, SteamCMD updates use `validate`; reapply the custom
-   messages if Steam replaces that file during updates. The repository mission
+   Game-server updates omit `validate`; Workshop validation is retained. Actual
+   game updates may still replace stock files, so reapply the custom `init.c`,
+   messages, and other mission overlays if replaced. The repository mission
    folder is a partial overlay; use file copies that preserve the stock mission.
 
 2. Allow the staging network ports on the host and any relevant router/firewall.
