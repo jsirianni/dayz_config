@@ -1,7 +1,7 @@
 # Nasdara Expansion AI Implementation
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 1 (2026-10-21)
+## Current active configuration — Merc stack layer 2 (2026-10-21)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -15,7 +15,7 @@ as the explicit exception to military-site Merc patrols.
 
 | Role | Patrol cap | AI per patrol | Maximum living AI | AccuracyMin–Max |
 | --- | ---: | ---: | ---: | --- |
-| Regular Merc | 10 | 2 | 20 | 0.45–0.95 |
+| Regular Merc | 10 | 2 | 20 | 0.30–0.85 |
 | assasin | 1 | 1 | 1 | 0.85–0.95 |
 | **Total** | **11** | | **21** | |
 
@@ -46,7 +46,7 @@ sites; generated placement does not establish safe terrain.
 
 ### Validation and deployment
 
-Evidence: `validation/merc-stack-01.txt` and `merc-stack-01-audit.json`.
+Evidence: `validation/merc-stack-02.txt` and `merc-stack-02-audit.json`.
 Preview/apply supported mutations with dzcli. Category maps and profile ordering
 require direct edits because dzcli has no sufficient interface; initializer code
 also requires direct edits. Audit original loadout hashes, unchanged assassin and
