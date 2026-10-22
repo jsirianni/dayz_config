@@ -1,7 +1,7 @@
 # First Light Badlands Nasdara Expansion AI
 
 <!-- merc-stack-current:start -->
-## Current active configuration — Merc stack layer 5 (2026-10-21)
+## Current active configuration — Merc stack layer 6 (2026-10-21)
 
 This section is authoritative. Older sections below record historical decisions
 where superseded here, including town patrols, previous caps, and player bonus gear.
@@ -86,9 +86,35 @@ Two 3x3 spare drums fit side by side in the 6x6 backpack, leaving room for the
 bandage. The 2x2 canteen fits the 4x3 chainmail shirt. Native inventory placement
 and firearm readiness still require runtime acceptance.
 
+### Player combat kit — fresh characters only
+
+Remove all twelve 5% bonus categories/helpers from `init.c`. Preserve stock random
+regional clothing/sandals, soda/chemlight, figs, stock health randomization and
+starting water 1000 / energy 800.
+
+- Guaranteed pristine `PlateCarrierVest` / `PlateCarrierPouches` and
+  `GorkaHelmet` / `GorkaHelmetVisor`.
+- Exactly two full `BandageDressing` rolls total, one `SalineBag`, one
+  `StartKitIV`, one `Epinephrine` and two `Morphine`. Saline/IV remain separate.
+- Equal SKS/Mosin selection, unloaded rifle on shoulder; four full 20-round
+  stacks (80 rounds) of matching standard `Ammo_762x39` / `Ammo_762x54`.
+- Independent 50% `PUScopeOptic` in cargo, never preattached.
+- `Glock19` with full attached 15-round `Mag_Glock_15Rnd` and chambered round;
+  no spare pistol magazine or loose 9 mm.
+- One unprimed `RGD5Grenade` attached to carrier. No backpack or old bonus gear.
+
+Use deliberate clothing/pouch cargo bindings, including space for the scope.
+Native packing audit: shirt 9/9 cells, pants 10/12 cells and pouches 15/15 cells
+with the scope (34/36 total). The soda is explicitly rotated in the pants.
+See `validation/player-combat-kit-audit.json` for all four rifle/scope cases.
+All 14 shirt and 13 Shalwar variants use these same native cargo dimensions.
+Log creation failures; cargo fallback is inventory, hands, then surface placement.
+Parent-dependent attachments never become standalone substitute gear.
+Only `StartingEquipSetup` supplies fresh characters; reconnects retain inventories.
+
 ### Validation and deployment
 
-Evidence: `validation/merc-stack-05.txt` and `merc-stack-05-audit.json`.
+Evidence: `validation/merc-stack-06.txt` and `merc-stack-06-audit.json`.
 Preview/apply supported mutations with dzcli. Category maps and profile ordering
 require direct edits because dzcli has no sufficient interface; initializer code
 also requires direct edits. Audit original loadout hashes, unchanged assassin and
@@ -97,10 +123,13 @@ profile settings, counts, item allowlist, probabilities, classes, caps and behav
 For deployment, stop the server, back up config/profile, and copy mission patrol
 settings and the complete profile loadout directory into the existing installation.
 Retain persistence so the assassin stays intact.
+Also back up and replace the deployed mission `init.c`; no persistence wipe is needed.
 Use the existing launcher afterward. This change does not deploy, install mods,
 change launchers or launch DayZ. Later acceptance: group sizes, **86-AI ceiling**,
 placement, faction behavior, accuracy, lifecycle timing and scavenging.
 Check special equipment, powered optics/NVGs, supply counts and full drum storage.
+Check both player rifles and scope outcomes, exact ammo/medicine, pistol readiness,
+unprimed grenade and stock basics; check reconnect inventories remain unchanged.
 Configuration validation is not Enforce compilation or in-game verification.
 
 <!-- merc-stack-current:end -->

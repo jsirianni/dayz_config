@@ -1,0 +1,239 @@
+{
+  "Source": "static inspection of init.c and native installed config.bin inventory dimensions; not an Enforce compiler or runtime test",
+  "NativeSteamBuild": "26103115",
+  "SourceScriptRevision": "e3dda95b2b9730bdc0dba931abb35304b484bbfc",
+  "TypesRevision": "f220b2918b1d79a5055b1ee9be70c0ec1516e876",
+  "InventoryClassesAllowlisted": 61,
+  "InitializationAndCharacterCreationUnchanged": true,
+  "StockClothingAndConsumablePoolsUnchanged": true,
+  "BonusRollsRemoved": 12,
+  "BandageRolls": 2,
+  "SalineBags": 1,
+  "IVStartKits": 1,
+  "Epinephrine": 1,
+  "Morphine": 2,
+  "Pistol": "Glock19",
+  "AttachedPistolMagazines": 1,
+  "PistolMagazineRounds": 15,
+  "ChamberedPistolRounds": 1,
+  "SparePistolMagazines": 0,
+  "LoosePistolAmmo": 0,
+  "Grenades": {
+    "Class": "RGD5Grenade",
+    "Count": 1,
+    "Unprimed": true
+  },
+  "RifleProbability": {
+    "SKS": 0.5,
+    "Mosin9130": 0.5
+  },
+  "IndependentPUScopeProbability": 0.5,
+  "Cases": [
+    {
+      "Rifle": "SKS",
+      "Ammo": "Ammo_762x39",
+      "FullLooseStacks": 4,
+      "LooseRifleRounds": 80,
+      "RifleUnloaded": true,
+      "PUScopeInCargo": false,
+      "UsedCells": {
+        "Body": 9,
+        "Legs": 10,
+        "Pouches": 12
+      }
+    },
+    {
+      "Rifle": "SKS",
+      "Ammo": "Ammo_762x39",
+      "FullLooseStacks": 4,
+      "LooseRifleRounds": 80,
+      "RifleUnloaded": true,
+      "PUScopeInCargo": true,
+      "UsedCells": {
+        "Body": 9,
+        "Legs": 10,
+        "Pouches": 15
+      }
+    },
+    {
+      "Rifle": "Mosin9130",
+      "Ammo": "Ammo_762x54",
+      "FullLooseStacks": 4,
+      "LooseRifleRounds": 80,
+      "RifleUnloaded": true,
+      "PUScopeInCargo": false,
+      "UsedCells": {
+        "Body": 9,
+        "Legs": 10,
+        "Pouches": 12
+      }
+    },
+    {
+      "Rifle": "Mosin9130",
+      "Ammo": "Ammo_762x54",
+      "FullLooseStacks": 4,
+      "LooseRifleRounds": 80,
+      "RifleUnloaded": true,
+      "PUScopeInCargo": true,
+      "UsedCells": {
+        "Body": 9,
+        "Legs": 10,
+        "Pouches": 15
+      }
+    }
+  ],
+  "CargoCapacities": {
+    "Body": 9,
+    "Legs": 12,
+    "Pouches": 15
+  },
+  "WorstCaseUsedCells": 34,
+  "TotalAvailableCells": 36,
+  "NativePackingLayout": [
+    {
+      "Container": "Body",
+      "Item": "SalineBag",
+      "Width": 2,
+      "Height": 2,
+      "Row": 0,
+      "Column": 0,
+      "Flip": false
+    },
+    {
+      "Container": "Body",
+      "Item": "AmmoStack3",
+      "Width": 1,
+      "Height": 1,
+      "Row": 2,
+      "Column": 0,
+      "Flip": false
+    },
+    {
+      "Container": "Body",
+      "Item": "AmmoStack4",
+      "Width": 1,
+      "Height": 1,
+      "Row": 2,
+      "Column": 1,
+      "Flip": false
+    },
+    {
+      "Container": "Body",
+      "Item": "Chemlight",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 2,
+      "Flip": false
+    },
+    {
+      "Container": "Body",
+      "Item": "Figs",
+      "Width": 1,
+      "Height": 1,
+      "Row": 2,
+      "Column": 2,
+      "Flip": false
+    },
+    {
+      "Container": "Legs",
+      "Item": "StartKitIV",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 0,
+      "Flip": false
+    },
+    {
+      "Container": "Legs",
+      "Item": "Epinephrine",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 1,
+      "Flip": false
+    },
+    {
+      "Container": "Legs",
+      "Item": "Morphine1",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 2,
+      "Flip": false
+    },
+    {
+      "Container": "Legs",
+      "Item": "Morphine2",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 3,
+      "Flip": false
+    },
+    {
+      "Container": "Legs",
+      "Item": "Soda",
+      "Width": 1,
+      "Height": 2,
+      "Row": 2,
+      "Column": 0,
+      "Flip": true
+    },
+    {
+      "Container": "Pouches",
+      "Item": "Glock19",
+      "Width": 3,
+      "Height": 2,
+      "Row": 0,
+      "Column": 0,
+      "Flip": false
+    },
+    {
+      "Container": "Pouches",
+      "Item": "Bandage1",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 3,
+      "Flip": false
+    },
+    {
+      "Container": "Pouches",
+      "Item": "Bandage2",
+      "Width": 1,
+      "Height": 2,
+      "Row": 0,
+      "Column": 4,
+      "Flip": false
+    },
+    {
+      "Container": "Pouches",
+      "Item": "AmmoStack1",
+      "Width": 1,
+      "Height": 1,
+      "Row": 2,
+      "Column": 3,
+      "Flip": false
+    },
+    {
+      "Container": "Pouches",
+      "Item": "AmmoStack2",
+      "Width": 1,
+      "Height": 1,
+      "Row": 2,
+      "Column": 4,
+      "Flip": false
+    },
+    {
+      "Container": "Pouches",
+      "Item": "PUScopeOptic",
+      "Width": 3,
+      "Height": 1,
+      "Row": 2,
+      "Column": 0,
+      "Flip": false
+    }
+  ],
+  "RuntimeVerification": false
+}

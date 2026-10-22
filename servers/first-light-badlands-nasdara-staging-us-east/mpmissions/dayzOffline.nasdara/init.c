@@ -52,24 +52,32 @@ class CustomMission: MissionServer
 		return m_player;
 	}
 
-	// Each category rolls once per new character; choices within a category are uniform.
-	bool RollBonusGear()
-	{
-		return Math.RandomFloat01() < 0.05;
-	}
-
-	// Keep successful rolls even if the chosen clothing has insufficient cargo space.
-	EntityAI GiveBonusItem(PlayerBase player, string className, EntityAI preferredContainer = null)
+	// Cargo-only placement prevents optional PU scopes attaching themselves to a rifle.
+	EntityAI GiveSpawnCargo(PlayerBase player, string className, EntityAI preferredContainer = null, int row = -1, int col = -1, bool flip = false)
 	{
 		EntityAI item;
+		InventoryLocation location = new InventoryLocation();
+
 		if (preferredContainer)
-			item = preferredContainer.GetInventory().CreateInInventory(className);
-		if (!item)
-			item = player.GetInventory().CreateInInventory(className);
+		{
+			if (row >= 0 && col >= 0)
+			{
+				item = preferredContainer.GetInventory().CreateEntityInCargoEx(className, 0, row, col, flip);
+				if (!item)
+					Print("[SpawnGear] Planned cargo placement failed for " + className);
+			}
+
+			if (!item && preferredContainer.GetInventory().FindFirstFreeLocationForNewEntity(className, FindInventoryLocationType.CARGO, location))
+				item = location.GetParent().GetInventory().CreateEntityInCargoEx(className, location.GetIdx(), location.GetRow(), location.GetCol(), location.GetFlip());
+		}
+
+		if (!item && player.GetInventory().FindFirstFreeLocationForNewEntity(className, FindInventoryLocationType.CARGO, location))
+			item = location.GetParent().GetInventory().CreateEntityInCargoEx(className, location.GetIdx(), location.GetRow(), location.GetCol(), location.GetFlip());
 		if (!item)
 			item = player.GetHumanInventory().CreateInHands(className);
 		if (!item)
 			item = EntityAI.Cast(GetGame().CreateObjectEx(className, player.GetPosition(), ECE_PLACE_ON_SURFACE));
+
 		if (item)
 			item.SetHealth01("", "", 1.0);
 		else
@@ -77,142 +85,140 @@ class CustomMission: MissionServer
 		return item;
 	}
 
-	void GiveRandomBonusGear(PlayerBase player)
+	EntityAI GiveSpawnAttachment(EntityAI parent, string className, string slotName)
 	{
-		EntityAI item;
-		ItemBase bottle;
-		Weapon_Base pistol;
-		Magazine magazine;
-		Magazine buckshot;
-
-		// Roll storage first, before adding the larger optional items.
-		if (RollBonusGear())
+		if (!parent)
 		{
-			string vests[] = { "LinenVest_Black", "LinenVest_Brown", "LinenVest_DarkGrey", "LinenVest_Green", "LinenVest_Grey", "LinenVest_NavyBlue", "RobeVest_Beige", "RobeVest_Brown", "RobeVest_Green", "RobeVest_Grey", "RobeVest_Navy", "ChestRigVest_Khaki", "ChestRigVest_Olive", "ChestRigVest_Tan" };
-			GiveBonusItem(player, vests[Math.RandomInt(0, 14)]);
+			Print("[SpawnGear] Missing parent for " + className);
+			return null;
 		}
 
-		if (RollBonusGear())
+		EntityAI item = parent.GetInventory().CreateAttachmentEx(className, InventorySlots.GetSlotIdFromString(slotName));
+		if (item)
+			item.SetHealth01("", "", 1.0);
+		else
+			Print("[SpawnGear] Unable to attach " + className + " to " + slotName);
+		return item;
+	}
+
+	void GivePlayerCombatKit(PlayerBase player, EntityAI bodyClothing, EntityAI legClothing)
+	{
+		EntityAI carrier = GiveSpawnAttachment(EntityAI.Cast(player), "PlateCarrierVest", "Vest");
+		EntityAI pouches = GiveSpawnAttachment(carrier, "PlateCarrierPouches", "VestPouch");
+		EntityAI helmet = GiveSpawnAttachment(EntityAI.Cast(player), "GorkaHelmet", "Headgear");
+		GiveSpawnAttachment(helmet, "GorkaHelmetVisor", "Glass");
+
+		// Pouches: pistol 3x2; two bandages 1x2; scope 3x1; two ammo stacks 1x1.
+		Weapon_Base pistol = Weapon_Base.Cast(GiveSpawnCargo(player, "Glock19", pouches, 0, 0));
+		if (pistol)
 		{
-			string backpacks[] = { "CourierBag", "TaloonBag_Blue", "TaloonBag_Green", "TaloonBag_Orange", "TaloonBag_Violet" };
-			GiveBonusItem(player, backpacks[Math.RandomInt(0, 5)]);
+			Magazine pistolMagazine = pistol.SpawnAttachedMagazine("Mag_Glock_15Rnd", WeaponWithAmmoFlags.CHAMBER);
+			if (pistolMagazine)
+				pistolMagazine.SetHealth01("", "", 1.0);
+			else
+				Print("[SpawnGear] Unable to load Glock magazine");
 		}
 
-		if (RollBonusGear())
+		// These are the only bandage creations: exactly two full rolls per character.
+		for (int dressingIndex = 0; dressingIndex < 2; dressingIndex++)
 		{
-			item = GiveBonusItem(player, "HipPack_Medical");
-			if (item)
-				GiveBonusItem(player, "BandageDressing", item);
-		}
-
-		if (RollBonusGear())
-		{
-			string bottles[] = { "WaterBottle", "GlassBottle", "Canteen", "FilteringBottle", "SmallGlassBottle_Afza", "SmallGlassBottle_Jallab", "WineBottle", "AyranBottle" };
-			bottle = ItemBase.Cast(GiveBonusItem(player, bottles[Math.RandomInt(0, 8)]));
-			if (bottle)
+			ItemBase bandage = ItemBase.Cast(GiveSpawnCargo(player, "BandageDressing", pouches, 0, 3 + dressingIndex));
+			if (bandage)
 			{
-				bottle.RemoveAllAgents();
-				bottle.SetLiquidType(LIQUID_WATER);
-				bottle.SetQuantityMax();
+				bandage.SetQuantityMax();
+				if (dressingIndex == 0)
+					player.SetQuickBarEntityShortcut(bandage, 2);
 			}
 		}
 
-		if (RollBonusGear())
+		ItemBase saline = ItemBase.Cast(GiveSpawnCargo(player, "SalineBag", bodyClothing, 0, 0));
+		if (saline)
+			saline.SetQuantityMax();
+		GiveSpawnCargo(player, "StartKitIV", legClothing, 0, 0);
+		GiveSpawnCargo(player, "Epinephrine", legClothing, 0, 1);
+		for (int morphineIndex = 0; morphineIndex < 2; morphineIndex++)
+			GiveSpawnCargo(player, "Morphine", legClothing, 0, 2 + morphineIndex);
+
+		string rifleClassName;
+		string ammoClassName;
+		if (Math.RandomInt(0, 2) == 0)
 		{
-			pistol = Weapon_Base.Cast(GiveBonusItem(player, "MakarovIJ70"));
-			if (pistol)
-			{
-				magazine = pistol.SpawnAttachedMagazine("Mag_IJ70_8Rnd", WeaponWithAmmoFlags.CHAMBER);
-				if (magazine)
-					magazine.SetHealth01("", "", 1.0);
-				else
-					Print("[SpawnGear] Unable to load IJ-70 magazine");
-			}
+			rifleClassName = "SKS";
+			ammoClassName = "Ammo_762x39";
+		}
+		else
+		{
+			rifleClassName = "Mosin9130";
+			ammoClassName = "Ammo_762x54";
 		}
 
-		if (RollBonusGear())
-			GiveBonusItem(player, "KitchenKnife");
-
-		if (RollBonusGear())
+		// No ammo-spawn/chamber call is made on the rifle.
+		EntityAI rifle = GiveSpawnAttachment(EntityAI.Cast(player), rifleClassName, "Shoulder");
+		if (!rifle)
+			GiveSpawnCargo(player, rifleClassName);
+		for (int stackIndex = 0; stackIndex < 4; stackIndex++)
 		{
-			string goggles[] = { "DustGoggles_Black", "DustGoggles_Transparent", "TacticalGoggles", "SkiGoggles_BlackYellow", "SkiGoggles_WhiteClear", "SkiGoggles_WhiteDark" };
-			GiveBonusItem(player, goggles[Math.RandomInt(0, 6)]);
+			Magazine ammoStack;
+			if (stackIndex < 2)
+				ammoStack = Magazine.Cast(GiveSpawnCargo(player, ammoClassName, pouches, 2, 3 + stackIndex));
+			else
+				ammoStack = Magazine.Cast(GiveSpawnCargo(player, ammoClassName, bodyClothing, 2, stackIndex - 2));
+			if (ammoStack)
+				ammoStack.ServerSetAmmoCount(ammoStack.GetAmmoMax());
 		}
 
-		if (RollBonusGear())
-		{
-			string masks[] = { "Keffiyeh_Black", "Keffiyeh_Blue", "Keffiyeh_Brown", "Keffiyeh_Gray", "Keffiyeh_LightBlue", "Keffiyeh_LightBrown", "Keffiyeh_LightRed", "Keffiyeh_Red", "BalaclavaMask_Beige", "BalaclavaMask_Black", "BalaclavaMask_Green", "SurgicalMask", "NioshFaceMask" };
-			GiveBonusItem(player, masks[Math.RandomInt(0, 13)]);
-		}
+		// Roll independently of rifle selection; never attach the scope at spawn.
+		if (Math.RandomFloat01() < 0.5)
+			GiveSpawnCargo(player, "PUScopeOptic", pouches, 2, 0);
 
-		if (RollBonusGear())
-		{
-			item = GiveBonusItem(player, "Izh18Shotgun");
-			if (item)
-			{
-				buckshot = Magazine.Cast(GiveBonusItem(player, "Ammo_12gaPellets"));
-				if (buckshot)
-					buckshot.ServerSetAmmoCount(buckshot.GetAmmoMax());
-			}
-		}
-
-		if (RollBonusGear())
-			GiveBonusItem(player, "Roadflare");
-
-		if (RollBonusGear())
-		{
-			string compasses[] = { "Compass", "OrienteeringCompass" };
-			GiveBonusItem(player, compasses[Math.RandomInt(0, 2)]);
-		}
-
-		// No magazine or ammunition was requested for the Lee-Enfield bonus.
-		if (RollBonusGear())
-			GiveBonusItem(player, "LeeEnfield");
+		EntityAI grenade = GiveSpawnAttachment(carrier, "RGD5Grenade", "VestGrenadeA");
+		if (!grenade)
+			GiveSpawnCargo(player, "RGD5Grenade");
 	}
 
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		player.RemoveAllItems();
 
-		EntityAI itemClothing;
+		EntityAI bodyClothing;
+		EntityAI legClothing;
 		EntityAI itemEnt;
-		ItemBase itemBs;
-		float rand;
 
 		string bodyArray[] = { "KameezShirt_Beige", "KameezShirt_Black", "KameezShirt_BlueFlowers", "KameezShirt_Brown", "KameezShirt_Grey", "KameezShirt_NavyBlue", "KameezShirt_Olive", "KameezShirt_Orange", "KameezShirt_Pink", "KameezShirt_Purple", "KameezShirt_Red", "KameezShirt_SkyBlue", "KameezShirt_White", "KameezShirt_Yellow" };
 		int rndBodyIndex = Math.RandomInt( 0, 14 );
-		itemEnt = player.GetInventory().CreateInInventory( bodyArray[rndBodyIndex] );
-		SetRandomHealth( itemEnt );
+		bodyClothing = player.GetInventory().CreateInInventory( bodyArray[rndBodyIndex] );
+		SetRandomHealth( bodyClothing );
 
 		string legsArray[] = { "MensShalwarPants_Beige", "MensShalwarPants_Black", "MensShalwarPants_Brown", "MensShalwarPants_Grey", "MensShalwarPants_NavyBlue", "MensShalwarPants_SkyBlue", "MensShalwarPants_White", "WomensShalwarPants_NavyBlue", "WomensShalwarPants_Olive", "WomensShalwarPants_Orange", "WomensShalwarPants_Pink", "WomensShalwarPants_Purple", "WomensShalwarPants_Red" };
 		int rndLegsIndex = Math.RandomInt( 0, 13 );
-		itemEnt = player.GetInventory().CreateInInventory( legsArray[rndLegsIndex] );
-		SetRandomHealth( itemEnt );
+		legClothing = player.GetInventory().CreateInInventory( legsArray[rndLegsIndex] );
+		SetRandomHealth( legClothing );
 
 		string feetArray[] = { "SandalsShoes_Black", "SandalsShoes_BlueNavy", "SandalsShoes_Brown", "SandalsShoes_Grey", "TraditionalSandalShoes_Black", "TraditionalSandalShoes_Brown", "TraditionalSandalShoes_LightBrown", "TraditionalSandalShoes_NavyBlue" };
 		int rndFeetIndex = Math.RandomInt( 0, 8 );
 		itemEnt = player.GetInventory().CreateInInventory( feetArray[rndFeetIndex] );
 		SetRandomHealth( itemEnt );
 
+		// Reserve kit cargo before placing stock consumables into the remaining cells.
+		GivePlayerCombatKit(player, bodyClothing, legClothing);
+
 		string chemlightArray[] = { "Chemlight_White", "Chemlight_Yellow", "Chemlight_Green", "Chemlight_Red" };
 		int rndChemIndex = Math.RandomInt( 0, 4 );
-		itemEnt = player.GetInventory().CreateInInventory( chemlightArray[rndChemIndex] );
-		player.SetQuickBarEntityShortcut(itemEnt, 1);
+		itemEnt = GiveSpawnCargo(player, chemlightArray[rndChemIndex], bodyClothing, 0, 2);
+		if (itemEnt)
+			player.SetQuickBarEntityShortcut(itemEnt, 1);
 		SetRandomHealth( itemEnt );
 
 		string sodaArray[] = { "SodaCan_Pipsi", "SodaCan_Spite", "SodaCan_Cola", "SodaCan_Fronta" };
 		int rndSodaIndex = Math.RandomInt( 0, 4 );
-		itemEnt = player.GetInventory().CreateInInventory( sodaArray[rndSodaIndex] );
+		// Rotate the 1x2 soda into the bottom row of every 4x3 Shalwar variant.
+		itemEnt = GiveSpawnCargo(player, sodaArray[rndSodaIndex], legClothing, 2, 0, true);
 		SetRandomHealth( itemEnt );
 
-		itemEnt = player.GetInventory().CreateInInventory( "Figs" );
-		itemEnt = player.GetInventory().CreateInInventory( "BandageDressing" );
-		player.SetQuickBarEntityShortcut(itemEnt, 2);
+		GiveSpawnCargo(player, "Figs", bodyClothing, 2, 2);
 
 		player.GetStatWater().Set( 1000 );
 		player.GetStatEnergy().Set( 800 );
-
-		GiveRandomBonusGear(player);
 	}
 };
 
