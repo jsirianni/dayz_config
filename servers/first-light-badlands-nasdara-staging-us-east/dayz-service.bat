@@ -31,7 +31,7 @@ if not exist "%PROFILES%" mkdir "%PROFILES%"
 if not exist "%KEYS%"     mkdir "%KEYS%"
 
 REM ===== Update DayZ server =====
-"%STEAMCMD%" +force_install_dir "%INSTALL%" +login "stealthowl3" +app_update 223350 validate +quit
+"%STEAMCMD%" +force_install_dir "%INSTALL%" +login "stealthowl3" +app_update 223350 +quit
 if errorlevel 1 goto :steamfail
 if not exist "%SERVEREXE%" goto :noexe
 
