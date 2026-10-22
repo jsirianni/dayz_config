@@ -1,0 +1,26 @@
+{
+  "Layer": 2,
+  "BaselineMain": "6138a1c20dd9e00684b352cf9f36a9854b76acae",
+  "PatrolDefinitions": 103,
+  "LoadoutFiles": 45,
+  "MilitaryClasses": 51,
+  "MercSquadSize": 2,
+  "CategoryCaps": {
+    "Western_Merc": 10,
+    "Assasin": 1,
+    "Global": 11
+  },
+  "MaximumLivingAI": 21,
+  "UnchangedOriginalLoadouts": 45,
+  "AssassinUnchanged": true,
+  "ProfileSettingsUnchanged": true,
+  "ObjectEligibility": 0.5,
+  "UnconditionalProfileProbabilities": {
+    "BoltAction": 0.0625,
+    "Regular": 0.4375
+  },
+  "InventoryClassesAllowlisted": 200,
+  "SpecialLoadouts": {},
+  "ValidationOnly": true,
+  "NoRuntimeVerification": true
+}
