@@ -1,0 +1,36 @@
+{
+  "Layer": 3,
+  "BaselineMain": "6138a1c20dd9e00684b352cf9f36a9854b76acae",
+  "PatrolDefinitions": 154,
+  "LoadoutFiles": 46,
+  "MilitaryClasses": 51,
+  "MercSquadSize": 2,
+  "CategoryCaps": {
+    "Western_Merc": 10,
+    "Assasin": 1,
+    "Global": 17,
+    "Western_Merc_SpecOps": 6
+  },
+  "MaximumLivingAI": 33,
+  "UnchangedOriginalLoadouts": 45,
+  "AssassinUnchanged": true,
+  "ProfileSettingsUnchanged": true,
+  "ObjectEligibility": 0.5,
+  "UnconditionalProfileProbabilities": {
+    "SpecOps": 0.1875,
+    "BoltAction": 0.0390625,
+    "Regular": 0.2734375
+  },
+  "InventoryClassesAllowlisted": 209,
+  "SpecialLoadouts": {
+    "SpecOps": {
+      "InventoryItemCount": 22,
+      "MagazineCount": 3,
+      "InitialCartridges": 90,
+      "PristineGuaranteedItems": true,
+      "NativeCargoPacking": "Two spare magazines and bandage in backpack; canteen in body cargo."
+    }
+  },
+  "ValidationOnly": true,
+  "NoRuntimeVerification": true
+}
