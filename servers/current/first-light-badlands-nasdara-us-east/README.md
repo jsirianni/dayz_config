@@ -1,5 +1,13 @@
 # First Light Badlands Nasdara
 
+## Deployment automation (current)
+
+Use the Go `dzdeploy` workflow in [the deployment runbook](../../../docs/deployment.md) and populate the repository's ignored `deploy.yaml`.
+The batch files delegate to the managed Windows service; launcher settings live in the tracked target inventory.
+VPP password protection is disabled with `vppDisablePassword = 1;`. Git controls the SteamID SuperAdmins allowlist, and runtime credentials are excluded from deployment.
+Older manual launch/deployment sections below describe historical setup and are superseded by this workflow.
+
+
 Custom Nasdara configuration with CF and VPPAdminTools in `first-light-badlands-nasdara-us-east`.
 `../first-light-frostline-sakhal-us-east/` is the read-only configuration reference.
 The mission directory contains only custom overrides for a complete installed

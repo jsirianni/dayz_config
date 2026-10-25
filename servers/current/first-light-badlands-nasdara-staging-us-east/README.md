@@ -1,5 +1,13 @@
 # First Light Badlands Nasdara Expansion AI
 
+## Deployment automation (current)
+
+Use the Go `dzdeploy` workflow in [the deployment runbook](../../../docs/deployment.md) and populate the repository's ignored `deploy.yaml`.
+The batch files delegate to the managed Windows service; launcher settings live in the tracked target inventory.
+VPP password protection is disabled with `vppDisablePassword = 1;`. Git controls the SteamID SuperAdmins allowlist, and runtime credentials are excluded from deployment.
+Older manual launch/deployment sections below describe historical setup and are superseded by this workflow.
+
+
 <!-- merc-stack-current:start -->
 ## Current active configuration — Startup and accuracy update (2026-10-22)
 

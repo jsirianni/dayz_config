@@ -5,7 +5,7 @@ This repository contains DayZ server configuration. For any task that inspects o
 Before changing supported DayZ config files:
 
 1. Read and follow `skills/dzcli/SKILL.md`.
-2. Run `.\skills\dzcli\scripts\install-dzcli.ps1` from the repository root to install or update the repo-local `dzcli` binary.
+2. Run `go run ./cmd/dzdeploy tools install` from the repository root to install or update the repo-local `dzcli` binary. The legacy `.\skills\dzcli\scripts\install-dzcli.ps1` remains supported.
 3. Set `$dz = Join-Path (Get-Location) ".tools\dzcli\dzcli.exe"` and invoke commands as `& $dz ...`.
 4. Prefer `dzcli get`, `create`, `update`, `delete`, or `fix` commands over direct edits for supported files.
 5. Preview mutations with `--dry-run` before applying them.
@@ -24,3 +24,16 @@ Always run the matching `dzcli validate ...` command after modifying DayZ config
 - Expansion AI JSON/settings/loadouts/patrols: `dzcli validate expansion ai <server-or-repo-root>`
 
 Do not commit downloaded tool binaries. The installer writes them under `.tools/dzcli/`.
+
+## Deployment
+
+Use the Go `dzdeploy` CLI; see `docs/deployment.md`. Build with `go build -o .tools/bin/ ./cmd/dzdeploy`. The Windows executable is `.tools/bin/dzdeploy.exe`.
+
+- Host configuration is `deploy.yaml` (ignored); `deploy.example.yaml` is its template. Do not commit populated configuration, keys, credentials, or binaries.
+- Deploy only when the user requests a named target: `nasdara`, `nasdara-staging`, or `deer-isle`. Editing/merging does not itself authorize deployment.
+- Run `dzdeploy doctor <alias>` and `dzdeploy deploy <alias> --dry-run`, inspect the result, then run `dzdeploy deploy <alias>`. Add `--restart` only if the user explicitly requests a restart.
+- Deployment requires clean `main` equal to freshly fetched `origin/main`. Do not bypass the gate, auto-commit, auto-merge, reset, or stash changes to make it pass.
+- Use `dzdeploy validate <alias|all>` for local validation. `--offline` explicitly uses cached dzcli for local checks; it is prohibited for deployment.
+- Main controls managed configuration, including server passwords and admin allowlists. Live drift is backed up and overwritten; only previously managed obsolete paths are deleted. Persistence and runtime credentials are excluded.
+- Preserve operation IDs. On connection loss, inspect `dzdeploy status <alias> --operation <id>` instead of blindly resubmitting.
+- Report installed revision, last managed startup revision, and restart pending separately. Live acceptance requires actual host access.

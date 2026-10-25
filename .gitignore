@@ -1,1 +1,3 @@
 .tools/
+.deploy/
+deploy.yaml
