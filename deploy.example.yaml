@@ -5,7 +5,7 @@ version: 1
 targets:
   nasdara-staging:
     address: 'REPLACE_STAGING_HOST:22'
-    user: dayz-deploy
+    user: Administrator
     key_file: .deploy/id_ed25519
     public_key_file: .deploy/id_ed25519.pub
     known_hosts: .deploy/known_hosts
@@ -25,7 +25,7 @@ targets:
       startup_seconds: 600
   nasdara:
     address: 'REPLACE_NASDARA_HOST:22'
-    user: dayz-deploy
+    user: Administrator
     key_file: .deploy/id_ed25519
     public_key_file: .deploy/id_ed25519.pub
     known_hosts: .deploy/known_hosts
@@ -39,11 +39,10 @@ targets:
       steam_user: REPLACE_STEAM_ACCOUNT
       rcon_address: '127.0.0.1:2310'
       rcon_password_file: 'C:\ProgramData\DayZDeploy\nasdara\secrets\rcon.txt'
-      # Nasdara has no explicit query port in Git. Discover the host listener first.
-      query_address: '127.0.0.1:REPLACE_VERIFIED_QUERY_PORT'
+      query_address: '127.0.0.1:27017'
   deer-isle:
     address: 'REPLACE_DEER_ISLE_HOST:22'
-    user: dayz-deploy
+    user: Administrator
     key_file: .deploy/id_ed25519
     public_key_file: .deploy/id_ed25519.pub
     known_hosts: .deploy/known_hosts

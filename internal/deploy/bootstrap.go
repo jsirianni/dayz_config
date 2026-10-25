@@ -100,10 +100,13 @@ func LoadClient(p string) (ClientConfig, error) {
 		return c, err
 	}
 	for alias, e := range c.Targets {
+		if e.User == "" {
+			e.User = "Administrator"
+		}
 		if _, err := TargetFor(alias); err != nil {
 			return c, err
 		}
-		for _, ref := range []*string{&e.KnownHosts, &e.KeyFile, &e.PublicKeyFile} {
+		for _, ref := range []*string{&e.KnownHosts, &e.KeyFile, &e.PublicKeyFile, &e.AgentBinary} {
 			if *ref != "" && !filepath.IsAbs(*ref) {
 				*ref = filepath.Join(base, *ref)
 			}

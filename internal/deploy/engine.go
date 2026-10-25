@@ -216,6 +216,28 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		return
 	}
 	previous := a.Store.State.Installed
+	needsProvision, err := provisioningNeeded(a.Store.Config)
+	if err != nil {
+		fail(err)
+		return
+	}
+	if needsProvision && !req.Restart && req.Action == "deploy" {
+		if a.Game.Alive(a.Store.State) {
+			fail(errors.New("cannot provision over a running game"))
+			return
+		}
+		if err = a.progress(&r, "provisioning"); err != nil {
+			fail(err)
+			return
+		}
+		updateCtx, cancel := context.WithTimeout(ctx, time.Duration(a.Store.Config.UpdateSeconds)*time.Second)
+		err = a.Game.Update(updateCtx, b.Manifest.Launcher)
+		cancel()
+		if err != nil {
+			fail(err)
+			return
+		}
+	}
 	if req.Restart || req.Action == "restart" {
 		wasPaused := a.Store.State.Paused
 		a.Store.State.Paused = true
@@ -264,6 +286,12 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		a.Store.State.RestartRequired = true
 		r.RestartRequired = true
 	}
+	if needsProvision {
+		if err = finishProvisioning(a.Store.Config); err != nil {
+			fail(err)
+			return
+		}
+	}
 	if err = WriteJSON(filepath.Join(a.Store.Config.StateDir, "releases", b.Manifest.ID+".success.json"), b.Manifest); err != nil {
 		fail(err)
 		return
@@ -311,6 +339,11 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 	}
 	if game == nil {
 		game = &NativeGame{Config: store.Config}
+		stopBroker, err := startAuthBroker(ctx, store.Config)
+		if err != nil {
+			return err
+		}
+		defer stopBroker()
 	}
 	a := &Agent{Store: store, Game: game}
 	// Non-file phases (updates/startup) may have been interrupted too. Never blindly replay them.

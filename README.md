@@ -2,9 +2,11 @@
 
 # Dayz Config
 
-DayZ configuration and the Go `dzdeploy` CLI for the three Windows servers under `servers/current/`.
+DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients managing the three Windows servers under `servers/current/`.
 
 Build: `go build -o .tools/bin/ ./cmd/dzdeploy`. Populate the ignored `deploy.yaml` using `deploy.example.yaml`, then follow [the deployment runbook](docs/deployment.md). Routine deployment uses native Go SSH/SFTP and a Windows service, with no PowerShell dependency.
+
+Fresh Windows servers need two provisioning steps: run `bootstrap-windows.ps1` as Administrator with your public key and allowed source network, then run `dzdeploy deploy <target> --restart` on the client. Deployment installs prerequisites, handles Steam login prompts, and enrolls the Windows service automatically. Portable client packages are built with `go run ./cmd/dzdeploy-package` and published as CI artifacts.
 
 ```text
 dzdeploy doctor nasdara-staging

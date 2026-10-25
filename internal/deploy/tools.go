@@ -98,53 +98,5 @@ func ensureDz(ctx context.Context, repo string, offline bool, client *http.Clien
 		}
 		return dest, nil
 	}
-	// Upstream currently publishes Windows/Linux binaries. A macOS client can
-	// bootstrap its companion from the same checksum-verified Go module version.
-	if runtime.GOOS == "darwin" {
-		return buildDz(ctx, dest, release.Tag)
-	}
 	return "", fmt.Errorf("dzcli has no release asset for %s/%s", runtime.GOOS, runtime.GOARCH)
-}
-
-func buildDz(ctx context.Context, dest, tag string) (string, error) {
-	if installed, err := exec.CommandContext(ctx, dest, "version").Output(); err == nil && strings.TrimSpace(string(installed)) == strings.TrimPrefix(tag, "v") {
-		return dest, nil
-	}
-	if _, err := exec.LookPath("go"); err != nil {
-		return "", errors.New("upstream has no macOS dzcli binary; install Go once to run tools install, or place a native dzcli at .tools/dzcli/dzcli")
-	}
-	// Explicit-version download does not alter the repository's module files.
-	download := exec.CommandContext(ctx, "go", "mod", "download", "-json", "github.com/jsirianni/dzcli@"+tag)
-	raw, err := download.Output()
-	if err != nil {
-		return "", fmt.Errorf("download dzcli module: %w", err)
-	}
-	var module struct{ Dir, Sum string }
-	if err = json.Unmarshal(raw, &module); err != nil {
-		return "", err
-	}
-	if module.Dir == "" || module.Sum == "" {
-		return "", errors.New("dzcli module download did not provide verified source metadata")
-	}
-	if err = os.MkdirAll(filepath.Dir(dest), 0700); err != nil {
-		return "", err
-	}
-	temp, err := os.CreateTemp(filepath.Dir(dest), ".dzcli-build-*")
-	if err != nil {
-		return "", err
-	}
-	tmp := temp.Name()
-	temp.Close()
-	os.Remove(tmp)
-	defer os.Remove(tmp)
-	build := exec.CommandContext(ctx, "go", "build", "-mod=readonly", "-buildvcs=false", "-ldflags", "-X dzcli/cli.version="+strings.TrimPrefix(tag, "v"), "-o", tmp, "./cmd/dzcli")
-	build.Dir = module.Dir
-	build.Env = append(os.Environ(), "GOWORK=off", "GOTOOLCHAIN=go1.27.3")
-	if out, err := build.CombinedOutput(); err != nil {
-		return "", fmt.Errorf("build native dzcli: %w: %s", err, out)
-	}
-	if err = replaceFile(tmp, dest); err != nil {
-		return "", err
-	}
-	return dest, nil
 }

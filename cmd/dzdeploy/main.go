@@ -73,6 +73,8 @@ func emit(v any, asJSON bool) error {
 		if r.Error != "" {
 			fmt.Println("Attention:", r.Error)
 		}
+	case deploy.Enrollment:
+		fmt.Printf("%s enrollment: %s, operation %s\nRerun deploy to resume provisioning.\n", r.Target, r.Phase, r.ID)
 	default:
 		b, err := json.MarshalIndent(v, "", "  ")
 		if err != nil {
@@ -97,6 +99,7 @@ func usage() {
 
 Servers: nasdara, nasdara-staging, deer-isle
 Client flags: --repo <directory> --config <file> --timeout 50m --json
+First enrollment: deploy <server> --restart --host-key SHA256:<trusted fingerprint>
 Client config defaults to <repo>/deploy.yaml. No deployment runs on merge.`)
 }
 func run(args []string) error {
@@ -115,7 +118,7 @@ func run(args []string) error {
 		return nil
 	}
 	alias := ""
-	if action != "agent" {
+	if action != "agent" && action != "enroll" && action != "steam-auth" {
 		if len(args) == 0 {
 			return errors.New("server or tools subcommand required")
 		}
@@ -142,13 +145,15 @@ func run(args []string) error {
 	publicKey := flags.String("public-key", "", "deployment public key file")
 	sshSources := flags.String("ssh-sources", "", "comma-separated SSH source IPs/CIDRs")
 	sshPort := flags.Int("ssh-port", 22, "host SSH port")
+	hostKey := flags.String("host-key", "", "trusted bootstrap SHA256 host fingerprint for first enrollment")
+	enrollRequest := flags.String("request", "", "internal host enrollment request")
 	if err := flags.Parse(args); err != nil {
 		if errors.Is(err, flag.ErrHelp) {
 			return nil
 		}
 		return err
 	}
-	if *hostFile != "" && action != "agent" {
+	if *hostFile != "" && action != "agent" && action != "steam-auth" {
 		return errors.New("--host-config is internal to the installed agent; configure bootstrap using deploy.yaml")
 	}
 	if flags.NArg() != 0 {
@@ -175,6 +180,20 @@ func run(args []string) error {
 		*configFile = filepath.Join(root, "deploy.yaml")
 	}
 	switch action {
+	case "enroll":
+		if *enrollRequest == "" {
+			return errors.New("internal enrollment requires --request")
+		}
+		return deploy.RunEnrollment(ctx, *enrollRequest, os.Stdout)
+	case "steam-auth":
+		if *hostFile == "" {
+			return errors.New("authentication relay requires --host-config")
+		}
+		c, err := deploy.LoadHost(*hostFile)
+		if err != nil {
+			return err
+		}
+		return deploy.RelaySteamAuth(ctx, c, os.Stdin, os.Stdout)
 	case "agent":
 		if *hostFile == "" {
 			return errors.New("--host-config is required")
@@ -324,14 +343,64 @@ func run(args []string) error {
 	if !ok {
 		return fmt.Errorf("endpoint %s is not enrolled", alias)
 	}
-	remote, err := deploy.Connect(ctx, endpoint)
+	remote, err := deploy.ConnectPinned(ctx, endpoint, *hostKey, action == "deploy" && !*dry)
+	var unknown *deploy.UntrustedHostError
+	if errors.As(err, &unknown) && *hostKey == "" && action == "deploy" {
+		trusted, promptErr := deploy.ReadSecret("Paste the SHA256 host fingerprint printed by the trusted bootstrap script: ")
+		if promptErr != nil {
+			return fmt.Errorf("%w; %w", err, promptErr)
+		}
+		remote, err = deploy.ConnectPinned(ctx, endpoint, strings.TrimSpace(trusted), !*dry)
+	}
 	if err != nil {
 		return err
 	}
 	defer remote.Close()
+	if action == "deploy" {
+		needed, err := remote.EnrollmentNeeded(alias)
+		if err != nil {
+			return err
+		}
+		if needed {
+			if err = deploy.CheckEnrollment(endpoint, alias); err != nil {
+				return err
+			}
+			if *dry {
+				preview := deploy.NewHostPreview(bundle, *restart)
+				preview.Warnings = validation.Warnings
+				return emit(preview, *asJSON)
+			}
+			fmt.Fprintln(os.Stderr, "First deployment: preparing the Windows service and prerequisites...")
+			if err = remote.Enroll(ctx, bundle, os.Stderr); err != nil {
+				return err
+			}
+			readyCtx, cancel := context.WithTimeout(ctx, time.Minute)
+			err = remote.WaitReady(readyCtx, alias)
+			cancel()
+			if err != nil {
+				return err
+			}
+		}
+		if !*dry && (needed || *restart) {
+			if err = remote.Authenticate(ctx, promptSteam, os.Stderr); err != nil {
+				return err
+			}
+		}
+	}
 	state, err := remote.State(alias)
 	if err != nil {
+		if action == "status" && *operation == "" && os.IsNotExist(err) {
+			var enrollment deploy.Enrollment
+			if readErr := remote.ReadJSON("enrollment.json", &enrollment); readErr == nil && enrollment.Version == deploy.Protocol && enrollment.Target == alias && deploy.ValidID(enrollment.ID) {
+				return emit(enrollment, *asJSON)
+			}
+		}
 		return err
+	}
+	if action == "restart" || (action == "rollback" && *restart) {
+		if err = remote.Authenticate(ctx, promptSteam, os.Stderr); err != nil {
+			return err
+		}
 	}
 	switch action {
 	case "doctor":
@@ -401,6 +470,13 @@ func run(args []string) error {
 	}
 	req := deploy.Request{Version: deploy.Protocol, ID: deploy.NewID(), Target: alias, Action: action, Deployment: *deployment, Restart: *restart}
 	if bundle != nil {
+		latest, err := deploy.Eligible(ctx, root)
+		if err != nil {
+			return declined{err}
+		}
+		if latest != bundle.Manifest.Commit {
+			return declined{errors.New("origin/main changed during enrollment/authentication; retry deployment")}
+		}
 		req.ID = bundle.Manifest.ID
 		req.PackageSHA256 = deploy.Digest(raw)
 	}
@@ -436,4 +512,18 @@ func run(args []string) error {
 		return fmt.Errorf("operation %s: %w", req.ID, waitErr)
 	}
 	return nil
+}
+
+func promptSteam(f deploy.AuthFrame) (string, error) {
+	switch f.Type {
+	case "password":
+		return deploy.ReadSecret("Steam password: ")
+	case "guard":
+		return deploy.ReadSecret("Steam Guard / two-factor code: ")
+	case "approval":
+		fmt.Fprintln(os.Stderr, "Approve the Steam sign-in request in your Steam mobile app.")
+	case "status":
+		fmt.Fprintln(os.Stderr, "Checking Steam authentication under the service identity...")
+	}
+	return "", nil
 }

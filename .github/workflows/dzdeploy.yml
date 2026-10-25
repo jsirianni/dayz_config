@@ -21,6 +21,15 @@ jobs:
       - run: go test ./...
       - run: go vet ./...
       - run: go build -o .tools/bin/ ./cmd/dzdeploy
+      - name: Test SSH bootstrap with mocked Windows facilities
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: .\scripts\test-bootstrap-windows.ps1
+      - run: go run ./cmd/dzdeploy-package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dzdeploy-${{ runner.os }}
+          path: .tools/packages/*.zip
   race-and-vulnerabilities:
     runs-on: ubuntu-latest
     steps:

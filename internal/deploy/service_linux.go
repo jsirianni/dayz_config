@@ -1,4 +1,4 @@
-//go:build !windows
+//go:build linux
 
 package deploy
 
@@ -17,12 +17,13 @@ type BootstrapOptions struct {
 	SSHSources    string
 	SSHPort       int
 	InstallSSH    bool
+	Virtual       bool
 }
 
 func Bootstrap(context.Context, BootstrapOptions) (map[string]string, error) {
 	return nil, errors.New("host bootstrap is Windows-only; copy the Windows build onto the host and run elevated")
 }
 func RunService(HostConfig, bool) error {
-	return errors.New("host agent is Windows-only; the client supports Windows, Linux and macOS")
+	return errors.New("host agent is Windows-only; the client supports Windows and Linux")
 }
 func ensureNoGame(string) error { return nil }

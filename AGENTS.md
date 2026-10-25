@@ -29,9 +29,12 @@ Do not commit downloaded tool binaries. The installer writes them under `.tools/
 
 Use the Go `dzdeploy` CLI; see `docs/deployment.md`. Build with `go build -o .tools/bin/ ./cmd/dzdeploy`. The Windows executable is `.tools/bin/dzdeploy.exe`.
 
+Only Windows and Linux clients are supported. Build/test/package those platforms; the host agent runs only on Windows.
+
 - Host configuration is `deploy.yaml` (ignored); `deploy.example.yaml` is its template. Do not commit populated configuration, keys, credentials, or binaries.
+- Fresh Windows servers use two provisioning steps: run `scripts/bootstrap-windows.ps1` as Administrator with the client public key and allowed source network, then `dzdeploy deploy <alias> [--restart]`. Deploy automatically enrolls the host and handles prerequisites/Steam prompts. Do not require manual account creation, SteamCMD login, mission copying, or a separate bootstrap command.
 - Deploy only when the user requests a named target: `nasdara`, `nasdara-staging`, or `deer-isle`. Editing/merging does not itself authorize deployment.
-- Run `dzdeploy doctor <alias>` and `dzdeploy deploy <alias> --dry-run`, inspect the result, then run `dzdeploy deploy <alias>`. Add `--restart` only if the user explicitly requests a restart.
+- For enrolled hosts, run `dzdeploy doctor <alias>` and `dzdeploy deploy <alias> --dry-run`, inspect the result, then run `dzdeploy deploy <alias>`. Fresh-host dry-runs preview automatic provisioning; doctor requires enrollment. Add `--restart` only if the user explicitly requests a restart.
 - Deployment requires clean `main` equal to freshly fetched `origin/main`. Do not bypass the gate, auto-commit, auto-merge, reset, or stash changes to make it pass.
 - Use `dzdeploy validate <alias|all>` for local validation. `--offline` explicitly uses cached dzcli for local checks; it is prohibited for deployment.
 - Main controls managed configuration, including server passwords and admin allowlists. Live drift is backed up and overwritten; only previously managed obsolete paths are deleted. Persistence and runtime credentials are excluded.

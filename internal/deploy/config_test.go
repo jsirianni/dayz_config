@@ -22,6 +22,9 @@ func TestYAMLTemplateAndRelativeKeyPaths(t *testing.T) {
 		if e.Host == nil || e.Host.Version != Protocol || e.Host.Target != alias {
 			t.Fatal("host identity not derived from YAML target key")
 		}
+		if err := e.Host.Validate(); err != nil {
+			t.Fatalf("Windows host config must also validate on Linux: %v", err)
+		}
 	}
 }
 func TestYAMLRejectsUnknownDuplicateAndMultipleDocuments(t *testing.T) {

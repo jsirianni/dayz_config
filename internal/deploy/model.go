@@ -13,6 +13,7 @@ import (
 	"io"
 	"net"
 	"os"
+	"path"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -162,6 +163,7 @@ type Endpoint struct {
 	KnownHosts       string      `json:"knownHosts" yaml:"known_hosts"`
 	RemoteDir        string      `json:"remoteDir" yaml:"remote_dir"`
 	PublicKeyFile    string      `json:"publicKeyFile,omitempty" yaml:"public_key_file,omitempty"`
+	AgentBinary      string      `json:"agentBinary,omitempty" yaml:"agent_binary,omitempty"`
 	SSHSources       []string    `json:"sshSources,omitempty" yaml:"ssh_sources,omitempty"`
 	Host             *HostConfig `json:"host,omitempty" yaml:"host,omitempty"`
 }
@@ -192,27 +194,31 @@ func (c *HostConfig) Validate() error {
 	if _, err := TargetFor(c.Target); err != nil {
 		return err
 	}
+	paths := make([]string, 0, 5)
 	for _, p := range []string{c.InstallDir, c.StateDir, c.SteamCMD, c.WorkshopDir, c.RConPasswordFile} {
-		if !filepath.IsAbs(p) {
-			return fmt.Errorf("host path must be absolute: %s", p)
+		clean, err := normalizedHostPath(p)
+		if err != nil {
+			return err
 		}
+		paths = append(paths, clean)
 	}
-	install, _ := filepath.Abs(c.InstallDir)
-	state, _ := filepath.Abs(c.StateDir)
-	if filepath.Dir(install) == install || filepath.Dir(state) == state {
+	install, state := paths[0], paths[1]
+	volumeRoot := func(p string) bool { return path.Dir(p) == p || (len(p) == 2 && p[1] == ':') }
+	if volumeRoot(install) || volumeRoot(state) {
 		return errors.New("installation and state directories must not be volume roots")
 	}
-	steamRoot := filepath.Dir(c.SteamCMD)
-	if filepath.Dir(steamRoot) == steamRoot || filepath.Dir(c.WorkshopDir) == c.WorkshopDir {
+	steamRoot := path.Dir(paths[2])
+	if volumeRoot(steamRoot) || volumeRoot(paths[3]) {
 		return errors.New("Steam/workshop directories must not be volume roots")
 	}
-	if within(install, state) || within(state, install) {
+	contains := func(root, p string) bool { return p == root || strings.HasPrefix(p, strings.TrimRight(root, "/")+"/") }
+	if contains(install, state) || contains(state, install) {
 		return errors.New("state directory and installation must not overlap")
 	}
 	if c.SteamUser == "" || c.RConAddress == "" || c.QueryAddress == "" {
 		return errors.New("steamUser, rconAddress and queryAddress are required")
 	}
-	if !within(state, c.RConPasswordFile) {
+	if !contains(state, paths[4]) {
 		return errors.New("RCon password file must be inside the protected state directory")
 	}
 	for _, address := range []string{c.RConAddress, c.QueryAddress} {
@@ -235,6 +241,20 @@ func (c *HostConfig) Validate() error {
 		return errors.New("timeouts must be positive")
 	}
 	return nil
+}
+
+func normalizedHostPath(p string) (string, error) {
+	if len(p) > 1 && p[1] == ':' {
+		win, err := WindowsPath(p)
+		if err != nil {
+			return "", err
+		}
+		return strings.ToLower(strings.ReplaceAll(win, "\\", "/")), nil
+	}
+	if !filepath.IsAbs(p) {
+		return "", fmt.Errorf("host path must be absolute: %s", p)
+	}
+	return filepath.ToSlash(filepath.Clean(p)), nil
 }
 func VersionError(v int) error {
 	return fmt.Errorf("protocol version %d is incompatible with %d; upgrade client and host agent together", v, Protocol)

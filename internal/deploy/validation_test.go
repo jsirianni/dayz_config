@@ -1,14 +1,40 @@
 package deploy
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestMain(m *testing.M) {
+	if os.Getenv("DZDEPLOY_ARGS_TEST_HELPER") == "1" {
+		fmt.Print(strings.Join(os.Args[1:], "|"))
+		os.Exit(0)
+	}
+	if os.Getenv("DZDEPLOY_STEAM_TEST_HELPER") == "1" {
+		input := bufio.NewReader(os.Stdin)
+		fmt.Fprint(os.Stdout, "Please enter your pass")
+		time.Sleep(10 * time.Millisecond)
+		fmt.Fprint(os.Stdout, "word: ")
+		pw, err := input.ReadString('\n')
+		if err != nil || pw != "private-password\n" {
+			os.Exit(4)
+		}
+		// Deliberately emulate unsafe vendor output: the broker must redact it.
+		fmt.Fprintln(os.Stdout, "echoed private-password")
+		fmt.Fprint(os.Stdout, "Enter the Steam Guard code from your email: ")
+		code, err := input.ReadString('\n')
+		if err != nil || code != "private-guard-code\n" {
+			os.Exit(5)
+		}
+		fmt.Fprintln(os.Stdout, "Logged in OK")
+		os.Exit(0)
+	}
 	if mode := os.Getenv("DZDEPLOY_TEST_VALIDATOR"); mode != "" {
 		switch mode {
 		case "fail":

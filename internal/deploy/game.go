@@ -109,6 +109,11 @@ func (g *NativeGame) Update(ctx context.Context, t Target) error {
 	if err := t.Validate(); err != nil {
 		return err
 	}
+	unlock, err := acquireSteam(ctx, g.Config)
+	if err != nil {
+		return err
+	}
+	defer unlock()
 	args := []string{"+force_install_dir", g.Config.InstallDir, "+login", g.Config.SteamUser, "+app_update", "223350"}
 	if t.ValidateServer {
 		args = append(args, "validate")
@@ -174,7 +179,10 @@ func (g *NativeGame) Update(ctx context.Context, t Target) error {
 			}
 		}
 	}
-	return nil
+	if err = g.ensureMission(ctx, t); err != nil {
+		return err
+	}
+	return setupRCon(g.Config)
 }
 
 // syncMod mirrors only a validated @mod destination, never mission or profiles data.

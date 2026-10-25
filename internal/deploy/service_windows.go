@@ -5,6 +5,8 @@ package deploy
 import (
 	"bufio"
 	"context"
+	"crypto/sha1"
+	"encoding/binary"
 	"errors"
 	"fmt"
 	"net/netip"
@@ -13,6 +15,7 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+	"unicode/utf16"
 	"unsafe"
 
 	"golang.org/x/crypto/ssh"
@@ -95,6 +98,7 @@ type BootstrapOptions struct {
 	SSHSources    string
 	SSHPort       int
 	InstallSSH    bool
+	Virtual       bool
 }
 
 func readServicePassword(env string) (string, error) {
@@ -141,10 +145,19 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	if !windows.GetCurrentProcessToken().IsElevated() {
 		return nil, errors.New("bootstrap must run from an elevated Windows terminal")
 	}
+	if opt.Virtual {
+		opt.Account = `NT SERVICE\` + ServiceName(c.Target)
+	}
 	if opt.Account == "" {
 		return nil, errors.New("--account must name an existing non-administrator local/domain account")
 	}
-	sid, _, _, err := windows.LookupSID("", opt.Account)
+	var sid *windows.SID
+	var err error
+	if opt.Virtual {
+		sid, err = virtualServiceSID(ServiceName(c.Target))
+	} else {
+		sid, _, _, err = windows.LookupSID("", opt.Account)
+	}
 	if err != nil {
 		return nil, fmt.Errorf("service account must already exist: %w", err)
 	}
@@ -169,12 +182,15 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	} else if !errors.Is(openErr, windows.ERROR_SERVICE_DOES_NOT_EXIST) {
 		return nil, openErr
 	}
-	password, err := readServicePassword(opt.PasswordEnv)
-	if err != nil {
-		return nil, err
-	}
-	if err = grantServiceLogon(sid); err != nil {
-		return nil, err
+	password := ""
+	if !opt.Virtual {
+		password, err = readServicePassword(opt.PasswordEnv)
+		if err != nil {
+			return nil, err
+		}
+		if err = grantServiceLogon(sid); err != nil {
+			return nil, err
+		}
 	}
 	for _, p := range []string{c.StateDir, c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
 		if err = os.MkdirAll(p, 0700); err != nil {
@@ -191,7 +207,15 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 			return nil, err
 		}
 	}
+	if opt.Virtual {
+		if err = adminCommand(ctx, "icacls.exe", filepath.Dir(c.SteamCMD), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+			return nil, err
+		}
+	}
 	if err = setupRCon(c); err != nil {
+		return nil, err
+	}
+	if err = adminCommand(ctx, "icacls.exe", filepath.Join(c.InstallDir, "battleye"), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
 		return nil, err
 	}
 	for _, suffix := range []string{"", ".dzdeploy-backup"} {
@@ -230,6 +254,10 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		}
 	}
 	config := mgr.Config{StartType: mgr.StartAutomatic, ErrorControl: mgr.ErrorNormal, ServiceStartName: opt.Account, Password: password, DisplayName: "DayZ Deploy: " + c.Target, Description: "DayZ configuration deployments and supervised startup", Dependencies: []string{"Tcpip"}}
+	if opt.Virtual {
+		config.SidType = windows.SERVICE_SID_TYPE_UNRESTRICTED
+		config.DelayedAutoStart = true
+	}
 	var service *mgr.Service
 	if existing != nil {
 		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
@@ -277,6 +305,20 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		return nil, err
 	}
 	return info, nil
+}
+
+func virtualServiceSID(name string) (*windows.SID, error) {
+	encoded := utf16.Encode([]rune(strings.ToUpper(name)))
+	raw := make([]byte, len(encoded)*2)
+	for i, c := range encoded {
+		binary.LittleEndian.PutUint16(raw[i*2:], c)
+	}
+	hash := sha1.Sum(raw) // Windows service-SID algorithm, not a security signature.
+	s := "S-1-5-80"
+	for i := 0; i < 5; i++ {
+		s += fmt.Sprintf("-%d", binary.LittleEndian.Uint32(hash[i*4:]))
+	}
+	return windows.StringToSid(s)
 }
 
 func grantServiceLogon(sid *windows.SID) error {

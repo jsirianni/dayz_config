@@ -20,7 +20,7 @@ stock Nasdara mission.
 | Public hostname | `First Light | Badlands Nasdara | us-east1` |
 | Mission template | `dayzOffline.nasdara` |
 | Game port | `2301` (`-port=2301`, matching Frostline) |
-| Steam query port | Unspecified, matching Frostline; runtime/default value unverified |
+| Steam query port | `27017` (`steamQueryPort = 27017`), applied on the next managed restart |
 | RCon port | Unspecified, matching Frostline; runtime/default value unverified |
 | Maximum players | 60 |
 | Player view | First person; crosshair disabled |

@@ -7,6 +7,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
+	"io"
 	"net"
 	"os"
 	"path/filepath"
@@ -21,6 +22,9 @@ import (
 )
 
 func sshFixture(t *testing.T) (Endpoint, string) {
+	return sshExecFixture(t, nil)
+}
+func sshExecFixture(t *testing.T, execute func(string, io.Reader, io.Writer) error) (Endpoint, string) {
 	t.Helper()
 	root := t.TempDir()
 	_, clientKey, err := ed25519.GenerateKey(rand.Reader)
@@ -95,6 +99,17 @@ func sshFixture(t *testing.T) (Endpoint, string) {
 						defer wg.Done()
 						defer channel.Close()
 						for req := range requests {
+							if req.Type == "exec" && execute != nil {
+								var command struct{ Value string }
+								_ = ssh.Unmarshal(req.Payload, &command)
+								_ = req.Reply(true, nil)
+								var code uint32
+								if execute(command.Value, channel, channel) != nil {
+									code = 1
+								}
+								_, _ = channel.SendRequest("exit-status", false, ssh.Marshal(struct{ Code uint32 }{code}))
+								return
+							}
 							if req.Type != "subsystem" {
 								_ = req.Reply(false, nil)
 								continue

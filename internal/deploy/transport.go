@@ -18,7 +18,6 @@ import (
 	"github.com/pkg/sftp"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/agent"
-	"golang.org/x/crypto/ssh/knownhosts"
 )
 
 type Remote struct {
@@ -30,13 +29,20 @@ type Remote struct {
 }
 
 func Connect(ctx context.Context, e Endpoint) (*Remote, error) {
+	return ConnectPinned(ctx, e, "", false)
+}
+
+// ConnectPinned permits initial enrollment only when the supplied fingerprint
+// matches. Existing known-host entries always take precedence over a new pin.
+// A dry-run can verify a pin without writing known_hosts.
+func ConnectPinned(ctx context.Context, e Endpoint, fingerprint string, persist bool) (*Remote, error) {
 	if e.User == "" || e.KnownHosts == "" || !strings.HasPrefix(e.RemoteDir, "/") || strings.Contains(e.RemoteDir, "..") {
 		return nil, errors.New("endpoint requires user, knownHosts and absolute SFTP remoteDir")
 	}
 	if _, _, err := net.SplitHostPort(e.Address); err != nil {
 		return nil, fmt.Errorf("address must include SSH port: %w", err)
 	}
-	verify, err := knownhosts.New(e.KnownHosts)
+	verify, err := hostVerifier(e.KnownHosts, fingerprint, persist)
 	if err != nil {
 		return nil, fmt.Errorf("load pinned host keys: %w", err)
 	}
@@ -75,7 +81,11 @@ func Connect(ctx context.Context, e Endpoint) (*Remote, error) {
 		return nil, err
 	}
 	_ = conn.SetDeadline(time.Now().Add(15 * time.Second))
-	cc, ch, req, err := ssh.NewClientConn(conn, e.Address, &ssh.ClientConfig{User: e.User, Auth: auth, HostKeyCallback: verify})
+	clientConfig := &ssh.ClientConfig{User: e.User, Auth: auth, HostKeyCallback: verify}
+	if fingerprint != "" {
+		clientConfig.HostKeyAlgorithms = []string{ssh.KeyAlgoED25519}
+	}
+	cc, ch, req, err := ssh.NewClientConn(conn, e.Address, clientConfig)
 	if err != nil {
 		conn.Close()
 		r.Close()
@@ -157,6 +167,9 @@ func (r *Remote) Ready(alias string) (State, error) {
 func (r *Remote) put(rel string, raw []byte, verify bool) error {
 	dest := r.remote(rel)
 	tmp := dest + ".upload-" + NewID()
+	if err := r.rejectRemoteLinks(path.Dir(dest)); err != nil {
+		return err
+	}
 	if err := r.SFTP.MkdirAll(path.Dir(dest)); err != nil {
 		return err
 	}
@@ -189,6 +202,31 @@ func (r *Remote) put(rel string, raw []byte, verify bool) error {
 		}
 	}
 	return r.SFTP.Rename(tmp, dest)
+}
+
+func (r *Remote) rejectRemoteLinks(root string) error {
+	prefix := "/"
+	for _, part := range strings.Split(path.Clean(root), "/") {
+		if part == "" {
+			continue
+		}
+		if len(part) == 2 && part[1] == ':' {
+			prefix = "/" + part + "/"
+		} else {
+			prefix = path.Join(prefix, part)
+		}
+		fi, err := r.SFTP.Lstat(prefix)
+		if os.IsNotExist(err) {
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+		if fi.Mode()&os.ModeSymlink != 0 || !fi.IsDir() {
+			return fmt.Errorf("remote upload ancestor is a link or not a directory: %s", prefix)
+		}
+	}
+	return nil
 }
 func (r *Remote) Submit(req Request, raw []byte) error {
 	if req.Version != Protocol || !ValidID(req.ID) {
@@ -252,13 +290,14 @@ func (r *Remote) Wait(ctx context.Context, id string, progress func(Result)) (Re
 }
 
 type Preview struct {
-	Target   string   `json:"target"`
-	Commit   string   `json:"commit"`
-	Add      []string `json:"add"`
-	Replace  []string `json:"replace"`
-	Delete   []string `json:"delete"`
-	Restart  bool     `json:"restart"`
-	Warnings int      `json:"warnings"`
+	Provision bool     `json:"provision,omitempty"`
+	Target    string   `json:"target"`
+	Commit    string   `json:"commit"`
+	Add       []string `json:"add"`
+	Replace   []string `json:"replace"`
+	Delete    []string `json:"delete"`
+	Restart   bool     `json:"restart"`
+	Warnings  int      `json:"warnings"`
 }
 
 func (r *Remote) Preview(b *Bundle, restart bool) (Preview, error) {

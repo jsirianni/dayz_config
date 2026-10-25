@@ -6,45 +6,55 @@
 go build -o .tools/bin/ ./cmd/dzdeploy
 ```
 
-Windows produces `.tools/bin/dzdeploy.exe`; Linux/macOS produce `.tools/bin/dzdeploy`. Add the directory to PATH or use its full path. The module selects Go 1.27.3. Go is not needed to run the compiled executable. Git is required on the client; SteamCMD and DayZ are required on each Windows host.
+Windows produces `.tools/bin/dzdeploy.exe`; Linux produces `.tools/bin/dzdeploy`. These are the only supported client platforms. Add the directory to PATH or use its full path. The module selects Go 1.27.3. Go is not needed to run the compiled executable. Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
+
+For a portable distribution containing the client, Windows host companion, SSH script, example YAML, and checksums, run `go run ./cmd/dzdeploy-package`. `--os windows|linux --arch amd64|arm64` selects the client platform. CI publishes Windows/Linux ZIP artifacts. Keep `agents/windows-amd64/dzdeploy.exe` beside the extracted Linux client; Windows amd64 clients upload their own executable. Source builds can select another companion through YAML's optional `agent_binary` path.
 
 `deploy.yaml` is the single user-maintained configuration file. A local placeholder copy is provided; fresh clones should copy `deploy.example.yaml` to `deploy.yaml`. Both that populated file and `.deploy/` are ignored by Git. Fill the three host addresses, SSH sources, paths, Steam account names, and verified listener ports. Unknown fields, duplicate keys, multiple documents, and unsupported aliases/versions are rejected.
 
 | Alias | Source under servers/current | Game port | Query port |
 | --- | --- | ---: | --- |
 | `nasdara-staging` | `first-light-badlands-nasdara-staging-us-east` | 2901 | 27018 |
-| `nasdara` | `first-light-badlands-nasdara-us-east` | 2301 | Discover on host |
+| `nasdara` | `first-light-badlands-nasdara-us-east` | 2301 | 27017 |
 | `deer-isle` | `first-light-deer-isle-expansion-us-east1` | 4801 | 27019 |
 
-Nasdara has no explicit query port in Git; discover its actual listener rather than deriving it from the game port. Example RCon ports are configurable choices. Give instances on the same machine separate installations/state directories and nonconflicting ports.
+Query ports are explicit in tracked configuration. Existing Nasdara deployments now use 27017 on the next managed restart; update the local YAML to match. Example RCon ports are configurable choices. Give instances on the same machine separate installations/state directories and nonconflicting ports.
 
 SSH key paths are relative to YAML. Omit `key_file` to use Windows OpenSSH's agent or Unix `SSH_AUTH_SOCK`. Encrypted key files can use `key_passphrase_env: VARIABLE_NAME`. Keep private keys and passwords out of YAML. Git's `serverDZ.cfg` is copied exactly, including its existing game password values.
 
-The nested `host` settings are used by bootstrap; no second user-maintained file is needed. Bootstrap writes private machine-readable `host.json` for the service. Launcher mods/order/game ports remain tracked in `internal/deploy/targets.json` and are packaged from the deployment commit.
+The nested `host` settings drive automatic enrollment; no second user-maintained file is needed. Enrollment writes private machine-readable `host.json` for the service. Launcher mods/order/game ports remain tracked in `internal/deploy/targets.json` and are packaged from the deployment commit. `remote_dir` must be the SFTP spelling of `host.state_dir`, such as `/C:/ProgramData/DayZDeploy/nasdara-staging`.
 
-## One-time setup, staging first
+## Two-step provisioning, staging first
 
-In the trusted RDP/admin session:
+Have the client SSH key and populated local `deploy.yaml` available. The host must have internet access for Windows features, vendor installers, Steam, and the pinned stock mission source. Steam authentication requires an account entitled to the configured downloads. Keep the private SSH key on the client.
 
-1. Back up the installation/persistence and stop DayZ and its old console manager. Bootstrap refuses a detected game process. Do not leave another supervisor running.
-2. Create an ordinary Windows account, such as `dayz-deploy`, with a nonempty password. Do not add it to Administrators. Bootstrap grants service logon and file access; it does not create/elevate the account.
-3. Run SteamCMD interactively as that Windows account and authenticate the YAML Steam user, completing Steam Guard. This establishes its cached login. Provision SteamCMD and a complete stock mission before the first managed launch.
-4. Copy the Windows executable, populated `deploy.yaml`, and the public SSH key onto the host. Keep the configured relative public-key path valid or override `--public-key`. Do not copy the private key.
-5. From an elevated Command Prompt in that folder:
+**Step 1 — on the fresh server**, copy only `bootstrap-windows.ps1` and the client public key, then run in an elevated Windows PowerShell terminal:
 
-```text
-dzdeploy.exe bootstrap nasdara-staging --setup-ssh
+```powershell
+.\bootstrap-windows.ps1 -PublicKeyPath .\id_ed25519.pub -AllowedSource '203.0.113.10/32'
 ```
 
-The account defaults to YAML's `user` as a local account. `--account DOMAIN\user` selects another existing account. The password prompt hides input; `--password-env NAME` supports controlled unattended setup without a password argument. SSH port, allowed source IPs/CIDRs, public key, and host paths come from YAML.
+`-UserName` defaults to the existing enabled local `Administrator`; `-SshPort` defaults to 22. `-AllowedSource` accepts explicit IPv4/IPv6 addresses or CIDRs, including multiple entries. Use the same username/port in client YAML. `-WhatIf` previews setup without changes. Built-in Windows PowerShell 5.1 is sufficient; no modules, Go executable, repository, or game installation are needed on the host.
 
-Bootstrap uses native Windows facilities to install OpenSSH if needed, validate/configure key-only SFTP access for the account, scope a firewall rule, and start SSH automatically. It disables the standard broad OpenSSH installation rule; unrelated host/network firewall rules remain under host administration.
+The script installs OpenSSH when absent, preserves host keys and existing authorized keys, configures key-only SSH command execution and SFTP, and scopes a firewall rule to the supplied sources. It disables the default broad OpenSSH rule, validates `sshd_config`, starts SSH automatically, and restores configuration/keys/firewall/service settings on setup failure. Backups remain in protected `%ProgramData%\ssh\dzdeploy-backup-*` folders. Windows servicing failures are reported without altering update policy or forcing a reboot.
 
-It protects instance storage, grants installation/Steam directory access, configures loopback-only RCon, and installs automatic service `dzdeploy-<alias>`. Service recovery restarts a failed agent. The initial service stays idle until a deployment explicitly requests restart. The batch entry points now start/delegate to that service, without a second restart loop.
+**Step 2 — on the client**, run:
 
-Bootstrap prints the Ed25519 SSH host fingerprint. On the client, collect the public host key using the trusted session, or use `ssh-keyscan -t ed25519 -p 22 HOST` to obtain a candidate. Compare its SHA-256 fingerprint (`ssh-keygen -lf candidate_file -E sha256`) against trusted bootstrap output before saving the matching key line in YAML's `known_hosts`. Use `[HOST]:PORT` for nonstandard ports. Keyscan alone does not authenticate the host; unknown/changed keys are rejected.
+```text
+dzdeploy deploy nasdara-staging --restart
+```
 
-For upgrade/reconfiguration, stop the service first with `sc.exe stop dzdeploy-nasdara-staging`, wait for clean shutdown, then rerun bootstrap using the new binary/YAML. Existing storage and service registration are reused; running-service reconfiguration is declined.
+On first connection, paste the trusted SHA256 fingerprint printed by the script when prompted. Alternatively supply it as `--host-key SHA256:...` on this same command. The client verifies the fingerprint before enrollment and saves the matching key in `known_hosts`. Existing mismatched keys are always rejected; `--host-key` cannot overwrite established trust. No manual keyscan or known-host editing is required.
+
+The first deploy uploads and read-back verifies its Windows agent, installs SteamCMD and signed Microsoft Visual C++ prerequisites, creates protected directories, sets up loopback RCon/game firewall rules, and installs service `dzdeploy-<alias>`. The service uses `NT SERVICE\dzdeploy-<alias>`, a password-free Windows virtual account. SteamCMD authentication runs under that identity: any password, Steam Guard code, or mobile approval is requested inside the client command. Secrets travel through SSH and a restricted local named pipe; answers never enter command arguments, YAML, persistent results, or logs. Steam's cached login is protected in the SteamCMD directory and reused.
+
+The service downloads DayZ/mods, supplies the complete mission, reapplies the repository overlays, and launches only when `--restart` was supplied. Missing Nasdara stock missions come from official Central Economy commit `f220b2918b1d79a5055b1ee9be70c0ec1516e876`; existing stock files are preserved. Deer Isle's complete tracked mission is deployed to its installed location. No manual SteamCMD login, account creation, host binary copy, mission copy, or extra bootstrap command is required.
+
+Without `--restart`, initial provisioning and configuration copying complete with DayZ stopped and activation pending. A first `--dry-run` reports planned provisioning without uploading or installing anything. Initial Steam prompts complete before `--no-wait` can return a submitted operation. During later `deploy --restart`, authentication is checked before stopping the game.
+
+Enrollment progress is recorded in protected `enrollment.json`; `status` can report it even before the service has created deployment state. If setup or its SSH connection fails, rerun the deploy command to resume. Existing healthy deployments are reused; corrupt/inaccessible/foreign state is an error, never permission to initialize over it. Queued deployment operations continue independently of SSH once submitted. Keep their operation IDs and inspect status after disconnecting.
+
+The previous local `dzdeploy bootstrap` command remains available for existing account-based installations and explicit upgrades. It is not part of fresh-server provisioning. Old non-admin SFTP endpoints continue to work for already enrolled hosts.
 
 ## Routine commands
 
@@ -59,11 +69,11 @@ dzdeploy restart nasdara-staging
 dzdeploy rollback nasdara-staging --deployment RETAINED_ID --restart
 ```
 
-Doctor checks pinned SSH, SFTP, host/target/protocol identity, agent heartbeat, and Git eligibility. Synchronize host/client clocks; heartbeats older than 15 seconds fail.
+Doctor checks an enrolled host's pinned SSH, SFTP, target/protocol identity, agent heartbeat, and Git eligibility. It is optional after provisioning. Synchronize host/client clocks; heartbeats older than 15 seconds fail.
 
 Deployment fetches `origin/main` and requires clean main equal to that revision, including no untracked non-ignored files. It never commits, merges, switches branches, stashes, resets, or pulls for you. Packages contain exact committed bytes and launcher settings, with a second Git check after validation. Merging alone never deploys.
 
-Dry-run validates locally and reads remote file hashes/state, listing additions, replacements, and removals. It creates no remote packages, requests, backups, or live-file changes. It requires an eligible source checkout.
+Dry-run validates locally and reads remote file hashes/state, listing additions, replacements, and removals. Fresh-host previews also report provisioning. It creates no remote packages, requests, backups, installations, or live-file changes, and never persists a new host key. It requires an eligible source checkout.
 
 Packages are uploaded/read-back verified before a request is atomically published. The host independently verifies them, serializes operations, preflights paths/disk/write access, backs up actual preimages, journals changes, applies files, deletes obsolete owned paths, and verifies hashes. Main overwrites live drift after backup. Atomic replacement applies per file; copying while running cannot provide an atomic switch across all configuration files.
 
@@ -98,6 +108,8 @@ go vet ./...
 go run golang.org/x/vuln/cmd/govulncheck@latest ./...
 ```
 
-The Go installer verifies release SHA-256 digests. For macOS without an upstream binary asset, initial installation builds the released checksum-verified Go module; Go or a preinstalled native `.tools/dzcli/dzcli` is required for that step. Runtime validation invokes the binary directly. `--offline` is local-validation-only; deployments check the release. Missing/failed validators or unexpected help block deployment; warnings are reported.
+The Go installer downloads the Windows/Linux release and verifies its SHA-256 digest. Runtime validation invokes the binary directly. `--offline` is local-validation-only; deployments check the release. Missing/failed validators or unexpected help block deployment; warnings are reported.
 
-Baseline: 13 checks, no failures, three existing Deer Isle economy warnings. Local validation does not establish runtime behavior. Live rollout is deferred until YAML is populated. On staging verify copy-only PID preservation, clean restart/persistence, update/overlay ordering, managed deletion with stock/player data preserved, rollback, disconnect recovery, reboot startup without RDP, password-free VPP for allowlisted admins, and denial for unauthorized players. Then enroll each other host separately.
+Run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-bootstrap-windows.ps1` for the mocked bootstrap suite; it changes only an isolated temporary directory. CI runs it using Windows PowerShell, without provisioning the runner. `go run ./cmd/dzdeploy-package` verifies portable distribution builds. Optional `DZDEPLOY_CHECK_VENDOR_DOWNLOADS=1` Go tests verify actual vendor download signatures without executing installers.
+
+Baseline: 13 checks, no failures, three existing Deer Isle economy warnings. Local validation does not establish runtime behavior. Live rollout is deferred until YAML is populated. On a fresh staging VM verify that the script and one deploy command are sufficient, including in-command Steam prompts. Then verify copy-only PID preservation, clean restart/persistence, update/overlay ordering, managed deletion with stock/player data preserved, rollback, interrupted enrollment/SSH recovery, reboot startup without RDP, password-free VPP for allowlisted admins, and denial for unauthorized players. Then enroll each other host separately.
