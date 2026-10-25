@@ -1,0 +1,43 @@
+{
+  "nasdara": {
+    "folder": "first-light-badlands-nasdara-us-east",
+    "mission": "dayzOffline.nasdara", "gamePort": 2301, "queryPort": 27017,
+    "validateServer": true,
+    "mods": [
+      {"id":"1559212036","folder":"@CF"},
+      {"id":"1828439124","folder":"@VPPAdminTools"}
+    ]
+  },
+  "nasdara-staging": {
+    "folder": "first-light-badlands-nasdara-staging-us-east",
+    "mission": "dayzOffline.nasdara", "gamePort": 2901, "queryPort": 27018,
+    "validateServer": false,
+    "mods": [
+      {"id":"1559212036","folder":"@CF"},
+      {"id":"1828439124","folder":"@VPPAdminTools"},
+      {"id":"2545327648","folder":"@DabsFramework"},
+      {"id":"2291785308","folder":"@DayZ-Expansion-Core"},
+      {"id":"2792982069","folder":"@DayZ-Expansion-AI"}
+    ]
+  },
+  "deer-isle": {
+    "folder": "first-light-deer-isle-expansion-us-east1",
+    "mission": "empty.deerisle", "gamePort": 4801, "queryPort": 27019,
+    "validateServer": true,
+    "mods": [
+      {"id":"1559212036","folder":"@CF"},
+      {"id":"1602372402","folder":"@DeerIsle"},
+      {"id":"1828439124","folder":"@VPPAdminTools"},
+      {"id":"2122332595","folder":"@Vehicle3PP"},
+      {"id":"2545327648","folder":"@DabsFramework"},
+      {"id":"2291785308","folder":"@DayZ-Expansion-Core"},
+      {"id":"2792982069","folder":"@DayZ-Expansion-AI"},
+      {"id":"2792982513","folder":"@DayZ-Expansion-BaseBuilding"},
+      {"id":"2116157322","folder":"@DayZ-Expansion-Licensed"},
+      {"id":"3649957186","folder":"@TerjeCore"},
+      {"id":"3649957536","folder":"@TerjeMedicine"},
+      {"id":"3649958397","folder":"@TerjeSkills"},
+      {"id":"3369325490","folder":"@4KBOSSKVehicles"}
+    ]
+  }
+}

@@ -1,16 +1,15 @@
-ALL_MODULES := $(shell find . -type f -name "go.mod" -exec dirname {} \; | sort )
+.PHONY: build check
+build:
+	go build -o .tools/bin/ ./cmd/dzdeploy
+
+check:
+	go vet ./...
+	go test ./...
 
 .PHONY: test
 test:
-	$(MAKE) for-all CMD="go test ./..."
+	go test ./...
 
 .PHONY: tidy
 tidy:
-	$(MAKE) for-all CMD="rm -fr go.sum"
-	$(MAKE) for-all CMD="go mod tidy"
-
-.PHONY: for-all
-for-all:
-	@set -e; for dir in $(ALL_MODULES); do \
-	  (cd "$${dir}" && $${CMD} ); \
-	done
+	go mod tidy

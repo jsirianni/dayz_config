@@ -13,6 +13,19 @@ Use `dzcli` before manual edits whenever the task touches supported DayZ configu
 
 From the repository root, install or update the repo-local binary before using `dzcli`:
 
+Preferred Go workflow (no PowerShell dependency):
+
+```text
+go run ./cmd/dzdeploy tools install
+go run ./cmd/dzdeploy validate all
+```
+
+Use `validate <alias>` for `nasdara`, `nasdara-staging`, or `deer-isle`. For local checks when release checking is unavailable, `validate <alias|all> --offline` explicitly uses cached dzcli; deployment never permits it. The Go validator discovers matching checks, reports warnings, and exits nonzero on failures or missing validators. It never edits configs.
+
+The supported client platforms are Windows and Linux. The executable is `.tools/dzcli/dzcli.exe` on Windows and `.tools/dzcli/dzcli` on Linux. Invoke it directly for get/mutations, dry-run previews, and matching post-change validation. The Go installer checks the release and verifies its SHA-256 digest.
+
+The legacy PowerShell workflow also remains supported:
+
 ```powershell
 .\skills\dzcli\scripts\install-dzcli.ps1
 $dz = Join-Path (Get-Location) ".tools\dzcli\dzcli.exe"
