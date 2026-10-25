@@ -1,0 +1,15 @@
+test_alternative_ammunition_is_not_summed_as_guaranteed_inventory (test_ai_loadouts.SelectionTests.test_alternative_ammunition_is_not_summed_as_guaranteed_inventory) ... ok
+test_correlated_uniforms_do_not_cross_mix (test_ai_loadouts.SelectionTests.test_correlated_uniforms_do_not_cross_mix) ... ok
+test_empty_ticket_represents_absence (test_ai_loadouts.SelectionTests.test_empty_ticket_represents_absence) ... ok
+test_fractional_eligibility_cannot_be_misread_as_weight (test_ai_loadouts.SelectionTests.test_fractional_eligibility_cannot_be_misread_as_weight) ... ok
+test_independent_groups_cannot_own_the_same_slot (test_ai_loadouts.SelectionTests.test_independent_groups_cannot_own_the_same_slot) ... ok
+test_independent_slots_multiply_visible_combinations (test_ai_loadouts.SelectionTests.test_independent_slots_multiply_visible_combinations) ... ok
+test_indirect_include_cycle_is_rejected (test_ai_loadouts.SelectionTests.test_indirect_include_cycle_is_rejected) ... ok
+test_missing_include_is_rejected (test_ai_loadouts.SelectionTests.test_missing_include_is_rejected) ... ok
+test_repeated_attachment_candidates_have_exact_odds (test_ai_loadouts.SelectionTests.test_repeated_attachment_candidates_have_exact_odds) ... ok
+test_repeated_tickets_weight_includes_without_duplicate_equipment (test_ai_loadouts.SelectionTests.test_repeated_tickets_weight_includes_without_duplicate_equipment) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK

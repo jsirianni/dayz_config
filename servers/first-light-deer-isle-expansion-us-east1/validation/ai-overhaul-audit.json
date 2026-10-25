@@ -1,0 +1,1076 @@
+{
+  "Result": "PASS",
+  "Verification": "Static configuration and source-data audit; no game or live server launched",
+  "PatrolDefinitions": 84,
+  "CoordinateDefinitions": 43,
+  "ObjectDefinitions": 41,
+  "AILoadoutFiles": 39,
+  "RoleSelectors": 7,
+  "AIArchetypes": 32,
+  "PreservedPlayerLoadouts": 3,
+  "RemovedLegacyAILoadouts": 24,
+  "MaximumActivePatrols": 33,
+  "MaximumLivingAI": 60,
+  "Roles": [
+    {
+      "Role": "Civilian",
+      "Definitions": 43,
+      "GroupSize": 1,
+      "PatrolCap": 6,
+      "LivingAICap": 6,
+      "Accuracy": [
+        0.03,
+        0.15
+      ]
+    },
+    {
+      "Role": "PoliceStation",
+      "Definitions": 4,
+      "GroupSize": 2,
+      "PatrolCap": 3,
+      "LivingAICap": 6,
+      "Accuracy": [
+        0.08,
+        0.25
+      ]
+    },
+    {
+      "Role": "PoliceCar",
+      "Definitions": 2,
+      "GroupSize": 2,
+      "PatrolCap": 1,
+      "LivingAICap": 2,
+      "Accuracy": [
+        0.08,
+        0.25
+      ]
+    },
+    {
+      "Role": "Firefighter",
+      "Definitions": 1,
+      "GroupSize": 2,
+      "PatrolCap": 3,
+      "LivingAICap": 6,
+      "Accuracy": [
+        0.03,
+        0.15
+      ]
+    },
+    {
+      "Role": "Doctor",
+      "Definitions": 3,
+      "GroupSize": 1,
+      "PatrolCap": 3,
+      "LivingAICap": 3,
+      "Accuracy": [
+        0.03,
+        0.15
+      ]
+    },
+    {
+      "Role": "Medic",
+      "Definitions": 2,
+      "GroupSize": 1,
+      "PatrolCap": 3,
+      "LivingAICap": 3,
+      "Accuracy": [
+        0.03,
+        0.15
+      ]
+    },
+    {
+      "Role": "NATO",
+      "Definitions": 23,
+      "GroupSize": 3,
+      "PatrolCap": 6,
+      "LivingAICap": 18,
+      "Accuracy": [
+        0.1,
+        0.35
+      ]
+    },
+    {
+      "Role": "Militia",
+      "Definitions": 6,
+      "GroupSize": 2,
+      "PatrolCap": 8,
+      "LivingAICap": 16,
+      "Accuracy": [
+        0.05,
+        0.2
+      ]
+    }
+  ],
+  "WeaponCases": [
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "Glock19",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Glock_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "CZ75",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ75_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "Glock19",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Glock_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "CZ75",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ75_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "FNX45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_FNX45_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "M16A2",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "FAMAS",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_FAMAS_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "M16A2",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "FAMAS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_FAMAS_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_TeamLeader",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M68Optic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "ReflexOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_TeamLeader",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M68Optic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "ReflexOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Marksman",
+      "Weapon": "FAL",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_FAL_20Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "ACOGOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Marksman",
+      "Weapon": "M14",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_M14_20Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "ACOGOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "CZ527",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ527_5rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "Winchester70",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_308Win",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh18",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh18Shotgun",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh43Shotgun",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Repeater",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_357",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Ruger1022",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Ruger1022_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Izh18Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "CZ527",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ527_5rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "SKS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "SKS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    }
+  ],
+  "InventoryClassesInEconomyCatalogs": 232,
+  "LoadoutVariety": {
+    "AIFileCount": 39,
+    "RoleSelectors": 7,
+    "Archetypes": 32,
+    "ReachableAIFileCount": 39,
+    "InventoryClassCount": 232,
+    "Roles": [
+      {
+        "Role": "Civilian",
+        "Archetypes": {
+          "Resident": 0.25,
+          "Worker": 0.2,
+          "Commuter": 0.2,
+          "Hiker": 0.15,
+          "Traveller": 0.1,
+          "Forager": 0.1
+        },
+        "VisibleCombinationsLowerBound": 56520,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {},
+        "BagProbabilities": {
+          "None": {
+            "Fraction": "1/2",
+            "Probability": 0.5
+          },
+          "Slingbag_Black": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          },
+          "Slingbag_Brown": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          },
+          "Slingbag_Gray": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          },
+          "TaloonBag_Blue": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          },
+          "TaloonBag_Green": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 1
+        }
+      },
+      {
+        "Role": "Police",
+        "Archetypes": {
+          "Patrol": 0.45,
+          "Station": 0.25,
+          "Traffic": 0.2,
+          "Response": 0.1
+        },
+        "VisibleCombinationsLowerBound": 918,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {
+          "CZ75": {
+            "Fraction": "13/60",
+            "Probability": 0.216666667
+          },
+          "FNX45": {
+            "Fraction": "1/15",
+            "Probability": 0.066666667
+          },
+          "Glock19": {
+            "Fraction": "13/60",
+            "Probability": 0.216666667
+          },
+          "MP5K": {
+            "Fraction": "4/15",
+            "Probability": 0.266666667
+          },
+          "Mp133Shotgun": {
+            "Fraction": "7/60",
+            "Probability": 0.116666667
+          },
+          "UMP45": {
+            "Fraction": "7/60",
+            "Probability": 0.116666667
+          }
+        },
+        "BagProbabilities": {
+          "DuffelBagSmall_Green": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "None": {
+            "Fraction": "7/10",
+            "Probability": 0.7
+          },
+          "Slingbag_Black": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 1,
+          "Battery9V": 1,
+          "PoliceVest": 1,
+          "StunBaton": 1
+        }
+      },
+      {
+        "Role": "Firefighter",
+        "Archetypes": {
+          "FireCrew": 0.5,
+          "RescueCrew": 0.35,
+          "StationCrew": 0.15
+        },
+        "VisibleCombinationsLowerBound": 1260,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {},
+        "BagProbabilities": {
+          "DrysackBag_Orange": {
+            "Fraction": "1/5",
+            "Probability": 0.2
+          },
+          "DuffelBagSmall_Green": {
+            "Fraction": "1/5",
+            "Probability": 0.2
+          },
+          "None": {
+            "Fraction": "3/5",
+            "Probability": 0.6
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 1,
+          "ReflexVest": 1
+        }
+      },
+      {
+        "Role": "Medic",
+        "Archetypes": {
+          "Ambulance": 0.4,
+          "Trauma": 0.25,
+          "Field": 0.2,
+          "Supply": 0.15
+        },
+        "VisibleCombinationsLowerBound": 144,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {},
+        "BagProbabilities": {
+          "CanvasBag_Medical": {
+            "Fraction": "1/2",
+            "Probability": 0.5
+          },
+          "DuffelBagSmall_Medical": {
+            "Fraction": "1/2",
+            "Probability": 0.5
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 2,
+          "SalineBagIV": 1,
+          "TerjeBandageHemostatic": 1
+        }
+      },
+      {
+        "Role": "Doctor",
+        "Archetypes": {
+          "General": 0.4,
+          "Emergency": 0.3,
+          "Surgeon": 0.2,
+          "Clinic": 0.1
+        },
+        "VisibleCombinationsLowerBound": 72,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {},
+        "BagProbabilities": {
+          "CanvasBag_Medical": {
+            "Fraction": "1/2",
+            "Probability": 0.5
+          },
+          "DuffelBagSmall_Medical": {
+            "Fraction": "1/2",
+            "Probability": 0.5
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 2,
+          "HipPack_Medical": 1,
+          "SalineBagIV": 1,
+          "SurgicalMask": 1,
+          "TerjeAmpouleFlemoclav": 1,
+          "TerjeAmpouleNovacaine": 1,
+          "TerjeBandageHemostatic": 1,
+          "TerjeSurgicalKit": 1,
+          "TerjeSyringeEmpty": 2,
+          "TetracyclineAntibiotics": 1
+        }
+      },
+      {
+        "Role": "NATO",
+        "Archetypes": {
+          "Rifleman": 0.4,
+          "Pointman": 0.15,
+          "FieldMedic": 0.15,
+          "Engineer": 0.1,
+          "TeamLeader": 0.1,
+          "Marksman": 0.1
+        },
+        "VisibleCombinationsLowerBound": 4752,
+        "MinimumRequired": 500,
+        "WeaponProbabilities": {
+          "Aug": {
+            "Fraction": "1/4",
+            "Probability": 0.25
+          },
+          "FAL": {
+            "Fraction": "1/20",
+            "Probability": 0.05
+          },
+          "FAMAS": {
+            "Fraction": "2/15",
+            "Probability": 0.133333333
+          },
+          "M14": {
+            "Fraction": "1/20",
+            "Probability": 0.05
+          },
+          "M16A2": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "M4A1": {
+            "Fraction": "7/30",
+            "Probability": 0.233333333
+          },
+          "MP5K": {
+            "Fraction": "1/20",
+            "Probability": 0.05
+          },
+          "UMP45": {
+            "Fraction": "1/12",
+            "Probability": 0.083333333
+          }
+        },
+        "BagProbabilities": {
+          "AliceBag_Green": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          },
+          "AssaultBag_Black": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          },
+          "AssaultBag_Green": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          },
+          "CoyoteBag_Brown": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          },
+          "CoyoteBag_Green": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          },
+          "HuntingBag": {
+            "Fraction": "1/6",
+            "Probability": 0.166666667
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 1,
+          "USMCJacket_Woodland": 1,
+          "USMCPants_Woodland": 1
+        }
+      },
+      {
+        "Role": "Militia",
+        "Archetypes": {
+          "Hunter": 0.3,
+          "Homesteader": 0.25,
+          "Scavenger": 0.2,
+          "Poacher": 0.15,
+          "Veteran": 0.1
+        },
+        "VisibleCombinationsLowerBound": 8300,
+        "MinimumRequired": 24,
+        "WeaponProbabilities": {
+          "CZ527": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "Izh18": {
+            "Fraction": "1/16",
+            "Probability": 0.0625
+          },
+          "Izh18Shotgun": {
+            "Fraction": "31/240",
+            "Probability": 0.129166667
+          },
+          "Izh43Shotgun": {
+            "Fraction": "1/16",
+            "Probability": 0.0625
+          },
+          "Mosin9130": {
+            "Fraction": "11/60",
+            "Probability": 0.183333333
+          },
+          "Mp133Shotgun": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          },
+          "Repeater": {
+            "Fraction": "1/16",
+            "Probability": 0.0625
+          },
+          "Ruger1022": {
+            "Fraction": "1/15",
+            "Probability": 0.066666667
+          },
+          "SKS": {
+            "Fraction": "1/12",
+            "Probability": 0.083333333
+          },
+          "Winchester70": {
+            "Fraction": "1/10",
+            "Probability": 0.1
+          }
+        },
+        "BagProbabilities": {
+          "HuntingBag": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "None": {
+            "Fraction": "2/5",
+            "Probability": 0.4
+          },
+          "Slingbag_Black": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "Slingbag_Brown": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          },
+          "TaloonBag_Green": {
+            "Fraction": "3/20",
+            "Probability": 0.15
+          }
+        },
+        "GuaranteedItemCounts": {
+          "BandageDressing": 1
+        }
+      }
+    ],
+    "SpecialistNATOProbability": 0.1,
+    "AugShortPolicy": "Excluded; standard Aug uses BUIS, TeamLeader Aug uses powered red dot",
+    "ProbabilityModel": "Exact rational ticket/slot probabilities assuming successful native item creation",
+    "VisualModel": "Distinct humanoid slot item classes; ignores cargo, health, quantity, weapon furniture and optics"
+  },
+  "ParsedServerJSONFiles": 215,
+  "ResolvedLoadoutReferences": 230,
+  "PreservedFiles": [
+    {
+      "Path": "empty.deerisle/expansion/settings/AILocationSettings.json",
+      "Sha256": "e17ce0fa2a56dd448b86a2b94572679789867f2de6e1cc6e897ecb6b726c34f3"
+    },
+    {
+      "Path": "empty.deerisle/expansion/settings/SpawnSettings.json",
+      "Sha256": "4af443e9bfd6708af76b1a50a8e27542052fcdbbd3f8cc2a98b90ab670778c2a"
+    },
+    {
+      "Path": "empty.deerisle/cfgplayerspawnpoints.xml",
+      "Sha256": "a80d12c9728d350e29b6596b468969475f784be72c40156dc42bdaa89b03020b"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Settings/QuestSettings.json",
+      "Sha256": "16e447e78cbbe3c01750071231ad67e54461a1e7344f4cb7dadba7add28b41eb"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Loadouts/PlayerFemaleSuitLoadout.json",
+      "Sha256": "de9a74f0ba677e2a9a98f96d066df224bce41793f9b07bbae85bcf09f89e9dcc"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Loadouts/PlayerMaleSuitLoadout.json",
+      "Sha256": "7c1fd7e971ce04c8865dc2898494a85590abf2d6c3e181277d0ebb80080c1358"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Loadouts/PlayerSurvivorLoadout.json",
+      "Sha256": "75f4c41acd46a543a9f5ad9ca3160da802c3014b58a27282b49ab0b5d5028dba"
+    },
+    {
+      "Path": "empty.deerisle/expansion/settings/AIPatrolSettings.json",
+      "Sha256": "6b60bc47245b36df1b01e094158dd80d6a64c13fa13ee4d0a39192112a804b67"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Settings/AISettings.json",
+      "Sha256": "b3e36685883ced2296ff74d08dccbd057a81ba1c4bddd6211030f3158b351d72"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Quests/NPCs/QuestNPC_1.json",
+      "Sha256": "c8ee0490e62714f2f14d29caf3277baf9e00426f5e1820730b34add5d455be10"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Quests/NPCs/QuestNPC_2.json",
+      "Sha256": "b3bd2c9a8f77d99841e6a795a340c08f9188479d378104ffa0f47481bfd06149"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Quests/Objectives/AIPatrol/Objective_AIP_1.json",
+      "Sha256": "ba41ed9a1f65c873d0673502d909b511d4577f96e5064f395788335d3a83effb"
+    },
+    {
+      "Path": "profiles/ExpansionMod/Quests/Objectives/AIVIP/Objective_AIESCORT_1.json",
+      "Sha256": "72d5331a5fc1cefc74cf6baffba6b9f8dbe90e2bae3128ca272c3b25f53b8e76"
+    }
+  ],
+  "RoamingLocations": 58,
+  "SourceSha256": {
+    "cfgplayerspawnpoints.xml": "a80d12c9728d350e29b6596b468969475f784be72c40156dc42bdaa89b03020b",
+    "mapgrouppos.xml": "3b7a2ec7787d9fcfb3752e3531c21de6494fe2d45f496573b857888b00594823",
+    "mapgroupproto.xml": "18b9bab350beaa03a1d88785f26672a589a576f4181c5a1c586c33e0e55ca894",
+    "db/events.xml": "910e644d31df8bf900124d29b59fe19c4a35f08301999bcb2e4fe69251ddd478",
+    "cfgeventspawns.xml": "95aa0f3f129bc29c14b84207d8bf8b09dc89f7bc8bcbf790f050186e08d5d468"
+  },
+  "PendingRuntimeAcceptance": [
+    "all 32 archetypes and 45 weapon branches",
+    "powered optics and utility devices",
+    "smallest-bag medical cargo packing and firearm readiness",
+    "independent per-AI selection and specialist frequency",
+    "faction relationships and existing player groups",
+    "police aggression",
+    "scavenging and unlimited reload target mask",
+    "object placement and navigation",
+    "local roaming and timing",
+    "police event lifecycle cleanup",
+    "performance at populated-server load"
+  ]
+}

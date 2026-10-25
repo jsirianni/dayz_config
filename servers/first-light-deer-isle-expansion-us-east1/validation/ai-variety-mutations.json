@@ -1,0 +1,10 @@
+{
+  "Tool": "dzcli",
+  "ToolVersion": "0.0.5",
+  "SupportedMutations": 2102,
+  "AllWrittenJSONMatchedDryRun": true,
+  "All39FilesMatchReviewedRecipes": true,
+  "RequiredAIFileCount": 39,
+  "DayZSettingsWrittenDirectly": false,
+  "LiveDeploymentPerformed": false
+}

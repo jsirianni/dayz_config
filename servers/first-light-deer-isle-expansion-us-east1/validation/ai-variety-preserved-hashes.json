@@ -1,0 +1,54 @@
+[
+  {
+    "Path": "empty.deerisle/expansion/settings/AILocationSettings.json",
+    "Sha256": "e17ce0fa2a56dd448b86a2b94572679789867f2de6e1cc6e897ecb6b726c34f3"
+  },
+  {
+    "Path": "empty.deerisle/expansion/settings/SpawnSettings.json",
+    "Sha256": "4af443e9bfd6708af76b1a50a8e27542052fcdbbd3f8cc2a98b90ab670778c2a"
+  },
+  {
+    "Path": "empty.deerisle/cfgplayerspawnpoints.xml",
+    "Sha256": "a80d12c9728d350e29b6596b468969475f784be72c40156dc42bdaa89b03020b"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Settings/QuestSettings.json",
+    "Sha256": "16e447e78cbbe3c01750071231ad67e54461a1e7344f4cb7dadba7add28b41eb"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Loadouts/PlayerFemaleSuitLoadout.json",
+    "Sha256": "de9a74f0ba677e2a9a98f96d066df224bce41793f9b07bbae85bcf09f89e9dcc"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Loadouts/PlayerMaleSuitLoadout.json",
+    "Sha256": "7c1fd7e971ce04c8865dc2898494a85590abf2d6c3e181277d0ebb80080c1358"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Loadouts/PlayerSurvivorLoadout.json",
+    "Sha256": "75f4c41acd46a543a9f5ad9ca3160da802c3014b58a27282b49ab0b5d5028dba"
+  },
+  {
+    "Path": "empty.deerisle/expansion/settings/AIPatrolSettings.json",
+    "Sha256": "6b60bc47245b36df1b01e094158dd80d6a64c13fa13ee4d0a39192112a804b67"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Settings/AISettings.json",
+    "Sha256": "b3e36685883ced2296ff74d08dccbd057a81ba1c4bddd6211030f3158b351d72"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Quests/NPCs/QuestNPC_1.json",
+    "Sha256": "c8ee0490e62714f2f14d29caf3277baf9e00426f5e1820730b34add5d455be10"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Quests/NPCs/QuestNPC_2.json",
+    "Sha256": "b3bd2c9a8f77d99841e6a795a340c08f9188479d378104ffa0f47481bfd06149"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Quests/Objectives/AIPatrol/Objective_AIP_1.json",
+    "Sha256": "ba41ed9a1f65c873d0673502d909b511d4577f96e5064f395788335d3a83effb"
+  },
+  {
+    "Path": "profiles/ExpansionMod/Quests/Objectives/AIVIP/Objective_AIESCORT_1.json",
+    "Sha256": "72d5331a5fc1cefc74cf6baffba6b9f8dbe90e2bae3128ca272c3b25f53b8e76"
+  }
+]

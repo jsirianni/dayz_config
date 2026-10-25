@@ -1,0 +1,3040 @@
+{
+  "Result": "PASS",
+  "AIFileCount": 39,
+  "RoleSelectors": 7,
+  "Archetypes": 32,
+  "ReachableAIFileCount": 39,
+  "InventoryClassCount": 232,
+  "Roles": [
+    {
+      "Role": "Civilian",
+      "Archetypes": {
+        "Resident": 0.25,
+        "Worker": 0.2,
+        "Commuter": 0.2,
+        "Hiker": 0.15,
+        "Traveller": 0.1,
+        "Forager": 0.1
+      },
+      "VisibleCombinationsLowerBound": 56520,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {},
+      "BagProbabilities": {
+        "None": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "Slingbag_Black": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        },
+        "Slingbag_Brown": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        },
+        "Slingbag_Gray": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        },
+        "TaloonBag_Blue": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        },
+        "TaloonBag_Green": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 1
+      }
+    },
+    {
+      "Role": "Police",
+      "Archetypes": {
+        "Patrol": 0.45,
+        "Station": 0.25,
+        "Traffic": 0.2,
+        "Response": 0.1
+      },
+      "VisibleCombinationsLowerBound": 918,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {
+        "CZ75": {
+          "Fraction": "13/60",
+          "Probability": 0.216666667
+        },
+        "FNX45": {
+          "Fraction": "1/15",
+          "Probability": 0.066666667
+        },
+        "Glock19": {
+          "Fraction": "13/60",
+          "Probability": 0.216666667
+        },
+        "MP5K": {
+          "Fraction": "4/15",
+          "Probability": 0.266666667
+        },
+        "Mp133Shotgun": {
+          "Fraction": "7/60",
+          "Probability": 0.116666667
+        },
+        "UMP45": {
+          "Fraction": "7/60",
+          "Probability": 0.116666667
+        }
+      },
+      "BagProbabilities": {
+        "DuffelBagSmall_Green": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "None": {
+          "Fraction": "7/10",
+          "Probability": 0.7
+        },
+        "Slingbag_Black": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 1,
+        "Battery9V": 1,
+        "PoliceVest": 1,
+        "StunBaton": 1
+      }
+    },
+    {
+      "Role": "Firefighter",
+      "Archetypes": {
+        "FireCrew": 0.5,
+        "RescueCrew": 0.35,
+        "StationCrew": 0.15
+      },
+      "VisibleCombinationsLowerBound": 1260,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {},
+      "BagProbabilities": {
+        "DrysackBag_Orange": {
+          "Fraction": "1/5",
+          "Probability": 0.2
+        },
+        "DuffelBagSmall_Green": {
+          "Fraction": "1/5",
+          "Probability": 0.2
+        },
+        "None": {
+          "Fraction": "3/5",
+          "Probability": 0.6
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 1,
+        "ReflexVest": 1
+      }
+    },
+    {
+      "Role": "Medic",
+      "Archetypes": {
+        "Ambulance": 0.4,
+        "Trauma": 0.25,
+        "Field": 0.2,
+        "Supply": 0.15
+      },
+      "VisibleCombinationsLowerBound": 144,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {},
+      "BagProbabilities": {
+        "CanvasBag_Medical": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "DuffelBagSmall_Medical": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 2,
+        "SalineBagIV": 1,
+        "TerjeBandageHemostatic": 1
+      }
+    },
+    {
+      "Role": "Doctor",
+      "Archetypes": {
+        "General": 0.4,
+        "Emergency": 0.3,
+        "Surgeon": 0.2,
+        "Clinic": 0.1
+      },
+      "VisibleCombinationsLowerBound": 72,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {},
+      "BagProbabilities": {
+        "CanvasBag_Medical": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "DuffelBagSmall_Medical": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 2,
+        "HipPack_Medical": 1,
+        "SalineBagIV": 1,
+        "SurgicalMask": 1,
+        "TerjeAmpouleFlemoclav": 1,
+        "TerjeAmpouleNovacaine": 1,
+        "TerjeBandageHemostatic": 1,
+        "TerjeSurgicalKit": 1,
+        "TerjeSyringeEmpty": 2,
+        "TetracyclineAntibiotics": 1
+      }
+    },
+    {
+      "Role": "NATO",
+      "Archetypes": {
+        "Rifleman": 0.4,
+        "Pointman": 0.15,
+        "FieldMedic": 0.15,
+        "Engineer": 0.1,
+        "TeamLeader": 0.1,
+        "Marksman": 0.1
+      },
+      "VisibleCombinationsLowerBound": 4752,
+      "MinimumRequired": 500,
+      "WeaponProbabilities": {
+        "Aug": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "FAL": {
+          "Fraction": "1/20",
+          "Probability": 0.05
+        },
+        "FAMAS": {
+          "Fraction": "2/15",
+          "Probability": 0.133333333
+        },
+        "M14": {
+          "Fraction": "1/20",
+          "Probability": 0.05
+        },
+        "M16A2": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "M4A1": {
+          "Fraction": "7/30",
+          "Probability": 0.233333333
+        },
+        "MP5K": {
+          "Fraction": "1/20",
+          "Probability": 0.05
+        },
+        "UMP45": {
+          "Fraction": "1/12",
+          "Probability": 0.083333333
+        }
+      },
+      "BagProbabilities": {
+        "AliceBag_Green": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        },
+        "AssaultBag_Black": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        },
+        "AssaultBag_Green": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        },
+        "CoyoteBag_Brown": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        },
+        "CoyoteBag_Green": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        },
+        "HuntingBag": {
+          "Fraction": "1/6",
+          "Probability": 0.166666667
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 1,
+        "USMCJacket_Woodland": 1,
+        "USMCPants_Woodland": 1
+      }
+    },
+    {
+      "Role": "Militia",
+      "Archetypes": {
+        "Hunter": 0.3,
+        "Homesteader": 0.25,
+        "Scavenger": 0.2,
+        "Poacher": 0.15,
+        "Veteran": 0.1
+      },
+      "VisibleCombinationsLowerBound": 8300,
+      "MinimumRequired": 24,
+      "WeaponProbabilities": {
+        "CZ527": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "Izh18": {
+          "Fraction": "1/16",
+          "Probability": 0.0625
+        },
+        "Izh18Shotgun": {
+          "Fraction": "31/240",
+          "Probability": 0.129166667
+        },
+        "Izh43Shotgun": {
+          "Fraction": "1/16",
+          "Probability": 0.0625
+        },
+        "Mosin9130": {
+          "Fraction": "11/60",
+          "Probability": 0.183333333
+        },
+        "Mp133Shotgun": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        },
+        "Repeater": {
+          "Fraction": "1/16",
+          "Probability": 0.0625
+        },
+        "Ruger1022": {
+          "Fraction": "1/15",
+          "Probability": 0.066666667
+        },
+        "SKS": {
+          "Fraction": "1/12",
+          "Probability": 0.083333333
+        },
+        "Winchester70": {
+          "Fraction": "1/10",
+          "Probability": 0.1
+        }
+      },
+      "BagProbabilities": {
+        "HuntingBag": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "None": {
+          "Fraction": "2/5",
+          "Probability": 0.4
+        },
+        "Slingbag_Black": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "Slingbag_Brown": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        },
+        "TaloonBag_Green": {
+          "Fraction": "3/20",
+          "Probability": 0.15
+        }
+      },
+      "GuaranteedItemCounts": {
+        "BandageDressing": 1
+      }
+    }
+  ],
+  "WeaponCases": [
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "Glock19",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Glock_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "CZ75",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ75_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Patrol",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Station",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "Glock19",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Glock_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "CZ75",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ75_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Traffic",
+      "Weapon": "FNX45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_FNX45_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Police_Response",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "M16A2",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Rifleman",
+      "Weapon": "FAMAS",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Mag_FAMAS_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "MP5K",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_MP5_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Pointman",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "M16A2",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_FieldMedic",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "BUISOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M4_CarryHandleOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "M68Optic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        },
+        "ReflexOptic": {
+          "Fraction": "1/4",
+          "Probability": 0.25
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "FAMAS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_FAMAS_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_Engineer",
+      "Weapon": "UMP45",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_UMP_25Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_NATO_TeamLeader",
+      "Weapon": "M4A1",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_STANAG_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M68Optic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "ReflexOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_TeamLeader",
+      "Weapon": "Aug",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_Aug_30Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "M68Optic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        },
+        "ReflexOptic": {
+          "Fraction": "1/2",
+          "Probability": 0.5
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Marksman",
+      "Weapon": "FAL",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_FAL_20Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "ACOGOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_NATO_Marksman",
+      "Weapon": "M14",
+      "ConditionalProbability": "1/2",
+      "Ammunition": "Mag_M14_20Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {
+        "ACOGOptic": {
+          "Fraction": "1",
+          "Probability": 1.0
+        }
+      }
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "CZ527",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ527_5rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "Winchester70",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_308Win",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Hunter",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh18",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh18Shotgun",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Izh43Shotgun",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Homesteader",
+      "Weapon": "Repeater",
+      "ConditionalProbability": "1/4",
+      "Ammunition": "Ammo_357",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Ruger1022",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_Ruger1022_15Rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Izh18Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Scavenger",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "CZ527",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Mag_CZ527_5rnd",
+      "AttachedMagazines": 1,
+      "SpareMagazines": 1,
+      "LooseFullStacks": 0,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Poacher",
+      "Weapon": "SKS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "SKS",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x39",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "Mosin9130",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_762x54",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    },
+    {
+      "Archetype": "DI_Militia_Veteran",
+      "Weapon": "Mp133Shotgun",
+      "ConditionalProbability": "1/3",
+      "Ammunition": "Ammo_12gaPellets",
+      "AttachedMagazines": 0,
+      "SpareMagazines": 0,
+      "LooseFullStacks": 2,
+      "Optics": {}
+    }
+  ],
+  "SpecialistNATOProbability": 0.1,
+  "AugShortPolicy": "Excluded; standard Aug uses BUIS, TeamLeader Aug uses powered red dot",
+  "ProbabilityModel": "Exact rational ticket/slot probabilities assuming successful native item creation",
+  "VisualModel": "Distinct humanoid slot item classes; ignores cargo, health, quantity, weapon furniture and optics",
+  "Inventory": [
+    {
+      "ClassName": "ACOGOptic",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "AliceBag_Green",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "Ammo_12gaPellets",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "Ammo_308Win",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "Ammo_357",
+      "Archetypes": [
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Ammo_762x39",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Poacher",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "Ammo_762x54",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "AssaultBag_Black",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "AssaultBag_Green",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "AthleticShoes_Black",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "AthleticShoes_Blue",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "AthleticShoes_Brown",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "AthleticShoes_Green",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "AthleticShoes_Grey",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "Aug",
+      "Archetypes": [
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "BUISOptic",
+      "Archetypes": [
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "BallisticHelmet_Green",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "BallisticHelmet_Woodland",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "BandageDressing",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Battery9V",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "BeanieHat_Black",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "BeanieHat_Blue",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "BeanieHat_Brown",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "BeanieHat_Green",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "BeanieHat_Grey",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "Binoculars",
+      "Archetypes": [
+        "DI_NATO_Marksman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "BoonieHat_Olive",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CZ527",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "CZ75",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "CanOpener",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CanvasBag_Medical",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "CanvasPants_Beige",
+      "Archetypes": [
+        "DI_Civilian_Commuter"
+      ]
+    },
+    {
+      "ClassName": "CanvasPants_Blue",
+      "Archetypes": [
+        "DI_Civilian_Commuter"
+      ]
+    },
+    {
+      "ClassName": "CanvasPants_Grey",
+      "Archetypes": [
+        "DI_Civilian_Commuter"
+      ]
+    },
+    {
+      "ClassName": "CanvasPants_Red",
+      "Archetypes": [
+        "DI_Civilian_Commuter"
+      ]
+    },
+    {
+      "ClassName": "CanvasPants_Violet",
+      "Archetypes": [
+        "DI_Civilian_Commuter"
+      ]
+    },
+    {
+      "ClassName": "CargoPants_Beige",
+      "Archetypes": [
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CargoPants_Black",
+      "Archetypes": [
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "CargoPants_Blue",
+      "Archetypes": [
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "CargoPants_Green",
+      "Archetypes": [
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CargoPants_Grey",
+      "Archetypes": [
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CombatBoots_Brown",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "CombatBoots_Green",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "CombatBoots_Grey",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Compass",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "CoyoteBag_Brown",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "CoyoteBag_Green",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "Crowbar",
+      "Archetypes": [
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "DirtBikeHelmet_Police",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "DisinfectantAlcohol",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "DrysackBag_Orange",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "DuctTape",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Pointman"
+      ]
+    },
+    {
+      "ClassName": "DuffelBagSmall_Green",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "DuffelBagSmall_Medical",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "ElectronicRepairKit",
+      "Archetypes": [
+        "DI_NATO_Engineer"
+      ]
+    },
+    {
+      "ClassName": "FAL",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "FAMAS",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "FNX45",
+      "Archetypes": [
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Fal_OeBttstck",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "FirefighterAxe",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefighterAxe_Black",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefighterAxe_Green",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefighterJacket_Beige",
+      "Archetypes": [
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefighterJacket_Black",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefightersHelmet_Red",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefightersHelmet_White",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefightersHelmet_Yellow",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefightersPants_Beige",
+      "Archetypes": [
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "FirefightersPants_Black",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "Flashlight",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_NATO_Pointman",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Glock19",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "HandcuffKeys",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Handcuffs",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Heatpack",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "HikingJacket_Black",
+      "Archetypes": [
+        "DI_Civilian_Hiker",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "HikingJacket_Blue",
+      "Archetypes": [
+        "DI_Civilian_Hiker"
+      ]
+    },
+    {
+      "ClassName": "HikingJacket_Green",
+      "Archetypes": [
+        "DI_Civilian_Hiker",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "HikingJacket_Red",
+      "Archetypes": [
+        "DI_Civilian_Hiker"
+      ]
+    },
+    {
+      "ClassName": "HipPack_Medical",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Black",
+      "Archetypes": [
+        "DI_Civilian_Resident"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Blue",
+      "Archetypes": [
+        "DI_Civilian_Resident"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Brown",
+      "Archetypes": [
+        "DI_Civilian_Forager",
+        "DI_Civilian_Resident",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Green",
+      "Archetypes": [
+        "DI_Civilian_Forager",
+        "DI_Civilian_Resident",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Grey",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Hoodie_Red",
+      "Archetypes": [
+        "DI_Civilian_Resident"
+      ]
+    },
+    {
+      "ClassName": "HunterPants_Autumn",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "HunterPants_Brown",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "HunterPants_Spring",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "HunterPants_Summer",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "HuntingBag",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "HuntingJacket_Autumn",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "HuntingJacket_Brown",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "HuntingJacket_Spring",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "HuntingJacket_Summer",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "Izh18",
+      "Archetypes": [
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Izh18Shotgun",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Izh43Shotgun",
+      "Archetypes": [
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Jeans_Black",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Jeans_Blue",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Jeans_BlueDark",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Jeans_Brown",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Jeans_Green",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Jeans_Grey",
+      "Archetypes": [
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "JungleBoots_Olive",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M14",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "M16A2",
+      "Archetypes": [
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "M4A1",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_CQBBttstck",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_CarryHandleOptic",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "M4_MPBttstck",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_MPHndgrd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_OEBttstck",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_PlasticHndgrd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M4_RISHndgrd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "M68Optic",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "MP5K",
+      "Archetypes": [
+        "DI_NATO_Pointman",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "MP5_PlasticHndgrd",
+      "Archetypes": [
+        "DI_NATO_Pointman",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "MP5k_StockBttstck",
+      "Archetypes": [
+        "DI_NATO_Pointman",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "Mag_Aug_30Rnd",
+      "Archetypes": [
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "Mag_CZ527_5rnd",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher"
+      ]
+    },
+    {
+      "ClassName": "Mag_CZ75_15Rnd",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Mag_FAL_20Rnd",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "Mag_FAMAS_25Rnd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "Mag_FNX45_15Rnd",
+      "Archetypes": [
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Mag_Glock_15Rnd",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Mag_M14_20Rnd",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "Mag_MP5_30Rnd",
+      "Archetypes": [
+        "DI_NATO_Pointman",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "Mag_Ruger1022_15Rnd",
+      "Archetypes": [
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "Mag_STANAG_30Rnd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "Mag_UMP_25Rnd",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_Pointman",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "Matchbox",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsHat_Blue",
+      "Archetypes": [
+        "DI_Doctor_Emergency"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsHat_Green",
+      "Archetypes": [
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsHat_White",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_General"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsPants_Blue",
+      "Archetypes": [
+        "DI_Doctor_Emergency"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsPants_Green",
+      "Archetypes": [
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsPants_White",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_General"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsShirt_Blue",
+      "Archetypes": [
+        "DI_Doctor_Emergency"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsShirt_Green",
+      "Archetypes": [
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "MedicalScrubsShirt_White",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_General"
+      ]
+    },
+    {
+      "ClassName": "Mich2001Helmet",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "MilitaryBoots_Black",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "MilitaryBoots_Brown",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "Mosin9130",
+      "Archetypes": [
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "Mp133Shotgun",
+      "Archetypes": [
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "ParamedicJacket_Blue",
+      "Archetypes": [
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "ParamedicJacket_Crimson",
+      "Archetypes": [
+        "DI_Medic_Ambulance",
+        "DI_Medic_Supply"
+      ]
+    },
+    {
+      "ClassName": "ParamedicJacket_Green",
+      "Archetypes": [
+        "DI_Medic_Field",
+        "DI_Medic_Supply"
+      ]
+    },
+    {
+      "ClassName": "ParamedicPants_Blue",
+      "Archetypes": [
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "ParamedicPants_Crimson",
+      "Archetypes": [
+        "DI_Medic_Ambulance",
+        "DI_Medic_Supply"
+      ]
+    },
+    {
+      "ClassName": "ParamedicPants_Green",
+      "Archetypes": [
+        "DI_Medic_Field",
+        "DI_Medic_Supply"
+      ]
+    },
+    {
+      "ClassName": "PersonalRadio",
+      "Archetypes": [
+        "DI_NATO_TeamLeader",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "PlateCarrierPouches_Camo",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "PlateCarrierPouches_Green",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "PlateCarrierVest_Camo",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "PlateCarrierVest_Green",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "PoliceCap",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "PoliceJacket",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "PoliceJacketOrel",
+      "Archetypes": [
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "PolicePants",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "PolicePantsOrel",
+      "Archetypes": [
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "PoliceVest",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Black",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Blue",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Green",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Orange",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Pink",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Red",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Raincoat_Yellow",
+      "Archetypes": [
+        "DI_Civilian_Traveller"
+      ]
+    },
+    {
+      "ClassName": "Rangefinder",
+      "Archetypes": [
+        "DI_NATO_Marksman"
+      ]
+    },
+    {
+      "ClassName": "ReflexOptic",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "ReflexVest",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "Repeater",
+      "Archetypes": [
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Ruger1022",
+      "Archetypes": [
+        "DI_Militia_Scavenger"
+      ]
+    },
+    {
+      "ClassName": "SKS",
+      "Archetypes": [
+        "DI_Militia_Poacher",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "SalineBagIV",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma",
+        "DI_NATO_FieldMedic"
+      ]
+    },
+    {
+      "ClassName": "SewingKit",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Shirt_BlueCheck",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Shirt_BlueCheckBright",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Shirt_GreenCheck",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Shirt_PlaneBlack",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Militia_Homesteader"
+      ]
+    },
+    {
+      "ClassName": "Shirt_RedCheck",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Shirt_WhiteCheck",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Slingbag_Black",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "Slingbag_Brown",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "Slingbag_Gray",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Sneakers_Black",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Sneakers_Gray",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Sneakers_Green",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Sneakers_Red",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "Sneakers_White",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "SodaCan_Cola",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "StunBaton",
+      "Archetypes": [
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "SurgicalGloves_Blue",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "SurgicalGloves_Green",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "SurgicalGloves_LightBlue",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "SurgicalGloves_White",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "SurgicalMask",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "TacticalGloves_Beige",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "TacticalGloves_Black",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "TacticalGloves_Green",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "TaloonBag_Blue",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker"
+      ]
+    },
+    {
+      "ClassName": "TaloonBag_Green",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran"
+      ]
+    },
+    {
+      "ClassName": "TerjeAmpouleFlemoclav",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TerjeAmpouleNovacaine",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TerjeBandageHemostatic",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon",
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma",
+        "DI_NATO_FieldMedic"
+      ]
+    },
+    {
+      "ClassName": "TerjeExpressTestAgents",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TerjePlaster",
+      "Archetypes": [
+        "DI_Medic_Ambulance",
+        "DI_Medic_Field",
+        "DI_Medic_Supply",
+        "DI_Medic_Trauma"
+      ]
+    },
+    {
+      "ClassName": "TerjeStethoscope",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TerjeSurgicalKit",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TerjeSyringeEmpty",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TetracyclineAntibiotics",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "TunaCan",
+      "Archetypes": [
+        "DI_Civilian_Commuter",
+        "DI_Civilian_Forager",
+        "DI_Civilian_Hiker",
+        "DI_Civilian_Resident",
+        "DI_Civilian_Traveller",
+        "DI_Civilian_Worker",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Rifleman"
+      ]
+    },
+    {
+      "ClassName": "UKAssVest_Camo",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "UKAssVest_Khaki",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "UKAssVest_Olive",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "UMP45",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_Pointman",
+        "DI_Police_Response",
+        "DI_Police_Station"
+      ]
+    },
+    {
+      "ClassName": "USMCJacket_Woodland",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "USMCPants_Woodland",
+      "Archetypes": [
+        "DI_NATO_Engineer",
+        "DI_NATO_FieldMedic",
+        "DI_NATO_Marksman",
+        "DI_NATO_Pointman",
+        "DI_NATO_Rifleman",
+        "DI_NATO_TeamLeader"
+      ]
+    },
+    {
+      "ClassName": "VitaminBottle",
+      "Archetypes": [
+        "DI_Doctor_Clinic",
+        "DI_Doctor_Emergency",
+        "DI_Doctor_General",
+        "DI_Doctor_Surgeon"
+      ]
+    },
+    {
+      "ClassName": "WeaponCleaningKit",
+      "Archetypes": [
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_NATO_Engineer"
+      ]
+    },
+    {
+      "ClassName": "Winchester70",
+      "Archetypes": [
+        "DI_Militia_Hunter"
+      ]
+    },
+    {
+      "ClassName": "WoodAxe",
+      "Archetypes": [
+        "DI_Firefighter_RescueCrew"
+      ]
+    },
+    {
+      "ClassName": "WorkingBoots_Beige",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "WorkingBoots_Brown",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "WorkingBoots_Green",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "WorkingBoots_Grey",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Militia_Homesteader",
+        "DI_Militia_Hunter",
+        "DI_Militia_Poacher",
+        "DI_Militia_Scavenger",
+        "DI_Militia_Veteran",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "WorkingBoots_Yellow",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "WorkingGloves_Beige",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    },
+    {
+      "ClassName": "WorkingGloves_Black",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "WorkingGloves_Brown",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew",
+        "DI_Police_Patrol",
+        "DI_Police_Response",
+        "DI_Police_Station",
+        "DI_Police_Traffic"
+      ]
+    },
+    {
+      "ClassName": "WorkingGloves_Yellow",
+      "Archetypes": [
+        "DI_Firefighter_FireCrew",
+        "DI_Firefighter_RescueCrew",
+        "DI_Firefighter_StationCrew"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+Target: servers/first-light-deer-isle-expansion-us-east1
+Exit: 0
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Civilian.json ok (5 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Doctor.json ok (19 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Firefighter.json ok (9 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Medic.json ok (10 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Militia.json ok (25 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_NATO.json ok (26 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\DI_Police.json ok (24 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\PlayerFemaleSuitLoadout.json ok (22 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\PlayerMaleSuitLoadout.json ok (22 items)
+expansion-ai-loadout servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Loadouts\PlayerSurvivorLoadout.json ok (24 items)
+expansion-ai-locations servers\first-light-deer-isle-expansion-us-east1\empty.deerisle\expansion\settings\AILocationSettings.json ok (58 locations)
+expansion-ai-loot-drop servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\AI\LootDrops\Example.json ok (11 entries)
+expansion-ai-patrols servers\first-light-deer-isle-expansion-us-east1\empty.deerisle\expansion\settings\AIPatrolSettings.json ok (84 patrols)
+expansion-ai-settings servers\first-light-deer-isle-expansion-us-east1\profiles\ExpansionMod\Settings\AISettings.json ok
+
+Target: servers/first-light-deer-isle-expansion-us-east1/empty.deerisle
+Exit: 0
+expansion-ai-locations servers\first-light-deer-isle-expansion-us-east1\empty.deerisle\expansion\settings\AILocationSettings.json ok (58 locations)
+expansion-ai-patrols servers\first-light-deer-isle-expansion-us-east1\empty.deerisle\expansion\settings\AIPatrolSettings.json ok (84 patrols)
+

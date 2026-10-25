@@ -16,7 +16,7 @@
         "Formation": "Vee",
         "FormationScale": 1.5,
         "FormationLooseness": 0.0,
-        "Loadout": "BanditLoadout",
+        "Loadout": "DI_Militia",
         "Units": [
             "eAI_SurvivorF_Eva",
             "eAI_SurvivorF_Frida",
