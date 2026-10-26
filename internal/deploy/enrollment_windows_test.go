@@ -117,6 +117,14 @@ func TestVirtualServiceBootstrapOnDisposableRunner(t *testing.T) {
 		}
 		time.Sleep(100 * time.Millisecond)
 	}
+	if status, err := s.Query(); err == nil {
+		t.Logf("Service status: %+v", status)
+	}
+	for _, name := range []string{"agent-error.txt", "agent-service-entry.txt"} {
+		if data, err := os.ReadFile(filepath.Join(c.StateDir, "logs", name)); err == nil {
+			t.Logf("%s: %s", name, data)
+		}
+	}
 	t.Fatal("virtual account service did not publish its heartbeat")
 }
 
