@@ -1,0 +1,7 @@
+/dist/
+/.tools/
+/config.yaml
+/.state/
+*.exe
+*.test
+coverage.out

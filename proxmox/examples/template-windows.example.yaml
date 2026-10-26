@@ -1,0 +1,25 @@
+apiVersion: pvecli/v1
+kind: TemplateBuild
+context: lab
+os: windows-2022
+vmid: 9110
+name: windows-2022-template
+node: pve1
+storage: local-lvm
+iso_storage: local
+pool: pvecli-lab
+bridge: vmbr0
+hardware:
+  cores: 2
+  memory_mib: 4096
+  disk_gib: 64
+iso:
+  volume: local:iso/windows-server-2022.iso
+virtio:
+  volume: local:iso/virtio-win.iso
+# Exact /IMAGE/NAME from your supplied English-language installation ISO.
+windows_image: Windows Server 2022 SERVERSTANDARD
+cloudbase_init:
+  # Supply a tested x64 Cloudbase-Init MSI URL and its independently verified hash.
+  url: https://example.invalid/cloudbase-init-x64.msi
+  sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
