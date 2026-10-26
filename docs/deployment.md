@@ -38,7 +38,7 @@ The same script works on all three hosts without edits or a separate key file. `
 
 `-UserName` defaults to the existing enabled local `Administrator`; `-SshPort` defaults to 22. `-AllowedSource` accepts explicit IPv4/IPv6 addresses or CIDRs, including multiple entries. Use the same username/port in client YAML. `-WhatIf` previews setup without changes. Built-in Windows PowerShell 5.1 is sufficient; no modules, Go executable, repository, or game installation are needed on the host.
 
-The script installs OpenSSH when absent, preserves host keys and existing authorized keys, configures key-only SSH command execution and SFTP, and scopes a firewall rule to the supplied sources. It disables the default broad OpenSSH rule, validates `sshd_config`, starts SSH automatically, and restores configuration/keys/firewall/service settings on setup failure. Backups remain in protected `%ProgramData%\ssh\dzdeploy-backup-*` folders. Windows servicing failures are reported without altering update policy or forcing a reboot.
+The script installs and verifies both OpenSSH Client and Server capabilities, preserves host keys and existing authorized keys, configures key-only SSH command execution and SFTP, and scopes a firewall rule to the supplied sources. It disables the default broad OpenSSH rule, validates `sshd_config`, starts SSH automatically, and restores configuration/keys/firewall/service settings on setup failure. Backups remain in protected `%ProgramData%\ssh\dzdeploy-backup-*` folders. Windows servicing failures are reported without altering update policy or forcing a reboot.
 
 **Step 2 — on the client**, run:
 
@@ -57,6 +57,14 @@ Without `--restart`, initial provisioning and configuration copying complete wit
 Enrollment progress is recorded in protected `enrollment.json`; `status` can report it even before the service has created deployment state. If setup or its SSH connection fails, rerun the deploy command to resume. Existing healthy deployments are reused; corrupt/inaccessible/foreign state is an error, never permission to initialize over it. Queued deployment operations continue independently of SSH once submitted. Keep their operation IDs and inspect status after disconnecting.
 
 The previous local `dzdeploy bootstrap` command remains available for existing account-based installations and explicit upgrades. It is not part of fresh-server provisioning. Old non-admin SFTP endpoints continue to work for already enrolled hosts.
+
+### Bootstrap prerequisites and missing ssh-keygen.exe
+
+Use elevated **64-bit Windows PowerShell**. A 32-bit shell redirects `System32` to `SysWOW64` and cannot load the LocalAccounts module used by this script. The script detects that condition before account or installation changes and explains how to open the native shell. See Microsoft's [file system redirection](https://learn.microsoft.com/en-us/windows/win32/winprog64/file-system-redirector) and [LocalAccounts](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/get-localuser?view=powershell-5.1) documentation.
+
+The script checks both `OpenSSH.Client~~~~0.0.1.0` and `OpenSSH.Server~~~~0.0.1.0`, installs missing capabilities, then queries their states again. Microsoft documents separate [Client and Server installation commands](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell), and notes that [`Add-WindowsCapability` can fail silently](https://learn.microsoft.com/en-us/powershell/module/dism/add-windowscapability?view=windowsserver2025-ps#-source) when all package sources fail. A returned command is therefore insufficient evidence of success.
+
+Before generating host keys or changing SSH configuration, the script also verifies `ssh-keygen.exe`, `sshd.exe`, `sftp-server.exe`, and `sshd_config_default` under `%WINDIR%\System32\OpenSSH`. If Windows reports installation pending or a reboot required, finish servicing and rerun the same script after reboot. If installation remains incomplete, the error identifies the capability state, missing files, and `%WINDIR%\Logs\DISM\dism.log`. Follow Microsoft's [OpenSSH installation troubleshooting](https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/cant-install-openssh-features) for Windows Update, WSUS, and matching Features on Demand sources. Existing host keys and authorized keys are retained on retry.
 
 ## Routine commands
 

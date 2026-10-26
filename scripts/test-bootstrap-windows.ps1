@@ -12,6 +12,14 @@ function Assert-Throws([scriptblock]$Action, [string]$Message) {
     try { & $Action } catch { $failed = $true }
     if (!$failed) { throw $Message }
 }
+function Assert-ThrowsContaining([scriptblock]$Action, [string[]]$Fragments) {
+    $failure = $null
+    try { & $Action } catch { $failure = $_.Exception.Message }
+    if (!$failure) { throw 'Expected operation to fail.' }
+    foreach ($fragment in $Fragments) {
+        if (!$failure.Contains($fragment)) { throw "Failure omitted '$fragment': $failure" }
+    }
+}
 
 $taskRoot = Join-Path ([IO.Path]::GetTempPath()) ('dzdeploy-ssh-test-' + [Guid]::NewGuid().ToString('N'))
 $savedWindows = $env:WINDIR
@@ -20,20 +28,63 @@ $script:calls = @{}
 $script:aclCapture = $null
 function Count-Call([string]$Name) { if (!$script:calls.ContainsKey($Name)) { $script:calls[$Name] = 0 }; $script:calls[$Name]++ }
 function Assert-DeployAdministrator { Count-Call 'admin' }
-function Get-LocalUser { param($Name); return [pscustomobject]@{ Enabled = $script:userEnabled; SID = [pscustomobject]@{ Value = 'S-1-5-21-1-2-3-500' } } }
+function Get-LocalUser { param($Name); Count-Call 'account'; return [pscustomobject]@{ Enabled = $script:userEnabled; SID = [pscustomobject]@{ Value = 'S-1-5-21-1-2-3-500' } } }
 function Get-LocalGroupMember { param($SID); return [pscustomobject]@{ SID = [pscustomobject]@{ Value = 'S-1-5-21-1-2-3-500' } } }
-function Get-WindowsCapability { param([switch]$Online, $Name); Count-Call 'capability'; return [pscustomobject]@{ State = 'NotPresent' } }
-function Add-WindowsCapability { param([switch]$Online, $Name); Count-Call 'install'; return [pscustomobject]@{ RestartNeeded = $false } }
+function Write-MockCapabilityPayload([string]$Name) {
+    $files = @('ssh-keygen.exe')
+    if ($Name -eq $script:serverCapability) { $files = @('sshd.exe', 'sftp-server.exe', 'sshd_config_default') }
+    foreach ($file in $files) {
+        $content = 'mock executable; never execute'
+        if ($file -eq 'sshd_config_default') { $content = $stock }
+        [IO.File]::WriteAllText((Join-Path $sshDir $file), $content, $utf8)
+    }
+}
+function Get-WindowsCapability {
+    [CmdletBinding()]param([switch]$Online, $Name)
+    Count-Call 'capability'; Count-Call "query-$Name"
+    if ($Name -eq $script:failQuery) { throw 'mock capability query failure 0x800f081f' }
+    return [pscustomobject]@{ State = $script:capabilities[$Name] }
+}
+function Add-WindowsCapability {
+    [CmdletBinding()]param([switch]$Online, $Name)
+    Count-Call 'install'; Count-Call "install-$Name"
+    if ($Name -eq $script:failInstall) { throw 'mock Windows Update failure 0x800f0954' }
+    $script:capabilities[$Name] = $script:postInstallState
+    if ($script:postInstallState -eq 'Installed' -and !$script:skipPayload) { Write-MockCapabilityPayload $Name }
+    return [pscustomobject]@{ RestartNeeded = $script:restartNeeded }
+}
+function Reset-MockOpenSSH([string]$Client = 'Installed', [string]$Server = 'Installed') {
+    $script:calls = @{}
+    $script:capabilities = @{ $script:clientCapability = $Client; $script:serverCapability = $Server }
+    $script:postInstallState = 'Installed'
+    $script:restartNeeded = $false
+    $script:failQuery = ''
+    $script:failInstall = ''
+    $script:skipPayload = $false
+    foreach ($file in @('ssh-keygen.exe', 'sshd.exe', 'sftp-server.exe', 'sshd_config_default')) {
+        $path = Join-Path $sshDir $file
+        if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path }
+    }
+    if ($Client -eq 'Installed') { Write-MockCapabilityPayload $script:clientCapability }
+    if ($Server -eq 'Installed') { Write-MockCapabilityPayload $script:serverCapability }
+}
+function Assert-NoSSHMutation {
+    foreach ($call in @('native', 'service-query', 'set-service', 'restart', 'start', 'firewall', 'acl')) {
+        Assert-Equal $script:calls.ContainsKey($call) $false "Prerequisite failure reached $call"
+    }
+}
 function Set-Acl { param($LiteralPath, $AclObject); $script:aclCapture = $AclObject; Count-Call 'acl' }
 function Get-Acl { param($LiteralPath); return (New-Object Security.AccessControl.FileSecurity) }
 function Invoke-DeployNative {
     param($Executable, [string[]]$ArgList)
     Count-Call 'native'
+    if (!(Test-Path -LiteralPath $Executable -PathType Leaf)) { throw "Native executable is missing: $Executable" }
     if ($ArgList[0] -eq '-t' -and $script:failValidate) { throw 'mock sshd configuration failure' }
     if ($ArgList[0] -eq '-lf') { return '256 SHA256:trusted-test-key host (ED25519)' }
 }
 function Get-Service {
     param($Name)
+    Count-Call 'service-query'
     $s = [pscustomobject]@{ Status = 'Running'; StartType = 'Manual' }
     $s | Add-Member -MemberType ScriptMethod -Name WaitForStatus -Value { param($State, $Timeout) }
     return $s
@@ -78,6 +129,9 @@ try {
     $script:failValidate = $false
     $script:failRestart = $false
     $script:managedRule = $null
+    $script:clientCapability = 'OpenSSH.Client~~~~0.0.1.0'
+    $script:serverCapability = 'OpenSSH.Server~~~~0.0.1.0'
+    Reset-MockOpenSSH
 
     Assert-Equal (Test-DeploySource '203.0.113.10/32') $true 'IPv4 CIDR'
     Assert-Equal (Test-DeploySource '2001:db8::1/128') $true 'IPv6 CIDR'
@@ -103,6 +157,7 @@ try {
     Assert-Equal $script:calls.ContainsKey('install') $false 'WhatIf installed OpenSSH'
     Assert-Equal $script:calls.ContainsKey('firewall') $false 'WhatIf changed firewall'
     Assert-Equal $script:calls.ContainsKey('native') $false 'WhatIf ran native commands'
+    Assert-Equal $script:calls.ContainsKey('capability') $false 'WhatIf queried Windows capabilities'
     Invoke-DayZSSHBootstrap -Key "$key embedded-client" -Sources '203.0.113.10/32' -WhatIf
     Assert-Equal $script:calls.ContainsKey('native') $false 'Embedded-key WhatIf ran native commands'
     Assert-Throws { Invoke-DayZSSHBootstrap -Key $key -KeyPath $pub -Sources '203.0.113.10/32' } 'Ambiguous key inputs accepted'
@@ -112,6 +167,73 @@ try {
     $script:userEnabled = $false
     Assert-Throws { Invoke-DayZSSHBootstrap -KeyPath $pub -Sources '203.0.113.10/32' } 'Disabled account accepted'
     $script:userEnabled = $true
+
+    Assert-DeployNativePowerShell -Is64BitOperatingSystem $true -Is64BitProcess $true
+    Assert-ThrowsContaining { Assert-DeployNativePowerShell -Is64BitOperatingSystem $true -Is64BitProcess $false } @('64-bit Windows PowerShell', 'Sysnative', 'LocalAccounts')
+    $nativeShellCheck = ${function:Assert-DeployNativePowerShell}
+    try {
+        function Assert-DeployNativePowerShell { & $nativeShellCheck -Is64BitOperatingSystem $true -Is64BitProcess $false }
+        $script:calls = @{}
+        Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @('64-bit Windows PowerShell')
+        Assert-Equal $script:calls.ContainsKey('account') $false '32-bit shell reached LocalAccounts'
+        Assert-Equal $script:calls.ContainsKey('capability') $false '32-bit shell reached capability installation'
+        Assert-NoSSHMutation
+    } finally { Set-Item -Path Function:\Assert-DeployNativePowerShell -Value $nativeShellCheck }
+
+    # Regression: Server installed with Client/keygen absent.
+    Reset-MockOpenSSH -Client 'NotPresent'
+    Assert-Equal (Test-Path -LiteralPath (Join-Path $sshDir 'ssh-keygen.exe')) $false 'Missing-client setup still had keygen'
+    Assert-Equal (Install-DeployOpenSSH) $sshDir 'Missing client was not installed'
+    Assert-Equal $script:calls["install-$script:clientCapability"] 1 'Client capability was not installed exactly once'
+    Assert-Equal $script:calls.ContainsKey("install-$script:serverCapability") $false 'Existing server capability was reinstalled'
+    Assert-Equal $script:calls["query-$script:clientCapability"] 2 'Client install state was not verified after installation'
+    Assert-Equal (Test-Path -LiteralPath (Join-Path $sshDir 'ssh-keygen.exe')) $true 'Client installation did not supply keygen'
+
+    Reset-MockOpenSSH -Client 'NotPresent' -Server 'NotPresent'
+    Assert-Equal (Install-DeployOpenSSH) $sshDir 'Fresh host prerequisites failed'
+    Assert-Equal $script:calls.install 2 'Fresh host did not install both capabilities'
+    $script:calls = @{}
+    Assert-Equal (Install-DeployOpenSSH) $sshDir 'Installed host prerequisites failed'
+    Assert-Equal $script:calls.ContainsKey('install') $false 'Healthy capabilities were reinstalled'
+
+    Reset-MockOpenSSH -Client 'NotPresent'
+    $script:postInstallState = 'NotPresent'
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @($script:clientCapability, 'NotPresent', 'DISM\dism.log')
+    Assert-NoSSHMutation
+
+    foreach ($file in @('ssh-keygen.exe', 'sshd.exe', 'sftp-server.exe', 'sshd_config_default')) {
+        Reset-MockOpenSSH
+        Remove-Item -LiteralPath (Join-Path $sshDir $file)
+        Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @('installation is incomplete', (Join-Path $sshDir $file), 'Installed', 'DISM\dism.log')
+        Assert-NoSSHMutation
+    }
+    Reset-MockOpenSSH -Client 'NotPresent'
+    $script:skipPayload = $true
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @('installation is incomplete', 'ssh-keygen.exe')
+    Assert-NoSSHMutation
+
+    Reset-MockOpenSSH -Client 'NotPresent'
+    $script:restartNeeded = $true
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @($script:clientCapability, 'requires a reboot')
+    Assert-NoSSHMutation
+    Reset-MockOpenSSH -Client 'InstallPending'
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @('InstallPending', 'Reboot')
+    Assert-Equal $script:calls.ContainsKey('install') $false 'Pending capability was reinstalled'
+    Assert-NoSSHMutation
+    Reset-MockOpenSSH -Client 'NotPresent'
+    $script:postInstallState = 'InstallPending'
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @('InstallPending', 'Reboot')
+    Assert-NoSSHMutation
+
+    Reset-MockOpenSSH -Server 'NotPresent'
+    $script:failInstall = $script:serverCapability
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @($script:serverCapability, '0x800f0954', 'DISM\dism.log')
+    Assert-NoSSHMutation
+    Reset-MockOpenSSH
+    $script:failQuery = $script:clientCapability
+    Assert-ThrowsContaining { Invoke-DayZSSHBootstrap -Key $key -Sources '203.0.113.10/32' } @($script:clientCapability, '0x800f081f', 'DISM\dism.log')
+    Assert-NoSSHMutation
+    Reset-MockOpenSSH
 
     # Exercise the script entry point using a personalized copy and no .pub file.
     # Override only host identity checks so -WhatIf can run without elevation.
@@ -137,8 +259,10 @@ function Get-LocalGroupMember { param($SID); return [pscustomobject]@{ SID = [ps
     [IO.File]::WriteAllText($pub, "$key test-client", $utf8)
 
     # The default workflow needs no public-key file beside the copied script.
+    Reset-MockOpenSSH -Client 'NotPresent'
     Remove-Item -LiteralPath $pub
     Invoke-DayZSSHBootstrap -Key "$key embedded-client" -Sources '203.0.113.10/32' -Port 2222
+    Assert-Equal $script:calls["install-$script:clientCapability"] 1 'Bootstrap did not install the missing client tools before invoking keygen'
     Assert-Equal (Test-Path -LiteralPath $pub) $false 'Embedded bootstrap required an input key file'
     Assert-Equal ([IO.File]::ReadAllText((Join-Path $stateDir 'administrators_authorized_keys'))) "$key`r`n" 'Embedded key not authorized'
     [IO.File]::WriteAllText($pub, "$key test-client", $utf8)

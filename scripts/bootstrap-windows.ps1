@@ -135,10 +135,66 @@ function Assert-DeployAdministrator {
     }
 }
 
+function Assert-DeployNativePowerShell {
+    param(
+        [bool]$Is64BitOperatingSystem = [Environment]::Is64BitOperatingSystem,
+        [bool]$Is64BitProcess = [Environment]::Is64BitProcess
+    )
+    if ($Is64BitOperatingSystem -and !$Is64BitProcess) {
+        $nativeShell = Join-Path $env:WINDIR 'Sysnative\WindowsPowerShell\v1.0\powershell.exe'
+        throw "Run this script in elevated 64-bit Windows PowerShell, not Windows PowerShell (x86). From a 32-bit shell, run & '$nativeShell', then rerun this script. The 32-bit shell redirects System32 and cannot load the LocalAccounts module."
+    }
+}
+
+function Install-DeployOpenSSH {
+    $ErrorActionPreference = 'Stop'
+    $states = New-Object 'System.Collections.Generic.List[string]'
+    $guidance = "Check Windows Update/Features on Demand availability and $env:WINDIR\Logs\DISM\dism.log, then rerun this same script. See https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/cant-install-openssh-features"
+    # Client and Server are separate Windows capabilities. Do not assume that
+    # installing the server also made every tool this script uses available.
+    foreach ($name in @('OpenSSH.Client~~~~0.0.1.0', 'OpenSSH.Server~~~~0.0.1.0')) {
+        try {
+            $feature = Get-WindowsCapability -Online -Name $name -ErrorAction Stop
+            if ([string]$feature.State -match 'Pending') {
+                throw "Windows reports $name as $($feature.State). Reboot the server to finish servicing, then rerun this same script."
+            }
+            if ($feature.State -ne 'Installed') {
+                Write-Host "Installing $name..."
+                $installed = Add-WindowsCapability -Online -Name $name -ErrorAction Stop
+                if ($installed.RestartNeeded) {
+                    throw "Windows reports that $name requires a reboot. Reboot the server to finish servicing, then rerun this same script."
+                }
+                # DISM can return without throwing when all package sources fail.
+                # Its return value alone is not proof that installation succeeded.
+                $feature = Get-WindowsCapability -Online -Name $name -ErrorAction Stop
+                if ([string]$feature.State -match 'Pending') {
+                    throw "Windows reports $name as $($feature.State). Reboot the server to finish servicing, then rerun this same script."
+                }
+            }
+            if ($feature.State -ne 'Installed') {
+                throw "Windows did not install $name (state: $($feature.State))."
+            }
+            $states.Add("$name=$($feature.State)")
+        } catch {
+            throw "OpenSSH prerequisite failed for ${name}: $($_.Exception.Message) $guidance"
+        }
+    }
+    $sshDir = Join-Path $env:WINDIR 'System32\OpenSSH'
+    $missing = @('ssh-keygen.exe', 'sshd.exe', 'sftp-server.exe', 'sshd_config_default' | ForEach-Object {
+        $path = Join-Path $sshDir $_
+        if (!(Test-Path -LiteralPath $path -PathType Leaf)) { $path }
+    })
+    if ($missing.Count -gt 0) {
+        throw "OpenSSH installation is incomplete. Missing: $($missing -join ', '). Capabilities: $($states -join '; '). $guidance"
+    }
+    return $sshDir
+}
+
 function Invoke-DayZSSHBootstrap {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param([string]$KeyPath, [string]$Key, [string[]]$Sources, [string]$Account = 'Administrator', [int]$Port = 22)
     $ErrorActionPreference = 'Stop'
+    Assert-DeployNativePowerShell
     Assert-DeployAdministrator
     if ($Account -notmatch '^[a-zA-Z0-9_.-]+$') { throw 'UserName must be a simple local Windows account name.' }
     if ($KeyPath -and $Key) { throw 'Provide either an embedded public key or -PublicKeyPath, not both.' }
@@ -155,12 +211,8 @@ function Invoke-DayZSSHBootstrap {
     if ($user.SID.Value -notin @($admins | ForEach-Object { $_.SID.Value })) { throw 'The SSH account must be a local Administrator.' }
     if (!$PSCmdlet.ShouldProcess($env:COMPUTERNAME, "Configure key-only SSH for $Account on TCP $Port from $($Sources -join ',')")) { return }
 
-    $feature = Get-WindowsCapability -Online -Name 'OpenSSH.Server~~~~0.0.1.0'
-    if ($feature.State -ne 'Installed') {
-        $installed = Add-WindowsCapability -Online -Name 'OpenSSH.Server~~~~0.0.1.0'
-        if ($installed.RestartNeeded) { throw 'Windows reports that OpenSSH installation requires a reboot. Rerun this script after Windows finishes servicing.' }
-    }
-    $sshDir = Join-Path $env:WINDIR 'System32\OpenSSH'
+    # Verify capabilities and payload before creating host keys or changing SSH.
+    $sshDir = Install-DeployOpenSSH
     $sshd = Join-Path $sshDir 'sshd.exe'
     $keygen = Join-Path $sshDir 'ssh-keygen.exe'
     $root = Join-Path $env:ProgramData 'ssh'
