@@ -1,0 +1,20 @@
+apiVersion: pvecli/v1
+kind: TemplateBuild
+context: lab
+os: ubuntu-24.04
+vmid: 9100
+name: ubuntu-2404-template
+node: pve1
+storage: local-lvm
+iso_storage: local
+pool: pvecli-lab
+bridge: vmbr0
+hardware:
+  cores: 2
+  memory_mib: 4096
+  disk_gib: 64
+iso:
+  volume: local:iso/ubuntu-24.04.4-live-server-amd64.iso
+  # Alternatively specify file and sha256 instead of volume:
+  # file: ../media/ubuntu.iso
+  # sha256: <64 hexadecimal digits from the verified vendor checksum>

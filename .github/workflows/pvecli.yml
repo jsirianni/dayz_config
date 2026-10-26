@@ -1,0 +1,68 @@
+name: pvecli
+on:
+  push:
+    branches: [main]
+    paths: ['proxmox/**', '.github/workflows/pvecli.yml']
+  pull_request:
+    paths: ['proxmox/**', '.github/workflows/pvecli.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  GOWORK: 'off'
+jobs:
+  test-and-package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: proxmox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: proxmox/go.mod
+          cache-dependency-path: proxmox/go.sum
+      - run: go test ./...
+      - run: go vet ./...
+      - run: python scripts/standalone.py
+      - run: go run ./cmd/pvecli-package --version dev
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pvecli-${{ runner.os }}-amd64
+          path: |
+            proxmox/dist/*.zip
+            proxmox/dist/*.sha256
+  race-and-vulnerabilities:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: proxmox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: proxmox/go.mod
+          cache-dependency-path: proxmox/go.sum
+      - run: go test -race ./...
+      - run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+  recipe-validation:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: proxmox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: proxmox/go.mod
+          cache-dependency-path: proxmox/go.sum
+      - run: go run ./cmd/pvecli --tools-dir "$RUNNER_TEMP/pvecli-tools" tools install
+      - name: Validate recipes using pinned Packer and plugin
+        run: go test ./internal/template -run TestRealPackerValidation -v
+        env:
+          PVECLI_TEST_PACKER: ${{ runner.temp }}/pvecli-tools/packer-1.16.2/packer
+          PVECLI_TEST_PLUGINS: ${{ runner.temp }}/pvecli-tools/plugins

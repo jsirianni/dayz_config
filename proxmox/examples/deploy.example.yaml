@@ -1,0 +1,27 @@
+apiVersion: pvecli/v1
+kind: VMDeployment
+context: lab
+template_vmid: 9100
+vmid: 9201
+name: ubuntu-lab-01
+node: pve1
+storage: local-lvm
+pool: pvecli-lab
+hardware:
+  cpu: x86-64-v2-AES
+  cores: 2
+  sockets: 1
+  memory_mib: 4096
+  disk: scsi0
+  disk_gib: 80
+network:
+  interface: net0
+  bridge: vmbr0
+  ipv4: dhcp
+  # For static IPv4, use ipv4: 192.0.2.20/24 and gateway: 192.0.2.1.
+guest:
+  os: ubuntu-24.04
+  user: pveadmin
+  key_file: ../keys/id_ed25519
+  # passphrase_env: PVECLI_SSH_PASSPHRASE
+  port: 22

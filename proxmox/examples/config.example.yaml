@@ -1,0 +1,8 @@
+apiVersion: pvecli/v1
+kind: Config
+default_context: lab
+contexts:
+  lab:
+    endpoint: https://pve.example.net:8006
+    token_id: automation@pve!pvecli
+    token_secret_env: PVECLI_LAB_TOKEN
