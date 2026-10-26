@@ -2,11 +2,18 @@
 <#
 .SYNOPSIS
 Prepares a Windows Server for dzdeploy. Run in an elevated local PowerShell.
+.DESCRIPTION
+Before copying this script, replace REPLACE_WITH_CLIENT_PUBLIC_KEY below with
+your client's public key. Copy only this script to each server.
 .EXAMPLE
-.\bootstrap-windows.ps1 -PublicKeyPath .\id_ed25519.pub -AllowedSource '203.0.113.10/32'
+.\bootstrap-windows.ps1 -AllowedSource '203.0.113.10/32'
 #>
-[CmdletBinding(SupportsShouldProcess = $true)]
+[CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Embedded')]
 param(
+    # Embed the public key here on the client; never embed the private key.
+    [Parameter(ParameterSetName = 'Embedded')]
+    [string]$PublicKey = 'REPLACE_WITH_CLIENT_PUBLIC_KEY',
+    [Parameter(ParameterSetName = 'File')]
     [string]$PublicKeyPath,
     [string[]]$AllowedSource,
     [string]$UserName = 'Administrator',
@@ -27,8 +34,8 @@ function Test-DeploySource {
 
 function ConvertTo-DeployPublicKey {
     param([string]$Text)
-    if ($Text.Trim() -notmatch '^(ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521)) ([A-Za-z0-9+/]+={0,2})(?: [^\r\n]*)?$') {
-        throw 'PublicKeyPath must contain exactly one OpenSSH public key, without authorized_keys options.'
+    if ([string]::IsNullOrWhiteSpace($Text) -or $Text.Trim() -notmatch '^(ssh-ed25519|ssh-rsa|ecdsa-sha2-nistp(?:256|384|521)) ([A-Za-z0-9+/]+={0,2})(?: [^\r\n]*)?$') {
+        throw 'Embed exactly one OpenSSH public key in PublicKey, without authorized_keys options, or provide -PublicKeyPath.'
     }
     $kind = $Matches[1]
     $encoded = $Matches[2]
@@ -130,14 +137,18 @@ function Assert-DeployAdministrator {
 
 function Invoke-DayZSSHBootstrap {
     [CmdletBinding(SupportsShouldProcess = $true)]
-    param([string]$KeyPath, [string[]]$Sources, [string]$Account = 'Administrator', [int]$Port = 22)
+    param([string]$KeyPath, [string]$Key, [string[]]$Sources, [string]$Account = 'Administrator', [int]$Port = 22)
     $ErrorActionPreference = 'Stop'
     Assert-DeployAdministrator
     if ($Account -notmatch '^[a-zA-Z0-9_.-]+$') { throw 'UserName must be a simple local Windows account name.' }
-    if (!$KeyPath -or !(Test-Path -LiteralPath $KeyPath -PathType Leaf)) { throw 'Provide -PublicKeyPath pointing to the client public key.' }
+    if ($KeyPath -and $Key) { throw 'Provide either an embedded public key or -PublicKeyPath, not both.' }
+    if ($KeyPath) {
+        if (!(Test-Path -LiteralPath $KeyPath -PathType Leaf)) { throw 'PublicKeyPath must point to the client public key.' }
+        $Key = [IO.File]::ReadAllText((Resolve-Path -LiteralPath $KeyPath))
+    }
     if (!$Sources -or @($Sources | Where-Object { !(Test-DeploySource $_) }).Count -gt 0) { throw 'Provide -AllowedSource as explicit IP addresses or CIDRs; unrestricted /0 is not allowed.' }
     if ($Port -lt 1 -or $Port -gt 65535) { throw 'SSH port must be between 1 and 65535.' }
-    $key = ConvertTo-DeployPublicKey ([IO.File]::ReadAllText((Resolve-Path -LiteralPath $KeyPath)))
+    $key = ConvertTo-DeployPublicKey $Key
     $user = Get-LocalUser -Name $Account
     if (!$user.Enabled) { throw 'The SSH account must already be enabled.' }
     $admins = @(Get-LocalGroupMember -SID 'S-1-5-32-544')
@@ -152,7 +163,6 @@ function Invoke-DayZSSHBootstrap {
     $sshDir = Join-Path $env:WINDIR 'System32\OpenSSH'
     $sshd = Join-Path $sshDir 'sshd.exe'
     $keygen = Join-Path $sshDir 'ssh-keygen.exe'
-    Invoke-DeployNative $keygen @('-lf', (Resolve-Path -LiteralPath $KeyPath).Path, '-E', 'sha256') | Out-Null
     $root = Join-Path $env:ProgramData 'ssh'
     New-Item -ItemType Directory -Force -Path $root | Out-Null
     Invoke-DeployNative $keygen @('-A') | Out-Null
@@ -173,6 +183,10 @@ function Invoke-DayZSSHBootstrap {
     $backup = Join-Path $root ('dzdeploy-backup-' + [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffffff'))
     New-Item -ItemType Directory -Path $backup | Out-Null
     Set-DeployPrivateAcl $backup -Directory
+    # Validate the embedded key using OpenSSH without requiring a second input file.
+    $keyCandidate = Join-Path $backup 'client-public-key.pub'
+    [IO.File]::WriteAllText($keyCandidate, $key, $utf8)
+    Invoke-DeployNative $keygen @('-lf', $keyCandidate, '-E', 'sha256') | Out-Null
     [IO.File]::WriteAllText((Join-Path $backup 'sshd_config'), $oldCfg, $utf8)
     [IO.File]::WriteAllText((Join-Path $backup 'administrators_authorized_keys'), $oldKeys, $utf8)
     $service = Get-Service sshd
@@ -229,5 +243,9 @@ function Invoke-DayZSSHBootstrap {
 
 # Dot-sourcing exposes pure helpers and the orchestrator for mocked tests.
 if ($MyInvocation.InvocationName -ne '.') {
-    Invoke-DayZSSHBootstrap -KeyPath $PublicKeyPath -Sources $AllowedSource -Account $UserName -Port $SshPort
+    if ($PSCmdlet.ParameterSetName -eq 'File') {
+        Invoke-DayZSSHBootstrap -KeyPath $PublicKeyPath -Sources $AllowedSource -Account $UserName -Port $SshPort
+    } else {
+        Invoke-DayZSSHBootstrap -Key $PublicKey -Sources $AllowedSource -Account $UserName -Port $SshPort
+    }
 }

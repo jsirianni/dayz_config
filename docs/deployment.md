@@ -28,11 +28,15 @@ The nested `host` settings drive automatic enrollment; no second user-maintained
 
 Have the client SSH key and populated local `deploy.yaml` available. The host must have internet access for Windows features, vendor installers, Steam, and the pinned stock mission source. Steam authentication requires an account entitled to the configured downloads. Keep the private SSH key on the client.
 
-**Step 1 — on the fresh server**, copy only `bootstrap-windows.ps1` and the client public key, then run in an elevated Windows PowerShell terminal:
+**Step 1 — prepare one script on the client.** Make a local copy of `scripts/bootstrap-windows.ps1` under ignored `.deploy/`. Replace `REPLACE_WITH_CLIENT_PUBLIC_KEY` in that copy with the complete single-line contents of your client's `.pub` file. Keep this personalized script out of Git. Never embed a private key.
+
+Copy **only that script** to each Windows server, then run in an elevated Windows PowerShell terminal:
 
 ```powershell
-.\bootstrap-windows.ps1 -PublicKeyPath .\id_ed25519.pub -AllowedSource '203.0.113.10/32'
+.\bootstrap-windows.ps1 -AllowedSource '203.0.113.10/32'
 ```
+
+The same personalized script works on all three hosts. The source template refuses to configure SSH until a valid key is embedded. `-PublicKeyPath` remains available for older workflows; it is unnecessary for this single-file workflow.
 
 `-UserName` defaults to the existing enabled local `Administrator`; `-SshPort` defaults to 22. `-AllowedSource` accepts explicit IPv4/IPv6 addresses or CIDRs, including multiple entries. Use the same username/port in client YAML. `-WhatIf` previews setup without changes. Built-in Windows PowerShell 5.1 is sufficient; no modules, Go executable, repository, or game installation are needed on the host.
 

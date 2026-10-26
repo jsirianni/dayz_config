@@ -83,6 +83,8 @@ try {
     Assert-Equal (Test-DeploySource '2001:db8::1/128') $true 'IPv6 CIDR'
     foreach ($invalid in @('Any', '*', '0.0.0.0/0', '::/0', '1.2.3.4/33', 'bad/32', '1.2.3.4/32/2')) { Assert-Equal (Test-DeploySource $invalid) $false "Unsafe source $invalid" }
     Assert-Throws { ConvertTo-DeployPublicKey 'not a public key' } 'Invalid key accepted'
+    Assert-Throws { ConvertTo-DeployPublicKey '' } 'Missing key accepted'
+    Assert-Throws { ConvertTo-DeployPublicKey 'REPLACE_WITH_CLIENT_PUBLIC_KEY' } 'Unconfigured embedded key accepted'
     Assert-Throws { ConvertTo-DeployPublicKey "$key`n$key" } 'Multiple keys accepted'
     Assert-Throws { New-DeploySshConfig $stock 'Administrator#injection' 22 } 'Config injection accepted'
     $config = New-DeploySshConfig $stock 'Administrator' 2222
@@ -101,12 +103,38 @@ try {
     Assert-Equal $script:calls.ContainsKey('install') $false 'WhatIf installed OpenSSH'
     Assert-Equal $script:calls.ContainsKey('firewall') $false 'WhatIf changed firewall'
     Assert-Equal $script:calls.ContainsKey('native') $false 'WhatIf ran native commands'
+    Invoke-DayZSSHBootstrap -Key "$key embedded-client" -Sources '203.0.113.10/32' -WhatIf
+    Assert-Equal $script:calls.ContainsKey('native') $false 'Embedded-key WhatIf ran native commands'
+    Assert-Throws { Invoke-DayZSSHBootstrap -Key $key -KeyPath $pub -Sources '203.0.113.10/32' } 'Ambiguous key inputs accepted'
+    Assert-Throws { Invoke-DayZSSHBootstrap -Key 'REPLACE_WITH_CLIENT_PUBLIC_KEY' -Sources '203.0.113.10/32' } 'Unconfigured embedded key reached setup'
+    Assert-Equal $script:calls.ContainsKey('capability') $false 'Invalid key changed Windows capabilities'
     Assert-Throws { Invoke-DayZSSHBootstrap -KeyPath $pub -Sources '0.0.0.0/0' } 'Unrestricted source accepted'
     $script:userEnabled = $false
     Assert-Throws { Invoke-DayZSSHBootstrap -KeyPath $pub -Sources '203.0.113.10/32' } 'Disabled account accepted'
     $script:userEnabled = $true
 
-    Invoke-DayZSSHBootstrap -KeyPath $pub -Sources '203.0.113.10/32' -Port 2222
+    # Exercise the script entry point using a personalized copy and no .pub file.
+    # Override only host identity checks so -WhatIf can run without elevation.
+    $singleScript = Join-Path $taskRoot 'bootstrap-windows.ps1'
+    $template = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'bootstrap-windows.ps1'))
+    $identityMocks = @'
+function Assert-DeployAdministrator {}
+function Get-LocalUser { param($Name); return [pscustomobject]@{ Enabled = $true; SID = [pscustomobject]@{ Value = 'test-admin' } } }
+function Get-LocalGroupMember { param($SID); return [pscustomobject]@{ SID = [pscustomobject]@{ Value = 'test-admin' } } }
+'@
+    $personalized = $template.Replace("'REPLACE_WITH_CLIENT_PUBLIC_KEY'", "'$key'").Replace('# Dot-sourcing exposes', $identityMocks + "`r`n# Dot-sourcing exposes")
+    [IO.File]::WriteAllText($singleScript, $personalized, $utf8)
+    Remove-Item -LiteralPath $pub
+    & $singleScript -AllowedSource '203.0.113.10/32' -WhatIf
+    Assert-Equal (Test-Path -LiteralPath $pub) $false 'Script entry point required a separate public key'
+    [IO.File]::WriteAllText($pub, "$key test-client", $utf8)
+
+    # The default workflow needs no public-key file beside the copied script.
+    Remove-Item -LiteralPath $pub
+    Invoke-DayZSSHBootstrap -Key "$key embedded-client" -Sources '203.0.113.10/32' -Port 2222
+    Assert-Equal (Test-Path -LiteralPath $pub) $false 'Embedded bootstrap required an input key file'
+    Assert-Equal ([IO.File]::ReadAllText((Join-Path $stateDir 'administrators_authorized_keys'))) "$key`r`n" 'Embedded key not authorized'
+    [IO.File]::WriteAllText($pub, "$key test-client", $utf8)
     Assert-Equal $script:lastRule.LocalPort 2222 'Firewall port mismatch'
     Assert-Equal ($script:lastRule.RemoteAddress -join ',') '203.0.113.10/32' 'Firewall source mismatch'
     Assert-Equal $script:lastStartup 'Automatic' 'SSHD not automatic'
