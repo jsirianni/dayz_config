@@ -81,6 +81,8 @@ func TestVirtualServiceBootstrapOnDisposableRunner(t *testing.T) {
 		t.Fatal("bootstrap unexpectedly succeeded with obstructed RCon directory", string(out))
 	} else if strings.Contains(string(out), "No mapping") {
 		t.Fatal("virtual account still could not be resolved", string(out))
+	} else {
+		t.Logf("Expected first-attempt failure: %s", out)
 	}
 	if s, err := m.OpenService(name); err == nil {
 		s.Close()
@@ -92,6 +94,10 @@ func TestVirtualServiceBootstrapOnDisposableRunner(t *testing.T) {
 		t.Fatal(err)
 	}
 	if out, err := exec.Command(helper, config).CombinedOutput(); err != nil {
+		for _, p := range []string{c.StateDir, filepath.Join(c.StateDir, "state.json")} {
+			acl, _ := exec.Command("icacls.exe", p).CombinedOutput()
+			t.Logf("ACL for %s: %s", p, acl)
+		}
 		t.Fatal("fresh virtual-service bootstrap failed", err, string(out))
 	}
 	s, err := m.OpenService(name)
