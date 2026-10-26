@@ -128,32 +128,34 @@ type Request struct {
 	Restart       bool   `json:"restart"`
 }
 type Result struct {
-	Version         int       `json:"version"`
-	ID              string    `json:"id"`
-	Target          string    `json:"target"`
-	Status          string    `json:"status"`
-	Phase           string    `json:"phase,omitempty"`
-	Commit          string    `json:"commit,omitempty"`
-	Changed         []string  `json:"changed,omitempty"`
-	Deleted         []string  `json:"deleted,omitempty"`
-	RestartRequired bool      `json:"restartRequired"`
-	Error           string    `json:"error,omitempty"`
-	Recovery        string    `json:"recovery,omitempty"`
-	Updated         time.Time `json:"updated"`
+	Version         int         `json:"version"`
+	ID              string      `json:"id"`
+	Target          string      `json:"target"`
+	Status          string      `json:"status"`
+	Phase           string      `json:"phase,omitempty"`
+	Commit          string      `json:"commit,omitempty"`
+	Changed         []string    `json:"changed,omitempty"`
+	Deleted         []string    `json:"deleted,omitempty"`
+	RestartRequired bool        `json:"restartRequired"`
+	Error           string      `json:"error,omitempty"`
+	Recovery        string      `json:"recovery,omitempty"`
+	Updated         time.Time   `json:"updated"`
+	DZSA            *DZSAReport `json:"dzsa,omitempty"`
 }
 type State struct {
-	Version         int       `json:"version"`
-	Target          string    `json:"target"`
-	Installed       *Manifest `json:"installed,omitempty"`
-	RunningCommit   string    `json:"runningCommit,omitempty"`
-	PID             int       `json:"pid,omitempty"`
-	ProcessToken    string    `json:"processToken,omitempty"`
-	Phase           string    `json:"phase"`
-	LastOperation   string    `json:"lastOperation,omitempty"`
-	Error           string    `json:"error,omitempty"`
-	Updated         time.Time `json:"updated"`
-	Paused          bool      `json:"paused"`
-	RestartRequired bool      `json:"restartRequired"`
+	Version         int         `json:"version"`
+	Target          string      `json:"target"`
+	Installed       *Manifest   `json:"installed,omitempty"`
+	RunningCommit   string      `json:"runningCommit,omitempty"`
+	PID             int         `json:"pid,omitempty"`
+	ProcessToken    string      `json:"processToken,omitempty"`
+	Phase           string      `json:"phase"`
+	LastOperation   string      `json:"lastOperation,omitempty"`
+	Error           string      `json:"error,omitempty"`
+	Updated         time.Time   `json:"updated"`
+	Paused          bool        `json:"paused"`
+	RestartRequired bool        `json:"restartRequired"`
+	DZSA            *DZSAReport `json:"dzsa,omitempty"`
 }
 type Endpoint struct {
 	Address          string      `json:"address" yaml:"address"`
@@ -172,19 +174,20 @@ type ClientConfig struct {
 	Targets map[string]Endpoint `json:"targets" yaml:"targets"`
 }
 type HostConfig struct {
-	Version          int    `json:"version" yaml:"version,omitempty"`
-	Target           string `json:"target" yaml:"target,omitempty"`
-	InstallDir       string `json:"installDir" yaml:"install_dir"`
-	StateDir         string `json:"stateDir" yaml:"state_dir"`
-	SteamCMD         string `json:"steamcmd" yaml:"steamcmd"`
-	WorkshopDir      string `json:"workshopDir" yaml:"workshop_dir"`
-	SteamUser        string `json:"steamUser" yaml:"steam_user"`
-	RConAddress      string `json:"rconAddress" yaml:"rcon_address"`
-	RConPasswordFile string `json:"rconPasswordFile" yaml:"rcon_password_file"`
-	QueryAddress     string `json:"queryAddress" yaml:"query_address"`
-	ShutdownSeconds  int    `json:"shutdownSeconds" yaml:"shutdown_seconds,omitempty"`
-	UpdateSeconds    int    `json:"updateSeconds" yaml:"update_seconds,omitempty"`
-	StartupSeconds   int    `json:"startupSeconds" yaml:"startup_seconds,omitempty"`
+	Version            int    `json:"version" yaml:"version,omitempty"`
+	Target             string `json:"target" yaml:"target,omitempty"`
+	InstallDir         string `json:"installDir" yaml:"install_dir"`
+	StateDir           string `json:"stateDir" yaml:"state_dir"`
+	SteamCMD           string `json:"steamcmd" yaml:"steamcmd"`
+	WorkshopDir        string `json:"workshopDir" yaml:"workshop_dir"`
+	SteamUser          string `json:"steamUser" yaml:"steam_user"`
+	RConAddress        string `json:"rconAddress" yaml:"rcon_address"`
+	RConPasswordFile   string `json:"rconPasswordFile" yaml:"rcon_password_file"`
+	QueryAddress       string `json:"queryAddress" yaml:"query_address"`
+	PublicQueryAddress string `json:"publicQueryAddress,omitempty" yaml:"public_query_address,omitempty"`
+	ShutdownSeconds    int    `json:"shutdownSeconds" yaml:"shutdown_seconds,omitempty"`
+	UpdateSeconds      int    `json:"updateSeconds" yaml:"update_seconds,omitempty"`
+	StartupSeconds     int    `json:"startupSeconds" yaml:"startup_seconds,omitempty"`
 }
 
 func (c *HostConfig) Validate() error {
@@ -226,6 +229,11 @@ func (c *HostConfig) Validate() error {
 		n, numberErr := strconv.Atoi(port)
 		if err != nil || numberErr != nil || n < 1 || n > 65535 || host != "127.0.0.1" {
 			return errors.New("host RCon/query addresses must be 127.0.0.1:<valid-port>")
+		}
+	}
+	if c.PublicQueryAddress != "" {
+		if _, err := publicQueryAddress(c.PublicQueryAddress); err != nil {
+			return err
 		}
 	}
 	if c.ShutdownSeconds == 0 {

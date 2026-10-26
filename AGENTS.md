@@ -42,3 +42,4 @@ Only Windows and Linux clients are supported. Build/test/package those platforms
 - Main controls managed configuration, including server passwords and admin allowlists. Live drift is backed up and overwritten; only previously managed obsolete paths are deleted. Persistence and runtime credentials are excluded.
 - Preserve operation IDs. On connection loss, inspect `dzdeploy status <alias> --operation <id>` instead of blindly resubmitting.
 - Report installed revision, last managed startup revision, and restart pending separately. Live acceptance requires actual host access.
+- Use `dzdeploy check <alias>` to confirm public DZSA discovery and the installed Workshop mod set without deploying, restarting, or probing RCon. Configure the existing public IP and forwarded query port through ignored YAML's `host.public_query_address`; never renumber ports for verification. Distinguish a fresh DZSA check from the agent's persisted startup verification and revision state.
