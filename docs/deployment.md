@@ -26,6 +26,8 @@ SSH key paths are relative to YAML. Omit `key_file` to use Windows OpenSSH's age
 
 The nested `host` settings drive automatic enrollment; no second user-maintained file is needed. Enrollment writes private machine-readable `host.json` for the service. Launcher mods/order/game ports remain tracked in `internal/deploy/targets.json` and are packaged from the deployment commit. `remote_dir` must be the SFTP spelling of `host.state_dir`, such as `/C:/ProgramData/DayZDeploy/nasdara-staging`.
 
+For public DZSA startup verification, set the optional `host.public_query_address` to the existing public IPv4 address and forwarded UDP query port, for example `'203.0.113.10:27016'`. This is the address used by the [DZSA server checker](https://dayzsalauncher.com/#/servercheck), and can differ from `query_address` when NAT translates the query port. It never changes any listener or forwarding. Fresh enrollment saves it with the other host settings. Leaving it empty preserves local query startup checks.
+
 ## Two-step provisioning, staging first
 
 Have the client SSH key and populated local `deploy.yaml` available. The host must have internet access for GitHub release downloads, Windows features, vendor installers, Steam, and the pinned stock mission source. Steam authentication requires an account entitled to the configured downloads. Keep the private SSH key on the client.
@@ -79,6 +81,7 @@ If Windows explicitly reports servicing pending or a reboot required, finish ser
 ```text
 dzdeploy tools install
 dzdeploy doctor nasdara-staging
+dzdeploy check nasdara-staging
 dzdeploy deploy nasdara-staging --dry-run
 dzdeploy deploy nasdara-staging
 dzdeploy deploy nasdara-staging --restart
@@ -97,7 +100,13 @@ Packages are uploaded/read-back verified before a request is atomically publishe
 
 Without `--restart`, the running game is left running and activation is reported pending. Installed revision and last managed startup revision are separate. The first deployment should use `--restart` to activate the initially idle service.
 
-Explicit restarts request immediate clean RCon shutdown without a warning countdown. Default timeouts are three minutes for shutdown, 30 for updates, and ten for startup. Stuck games are not force-killed. Every launch runs **updates → reapply desired configuration → launch**, preserving mod order, ports, logging, and BattlEye paths. Startup verifies process identity, RCon response, hostname, and map through Steam query.
+Explicit restarts request immediate clean RCon shutdown without a warning countdown. Default timeouts are three minutes for shutdown, 30 for updates, and ten for startup. Stuck games are not force-killed. Every launch runs **updates → reapply desired configuration → launch**, preserving mod order, ports, logging, and BattlEye paths. Startup verifies process identity, hostname, and map through Steam query. RCon remains the clean-shutdown channel; an RCon response is not required to declare query readiness.
+
+When `public_query_address` is set on the host, startup also calls the same HTTPS API as the DZSA server-check page: `GET https://dayzsalauncher.com/api/v1/query/IP:QUERY_PORT`. A successful check requires HTTP 200, DZSA status 0, the requested endpoint, DayZ, the configured game port, the deployed hostname and map, and an exact set of expected Workshop IDs. Mod order and display names do not affect the comparison. Missing, unexpected, duplicate, or zero Workshop IDs do not pass. Successful deployment results and state retain the timestamp, check link, server details, and returned mod names/IDs; text and JSON output show that report.
+
+DZSA calls have a ten-second request timeout and a bounded response size. Startup retries at most once every 15 seconds within its existing startup timeout to allow Steam/DZSA discovery to catch up. If public confirmation remains unavailable, the operation reports failure and leaves the locally query-ready game and installed configuration running. An external discovery failure does not trigger a stop or previous-configuration rollback.
+
+`dzdeploy check <alias> [--json]` performs a fresh read-only DZSA check using the installed manifest and live hostname. It does not deploy, restart, run RCon commands, update deployment state, or require clean main. The client YAML's `host.public_query_address` overrides the enrolled host's saved public query address for this check; if neither is set, a public IPv4 SSH address plus the installed query port is used. Private SSH addresses require the public query address in YAML. This command also works with an older enrolled agent; automatic startup verification and persisted reports require the updated Windows agent and its saved public query address. Client YAML changes alone do not reconfigure an already enrolled agent. Copy-only deployment and dry-run do not claim to have verified a new startup, and `--no-wait` still returns after submission.
 
 Operations survive client disconnection. Keep the printed ID and reconnect using:
 

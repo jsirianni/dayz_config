@@ -227,12 +227,14 @@ func TestSymlinkRejected(t *testing.T) {
 }
 
 type fakeGame struct {
-	store     *Store
-	alive     bool
-	events    []string
-	failFirst bool
-	launches  int
-	stopErr   error
+	store        *Store
+	alive        bool
+	events       []string
+	failFirst    bool
+	launches     int
+	stopErr      error
+	healthErr    error
+	healthReport *DZSAReport
 }
 
 func (g *fakeGame) Alive(State) bool { return g.alive }
@@ -261,9 +263,9 @@ func (g *fakeGame) Launch(Target) (int, string, error) {
 	g.alive = true
 	return 42, "fake", nil
 }
-func (g *fakeGame) Healthy(context.Context, Target) error {
+func (g *fakeGame) Healthy(context.Context, Target) (*DZSAReport, error) {
 	g.events = append(g.events, "health")
-	return nil
+	return g.healthReport, g.healthErr
 }
 func submitTest(t *testing.T, s *Store, b *Bundle, restart bool) Request {
 	t.Helper()

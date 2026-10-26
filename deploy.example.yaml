@@ -1,6 +1,8 @@
 # Copy to deploy.yaml (ignored by Git). Fill addresses and verify ALL host paths/ports.
 # SSH key paths are relative to this file. Omit key_file to use an SSH agent.
 # Never put passwords or private key contents in this file.
+# Optional host.public_query_address: '203.0.113.10:27016' enables public DZSA
+# startup verification. Use the existing public IP and forwarded UDP query port.
 version: 1
 targets:
   nasdara-staging:

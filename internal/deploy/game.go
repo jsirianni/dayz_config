@@ -22,9 +22,14 @@ type Game interface {
 	Stop(context.Context, State) error
 	Update(context.Context, Target) error
 	Launch(Target) (int, string, error)
-	Healthy(context.Context, Target) error
+	Healthy(context.Context, Target) (*DZSAReport, error)
 }
-type NativeGame struct{ Config HostConfig }
+type NativeGame struct {
+	Config         HostConfig
+	nextDZSA       time.Time
+	lastDZSAError  error
+	lastDZSAReport *DZSAReport
+}
 
 func (g *NativeGame) Alive(s State) bool {
 	if s.PID == 0 {
@@ -285,6 +290,9 @@ func syncModContext(ctx context.Context, source, dest string) error {
 	return nil
 }
 func (g *NativeGame) Launch(t Target) (int, string, error) {
+	g.nextDZSA = time.Time{}
+	g.lastDZSAError = nil
+	g.lastDZSAReport = nil
 	if err := ensureNoGame(g.Config.InstallDir); err != nil {
 		return 0, "", err
 	}
@@ -325,33 +333,25 @@ func (g *NativeGame) Launch(t Target) (int, string, error) {
 
 var hostnamePattern = regexp.MustCompile(`(?m)^\s*hostname\s*=\s*"([^"\r\n]*)"\s*;`)
 
-func (g *NativeGame) Healthy(ctx context.Context, t Target) error {
+func (g *NativeGame) Healthy(ctx context.Context, t Target) (*DZSAReport, error) {
 	if err := ctx.Err(); err != nil {
-		return err
-	}
-	if err := g.rcon("version"); err != nil {
-		return err
+		return nil, err
 	}
 	c, err := a2s.NewClient(g.Config.QueryAddress, a2s.TimeoutOption(3*time.Second))
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer c.Close()
 	info, err := c.QueryInfo()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	terrain := strings.Split(t.Mission, ".")
-	if !strings.EqualFold(info.Map, terrain[len(terrain)-1]) {
-		return fmt.Errorf("query reports unexpected map %q", info.Map)
-	}
-	raw, err := os.ReadFile(filepath.Join(g.Config.InstallDir, "serverDZ.cfg"))
+	hostname, err := g.expectedHostname()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	match := hostnamePattern.FindSubmatch(raw)
-	if len(match) != 2 || info.Name != string(match[1]) {
-		return errors.New("query does not match deployed hostname")
+	if err = verifyServerIdentity(t, hostname, info.Name, info.Map); err != nil {
+		return nil, err
 	}
-	return nil
+	return g.checkDZSA(ctx, t, hostname)
 }

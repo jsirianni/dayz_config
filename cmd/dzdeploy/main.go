@@ -64,6 +64,7 @@ func emit(v any, asJSON bool) error {
 		if r.Error != "" {
 			fmt.Println("Error:", r.Error)
 		}
+		printDZSA(r.DZSA)
 	case deploy.State:
 		installed := "none"
 		if r.Installed != nil {
@@ -73,6 +74,9 @@ func emit(v any, asJSON bool) error {
 		if r.Error != "" {
 			fmt.Println("Attention:", r.Error)
 		}
+		printDZSA(r.DZSA)
+	case *deploy.DZSAReport:
+		printDZSA(r)
 	case deploy.Enrollment:
 		fmt.Printf("%s enrollment: %s, operation %s\nRerun deploy to resume provisioning.\n", r.Target, r.Phase, r.ID)
 	default:
@@ -84,10 +88,21 @@ func emit(v any, asJSON bool) error {
 	}
 	return nil
 }
+func printDZSA(report *deploy.DZSAReport) {
+	if report == nil {
+		return
+	}
+	fmt.Printf("DZSA: detected %s, server %q, map %q, players %d/%d\n", report.Address, report.Server.Name, report.Server.Map, report.Server.Players, report.Server.MaxPlayers)
+	fmt.Println("DZSA check:", report.CheckURL)
+	for _, mod := range report.Server.Mods {
+		fmt.Printf("  Mod: %q (Workshop %d)\n", mod.Name, mod.SteamWorkshopID)
+	}
+}
 func usage() {
 	fmt.Println(`dzdeploy: DayZ configuration deployment over SSH/SFTP
 
   dzdeploy doctor <server>
+  dzdeploy check <server>
   dzdeploy deploy <server> [--dry-run] [--restart] [--no-wait]
   dzdeploy status <server> [--operation <id>]
   dzdeploy restart <server> [--no-wait]
@@ -167,6 +182,9 @@ func run(args []string) error {
 	}
 	if *dry && action != "deploy" {
 		return errors.New("--dry-run is only valid for deploy")
+	}
+	if action == "check" && (*restart || *noWait || *operation != "" || *deployment != "") {
+		return errors.New("check is read-only; restart, submission, and operation flags are not supported")
 	}
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
@@ -287,7 +305,7 @@ func run(args []string) error {
 			return reported{err}
 		}
 		return nil
-	case "doctor", "deploy", "status", "restart", "rollback":
+	case "doctor", "check", "deploy", "status", "restart", "rollback":
 	default:
 		return fmt.Errorf("unknown command %q", action)
 	}
@@ -352,6 +370,13 @@ func run(args []string) error {
 		return err
 	}
 	defer remote.Close()
+	if action == "check" {
+		report, err := remote.CheckDZSA(ctx, alias)
+		if err != nil {
+			return err
+		}
+		return emit(report, *asJSON)
+	}
 	if action == "deploy" {
 		needed, err := remote.EnrollmentNeeded(alias)
 		if err != nil {

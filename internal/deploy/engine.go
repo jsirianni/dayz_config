@@ -38,12 +38,14 @@ func (a *Agent) stop(ctx context.Context) error {
 	a.Store.State.PID = 0
 	a.Store.State.ProcessToken = ""
 	a.Store.State.RunningCommit = ""
+	a.Store.State.DZSA = nil
 	return a.Store.Save()
 }
 func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) error {
 	if a.Game.Alive(a.Store.State) {
 		return errors.New("target game is still running; refusing duplicate launch")
 	}
+	a.Store.State.DZSA = nil
 	if update {
 		if err := a.progress(r, "updating"); err != nil {
 			return err
@@ -88,16 +90,17 @@ func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) er
 	ticker := time.NewTicker(time.Second)
 	defer ticker.Stop()
 	var last error
+	var verification *DZSAReport
 	for {
 		if !a.Game.Alive(a.Store.State) {
 			return errors.New("game exited before becoming healthy")
 		}
-		if last = a.Game.Healthy(healthCtx, b.Manifest.Launcher); last == nil {
+		if verification, last = a.Game.Healthy(healthCtx, b.Manifest.Launcher); last == nil {
 			break
 		}
 		select {
 		case <-healthCtx.Done():
-			return fmt.Errorf("startup health timed out: %v: %w", last, healthCtx.Err())
+			return fmt.Errorf("startup health timed out: %w: %w", last, healthCtx.Err())
 		case <-ticker.C:
 		}
 	}
@@ -105,6 +108,8 @@ func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) er
 	a.Store.State.RestartRequired = false
 	a.Store.State.Paused = false
 	a.Store.State.Error = ""
+	a.Store.State.DZSA = verification
+	r.DZSA = verification
 	return a.Store.Save()
 }
 func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
@@ -252,6 +257,14 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		err = a.start(ctx, b, &r, true)
 		if err != nil {
 			original := err
+			// External discovery failure cannot justify stopping a locally healthy
+			// game or restoring an older release (which may use different ports).
+			if errors.Is(err, ErrDZSAUnconfirmed) && a.Game.Alive(a.Store.State) {
+				a.Store.State.Paused = true
+				r.Recovery = "game left running with installed configuration; DZSA verification is unconfirmed"
+				fail(err)
+				return
+			}
 			// Never launch over a stuck/new process. Recovery gets one clean stop attempt.
 			if ctx.Err() == nil && previous != nil {
 				if stopErr := a.stop(ctx); stopErr != nil {
