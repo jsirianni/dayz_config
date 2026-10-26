@@ -43,6 +43,10 @@ func validEnrollment(e Enrollment, target string) bool {
 }
 
 func hostVerifier(file, pin string, persist bool) (ssh.HostKeyCallback, error) {
+	return hostVerifierPolicy(file, pin, persist, false)
+}
+
+func hostVerifierPolicy(file, pin string, persist, firstUse bool) (ssh.HostKeyCallback, error) {
 	if pin != "" {
 		b, err := base64.RawStdEncoding.DecodeString(strings.TrimPrefix(pin, "SHA256:"))
 		if !strings.HasPrefix(pin, "SHA256:") || err != nil || len(b) != sha256.Size {
@@ -72,10 +76,10 @@ func hostVerifier(file, pin string, persist bool) (ssh.HostKeyCallback, error) {
 				return err
 			}
 		}
-		if pin == "" {
+		if pin == "" && !firstUse {
 			return &UntrustedHostError{Host: host}
 		}
-		if pin != ssh.FingerprintSHA256(key) {
+		if pin != "" && pin != ssh.FingerprintSHA256(key) {
 			return errors.New("SSH host fingerprint does not match trusted bootstrap output")
 		}
 		if !persist {

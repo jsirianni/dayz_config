@@ -36,13 +36,24 @@ func Connect(ctx context.Context, e Endpoint) (*Remote, error) {
 // matches. Existing known-host entries always take precedence over a new pin.
 // A dry-run can verify a pin without writing known_hosts.
 func ConnectPinned(ctx context.Context, e Endpoint, fingerprint string, persist bool) (*Remote, error) {
+	return connect(ctx, e, fingerprint, persist, false)
+}
+
+// ConnectFirstUse accepts an unknown host automatically. Established host keys
+// and optional explicit fingerprints are still checked. Dry runs do not persist
+// new trust; real deployments save it for all subsequent commands.
+func ConnectFirstUse(ctx context.Context, e Endpoint, fingerprint string, persist bool) (*Remote, error) {
+	return connect(ctx, e, fingerprint, persist, true)
+}
+
+func connect(ctx context.Context, e Endpoint, fingerprint string, persist, firstUse bool) (*Remote, error) {
 	if e.User == "" || e.KnownHosts == "" || !strings.HasPrefix(e.RemoteDir, "/") || strings.Contains(e.RemoteDir, "..") {
 		return nil, errors.New("endpoint requires user, knownHosts and absolute SFTP remoteDir")
 	}
 	if _, _, err := net.SplitHostPort(e.Address); err != nil {
 		return nil, fmt.Errorf("address must include SSH port: %w", err)
 	}
-	verify, err := hostVerifier(e.KnownHosts, fingerprint, persist)
+	verify, err := hostVerifierPolicy(e.KnownHosts, fingerprint, persist, firstUse)
 	if err != nil {
 		return nil, fmt.Errorf("load pinned host keys: %w", err)
 	}

@@ -29,6 +29,76 @@ func fixtureHostKey(t *testing.T, e Endpoint) ssh.PublicKey {
 	return key
 }
 
+func TestAutomaticFirstUseTrust(t *testing.T) {
+	e, _ := sshFixture(t)
+	key := fixtureHostKey(t, e)
+	if err := os.Remove(e.KnownHosts); err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// A dry-run accepts the first key without modifying local trust.
+	r, err := ConnectFirstUse(ctx, e, "", false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	r.Close()
+	if _, err := os.Stat(e.KnownHosts); !os.IsNotExist(err) {
+		t.Fatal("dry-run persisted trust", err)
+	}
+	wrong := "SHA256:" + strings.Repeat("A", 43)
+	if _, err := ConnectFirstUse(ctx, e, wrong, true); err == nil {
+		t.Fatal("explicit fingerprint mismatch accepted")
+	}
+	if _, err := os.Stat(e.KnownHosts); !os.IsNotExist(err) {
+		t.Fatal("mismatched fingerprint persisted trust", err)
+	}
+	// Real first deployment needs no fingerprint, prompt, or manual keyscan.
+	var wg sync.WaitGroup
+	for i := 0; i < 2; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			r, err := ConnectFirstUse(ctx, e, "", true)
+			if err != nil {
+				t.Error(err)
+				return
+			}
+			r.Close()
+		}()
+	}
+	wg.Wait()
+	raw, err := os.ReadFile(e.KnownHosts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(strings.Split(strings.TrimSpace(string(raw)), "\n")) != 1 {
+		t.Fatal("concurrent first use duplicated trust")
+	}
+	if got := fixtureHostKey(t, e); !bytes.Equal(got.Marshal(), key.Marshal()) {
+		t.Fatal("saved wrong host key")
+	}
+	r, err = Connect(ctx, e)
+	if err != nil {
+		t.Fatal("saved key not usable by subsequent commands", err)
+	}
+	r.Close()
+	other, _ := sshFixture(t)
+	otherKey := fixtureHostKey(t, other)
+	changed := []byte(knownhosts.Line([]string{e.Address}, otherKey) + "\n")
+	if err := os.WriteFile(e.KnownHosts, changed, 0600); err != nil {
+		t.Fatal(err)
+	}
+	for _, persist := range []bool{false, true} {
+		if _, err := ConnectFirstUse(ctx, e, "", persist); err == nil {
+			t.Fatal("first-use policy accepted a changed key")
+		}
+	}
+	if got, _ := os.ReadFile(e.KnownHosts); !bytes.Equal(got, changed) {
+		t.Fatal("changed key overwrote existing trust")
+	}
+}
+
 func TestPinnedFirstConnectionAndConcurrentEnrollment(t *testing.T) {
 	e, _ := sshFixture(t)
 	key := fixtureHostKey(t, e)

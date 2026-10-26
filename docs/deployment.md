@@ -46,7 +46,9 @@ The script reuses a complete existing OpenSSH installation, or tries Windows Cli
 dzdeploy deploy nasdara-staging --restart
 ```
 
-On first connection, paste the trusted SHA256 fingerprint printed by the script when prompted. Alternatively supply it as `--host-key SHA256:...` on this same command. The client verifies the fingerprint before enrollment and saves the matching key in `known_hosts`. Existing mismatched keys are always rejected; `--host-key` cannot overwrite established trust. No manual keyscan or known-host editing is required.
+The first deploy automatically trusts the SSH host key received on connection and saves it in `known_hosts`. No fingerprint retrieval, keyscan, confirmation, or extra command is required. Subsequent commands reject changed host keys. An optional `--host-key SHA256:...` requires a specific fingerprint; it cannot override established trust. A dry-run accepts an unknown host for that connection without saving trust. First-use trust relies on reaching the intended server on the network during that initial connection.
+
+If `host.steam_user` is empty or still `REPLACE_STEAM_ACCOUNT`, deploy asks for the Steam account name within the command and enrolls the service with it. Configured names are reused. A dry-run does not prompt. Steam password, Guard, and mobile approval prompts also stay inside deploy; no separate SteamCMD login is required.
 
 The first deploy uploads and read-back verifies its Windows agent, installs SteamCMD and signed Microsoft Visual C++ prerequisites, creates protected directories, sets up loopback RCon/game firewall rules, and installs service `dzdeploy-<alias>`. The service uses `NT SERVICE\dzdeploy-<alias>`, a password-free Windows virtual account. SteamCMD authentication runs under that identity: any password, Steam Guard code, or mobile approval is requested inside the client command. Secrets travel through SSH and a restricted local named pipe; answers never enter command arguments, YAML, persistent results, or logs. Steam's cached login is protected in the SteamCMD directory and reused.
 
