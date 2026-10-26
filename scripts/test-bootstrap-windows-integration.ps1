@@ -40,15 +40,21 @@ function ConvertTo-IntegrationNativeArgument([string]$Value) {
 
 function Invoke-IntegrationNative {
     param([string]$Executable, [string[]]$Arguments, [int]$TimeoutSeconds = 90)
+    if ([string]::IsNullOrWhiteSpace($Executable)) { throw 'The integration executable path is empty.' }
+    $Executable = [IO.Path]::GetFullPath($Executable)
+    if (!(Test-Path -LiteralPath $Executable -PathType Leaf)) { throw "The integration executable does not exist: $Executable" }
     $script:processSequence++
     $stem = '{0:D2}-{1}' -f $script:processSequence, [IO.Path]::GetFileNameWithoutExtension($Executable)
     $process = New-Object Diagnostics.Process
     $process.StartInfo.FileName = $Executable
     $process.StartInfo.Arguments = ($Arguments | ForEach-Object { ConvertTo-IntegrationNativeArgument $_ }) -join ' '
+    $process.StartInfo.WorkingDirectory = $taskRoot
     $process.StartInfo.UseShellExecute = $false
     $process.StartInfo.CreateNoWindow = $true
     $process.StartInfo.RedirectStandardOutput = $true
     $process.StartInfo.RedirectStandardError = $true
+    [IO.File]::WriteAllText((Join-Path $artifactRoot "$stem.invocation.log"), "Executable: $Executable`r`nWorking directory: $taskRoot`r`nArguments: $($process.StartInfo.Arguments)`r`n", $utf8)
+    Write-Host "Integration command $script:processSequence`: $Executable"
     try {
         if (!$process.Start()) { throw "Could not start $Executable" }
         $stdoutTask = $process.StandardOutput.ReadToEndAsync()
@@ -64,6 +70,9 @@ function Invoke-IntegrationNative {
         [IO.File]::WriteAllText((Join-Path $artifactRoot "$stem.stderr.log"), $stderr, $utf8)
         if ($process.ExitCode -ne 0) { throw "$Executable exited $($process.ExitCode): $stderr`n$stdout" }
         return $stdout
+    } catch {
+        [IO.File]::WriteAllText((Join-Path $artifactRoot "$stem.failure.log"), "$($_.Exception.ToString())`r`n$($_.ScriptStackTrace)`r`n$($_.InvocationInfo.PositionMessage)", $utf8)
+        throw
     } finally { $process.Dispose() }
 }
 
@@ -80,11 +89,14 @@ try {
     Assert-DeployNativePowerShell
     Assert-DeployAdministrator
 
-    # Use the runner's existing client solely to generate an ephemeral test key.
-    # The bootstrap's Windows capability source is deliberately unavailable below.
-    $keygenCommand = Get-Command ssh-keygen.exe -CommandType Application -ErrorAction Stop
+    # Obtain the verified package without registering or starting any service.
+    # Use its known absolute client path rather than whichever runner client is
+    # on PATH. Bootstrap still exercises failed capabilities and ZIP selection;
+    # it reuses this independently verified package instead of downloading twice.
+    $tools = Install-DeployOpenSSHZip
+    $testKeygen = Join-Path $tools.Directory 'ssh-keygen.exe'
     $identity = Join-Path $taskRoot 'client_ed25519'
-    Invoke-IntegrationNative $keygenCommand.Source @('-t', 'ed25519', '-N', '', '-f', $identity, '-C', 'dzdeploy-disposable-integration') | Out-Null
+    Invoke-IntegrationNative $testKeygen @('-t', 'ed25519', '-N', '', '-f', $identity, '-C', 'dzdeploy-disposable-integration') | Out-Null
     $publicKey = [IO.File]::ReadAllText($identity + '.pub').Trim()
     $account = $env:USERNAME
     $port = 22222
@@ -161,6 +173,9 @@ try {
     $sshOutput = Invoke-IntegrationNative $ssh ($options + @('-p', [string]$port, $endpoint, "echo $marker"))
     Assert-Integration ($sshOutput.Contains($marker)) 'SSH authentication failed after the second bootstrap.'
     Write-Host "Real Windows bootstrap integration passed: SSH, SFTP, rerun, and host fingerprint $firstFingerprint."
+} catch {
+    [IO.File]::WriteAllText((Join-Path $artifactRoot 'integration-failure.log'), "$($_.Exception.ToString())`r`n$($_.ScriptStackTrace)`r`n$($_.InvocationInfo.PositionMessage)", $utf8)
+    throw
 } finally {
     # Collect public diagnostics only. Private client and host keys are never artifacts.
     try {
