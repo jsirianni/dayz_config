@@ -99,7 +99,7 @@ func usage() {
 
 Servers: nasdara, nasdara-staging, deer-isle
 Client flags: --repo <directory> --config <file> --timeout 50m --json
-First enrollment: deploy <server> --restart --host-key SHA256:<trusted fingerprint>
+First enrollment: deploy <server> (automatically trusts and saves the first SSH host key)
 Client config defaults to <repo>/deploy.yaml. No deployment runs on merge.`)
 }
 func run(args []string) error {
@@ -145,7 +145,7 @@ func run(args []string) error {
 	publicKey := flags.String("public-key", "", "deployment public key file")
 	sshSources := flags.String("ssh-sources", "", "comma-separated SSH source IPs/CIDRs")
 	sshPort := flags.Int("ssh-port", 22, "host SSH port")
-	hostKey := flags.String("host-key", "", "trusted bootstrap SHA256 host fingerprint for first enrollment")
+	hostKey := flags.String("host-key", "", "optional SHA256 SSH host fingerprint to require on first enrollment")
 	enrollRequest := flags.String("request", "", "internal host enrollment request")
 	if err := flags.Parse(args); err != nil {
 		if errors.Is(err, flag.ErrHelp) {
@@ -343,15 +343,11 @@ func run(args []string) error {
 	if !ok {
 		return fmt.Errorf("endpoint %s is not enrolled", alias)
 	}
-	remote, err := deploy.ConnectPinned(ctx, endpoint, *hostKey, action == "deploy" && !*dry)
-	var unknown *deploy.UntrustedHostError
-	if errors.As(err, &unknown) && *hostKey == "" && action == "deploy" {
-		trusted, promptErr := deploy.ReadSecret("Paste the SHA256 host fingerprint printed by the trusted bootstrap script: ")
-		if promptErr != nil {
-			return fmt.Errorf("%w; %w", err, promptErr)
-		}
-		remote, err = deploy.ConnectPinned(ctx, endpoint, strings.TrimSpace(trusted), !*dry)
+	connect := deploy.ConnectPinned
+	if action == "deploy" {
+		connect = deploy.ConnectFirstUse
 	}
+	remote, err := connect(ctx, endpoint, *hostKey, action == "deploy" && !*dry)
 	if err != nil {
 		return err
 	}
@@ -362,6 +358,9 @@ func run(args []string) error {
 			return err
 		}
 		if needed {
+			if err = enrollmentAccount(endpoint.Host, *dry, deploy.ReadInput); err != nil {
+				return err
+			}
 			if err = deploy.CheckEnrollment(endpoint, alias); err != nil {
 				return err
 			}
@@ -511,6 +510,26 @@ func run(args []string) error {
 		}
 		return fmt.Errorf("operation %s: %w", req.ID, waitErr)
 	}
+	return nil
+}
+
+func enrollmentAccount(host *deploy.HostConfig, dry bool, prompt func(string) (string, error)) error {
+	if host == nil || (host.SteamUser != "" && !strings.HasPrefix(host.SteamUser, "REPLACE_")) {
+		return nil
+	}
+	if dry {
+		host.SteamUser = "PROMPT_DURING_DEPLOY"
+		return nil
+	}
+	account, err := prompt("Steam account name for DayZ downloads: ")
+	if err != nil {
+		return err
+	}
+	account = strings.TrimSpace(account)
+	if account == "" || strings.HasPrefix(account, "REPLACE_") || strings.ContainsAny(account, " \t\r\n\x00") {
+		return errors.New("a Steam account name is required")
+	}
+	host.SteamUser = account
 	return nil
 }
 

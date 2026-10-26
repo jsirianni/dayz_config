@@ -89,6 +89,16 @@ func ReadSecret(message string) (string, error) {
 	return string(b), err
 }
 
+// ReadInput collects non-secret setup values inside the deployment command.
+func ReadInput(message string) (string, error) {
+	if !term.IsTerminal(int(os.Stdin.Fd())) {
+		return "", errors.New("setup needs an interactive terminal; run dzdeploy directly in a terminal")
+	}
+	fmt.Fprint(os.Stderr, message)
+	line, err := bufio.NewReader(os.Stdin).ReadString('\n')
+	return strings.TrimSpace(line), err
+}
+
 // SteamDialog recognizes prompts even when SteamCMD doesn't end them with a
 // newline. Raw output is deliberately not returned to the client or a log.
 type steamDialog struct {
