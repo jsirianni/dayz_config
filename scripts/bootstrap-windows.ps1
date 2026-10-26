@@ -3,16 +3,16 @@
 .SYNOPSIS
 Prepares a Windows Server for dzdeploy. Run in an elevated local PowerShell.
 .DESCRIPTION
-Before copying this script, replace REPLACE_WITH_CLIENT_PUBLIC_KEY below with
-your client's public key. Copy only this script to each server.
+The deployment client's public key is embedded below.
+Copy only this script to each server.
 .EXAMPLE
 .\bootstrap-windows.ps1 -AllowedSource '203.0.113.10/32'
 #>
 [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Embedded')]
 param(
-    # Embed the public key here on the client; never embed the private key.
+    # Deployment client public key. Never embed the private key.
     [Parameter(ParameterSetName = 'Embedded')]
-    [string]$PublicKey = 'REPLACE_WITH_CLIENT_PUBLIC_KEY',
+    [string]$PublicKey = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGBS/OP1uRsxFiA0/tooHY+eNR2EkNsrdxGulSQtMVGn',
     [Parameter(ParameterSetName = 'File')]
     [string]$PublicKeyPath,
     [string[]]$AllowedSource,

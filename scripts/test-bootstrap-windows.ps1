@@ -84,7 +84,7 @@ try {
     foreach ($invalid in @('Any', '*', '0.0.0.0/0', '::/0', '1.2.3.4/33', 'bad/32', '1.2.3.4/32/2')) { Assert-Equal (Test-DeploySource $invalid) $false "Unsafe source $invalid" }
     Assert-Throws { ConvertTo-DeployPublicKey 'not a public key' } 'Invalid key accepted'
     Assert-Throws { ConvertTo-DeployPublicKey '' } 'Missing key accepted'
-    Assert-Throws { ConvertTo-DeployPublicKey 'REPLACE_WITH_CLIENT_PUBLIC_KEY' } 'Unconfigured embedded key accepted'
+    Assert-Throws { ConvertTo-DeployPublicKey 'missing-key' } 'Unconfigured embedded key accepted'
     Assert-Throws { ConvertTo-DeployPublicKey "$key`n$key" } 'Multiple keys accepted'
     Assert-Throws { New-DeploySshConfig $stock 'Administrator#injection' 22 } 'Config injection accepted'
     $config = New-DeploySshConfig $stock 'Administrator' 2222
@@ -106,7 +106,7 @@ try {
     Invoke-DayZSSHBootstrap -Key "$key embedded-client" -Sources '203.0.113.10/32' -WhatIf
     Assert-Equal $script:calls.ContainsKey('native') $false 'Embedded-key WhatIf ran native commands'
     Assert-Throws { Invoke-DayZSSHBootstrap -Key $key -KeyPath $pub -Sources '203.0.113.10/32' } 'Ambiguous key inputs accepted'
-    Assert-Throws { Invoke-DayZSSHBootstrap -Key 'REPLACE_WITH_CLIENT_PUBLIC_KEY' -Sources '203.0.113.10/32' } 'Unconfigured embedded key reached setup'
+    Assert-Throws { Invoke-DayZSSHBootstrap -Key 'missing-key' -Sources '203.0.113.10/32' } 'Unconfigured embedded key reached setup'
     Assert-Equal $script:calls.ContainsKey('capability') $false 'Invalid key changed Windows capabilities'
     Assert-Throws { Invoke-DayZSSHBootstrap -KeyPath $pub -Sources '0.0.0.0/0' } 'Unrestricted source accepted'
     $script:userEnabled = $false
@@ -117,12 +117,19 @@ try {
     # Override only host identity checks so -WhatIf can run without elevation.
     $singleScript = Join-Path $taskRoot 'bootstrap-windows.ps1'
     $template = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'bootstrap-windows.ps1'))
+    $parseTokens = $null
+    $parseErrors = $null
+    $bootstrapAst = [Management.Automation.Language.Parser]::ParseInput($template, [ref]$parseTokens, [ref]$parseErrors)
+    Assert-Equal $parseErrors.Count 0 'Bootstrap script has syntax errors'
+    $publicKeyParameter = $bootstrapAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'PublicKey' }
+    $shippedKey = ConvertTo-DeployPublicKey $publicKeyParameter.DefaultValue.Value
+    Assert-Equal ($shippedKey.StartsWith('ssh-ed25519 ')) $true 'Tracked script must embed the deployment public key'
     $identityMocks = @'
 function Assert-DeployAdministrator {}
 function Get-LocalUser { param($Name); return [pscustomobject]@{ Enabled = $true; SID = [pscustomobject]@{ Value = 'test-admin' } } }
 function Get-LocalGroupMember { param($SID); return [pscustomobject]@{ SID = [pscustomobject]@{ Value = 'test-admin' } } }
 '@
-    $personalized = $template.Replace("'REPLACE_WITH_CLIENT_PUBLIC_KEY'", "'$key'").Replace('# Dot-sourcing exposes', $identityMocks + "`r`n# Dot-sourcing exposes")
+    $personalized = $template.Replace($publicKeyParameter.DefaultValue.Extent.Text, "'$key'").Replace('# Dot-sourcing exposes', $identityMocks + "`r`n# Dot-sourcing exposes")
     [IO.File]::WriteAllText($singleScript, $personalized, $utf8)
     Remove-Item -LiteralPath $pub
     & $singleScript -AllowedSource '203.0.113.10/32' -WhatIf
