@@ -237,7 +237,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 			return nil, err
 		}
 	}
-	config := mgr.Config{StartType: mgr.StartAutomatic, ErrorControl: mgr.ErrorNormal, ServiceStartName: opt.Account, Password: password, DisplayName: "DayZ Deploy: " + c.Target, Description: "DayZ configuration deployments and supervised startup", Dependencies: []string{"Tcpip"}}
+	config := mgr.Config{ServiceType: windows.SERVICE_WIN32_OWN_PROCESS, StartType: mgr.StartAutomatic, ErrorControl: mgr.ErrorNormal, ServiceStartName: opt.Account, Password: password, DisplayName: "DayZ Deploy: " + c.Target, Description: "DayZ configuration deployments and supervised startup", Dependencies: []string{"Tcpip"}}
 	if opt.Virtual {
 		config.SidType = windows.SERVICE_SID_TYPE_UNRESTRICTED
 		config.DelayedAutoStart = true
@@ -301,13 +301,13 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
 	}
 	if err = service.UpdateConfig(config); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service startup/account: %w", err)
 	}
 	if err = service.SetRecoveryActions([]mgr.RecoveryAction{{Type: mgr.ServiceRestart, Delay: 30 * time.Second}}, 86400); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service recovery: %w", err)
 	}
 	if err = service.SetRecoveryActionsOnNonCrashFailures(true); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service failure recovery: %w", err)
 	}
 	security, err := windows.SecurityDescriptorFromString("D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GRGX;;;" + sid.String() + ")")
 	if err != nil {
@@ -318,11 +318,11 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		return nil, err
 	}
 	if err = windows.SetSecurityInfo(windows.Handle(service.Handle), windows.SE_SERVICE, windows.DACL_SECURITY_INFORMATION, nil, nil, dacl, nil); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service control permissions: %w", err)
 	}
 	preShutdown := uint32((c.ShutdownSeconds + 30) * 1000)
 	if err = windows.ChangeServiceConfig2(service.Handle, windows.SERVICE_CONFIG_PRESHUTDOWN_INFO, (*byte)(unsafe.Pointer(&preShutdown))); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service shutdown timeout: %w", err)
 	}
 	info := map[string]string{"target": c.Target, "service": ServiceName(c.Target), "stateDir": c.StateDir, "activation": "initial configuration must be deployed with --restart"}
 	if opt.InstallSSH {
@@ -333,7 +333,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		info["hostFingerprint"] = fingerprint
 	}
 	if err = service.Start(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("start deployment service: %w", err)
 	}
 	configured = true
 	return info, nil
