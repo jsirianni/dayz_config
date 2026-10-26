@@ -15,10 +15,12 @@ For a portable distribution containing the client, Windows host companion, SSH s
 | Alias | Source under servers/current | Game port | Query port |
 | --- | --- | ---: | --- |
 | `nasdara-staging` | `first-light-badlands-nasdara-staging-us-east` | 2901 | 27018 |
-| `nasdara` | `first-light-badlands-nasdara-us-east` | 2301 | 27017 |
+| `nasdara` | `first-light-badlands-nasdara-us-east` | 2301 | 27016 |
 | `deer-isle` | `first-light-deer-isle-expansion-us-east1` | 4801 | 27019 |
 
-Query ports are explicit in tracked configuration. Existing Nasdara deployments now use 27017 on the next managed restart; update the local YAML to match. Example RCon ports are configurable choices. Give instances on the same machine separate installations/state directories and nonconflicting ports.
+Ports are part of the operator's router/firewall forwarding configuration. Preserve them during deployment work; change a port only when the operator explicitly requests that specific change. Nasdara's public UDP listeners are 2301, 2303, and 27016 (Steam query). Query ports are explicit in tracked configuration, and `query_address` must match. Different hosts can reuse the same ports; only instances sharing an IP need nonconflicting ports. Example RCon ports are configurable choices.
+
+Nasdara installations previously enrolled with query port 27017 need the host's protected `host.json` query address and managed game firewall rule corrected to 27016 along with the client YAML and deployed `serverDZ.cfg`. Back up those settings, reload the host agent configuration, and perform an explicitly authorized game restart. Editing client YAML alone does not update an enrolled host or the running game's listener. Keep the router's existing port forwarding unchanged.
 
 SSH key paths are relative to YAML. Omit `key_file` to use Windows OpenSSH's agent or Unix `SSH_AUTH_SOCK`. Encrypted key files can use `key_passphrase_env: VARIABLE_NAME`. Keep private keys and passwords out of YAML. Git's `serverDZ.cfg` is copied exactly, including its existing game password values.
 

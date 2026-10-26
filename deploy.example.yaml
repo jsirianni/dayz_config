@@ -39,7 +39,7 @@ targets:
       steam_user: REPLACE_STEAM_ACCOUNT
       rcon_address: '127.0.0.1:2310'
       rcon_password_file: 'C:\ProgramData\DayZDeploy\nasdara\secrets\rcon.txt'
-      query_address: '127.0.0.1:27017'
+      query_address: '127.0.0.1:27016'
   deer-isle:
     address: 'REPLACE_DEER_ISLE_HOST:22'
     user: Administrator
