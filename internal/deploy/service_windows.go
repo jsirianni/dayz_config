@@ -137,6 +137,20 @@ func adminCommand(ctx context.Context, name string, args ...string) error {
 	return nil
 }
 
+// protectServiceTree sets inheritable grants on the directory, then resets its
+// children to inherit them. Combining /inheritance:r with /T would strip file
+// ACLs: icacls applies (OI)(CI) grants only to directories, leaving files empty.
+func protectServiceTree(ctx context.Context, root, sid string) error {
+	if err := adminCommand(ctx, "icacls.exe", root, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)F", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
+		return err
+	}
+	entries, err := os.ReadDir(root)
+	if err != nil || len(entries) == 0 {
+		return err
+	}
+	return adminCommand(ctx, "icacls.exe", filepath.Join(root, "*"), "/reset", "/T", "/Q")
+}
+
 func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, error) {
 	c := opt.Config
 	if err := c.Validate(); err != nil {
@@ -255,8 +269,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		}
 	}()
 	// State includes the binary, RCon secret and backups. Restrict inherited access.
-	grant := "*" + sid.String() + ":(OI)(CI)F"
-	if err = adminCommand(ctx, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+	if err = protectServiceTree(ctx, c.StateDir, sid.String()); err != nil {
 		return nil, err
 	}
 	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
@@ -265,14 +278,14 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		}
 	}
 	if opt.Virtual {
-		if err = adminCommand(ctx, "icacls.exe", filepath.Dir(c.SteamCMD), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+		if err = protectServiceTree(ctx, filepath.Dir(c.SteamCMD), sid.String()); err != nil {
 			return nil, err
 		}
 	}
 	if err = setupRCon(c); err != nil {
 		return nil, err
 	}
-	if err = adminCommand(ctx, "icacls.exe", filepath.Join(c.InstallDir, "battleye"), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+	if err = protectServiceTree(ctx, filepath.Join(c.InstallDir, "battleye"), sid.String()); err != nil {
 		return nil, err
 	}
 	for _, suffix := range []string{"", ".dzdeploy-backup"} {
