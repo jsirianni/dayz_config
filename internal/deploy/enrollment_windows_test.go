@@ -17,7 +17,137 @@ import (
 	"time"
 
 	"github.com/Microsoft/go-winio"
+	"golang.org/x/sys/windows"
+	"golang.org/x/sys/windows/svc"
+	"golang.org/x/sys/windows/svc/mgr"
 )
+
+func TestVirtualServiceBootstrapOnDisposableRunner(t *testing.T) {
+	if os.Getenv("GITHUB_ACTIONS") != "true" || os.Getenv("RUNNER_ENVIRONMENT") != "github-hosted" {
+		t.Skip("creates a real Windows service only on disposable GitHub-hosted runners")
+	}
+	c := testConfig(t)
+	// Match production's ProgramData layout. Go's private per-user test temp
+	// ancestors cannot be inspected by a service account during path checks.
+	programData := filepath.Clean(os.Getenv("ProgramData"))
+	root, err := os.MkdirTemp(programData, "dzdeploy-service-integration-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		if filepath.Dir(root) != programData || !strings.HasPrefix(filepath.Base(root), "dzdeploy-service-integration-") {
+			t.Error("refusing cleanup outside integration root", root)
+			return
+		}
+		if err := os.RemoveAll(root); err != nil {
+			t.Error(err)
+		}
+	})
+	c.InstallDir = filepath.Join(root, "install")
+	c.StateDir = filepath.Join(root, "state")
+	c.SteamCMD = filepath.Join(root, "steam", "steamcmd.exe")
+	c.WorkshopDir = filepath.Join(root, "workshop")
+	c.RConPasswordFile = filepath.Join(c.StateDir, "secret")
+	m, err := mgr.Connect()
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = m.Disconnect() })
+	name := ServiceName(c.Target)
+	if old, err := m.OpenService(name); err == nil {
+		old.Close()
+		t.Fatal("refusing to touch an existing service", name)
+	} else if !errors.Is(err, windows.ERROR_SERVICE_DOES_NOT_EXIST) {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		s, err := m.OpenService(name)
+		if err != nil {
+			return
+		}
+		defer s.Close()
+		_, _ = s.Control(svc.Stop)
+		deadline := time.Now().Add(15 * time.Second)
+		for time.Now().Before(deadline) {
+			status, err := s.Query()
+			if err != nil || status.State == svc.Stopped {
+				break
+			}
+			time.Sleep(100 * time.Millisecond)
+		}
+		if err := s.Delete(); err != nil {
+			t.Error(err)
+		}
+	})
+	// Build a real service entry point, so SCM starts the agent rather than a
+	// test binary. It never installs SteamCMD or launches the game.
+	helper := filepath.Join(t.TempDir(), "service helper.exe")
+	if out, err := exec.Command("go", "build", "-o", helper, "./testdata/service-bootstrap").CombinedOutput(); err != nil {
+		t.Fatal(err, string(out))
+	}
+	config := filepath.Join(t.TempDir(), "host.json")
+	if err := WriteJSON(config, c); err != nil {
+		t.Fatal(err)
+	}
+	// Fail after the service is registered and permissions are applied. The
+	// service must be removed, and retry must recover from the retained files.
+	if err := os.MkdirAll(c.InstallDir, 0700); err != nil {
+		t.Fatal(err)
+	}
+	obstruction := filepath.Join(c.InstallDir, "battleye")
+	if err := os.WriteFile(obstruction, []byte("block directory creation"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	if out, err := exec.Command(helper, config).CombinedOutput(); err == nil {
+		t.Fatal("bootstrap unexpectedly succeeded with obstructed RCon directory", string(out))
+	} else if strings.Contains(string(out), "No mapping") {
+		t.Fatal("virtual account still could not be resolved", string(out))
+	} else {
+		t.Logf("Expected first-attempt failure: %s", out)
+	}
+	if s, err := m.OpenService(name); err == nil {
+		s.Close()
+		t.Fatal("failed bootstrap left a registered service")
+	} else if !errors.Is(err, windows.ERROR_SERVICE_DOES_NOT_EXIST) {
+		t.Fatal(err)
+	}
+	if err := os.Remove(obstruction); err != nil {
+		t.Fatal(err)
+	}
+	if out, err := exec.Command(helper, config).CombinedOutput(); err != nil {
+		for _, p := range []string{c.StateDir, filepath.Join(c.StateDir, "state.json")} {
+			acl, _ := exec.Command("icacls.exe", p).CombinedOutput()
+			t.Logf("ACL for %s: %s", p, acl)
+		}
+		t.Fatal("fresh virtual-service bootstrap failed", err, string(out))
+	}
+	s, err := m.OpenService(name)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer s.Close()
+	settings, err := s.Config()
+	if err != nil || settings.StartType != mgr.StartAutomatic || !settings.DelayedAutoStart || settings.ServiceStartName != `NT SERVICE\`+name {
+		t.Fatal("wrong service settings", settings, err)
+	}
+	deadline := time.Now().Add(15 * time.Second)
+	for time.Now().Before(deadline) {
+		var heartbeat struct{ Version int }
+		if err := ReadJSON(filepath.Join(c.StateDir, "heartbeat.json"), &heartbeat); err == nil && heartbeat.Version == Protocol {
+			return
+		}
+		time.Sleep(100 * time.Millisecond)
+	}
+	if status, err := s.Query(); err == nil {
+		t.Logf("Service status: %+v", status)
+	}
+	for _, name := range []string{"agent-error.txt", "agent-service-entry.txt"} {
+		if data, err := os.ReadFile(filepath.Join(c.StateDir, "logs", name)); err == nil {
+			t.Logf("%s: %s", name, data)
+		}
+	}
+	t.Fatal("virtual account service did not publish its heartbeat")
+}
 
 func TestServiceAuthenticationPipeRelaysChallengesWithoutLeakingSecrets(t *testing.T) {
 	t.Setenv("DZDEPLOY_STEAM_TEST_HELPER", "1")

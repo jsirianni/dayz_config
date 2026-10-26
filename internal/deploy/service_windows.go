@@ -137,6 +137,20 @@ func adminCommand(ctx context.Context, name string, args ...string) error {
 	return nil
 }
 
+// protectServiceTree sets inheritable grants on the directory, then resets its
+// children to inherit them. Combining /inheritance:r with /T would strip file
+// ACLs: icacls applies (OI)(CI) grants only to directories, leaving files empty.
+func protectServiceTree(ctx context.Context, root, sid string) error {
+	if err := adminCommand(ctx, "icacls.exe", root, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)F", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
+		return err
+	}
+	entries, err := os.ReadDir(root)
+	if err != nil || len(entries) == 0 {
+		return err
+	}
+	return adminCommand(ctx, "icacls.exe", filepath.Join(root, "*"), "/reset", "/T", "/Q")
+}
+
 func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, error) {
 	c := opt.Config
 	if err := c.Validate(); err != nil {
@@ -197,36 +211,6 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 			return nil, err
 		}
 	}
-	// State includes the binary, RCon secret and backups. Restrict inherited access.
-	grant := "*" + sid.String() + ":(OI)(CI)F"
-	if err = adminCommand(ctx, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-		return nil, err
-	}
-	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
-		if err = adminCommand(ctx, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
-			return nil, err
-		}
-	}
-	if opt.Virtual {
-		if err = adminCommand(ctx, "icacls.exe", filepath.Dir(c.SteamCMD), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-			return nil, err
-		}
-	}
-	if err = setupRCon(c); err != nil {
-		return nil, err
-	}
-	if err = adminCommand(ctx, "icacls.exe", filepath.Join(c.InstallDir, "battleye"), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-		return nil, err
-	}
-	for _, suffix := range []string{"", ".dzdeploy-backup"} {
-		p := filepath.Join(c.InstallDir, "battleye", "BEServer_x64.cfg") + suffix
-		if _, err = os.Stat(p); os.IsNotExist(err) {
-			continue
-		}
-		if err = adminCommand(ctx, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
-			return nil, err
-		}
-	}
 	store, err := OpenStore(c)
 	if err != nil {
 		return nil, err
@@ -253,7 +237,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 			return nil, err
 		}
 	}
-	config := mgr.Config{StartType: mgr.StartAutomatic, ErrorControl: mgr.ErrorNormal, ServiceStartName: opt.Account, Password: password, DisplayName: "DayZ Deploy: " + c.Target, Description: "DayZ configuration deployments and supervised startup", Dependencies: []string{"Tcpip"}}
+	config := mgr.Config{ServiceType: windows.SERVICE_WIN32_OWN_PROCESS, StartType: mgr.StartAutomatic, ErrorControl: mgr.ErrorNormal, ServiceStartName: opt.Account, Password: password, DisplayName: "DayZ Deploy: " + c.Target, Description: "DayZ configuration deployments and supervised startup", Dependencies: []string{"Tcpip"}}
 	if opt.Virtual {
 		config.SidType = windows.SERVICE_SID_TYPE_UNRESTRICTED
 		config.DelayedAutoStart = true
@@ -261,10 +245,14 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	var service *mgr.Service
 	if existing != nil {
 		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
-		err = existing.UpdateConfig(config)
 		service = existing
 	} else {
-		service, err = serviceManager.CreateService(ServiceName(c.Target), dest, config, "agent", "--host-config", filepath.Join(c.StateDir, "host.json"))
+		// Register the virtual account before icacls resolves its SID. Keep a
+		// partially configured service stopped even if the machine reboots.
+		initial := config
+		initial.StartType = mgr.StartManual
+		initial.DelayedAutoStart = false
+		service, err = serviceManager.CreateService(ServiceName(c.Target), dest, initial, "agent", "--host-config", filepath.Join(c.StateDir, "host.json"))
 		if service != nil {
 			defer service.Close()
 		}
@@ -272,11 +260,54 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	if err != nil {
 		return nil, err
 	}
-	if err = service.SetRecoveryActions([]mgr.RecoveryAction{{Type: mgr.ServiceRestart, Delay: 30 * time.Second}}, 86400); err != nil {
+	configured := false
+	defer func() {
+		if existing == nil && !configured {
+			// Retain the enrollment journal and files for a safe retry, but
+			// never leave a partially configured service registered.
+			_ = service.Delete()
+		}
+	}()
+	// State includes the binary, RCon secret and backups. Restrict inherited access.
+	if err = protectServiceTree(ctx, c.StateDir, sid.String()); err != nil {
 		return nil, err
 	}
-	if err = service.SetRecoveryActionsOnNonCrashFailures(true); err != nil {
+	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
+		if err = adminCommand(ctx, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
+			return nil, err
+		}
+	}
+	if opt.Virtual {
+		if err = protectServiceTree(ctx, filepath.Dir(c.SteamCMD), sid.String()); err != nil {
+			return nil, err
+		}
+	}
+	if err = setupRCon(c); err != nil {
 		return nil, err
+	}
+	if err = protectServiceTree(ctx, filepath.Join(c.InstallDir, "battleye"), sid.String()); err != nil {
+		return nil, err
+	}
+	for _, suffix := range []string{"", ".dzdeploy-backup"} {
+		p := filepath.Join(c.InstallDir, "battleye", "BEServer_x64.cfg") + suffix
+		if _, err = os.Stat(p); os.IsNotExist(err) {
+			continue
+		}
+		if err = adminCommand(ctx, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
+			return nil, err
+		}
+	}
+	if existing == nil {
+		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
+	}
+	if err = service.UpdateConfig(config); err != nil {
+		return nil, fmt.Errorf("configure service startup/account: %w", err)
+	}
+	if err = service.SetRecoveryActions([]mgr.RecoveryAction{{Type: mgr.ServiceRestart, Delay: 30 * time.Second}}, 86400); err != nil {
+		return nil, fmt.Errorf("configure service recovery: %w", err)
+	}
+	if err = service.SetRecoveryActionsOnNonCrashFailures(true); err != nil {
+		return nil, fmt.Errorf("configure service failure recovery: %w", err)
 	}
 	security, err := windows.SecurityDescriptorFromString("D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GRGX;;;" + sid.String() + ")")
 	if err != nil {
@@ -287,11 +318,11 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		return nil, err
 	}
 	if err = windows.SetSecurityInfo(windows.Handle(service.Handle), windows.SE_SERVICE, windows.DACL_SECURITY_INFORMATION, nil, nil, dacl, nil); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service control permissions: %w", err)
 	}
 	preShutdown := uint32((c.ShutdownSeconds + 30) * 1000)
 	if err = windows.ChangeServiceConfig2(service.Handle, windows.SERVICE_CONFIG_PRESHUTDOWN_INFO, (*byte)(unsafe.Pointer(&preShutdown))); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("configure service shutdown timeout: %w", err)
 	}
 	info := map[string]string{"target": c.Target, "service": ServiceName(c.Target), "stateDir": c.StateDir, "activation": "initial configuration must be deployed with --restart"}
 	if opt.InstallSSH {
@@ -302,8 +333,9 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		info["hostFingerprint"] = fingerprint
 	}
 	if err = service.Start(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("start deployment service: %w", err)
 	}
+	configured = true
 	return info, nil
 }
 
