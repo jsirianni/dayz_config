@@ -197,36 +197,6 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 			return nil, err
 		}
 	}
-	// State includes the binary, RCon secret and backups. Restrict inherited access.
-	grant := "*" + sid.String() + ":(OI)(CI)F"
-	if err = adminCommand(ctx, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-		return nil, err
-	}
-	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
-		if err = adminCommand(ctx, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
-			return nil, err
-		}
-	}
-	if opt.Virtual {
-		if err = adminCommand(ctx, "icacls.exe", filepath.Dir(c.SteamCMD), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-			return nil, err
-		}
-	}
-	if err = setupRCon(c); err != nil {
-		return nil, err
-	}
-	if err = adminCommand(ctx, "icacls.exe", filepath.Join(c.InstallDir, "battleye"), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
-		return nil, err
-	}
-	for _, suffix := range []string{"", ".dzdeploy-backup"} {
-		p := filepath.Join(c.InstallDir, "battleye", "BEServer_x64.cfg") + suffix
-		if _, err = os.Stat(p); os.IsNotExist(err) {
-			continue
-		}
-		if err = adminCommand(ctx, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
-			return nil, err
-		}
-	}
 	store, err := OpenStore(c)
 	if err != nil {
 		return nil, err
@@ -261,15 +231,63 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	var service *mgr.Service
 	if existing != nil {
 		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
-		err = existing.UpdateConfig(config)
 		service = existing
 	} else {
-		service, err = serviceManager.CreateService(ServiceName(c.Target), dest, config, "agent", "--host-config", filepath.Join(c.StateDir, "host.json"))
+		// Register the virtual account before icacls resolves its SID. Keep a
+		// partially configured service stopped even if the machine reboots.
+		initial := config
+		initial.StartType = mgr.StartManual
+		initial.DelayedAutoStart = false
+		service, err = serviceManager.CreateService(ServiceName(c.Target), dest, initial, "agent", "--host-config", filepath.Join(c.StateDir, "host.json"))
 		if service != nil {
 			defer service.Close()
 		}
 	}
 	if err != nil {
+		return nil, err
+	}
+	configured := false
+	defer func() {
+		if existing == nil && !configured {
+			// Retain the enrollment journal and files for a safe retry, but
+			// never leave a partially configured service registered.
+			_ = service.Delete()
+		}
+	}()
+	// State includes the binary, RCon secret and backups. Restrict inherited access.
+	grant := "*" + sid.String() + ":(OI)(CI)F"
+	if err = adminCommand(ctx, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+		return nil, err
+	}
+	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
+		if err = adminCommand(ctx, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
+			return nil, err
+		}
+	}
+	if opt.Virtual {
+		if err = adminCommand(ctx, "icacls.exe", filepath.Dir(c.SteamCMD), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+			return nil, err
+		}
+	}
+	if err = setupRCon(c); err != nil {
+		return nil, err
+	}
+	if err = adminCommand(ctx, "icacls.exe", filepath.Join(c.InstallDir, "battleye"), "/inheritance:r", "/grant:r", grant, "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+		return nil, err
+	}
+	for _, suffix := range []string{"", ".dzdeploy-backup"} {
+		p := filepath.Join(c.InstallDir, "battleye", "BEServer_x64.cfg") + suffix
+		if _, err = os.Stat(p); os.IsNotExist(err) {
+			continue
+		}
+		if err = adminCommand(ctx, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
+			return nil, err
+		}
+	}
+	if existing == nil {
+		config.BinaryPathName = `"` + dest + `" agent --host-config "` + filepath.Join(c.StateDir, "host.json") + `"`
+	}
+	if err = service.UpdateConfig(config); err != nil {
 		return nil, err
 	}
 	if err = service.SetRecoveryActions([]mgr.RecoveryAction{{Type: mgr.ServiceRestart, Delay: 30 * time.Second}}, 86400); err != nil {
@@ -304,6 +322,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 	if err = service.Start(); err != nil {
 		return nil, err
 	}
+	configured = true
 	return info, nil
 }
 
