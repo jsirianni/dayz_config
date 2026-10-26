@@ -235,7 +235,7 @@ func TestWindowsEnrollmentPathsRejectShellAndTraversal(t *testing.T) {
 			t.Errorf("unsafe path accepted: %s", p)
 		}
 	}
-	c := HostConfig{Version: Protocol, Target: "nasdara", StateDir: `C:\State\nasdara`, InstallDir: `C:\DayZ\server`, SteamCMD: `C:\Steam\steamcmd.exe`, WorkshopDir: `C:\Steam\workshop`, RConPasswordFile: `C:\State\nasdara\secret`, SteamUser: "test", RConAddress: "127.0.0.1:2310", QueryAddress: "127.0.0.1:27017"}
+	c := HostConfig{Version: Protocol, Target: "nasdara", StateDir: `C:\State\nasdara`, InstallDir: `C:\DayZ\server`, SteamCMD: `C:\Steam\steamcmd.exe`, WorkshopDir: `C:\Steam\workshop`, RConPasswordFile: `C:\State\nasdara\secret`, SteamUser: "test", RConAddress: "127.0.0.1:2310", QueryAddress: "127.0.0.1:27016"}
 	e := Endpoint{Host: &c, RemoteDir: "/C:/State/nasdara"}
 	if err := CheckEnrollment(e, "nasdara"); err != nil {
 		t.Fatal(err)

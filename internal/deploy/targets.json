@@ -1,7 +1,7 @@
 {
   "nasdara": {
     "folder": "first-light-badlands-nasdara-us-east",
-    "mission": "dayzOffline.nasdara", "gamePort": 2301, "queryPort": 27017,
+    "mission": "dayzOffline.nasdara", "gamePort": 2301, "queryPort": 27016,
     "validateServer": true,
     "mods": [
       {"id":"1559212036","folder":"@CF"},
