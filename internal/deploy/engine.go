@@ -259,7 +259,7 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 			original := err
 			// External discovery failure cannot justify stopping a locally healthy
 			// game or restoring an older release (which may use different ports).
-			if errors.Is(err, ErrDZSAUnconfirmed) {
+			if errors.Is(err, ErrDZSAUnconfirmed) && a.Game.Alive(a.Store.State) {
 				a.Store.State.Paused = true
 				r.Recovery = "game left running with installed configuration; DZSA verification is unconfirmed"
 				fail(err)

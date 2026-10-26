@@ -188,6 +188,17 @@ func TestNativeStartupDoesNotRequireRCon(t *testing.T) {
 	}
 }
 
+type exitingDZSAGame struct {
+	*fakeGame
+	cancel context.CancelFunc
+}
+
+func (g *exitingDZSAGame) Healthy(context.Context, Target) (*DZSAReport, error) {
+	g.alive = false
+	g.cancel()
+	return nil, fmt.Errorf("%w: request interrupted", ErrDZSAUnconfirmed)
+}
+
 func TestStartupPersistsDZSAReportAndOutageLeavesGameRunning(t *testing.T) {
 	t.Run("confirmed", func(t *testing.T) {
 		s := testStore(t)
@@ -226,6 +237,17 @@ func TestStartupPersistsDZSAReportAndOutageLeavesGameRunning(t *testing.T) {
 			if event != "health" {
 				t.Fatalf("external failure triggered recovery: %v", game.events)
 			}
+		}
+	})
+	t.Run("game exits during public check", func(t *testing.T) {
+		s := testStore(t)
+		ctx, cancel := context.WithCancel(context.Background())
+		defer cancel()
+		game := &exitingDZSAGame{fakeGame: &fakeGame{store: s}, cancel: cancel}
+		a := Agent{Store: s, Game: game}
+		result := a.Process(ctx, submitTest(t, s, testBundle(t, nil), true))
+		if result.Status != "failed" || game.alive || strings.Contains(result.Recovery, "game left running") {
+			t.Fatalf("exited game reported running: %+v", result)
 		}
 	})
 }
