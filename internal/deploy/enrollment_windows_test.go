@@ -27,6 +27,27 @@ func TestVirtualServiceBootstrapOnDisposableRunner(t *testing.T) {
 		t.Skip("creates a real Windows service only on disposable GitHub-hosted runners")
 	}
 	c := testConfig(t)
+	// Match production's ProgramData layout. Go's private per-user test temp
+	// ancestors cannot be inspected by a service account during path checks.
+	programData := filepath.Clean(os.Getenv("ProgramData"))
+	root, err := os.MkdirTemp(programData, "dzdeploy-service-integration-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() {
+		if filepath.Dir(root) != programData || !strings.HasPrefix(filepath.Base(root), "dzdeploy-service-integration-") {
+			t.Error("refusing cleanup outside integration root", root)
+			return
+		}
+		if err := os.RemoveAll(root); err != nil {
+			t.Error(err)
+		}
+	})
+	c.InstallDir = filepath.Join(root, "install")
+	c.StateDir = filepath.Join(root, "state")
+	c.SteamCMD = filepath.Join(root, "steam", "steamcmd.exe")
+	c.WorkshopDir = filepath.Join(root, "workshop")
+	c.RConPasswordFile = filepath.Join(c.StateDir, "secret")
 	m, err := mgr.Connect()
 	if err != nil {
 		t.Fatal(err)
