@@ -53,11 +53,11 @@ Only Windows and Linux clients are supported. Build/test/package those platforms
 
 ## Server overview documentation
 
-The root [README.md](README.md#server-status) is the human-readable overview of the three servers. Keep its table of contents and separate sections for Nasdara (standard), Deer Isle, and Nasdara AI (`nasdara-staging`); use normal Markdown documentation rather than a server-status table.
+The root [README.md](README.md#servers) is the human-readable overview of the three servers. Keep its table of contents and separate sections for Nasdara (standard), Deer Isle, and Nasdara AI (`nasdara-staging`); use normal Markdown documentation rather than a server-status table.
 
-- Update the affected README section whenever a task changes or establishes a material change in the documented server information: IP/alias, enrollment and service management, listener ports, shutdown/relaunch behavior, installed revision, last managed startup revision, restart-pending state, DZSA/mod verification, or known issues.
-- After an authorized deployment, agent upgrade, restart, or onboarding, synchronize the README with the verified outcome. Record the verification date, time, timezone, and method. For partial checks, make each server's verification scope and age clear; do not refresh an unchecked server's timestamp.
-- Keep installed revision, last managed startup revision, and restart pending separate. Distinguish live observations from configuration present only in Git, and a configured shutdown/relaunch schedule from an observed complete cycle. Treat player counts and running status as timestamped snapshots.
+- Keep the README generic and focused on stable operational information: IP/alias, enrollment and service management, listener ports, shutdown/relaunch behavior, mod sets, and known issues. Update affected sections when that information changes.
+- Do not turn the README into an operational event log. Omit individual shutdown/startup timestamps, cycle counts, player counts, process IDs, installed/startup commit snapshots, and restart-pending snapshots. Put time-specific evidence in operation results or ignored local audit reports; direct operators to status/check commands for current values.
+- In live reports, keep installed revision, last managed startup revision, and restart pending separate. Distinguish configuration present only in Git from verified behavior, and a configured shutdown/relaunch schedule from a completed cycle. Timestamp live observations in the report rather than the README.
 - Leave unavailable or unchecked information explicitly unknown. An unconfigured endpoint or absent `dzdeploy` enrollment does not mean the game is stopped. Never invent an IP, infer a deployment from a merge, or claim live acceptance without host access.
 - Keep known errors and remaining verification work visible until evidence resolves them. Describe an older agent revision accurately without implying that the game is unhealthy solely because a newer revision exists.
 - Record operational information without copying populated host YAML, credentials, private keys, or runtime secrets into the README.
