@@ -69,6 +69,9 @@ First enrollment: deploy <server> (automatically trusts and saves the first SSH 
 Client config defaults to <repo>/deploy.yaml. No deployment runs on merge.`)
 }
 func run(args []string) error {
+	if len(args) > 0 && (args[0] == "logs" || args[0] == "diagnose") {
+		return runLogs(args)
+	}
 	if len(args) > 0 && (args[0] == "health" || args[0] == "history") {
 		return runInspection(args)
 	}

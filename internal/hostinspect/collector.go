@@ -17,11 +17,12 @@ type Spec struct {
 	QueryPort           int
 }
 type Process struct {
-	PID        int       `json:"pid"`
-	Parent     int       `json:"parent"`
-	Executable string    `json:"executable"`
-	Token      string    `json:"token"`
-	Started    time.Time `json:"started"`
+	SessionStamp string    `json:"sessionStamp,omitempty"`
+	PID          int       `json:"pid"`
+	Parent       int       `json:"parent"`
+	Executable   string    `json:"executable"`
+	Token        string    `json:"token"`
+	Started      time.Time `json:"started"`
 }
 type Service struct {
 	State     string `json:"state"`

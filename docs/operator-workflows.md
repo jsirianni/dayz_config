@@ -31,3 +31,24 @@ PowerShell collector over SSH. A restricted SFTP-only account cannot provide nat
 process inspection; the command reports that limitation instead of trusting saved
 state. Newer agents write immutable UTC event files and advertise capabilities in
 their fresh heartbeat. This does not automatically upgrade an existing host.
+
+## Logs and diagnostics
+
+```text
+dzdeploy logs deer-isle --kind rpt --tail 200
+dzdeploy logs nasdara --follow
+dzdeploy diagnose all --since 24h
+```
+
+Log kinds are `console`, `updates`, `agent`, `rpt`, `script`, and `crash`. Reads are
+restricted to recognized files, cap each excerpt at 2 MiB, and redact sensitive
+lines and private-key blocks before output. Follow mode emits complete redacted
+lines, notices rotation/truncation, and stops on Ctrl+C. Default log tail: 200 lines.
+
+Diagnostics save ZIP bundles under ignored `.deploy/diagnostics/` unless `--output`
+is provided. Bundles include health/history, operation evidence, redacted excerpts,
+and grouped error summaries. Per-session logs are identified as current/historical
+when native process session identity is available; append-only logs are marked mixed.
+The latest three files per kind are considered, with 2,000 lines per excerpt and
+25 MiB total excerpt content. Missing and truncated sources are reported explicitly.
+Configuration, credential files, saved worlds, and memory dumps are not collected.
