@@ -168,6 +168,9 @@ func runBackup(args []string) error {
 			fmt.Fprintln(os.Stderr, result.Phase)
 		}
 	})
+	if waitErr != nil && result.ID != "" && result.Error == "" {
+		result.Error = waitErr.Error()
+	}
 	if result.ID != "" {
 		if err = emit(result, *asJSON); err != nil {
 			return err
