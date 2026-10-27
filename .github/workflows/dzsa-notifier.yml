@@ -57,7 +57,11 @@ jobs:
         run: |
           docker build -t notifier-rpm-test -f tests/rpm.Dockerfile .
           docker run -d --name notifier-rpm --privileged --cgroupns=host -v /sys/fs/cgroup:/sys/fs/cgroup:rw -v "$PWD:/work:ro" --tmpfs /run --tmpfs /tmp notifier-rpm-test
-          for i in $(seq 1 60); do docker exec notifier-rpm systemctl is-system-running --quiet && break; sleep 1; done
+          for i in $(seq 1 60); do
+            state=$(docker exec notifier-rpm systemctl is-system-running || true)
+            case "$state" in running|degraded) break ;; esac
+            sleep 1
+          done
           package=$(realpath dist/*_amd64.rpm)
           docker exec -w /work notifier-rpm sh tests/package-integration.sh rpm "/work/dist/$(basename "$package")" /work/dist/https-fixture
       - name: Integration diagnostics
