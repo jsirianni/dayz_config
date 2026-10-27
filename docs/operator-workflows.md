@@ -61,3 +61,25 @@ The latest three files per kind are considered, with 2,000 lines per excerpt and
 Configuration, credential files, saved worlds, and memory dumps are not collected.
 Partial diagnostic reports returned after cancellation or an output/write failure
 are redacted too; failed bundle creation never exposes raw collected evidence.
+
+## Guarded hard restarts
+
+```text
+dzdeploy restart nasdara --hard --dry-run
+dzdeploy restart nasdara --hard
+dzdeploy deploy nasdara --restart --hard
+dzdeploy rollback nasdara --deployment RETAINED_ID --restart --hard
+```
+
+`--hard` explicitly authorizes stopping the identified managed game without RCon.
+The agent pauses supervision, verifies its executable/PID/creation token using the
+same Windows handle used for termination, rejects other processes in that
+installation, and waits at most 30 seconds. It then runs normal updates, reapplies
+configuration, and verifies startup. Graceful stop behavior remains the default;
+there is no automatic escalation. Existing listener ports are preserved.
+
+The client requires a fresh `hard-stop.v1` agent capability before submission.
+Older agents require an explicit upgrade; these commands do not perform one.
+Operation IDs and idempotent results survive SSH disconnects. Inspect an interrupted
+operation using `status --operation` instead of blindly resubmitting it. A failed
+or interrupted stop/start can leave supervision paused for explicit recovery.

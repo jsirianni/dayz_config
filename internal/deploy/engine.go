@@ -167,6 +167,20 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		fail(errors.New("unsupported action"))
 		return
 	}
+	if req.Hard {
+		if req.Action != "restart" && !req.Restart {
+			fail(errors.New("hard stop requires a requested restart"))
+			return
+		}
+		if err := validateExpectedState(a.Store.State, req); err != nil {
+			fail(err)
+			return
+		}
+		if _, ok := a.Game.(HardStopper); !ok {
+			fail(errors.New("guarded hard stop is unsupported"))
+			return
+		}
+	}
 	if _, err := os.Stat(filepath.Join(a.Store.Config.StateDir, "journal.json")); err == nil {
 		fail(errors.New("unrecovered transaction blocks operations; restart the agent after repairing recovery access"))
 		return
@@ -266,13 +280,8 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		}
 	}
 	if req.Restart || req.Action == "restart" {
-		wasPaused := a.Store.State.Paused
-		a.Store.State.Paused = true
-		if err = a.progress(&r, "stopping"); err == nil {
-			err = a.stop(ctx)
-		}
+		err = a.pauseAndStop(ctx, &r, req.Hard)
 		if err != nil {
-			a.Store.State.Paused = wasPaused
 			fail(err)
 			return
 		}
@@ -289,7 +298,7 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 			}
 			// Never launch over a stuck/new process. Recovery gets one clean stop attempt.
 			if ctx.Err() == nil && previous != nil {
-				if stopErr := a.stop(ctx); stopErr != nil {
+				if stopErr := a.stopMode(ctx, req.Hard); stopErr != nil {
 					r.Recovery = "failed: " + stopErr.Error()
 				} else {
 					oldBundle, loadErr := LoadBundle(packagePath(a.Store.Config.StateDir, previous.ID), req.Target)
@@ -413,7 +422,7 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
 		for {
-			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1"}})
+			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1", HardStopCapability}})
 			select {
 			case <-heartbeatCtx.Done():
 				return
