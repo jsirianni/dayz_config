@@ -5,24 +5,16 @@
         <onconnect>1</onconnect>
         <text>You are playing #name</text>
     </message>
+
     <message>
-        <!-- no delay -->
+        <!-- Native graceful shutdown after 180 minutes of mission uptime.
+             DayZ supplies countdown warnings, including 30, 10 and 5 minutes.
+             The dzdeploy Windows service updates and relaunches after exit. -->
         <delay>0</delay>
-
-        <!-- if the value is larger than 0, then flag Repeat is enabled -->
         <repeat>0</repeat>
-
-        <!-- if the value is larger than 0, then flag Countdown is enabled,
-             countdown reaches zero in 3 hours -->
         <deadline>180</deadline>
-
-        <!-- disable On connect flag -->
         <onconnect>0</onconnect>
-
-        <!-- enable Shutdown flag -->
         <shutdown>1</shutdown>
-
-        <!-- message itself with placeholders -->
-        <text>This server will restart in #tmin minutes.</text>
+        <text>#name will restart in #tmin minutes.</text>
     </message>
 </messages>

@@ -294,12 +294,14 @@ a fixed wall-clock schedule. DayZ broadcasts warnings at 90, 60, 45, 30, 20, 15,
 EST announcement has been replaced by the countdown message. See the
 [official server-message documentation](https://community.bistudio.com/wiki/DayZ:Server_Messages).
 
-Run `dayz-service-manager.bat` to complete the restart cycle: after DayZ exits,
-the manager waits 10 seconds, updates the server/mods, and launches it again.
-Update/download time adds to downtime. Running `dayz-service.bat` alone leaves
-the server stopped after the countdown. Deploy the updated messages into
-`C:\DayZ\server\mpmissions\dayzOffline.nasdara\db\messages.xml` before starting
-the server, and verify warnings, shutdown, persistence, and relaunch on the host.
+The `dzdeploy-nasdara-staging` Windows service completes the restart cycle:
+after DayZ exits, its two-second supervision loop detects the exit, updates the
+server/mods, reapplies managed configuration, and launches it again. Updates add
+to downtime. Both batch files now start this service; they do not run a separate
+restart loop. Automatic relaunch requires an unpaused agent with an installed
+release. Deploy the mission file through `dzdeploy`, then verify warnings,
+graceful shutdown, persistence, and relaunch on the host. See
+[deployment documentation](../../../docs/deployment.md).
 No BEC, RCon scheduler, or Windows scheduled task is required.
 
 ## Base mods and admin access
