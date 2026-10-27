@@ -30,9 +30,14 @@ Deployment requires clean main matching freshly fetched origin/main. Restarts ar
 
 ## Server status
 
-Last verified **October 26, 2026 at 10:55 p.m. EDT (America/New_York)** using SSH and fresh DZSA checks for Nasdara and Deer Isle. These are recorded observations; player counts and running state can change. Nasdara AI has no configured endpoint, so its live state is unknown.
+Verification snapshots, using SSH and fresh DZSA checks (America/New_York):
 
-The managed servers use DayZ's native 180-minute shutdown countdown in `messages.xml`. Their Windows services remain running and supervise updates, configuration reapplication, and game relaunch after exit. A complete three-hour shutdown/relaunch cycle has **not yet been observed** on either managed server.
+- **Nasdara and Deer Isle:** October 26, 2026 at 10:55 p.m. EDT.
+- **Nasdara AI:** October 26, 2026 at 11:30 p.m. EDT.
+
+These are recorded observations; player counts and running state can change. All three servers are enrolled and managed by `dzdeploy`.
+
+The managed servers use DayZ's native 180-minute shutdown countdown in `messages.xml`. Their Windows services remain running and supervise updates, configuration reapplication, and game relaunch after exit. A complete three-hour shutdown/relaunch cycle has **not yet been observed** on any of the three servers.
 
 ### Nasdara (standard)
 
@@ -68,14 +73,16 @@ The upgraded agent includes PR #85's hostname-length fix, and managed startup co
 
 Deployment alias: `nasdara-staging`. Source configuration: [first-light-badlands-nasdara-staging-us-east](servers/current/first-light-badlands-nasdara-staging-us-east).
 
-This server has been left untouched during the Nasdara and Deer Isle rollouts. Its IP address is not configured in the deployment client's ignored YAML, and it has not been enrolled here. Its game process, players, service, live ports, and DZSA discovery are **unverified**; this does not establish that the server is stopped.
+The server at **192.168.1.224** was running with **0/60 players**. DayZ is installed at `C:\DayZ\server` and managed by the running, automatic-start Windows service `dzdeploy-nasdara-staging`. The legacy `DayZServer` service is stopped and disabled. The existing saved world was preserved and backed up during migration.
 
-- **Three-hour shutdown/relaunch:** the 180-minute native shutdown is configured in Git, but it has not been deployed or verified on this host by this rollout.
-- **Installed revision:** none recorded by `dzdeploy`.
-- **Last managed startup revision:** none recorded by `dzdeploy`.
-- **Restart pending:** unknown.
+- **UDP ports:** game `2901`, BattlEye `2903`, Steam query `27018`.
+- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27018) passed and verified all five expected mods: CF, VPPAdminTools, Dabs Framework, DayZ-Expansion-Core, and DayZ-Expansion-AI.
+- **Three-hour shutdown/relaunch:** configured; supervision active.
+- **Installed revision:** `d6f26d3f02d3d5df30d1da187cb0b6ccd001a7a5`.
+- **Last managed startup revision:** `d6f26d3f02d3d5df30d1da187cb0b6ccd001a7a5`.
+- **Restart pending:** no.
 
-The next step is to obtain its server IP, verify bootstrap/SSH access and existing ports, then enroll and deploy it when explicitly requested.
+Managed startup completed successfully, and the agent reported no active deployment error. The installed configuration and agent hashes matched the deployment sources during final SSH verification.
 
 ## Resources
 
