@@ -119,15 +119,20 @@ type Manifest struct {
 	Files    []File    `json:"files"`
 }
 type Request struct {
-	Version       int    `json:"version"`
-	ID            string `json:"id"`
-	Target        string `json:"target"`
-	Action        string `json:"action"`
-	PackageSHA256 string `json:"packageSha256,omitempty"`
-	Deployment    string `json:"deployment,omitempty"`
-	Restart       bool   `json:"restart"`
+	Hard            bool   `json:"hard,omitempty"`
+	ExpectedPID     int    `json:"expectedPID,omitempty"`
+	ExpectedToken   string `json:"expectedToken,omitempty"`
+	ExpectedRelease string `json:"expectedRelease,omitempty"`
+	Version         int    `json:"version"`
+	ID              string `json:"id"`
+	Target          string `json:"target"`
+	Action          string `json:"action"`
+	PackageSHA256   string `json:"packageSha256,omitempty"`
+	Deployment      string `json:"deployment,omitempty"`
+	Restart         bool   `json:"restart"`
 }
 type Result struct {
+	StopMethod      string      `json:"stopMethod,omitempty"`
 	Cause           string      `json:"cause,omitempty"`
 	Version         int         `json:"version"`
 	ID              string      `json:"id"`

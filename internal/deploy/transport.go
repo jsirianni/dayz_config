@@ -243,6 +243,9 @@ func (r *Remote) Submit(req Request, raw []byte) error {
 	if req.Version != Protocol || !ValidID(req.ID) {
 		return errors.New("invalid request identity")
 	}
+	if err := r.CheckHardRequest(req); err != nil {
+		return err
+	}
 	if _, err := r.Ready(req.Target); err != nil {
 		return err
 	}

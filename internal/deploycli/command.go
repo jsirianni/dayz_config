@@ -104,6 +104,7 @@ func run(args []string) error {
 	asJSON := flags.Bool("json", false, "JSON results")
 	dry := flags.Bool("dry-run", false, "read-only preview")
 	restart := flags.Bool("restart", false, "restart immediately after deployment")
+	hard := flags.Bool("hard", false, "explicitly terminate only the identified managed game for a requested restart")
 	noWait := flags.Bool("no-wait", false, "return after durable submission")
 	offline := flags.Bool("offline", false, "local validation using cached dzcli")
 	operation := flags.String("operation", "", "operation ID for status")
@@ -137,7 +138,10 @@ func run(args []string) error {
 	if *offline && action != "validate" {
 		return errors.New("--offline is only permitted for local validation")
 	}
-	if *dry && action != "deploy" {
+	if *hard && action != "restart" && !((action == "deploy" || action == "rollback") && *restart) {
+		return errors.New("--hard requires restart or deploy/rollback --restart")
+	}
+	if *dry && action != "deploy" && !(*hard && (action == "restart" || action == "rollback")) {
 		return errors.New("--dry-run is only valid for deploy")
 	}
 	if action == "check" && (*restart || *noWait || *operation != "" || *deployment != "") {
@@ -378,7 +382,19 @@ func run(args []string) error {
 		}
 		return err
 	}
-	if action == "restart" || (action == "rollback" && *restart) {
+	if *hard && !(*dry && action == "deploy") {
+		if *dry {
+			preview, e := remote.PreviewMaintenance(ctx, alias)
+			if e != nil {
+				return e
+			}
+			return emit(preview, *asJSON)
+		}
+		if err = remote.RequireFeature(alias, deploy.HardStopCapability); err != nil {
+			return err
+		}
+	}
+	if !*dry && (action == "restart" || (action == "rollback" && *restart)) {
 		if err = remote.Authenticate(ctx, promptSteam, os.Stderr); err != nil {
 			return err
 		}
@@ -446,10 +462,24 @@ func run(args []string) error {
 				return err
 			}
 			preview.Warnings = validation.Warnings
+			if *hard {
+				maintenance, e := remote.PreviewMaintenance(ctx, alias)
+				if e != nil {
+					return e
+				}
+				return emit(map[string]any{"changes": preview, "maintenance": maintenance}, *asJSON)
+			}
 			return emit(preview, *asJSON)
 		}
 	}
-	req := deploy.Request{Version: deploy.Protocol, ID: deploy.NewID(), Target: alias, Action: action, Deployment: *deployment, Restart: *restart}
+	req := deploy.Request{Version: deploy.Protocol, ID: deploy.NewID(), Target: alias, Action: action, Deployment: *deployment, Restart: *restart, Hard: *hard}
+	if *hard {
+		req.ExpectedPID = state.PID
+		req.ExpectedToken = state.ProcessToken
+		if state.Installed != nil {
+			req.ExpectedRelease = state.Installed.ID
+		}
+	}
 	if bundle != nil {
 		latest, err := deploy.Eligible(ctx, root)
 		if err != nil {

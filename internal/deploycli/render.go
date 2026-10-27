@@ -15,6 +15,9 @@ func emit(v any, asJSON bool) error {
 	}
 	switch r := v.(type) {
 	case deploy.Result:
+		if r.StopMethod != "" {
+			fmt.Println("Stop method:", r.StopMethod)
+		}
 		fmt.Printf("%s: %s (%s), operation %s, commit %s\n", r.Target, r.Status, r.Phase, r.ID, r.Commit)
 		if r.RestartRequired {
 			fmt.Println("Configuration installed; restart required to activate startup settings.")
