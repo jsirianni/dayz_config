@@ -24,9 +24,10 @@ type Journal struct {
 	Committed bool       `json:"committed"`
 }
 type Store struct {
-	Config      HostConfig
-	State       State
-	BeforeWrite func(string) error
+	AvailableSpace func(string) (uint64, error)
+	Config         HostConfig
+	State          State
+	BeforeWrite    func(string) error
 }
 
 func OpenStore(c HostConfig) (*Store, error) {

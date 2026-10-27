@@ -126,6 +126,10 @@ func (r *Remote) Diagnose(ctx context.Context, alias string, since time.Time, di
 		return out, err
 	}
 	defer os.Remove(f.Name())
+	if err = protectPrivateFile(f.Name()); err != nil {
+		f.Close()
+		return out, err
+	}
 	z := zip.NewWriter(f)
 	add := func(name string, b []byte) error {
 		w, e := z.Create(name)

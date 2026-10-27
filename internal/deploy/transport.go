@@ -246,6 +246,13 @@ func (r *Remote) Submit(req Request, raw []byte) error {
 	if err := r.CheckHardRequest(req); err != nil {
 		return err
 	}
+	if req.Action == "backup-create" || req.Action == "backup-restore" {
+		for _, feature := range []string{BackupCapability, HardStopCapability} {
+			if err := r.RequireFeature(req.Target, feature); err != nil {
+				return err
+			}
+		}
+	}
 	if _, err := r.Ready(req.Target); err != nil {
 		return err
 	}

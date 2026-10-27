@@ -74,3 +74,54 @@ Older agents require an explicit upgrade; these commands do not perform one.
 Operation IDs and idempotent results survive SSH disconnects. Inspect an interrupted
 operation using `status --operation` instead of blindly resubmitting it. A failed
 or interrupted stop/start can leave supervision paused for explicit recovery.
+
+## Saved-world backups
+
+```text
+dzdeploy backup create nasdara --stop --dry-run
+dzdeploy backup create nasdara --stop
+dzdeploy backup list nasdara
+dzdeploy backup verify nasdara --backup BACKUP_ID
+dzdeploy backup download nasdara --backup BACKUP_ID --output saved-world.zip
+dzdeploy backup restore nasdara --backup BACKUP_ID --stop --dry-run
+dzdeploy backup restore nasdara --backup BACKUP_ID --stop
+```
+
+Backups contain the active mission/world, profiles and mod runtime data, server
+configuration, and managed compatibility files. Game/Workshop binaries, logs,
+dumps, caches, and deployment/SSH/Steam authentication state are excluded. Archives
+can contain server passwords and mod credentials: host directories and downloaded
+files are private to the service/operator, Administrators, and SYSTEM on Windows
+(owner-only permissions on Linux). They are not encrypted.
+
+The default destination is protected host `state_dir/snapshots/`; download is
+explicit. Backups are streaming ZIP archives with a versioned file/hash manifest
+and an archive checksum. Interrupted/unverified archives are not listed as valid
+backups. The latest ten verified normal backups are retained by creation time.
+Automatic cleanup never removes restore safety backups beneath `snapshots/safety/`.
+
+A running game requires `--stop`, which explicitly authorizes a guarded hard stop
+without RCon or an extra save request. The snapshot copies persisted on-disk data
+after termination; unsaved in-memory changes are not captured. A running game is
+resumed without Steam updates; a stopped game stays stopped. Pending activation
+or an unknown prior startup revision must be resolved before running maintenance.
+Disk space is checked before stopping the game.
+
+Restore verifies and stages the chosen archive before downtime, creates a fresh
+safety snapshot, journals all changed preimages, replaces runtime files, removes
+obsolete runtime files, and reapplies current managed configuration. The archived
+configuration does not roll back Git-managed settings. Game and mod binaries are
+not downgraded; inspect the recorded provenance when restoring older world data.
+Safety snapshots can also be verified, downloaded, or selected for another restore
+by their listed IDs.
+
+Write failures recover preimages. An interrupted restore is recovered before the
+agent permits another launch; recovery failures retain their journal and block
+launches. Successful interruption recovery leaves supervision paused for inspection
+and an explicit managed restart. Do not delete the recovery journal to bypass it.
+Use `status <alias> --operation ID` after disconnects. `--no-wait` submits a durable
+create/restore operation; `--dry-run` performs remote reads only.
+
+Creation/restoration require fresh `backup.v1` and `hard-stop.v1` capabilities.
+Listing, verification, and download use SSH/SFTP reads without a running agent.
+These operations do not upgrade an installed agent automatically.

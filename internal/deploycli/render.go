@@ -15,6 +15,9 @@ func emit(v any, asJSON bool) error {
 	}
 	switch r := v.(type) {
 	case deploy.Result:
+		if r.Backup != nil {
+			fmt.Printf("Backup: %s (%d bytes, revision %s)\n", r.Backup.ID, r.Backup.Bytes, r.Backup.Manifest.Revision)
+		}
 		if r.StopMethod != "" {
 			fmt.Println("Stop method:", r.StopMethod)
 		}

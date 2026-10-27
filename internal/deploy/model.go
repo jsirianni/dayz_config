@@ -119,6 +119,9 @@ type Manifest struct {
 	Files    []File    `json:"files"`
 }
 type Request struct {
+	Backup          string `json:"backup,omitempty"`
+	BackupSafety    bool   `json:"backupSafety,omitempty"`
+	Stop            bool   `json:"stop,omitempty"`
 	Hard            bool   `json:"hard,omitempty"`
 	ExpectedPID     int    `json:"expectedPID,omitempty"`
 	ExpectedToken   string `json:"expectedToken,omitempty"`
@@ -132,21 +135,22 @@ type Request struct {
 	Restart         bool   `json:"restart"`
 }
 type Result struct {
-	StopMethod      string      `json:"stopMethod,omitempty"`
-	Cause           string      `json:"cause,omitempty"`
-	Version         int         `json:"version"`
-	ID              string      `json:"id"`
-	Target          string      `json:"target"`
-	Status          string      `json:"status"`
-	Phase           string      `json:"phase,omitempty"`
-	Commit          string      `json:"commit,omitempty"`
-	Changed         []string    `json:"changed,omitempty"`
-	Deleted         []string    `json:"deleted,omitempty"`
-	RestartRequired bool        `json:"restartRequired"`
-	Error           string      `json:"error,omitempty"`
-	Recovery        string      `json:"recovery,omitempty"`
-	Updated         time.Time   `json:"updated"`
-	DZSA            *DZSAReport `json:"dzsa,omitempty"`
+	Backup          *BackupReceipt `json:"backup,omitempty"`
+	StopMethod      string         `json:"stopMethod,omitempty"`
+	Cause           string         `json:"cause,omitempty"`
+	Version         int            `json:"version"`
+	ID              string         `json:"id"`
+	Target          string         `json:"target"`
+	Status          string         `json:"status"`
+	Phase           string         `json:"phase,omitempty"`
+	Commit          string         `json:"commit,omitempty"`
+	Changed         []string       `json:"changed,omitempty"`
+	Deleted         []string       `json:"deleted,omitempty"`
+	RestartRequired bool           `json:"restartRequired"`
+	Error           string         `json:"error,omitempty"`
+	Recovery        string         `json:"recovery,omitempty"`
+	Updated         time.Time      `json:"updated"`
+	DZSA            *DZSAReport    `json:"dzsa,omitempty"`
 }
 type State struct {
 	Version         int         `json:"version"`
