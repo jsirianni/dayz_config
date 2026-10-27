@@ -32,8 +32,9 @@ if [ "$MODE" = preview ]; then
     if [ -f "$config" ]; then sha256sum "$config"; fi
     exit 0
 fi
-# Serialize configuration transactions and package/config operations by this script.
-exec 9>/run/lock/dzsa-notifier-config.lock
+# A private directory prevents other local users from precreating a lock symlink.
+install -d -o root -g root -m 0700 /run/dzsa-notifier-config
+exec 9>/run/dzsa-notifier-config/lock
 flock -n 9 || { echo 'Another configuration operation is active' >&2; exit 1; }
 install -d -m 0755 "$directory"
 stage=$(mktemp "$directory/.config.XXXXXXXX")

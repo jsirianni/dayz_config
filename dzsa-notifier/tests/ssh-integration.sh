@@ -67,6 +67,8 @@ if systemctl is-enabled --quiet dzsa-notifier.service; then echo 'Enablement not
 if systemctl is-active --quiet dzsa-notifier.service; then echo 'Running state not restored'; exit 1; fi
 write_config 19091 '203.0.113.10:27016'
 apply
+test "$(stat -c %a /run/dzsa-notifier-config)" = 700
+test "$(stat -c %u /run/dzsa-notifier-config)" = 0
 # Exercise the prepared administrator + sudo path as well as direct root SSH.
 if [ -n "${SUDO_USER:-}" ]; then SSH_USER=$SUDO_USER apply; fi
 pid=$(systemctl show dzsa-notifier.service --property=MainPID --value)
