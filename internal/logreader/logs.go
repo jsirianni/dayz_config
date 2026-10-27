@@ -110,6 +110,45 @@ func MergeIssues(groups []Issue) []Issue {
 	return merged
 }
 
+// Delta finds a complete-line suffix/prefix overlap in linear time. A missing
+// overlap signals rotation or a window that moved faster than the bounded tail.
+func Delta(previous, current string) (string, bool) {
+	if previous == current {
+		return "", false
+	}
+	split := func(text string) []string {
+		parts := strings.SplitAfter(text, "\n")
+		if len(parts) > 0 && parts[len(parts)-1] == "" {
+			parts = parts[:len(parts)-1]
+		}
+		return parts
+	}
+	old, now := split(previous), split(current)
+	if len(now) == 0 {
+		return "", len(old) > 0
+	}
+	prefix := make([]int, len(now))
+	for i, j := 1, 0; i < len(now); i++ {
+		for j > 0 && now[i] != now[j] {
+			j = prefix[j-1]
+		}
+		if now[i] == now[j] {
+			j++
+		}
+		prefix[i] = j
+	}
+	matched := 0
+	for _, line := range old {
+		for matched > 0 && (matched == len(now) || now[matched] != line) {
+			matched = prefix[matched-1]
+		}
+		if matched < len(now) && now[matched] == line {
+			matched++
+		}
+	}
+	return strings.Join(now[matched:], ""), matched == 0 && len(old) > 0
+}
+
 type Issue struct {
 	Message string   `json:"message"`
 	Count   int      `json:"count"`

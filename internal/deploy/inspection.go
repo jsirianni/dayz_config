@@ -158,15 +158,29 @@ func (r *Remote) Health(ctx context.Context, alias string, since time.Time) Heal
 	report.Startup = s.RunningCommit
 	report.Paused = s.Paused
 	report.RestartPending = s.RestartRequired
-	var heartbeat Heartbeat
-	_ = r.ReadJSON("heartbeat.json", &heartbeat)
 	snapshot, err := r.observe(ctx, host, t)
 	if err != nil {
 		report.Errors = append(report.Errors, err.Error())
 	}
 	report.Snapshot = snapshot
+	// A native collector can take seconds while Windows initializes modules.
+	// Evaluate freshness at the end of collection, not against the earlier read.
+	var heartbeat Heartbeat
+	_ = r.ReadJSON("heartbeat.json", &heartbeat)
+	if heartbeat.Version != Protocol {
+		report.Errors = append(report.Errors, "agent heartbeat protocol is incompatible")
+	}
+	report.CheckedAt = time.Now().UTC()
+	changing := false
+	if latest, e := r.State(alias); e == nil && (latest.PID != s.PID || latest.ProcessToken != s.ProcessToken || latest.LastOperation != s.LastOperation) {
+		changing = true
+		report.Errors = append(report.Errors, "managed state changed during inspection; rerun for a coherent snapshot")
+	}
 	status, failures, warnings := Assess(s, snapshot, heartbeat.Updated, t, report.CheckedAt)
 	report.Status = status
+	if changing {
+		report.Status = "changing"
+	}
 	report.Errors = append(report.Errors, failures...)
 	report.Warnings = append(report.Warnings, warnings...)
 	if snapshot != nil && snapshot.Query.Error == "" && len(snapshot.Processes) > 0 {

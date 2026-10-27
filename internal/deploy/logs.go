@@ -130,28 +130,10 @@ func (r *Remote) Logs(ctx context.Context, host HostConfig, kind string, lines i
 		if lastPath == source.Path && source.Size >= lastSize {
 			// Compare complete redacted lines, not raw byte slices that could expose a
 			// credential split across reads. The excerpt window may rotate as it grows.
-			old := strings.SplitAfter(lastText, "\n")
-			current := strings.SplitAfter(text, "\n")
-			overlap := 0
-			if len(old) > 0 && old[len(old)-1] == "" {
-				old = old[:len(old)-1]
-			}
-			if len(current) > 0 && current[len(current)-1] == "" {
-				current = current[:len(current)-1]
-			}
-			for n := len(old); n > 0; n-- {
-				if n > len(current) {
-					continue
-				}
-				if strings.Join(old[len(old)-n:], "") == strings.Join(current[:n], "") {
-					overlap = n
-					break
-				}
-			}
-			if text == lastText {
-				text = ""
-			} else if overlap > 0 {
-				text = strings.Join(current[overlap:], "")
+			var moved bool
+			text, moved = logreader.Delta(lastText, text)
+			if moved {
+				fmt.Fprintln(w, "\n--- log rotated or bounded excerpt window moved ---")
 			}
 		} else if lastPath != "" {
 			fmt.Fprintf(w, "\n--- log rotated: %s ---\n", source.Name)

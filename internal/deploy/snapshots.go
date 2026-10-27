@@ -212,7 +212,11 @@ func (s *Store) retainSnapshots() error {
 			continue
 		}
 		var r BackupReceipt
-		if ReadJSON(filepath.Join(dir, file.Name()), &r) == nil && !r.Safety && r.ID == id && r.Target == s.Config.Target && r.Manifest.Version == 1 && r.Manifest.ID == id {
+		metadata, e := SafeJoin(s.Config.StateDir, "snapshots/"+file.Name())
+		if e != nil {
+			return e
+		}
+		if ReadJSON(metadata, &r) == nil && !r.Safety && r.ID == id && r.Target == s.Config.Target && r.Manifest.Version == 1 && r.Manifest.ID == id {
 			receipts = append(receipts, r)
 		}
 	}

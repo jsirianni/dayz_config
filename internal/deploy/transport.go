@@ -130,6 +130,13 @@ func (r *Remote) remote(parts ...string) string {
 	return path.Join(append([]string{r.Endpoint.RemoteDir}, parts...)...)
 }
 func (r *Remote) ReadJSON(rel string, v any) error {
+	info, err := r.SFTP.Lstat(r.remote(rel))
+	if err != nil {
+		return err
+	}
+	if !info.Mode().IsRegular() {
+		return errors.New("remote JSON is not a regular file")
+	}
 	f, err := r.SFTP.Open(r.remote(rel))
 	if err != nil {
 		return err

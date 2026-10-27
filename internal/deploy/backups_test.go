@@ -3,6 +3,7 @@ package deploy
 import (
 	"context"
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -22,6 +23,9 @@ func backupFixture(t *testing.T) (*Agent, *hardFake, *Bundle) {
 	writeTest(t, s.Config.InstallDir, "mpmissions/dayzOffline.nasdara/storage_1/players.db", "original world")
 	writeTest(t, s.Config.InstallDir, "profiles/mod/runtime.json", "original mod data")
 	writeTest(t, s.Config.InstallDir, "profiles/crash_test.log", "sensitive log excluded")
+	if err := os.MkdirAll(filepath.Join(s.Config.InstallDir, "profiles/mod/empty"), 0700); err != nil {
+		t.Fatal(err)
+	}
 	return a, g, b
 }
 
@@ -55,6 +59,9 @@ func TestBackupStopRequiredThenRestoresCurrentManagedConfig(t *testing.T) {
 	}
 	writeTest(t, a.Store.Config.InstallDir, "mpmissions/dayzOffline.nasdara/storage_1/players.db", "new world")
 	writeTest(t, a.Store.Config.InstallDir, "profiles/mod/obsolete.json", "new obsolete data")
+	if err := os.Remove(filepath.Join(a.Store.Config.InstallDir, "profiles/mod/empty")); err != nil {
+		t.Fatal(err)
+	}
 	// Install a new desired config, retaining the same game release identity for this test.
 	desired := "hostname = \"Current desired hostname\";\n"
 	b.Content["serverDZ.cfg"] = []byte(desired)
@@ -87,6 +94,9 @@ func TestBackupStopRequiredThenRestoresCurrentManagedConfig(t *testing.T) {
 	}
 	if value := readTest(t, a.Store.Config.InstallDir, "profiles/crash_test.log"); value != "sensitive log excluded" {
 		t.Fatal("excluded log modified")
+	}
+	if info, err := os.Stat(filepath.Join(a.Store.Config.InstallDir, "profiles/mod/empty")); err != nil || !info.IsDir() {
+		t.Fatal("empty runtime directory was not restored", err)
 	}
 	if a.Store.State.RestartRequired || a.Store.State.Installed.Commit != b.Manifest.Commit {
 		t.Fatal(a.Store.State)
@@ -281,5 +291,47 @@ func TestRemoteBackupVerifyDownloadAndExclusiveDestination(t *testing.T) {
 	backups, err := r.ListBackups(a.Store.Config.Target)
 	if err != nil || len(backups) != 1 {
 		t.Fatal(backups, err)
+	}
+}
+
+func TestBackupRejectsReparseOrSymlinkSource(t *testing.T) {
+	a, g, _ := backupFixture(t)
+	external := filepath.Join(t.TempDir(), "external")
+	if err := os.MkdirAll(external, 0700); err != nil {
+		t.Fatal(err)
+	}
+	link := filepath.Join(a.Store.Config.InstallDir, "profiles", "linked")
+	if err := os.Symlink(external, link); err != nil {
+		t.Skip("link privilege unavailable:", err)
+	}
+	r := a.Process(context.Background(), backupRequest(a, "backup-create", "", true))
+	if r.Status != "failed" || g.hardStops != 0 {
+		t.Fatal("linked source was followed", r)
+	}
+}
+
+func TestSnapshotOperationsDoNotConsumeConfigurationRetention(t *testing.T) {
+	s := testStore(t)
+	for i := 0; i < 11; i++ {
+		id := fmt.Sprintf("20261027T000000-%016x", i)
+		writeTest(t, s.Config.StateDir, "backups/"+id+"/serverDZ.cfg", "preimage")
+		if err := WriteJSON(filepath.Join(s.Config.StateDir, "results", id+".json"), Result{ID: id, Target: s.Config.Target, Status: "succeeded", Cause: "deploy"}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	for i := 0; i < 20; i++ {
+		id := fmt.Sprintf("20261027T010000-%016x", i)
+		if err := WriteJSON(filepath.Join(s.Config.StateDir, "results", id+".json"), Result{ID: id, Target: s.Config.Target, Status: "succeeded", Cause: "backup-create"}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := s.Retain(); err != nil {
+		t.Fatal(err)
+	}
+	for i := 1; i < 11; i++ {
+		id := fmt.Sprintf("20261027T000000-%016x", i)
+		if _, err := os.Stat(filepath.Join(s.Config.StateDir, "backups", id, "serverDZ.cfg")); err != nil {
+			t.Fatal("configuration preimage pruned by snapshot results", i, err)
+		}
 	}
 }

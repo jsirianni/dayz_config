@@ -33,6 +33,15 @@ func sanitizeValue(v any) any {
 		}
 	case map[string]any:
 		for k, v := range value {
+			if text, ok := v.(string); ok && (k == "installedRevision" || k == "lastStartupRevision" || k == "commit") && len(text) == 40 {
+				valid := true
+				for _, r := range text {
+					valid = valid && (r >= '0' && r <= '9' || r >= 'a' && r <= 'f')
+				}
+				if valid {
+					continue
+				}
+			}
 			value[k] = sanitizeValue(v)
 		}
 	}

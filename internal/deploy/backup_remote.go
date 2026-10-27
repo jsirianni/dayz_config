@@ -23,6 +23,9 @@ func (r *Remote) ListBackups(alias string) ([]BackupReceipt, error) {
 	}
 	var receipts []BackupReceipt
 	for _, sub := range []string{"snapshots", "snapshots/safety"} {
+		if err := r.rejectRemoteLinks(r.remote(sub)); err != nil {
+			return nil, err
+		}
 		entries, err := r.SFTP.ReadDir(r.remote(sub))
 		if os.IsNotExist(err) {
 			continue

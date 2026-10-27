@@ -135,10 +135,18 @@ func runBackup(args []string) error {
 		preview["sourceBackup"] = *id
 		preview["preserveManagedConfiguration"] = true
 		preview["updateSteam"] = false
+		preview["spaceCheck"] = "agent rechecks disk capacity before downtime"
 		if e = r.RequireFeature(alias, deploy.BackupCapability); errors.Is(e, deploy.ErrUnsupportedFeature) {
 			preview["upgradeRequired"] = true
 		} else if e != nil {
 			return e
+		}
+		if stopping, _ := preview["willStop"].(bool); stopping && !*stopGame {
+			preview["blocked"] = "running maintenance requires --stop"
+			if err = emit(preview, *asJSON); err != nil {
+				return err
+			}
+			return reported{errors.New("running maintenance requires --stop")}
 		}
 		return emit(preview, *asJSON)
 	}

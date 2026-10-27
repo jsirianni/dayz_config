@@ -45,6 +45,10 @@ func correlateCycles(events []lifecycle.Event) []RestartCycle {
 
 func (r *Remote) History(alias string, host HostConfig, since time.Time) HistoryReport {
 	h := HistoryReport{Since: since, Events: []lifecycle.Event{}}
+	if info, e := r.SFTP.Stat(r.remote("logs", "lifecycle-error.txt")); e == nil && !info.ModTime().Before(since) {
+		h.Incomplete = true
+		h.Warnings = append(h.Warnings, "agent recorded a lifecycle event persistence failure")
+	}
 	files, err := r.SFTP.ReadDir(r.remote("events"))
 	if err != nil {
 		h.Incomplete = true
