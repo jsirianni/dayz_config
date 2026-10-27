@@ -9,28 +9,44 @@ import (
 )
 
 const MaxBytes = 2 << 20
+const maxLineBytes = 16384
+const redactedLine = "[REDACTED sensitive or oversized log line]"
 
 var sensitive = regexp.MustCompile(`(?i)password|passwd|\brcon\b|rconpassword|secret|\btoken\b|authorization|steam.?guard|private.key|two.?factor|verification.code|\+login\b`)
 var keyBody = regexp.MustCompile(`^[A-Za-z0-9+/]{32,}={0,2}$`)
 
-func CleanText(text string) string {
-	lines := strings.Split(text, "\n")
+type redactor struct{ private bool }
+
+func (r *redactor) prepare(text string) {
 	upperText := strings.ToUpper(text)
 	firstEnd := strings.Index(upperText, "-----END ")
 	firstBegin := strings.Index(upperText, "-----BEGIN ")
-	private := firstEnd >= 0 && (firstBegin < 0 || firstEnd < firstBegin)
+	if firstEnd >= 0 && (firstBegin < 0 || firstEnd < firstBegin) {
+		r.private = true
+	}
+}
+
+func (r *redactor) line(line string) string {
+	upper := strings.ToUpper(line)
+	if strings.Contains(upper, "-----BEGIN ") && strings.Contains(upper, "PRIVATE KEY-----") {
+		r.private = true
+	}
+	hide := r.private || sensitive.MatchString(line) || keyBody.MatchString(strings.TrimSpace(line)) || len(line) > maxLineBytes
+	if strings.Contains(upper, "-----END ") && strings.Contains(upper, "PRIVATE KEY-----") {
+		r.private = false
+	}
+	if hide {
+		return redactedLine
+	}
+	return line
+}
+
+func CleanText(text string) string {
+	lines := strings.Split(text, "\n")
+	var r redactor
+	r.prepare(text)
 	for i, line := range lines {
-		upper := strings.ToUpper(line)
-		if strings.Contains(upper, "-----BEGIN ") && strings.Contains(upper, "PRIVATE KEY-----") {
-			private = true
-		}
-		hide := private || sensitive.MatchString(line) || keyBody.MatchString(strings.TrimSpace(line)) || len(line) > 16384
-		if strings.Contains(upper, "-----END ") && strings.Contains(upper, "PRIVATE KEY-----") {
-			private = false
-		}
-		if hide {
-			lines[i] = "[REDACTED sensitive or oversized log line]"
-		}
+		lines[i] = r.line(line)
 	}
 	return strings.Join(lines, "\n")
 }

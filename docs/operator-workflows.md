@@ -42,8 +42,15 @@ dzdeploy diagnose all --since 24h
 
 Log kinds are `console`, `updates`, `agent`, `rpt`, `script`, and `crash`. Reads are
 restricted to recognized files, cap each excerpt at 2 MiB, and redact sensitive
-lines and private-key blocks before output. Follow mode emits complete redacted
-lines, notices rotation/truncation, and stops on Ctrl+C. Default log tail: 200 lines.
+lines and private-key blocks before output. Follow mode uses a raw byte cursor,
+buffers incomplete lines before redaction, and retains private-key redaction state
+between reads. Repeated identical lines remain separate occurrences, including
+lines with identical redacted text. `--tail` limits the initial display; following
+then reads appended data in bounded batches. Rotation/truncation is detected using
+the source path, modification metadata, and raw-byte continuity anchors because
+SFTP does not expose a portable file ID. An intervening replacement with identical
+bytes and metadata cannot be distinguished. Ctrl+C stops collection and closes
+remote resources. Default log tail: 200 lines.
 
 Diagnostics save ZIP bundles under ignored `.deploy/diagnostics/` unless `--output`
 is provided. Bundles include health/history, operation evidence, redacted excerpts,
