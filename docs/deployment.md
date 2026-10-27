@@ -78,6 +78,8 @@ If Windows explicitly reports servicing pending or a reboot required, finish ser
 
 ## Routine commands
 
+See [operator workflows](operator-workflows.md) for fleet health and restart history.
+
 ```text
 dzdeploy tools install
 dzdeploy doctor nasdara-staging

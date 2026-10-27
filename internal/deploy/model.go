@@ -128,6 +128,7 @@ type Request struct {
 	Restart       bool   `json:"restart"`
 }
 type Result struct {
+	Cause           string      `json:"cause,omitempty"`
 	Version         int         `json:"version"`
 	ID              string      `json:"id"`
 	Target          string      `json:"target"`
