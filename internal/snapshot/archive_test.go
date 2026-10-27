@@ -112,3 +112,22 @@ func TestRejectUnsafeArchivesAndBadContent(t *testing.T) {
 		t.Fatal("truncated archive accepted")
 	}
 }
+
+func TestExtractionSkipsCaseInsensitivePathsButVerifiesSkippedContent(t *testing.T) {
+	sum := sha256.Sum256([]byte("data"))
+	hash := hex.EncodeToString(sum[:])
+	for _, skipped := range []string{"profiles/setting.json", "PROFILES/SETTING.JSON"} {
+		archive := maliciousArchive(t, []string{"profiles/Setting.json"}, hash)
+		dest := t.TempDir()
+		if _, err := Extract(context.Background(), archive, "nasdara", dest, testRules(), map[string]bool{skipped: true}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := os.Stat(filepath.Join(dest, "profiles", "Setting.json")); !os.IsNotExist(err) {
+			t.Fatal("case-renamed managed entry was extracted", err)
+		}
+	}
+	corrupt := maliciousArchive(t, []string{"profiles/Setting.json"}, strings.Repeat("0", 64))
+	if _, err := Extract(context.Background(), corrupt, "nasdara", t.TempDir(), testRules(), map[string]bool{"PROFILES/SETTING.JSON": true}); err == nil {
+		t.Fatal("skipping managed output bypassed content verification")
+	}
+}

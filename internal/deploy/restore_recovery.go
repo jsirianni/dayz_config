@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
@@ -86,7 +87,13 @@ func (a *Agent) recoverRestore(ctx context.Context) error {
 		return err
 	}
 	for i := len(j.Changes) - 1; i >= 0; i-- {
+		if err = ctx.Err(); err != nil {
+			return err
+		}
 		change := j.Changes[i]
+		if change.Directory {
+			continue
+		}
 		dest, e := SafeJoin(a.Store.Config.InstallDir, change.Path)
 		if e != nil {
 			return e
@@ -102,6 +109,12 @@ func (a *Agent) recoverRestore(ctx context.Context) error {
 		} else if e = os.Remove(dest); e != nil && !os.IsNotExist(e) {
 			return e
 		}
+	}
+	// Recover every file preimage before considering directory cleanup. A resumed
+	// game may have created excluded logs in introduced directories; those files
+	// are not journaled and must neither be deleted nor block data recovery.
+	if err = a.Store.pruneRestoreDirectories(ctx, j.Changes); err != nil {
+		return err
 	}
 	a.Store.State = j.Before
 	a.Store.State.PID = 0
@@ -119,4 +132,44 @@ func (a *Agent) recoverRestore(ctx context.Context) error {
 		return err
 	}
 	return os.Remove(file)
+}
+
+func (s *Store) pruneRestoreDirectories(ctx context.Context, changes []RestoreChange) error {
+	var directories []string
+	for _, change := range changes {
+		if change.Directory && !change.Before {
+			directories = append(directories, change.Path)
+		}
+	}
+	// The journal can outlive its writer; do not depend on its serialized ordering.
+	sort.Slice(directories, func(i, j int) bool {
+		left, right := strings.Count(directories[i], "/"), strings.Count(directories[j], "/")
+		if left != right {
+			return left > right
+		}
+		return directories[i] < directories[j]
+	})
+	for _, relative := range directories {
+		if err := ctx.Err(); err != nil {
+			return err
+		}
+		dest, err := SafeJoin(s.Config.InstallDir, relative)
+		if err != nil {
+			return err
+		}
+		entries, err := os.ReadDir(dest)
+		if os.IsNotExist(err) {
+			continue
+		}
+		if err != nil {
+			return err
+		}
+		if len(entries) != 0 {
+			continue // Preserve unjournaled files, including excluded startup logs.
+		}
+		if err = os.Remove(dest); err != nil && !os.IsNotExist(err) {
+			return err
+		}
+	}
+	return nil
 }

@@ -62,6 +62,9 @@ func (s *Store) stageRestore(ctx context.Context, req Request, b *Bundle) (strin
 	for _, name := range receipt.Manifest.Managed {
 		skip[name] = true
 	}
+	for _, file := range b.Manifest.Files {
+		skip[file.Destination] = true
+	}
 	if _, err = snapshot.Extract(ctx, archive, s.Config.Target, stage, backupRules(b.Manifest.Launcher), skip); err != nil {
 		return stage, receipt, err
 	}

@@ -121,6 +121,8 @@ safety snapshot, journals all changed preimages, replaces runtime files, removes
 obsolete runtime files, and reapplies current managed configuration. The archived
 configuration does not roll back Git-managed settings. Game and mod binaries are
 not downgraded; inspect the recorded provenance when restoring older world data.
+Managed-file exclusions match Windows paths without regard to case, including
+settings removed by the currently installed release.
 Safety snapshots can also be verified, downloaded, or selected for another restore
 by their listed IDs.
 
@@ -128,6 +130,9 @@ Write failures recover preimages. An interrupted restore is recovered before the
 agent permits another launch; recovery failures retain their journal and block
 launches. Successful interruption recovery leaves supervision paused for inspection
 and an explicit managed restart. Do not delete the recovery journal to bypass it.
+Rollback recovers file preimages before pruning introduced empty directories.
+Unjournaled files such as startup logs are preserved, along with their directories,
+and do not block recovery of the saved world and mod data.
 Use `status <alias> --operation ID` after disconnects. `--no-wait` submits a durable
 create/restore operation; `--dry-run` performs remote reads only.
 

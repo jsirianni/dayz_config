@@ -91,6 +91,9 @@ func inspect(z *zip.Reader, rules Rules) (Manifest, map[string]*zip.File, error)
 func Verify(ctx context.Context, file, target string, rules Rules) (Manifest, error) {
 	return extract(ctx, file, target, "", rules, nil)
 }
+
+// Extract verifies all content, including skipped files. Skip keys and archive
+// paths use the same case-insensitive identity as the Windows restore target.
 func Extract(ctx context.Context, file, target, destination string, rules Rules, skip map[string]bool) (Manifest, error) {
 	return extract(ctx, file, target, destination, rules, skip)
 }
@@ -119,12 +122,18 @@ func readContents(ctx context.Context, z *zip.Reader, target, destination string
 	if manifest.Target != target {
 		return manifest, errors.New("backup belongs to a different target")
 	}
+	excluded := map[string]bool{}
+	for name, omit := range skip {
+		if omit {
+			excluded[strings.ToLower(name)] = true
+		}
+	}
 	for _, entry := range manifest.Entries {
 		if err = ctx.Err(); err != nil {
 			return manifest, err
 		}
 		dest := ""
-		if destination != "" && !skip[entry.Path] {
+		if destination != "" && !excluded[strings.ToLower(entry.Path)] {
 			dest, err = rules.Check(destination, entry.Path)
 			if err != nil {
 				return manifest, err
