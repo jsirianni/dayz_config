@@ -173,8 +173,15 @@ func verifyServerIdentity(target Target, expectedName, name, terrain string) err
 	if !strings.EqualFold(terrain, parts[len(parts)-1]) {
 		return fmt.Errorf("query reports unexpected map %q", terrain)
 	}
-	if expectedName == "" || name != expectedName {
-		return errors.New("query does not match deployed hostname")
+	// Steam's k_cbMaxGameServerName is 64 UTF-8 bytes including the NUL.
+	// DayZ can retain a longer configured hostname while advertising 63 bytes.
+	const steamHostnameBytes = 63
+	matches := name == expectedName
+	if len(expectedName) > steamHostnameBytes && name == expectedName[:steamHostnameBytes] {
+		matches = true
+	}
+	if expectedName == "" || !matches {
+		return fmt.Errorf("query does not match deployed hostname: got %q, expected %q", name, expectedName)
 	}
 	return nil
 }

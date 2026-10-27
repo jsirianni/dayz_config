@@ -102,6 +102,8 @@ Without `--restart`, the running game is left running and activation is reported
 
 Explicit restarts request immediate clean RCon shutdown without a warning countdown. Default timeouts are three minutes for shutdown, 30 for updates, and ten for startup. Stuck games are not force-killed. Every launch runs **updates → reapply desired configuration → launch**, preserving mod order, ports, logging, and BattlEye paths. Startup verifies process identity, hostname, and map through Steam query. RCon remains the clean-shutdown channel; an RCon response is not required to declare query readiness.
 
+Steam server names have a [64-byte UTF-8 buffer including the null terminator](https://partner.steamgames.com/doc/api/ISteamMatchmakingServers#k_cbMaxGameServerName). If the configured hostname exceeds 63 bytes, local Steam-query and public DZSA checks also accept its exact first 63 bytes, as advertised by DayZ. Other prefixes and different names remain errors; the configured name and listener ports are preserved.
+
 All three missions use DayZ's native graceful shutdown after **180 minutes of mission uptime**. The countdown resets each time the mission starts; update and loading time add to the interval between launches. The managed files are:
 
 | Alias | Tracked mission file under its server directory | Installed path relative to `install_dir` |
