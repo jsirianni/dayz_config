@@ -5,19 +5,22 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/jsirianni/dayz_config/internal/snapshot"
 )
 
 type RestoreChange struct {
-	Directory bool   `json:"directory,omitempty"`
-	AfterHash string `json:"afterHash,omitempty"`
-	Path      string `json:"path"`
-	Before    bool   `json:"before"`
-	After     bool   `json:"after"`
+	SourcePath string `json:"sourcePath,omitempty"`
+	Directory  bool   `json:"directory,omitempty"`
+	AfterHash  string `json:"afterHash,omitempty"`
+	Path       string `json:"path"`
+	Before     bool   `json:"before"`
+	After      bool   `json:"after"`
 }
 type RestoreJournal struct {
 	Version        int             `json:"version"`
@@ -83,11 +86,11 @@ func (s *Store) planRestore(ctx context.Context, stage string, safety BackupRece
 	beforeMap := map[string]snapshot.Entry{}
 	afterMap := map[string]snapshot.Entry{}
 	for _, entry := range safety.Manifest.Entries {
-		beforeMap[entry.Path] = entry
+		beforeMap[strings.ToLower(entry.Path)] = entry
 	}
 	for _, entry := range after {
 		if entry.Directory {
-			afterMap[entry.Path] = entry
+			afterMap[strings.ToLower(entry.Path)] = entry
 			continue
 		}
 		file, e := SafeJoin(stage, entry.Path)
@@ -98,7 +101,7 @@ func (s *Store) planRestore(ctx context.Context, stage string, safety BackupRece
 		if e != nil {
 			return nil, e
 		}
-		afterMap[entry.Path] = entry
+		afterMap[strings.ToLower(entry.Path)] = entry
 	}
 	names := map[string]bool{}
 	for name := range beforeMap {
@@ -120,10 +123,28 @@ func (s *Store) planRestore(ctx context.Context, stage string, safety BackupRece
 		if beforeOK && afterOK && before.SHA256 == after.SHA256 {
 			continue
 		}
-		changes = append(changes, RestoreChange{Path: name, Before: beforeOK, After: afterOK, Directory: after.Directory, AfterHash: after.SHA256})
+		destination := before.Path
+		if !beforeOK {
+			destination = existingPathCase(after.Path, beforeMap)
+		}
+		changes = append(changes, RestoreChange{Path: destination, SourcePath: after.Path, Before: beforeOK, After: afterOK, Directory: after.Directory, AfterHash: after.SHA256})
 	}
 	sort.Slice(changes, func(i, j int) bool { return changes[i].Path < changes[j].Path })
 	return changes, nil
+}
+
+// Windows paths are case-insensitive. Preserve the live spelling and use a
+// separate staged source so a case-only change cannot become copy-then-delete.
+func existingPathCase(relative string, before map[string]snapshot.Entry) string {
+	for parent := relative; parent != "."; parent = path.Dir(parent) {
+		if entry, ok := before[strings.ToLower(parent)]; ok {
+			if parent == relative {
+				return entry.Path
+			}
+			return entry.Path + "/" + strings.TrimPrefix(relative, parent+"/")
+		}
+	}
+	return relative
 }
 
 func (s *Store) applyRestore(ctx context.Context, stage string, j RestoreJournal) error {
@@ -147,7 +168,11 @@ func (s *Store) applyRestore(ctx context.Context, stage string, j RestoreJournal
 			continue
 		}
 		if change.After {
-			source, e := SafeJoin(stage, change.Path)
+			sourcePath := change.SourcePath
+			if sourcePath == "" {
+				sourcePath = change.Path
+			}
+			source, e := SafeJoin(stage, sourcePath)
 			if e != nil {
 				return e
 			}

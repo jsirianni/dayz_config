@@ -9,6 +9,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/jsirianni/dayz_config/internal/snapshot"
 )
 
 func backupFixture(t *testing.T) (*Agent, *hardFake, *Bundle) {
@@ -333,5 +335,29 @@ func TestSnapshotOperationsDoNotConsumeConfigurationRetention(t *testing.T) {
 		if _, err := os.Stat(filepath.Join(s.Config.StateDir, "backups", id, "serverDZ.cfg")); err != nil {
 			t.Fatal("configuration preimage pruned by snapshot results", i, err)
 		}
+	}
+}
+
+func TestRestorePlanPreservesWindowsCaseIdentity(t *testing.T) {
+	a, _, b := backupFixture(t)
+	stage := t.TempDir()
+	writeTest(t, stage, "profiles/Mod/World.bin", "restored bytes")
+	hash := Digest([]byte("before"))
+	safety := BackupReceipt{Manifest: snapshot.Manifest{Entries: []snapshot.Entry{
+		{Path: "profiles", Directory: true}, {Path: "profiles/mod", Directory: true}, {Path: "profiles/mod/world.bin", Size: 6, SHA256: hash},
+	}}}
+	changes, err := a.Store.planRestore(context.Background(), stage, safety, b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(changes) != 1 || changes[0].Path != "profiles/mod/world.bin" || changes[0].SourcePath != "profiles/Mod/World.bin" || !changes[0].Before || !changes[0].After {
+		t.Fatal("case-only path became deletion plus insertion", changes)
+	}
+	writeTest(t, a.Store.Config.InstallDir, "profiles/mod/world.bin", "before")
+	if err = a.Store.applyRestore(context.Background(), stage, RestoreJournal{Changes: changes}); err != nil {
+		t.Fatal(err)
+	}
+	if value := readTest(t, a.Store.Config.InstallDir, "profiles/mod/world.bin"); value != "restored bytes" {
+		t.Fatal(value)
 	}
 }
