@@ -10,7 +10,7 @@ import (
 )
 
 type Checker interface {
-	Check(context.Context, string, time.Time) (*Server, time.Time, error)
+	Check(context.Context, string) (*Server, time.Time, error)
 }
 
 type Runner struct {
@@ -59,7 +59,7 @@ func (r *Runner) Cycle(ctx context.Context) error {
 		index := (start + i) % len(r.Config.Endpoints)
 		endpoint := r.Config.Endpoints[index]
 		began := time.Now()
-		server, until, err := r.Client.Check(ctx, endpoint, began)
+		server, until, err := r.Client.Check(ctx, endpoint)
 		attempted++
 		r.attempts.WithLabelValues(endpoint).Inc()
 		r.duration.WithLabelValues(endpoint).Observe(time.Since(began).Seconds())

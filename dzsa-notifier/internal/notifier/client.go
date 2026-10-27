@@ -39,7 +39,7 @@ func NewClient(timeout time.Duration, version string) *Client {
 }
 
 // Check returns a service-wide deferral even when the response is unsuccessful.
-func (c *Client) Check(ctx context.Context, endpoint string, now time.Time) (*Server, time.Time, error) {
+func (c *Client) Check(ctx context.Context, endpoint string) (*Server, time.Time, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.baseURL+endpoint, nil)
 	if err != nil {
 		return nil, time.Time{}, err
@@ -51,7 +51,8 @@ func (c *Client) Check(ctx context.Context, endpoint string, now time.Time) (*Se
 		return nil, time.Time{}, fmt.Errorf("DZSA request: %w", err)
 	}
 	defer r.Body.Close()
-	deferUntil := retryAfter(r.Header.Get("Retry-After"), now)
+	// Delta-seconds start when the response arrives, not when its request began.
+	deferUntil := retryAfter(r.Header.Get("Retry-After"), time.Now())
 	if r.StatusCode != http.StatusOK {
 		return nil, deferUntil, fmt.Errorf("DZSA HTTP %d", r.StatusCode)
 	}

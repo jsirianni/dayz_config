@@ -42,7 +42,7 @@ func TestDZSAResponses(t *testing.T) {
 			}))
 			defer s.Close()
 			c := &Client{http: s.Client(), baseURL: s.URL + "/", version: "test"}
-			server, _, err := c.Check(context.Background(), endpoint, time.Now())
+			server, _, err := c.Check(context.Background(), endpoint)
 			if tc.good {
 				if err != nil || server.Name != "Test DayZ" || len(server.Mods) != 1 {
 					t.Fatalf("%+v %v", server, err)
@@ -59,24 +59,24 @@ func TestDZSATimeoutCancellationTLSAndRedirect(t *testing.T) {
 	defer s.Close()
 	c := NewClient(20*time.Millisecond, "test")
 	c.baseURL = s.URL + "/"
-	if _, _, err := c.Check(context.Background(), endpoint, time.Now()); err == nil {
+	if _, _, err := c.Check(context.Background(), endpoint); err == nil {
 		t.Fatal("trusted unknown TLS certificate")
 	}
 	c.http = s.Client()
 	c.http.Timeout = 20 * time.Millisecond
-	if _, _, err := c.Check(context.Background(), endpoint, time.Now()); !errors.Is(err, context.DeadlineExceeded) {
+	if _, _, err := c.Check(context.Background(), endpoint); !errors.Is(err, context.DeadlineExceeded) {
 		t.Fatalf("timeout: %v", err)
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
-	if _, _, err := c.Check(ctx, endpoint, time.Now()); !errors.Is(err, context.Canceled) {
+	if _, _, err := c.Check(ctx, endpoint); !errors.Is(err, context.Canceled) {
 		t.Fatalf("cancellation: %v", err)
 	}
 	s2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { http.Redirect(w, r, "/redirect", http.StatusFound) }))
 	defer s2.Close()
 	c = NewClient(time.Second, "test")
 	c.baseURL = s2.URL + "/"
-	if _, _, err := c.Check(context.Background(), endpoint, time.Now()); err == nil || !strings.Contains(err.Error(), "302") {
+	if _, _, err := c.Check(context.Background(), endpoint); err == nil || !strings.Contains(err.Error(), "302") {
 		t.Fatalf("redirect followed: %v", err)
 	}
 }
@@ -101,7 +101,7 @@ func TestRetryAfter(t *testing.T) {
 	defer s.Close()
 	c := NewClient(time.Second, "test")
 	c.baseURL = s.URL + "/"
-	if _, until, err := c.Check(context.Background(), endpoint, now); err == nil || !until.Equal(now.Add(time.Minute)) {
+	if _, until, err := c.Check(context.Background(), endpoint); err == nil || until.Before(now.Add(time.Minute)) || until.After(time.Now().Add(time.Minute)) {
 		t.Fatalf("deferral lost: %v %v", until, err)
 	}
 }

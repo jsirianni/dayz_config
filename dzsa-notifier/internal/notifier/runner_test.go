@@ -15,10 +15,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/testutil"
 )
 
-type checkFunc func(context.Context, string, time.Time) (*Server, time.Time, error)
+type checkFunc func(context.Context, string) (*Server, time.Time, error)
 
-func (f checkFunc) Check(c context.Context, s string, t time.Time) (*Server, time.Time, error) {
-	return f(c, s, t)
+func (f checkFunc) Check(c context.Context, s string) (*Server, time.Time, error) {
+	return f(c, s)
 }
 func testRunner(c Checker) *Runner {
 	return NewRunner(Config{Interval: 20 * time.Millisecond, Endpoints: []string{endpoint, "203.0.113.10:27019"}}, c, slog.New(slog.NewJSONHandler(io.Discard, nil)))
@@ -26,7 +26,7 @@ func testRunner(c Checker) *Runner {
 
 func TestCycleFailureDoesNotBlockOtherEndpointsAndMetrics(t *testing.T) {
 	calls := 0
-	r := testRunner(checkFunc(func(_ context.Context, e string, _ time.Time) (*Server, time.Time, error) {
+	r := testRunner(checkFunc(func(_ context.Context, e string) (*Server, time.Time, error) {
 		calls++
 		if e == endpoint {
 			return nil, time.Time{}, errors.New("offline")
@@ -53,7 +53,7 @@ func TestCycleFailureDoesNotBlockOtherEndpointsAndMetrics(t *testing.T) {
 
 func TestGlobalDeferralAndFairness(t *testing.T) {
 	var calls []string
-	r := testRunner(checkFunc(func(_ context.Context, e string, _ time.Time) (*Server, time.Time, error) {
+	r := testRunner(checkFunc(func(_ context.Context, e string) (*Server, time.Time, error) {
 		calls = append(calls, e)
 		return nil, time.Now().Add(time.Hour), errors.New("429")
 	}))
@@ -73,7 +73,7 @@ func TestRunImmediateSequentialCancellation(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	var active, maximum, calls atomic.Int32
-	r := testRunner(checkFunc(func(ctx context.Context, _ string, _ time.Time) (*Server, time.Time, error) {
+	r := testRunner(checkFunc(func(ctx context.Context, _ string) (*Server, time.Time, error) {
 		n := active.Add(1)
 		if n > maximum.Load() {
 			maximum.Store(n)
