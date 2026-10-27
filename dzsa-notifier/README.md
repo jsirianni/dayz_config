@@ -104,7 +104,9 @@ sudo systemctl enable --now dzsa-notifier
 
 `--check-config` performs no network requests. `--once` does not start a metrics
 listener; it returns nonzero on failed or deferred checks. `--version` prints the
-embedded release version. Configuration changes require a notifier restart.
+embedded release version. These three modes are mutually exclusive; malformed
+flags and unexpected positional arguments exit 64. `--help` writes usage to stderr
+and exits successfully. Configuration changes require a notifier restart.
 
 ## Run a container
 
@@ -176,8 +178,17 @@ does not depend on external DZSA availability.
 
 ## Build, test, and release
 
-This is a separate Go module, independent of dzdeploy and pvecli. Run commands in
-this directory using Go 1.27.3 and GoReleaser OSS **v2.19.0**:
+This is a separate Go module, independent of dzdeploy and pvecli.
+
+The command entrypoint only handles process signals and exit wiring.
+`internal/cli` owns argument parsing, configuration and permission checks, mode
+selection, and exit codes. `internal/service` owns the metrics listener, systemd
+notifications, worker lifetime, and graceful shutdown. `internal/notifier` owns
+the DZSA client, notification scheduling, configuration schema, and instrumentation.
+CLI parsing uses an independent flag set per invocation. Lifecycle failures close
+the metrics listener and cancel/join the worker before returning to the supervisor.
+
+Run commands in this directory using Go 1.27.3 and GoReleaser OSS **v2.19.0**:
 
 ```sh
 go test -race ./...
