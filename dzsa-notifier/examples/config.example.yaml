@@ -1,0 +1,7 @@
+# Copy to /etc/dzsa-notifier/config.yaml, or apply using Configure-Notifier.ps1.
+interval: 5m
+request_timeout: 10s
+metrics_listen: "127.0.0.1:9090"
+endpoints:
+  - "203.0.113.10:27016"
+  - "203.0.113.10:27019"

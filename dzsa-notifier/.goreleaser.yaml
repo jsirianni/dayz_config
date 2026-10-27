@@ -1,0 +1,57 @@
+version: 2
+project_name: dzsa-notifier
+snapshot:
+  version_template: "0.0.0-snapshot"
+builds:
+  - id: notifier
+    main: ./cmd/dzsa-notifier
+    binary: dzsa-notifier
+    env: [CGO_ENABLED=0]
+    goos: [linux]
+    goarch: [amd64, arm64]
+    flags: [-trimpath]
+    ldflags: ['-s -w -X main.version={{.Version}}']
+archives:
+  - formats: [tar.gz]
+    files: [README.md, examples/config.example.yaml, scripts/Configure-Notifier.ps1, scripts/apply-config.sh]
+nfpms:
+  - id: packages
+    package_name: dzsa-notifier
+    ids: [notifier]
+    homepage: https://github.com/jsirianni/dayz_config
+    maintainer: jsirianni <jsirianni@users.noreply.github.com>
+    description: Periodically notify DZSA of DayZ server query endpoints.
+    formats: [deb, rpm]
+    bindir: /usr/bin
+    dependencies: [ca-certificates, systemd]
+    contents:
+      - src: packaging/dzsa-notifier.service
+        dst: /usr/lib/systemd/system/dzsa-notifier.service
+      - src: examples/config.example.yaml
+        dst: /etc/dzsa-notifier/config.example.yaml
+        type: config|noreplace
+      - src: README.md
+        dst: /usr/share/doc/dzsa-notifier/README.md
+    scripts:
+      postinstall: packaging/postinstall.sh
+      preremove: packaging/preremove.sh
+      postremove: packaging/postremove.sh
+dockers_v2:
+  - ids: [notifier]
+    images: [ghcr.io/jsirianni/dzsa-notifier]
+    tags:
+      - "{{ .Version }}"
+      - "{{ if and (not .IsSnapshot) (not .Prerelease) }}latest{{ end }}"
+    platforms: [linux/amd64, linux/arm64]
+    labels:
+      org.opencontainers.image.title: dzsa-notifier
+      org.opencontainers.image.source: https://github.com/jsirianni/dayz_config
+      org.opencontainers.image.version: "{{ .Version }}"
+      org.opencontainers.image.revision: "{{ .FullCommit }}"
+checksum:
+  name_template: checksums.txt
+release:
+  name_template: "dzsa-notifier {{ .Tag }}"
+changelog:
+  filters:
+    include: ['(?i)notifier']

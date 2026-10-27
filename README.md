@@ -7,6 +7,7 @@ DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients manag
 ## Contents
 
 - [Deployment](#deployment)
+- [DZSA notifier](#dzsa-notifier)
 - [Server status](#server-status)
   - [Nasdara (standard)](#nasdara-standard)
   - [Deer Isle](#deer-isle)
@@ -27,6 +28,15 @@ dzdeploy deploy nasdara-staging --restart
 ```
 
 Deployment requires clean main matching freshly fetched origin/main. Restarts are explicit. Configuration is reapplied after Steam updates; persistence/runtime data are excluded. VPP uses SteamID admin allowlists with its password prompt disabled. Resources below include historical Linux hosting notes.
+
+## DZSA notifier
+
+[dzsa-notifier](dzsa-notifier/README.md) is an independent Linux service that
+periodically submits a configured list of public query endpoints to DZSA. It
+provides Prometheus metrics, systemd DEB/RPM packages, nonroot amd64/arm64
+distroless containers, and a PowerShell script for managing its configuration over
+SSH. Its GoReleaser workflow reserves repository `v*` release tags for this app.
+The notifier has not been deployed to a Linux host as part of this change.
 
 ## Server status
 
