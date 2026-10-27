@@ -29,6 +29,15 @@ cat > /etc/systemd/system/dzsa-notifier.service.d/test.conf <<EOF
 Environment=HTTPS_PROXY=http://127.0.0.1:18443
 Environment=SSL_CERT_FILE=$work/ca.pem
 EOF
+cat >/etc/dzsa-notifier/environment <<EOF
+DZSA_NOTIFIER_ENDPOINTS=203.0.113.10:27016
+DZSA_NOTIFIER_METRICS_LISTEN=127.0.0.1:19090
+EOF
+systemctl daemon-reload
+systemctl start dzsa-notifier.service
+systemctl is-active --quiet dzsa-notifier.service
+systemctl stop dzsa-notifier.service
+rm -f /etc/dzsa-notifier/environment
 cat >/etc/dzsa-notifier/config.yaml <<EOF
 interval: 1s
 request_timeout: 2s
@@ -61,6 +70,7 @@ set -e
 test "$status" -eq 77
 systemctl stop dzsa-notifier.service
 test "$(systemctl show dzsa-notifier.service --property=MainPID --value)" = 0
+test "$(systemctl show dzsa-notifier.service --property=ExecMainStatus --value)" = 0
 if [ "$format" = deb ]; then dpkg -r dzsa-notifier; else rpm -e dzsa-notifier; fi
 test -f /etc/dzsa-notifier/config.yaml
 test ! -e /etc/systemd/system/multi-user.target.wants/dzsa-notifier.service
