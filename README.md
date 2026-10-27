@@ -8,7 +8,7 @@ DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients manag
 
 - [Deployment](#deployment)
 - [DZSA notifier](#dzsa-notifier)
-- [Server status](#server-status)
+- [Servers](#servers)
   - [Nasdara (standard)](#nasdara-standard)
   - [Deer Isle](#deer-isle)
   - [Nasdara AI](#nasdara-ai)
@@ -38,61 +38,45 @@ distroless containers, and a PowerShell script for managing its configuration ov
 SSH. Its GoReleaser workflow reserves repository `v*` release tags for this app.
 The notifier has not been deployed to a Linux host as part of this change.
 
-## Server status
+## Servers
 
-Verification snapshots, using SSH and fresh DZSA checks (America/New_York):
+All three Windows servers are enrolled with `dzdeploy`, use `C:\DayZ\server`, and run under an automatic-start `dzdeploy-<alias>` service. Their legacy `DayZServer` services are disabled.
 
-- **Nasdara and Deer Isle:** October 26, 2026 at 10:55 p.m. EDT.
-- **Nasdara AI:** October 26, 2026 at 11:30 p.m. EDT.
+DayZ performs a native shutdown after **180 minutes of mission uptime**, using the countdown in `messages.xml`. The managed service then updates the server and mods, reapplies managed configuration, and launches DayZ again. Automatic shutdown and relaunch have been verified on all three servers. Update and loading time add to the interval between launches.
 
-These are recorded observations; player counts and running state can change. All three servers are enrolled and managed by `dzdeploy`.
-
-The managed servers use DayZ's native 180-minute shutdown countdown in `messages.xml`. Their Windows services remain running and supervise updates, configuration reapplication, and game relaunch after exit. A complete three-hour shutdown/relaunch cycle has **not yet been observed** on any of the three servers.
+Use `dzdeploy status <alias>` for deployment state and `dzdeploy check <alias>` for fresh public discovery and mod verification. Installed revision, last managed startup revision, and restart-pending state are runtime information; consult the commands for current values.
 
 ### Nasdara (standard)
 
 Deployment alias: `nasdara`. Source configuration: [first-light-badlands-nasdara-us-east](servers/current/first-light-badlands-nasdara-us-east).
 
-The server at **192.168.1.196** was running with **0/60 players**. DayZ is installed at `C:\DayZ\server` and managed by the running, automatic-start Windows service `dzdeploy-nasdara`. The legacy `DayZServer` service is stopped and disabled.
-
+- **LAN address:** `192.168.1.196`.
+- **Service:** `dzdeploy-nasdara`.
 - **UDP ports:** game `2301`, BattlEye `2303`, Steam query `27016`.
-- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27016) passed and verified both expected mods: CF and VPPAdminTools.
-- **Three-hour shutdown/relaunch:** configured; supervision active.
-- **Installed revision:** `1ab8d0629ad4631dff691c052a4e72e0dc7815ba`.
-- **Last managed startup revision:** `1ab8d0629ad4631dff691c052a4e72e0dc7815ba`.
-- **Restart pending:** no.
-
-The agent reported no active deployment error. It remains on the revision preceding PR #85's fix for Steam hostname truncation; its existing shorter hostname passes readiness checks.
+- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27016).
+- **Mods:** CF and VPPAdminTools.
 
 ### Deer Isle
 
 Deployment alias: `deer-isle`. Source configuration: [first-light-deer-isle-expansion-us-east1](servers/current/first-light-deer-isle-expansion-us-east1).
 
-The server at **192.168.1.190** was running with **0/60 players**. DayZ is installed at `C:\DayZ\server` and managed by the running, automatic-start Windows service `dzdeploy-deer-isle`. The legacy `DayZServer` service is stopped and disabled. The existing saved world was preserved and backed up during migration.
-
+- **LAN address:** `192.168.1.190`.
+- **Service:** `dzdeploy-deer-isle`.
 - **UDP ports:** game `4801`, BattlEye `4803`, Steam query `27019`.
-- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27019) passed and verified all 13 expected mods.
-- **Three-hour shutdown/relaunch:** configured; supervision active.
-- **Installed revision:** `a970ecad7cfc0a8cac6774a772f3d9f2ae87e0a4`.
-- **Last managed startup revision:** `a970ecad7cfc0a8cac6774a772f3d9f2ae87e0a4`.
-- **Restart pending:** no.
+- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27019).
+- **Mods:** 13 managed Workshop mods, including DeerIsle, DayZ Expansion, Terje, and vehicle mods.
 
-The upgraded agent includes PR #85's hostname-length fix, and managed startup completed successfully. Startup logs still contain mod exceptions, including NULL-pointer errors and missing ruined-wheel classes for `jmc_atv`, `Runner`, `DodgeRam_3500`, and `Honda_Civic`. These were present before and after the agent upgrade; the game remained running and passed query checks. Their gameplay impact remains unverified.
+Known startup mod errors include NULL pointers, duplicate `hatchback_exhaust` particles, and missing ruined-wheel classes for `jmc_atv`, `Runner`, `DodgeRam_3500`, and `Honda_Civic`. Scheduled restarts and discovery checks succeed despite these errors; their gameplay impact remains unverified.
 
 ### Nasdara AI
 
 Deployment alias: `nasdara-staging`. Source configuration: [first-light-badlands-nasdara-staging-us-east](servers/current/first-light-badlands-nasdara-staging-us-east).
 
-The server at **192.168.1.224** was running with **0/60 players**. DayZ is installed at `C:\DayZ\server` and managed by the running, automatic-start Windows service `dzdeploy-nasdara-staging`. The legacy `DayZServer` service is stopped and disabled. The existing saved world was preserved and backed up during migration.
-
+- **LAN address:** `192.168.1.224`.
+- **Service:** `dzdeploy-nasdara-staging`.
 - **UDP ports:** game `2901`, BattlEye `2903`, Steam query `27018`.
-- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27018) passed and verified all five expected mods: CF, VPPAdminTools, Dabs Framework, DayZ-Expansion-Core, and DayZ-Expansion-AI.
-- **Three-hour shutdown/relaunch:** configured; supervision active.
-- **Installed revision:** `d6f26d3f02d3d5df30d1da187cb0b6ccd001a7a5`.
-- **Last managed startup revision:** `d6f26d3f02d3d5df30d1da187cb0b6ccd001a7a5`.
-- **Restart pending:** no.
-
-Managed startup completed successfully, and the agent reported no active deployment error. The installed configuration and agent hashes matched the deployment sources during final SSH verification.
+- **Public discovery:** [DZSA server check](https://dayzsalauncher.com/#/servercheck/50.36.224.4:27018).
+- **Mods:** CF, VPPAdminTools, Dabs Framework, DayZ-Expansion-Core, and DayZ-Expansion-AI.
 
 ## Resources
 
