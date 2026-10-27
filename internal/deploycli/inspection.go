@@ -9,7 +9,6 @@ import (
 	"os/signal"
 	"path/filepath"
 	"sort"
-	"text/tabwriter"
 	"time"
 
 	"github.com/jsirianni/dayz_config/internal/deploy"
@@ -67,19 +66,8 @@ func runInspection(args []string) error {
 			return err
 		}
 	} else {
-		w := tabwriter.NewWriter(os.Stdout, 0, 4, 2, ' ', 0)
-		fmt.Fprintln(w, "SERVER\tHEALTH\tINSTALLED\tLAST STARTUP\tRESTART PENDING")
-		for _, r := range reports {
-			fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%t\n", r.Target, r.Status, r.Installed, r.Startup, r.RestartPending)
-		}
-		w.Flush()
-		for _, r := range reports {
-			for _, e := range r.Errors {
-				fmt.Printf("%s ERROR: %s\n", r.Target, e)
-			}
-			for _, v := range r.Warnings {
-				fmt.Printf("%s WARNING: %s\n", r.Target, v)
-			}
+		if err := renderHealth(os.Stdout, reports); err != nil {
+			return err
 		}
 	}
 	for _, r := range reports {
