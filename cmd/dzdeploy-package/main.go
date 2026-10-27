@@ -74,7 +74,7 @@ func run() error {
 	if err = build("windows", "amd64", companion); err != nil {
 		return err
 	}
-	files := map[string]string{clientName: client, "agents/windows-amd64/dzdeploy.exe": companion, "bootstrap-windows.ps1": "scripts/bootstrap-windows.ps1", "deploy.example.yaml": "deploy.example.yaml", "deployment.md": "docs/deployment.md"}
+	files := map[string]string{clientName: client, "agents/windows-amd64/dzdeploy.exe": companion, "bootstrap-windows.ps1": "scripts/bootstrap-windows.ps1", "deploy.example.yaml": "deploy.example.yaml", "deployment.md": "docs/deployment.md", "operator-workflows.md": "docs/operator-workflows.md"}
 	archive := filepath.Join(*output, "dzdeploy_"+*platform+"_"+*arch+".zip")
 	f, err := os.Create(archive)
 	if err != nil {

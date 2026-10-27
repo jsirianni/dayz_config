@@ -130,6 +130,13 @@ func (r *Remote) remote(parts ...string) string {
 	return path.Join(append([]string{r.Endpoint.RemoteDir}, parts...)...)
 }
 func (r *Remote) ReadJSON(rel string, v any) error {
+	info, err := r.SFTP.Lstat(r.remote(rel))
+	if err != nil {
+		return err
+	}
+	if !info.Mode().IsRegular() {
+		return errors.New("remote JSON is not a regular file")
+	}
 	f, err := r.SFTP.Open(r.remote(rel))
 	if err != nil {
 		return err
@@ -245,6 +252,13 @@ func (r *Remote) Submit(req Request, raw []byte) error {
 	}
 	if err := r.CheckHardRequest(req); err != nil {
 		return err
+	}
+	if req.Action == "backup-create" || req.Action == "backup-restore" {
+		for _, feature := range []string{BackupCapability, HardStopCapability} {
+			if err := r.RequireFeature(req.Target, feature); err != nil {
+				return err
+			}
+		}
 	}
 	if _, err := r.Ready(req.Target); err != nil {
 		return err

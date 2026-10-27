@@ -14,7 +14,7 @@ import (
 type HistoryReport struct {
 	Cycles        []RestartCycle    `json:"cycles"`
 	Since         time.Time         `json:"since"`
-	CoverageStart time.Time         `json:"coverageStart,omitempty"`
+	CoverageStart time.Time         `json:"coverageStart,omitzero"`
 	Incomplete    bool              `json:"incomplete"`
 	Warnings      []string          `json:"warnings,omitempty"`
 	Events        []lifecycle.Event `json:"events"`
@@ -45,6 +45,10 @@ func correlateCycles(events []lifecycle.Event) []RestartCycle {
 
 func (r *Remote) History(alias string, host HostConfig, since time.Time) HistoryReport {
 	h := HistoryReport{Since: since, Events: []lifecycle.Event{}}
+	if info, e := r.SFTP.Stat(r.remote("logs", "lifecycle-error.txt")); e == nil && !info.ModTime().Before(since) {
+		h.Incomplete = true
+		h.Warnings = append(h.Warnings, "agent recorded a lifecycle event persistence failure")
+	}
 	files, err := r.SFTP.ReadDir(r.remote("events"))
 	if err != nil {
 		h.Incomplete = true
@@ -97,7 +101,7 @@ func (r *Remote) History(alias string, host HostConfig, since time.Time) History
 			continue
 		}
 		var result Result
-		if r.ReadJSON("results/"+file.Name(), &result) != nil || result.Target != alias {
+		if r.ReadJSON("results/"+file.Name(), &result) != nil || result.Target != alias || result.ID != id || result.Version != Protocol || result.Updated.IsZero() {
 			h.Incomplete = true
 			continue
 		}
@@ -107,6 +111,10 @@ func (r *Remote) History(alias string, host HostConfig, since time.Time) History
 		if result.Status == "failed" {
 			h.Events = append(h.Events, lifecycle.Event{At: result.Updated, Target: alias, Kind: "operation-failed", Operation: id, Detail: result.Error, Source: "results/" + file.Name()})
 		} else if result.DZSA != nil {
+			if result.DZSA.CheckedAt.IsZero() {
+				h.Incomplete = true
+				continue
+			}
 			h.Events = append(h.Events, lifecycle.Event{At: result.DZSA.CheckedAt, Target: alias, Kind: "ready", Cause: result.Cause, Operation: id, Commit: result.Commit, Source: "results/" + file.Name()})
 		}
 	}

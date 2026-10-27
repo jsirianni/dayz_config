@@ -134,6 +134,9 @@ func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) er
 	return a.Store.Save()
 }
 func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
+	if req.Action == "backup-create" || req.Action == "backup-restore" {
+		return a.processBackup(ctx, req)
+	}
 	r = Result{Version: Protocol, ID: req.ID, Target: a.Store.Config.Target, Status: "running", Cause: req.Action, Updated: time.Now().UTC()}
 	if !ValidID(req.ID) {
 		r.Status = "failed"
@@ -378,18 +381,23 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 	if err != nil {
 		return err
 	}
+	if game == nil {
+		game = &NativeGame{Config: store.Config}
+	}
+	a := &Agent{Store: store, Game: game}
+	if err = a.recoverRestore(ctx); err != nil {
+		return fmt.Errorf("restore recovery failed; launches blocked: %w", err)
+	}
 	if err = store.Recover(); err != nil {
 		return fmt.Errorf("interrupted transaction recovery failed; launch blocked: %w", err)
 	}
-	if game == nil {
-		game = &NativeGame{Config: store.Config}
+	if _, native := game.(*NativeGame); native {
 		stopBroker, err := startAuthBroker(ctx, store.Config)
 		if err != nil {
 			return err
 		}
 		defer stopBroker()
 	}
-	a := &Agent{Store: store, Game: game}
 	// Non-file phases (updates/startup) may have been interrupted too. Never blindly replay them.
 	entries, err := os.ReadDir(filepath.Join(c.StateDir, "results"))
 	if err != nil {
@@ -422,7 +430,7 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
 		for {
-			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1", HardStopCapability}})
+			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1", HardStopCapability, BackupCapability}})
 			select {
 			case <-heartbeatCtx.Done():
 				return
@@ -480,6 +488,9 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 			}
 			if _, journalErr := os.Stat(filepath.Join(c.StateDir, "journal.json")); journalErr == nil {
 				return errors.New("transaction recovery incomplete; launches are blocked")
+			}
+			if _, journalErr := os.Stat(filepath.Join(c.StateDir, "restore.json")); journalErr == nil {
+				return errors.New("restore recovery incomplete; launches are blocked")
 			}
 			if err = clearInbox(c.StateDir, id); err != nil {
 				return err

@@ -107,6 +107,9 @@ func TestFleetRetainsAllFailuresSorted(t *testing.T) {
 		t.Fatal(reports)
 	}
 	for _, r := range reports {
+		if !r.History.Incomplete {
+			t.Fatal("failed inspection claimed complete history", r)
+		}
 		if len(r.Errors) == 0 {
 			t.Fatal("lost failure", r)
 		}

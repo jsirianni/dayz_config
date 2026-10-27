@@ -24,9 +24,10 @@ type Journal struct {
 	Committed bool       `json:"committed"`
 }
 type Store struct {
-	Config      HostConfig
-	State       State
-	BeforeWrite func(string) error
+	AvailableSpace func(string) (uint64, error)
+	Config         HostConfig
+	State          State
+	BeforeWrite    func(string) error
 }
 
 func OpenStore(c HostConfig) (*Store, error) {
@@ -382,7 +383,22 @@ func (s *Store) Retain() error {
 			continue
 		}
 		var r Result
-		if ReadJSON(filepath.Join(s.Config.StateDir, "results", e.Name()), &r) == nil && r.Status == "succeeded" {
+		if ReadJSON(filepath.Join(s.Config.StateDir, "results", e.Name()), &r) == nil && r.Status == "succeeded" && r.ID == id && r.Target == s.Config.Target {
+			backup, err := SafeJoin(s.Config.StateDir, "backups/"+id)
+			if err != nil {
+				return err
+			}
+			info, err := os.Stat(backup)
+			if os.IsNotExist(err) {
+				continue
+			}
+			if err != nil {
+				return err
+			}
+			if !info.IsDir() {
+				return errors.New("configuration backup path is not a directory")
+			}
+			// Snapshot-only operations must not consume configuration-preimage retention.
 			successes = append(successes, id)
 		}
 	}

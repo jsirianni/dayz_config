@@ -31,6 +31,10 @@ type HealthReport struct {
 	Warnings       []string              `json:"warnings,omitempty"`
 }
 
+func unknownHealth(alias string, since time.Time) HealthReport {
+	return HealthReport{Target: alias, CheckedAt: time.Now().UTC(), Status: "unhealthy", History: HistoryReport{Since: since, Incomplete: true}}
+}
+
 func remoteInstall(c HostConfig) string {
 	return "/" + strings.TrimPrefix(strings.ReplaceAll(c.InstallDir, "\\", "/"), "/")
 }
@@ -135,7 +139,7 @@ func Assess(state State, s *hostinspect.Snapshot, heartbeat time.Time, t Target,
 }
 
 func (r *Remote) Health(ctx context.Context, alias string, since time.Time) HealthReport {
-	report := HealthReport{Target: alias, CheckedAt: time.Now().UTC(), Status: "unhealthy"}
+	report := unknownHealth(alias, since)
 	s, err := r.State(alias)
 	if err != nil {
 		report.Errors = append(report.Errors, err.Error())
@@ -158,15 +162,29 @@ func (r *Remote) Health(ctx context.Context, alias string, since time.Time) Heal
 	report.Startup = s.RunningCommit
 	report.Paused = s.Paused
 	report.RestartPending = s.RestartRequired
-	var heartbeat Heartbeat
-	_ = r.ReadJSON("heartbeat.json", &heartbeat)
 	snapshot, err := r.observe(ctx, host, t)
 	if err != nil {
 		report.Errors = append(report.Errors, err.Error())
 	}
 	report.Snapshot = snapshot
+	// A native collector can take seconds while Windows initializes modules.
+	// Evaluate freshness at the end of collection, not against the earlier read.
+	var heartbeat Heartbeat
+	_ = r.ReadJSON("heartbeat.json", &heartbeat)
+	if heartbeat.Version != Protocol {
+		report.Errors = append(report.Errors, "agent heartbeat protocol is incompatible")
+	}
+	report.CheckedAt = time.Now().UTC()
+	changing := false
+	if latest, e := r.State(alias); e == nil && (latest.PID != s.PID || latest.ProcessToken != s.ProcessToken || latest.LastOperation != s.LastOperation) {
+		changing = true
+		report.Errors = append(report.Errors, "managed state changed during inspection; rerun for a coherent snapshot")
+	}
 	status, failures, warnings := Assess(s, snapshot, heartbeat.Updated, t, report.CheckedAt)
 	report.Status = status
+	if changing {
+		report.Status = "changing"
+	}
 	report.Errors = append(report.Errors, failures...)
 	report.Warnings = append(report.Warnings, warnings...)
 	if snapshot != nil && snapshot.Query.Error == "" && len(snapshot.Processes) > 0 {
@@ -215,7 +233,9 @@ func Fleet(ctx context.Context, targets map[string]Endpoint, since time.Time) []
 			select {
 			case slots <- struct{}{}:
 			case <-ctx.Done():
-				reports[i] = HealthReport{Target: name, Status: "unreachable", Errors: []string{ctx.Err().Error()}}
+				reports[i] = unknownHealth(name, since)
+				reports[i].Status = "unreachable"
+				reports[i].Errors = []string{ctx.Err().Error()}
 				return
 			}
 			defer func() { <-slots }()
@@ -223,7 +243,9 @@ func Fleet(ctx context.Context, targets map[string]Endpoint, since time.Time) []
 			defer cancel()
 			remote, err := Connect(hostCtx, targets[name])
 			if err != nil {
-				reports[i] = HealthReport{Target: name, CheckedAt: time.Now().UTC(), Status: "unreachable", Errors: []string{err.Error()}}
+				reports[i] = unknownHealth(name, since)
+				reports[i].Status = "unreachable"
+				reports[i].Errors = []string{err.Error()}
 				return
 			}
 			defer remote.Close()

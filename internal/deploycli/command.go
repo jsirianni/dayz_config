@@ -52,11 +52,18 @@ func usage() {
 
   dzdeploy health <server|all> [--since 24h]
   dzdeploy history <server|all> [--since 24h]
+  dzdeploy logs <server> [--kind console|updates|agent|rpt|script|crash] [--tail 200] [--follow]
+  dzdeploy diagnose <server|all> [--since 24h] [--output directory]
+  dzdeploy backup create <server> [--stop] [--dry-run] [--no-wait]
+  dzdeploy backup list <server>
+  dzdeploy backup verify <server> --backup ID
+  dzdeploy backup download <server> --backup ID --output file
+  dzdeploy backup restore <server> --backup ID [--stop] [--dry-run] [--no-wait]
   dzdeploy doctor <server>
   dzdeploy check <server>
   dzdeploy deploy <server> [--dry-run] [--restart] [--no-wait]
   dzdeploy status <server> [--operation <id>]
-  dzdeploy restart <server> [--no-wait]
+  dzdeploy restart <server> [--hard] [--dry-run] [--no-wait]
   dzdeploy rollback <server> --deployment <id> [--restart]
   dzdeploy validate <server|all> [--offline]
   dzdeploy tools install
@@ -69,6 +76,13 @@ First enrollment: deploy <server> (automatically trusts and saves the first SSH 
 Client config defaults to <repo>/deploy.yaml. No deployment runs on merge.`)
 }
 func run(args []string) error {
+	if len(args) > 1 && args[1] == "--help" {
+		usage()
+		return nil
+	}
+	if len(args) > 0 && args[0] == "backup" {
+		return runBackup(args)
+	}
 	if len(args) > 0 && (args[0] == "logs" || args[0] == "diagnose") {
 		return runLogs(args)
 	}
