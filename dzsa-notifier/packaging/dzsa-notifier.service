@@ -1,0 +1,35 @@
+[Unit]
+Description=Periodic DayZ SA Launcher notification service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=dzsa-notifier
+Group=dzsa-notifier
+DynamicUser=yes
+ExecStart=/usr/bin/dzsa-notifier
+EnvironmentFile=-/etc/dzsa-notifier/environment
+Restart=on-failure
+RestartSec=10s
+RestartPreventExitStatus=64 77
+TimeoutStartSec=20s
+TimeoutStopSec=15s
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

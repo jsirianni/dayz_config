@@ -1,0 +1,143 @@
+name: dzsa-notifier
+on:
+  pull_request:
+    paths: ['dzsa-notifier/**', '.github/workflows/dzsa-notifier.yml']
+  push:
+    branches: [main]
+    tags: ['v[0-9]*']
+    paths: ['dzsa-notifier/**', '.github/workflows/dzsa-notifier.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  GOWORK: 'off'
+jobs:
+  test-package-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: dzsa-notifier
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: dzsa-notifier/go.mod
+          cache-dependency-path: dzsa-notifier/go.sum
+      - run: go test -race ./...
+      - run: go vet ./...
+      - run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          workdir: dzsa-notifier
+          args: check
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          workdir: dzsa-notifier
+          args: release --snapshot --clean --skip=docker
+      - name: Build local HTTPS fixture
+        run: go build -o dist/https-fixture ./tests/fixture
+      - name: DEB and systemd integration
+        run: |
+          package=$(realpath dist/*_amd64.deb)
+          sudo sh tests/package-integration.sh deb "$package" "$(realpath dist/https-fixture)"
+      - name: Configure over real SSH using PowerShell
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y openssh-server
+          package=$(realpath dist/*_amd64.deb)
+          sudo sh tests/ssh-integration.sh "$package" "$(realpath dist/https-fixture)"
+      - name: RPM and systemd integration on AlmaLinux 9
+        run: |
+          docker build -t notifier-rpm-test -f tests/rpm.Dockerfile .
+          docker run -d --name notifier-rpm --privileged --cgroupns=host -v /sys/fs/cgroup:/sys/fs/cgroup:rw -v "$PWD:/work:ro" --tmpfs /run --tmpfs /tmp notifier-rpm-test
+          for i in $(seq 1 60); do
+            state=$(docker exec notifier-rpm systemctl is-system-running || true)
+            case "$state" in running|degraded) break ;; esac
+            sleep 1
+          done
+          package=$(realpath dist/*_amd64.rpm)
+          docker exec -w /work notifier-rpm sh tests/package-integration.sh rpm "/work/dist/$(basename "$package")" /work/dist/https-fixture
+      - name: Integration diagnostics
+        if: failure()
+        run: |
+          sudo journalctl -u dzsa-notifier.service --no-pager -n 100 || true
+          docker exec notifier-rpm journalctl -u dzsa-notifier.service --no-pager -n 100 || true
+      - name: Remove disposable RPM container
+        if: always()
+        run: docker rm -f notifier-rpm || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dzsa-notifier-linux-packages
+          path: |
+            dzsa-notifier/dist/*.deb
+            dzsa-notifier/dist/*.rpm
+            dzsa-notifier/dist/*.tar.gz
+            dzsa-notifier/dist/checksums.txt
+  containers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: dzsa-notifier
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: dzsa-notifier/go.mod
+          cache-dependency-path: dzsa-notifier/go.sum
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          workdir: dzsa-notifier
+          args: release --snapshot --clean
+      - name: Test both image architectures and rootless Podman
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y podman uidmap slirp4netns
+          go build -o dist/https-fixture ./tests/fixture
+          sh tests/container-integration.sh ghcr.io/jsirianni/dzsa-notifier:0.0.0-snapshot-amd64 "$PWD/dist/https-fixture"
+          sh tests/container-integration.sh ghcr.io/jsirianni/dzsa-notifier:0.0.0-snapshot-arm64 "$PWD/dist/https-fixture"
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [test-package-integration, containers]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require a commit on main
+        run: git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: dzsa-notifier/go.mod
+          cache-dependency-path: dzsa-notifier/go.sum
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          workdir: dzsa-notifier
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
