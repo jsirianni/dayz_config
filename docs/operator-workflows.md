@@ -59,3 +59,5 @@ when native process session identity is available; append-only logs are marked m
 The latest three files per kind are considered, with 2,000 lines per excerpt and
 25 MiB total excerpt content. Missing and truncated sources are reported explicitly.
 Configuration, credential files, saved worlds, and memory dumps are not collected.
+Partial diagnostic reports returned after cancellation or an output/write failure
+are redacted too; failed bundle creation never exposes raw collected evidence.

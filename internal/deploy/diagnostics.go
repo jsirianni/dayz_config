@@ -71,6 +71,22 @@ func sanitizedJSON(v any) ([]byte, error) {
 }
 
 func (r *Remote) Diagnose(ctx context.Context, alias string, since time.Time, directory string) (Diagnostics, error) {
+	collected, collectErr := r.collectDiagnostics(ctx, alias, since, directory)
+	// Partial reports cross the same output boundary as successful reports. Keep
+	// this outside collection so every failure/cancellation path is sanitized.
+	b, err := sanitizedJSON(collected)
+	var out Diagnostics
+	if err == nil {
+		err = json.Unmarshal(b, &out)
+	}
+	if err != nil {
+		// Fail closed rather than returning any unsanitized collected evidence.
+		return Diagnostics{Target: logreader.CleanText(alias)}, errors.Join(collectErr, errors.New("cannot encode sanitized diagnostic report"))
+	}
+	return out, collectErr
+}
+
+func (r *Remote) collectDiagnostics(ctx context.Context, alias string, since time.Time, directory string) (Diagnostics, error) {
 	out := Diagnostics{Target: alias, Health: r.Health(ctx, alias, since)}
 	var host HostConfig
 	if err := r.ReadJSON("host.json", &host); err != nil {
@@ -182,10 +198,5 @@ func (r *Remote) Diagnose(ctx context.Context, alias string, since time.Time, di
 		return out, err
 	}
 	out.Bundle = dest
-	// Returned operator summaries are redacted too, not just the archive.
-	b, err := sanitizedJSON(out)
-	if err == nil {
-		err = json.Unmarshal(b, &out)
-	}
-	return out, err
+	return out, nil
 }
