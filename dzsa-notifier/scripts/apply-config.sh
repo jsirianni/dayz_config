@@ -39,13 +39,18 @@ install -d -m 0755 "$directory"
 stage=$(mktemp "$directory/.config.XXXXXXXX")
 was_active=no
 was_enabled=no
+enabled_state=$(systemctl is-enabled "$unit" 2>/dev/null || true)
+case "$enabled_state" in
+    enabled|enabled-runtime) was_enabled=yes ;;
+    disabled) ;;
+    *) echo "Unsupported unit enablement state: $enabled_state" >&2; exit 1 ;;
+esac
 had_config=no
 changed=no
 committed=no
 transaction_changed=no
 backup=
 systemctl is-active --quiet "$unit" && was_active=yes
-systemctl is-enabled --quiet "$unit" && was_enabled=yes
 cleanup() {
     status=$?
     trap - EXIT HUP INT TERM
@@ -59,7 +64,11 @@ cleanup() {
                 rm -f "$config"
             fi
         fi
-        if [ "$was_enabled" = yes ]; then systemctl enable "$unit"; else systemctl disable "$unit"; fi
+        case "$enabled_state" in
+            enabled) systemctl enable "$unit" ;;
+            enabled-runtime) systemctl disable "$unit"; systemctl enable --runtime "$unit" ;;
+            disabled) systemctl disable "$unit" ;;
+        esac
         if [ "$was_active" = yes ]; then systemctl restart "$unit"; else systemctl stop "$unit"; fi
     fi
     rm -f "$stage"

@@ -40,7 +40,7 @@ PermitRootLogin prohibit-password
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 UsePAM no
-AllowUsers root
+AllowUsers root ${SUDO_USER:-root}
 PidFile $work/sshd.pid
 EOF
 /usr/sbin/sshd -D -e -f "$work/sshd_config" >"$work/sshd.log" 2>&1 &
@@ -55,10 +55,18 @@ endpoints: [$2]
 EOF
 }
 apply() {
-    pwsh -NoProfile -File "$repo/scripts/Configure-Notifier.ps1" -SSHHost 127.0.0.1 -User root -Port 22222 -IdentityFile "$work/identity" -KnownHostsFile "$work/known_hosts" -ConfigPath "$work/config.yaml" "$@"
+    pwsh -NoProfile -File "$repo/scripts/Configure-Notifier.ps1" -SSHHost 127.0.0.1 -User "${SSH_USER:-root}" -Port 22222 -IdentityFile "$work/identity" -KnownHostsFile "$work/known_hosts" -ConfigPath "$work/config.yaml" "$@"
 }
+# Failed first activation must restore missing configuration and disabled service.
+write_config 18443 '203.0.113.10:27016'
+if apply; then echo 'Initial activation failure accepted'; exit 1; fi
+test ! -e /etc/dzsa-notifier/config.yaml
+if systemctl is-enabled --quiet dzsa-notifier.service; then echo 'Enablement not restored'; exit 1; fi
+if systemctl is-active --quiet dzsa-notifier.service; then echo 'Running state not restored'; exit 1; fi
 write_config 19091 '203.0.113.10:27016'
 apply
+# Exercise the prepared administrator + sudo path as well as direct root SSH.
+if [ -n "${SUDO_USER:-}" ]; then SSH_USER=$SUDO_USER apply; fi
 pid=$(systemctl show dzsa-notifier.service --property=MainPID --value)
 before=$(sha256sum /etc/dzsa-notifier/config.yaml)
 apply
