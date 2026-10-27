@@ -2,8 +2,11 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $service = Get-CimInstance Win32_Service | Where-Object Name -eq $spec.Service | Select-Object -First 1
 $processes = @(Get-CimInstance Win32_Process -Filter "Name='DayZServer_x64.exe'" | Where-Object { $_.ExecutablePath -ieq $spec.Executable } | ForEach-Object {
-    $ft = $_.CreationDate.ToUniversalTime().ToFileTimeUtc()
-    [pscustomobject]@{pid=[int]$_.ProcessId;parent=[int]$_.ParentProcessId;executable=[string]$_.ExecutablePath;token=('{0}:{1}' -f ([uint32]($ft -shr 32)),([uint32]($ft -band [long]4294967295)));started=$_.CreationDate.ToUniversalTime().ToString('o')}
+    # Win32_Process.CreationDate has microsecond precision. Process.StartTime
+    # reads GetProcessTimes and preserves the exact 100 ns FILETIME token.
+    $nativeProcess = [Diagnostics.Process]::GetProcessById([int]$_.ProcessId)
+    try {$started = $nativeProcess.StartTime; $ft = $started.ToUniversalTime().ToFileTimeUtc()} finally {$nativeProcess.Dispose()}
+    [pscustomobject]@{pid=[int]$_.ProcessId;parent=[int]$_.ParentProcessId;executable=[string]$_.ExecutablePath;token=('{0}:{1}' -f ([uint32]($ft -shr 32)),([uint32]($ft -band [long]4294967295)));started=$started.ToUniversalTime().ToString('o');sessionStamp=$started.ToString('yyyy-MM-dd_HH-mm-ss')}
 })
 $ids = @($processes | ForEach-Object {$_.pid})
 $ports = @(Get-NetUDPEndpoint | Where-Object {$_.OwningProcess -in $ids} | Select-Object -ExpandProperty LocalPort -Unique | ForEach-Object {[int]$_})
