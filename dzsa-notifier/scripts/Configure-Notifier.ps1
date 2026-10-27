@@ -9,7 +9,7 @@ param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot '../../.deploy/dzsa-notifier.yaml')
 )
 $ErrorActionPreference = 'Stop'
-$ssh = (Get-Command ssh -CommandType Application -ErrorAction Stop).Source
+$ssh = (Get-Command ssh -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source
 $key = (Resolve-Path -LiteralPath $IdentityFile).ProviderPath
 $config = (Resolve-Path -LiteralPath $ConfigPath).ProviderPath
 $bytes = [IO.File]::ReadAllBytes($config)
