@@ -14,13 +14,15 @@
     </message>
 
     <message>
-        <!-- Graceful shutdown after three hours of uptime. -->
+        <!-- Native graceful shutdown after 180 minutes of mission uptime.
+             DayZ supplies countdown warnings, including 30, 10 and 5 minutes.
+             The dzdeploy Windows service updates and relaunches after exit. -->
         <delay>0</delay>
         <repeat>0</repeat>
         <deadline>180</deadline>
         <onconnect>0</onconnect>
         <shutdown>1</shutdown>
-        <text>This server will restart in #tmin minutes.</text>
+        <text>#name will restart in #tmin minutes.</text>
     </message>
 
 </messages>

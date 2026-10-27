@@ -102,6 +102,20 @@ Without `--restart`, the running game is left running and activation is reported
 
 Explicit restarts request immediate clean RCon shutdown without a warning countdown. Default timeouts are three minutes for shutdown, 30 for updates, and ten for startup. Stuck games are not force-killed. Every launch runs **updates → reapply desired configuration → launch**, preserving mod order, ports, logging, and BattlEye paths. Startup verifies process identity, hostname, and map through Steam query. RCon remains the clean-shutdown channel; an RCon response is not required to declare query readiness.
 
+All three missions use DayZ's native graceful shutdown after **180 minutes of mission uptime**. The countdown resets each time the mission starts; update and loading time add to the interval between launches. The managed files are:
+
+| Alias | Tracked mission file under its server directory | Installed path relative to `install_dir` |
+| --- | --- | --- |
+| `nasdara` | `mpmissions/dayzOffline.nasdara/db/messages.xml` | `mpmissions/dayzOffline.nasdara/db/messages.xml` |
+| `nasdara-staging` | `mpmissions/dayzOffline.nasdara/db/messages.xml` | `mpmissions/dayzOffline.nasdara/db/messages.xml` |
+| `deer-isle` | `empty.deerisle/db/messages.xml` | `mpmissions/empty.deerisle/db/messages.xml` |
+
+Each shutdown entry has `<deadline>180</deadline>`, `<shutdown>1</shutdown>`, and the text `#name will restart in #tmin minutes.` DayZ supplies its native warnings at 90, 60, 45, **30**, 20, 15, **10**, **5**, 2, and 1 minute remaining. These checkpoints are built into DayZ, as described in the [official server-message documentation](https://community.bistudio.com/wiki/DayZ:Server_Messages); no custom warning scheduler is installed.
+
+DayZ owns the warning countdown and graceful shutdown. The corresponding `dzdeploy-<alias>` Windows service stays running, detects the game exit on its two-second supervision loop, runs updates, reapplies the installed configuration, and starts DayZ again. This path does not request RCon shutdown. The batch files are compatibility entry points for starting that service; they do not implement a separate restart loop or delay. No Windows scheduled task is needed.
+
+Automatic relaunch requires an installed release and an unpaused agent. A failed or interrupted startup can leave `paused: true` in the generated protected `state.json`; inspect the failed operation and recover through a managed startup rather than editing that state by hand. `host.json`'s shutdown/update/startup seconds are operation timeouts, not the three-hour timer. An existing enrolled agent must be upgraded to receive newer startup-readiness behavior; copying mission XML alone does not replace the service executable. Deployment/restart authorization and the clean-main gate still apply, and local validation does not establish a successful live shutdown/relaunch cycle.
+
 When `public_query_address` is set on the host, startup also calls the same HTTPS API as the DZSA server-check page: `GET https://dayzsalauncher.com/api/v1/query/IP:QUERY_PORT`. A successful check requires HTTP 200, DZSA status 0, the requested endpoint, DayZ, the configured game port, the deployed hostname and map, and an exact set of expected Workshop IDs. Mod order and display names do not affect the comparison. Missing, unexpected, duplicate, or zero Workshop IDs do not pass. Successful deployment results and state retain the timestamp, check link, server details, and returned mod names/IDs; text and JSON output show that report.
 
 DZSA calls have a ten-second request timeout and a bounded response size. Startup retries at most once every 15 seconds within its existing startup timeout to allow Steam/DZSA discovery to catch up. If public confirmation remains unavailable, the operation reports failure and leaves the locally query-ready game and installed configuration running. An external discovery failure does not trigger a stop or previous-configuration rollback.
