@@ -25,6 +25,13 @@ Always run the matching `dzcli validate ...` command after modifying DayZ config
 
 Do not commit downloaded tool binaries. The installer writes them under `.tools/dzcli/`.
 
+## Git workflow
+
+- Deliver repository changes through a feature branch and pull request targeting `main`. Commit, push, and open the PR without waiting for a separate request; do not stop after local file edits. Use the `codex/` branch prefix and avoid direct pushes to `main`.
+- Run appropriate validation, include the result in the PR, attach the PR to the chat, and follow CI through completion. Resolve failures before presenting the change as ready to merge.
+- When the user has authorized merging or requested getting the current changes into `main`, merge after CI passes. Otherwise, request merge approval once the concrete PR has passing CI. Preserve existing authorization instead of asking again.
+- After merging, check out `main`, pull with `--ff-only`, and verify the checkout is clean and matches freshly fetched `origin/main`. Never reset, stash, or discard user changes to achieve this. Merging does not authorize server deployment or restart.
+
 ## Deployment
 
 Use the Go `dzdeploy` CLI; see `docs/deployment.md`. Build with `go build -o .tools/bin/ ./cmd/dzdeploy`. The Windows executable is `.tools/bin/dzdeploy.exe`.
@@ -43,3 +50,15 @@ Only Windows and Linux clients are supported. Build/test/package those platforms
 - Preserve operation IDs. On connection loss, inspect `dzdeploy status <alias> --operation <id>` instead of blindly resubmitting.
 - Report installed revision, last managed startup revision, and restart pending separately. Live acceptance requires actual host access.
 - Use `dzdeploy check <alias>` to confirm public DZSA discovery and the installed Workshop mod set without deploying, restarting, or probing RCon. Configure the existing public IP and forwarded query port through ignored YAML's `host.public_query_address`; never renumber ports for verification. Distinguish a fresh DZSA check from the agent's persisted startup verification and revision state.
+
+## Server overview documentation
+
+The root [README.md](README.md#server-status) is the human-readable overview of the three servers. Keep its table of contents and separate sections for Nasdara (standard), Deer Isle, and Nasdara AI (`nasdara-staging`); use normal Markdown documentation rather than a server-status table.
+
+- Update the affected README section whenever a task changes or establishes a material change in the documented server information: IP/alias, enrollment and service management, listener ports, shutdown/relaunch behavior, installed revision, last managed startup revision, restart-pending state, DZSA/mod verification, or known issues.
+- After an authorized deployment, agent upgrade, restart, or onboarding, synchronize the README with the verified outcome. Record the verification date, time, timezone, and method. For partial checks, make each server's verification scope and age clear; do not refresh an unchecked server's timestamp.
+- Keep installed revision, last managed startup revision, and restart pending separate. Distinguish live observations from configuration present only in Git, and a configured shutdown/relaunch schedule from an observed complete cycle. Treat player counts and running status as timestamped snapshots.
+- Leave unavailable or unchecked information explicitly unknown. An unconfigured endpoint or absent `dzdeploy` enrollment does not mean the game is stopped. Never invent an IP, infer a deployment from a merge, or claim live acceptance without host access.
+- Keep known errors and remaining verification work visible until evidence resolves them. Describe an older agent revision accurately without implying that the game is unhealthy solely because a newer revision exists.
+- Record operational information without copying populated host YAML, credentials, private keys, or runtime secrets into the README.
+- Make rollout-result documentation updates after the live operation completes so the existing clean-main deployment gate still applies normally. Documentation maintenance follows the Git workflow above and does not authorize server deployment, restart, or changing ports.
