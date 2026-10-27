@@ -22,7 +22,9 @@ if ($WhatIfPreference) { $mode = 'preview' }
 elseif (!$PSCmdlet.ShouldProcess("${User}@${SSHHost}:$Port", 'Apply authoritative dzsa-notifier configuration and activate service')) { return }
 $trust = 'accept-new'
 if ($mode -eq 'preview') { $trust = 'yes' }
-$arguments = @('-T', '-p', "$Port", '-i', $key, '-o', 'IdentitiesOnly=yes', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-o', 'ServerAliveInterval=10', '-o', 'ServerAliveCountMax=3', '-o', 'UpdateHostKeys=no', '-o', 'CheckHostIP=no', '-o', "StrictHostKeyChecking=$trust", '-o', "UserKnownHostsFile=$([IO.Path]::GetFullPath($KnownHostsFile))", "${User}@${SSHHost}", 'if [ "$(id -u)" -eq 0 ]; then sh -s; else sudo -n sh -s; fi')
+$knownHosts = [IO.Path]::GetFullPath($KnownHostsFile).Replace('\', '/')
+if ($knownHosts -match '["\r\n]') { throw 'KnownHostsFile contains unsupported characters' }
+$arguments = @('-T', '-p', "$Port", '-i', $key, '-o', 'IdentitiesOnly=yes', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-o', 'ServerAliveInterval=10', '-o', 'ServerAliveCountMax=3', '-o', 'UpdateHostKeys=no', '-o', 'CheckHostIP=no', '-o', "StrictHostKeyChecking=$trust", '-o', "UserKnownHostsFile=`"$knownHosts`"", "${User}@${SSHHost}", 'if [ "$(id -u)" -eq 0 ]; then sh -s; else sudo -n sh -s; fi')
 $helper = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'apply-config.sh')).Replace("`r`n", "`n")
 $payload = "MODE='$mode'`nEXPECTED_SHA='$hash'`nPAYLOAD='$([Convert]::ToBase64String($bytes))'`n" + $helper
 # ProcessStartInfo avoids PowerShell's pipeline encoding and CRLF conversion.

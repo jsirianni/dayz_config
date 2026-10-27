@@ -8,6 +8,8 @@ work=$(mktemp -d /var/lib/dzsa-notifier-ssh.XXXXXXXX)
 fixture_pid=
 sshd_pid=
 cleanup() {
+    status=$?
+    if [ "$status" -ne 0 ]; then tail -n 40 "$work/sshd.log" 2>/dev/null || true; fi
     systemctl stop dzsa-notifier.service 2>/dev/null || true
     if [ -n "$fixture_pid" ]; then kill "$fixture_pid" 2>/dev/null || true; fi
     if [ -n "$sshd_pid" ]; then kill "$sshd_pid" 2>/dev/null || true; fi
@@ -39,7 +41,7 @@ StrictModes no
 PermitRootLogin prohibit-password
 PasswordAuthentication no
 KbdInteractiveAuthentication no
-UsePAM no
+UsePAM yes
 AllowUsers root ${SUDO_USER:-root}
 PidFile $work/sshd.pid
 EOF
@@ -55,7 +57,7 @@ endpoints: [$2]
 EOF
 }
 apply() {
-    pwsh -NoProfile -File "$repo/scripts/Configure-Notifier.ps1" -SSHHost 127.0.0.1 -User "${SSH_USER:-root}" -Port 22222 -IdentityFile "$work/identity" -KnownHostsFile "$work/known_hosts" -ConfigPath "$work/config.yaml" "$@"
+    pwsh -NoProfile -File "$repo/scripts/Configure-Notifier.ps1" -SSHHost 127.0.0.1 -User "${SSH_USER:-root}" -Port 22222 -IdentityFile "$work/identity" -KnownHostsFile "$work/known hosts" -ConfigPath "$work/config.yaml" "$@"
 }
 # Failed first activation must restore missing configuration and disabled service.
 write_config 18443 '203.0.113.10:27016'
@@ -95,7 +97,7 @@ systemctl is-active --quiet dzsa-notifier.service
 systemctl is-enabled --quiet dzsa-notifier.service
 test -n "$(find /etc/dzsa-notifier -name 'config.yaml.bak.*' -print -quit)"
 # A supplied changed known key must never be replaced, even during preview.
-printf '[127.0.0.1]:22222 %s\n' "$(cat "$work/other-host.pub")" >"$work/known_hosts"
+printf '[127.0.0.1]:22222 %s\n' "$(cat "$work/other-host.pub")" >"$work/known hosts"
 write_config 19091 '203.0.113.10:27016'
 if apply; then echo 'Changed host key accepted'; exit 1; fi
 test "$before" = "$(sha256sum /etc/dzsa-notifier/config.yaml)"
