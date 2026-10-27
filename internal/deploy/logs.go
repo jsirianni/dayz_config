@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"path"
 	"sort"
 	"strings"
@@ -106,8 +107,8 @@ func (r *Remote) ReadLog(source LogSource, lines int, completeOnly bool) (LogExc
 }
 
 func (r *Remote) Logs(ctx context.Context, host HostConfig, kind string, lines int, follow bool, w io.Writer) error {
-	var lastPath, lastText string
-	var lastSize int64
+	var cursor logreader.Follower
+	started := false
 	ticker := time.NewTicker(time.Second)
 	defer ticker.Stop()
 	for {
@@ -115,37 +116,50 @@ func (r *Remote) Logs(ctx context.Context, host HostConfig, kind string, lines i
 			return nil
 		}
 		sources, err := r.LogSources(host, kind)
-		if err != nil {
+		if ctx.Err() != nil {
+			return nil
+		}
+		if err != nil && !(follow && started && os.IsNotExist(err)) {
 			return err
 		}
-		if len(sources) == 0 {
+		if len(sources) == 0 && !started {
 			return errors.New("no matching log source")
 		}
-		source := sources[0]
-		out, err := r.ReadLog(source, lines, follow)
-		if err != nil {
-			return err
-		}
-		text := out.Text
-		if lastPath == source.Path && source.Size >= lastSize {
-			// Compare complete redacted lines, not raw byte slices that could expose a
-			// credential split across reads. The excerpt window may rotate as it grows.
-			var moved bool
-			text, moved = logreader.Delta(lastText, text)
-			if moved {
-				fmt.Fprintln(w, "\n--- log rotated or bounded excerpt window moved ---")
+		if len(sources) > 0 {
+			source := sources[0]
+			if !follow {
+				out, err := r.ReadLog(source, lines, false)
+				if err != nil {
+					return err
+				}
+				_, err = io.WriteString(w, out.Text)
+				return err
 			}
-		} else if lastPath != "" {
-			fmt.Fprintf(w, "\n--- log rotated: %s ---\n", source.Name)
-		}
-		if _, err = io.WriteString(w, text); err != nil {
-			return err
-		}
-		lastPath = source.Path
-		lastSize = source.Size
-		lastText = out.Text
-		if !follow {
-			return nil
+			out, err := r.followLog(source, &cursor, lines)
+			if ctx.Err() != nil {
+				return nil
+			}
+			if err != nil && !os.IsNotExist(err) {
+				return err
+			}
+			if err == nil {
+				started = true
+				if out.Rotated {
+					if _, err = fmt.Fprintf(w, "\n--- log rotated or truncated: %s ---\n", logreader.CleanText(source.Name)); err != nil {
+						return err
+					}
+				}
+				if out.Truncated {
+					if _, err = fmt.Fprintln(w, "--- bounded log output truncated ---"); err != nil {
+						return err
+					}
+				}
+				if out.Text != "" {
+					if _, err = io.WriteString(w, out.Text); err != nil {
+						return err
+					}
+				}
+			}
 		}
 		select {
 		case <-ctx.Done():
@@ -153,4 +167,28 @@ func (r *Remote) Logs(ctx context.Context, host HostConfig, kind string, lines i
 		case <-ticker.C:
 		}
 	}
+}
+
+func (r *Remote) followLog(source LogSource, cursor *logreader.Follower, lines int) (logreader.FollowExcerpt, error) {
+	var out logreader.FollowExcerpt
+	if err := r.rejectRemoteLinks(path.Dir(source.Path)); err != nil {
+		return out, err
+	}
+	info, err := r.SFTP.Lstat(source.Path)
+	if err != nil {
+		return out, err
+	}
+	if !info.Mode().IsRegular() {
+		return out, errors.New("log is no longer a regular file")
+	}
+	f, err := r.SFTP.Open(source.Path)
+	if err != nil {
+		return out, err
+	}
+	defer f.Close()
+	info, err = f.Stat()
+	if err != nil {
+		return out, err
+	}
+	return cursor.Read(f, source.Path, info.Size(), info.ModTime(), lines)
 }

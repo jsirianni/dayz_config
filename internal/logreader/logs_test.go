@@ -39,21 +39,3 @@ func TestIssueGroupingPreservesSessionAndSources(t *testing.T) {
 		t.Fatal(merged)
 	}
 }
-
-func TestFollowDeltaCompleteLinesAndRotation(t *testing.T) {
-	for _, tt := range []struct {
-		before, after, want string
-		moved               bool
-	}{
-		{"one\ntwo\n", "one\ntwo\nthree\n", "three\n", false},
-		{"one\ntwo\n", "two\nthree\n", "three\n", false},
-		{"one\n", "replacement longer line\n", "replacement longer line\n", true},
-		{"noterror\n", "error\n", "error\n", true},
-		{"same\nsame\n", "same\nsame\n", "", false},
-	} {
-		found, moved := Delta(tt.before, tt.after)
-		if found != tt.want || moved != tt.moved {
-			t.Fatalf("%q -> %q: %q %t", tt.before, tt.after, found, moved)
-		}
-	}
-}

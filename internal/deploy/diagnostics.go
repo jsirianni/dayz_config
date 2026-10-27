@@ -33,20 +33,31 @@ func sanitizeValue(v any) any {
 		}
 	case map[string]any:
 		for k, v := range value {
-			if text, ok := v.(string); ok && (k == "installedRevision" || k == "lastStartupRevision" || k == "commit") && len(text) == 40 {
-				valid := true
-				for _, r := range text {
-					valid = valid && (r >= '0' && r <= '9' || r >= 'a' && r <= 'f')
-				}
-				if valid {
-					continue
-				}
+			if text, ok := v.(string); ok && isRevisionField(k) && validRevision(text) {
+				continue
 			}
 			value[k] = sanitizeValue(v)
 		}
 	}
 	return v
 }
+
+func isRevisionField(name string) bool {
+	return name == "installedRevision" || name == "lastStartupRevision" || name == "commit"
+}
+
+func validRevision(text string) bool {
+	if len(text) != 40 {
+		return false
+	}
+	for _, r := range text {
+		if !(r >= '0' && r <= '9' || r >= 'a' && r <= 'f') {
+			return false
+		}
+	}
+	return true
+}
+
 func sanitizedJSON(v any) ([]byte, error) {
 	b, err := json.Marshal(v)
 	if err != nil {

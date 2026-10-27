@@ -361,3 +361,46 @@ func TestRestorePlanPreservesWindowsCaseIdentity(t *testing.T) {
 		t.Fatal(value)
 	}
 }
+
+func TestBackupRestoreCaseOnlyRenameRoundTripRetainsRuntimeInventory(t *testing.T) {
+	a, g, _ := backupFixture(t)
+	root := a.Store.Config.InstallDir
+	lower := filepath.Join(root, "profiles/mod/runtime.json")
+	upper := filepath.Join(root, "profiles/mod/Runtime.json")
+	if err := os.Rename(lower, upper); err != nil {
+		t.Fatal(err)
+	}
+	managed := readTest(t, root, "serverDZ.cfg")
+	created := a.Process(context.Background(), backupRequest(a, "backup-create", "", true))
+	if created.Status != "succeeded" || created.Backup == nil {
+		t.Fatal(created)
+	}
+	if err := os.Rename(upper, lower); err != nil {
+		t.Fatal(err)
+	}
+	writeTest(t, root, "profiles/mod/runtime.json", "changed runtime")
+	writeTest(t, root, "profiles/mod/obsolete.json", "obsolete runtime")
+	result := a.Process(context.Background(), backupRequest(a, "backup-restore", created.Backup.ID, true))
+	if result.Status != "succeeded" || !g.alive {
+		t.Fatal(result)
+	}
+	if value := readTest(t, root, "profiles/mod/runtime.json"); value != "original mod data" {
+		t.Fatal("restored runtime bytes missing", value)
+	}
+	entries, err := os.ReadDir(filepath.Dir(lower))
+	if err != nil {
+		t.Fatal(err)
+	}
+	files := []string{}
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			files = append(files, entry.Name())
+		}
+	}
+	if len(files) != 1 || files[0] != "runtime.json" {
+		t.Fatalf("restored runtime inventory changed or retained aliases: %v", files)
+	}
+	if value := readTest(t, root, "serverDZ.cfg"); value != managed {
+		t.Fatal("managed configuration changed")
+	}
+}
