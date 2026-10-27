@@ -31,6 +31,10 @@ type HealthReport struct {
 	Warnings       []string              `json:"warnings,omitempty"`
 }
 
+func unknownHealth(alias string, since time.Time) HealthReport {
+	return HealthReport{Target: alias, CheckedAt: time.Now().UTC(), Status: "unhealthy", History: HistoryReport{Since: since, Incomplete: true}}
+}
+
 func remoteInstall(c HostConfig) string {
 	return "/" + strings.TrimPrefix(strings.ReplaceAll(c.InstallDir, "\\", "/"), "/")
 }
@@ -135,7 +139,7 @@ func Assess(state State, s *hostinspect.Snapshot, heartbeat time.Time, t Target,
 }
 
 func (r *Remote) Health(ctx context.Context, alias string, since time.Time) HealthReport {
-	report := HealthReport{Target: alias, CheckedAt: time.Now().UTC(), Status: "unhealthy"}
+	report := unknownHealth(alias, since)
 	s, err := r.State(alias)
 	if err != nil {
 		report.Errors = append(report.Errors, err.Error())
@@ -229,7 +233,9 @@ func Fleet(ctx context.Context, targets map[string]Endpoint, since time.Time) []
 			select {
 			case slots <- struct{}{}:
 			case <-ctx.Done():
-				reports[i] = HealthReport{Target: name, Status: "unreachable", Errors: []string{ctx.Err().Error()}}
+				reports[i] = unknownHealth(name, since)
+				reports[i].Status = "unreachable"
+				reports[i].Errors = []string{ctx.Err().Error()}
 				return
 			}
 			defer func() { <-slots }()
@@ -237,7 +243,9 @@ func Fleet(ctx context.Context, targets map[string]Endpoint, since time.Time) []
 			defer cancel()
 			remote, err := Connect(hostCtx, targets[name])
 			if err != nil {
-				reports[i] = HealthReport{Target: name, CheckedAt: time.Now().UTC(), Status: "unreachable", Errors: []string{err.Error()}}
+				reports[i] = unknownHealth(name, since)
+				reports[i].Status = "unreachable"
+				reports[i].Errors = []string{err.Error()}
 				return
 			}
 			defer remote.Close()
