@@ -9,11 +9,26 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/jsirianni/dayz_config/internal/lifecycle"
 )
 
 type Agent struct {
 	Store *Store
 	Game  Game
+}
+
+func (a *Agent) event(kind, cause string, r *Result) {
+	e := lifecycle.Event{Target: a.Store.Config.Target, Kind: kind, Cause: cause, Operation: a.Store.State.LastOperation, PID: a.Store.State.PID, Token: a.Store.State.ProcessToken, Commit: a.Store.State.RunningCommit}
+	if r != nil {
+		e.Operation = r.ID
+		if e.Commit == "" {
+			e.Commit = r.Commit
+		}
+	}
+	if err := lifecycle.Write(a.Store.Config.StateDir, e); err != nil {
+		_ = AtomicWrite(filepath.Join(a.Store.Config.StateDir, "logs", "lifecycle-error.txt"), []byte(err.Error()), 0600)
+	}
 }
 
 func (a *Agent) resultPath(id string) string {
@@ -32,8 +47,12 @@ func (a *Agent) progress(r *Result, phase string) error {
 func (a *Agent) stop(ctx context.Context) error {
 	ctx, cancel := context.WithTimeout(ctx, time.Duration(a.Store.Config.ShutdownSeconds)*time.Second)
 	defer cancel()
+	wasAlive := a.Game.Alive(a.Store.State)
 	if err := a.Game.Stop(ctx, a.Store.State); err != nil {
 		return err
+	}
+	if wasAlive {
+		a.event("exit", "managed", nil)
 	}
 	a.Store.State.PID = 0
 	a.Store.State.ProcessToken = ""
@@ -82,6 +101,7 @@ func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) er
 	if err != nil {
 		return err
 	}
+	a.event("launch", r.Cause, r)
 	if err = a.progress(r, "checking"); err != nil {
 		return err
 	}
@@ -110,10 +130,11 @@ func (a *Agent) start(ctx context.Context, b *Bundle, r *Result, update bool) er
 	a.Store.State.Error = ""
 	a.Store.State.DZSA = verification
 	r.DZSA = verification
+	a.event("ready", r.Cause, r)
 	return a.Store.Save()
 }
 func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
-	r = Result{Version: Protocol, ID: req.ID, Target: a.Store.Config.Target, Status: "running", Updated: time.Now().UTC()}
+	r = Result{Version: Protocol, ID: req.ID, Target: a.Store.Config.Target, Status: "running", Cause: req.Action, Updated: time.Now().UTC()}
 	if !ValidID(req.ID) {
 		r.Status = "failed"
 		r.Error = "invalid request ID"
@@ -125,6 +146,7 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 		return old
 	}
 	fail := func(err error) {
+		a.event("failure", req.Action, &r)
 		r.Status = "failed"
 		r.Error = err.Error()
 		a.Store.State.Error = err.Error()
@@ -391,10 +413,7 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
 		for {
-			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), struct {
-				Version int       `json:"version"`
-				Updated time.Time `json:"updated"`
-			}{Protocol, time.Now().UTC()})
+			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1"}})
 			select {
 			case <-heartbeatCtx.Done():
 				return
@@ -458,8 +477,11 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 			}
 		}
 		if !store.State.Paused && store.State.Installed != nil && !game.Alive(store.State) {
+			if store.State.PID != 0 {
+				a.event("exit", "unknown", nil)
+			}
 			b, err := LoadBundle(packagePath(c.StateDir, store.State.Installed.ID), c.Target)
-			r := Result{Version: Protocol, ID: NewID(), Target: c.Target, Status: "running", Commit: store.State.Installed.Commit}
+			r := Result{Version: Protocol, ID: NewID(), Target: c.Target, Status: "running", Cause: "automatic", Commit: store.State.Installed.Commit}
 			store.State.PID = 0
 			store.State.ProcessToken = ""
 			store.State.RunningCommit = ""
