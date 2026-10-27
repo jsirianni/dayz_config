@@ -31,3 +31,33 @@ PowerShell collector over SSH. A restricted SFTP-only account cannot provide nat
 process inspection; the command reports that limitation instead of trusting saved
 state. Newer agents write immutable UTC event files and advertise capabilities in
 their fresh heartbeat. This does not automatically upgrade an existing host.
+
+## Logs and diagnostics
+
+```text
+dzdeploy logs deer-isle --kind rpt --tail 200
+dzdeploy logs nasdara --follow
+dzdeploy diagnose all --since 24h
+```
+
+Log kinds are `console`, `updates`, `agent`, `rpt`, `script`, and `crash`. Reads are
+restricted to recognized files, cap each excerpt at 2 MiB, and redact sensitive
+lines and private-key blocks before output. Follow mode uses a raw byte cursor,
+buffers incomplete lines before redaction, and retains private-key redaction state
+between reads. Repeated identical lines remain separate occurrences, including
+lines with identical redacted text. `--tail` limits the initial display; following
+then reads appended data in bounded batches. Rotation/truncation is detected using
+the source path, modification metadata, and raw-byte continuity anchors because
+SFTP does not expose a portable file ID. An intervening replacement with identical
+bytes and metadata cannot be distinguished. Ctrl+C stops collection and closes
+remote resources. Default log tail: 200 lines.
+
+Diagnostics save ZIP bundles under ignored `.deploy/diagnostics/` unless `--output`
+is provided. Bundles include health/history, operation evidence, redacted excerpts,
+and grouped error summaries. Per-session logs are identified as current/historical
+when native process session identity is available; append-only logs are marked mixed.
+The latest three files per kind are considered, with 2,000 lines per excerpt and
+25 MiB total excerpt content. Missing and truncated sources are reported explicitly.
+Configuration, credential files, saved worlds, and memory dumps are not collected.
+Partial diagnostic reports returned after cancellation or an output/write failure
+are redacted too; failed bundle creation never exposes raw collected evidence.
