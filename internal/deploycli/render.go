@@ -59,6 +59,15 @@ func emit(v any, asJSON bool) error {
 		return enc.Encode(v)
 	}
 	switch r := v.(type) {
+	case deploy.AgentStatus:
+		if err := emit(r.State, false); err != nil {
+			return err
+		}
+		if r.Agent != nil {
+			fmt.Printf("Management agent: revision %s, SHA256 %s, PID %d, heartbeat fresh=%t\n", r.Agent.Revision, r.Agent.SHA256, r.Agent.PID, r.AgentFresh)
+		} else {
+			fmt.Println("Management agent identity: unknown (installed agent does not report executable provenance)")
+		}
 	case deploy.Result:
 		if r.Backup != nil {
 			fmt.Printf("Backup: %s (%d bytes, revision %s)\n", r.Backup.ID, r.Backup.Bytes, r.Backup.Manifest.Revision)

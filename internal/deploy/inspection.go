@@ -24,6 +24,7 @@ type HealthReport struct {
 	Startup        string                `json:"lastStartupRevision,omitempty"`
 	RestartPending bool                  `json:"restartPending"`
 	Paused         bool                  `json:"paused"`
+	Agent          *AgentIdentity        `json:"agent,omitempty"`
 	Snapshot       *hostinspect.Snapshot `json:"snapshot,omitempty"`
 	History        HistoryReport         `json:"history"`
 	DZSA           *DZSAReport           `json:"dzsa,omitempty"`
@@ -81,7 +82,7 @@ func (r *Remote) observe(ctx context.Context, c HostConfig, t Target) (*hostinsp
 }
 
 // Assess never treats persisted deployment state as proof that a process exists.
-func Assess(state State, s *hostinspect.Snapshot, heartbeat time.Time, t Target, now time.Time) (string, []string, []string) {
+func Assess(state State, s *hostinspect.Snapshot, heartbeat time.Time, t Target, now time.Time, adoption ...AdoptionProof) (string, []string, []string) {
 	var failures, warnings []string
 	status := "running"
 	if s == nil {
@@ -112,7 +113,11 @@ func Assess(state State, s *hostinspect.Snapshot, heartbeat time.Time, t Target,
 		failures = append(failures, "multiple game processes in the managed installation")
 	} else {
 		p := s.Processes[0]
-		if p.PID != state.PID || p.Token != state.ProcessToken || p.Parent != s.Service.PID {
+		owned := p.Parent == s.Service.PID
+		if !owned && len(adoption) == 1 {
+			owned = validAdoption(adoption[0], state, s, t, now)
+		}
+		if p.PID != state.PID || p.Token != state.ProcessToken || !owned {
 			failures = append(failures, "game process identity does not match the managed agent")
 		}
 		for _, port := range []int{t.GamePort, t.GamePort + 2, t.QueryPort} {
@@ -171,6 +176,7 @@ func (r *Remote) Health(ctx context.Context, alias string, since time.Time) Heal
 	// Evaluate freshness at the end of collection, not against the earlier read.
 	var heartbeat Heartbeat
 	_ = r.ReadJSON("heartbeat.json", &heartbeat)
+	report.Agent = heartbeat.Agent
 	if heartbeat.Version != Protocol {
 		report.Errors = append(report.Errors, "agent heartbeat protocol is incompatible")
 	}
@@ -180,7 +186,16 @@ func (r *Remote) Health(ctx context.Context, alias string, since time.Time) Heal
 		changing = true
 		report.Errors = append(report.Errors, "managed state changed during inspection; rerun for a coherent snapshot")
 	}
-	status, failures, warnings := Assess(s, snapshot, heartbeat.Updated, t, report.CheckedAt)
+	var adoption []AdoptionProof
+	if snapshot != nil && len(snapshot.Processes) == 1 && snapshot.Processes[0].Parent != snapshot.Service.PID {
+		proof, e := r.AgentAdoption(ctx, alias)
+		if e == nil {
+			adoption = append(adoption, proof)
+		} else {
+			report.Errors = append(report.Errors, "cannot verify inherited game ownership: "+e.Error())
+		}
+	}
+	status, failures, warnings := Assess(s, snapshot, heartbeat.Updated, t, report.CheckedAt, adoption...)
 	report.Status = status
 	if changing {
 		report.Status = "changing"

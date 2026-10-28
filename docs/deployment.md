@@ -62,7 +62,7 @@ Without `--restart`, initial provisioning and configuration copying complete wit
 
 Enrollment progress is recorded in protected `enrollment.json`; `status` can report it even before the service has created deployment state. If setup or its SSH connection fails, rerun the deploy command to resume. Existing healthy deployments are reused; corrupt/inaccessible/foreign state is an error, never permission to initialize over it. Queued deployment operations continue independently of SSH once submitted. Keep their operation IDs and inspect status after disconnecting.
 
-The previous local `dzdeploy bootstrap` command remains available for existing account-based installations and explicit upgrades. It is not part of fresh-server provisioning. Old non-admin SFTP endpoints continue to work for already enrolled hosts.
+The previous local `dzdeploy bootstrap` command remains available for existing account-based installations. Use `dzdeploy agent upgrade <alias>` for management-service upgrades that preserve the running game; see [agent upgrade workflows](operator-workflows.md#agent-upgrades). Bootstrap is not part of fresh-server provisioning. Old non-admin SFTP endpoints continue to work for already enrolled hosts, but agent upgrades require administrative SSH execution.
 
 ### Bootstrap prerequisites and missing ssh-keygen.exe
 

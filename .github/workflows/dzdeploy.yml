@@ -70,3 +70,15 @@ jobs:
         run: go test ./internal/deploy -run '^TestOperatorServiceIntegration$' -count=1 -v -timeout 10m
         env:
           DZDEPLOY_OPERATOR_INTEGRATION: '1'
+  agent-upgrade-integration:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.3'
+      - name: Test durable agent upgrade continuity and startup rollback
+        run: go test ./internal/deploy -run '^TestAgentUpgradeServiceIntegration$' -count=1 -v -timeout 15m
+        env:
+          DZDEPLOY_UPGRADE_INTEGRATION: '1'

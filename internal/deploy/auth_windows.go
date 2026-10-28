@@ -80,11 +80,17 @@ func relayAuthPipe(ctx context.Context, c HostConfig, in io.Reader, out io.Write
 }
 
 func steamAuthenticate(ctx context.Context, c HostConfig, conn io.ReadWriter) error {
+	if err := agentUpgradeActive(c); err != nil {
+		return err
+	}
 	unlock, err := acquireSteam(ctx, c)
 	if err != nil {
 		return err
 	}
 	defer unlock()
+	if err := agentUpgradeActive(c); err != nil {
+		return err
+	}
 	cmd := exec.CommandContext(ctx, c.SteamCMD, "+login", c.SteamUser, "+quit")
 	cmd.Dir = filepath.Dir(c.SteamCMD)
 	prepareCommand(cmd)

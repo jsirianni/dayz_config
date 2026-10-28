@@ -51,7 +51,7 @@ func run() error {
 	}
 	defer os.RemoveAll(stage)
 	build := func(platform, arch, dest string) error {
-		cmd := exec.Command("go", "build", "-buildvcs=false", "-trimpath", "-o", dest, "./cmd/dzdeploy")
+		cmd := exec.Command("go", "build", "-buildvcs=true", "-trimpath", "-o", dest, "./cmd/dzdeploy")
 		for _, env := range os.Environ() {
 			if !strings.HasPrefix(env, "GOOS=") && !strings.HasPrefix(env, "GOARCH=") && !strings.HasPrefix(env, "CGO_ENABLED=") {
 				cmd.Env = append(cmd.Env, env)

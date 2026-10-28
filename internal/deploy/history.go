@@ -178,9 +178,10 @@ func LogExit(alias, name string, modified time.Time, tail string) (lifecycle.Eve
 var ErrUnsupportedFeature = errors.New("installed agent requires an upgrade for this operation")
 
 type Heartbeat struct {
-	Version      int       `json:"version"`
-	Updated      time.Time `json:"updated"`
-	Capabilities []string  `json:"capabilities,omitempty"`
+	Version      int            `json:"version"`
+	Updated      time.Time      `json:"updated"`
+	Capabilities []string       `json:"capabilities,omitempty"`
+	Agent        *AgentIdentity `json:"agent,omitempty"`
 }
 
 func (r *Remote) RequireFeature(alias, feature string) error {

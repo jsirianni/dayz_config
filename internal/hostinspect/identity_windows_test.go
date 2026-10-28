@@ -66,6 +66,9 @@ func TestWindowsCollectorExactKernelCreationToken(t *testing.T) {
 	defer cancel()
 	out, err := exec.CommandContext(ctx, parts[0], parts[1:]...).Output()
 	if err != nil {
+		if exit, ok := err.(*exec.ExitError); ok {
+			t.Fatalf("collector: %v: %s", err, exit.Stderr)
+		}
 		t.Fatal(err)
 	}
 	var observed Snapshot

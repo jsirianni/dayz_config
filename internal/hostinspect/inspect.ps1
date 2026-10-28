@@ -1,6 +1,16 @@
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $service = Get-CimInstance Win32_Service | Where-Object Name -eq $spec.Service | Select-Object -First 1
+$managerToken = ''; $managerExecutable = ''; $managerHash = ''
+if ($null -ne $service -and $service.ProcessId -gt 0) {
+    $managerProcess = [Diagnostics.Process]::GetProcessById([int]$service.ProcessId)
+    try {
+        $ft = $managerProcess.StartTime.ToUniversalTime().ToFileTimeUtc()
+        $managerToken = ('{0}:{1}' -f ([uint32]($ft -shr 32)),([uint32]($ft -band [long]4294967295)))
+        $managerExecutable = $managerProcess.MainModule.FileName
+        $managerHash = (Get-FileHash -LiteralPath $managerExecutable -Algorithm SHA256).Hash.ToLowerInvariant()
+    } finally { $managerProcess.Dispose() }
+}
 $processes = @(Get-CimInstance Win32_Process -Filter "Name='DayZServer_x64.exe'" | Where-Object { $_.ExecutablePath -ieq $spec.Executable } | ForEach-Object {
     # Win32_Process.CreationDate has microsecond precision. Process.StartTime
     # reads GetProcessTimes and preserves the exact 100 ns FILETIME token.
@@ -30,5 +40,5 @@ try {
     $query.name = [string]$parts[0]
     $query.map = [string]$parts[1]
 } catch {$query.error = [string]$_.Exception.Message} finally {$udp.Dispose()}
-[pscustomobject]@{at=[DateTime]::UtcNow.ToString('o');service=[pscustomobject]@{state=[string]$service.State;startMode=[string]$service.StartMode;pid=[int]$service.ProcessId};processes=$processes;ports=$ports;query=$query} | ConvertTo-Json -Depth 5 -Compress
+[pscustomobject]@{at=[DateTime]::UtcNow.ToString('o');service=[pscustomobject]@{state=[string]$service.State;startMode=[string]$service.StartMode;pid=[int]$service.ProcessId;token=$managerToken;executable=$managerExecutable;sha256=$managerHash};processes=$processes;ports=$ports;query=$query} | ConvertTo-Json -Depth 5 -Compress
 

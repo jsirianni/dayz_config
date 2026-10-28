@@ -423,6 +423,7 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		return err
 	}
 	heartbeatCtx, cancel := context.WithCancel(ctx)
+	identity := CurrentAgentIdentity()
 	heartbeatDone := make(chan struct{})
 	defer func() { cancel(); <-heartbeatDone }()
 	go func() {
@@ -430,7 +431,7 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
 		for {
-			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1", HardStopCapability, BackupCapability}})
+			_ = WriteJSON(filepath.Join(c.StateDir, "heartbeat.json"), Heartbeat{Version: Protocol, Updated: time.Now().UTC(), Capabilities: []string{"history.v1", HardStopCapability, BackupCapability, AgentHandoffCapability}, Agent: &identity})
 			select {
 			case <-heartbeatCtx.Done():
 				return
@@ -441,12 +442,34 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 	ticker := time.NewTicker(2 * time.Second)
 	defer ticker.Stop()
 	for {
+		if handoffRequested(ctx) {
+			if err := upgradeIdle(c); err != nil {
+				return err
+			}
+			return store.Save()
+		}
 		if ctx.Err() != nil {
 			_ = store.Save()
 			stopCtx, cancel := context.WithTimeout(context.Background(), time.Duration(store.Config.ShutdownSeconds)*time.Second)
 			err = a.stop(stopCtx)
 			cancel()
 			return err
+		}
+		// A committed candidate publishes its fresh heartbeat while the
+		// coordinator finishes verification. Until the durable gate is removed,
+		// no queue item or automatic relaunch may cross the handoff boundary.
+		if agentUpgradeActive(c) != nil {
+			if store.State.PID != 0 && !game.Alive(store.State) && !store.State.Paused {
+				store.State.Paused = true
+				if err := store.Save(); err != nil {
+					return err
+				}
+			}
+			select {
+			case <-ctx.Done():
+			case <-ticker.C:
+			}
+			continue
 		}
 		requests, err := os.ReadDir(filepath.Join(c.StateDir, "inbox"))
 		if err != nil {

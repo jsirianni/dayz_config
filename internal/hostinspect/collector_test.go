@@ -49,6 +49,9 @@ func TestWindowsCollectorLocalQueryFixture(t *testing.T) {
 	parts := strings.Split(command, " ")
 	out, err := exec.CommandContext(ctx, parts[0], parts[1:]...).Output()
 	if err != nil {
+		if exit, ok := err.(*exec.ExitError); ok {
+			t.Fatalf("collector: %v: %s", err, exit.Stderr)
+		}
 		t.Fatalf("collector: %v", err)
 	}
 	var snapshot Snapshot

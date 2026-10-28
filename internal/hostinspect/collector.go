@@ -25,9 +25,12 @@ type Process struct {
 	Started      time.Time `json:"started"`
 }
 type Service struct {
-	State     string `json:"state"`
-	StartMode string `json:"startMode"`
-	PID       int    `json:"pid"`
+	State      string `json:"state"`
+	StartMode  string `json:"startMode"`
+	PID        int    `json:"pid"`
+	Token      string `json:"token,omitempty"`
+	Executable string `json:"executable,omitempty"`
+	SHA256     string `json:"sha256,omitempty"`
 }
 type Query struct {
 	Name  string `json:"name"`

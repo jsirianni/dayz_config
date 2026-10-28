@@ -67,6 +67,7 @@ func usage() {
   dzdeploy rollback <server> --deployment <id> [--restart]
   dzdeploy validate <server|all> [--offline]
   dzdeploy tools install
+  dzdeploy agent upgrade <server> [--dry-run] [--no-wait] [--operation ID]
   dzdeploy bootstrap <server> [--account <account>] [--setup-ssh]
   dzdeploy agent --host-config <file> [--console]
 
@@ -76,6 +77,12 @@ First enrollment: deploy <server> (automatically trusts and saves the first SSH 
 Client config defaults to <repo>/deploy.yaml. No deployment runs on merge.`)
 }
 func run(args []string) error {
+	if len(args) > 0 && (args[0] == "agent-upgrade-submit" || args[0] == "agent-upgrade-coordinator" || args[0] == "agent-upgrade-retire") {
+		return runInternalUpgrade(args)
+	}
+	if len(args) > 1 && args[0] == "agent" && args[1] == "upgrade" {
+		return runAgentUpgrade(args)
+	}
 	if len(args) > 1 && args[1] == "--help" {
 		usage()
 		return nil
@@ -100,7 +107,11 @@ func run(args []string) error {
 		return nil
 	}
 	if action == "version" {
-		fmt.Printf("dzdeploy protocol %d\n", deploy.Protocol)
+		identity := deploy.CurrentAgentIdentity()
+		if jsonRequested(args) {
+			return emit(identity, true)
+		}
+		fmt.Printf("dzdeploy protocol %d revision %s dirty=%t %s/%s\n", deploy.Protocol, identity.Revision, identity.Dirty, identity.GOOS, identity.GOARCH)
 		return nil
 	}
 	alias := ""
@@ -148,6 +159,9 @@ func run(args []string) error {
 	}
 	if *timeout <= 0 {
 		return errors.New("timeout must be positive")
+	}
+	if action == "status" && *operation != "" && !deploy.ValidID(*operation) {
+		return errors.New("invalid operation ID")
 	}
 	if *offline && action != "validate" {
 		return errors.New("--offline is only permitted for local validation")
@@ -345,6 +359,9 @@ func run(args []string) error {
 		return err
 	}
 	defer remote.Close()
+	if action == "status" && *operation != "" {
+		return statusOperation(ctx, remote, alias, *operation, *asJSON)
+	}
 	if action == "check" {
 		report, err := remote.CheckDZSA(ctx, alias)
 		if err != nil {
@@ -449,26 +466,14 @@ func run(args []string) error {
 		}
 		return nil
 	case "status":
-		if *operation != "" {
-			if !deploy.ValidID(*operation) {
-				return errors.New("invalid operation ID")
-			}
-			var result deploy.Result
-			if err = remote.ReadJSON("results/"+*operation+".json", &result); err != nil {
-				return err
-			}
-			if result.Version != deploy.Protocol {
-				return deploy.VersionError(result.Version)
-			}
-			if err = emit(result, *asJSON); err != nil {
-				return err
-			}
-			if result.Status == "failed" {
-				return reported{errors.New(result.Error)}
-			}
-			return nil
+		report := deploy.AgentStatus{State: state}
+		var heartbeat deploy.Heartbeat
+		if remote.ReadJSON("heartbeat.json", &heartbeat) == nil && heartbeat.Version == deploy.Protocol {
+			report.Agent = heartbeat.Agent
+			report.AgentHeartbeat = heartbeat.Updated
+			report.AgentFresh = !heartbeat.Updated.IsZero() && time.Since(heartbeat.Updated) <= 15*time.Second && time.Until(heartbeat.Updated) <= 15*time.Second
 		}
-		return emit(state, *asJSON)
+		return emit(report, *asJSON)
 	case "deploy":
 		if *dry {
 			preview, err := remote.Preview(bundle, *restart)

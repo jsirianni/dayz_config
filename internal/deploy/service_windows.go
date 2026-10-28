@@ -28,12 +28,19 @@ func ServiceName(alias string) string { return "dzdeploy-" + alias }
 
 type serviceHandler struct{ config HostConfig }
 
-func (h *serviceHandler) Execute(_ []string, requests <-chan svc.ChangeRequest, status chan<- svc.Status) (bool, uint32) {
+func (h *serviceHandler) Execute(args []string, requests <-chan svc.ChangeRequest, status chan<- svc.Status) (bool, uint32) {
 	status <- svc.Status{State: svc.StartPending}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	done := make(chan error, 1)
-	go func() { done <- RunAgent(ctx, h.config, nil) }()
+	handoff := make(chan struct{}, 1)
+	go func() {
+		if err := awaitAgentUpgrade(ctx, h.config, args); err != nil {
+			done <- err
+			return
+		}
+		done <- RunAgent(withHandoff(ctx, (<-chan struct{})(handoff)), h.config, nil)
+	}()
 	current := svc.Status{State: svc.Running, Accepts: svc.AcceptStop | svc.AcceptShutdown | svc.AcceptPreShutdown}
 	status <- current
 	for {
@@ -46,6 +53,11 @@ func (h *serviceHandler) Execute(_ []string, requests <-chan svc.ChangeRequest, 
 			return false, 0
 		case req := <-requests:
 			switch req.Cmd {
+			case svc.Cmd(HandoffControl):
+				select {
+				case handoff <- struct{}{}:
+				default:
+				}
 			case svc.Interrogate:
 				status <- current
 			case svc.Stop, svc.Shutdown, svc.PreShutdown:

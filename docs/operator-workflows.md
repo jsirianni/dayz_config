@@ -84,6 +84,65 @@ Operation IDs and idempotent results survive SSH disconnects. Inspect an interru
 operation using `status --operation` instead of blindly resubmitting it. A failed
 or interrupted stop/start can leave supervision paused for explicit recovery.
 
+## Agent upgrades
+
+```text
+dzdeploy agent upgrade nasdara --dry-run
+dzdeploy agent upgrade nasdara
+dzdeploy agent upgrade deer-isle --no-wait --json
+dzdeploy agent upgrade nasdara --operation OPERATION_ID
+dzdeploy status nasdara --operation OPERATION_ID
+```
+
+An agent upgrade replaces the Windows management executable while retaining the
+same running DayZ process and creation token. It does not restart the game, call
+RCon, run Steam updates, deploy configuration, or change ports. Upgrade one named
+server at a time using the existing administrative SSH connection and host trust.
+Restricted SFTP-only accounts cannot install the upgrade coordinator.
+
+Use a clean client and Windows amd64 companion built from the current `main`.
+The client checks that the checkout is clean and matches freshly fetched
+`origin/main`, and checks both executables' recorded Git revision. Portable
+packages include a matching companion. `agent_binary` can select an explicit
+companion; its filename alone does not establish compatibility. `dzdeploy version
+--json` reports executable provenance. Management revision and digest are separate
+from installed configuration, last managed startup revision, and restart pending.
+
+Dry-run works from any branch and performs remote reads only. It previews the
+service/process identities, candidate, handoff method, and eligibility blockers.
+It does not upload files, change SSH trust, create a service, or alter host state.
+A stopped service stays stopped after an upgrade and reports startup verification
+as pending. A matching installed digest is unchanged only with fresh evidence from
+the same manager process.
+
+The independent coordinator keeps its journal, previous executable, and results
+under protected `%ProgramData%\dzdeploy\upgrades\`. It blocks submissions and
+requires an idle installation with no pending uploads or transaction/restore
+recovery. New agents hand over cooperatively. For older agents, a separate
+retirement helper freezes and retires only the verified manager; DayZ keeps
+running. Unsupported process jobs, identities, or permissions block the upgrade.
+The replacement acknowledges the existing game before queue consumption and
+supervision resume. Protected adoption evidence lets health checks verify the
+preserved process across successive manager replacements.
+
+Keep the operation ID. SSH disconnects and client timeouts do not cancel a
+submitted upgrade. `--no-wait` returns after durable submission. Reattach with
+`agent upgrade <alias> --operation ID`, or inspect `status --operation ID` even
+while the management service is offline. Do not submit another upgrade to guess
+whether an interrupted operation completed.
+
+Failures restore management software without stopping or launching DayZ. An older
+agent cannot acknowledge the handoff guard during rollback, so legacy rollback
+leaves the restored service stopped and supervision paused, with an explicit
+recovery-required result. Independent game exit during the transition also leaves
+supervision paused. If paused state cannot be persisted, automatic manager startup
+and recovery remain disabled. Inspect the operation's recovery guidance before
+requesting further maintenance; an executable being restored does not establish
+that management startup has been verified.
+
+Upgrading an agent is a separate named-target operation. Merging this code or
+deploying mission configuration does not automatically upgrade installed agents.
+
 ## Saved-world backups
 
 ```text
