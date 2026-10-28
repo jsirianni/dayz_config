@@ -4,6 +4,7 @@ package deploy
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -99,12 +100,23 @@ func TestUpgradeLegacyDebuggerPreservesChild(t *testing.T) {
 	for _, action := range []string{"resume", "retire", "child-exit", "debugger-crash", "debugger-crash-armed"} {
 		t.Run(action, func(t *testing.T) {
 			dir := t.TempDir()
-			manager := exec.Command(os.Args[0], "-test.run=^TestUpgradeDebugFixture$")
-			manager.Env = append(os.Environ(), "DZDEPLOY_DEBUG_FIXTURE_ROLE=manager", "DZDEPLOY_DEBUG_FIXTURE_DIR="+dir)
-			// Keep this fixture outside any test-runner job, just like an SCM
-			// service. Unsupported breakaway is a failure on the explicit runner.
-			manager.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: windows.CREATE_NO_WINDOW | windows.CREATE_BREAKAWAY_FROM_JOB}
-			if err := manager.Start(); err != nil {
+			newManager := func(flags uint32) *exec.Cmd {
+				cmd := exec.Command(os.Args[0], "-test.run=^TestUpgradeDebugFixture$")
+				cmd.Env = append(os.Environ(), "DZDEPLOY_DEBUG_FIXTURE_ROLE=manager", "DZDEPLOY_DEBUG_FIXTURE_DIR="+dir)
+				cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: flags}
+				return cmd
+			}
+			// Hosted runners can prohibit breakaway. In that case the existing
+			// owned-handle seam below exercises real debugger events while still
+			// verifying that production rejects job membership.
+			manager := newManager(windows.CREATE_NO_WINDOW | windows.CREATE_BREAKAWAY_FROM_JOB)
+			err := manager.Start()
+			if errors.Is(err, windows.ERROR_ACCESS_DENIED) {
+				t.Log("runner disallows process breakaway; using its owned fixture job")
+				manager = newManager(windows.CREATE_NO_WINDOW)
+				err = manager.Start()
+			}
+			if err != nil {
 				t.Fatal(err)
 			}
 			defer func() { _ = manager.Process.Kill(); _ = manager.Wait() }()
