@@ -239,6 +239,48 @@ func TestUpgradeBinaryReplacementPreservesSecurityAndChecksums(t *testing.T) {
 	}
 }
 
+func TestUpgradeAdministrativeArtifactOwnerPreservesInheritance(t *testing.T) {
+	if !windows.GetCurrentProcessToken().IsElevated() {
+		t.Skip("requires an elevated disposable Windows runner")
+	}
+	path := filepath.Join(t.TempDir(), "request.json")
+	if err := os.WriteFile(path, []byte("{}"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	before, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.DACL_SECURITY_INFORMATION)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = upgradeAdministrativeOwner(path); err != nil {
+		t.Fatal(err)
+	}
+	after, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.DACL_SECURITY_INFORMATION)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if before.String() != after.String() {
+		t.Fatal("artifact owner normalization changed DACL or inheritance")
+	}
+	security, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION)
+	if err != nil {
+		t.Fatal(err)
+	}
+	owner, _, err := security.Owner()
+	if err != nil {
+		t.Fatal(err)
+	}
+	group, _, err := security.Group()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if owner.String() != "S-1-5-32-544" || group.String() != "S-1-5-32-544" {
+		t.Fatal("protected artifact is not owned by Administrators")
+	}
+	if err = upgradeAdministrativeOwner(path); err != nil {
+		t.Fatalf("owner normalization was not idempotent: %v", err)
+	}
+}
+
 // This opens a system service with QUERY_CONFIG only. The function under test
 // must remain usable without any right to modify services or their policies.
 func TestUpgradeServicePolicySnapshotNeedsReadAccessOnly(t *testing.T) {

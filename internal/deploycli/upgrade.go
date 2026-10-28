@@ -115,6 +115,9 @@ func runAgentUpgrade(args []string) error {
 	}
 	defer remote.Close()
 	if *operation != "" {
+		if err = remote.ResumeAgentUpgradeSubmission(ctx, alias, *operation); err != nil {
+			return err
+		}
 		if *noWait {
 			result, err := remote.AgentUpgradeStatus(ctx, alias, *operation)
 			if err != nil {

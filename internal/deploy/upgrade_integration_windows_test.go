@@ -3,6 +3,7 @@
 package deploy
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"io"
@@ -109,14 +110,18 @@ func TestAgentUpgradeServiceIntegration(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	// Give the coordinator a deterministic interruption window after replacement
-	// while the new manager has not yet connected to SCM or acknowledged a hold.
-	slowMain := strings.Replace(string(mainRaw), "package main", "package main\nimport \"time\"", 1)
-	slowMain = strings.Replace(slowMain, "func main() {", "func main() { if len(os.Args)>1 && os.Args[1]==\"agent\" { time.Sleep(20*time.Second) };", 1)
-	if err = os.WriteFile(mainFile, []byte(slowMain), 0600); err != nil {
+	// The service reaches Running but deliberately delays its hold acknowledgement,
+	// giving interruption a reliable SCM process identity and a stable window.
+	holdFile := filepath.Join(source, "internal", "deploy", "upgrade_agent_windows.go")
+	holdRaw, e := os.ReadFile(holdFile)
+	if e != nil {
+		t.Fatal(e)
+	}
+	slowHold := strings.Replace(string(holdRaw), "func awaitAgentUpgrade(ctx context.Context, c HostConfig, args []string) error {", "func awaitAgentUpgrade(ctx context.Context, c HostConfig, args []string) error { time.Sleep(20*time.Second);", 1)
+	if err = os.WriteFile(holdFile, []byte(slowHold), 0600); err != nil {
 		t.Fatal(err)
 	}
-	run(source, "git", "add", "cmd/dzdeploy/main.go")
+	run(source, "git", "add", "internal/deploy/upgrade_agent_windows.go")
 	run(source, "git", "commit", "-m", "fixture interrupted manager startup")
 	slowCandidate, slowIdentity := buildCandidate("slow-candidate.exe")
 	mainRaw = []byte(strings.Replace(string(mainRaw), "func main() {", "func main() { if len(os.Args)>1 && os.Args[1]==\"agent\" { os.Exit(7) };", 1))
@@ -224,8 +229,17 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 			t.Error("unsafe coordinator cleanup")
 			return
 		}
-		if err := os.RemoveAll(path); err != nil {
-			t.Error(err)
+		deadline := time.Now().Add(3 * time.Second)
+		for {
+			err := os.RemoveAll(path)
+			if err == nil {
+				break
+			}
+			if time.Now().After(deadline) {
+				t.Error(err)
+				break
+			}
+			time.Sleep(100 * time.Millisecond)
 		}
 	})
 	m, err := mgr.Connect()
@@ -270,9 +284,10 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 	var operations []UpgradeRequest
 	t.Cleanup(func() {
 		if game.PID > 0 {
-			if p, e := os.FindProcess(game.PID); e == nil {
-				_ = p.Kill()
-			}
+			// This is the owned disposable child, not a server operation. Retain
+			// and verify its exact handle, then wait before service cleanup so a
+			// reused PID cannot be killed or trigger a shutdown RCon call.
+			_ = terminateUpgradeManager(game)
 		}
 		_ = service.ResetRecoveryActions()
 		_, _ = service.Control(svc.Stop)
@@ -326,9 +341,17 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 		}
 		time.Sleep(100 * time.Millisecond)
 	}
-	beforeTicks, err := os.ReadFile(filepath.Join(c.InstallDir, "ticks.txt"))
-	if err != nil {
-		t.Fatal(err)
+	var beforeTicks []byte
+	deadline = time.Now().Add(10 * time.Second)
+	for {
+		beforeTicks, err = os.ReadFile(filepath.Join(c.InstallDir, "ticks.txt"))
+		if err == nil && len(beforeTicks) > 0 {
+			break
+		}
+		if time.Now().After(deadline) {
+			t.Fatal("child did not publish its first tick", err)
+		}
+		time.Sleep(20 * time.Millisecond)
 	}
 	id := NewID()
 	stage := filepath.Join(c.StateDir, "setup", id)
@@ -344,7 +367,35 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 	if err = WriteJSON(requestPath, req); err != nil {
 		t.Fatal(err)
 	}
-	if err = SubmitAgentUpgrade(context.Background(), requestPath, io.Discard); err != nil {
+	// Execute the actual SSH/SFTP submission bridge against this disposable
+	// local host, including byte capture and protected staging before elevation.
+	endpoint, _ := sshExecFixture(t, func(command string, _ io.Reader, out io.Writer) error {
+		parts := strings.Split(command, " ")
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+		cmd := exec.CommandContext(ctx, parts[0], parts[1:]...)
+		cmd.Stdout = out
+		var stderr bytes.Buffer
+		cmd.Stderr = &stderr
+		if e := cmd.Run(); e != nil {
+			t.Logf("protected bridge: %v\n%s", e, stderr.String())
+			return e
+		}
+		return nil
+	})
+	endpoint.RemoteDir = remoteStateDir(c)
+	remoteCtx, cancelRemote := context.WithTimeout(context.Background(), 5*time.Minute)
+	t.Cleanup(cancelRemote)
+	remote, err := Connect(remoteCtx, endpoint)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(remote.Close)
+	candidateBytes, err := os.ReadFile(candidate)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = remote.SubmitAgentUpgrade(remoteCtx, req, candidateBytes); err != nil {
 		t.Fatal(err)
 	}
 	var result UpgradeResult
@@ -354,7 +405,7 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 		if ReadJSON(filepath.Join(upgradeRoot(c.Target), id, "result.json"), &result) == nil && result.Status != "running" {
 			break
 		}
-		if interrupt && !interrupted && result.Phase == "starting" {
+		if interrupt && !interrupted && result.Phase == "awaiting-acknowledgement" {
 			managed, e := service.Query()
 			if e == nil && managed.ProcessId != 0 {
 				coordinator, e := m.OpenService(upgradeCoordinatorName(req))
@@ -479,6 +530,10 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 		var proof AdoptionProof
 		if err = ReadJSON(filepath.Join(upgradeRoot(c.Target), "adoption.json"), &proof); err != nil {
 			t.Fatal(err)
+		}
+		remoteProof, e := remote.AgentAdoption(remoteCtx, c.Target)
+		if e != nil || !reflect.DeepEqual(proof, remoteProof) {
+			t.Fatal("protected adoption collector disagrees", remoteProof, e)
 		}
 		if proof.Game != game || proof.Parent == firstManager || proof.Agent.PID == firstManager {
 			t.Fatal("successive upgrade lost original ancestry", proof)

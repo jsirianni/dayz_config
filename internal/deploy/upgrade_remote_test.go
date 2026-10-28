@@ -126,6 +126,9 @@ func TestAgentUpgradeEvidenceWithoutRunningAgent(t *testing.T) {
 }
 
 func TestAgentUpgradeSubmissionProtectsBeforeExecution(t *testing.T) {
+	if runtime.GOOS != "windows" {
+		t.Skip("SFTP execution fixture needs a native drive-qualified Windows host root")
+	}
 	var called atomic.Int32
 	endpoint, root := sshExecFixture(t, func(command string, _ io.Reader, out io.Writer) error {
 		called.Add(1)

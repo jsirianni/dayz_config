@@ -121,6 +121,8 @@ requires an idle installation with no pending uploads or transaction/restore
 recovery. New agents hand over cooperatively. For older agents, a separate
 retirement helper freezes and retires only the verified manager; DayZ keeps
 running. Unsupported process jobs, identities, or permissions block the upgrade.
+Queued Windows service recovery actions are drained while manager startup is
+disabled. Existing restart delays above ten minutes block upgrade before retirement.
 The replacement acknowledges the existing game before queue consumption and
 supervision resume. Protected adoption evidence lets health checks verify the
 preserved process across successive manager replacements.
@@ -130,6 +132,9 @@ submitted upgrade. `--no-wait` returns after durable submission. Reattach with
 `agent upgrade <alias> --operation ID`, or inspect `status --operation ID` even
 while the management service is offline. Do not submit another upgrade to guess
 whether an interrupted operation completed.
+Reattaching also resumes a verified protected submission interrupted before its
+coordinator service started, using the same files and operation ID. Ordinary
+`status` remains read-only.
 
 Failures restore management software without stopping or launching DayZ. An older
 agent cannot acknowledge the handoff guard during rollback, so legacy rollback

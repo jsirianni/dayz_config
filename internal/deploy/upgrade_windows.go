@@ -36,22 +36,26 @@ type upgradeServicePolicy struct {
 }
 
 type upgradeJournal struct {
-	Request          UpgradeRequest       `json:"request"`
-	Result           UpgradeResult        `json:"result"`
-	Policy           upgradeServicePolicy `json:"policy"`
-	BinaryACL        string               `json:"binaryACL"`
-	InboxACL         string               `json:"inboxACL"`
-	InboxGated       bool                 `json:"inboxGated"`
-	InitiallyStopped bool                 `json:"initiallyStopped"`
-	GameParent       int                  `json:"gameParent"`
-	HostSHA256       string               `json:"hostSHA256"`
-	Cooperative      bool                 `json:"cooperative"`
-	Retired          bool                 `json:"retired"`
-	Replaced         bool                 `json:"replaced"`
-	PolicySuppressed bool                 `json:"policySuppressed"`
-	Committed        bool                 `json:"committed"`
-	RollingBack      bool                 `json:"rollingBack"`
-	RollbackAgent    *AgentIdentity       `json:"rollbackAgent,omitempty"`
+	Request           UpgradeRequest       `json:"request"`
+	Result            UpgradeResult        `json:"result"`
+	Policy            upgradeServicePolicy `json:"policy"`
+	BinaryACL         string               `json:"binaryACL"`
+	InboxACL          string               `json:"inboxACL"`
+	InboxGated        bool                 `json:"inboxGated"`
+	InitiallyStopped  bool                 `json:"initiallyStopped"`
+	GameParent        int                  `json:"gameParent"`
+	HostSHA256        string               `json:"hostSHA256"`
+	Cooperative       bool                 `json:"cooperative"`
+	Retired           bool                 `json:"retired"`
+	Replaced          bool                 `json:"replaced"`
+	PolicySuppressed  bool                 `json:"policySuppressed"`
+	SuppressionIntent time.Time            `json:"suppressionIntent"`
+	DisabledAt        time.Time            `json:"disabledAt"`
+	RecoveryDrained   bool                 `json:"recoveryDrained"`
+	disabledMonotonic time.Time
+	Committed         bool           `json:"committed"`
+	RollingBack       bool           `json:"rollingBack"`
+	RollbackAgent     *AgentIdentity `json:"rollbackAgent,omitempty"`
 }
 
 func upgradeCoordinatorName(r UpgradeRequest) string {
@@ -161,6 +165,42 @@ func upgradeDirectory(path string) error {
 	return upgradeSetDACL(path, "O:BAG:BAD:P(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;;FRFX;;;AU)")
 }
 
+// Normalize artifacts created by the SSH administrator without protecting their
+// DACL: service-account read access is inherited when the coordinator grants it
+// on the operation directory later.
+func upgradeAdministrativeOwner(path string) error {
+	if _, err := SafeJoin(filepath.Dir(path), filepath.Base(path)); err != nil {
+		return err
+	}
+	admin, err := windows.StringToSid("S-1-5-32-544")
+	if err != nil {
+		return err
+	}
+	current, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION)
+	if err != nil {
+		return err
+	}
+	owner, _, err := current.Owner()
+	if err != nil {
+		return err
+	}
+	group, _, err := current.Group()
+	if err != nil {
+		return err
+	}
+	if owner != nil && group != nil && owner.Equals(admin) && group.Equals(admin) {
+		return nil
+	}
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+	restore, err := upgradePrivilege("SeRestorePrivilege")
+	if err != nil {
+		return err
+	}
+	defer restore()
+	return windows.SetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION, admin, admin, nil, nil)
+}
+
 func readUpgradeRequest(path string) (UpgradeRequest, error) {
 	var req UpgradeRequest
 	if _, err := SafeJoin(filepath.Dir(path), filepath.Base(path)); err != nil {
@@ -217,6 +257,8 @@ func SubmitAgentUpgrade(ctx context.Context, requestPath string, out io.Writer) 
 		return fmt.Errorf("upgrade %s is already active; inspect that operation instead of submitting another", active.ID)
 	} else if e != nil && !os.IsNotExist(e) {
 		return e
+	} else if e == nil && (active.Version != Protocol || !ValidID(active.ID)) {
+		return errors.New("active upgrade marker identity mismatch")
 	}
 	protectedRequest := filepath.Join(dir, "request.json")
 	var existing UpgradeRequest
@@ -244,15 +286,24 @@ func SubmitAgentUpgrade(ctx context.Context, requestPath string, out io.Writer) 
 			return err
 		}
 	}
-	var completed UpgradeResult
-	if ReadJSON(filepath.Join(dir, "result.json"), &completed) == nil && completed.Status != "running" {
-		if out != nil {
-			return json.NewEncoder(out).Encode(completed)
+	for _, name := range []string{"dzdeploy.exe", "coordinator.exe", "request.json", "result.json"} {
+		if err = upgradeAdministrativeOwner(filepath.Join(dir, name)); err != nil {
+			return err
 		}
-		return nil
 	}
-	if err = WriteJSON(activePath, map[string]any{"version": Protocol, "id": req.ID, "target": req.Target}); err != nil {
-		return err
+	var completed UpgradeResult
+	if resultErr := ReadJSON(filepath.Join(dir, "result.json"), &completed); resultErr == nil {
+		if err = completed.Validate(req.Target, req.ID); err != nil {
+			return err
+		}
+		if completed.Status != "running" {
+			if out != nil {
+				return json.NewEncoder(out).Encode(completed)
+			}
+			return nil
+		}
+	} else {
+		return resultErr
 	}
 	m, err := mgr.Connect()
 	if err != nil {
@@ -321,6 +372,14 @@ func (h *upgradeCoordinatorHandler) Execute(_ []string, requests <-chan svc.Chan
 		case err := <-done:
 			var result UpgradeResult
 			readErr := ReadJSON(filepath.Join(filepath.Dir(h.request), "result.json"), &result)
+			if readErr == nil {
+				req, reqErr := readUpgradeRequest(h.request)
+				if reqErr != nil {
+					readErr = reqErr
+				} else {
+					readErr = result.Validate(req.Target, req.ID)
+				}
+			}
 			terminal := readErr == nil && result.Status != "running"
 			if !terminal && err != nil && readErr == nil {
 				result.Error = err.Error()
@@ -715,6 +774,152 @@ func reportUpgradeRecoveryFailure(dir string, j *upgradeJournal, err error) erro
 	return err
 }
 
+type upgradeActiveOperation struct {
+	Version int    `json:"version"`
+	ID      string `json:"id"`
+	Target  string `json:"target"`
+}
+
+type upgradeCompetingOperationError struct{ id string }
+
+func (e *upgradeCompetingOperationError) Error() string {
+	return "another agent upgrade is already active: " + e.id
+}
+
+func readUpgradeActive(target string) (upgradeActiveOperation, error) {
+	var active upgradeActiveOperation
+	if err := ReadJSON(filepath.Join(upgradeRoot(target), "active.json"), &active); err != nil {
+		return active, err
+	}
+	if active.Version != Protocol || !ValidID(active.ID) || active.Target != target {
+		return active, errors.New("active upgrade marker identity mismatch")
+	}
+	return active, nil
+}
+
+func lockUpgradeTarget(ctx context.Context, req UpgradeRequest) (func(), error) {
+	deadline, cancel := context.WithTimeout(ctx, 20*time.Second)
+	defer cancel()
+	for {
+		unlock, err := lockHost(upgradeRoot(req.Target))
+		if err == nil {
+			return unlock, nil
+		}
+		if active, e := readUpgradeActive(req.Target); e == nil && active.ID != req.ID {
+			return nil, &upgradeCompetingOperationError{id: active.ID}
+		} else if e != nil && !os.IsNotExist(e) {
+			return nil, e
+		}
+		select {
+		case <-deadline.Done():
+			return nil, fmt.Errorf("waiting for target upgrade owner: %w", deadline.Err())
+		case <-time.After(100 * time.Millisecond):
+		}
+	}
+}
+
+func claimUpgradeActive(req UpgradeRequest) error {
+	active, err := readUpgradeActive(req.Target)
+	if err == nil {
+		if active.ID != req.ID {
+			return &upgradeCompetingOperationError{id: active.ID}
+		}
+		return nil
+	}
+	if !os.IsNotExist(err) {
+		return err
+	}
+	return WriteJSON(filepath.Join(upgradeRoot(req.Target), "active.json"), upgradeActiveOperation{Version: Protocol, ID: req.ID, Target: req.Target})
+}
+
+func rejectCompetingUpgrade(dir string, req UpgradeRequest, cause error) error {
+	var existing upgradeJournal
+	if err := ReadJSON(filepath.Join(dir, "journal.json"), &existing); err == nil {
+		if err = validateUpgradeJournal(&existing, req); err != nil {
+			return errors.Join(cause, err)
+		}
+		if existing.Result.Status != "running" {
+			if err = WriteJSON(filepath.Join(dir, "result.json"), existing.Result); err != nil {
+				return errors.Join(cause, err)
+			}
+			return cause
+		}
+	} else if !os.IsNotExist(err) {
+		return errors.Join(cause, err)
+	}
+	j := upgradeJournal{Request: req, Result: UpgradeResult{Version: Protocol, ID: req.ID, Target: req.Target, Status: "failed", Phase: "rejected", Error: cause.Error(), Recovery: "existing active operation was left untouched", Updated: time.Now().UTC()}}
+	if err := saveUpgradeJournal(dir, &j, "rejected"); err != nil {
+		return errors.Join(cause, err)
+	}
+	return cause
+}
+
+func suppressUpgradeRecovery(dir string, j *upgradeJournal, s *mgr.Service) error {
+	if _, err := upgradeRecoveryDelay(j.Policy); err != nil {
+		return err
+	}
+	j.PolicySuppressed = true
+	j.RecoveryDrained = false
+	j.DisabledAt = time.Time{}
+	j.SuppressionIntent = time.Now().UTC()
+	if err := saveUpgradeJournal(dir, j, "suppressing-recovery"); err != nil {
+		return err
+	}
+	if err := s.ResetRecoveryActions(); err != nil {
+		return err
+	}
+	if err := upgradeStartType(s, mgr.StartDisabled, false); err != nil {
+		return err
+	}
+	confirmed := time.Now()
+	j.DisabledAt = confirmed.UTC()
+	j.disabledMonotonic = confirmed
+	return saveUpgradeJournal(dir, j, "recovery-disabled")
+}
+
+func drainUpgradeRecovery(ctx context.Context, dir string, j *upgradeJournal, s *mgr.Service) error {
+	if !j.PolicySuppressed || j.RecoveryDrained {
+		return nil
+	}
+	if j.DisabledAt.IsZero() || j.disabledMonotonic.IsZero() {
+		if err := suppressUpgradeRecovery(dir, j, s); err != nil {
+			return err
+		}
+	}
+	cfg, err := s.Config()
+	if err != nil {
+		return err
+	}
+	if cfg.StartType != mgr.StartDisabled {
+		return errors.New("managed service must remain disabled while draining queued SCM restart actions")
+	}
+	if err = saveUpgradeJournal(dir, j, "draining-recovery"); err != nil {
+		return err
+	}
+	if err = waitUpgradeRecoveryDrain(ctx, j.Policy, j.disabledMonotonic); err != nil {
+		return err
+	}
+	j.RecoveryDrained = true
+	return saveUpgradeJournal(dir, j, "recovery-drained")
+}
+
+func restoreDrainedUpgradePolicy(ctx context.Context, dir string, j *upgradeJournal, s *mgr.Service) error {
+	if err := drainUpgradeRecovery(ctx, dir, j, s); err != nil {
+		return err
+	}
+	return restoreUpgradePolicy(s, j.Policy)
+}
+
+func validateUpgradeJournal(j *upgradeJournal, req UpgradeRequest) error {
+	if err := j.Request.Validate(); err != nil {
+		return err
+	}
+	if !reflect.DeepEqual(j.Request, req) {
+		return errors.New("upgrade recovery journal belongs to another request")
+	}
+	return j.Result.Validate(req.Target, req.ID)
+}
+
 func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr error) {
 	req, err := readUpgradeRequest(requestPath)
 	if err != nil {
@@ -733,6 +938,30 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 		return err
 	}
 	defer unlock()
+	// Submission never publishes a maintenance marker. Only this independently
+	// supervised service may claim the target, after acquiring the same native
+	// lock used by submission. SSH death cannot leave a gate without a runner.
+	targetUnlock, err := lockUpgradeTarget(ctx, req)
+	if err != nil {
+		var competing *upgradeCompetingOperationError
+		if errors.As(err, &competing) {
+			return rejectCompetingUpgrade(dir, req, err)
+		}
+		return err
+	}
+	defer targetUnlock()
+	var j upgradeJournal
+	journalErr := ReadJSON(filepath.Join(dir, "journal.json"), &j)
+	if journalErr == nil {
+		if err = validateUpgradeJournal(&j, req); err != nil {
+			return err
+		}
+	} else if !os.IsNotExist(journalErr) {
+		return journalErr
+	}
+	if err = claimUpgradeActive(req); err != nil {
+		return rejectCompetingUpgrade(dir, req, err)
+	}
 	m, err := mgr.Connect()
 	if err != nil {
 		return err
@@ -743,13 +972,16 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 		return err
 	}
 	defer s.Close()
-	var j upgradeJournal
-	if err = ReadJSON(filepath.Join(dir, "journal.json"), &j); err == nil {
-		if !reflect.DeepEqual(j.Request, req) {
-			return errors.New("upgrade recovery journal belongs to another request")
-		}
+	if journalErr == nil {
 		if j.Result.Status != "running" {
 			return reportUpgradeRecoveryFailure(dir, &j, finalizeTerminalUpgrade(dir, &j, s))
+		}
+		// Persisted wall times have no monotonic/boot provenance. Reconfirm
+		// suppression and drain a full interval after a coordinator restart.
+		if j.PolicySuppressed {
+			if err = suppressUpgradeRecovery(dir, &j, s); err != nil {
+				return reportUpgradeRecoveryFailure(dir, &j, err)
+			}
 		}
 		if !j.Cooperative && !j.Retired {
 			if _, e := os.Stat(filepath.Join(dir, "retire-request.json")); e == nil {
@@ -766,15 +998,17 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 				j.Retired = retired
 			}
 		}
-		return reportUpgradeRecoveryFailure(dir, &j, recoverUpgrade(ctx, dir, &j, s, errors.New("coordinator restarted before committing upgrade")))
-	} else if !os.IsNotExist(err) {
-		return err
+		return reportUpgradeRecoveryFailure(dir, &j, recoverUpgrade(ctx, dir, &j, s, errors.New("coordinator restarted before committing upgrade"), false))
 	}
 	j = upgradeJournal{Request: req, Result: UpgradeResult{Version: Protocol, ID: req.ID, Target: req.Target, Status: "running", Phase: "preflight", Updated: time.Now().UTC()}}
+	var heldSteamUnlock func()
 	defer func() {
 		if retErr != nil {
-			retErr = recoverUpgrade(context.Background(), dir, &j, s, retErr)
+			retErr = recoverUpgrade(context.Background(), dir, &j, s, retErr, heldSteamUnlock != nil)
 			retErr = reportUpgradeRecoveryFailure(dir, &j, retErr)
+		}
+		if heldSteamUnlock != nil {
+			heldSteamUnlock()
 		}
 	}()
 	if err = saveUpgradeJournal(dir, &j, "preflight"); err != nil {
@@ -812,7 +1046,7 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 	if err != nil {
 		return err
 	}
-	defer steamUnlock()
+	heldSteamUnlock = steamUnlock
 	if err = upgradeNoSteam(host); err != nil {
 		return err
 	}
@@ -876,6 +1110,9 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 	if j.Policy, err = snapshotUpgradePolicy(s, cfg); err != nil {
 		return err
 	}
+	if _, err = upgradeRecoveryDelay(j.Policy); err != nil {
+		return err
+	}
 	sd, err := windows.GetNamedSecurityInfo(manager.Executable, windows.SE_FILE_OBJECT, windows.DACL_SECURITY_INFORMATION|windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION)
 	if err != nil {
 		return err
@@ -903,7 +1140,7 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 	if err = saveUpgradeJournal(dir, &j, "gating"); err != nil {
 		return err
 	}
-	if err = upgradeSetDACL(filepath.Join(host.StateDir, "inbox"), "D:P(D;OICI;GWSD;;;BA)(D;OICI;GWSD;;;"+sid+")(A;OICI;FA;;;SY)(A;OICI;FRFX;;;BA)(A;OICI;FRFX;;;"+sid+")"); err != nil {
+	if err = gateUpgradeInbox(filepath.Join(host.StateDir, "inbox"), sid); err != nil {
 		return err
 	}
 	if err = upgradeIdle(host); err != nil {
@@ -911,14 +1148,10 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 	}
 	// Persist the intent before suppressing policy; replay always knows that a
 	// stopped manager must not be started without the candidate hold protocol.
-	j.PolicySuppressed = true
+	if err = suppressUpgradeRecovery(dir, &j, s); err != nil {
+		return err
+	}
 	if err = saveUpgradeJournal(dir, &j, "retiring"); err != nil {
-		return err
-	}
-	if err = s.ResetRecoveryActions(); err != nil {
-		return err
-	}
-	if err = upgradeStartType(s, mgr.StartDisabled, false); err != nil {
 		return err
 	}
 	if j.InitiallyStopped {
@@ -989,7 +1222,7 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 		if err = restoreUpgradeInbox(&j); err != nil {
 			return err
 		}
-		if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+		if err = restoreDrainedUpgradePolicy(ctx, dir, &j, s); err != nil {
 			return err
 		}
 		j.Result.Status = "succeeded"
@@ -1016,6 +1249,9 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 		return err
 	}
 	if err = saveUpgradeJournal(dir, &j, "starting"); err != nil {
+		return err
+	}
+	if err = drainUpgradeRecovery(ctx, dir, &j, s); err != nil {
 		return err
 	}
 	if err = upgradeStartType(s, mgr.StartManual, false); err != nil {
@@ -1066,7 +1302,7 @@ func runUpgradeCoordinator(ctx context.Context, requestPath string) (retErr erro
 	if err = saveUpgradeJournal(dir, &j, "accepted"); err != nil {
 		return err
 	}
-	if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+	if err = restoreDrainedUpgradePolicy(ctx, dir, &j, s); err != nil {
 		return err
 	}
 	// Release installation locks before the held agent enters RunAgent. Commit
@@ -1106,7 +1342,7 @@ func finalizeTerminalUpgrade(dir string, j *upgradeJournal, s *mgr.Service) erro
 			return err
 		}
 		if j.Policy.StartType != 0 {
-			if err := restoreUpgradePolicy(s, j.Policy); err != nil {
+			if err := restoreDrainedUpgradePolicy(context.Background(), dir, j, s); err != nil {
 				return err
 			}
 		}
@@ -1180,8 +1416,8 @@ func waitUpgradeHeartbeat(ctx context.Context, c HostConfig, agent AgentIdentity
 
 func removeUpgradeActive(req UpgradeRequest) error {
 	p := filepath.Join(upgradeRoot(req.Target), "active.json")
-	var active struct{ ID, Target string }
-	if err := ReadJSON(p, &active); os.IsNotExist(err) {
+	active, err := readUpgradeActive(req.Target)
+	if os.IsNotExist(err) {
 		return nil
 	} else if err != nil {
 		return err
@@ -1207,8 +1443,17 @@ func pauseUpgradeState(c HostConfig) error {
 
 // Recovery never starts a legacy manager: it cannot acknowledge a hold, and
 // could relaunch DayZ if the game exits between inspection and startup.
-func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.Service, cause error) error {
+func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.Service, cause error, steamHeld bool) error {
 	host := j.Request.Host
+	if j.PolicySuppressed && !steamHeld {
+		steamCtx, cancel := context.WithTimeout(ctx, 2*time.Second)
+		unlock, err := acquireSteam(steamCtx, host)
+		cancel()
+		if err != nil {
+			return errors.Join(cause, err)
+		}
+		defer unlock()
+	}
 	if !j.Cooperative && !j.Retired {
 		if _, e := os.Stat(filepath.Join(dir, "retire-request.json")); e == nil {
 			retired, e := waitUpgradeRetirement(ctx, dir, j.Request)
@@ -1232,7 +1477,7 @@ func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.S
 				if err = restoreUpgradeInbox(j); err != nil {
 					return errors.Join(cause, err)
 				}
-				if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+				if err = restoreDrainedUpgradePolicy(ctx, dir, j, s); err != nil {
 					return errors.Join(cause, err)
 				}
 				j.Result.Continuity = true
@@ -1268,23 +1513,32 @@ func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.S
 	if !j.Retired && !j.Replaced && j.Result.Previous != nil && status.State == svc.Running && int(status.ProcessId) == j.Result.Previous.PID {
 		manager := ProcessIdentity{PID: j.Result.Previous.PID, Token: j.Result.Previous.Token, Executable: filepath.Join(host.StateDir, "bin", "dzdeploy.exe")}
 		if upgradeIdentityAlive(manager) == nil && upgradeContinuity(host, j.Result.Game) == nil {
-			if err = restoreUpgradeInbox(j); err != nil {
-				return errors.Join(cause, err)
-			}
 			if j.PolicySuppressed {
-				if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+				if err = drainUpgradeRecovery(ctx, dir, j, s); err != nil {
 					return errors.Join(cause, err)
 				}
 			}
-			j.Result.Status = "failed"
-			j.Result.Error = cause.Error()
-			j.Result.Recovery = "original manager retained; original game continues"
-			j.Result.Continuity = true
-			if err = saveUpgradeJournal(dir, j, "aborted"); err != nil {
-				return errors.Join(cause, err)
+			if continuityErr := upgradeContinuity(host, j.Result.Game); continuityErr == nil {
+				if err = restoreUpgradeInbox(j); err != nil {
+					return errors.Join(cause, err)
+				}
+				if j.PolicySuppressed {
+					if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+						return errors.Join(cause, err)
+					}
+				}
+				j.Result.Status = "failed"
+				j.Result.Error = cause.Error()
+				j.Result.Recovery = "original manager retained; original game continues"
+				j.Result.Continuity = true
+				if err = saveUpgradeJournal(dir, j, "aborted"); err != nil {
+					return errors.Join(cause, err)
+				}
+				_ = removeUpgradeActive(j.Request)
+				return cause
+			} else {
+				cause = errors.Join(cause, continuityErr)
 			}
-			_ = removeUpgradeActive(j.Request)
-			return cause
 		}
 	}
 	if !j.PolicySuppressed {
@@ -1298,10 +1552,7 @@ func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.S
 		_ = removeUpgradeActive(j.Request)
 		return cause
 	}
-	if err = s.ResetRecoveryActions(); err != nil {
-		return errors.Join(cause, err)
-	}
-	if err = upgradeStartType(s, mgr.StartDisabled, false); err != nil {
+	if err = suppressUpgradeRecovery(dir, j, s); err != nil {
 		return errors.Join(cause, err)
 	}
 	// A held candidate has not entered RunAgent. Retiring that verified process
@@ -1408,10 +1659,7 @@ func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.S
 			return cause
 		}
 		cause = errors.Join(cause, fmt.Errorf("cooperative agent rollback failed: %w", err))
-		if err = s.ResetRecoveryActions(); err != nil {
-			return errors.Join(cause, err)
-		}
-		if err = upgradeStartType(s, mgr.StartDisabled, false); err != nil {
+		if err = suppressUpgradeRecovery(dir, j, s); err != nil {
 			return errors.Join(cause, err)
 		}
 		// A rollback candidate may have started but failed acknowledgement. Keep
@@ -1454,7 +1702,7 @@ func recoverUpgrade(ctx context.Context, dir string, j *upgradeJournal, s *mgr.S
 	if err = restoreUpgradeInbox(j); err != nil {
 		return errors.Join(cause, err)
 	}
-	if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+	if err = restoreDrainedUpgradePolicy(ctx, dir, j, s); err != nil {
 		return errors.Join(cause, err)
 	}
 	j.Result.Status = "failed"
@@ -1506,6 +1754,9 @@ func resumePreviousUpgradeAgent(ctx context.Context, dir string, j *upgradeJourn
 	if err = prepareUpgradeHold(dir, hold, sid); err != nil {
 		return err
 	}
+	if err = drainUpgradeRecovery(ctx, dir, j, s); err != nil {
+		return err
+	}
 	if err = upgradeStartType(s, mgr.StartManual, false); err != nil {
 		return err
 	}
@@ -1532,7 +1783,7 @@ func resumePreviousUpgradeAgent(ctx context.Context, dir string, j *upgradeJourn
 	if err = saveUpgradeJournal(dir, j, "previous-accepted"); err != nil {
 		return err
 	}
-	if err = restoreUpgradePolicy(s, j.Policy); err != nil {
+	if err = restoreDrainedUpgradePolicy(ctx, dir, j, s); err != nil {
 		return err
 	}
 	release()
@@ -1593,14 +1844,171 @@ func retireUpgradeLegacy(ctx context.Context, dir string, req UpgradeRequest, ma
 	if err := WriteJSON(p, upgradeRetirementRequest{Request: req, Manager: manager, Game: game}); err != nil {
 		return err
 	}
+	_, err := waitUpgradeRetirement(ctx, dir, req)
+	return err
+}
+
+func startUpgradeGuardian(dir string) error {
+	p := filepath.Join(dir, "retire-request.json")
 	cmd := exec.Command(filepath.Join(dir, "coordinator.exe"), "agent-upgrade-retire", "--request", p)
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: windows.CREATE_NO_WINDOW | windows.CREATE_NEW_PROCESS_GROUP}
 	if err := cmd.Start(); err != nil {
 		return err
 	}
+	identity := ProcessIdentity{PID: cmd.Process.Pid, Executable: filepath.Join(dir, "coordinator.exe")}
+	token, err := processToken(identity.PID, identity.Executable)
+	identity.Token = token
+	if err == nil {
+		err = WriteJSON(filepath.Join(dir, "guardian.json"), identity)
+	}
 	_ = cmd.Process.Release()
-	_, err := waitUpgradeRetirement(ctx, dir, req)
 	return err
+}
+
+type upgradeGuardianNative struct {
+	alive  func(ProcessIdentity) (bool, error)
+	start  func(string) error
+	retire func(ProcessIdentity) error
+}
+
+// nativeUpgradeIdentityAlive distinguishes a gone/reused PID from inability to
+// inspect a process. Access failures never count as proof of manager retirement.
+func nativeUpgradeIdentityAlive(p ProcessIdentity) (bool, error) {
+	if p.PID <= 0 || p.Token == "" || !filepath.IsAbs(p.Executable) {
+		return false, errors.New("invalid native upgrade process identity")
+	}
+	h, err := windows.OpenProcess(windows.PROCESS_QUERY_LIMITED_INFORMATION|windows.SYNCHRONIZE, false, uint32(p.PID))
+	if errors.Is(err, windows.ERROR_INVALID_PARAMETER) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	defer windows.CloseHandle(h)
+	var code uint32
+	if err = windows.GetExitCodeProcess(h, &code); err != nil {
+		return false, err
+	}
+	if code != 259 {
+		return false, nil
+	}
+	var name [32768]uint16
+	size := uint32(len(name))
+	if err = windows.QueryFullProcessImageName(h, 0, &name[0], &size); err != nil {
+		return false, err
+	}
+	if !strings.EqualFold(windows.UTF16ToString(name[:size]), p.Executable) {
+		return false, nil
+	}
+	token, err := handleIdentity(h, p.Executable)
+	if err != nil {
+		return false, err
+	}
+	return token == p.Token, nil
+}
+
+func retireUpgradeManagerWithoutGame(p ProcessIdentity) error {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+	restore, err := upgradeDebugPrivilege()
+	if err != nil {
+		return err
+	}
+	defer restore()
+	h, err := upgradeDebugOpen(p, windows.PROCESS_TERMINATE)
+	if err != nil {
+		return err
+	}
+	defer windows.CloseHandle(h)
+	if err = windows.TerminateProcess(h, 1); err != nil {
+		return err
+	}
+	result, err := windows.WaitForSingleObject(h, 10000)
+	if err != nil {
+		return err
+	}
+	if result != windows.WAIT_OBJECT_0 {
+		return errors.New("verified legacy manager did not exit after continuity loss")
+	}
+	return nil
+}
+
+func validateUpgradeRetirementOutcome(r upgradeRetirementOutcome, req UpgradeRequest) error {
+	if r.Version != Protocol || r.ID != req.ID || r.Target != req.Target {
+		return errors.New("guardian retirement outcome identity mismatch")
+	}
+	return nil
+}
+
+// Reconcile under the guardian's native lock before interpreting missing
+// receipts. This also closes the crash gap between intent and CreateProcess.
+// A restarted guardian uses the original request/operation and competes for
+// this same lock, so only one process can freeze or retire the manager.
+func reconcileUpgradeGuardian(dir string, req UpgradeRequest, native upgradeGuardianNative) (bool, error) {
+	var r upgradeRetirementRequest
+	if err := ReadJSON(filepath.Join(dir, "retire-request.json"), &r); err != nil {
+		return false, err
+	}
+	if !reflect.DeepEqual(r.Request, req) || r.Request.Validate() != nil {
+		return false, errors.New("guardian request identity mismatch")
+	}
+	if !strings.EqualFold(r.Manager.Executable, filepath.Join(req.Host.StateDir, "bin", "dzdeploy.exe")) || !strings.EqualFold(r.Game.Executable, filepath.Join(req.Host.InstallDir, "DayZServer_x64.exe")) {
+		return false, errors.New("guardian process paths differ from the managed installation")
+	}
+	var guardian ProcessIdentity
+	guardianAlive := false
+	if err := ReadJSON(filepath.Join(dir, "guardian.json"), &guardian); err == nil {
+		if !strings.EqualFold(guardian.Executable, filepath.Join(dir, "coordinator.exe")) {
+			return false, errors.New("guardian executable escaped the protected operation")
+		}
+		var e error
+		guardianAlive, e = native.alive(guardian)
+		if e != nil {
+			return false, e
+		}
+	} else if !os.IsNotExist(err) {
+		return false, err
+	}
+	lockDir := filepath.Join(dir, "guardian-lock")
+	if err := os.MkdirAll(lockDir, 0700); err != nil {
+		return false, err
+	}
+	unlock, err := lockHost(lockDir)
+	if err != nil {
+		return false, nil
+	}
+	defer unlock()
+	var outcome upgradeRetirementOutcome
+	if err = ReadJSON(filepath.Join(dir, "retire-result.json"), &outcome); err == nil {
+		return true, validateUpgradeRetirementOutcome(outcome, req)
+	} else if !os.IsNotExist(err) {
+		return false, err
+	}
+	if guardianAlive {
+		return false, nil
+	}
+	managerAlive, err := native.alive(r.Manager)
+	if err != nil {
+		return false, err
+	}
+	gameAlive, err := native.alive(r.Game)
+	if err != nil {
+		return false, err
+	}
+	if !managerAlive {
+		outcome = upgradeRetirementOutcome{Version: Protocol, ID: req.ID, Target: req.Target, Retired: true, Updated: time.Now().UTC(), Error: "retirement guardian exited without a receipt; original manager is confirmed gone; paused recovery required"}
+		return true, WriteJSON(filepath.Join(dir, "retire-result.json"), outcome)
+	}
+	if !gameAlive {
+		if err = native.retire(r.Manager); err != nil {
+			return false, err
+		}
+		outcome = upgradeRetirementOutcome{Version: Protocol, ID: req.ID, Target: req.Target, Retired: true, Updated: time.Now().UTC(), Error: "original game exited while retirement guardian was absent; only the verified manager was retired; paused recovery required"}
+		return true, WriteJSON(filepath.Join(dir, "retire-result.json"), outcome)
+	}
+	// Start while retaining the lock; the helper acquires it with a bounded
+	// wait after this function releases. No operation ID or intent is replaced.
+	return false, native.start(dir)
 }
 
 func waitUpgradeRetirement(ctx context.Context, dir string, req UpgradeRequest) (bool, error) {
@@ -1611,8 +2019,8 @@ func waitUpgradeRetirement(ctx context.Context, dir string, req UpgradeRequest) 
 	for {
 		var result upgradeRetirementOutcome
 		if err := ReadJSON(filepath.Join(dir, "retire-result.json"), &result); err == nil {
-			if result.Version != Protocol || result.ID != req.ID || result.Target != req.Target {
-				return false, errors.New("guardian retirement outcome identity mismatch")
+			if err = validateUpgradeRetirementOutcome(result, req); err != nil {
+				return false, err
 			}
 			if result.Error != "" {
 				return result.Retired, errors.New(result.Error)
@@ -1623,6 +2031,11 @@ func waitUpgradeRetirement(ctx context.Context, dir string, req UpgradeRequest) 
 			return true, nil
 		} else if !os.IsNotExist(err) {
 			return false, err
+		}
+		if ready, e := reconcileUpgradeGuardian(dir, req, upgradeGuardianNative{alive: nativeUpgradeIdentityAlive, start: startUpgradeGuardian, retire: retireUpgradeManagerWithoutGame}); e != nil {
+			return false, e
+		} else if ready {
+			continue
 		}
 		select {
 		case <-deadline.Done():
@@ -1654,13 +2067,26 @@ func RunUpgradeRetirement(requestPath string) (retErr error) {
 	if err = os.MkdirAll(lockDir, 0700); err != nil {
 		return err
 	}
-	unlock, err := lockHost(lockDir)
-	if err != nil {
-		return err
+	lockCtx, cancelLock := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancelLock()
+	var unlock func()
+	for {
+		unlock, err = lockHost(lockDir)
+		if err == nil {
+			break
+		}
+		select {
+		case <-lockCtx.Done():
+			return errors.New("another guardian owns this retirement")
+		case <-time.After(50 * time.Millisecond):
+		}
 	}
 	defer unlock()
 	var existing upgradeRetirementOutcome
 	if ReadJSON(filepath.Join(dir, "retire-result.json"), &existing) == nil {
+		if err = validateUpgradeRetirementOutcome(existing, r.Request); err != nil {
+			return err
+		}
 		return errors.New("legacy retirement already has a terminal outcome")
 	}
 	self, err := os.Executable()
@@ -1677,8 +2103,10 @@ func RunUpgradeRetirement(requestPath string) (retErr error) {
 	}
 	outcome := upgradeRetirementOutcome{Version: Protocol, ID: r.Request.ID, Target: r.Request.Target}
 	defer func() {
-		if upgradeIdentityAlive(r.Manager) != nil {
+		if alive, identityErr := nativeUpgradeIdentityAlive(r.Manager); identityErr == nil && !alive {
 			outcome.Retired = true
+		} else if identityErr != nil {
+			retErr = errors.Join(retErr, fmt.Errorf("cannot prove original manager retirement: %w", identityErr))
 		}
 		if retErr != nil {
 			outcome.Error = retErr.Error()
