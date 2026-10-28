@@ -176,7 +176,7 @@ func upgradeAdministrativeOwner(path string) error {
 	if err != nil {
 		return err
 	}
-	current, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION)
+	current, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION|windows.DACL_SECURITY_INFORMATION)
 	if err != nil {
 		return err
 	}
@@ -191,6 +191,10 @@ func upgradeAdministrativeOwner(path string) error {
 	if owner != nil && group != nil && owner.Equals(admin) && group.Equals(admin) {
 		return nil
 	}
+	beforeDACL, err := captureUpgradeDACL(current)
+	if err != nil {
+		return err
+	}
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
 	restore, err := upgradePrivilege("SeRestorePrivilege")
@@ -198,7 +202,81 @@ func upgradeAdministrativeOwner(path string) error {
 		return err
 	}
 	defer restore()
-	return windows.SetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION, admin, admin, nil, nil)
+	if err = windows.SetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION, admin, admin, nil, nil); err != nil {
+		return err
+	}
+	after, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.DACL_SECURITY_INFORMATION)
+	if err != nil {
+		return err
+	}
+	afterDACL, err := captureUpgradeDACL(after)
+	if err != nil {
+		return err
+	}
+	if beforeDACL != afterDACL {
+		dacl, _, err := current.DACL()
+		if err != nil {
+			return err
+		}
+		flags := windows.SECURITY_INFORMATION(windows.DACL_SECURITY_INFORMATION)
+		if beforeDACL.Inheritance&windows.SE_DACL_PROTECTED != 0 {
+			flags |= windows.PROTECTED_DACL_SECURITY_INFORMATION
+		} else {
+			flags |= windows.UNPROTECTED_DACL_SECURITY_INFORMATION
+		}
+		if err = windows.SetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, flags, nil, nil, dacl, nil); err != nil {
+			return err
+		}
+		verified, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.DACL_SECURITY_INFORMATION)
+		if err != nil {
+			return err
+		}
+		got, err := captureUpgradeDACL(verified)
+		if err != nil {
+			return err
+		}
+		if got != beforeDACL {
+			return fmt.Errorf("owner normalization could not preserve DACL inheritance: before=%+v after=%+v", beforeDACL, got)
+		}
+	}
+	runtime.KeepAlive(current)
+	return nil
+}
+
+type upgradeDACLView struct {
+	SDDL        string
+	Inheritance windows.SECURITY_DESCRIPTOR_CONTROL
+}
+
+// SECURITY_DESCRIPTOR.String serializes owner/group too, even when a caller
+// requested only DACL information. Isolate the actual DACL and its inheritance
+// controls before comparing security across an intentional owner change.
+func captureUpgradeDACL(source *windows.SECURITY_DESCRIPTOR) (upgradeDACLView, error) {
+	dacl, _, err := source.DACL()
+	if err != nil {
+		return upgradeDACLView{}, err
+	}
+	control, _, err := source.Control()
+	if err != nil {
+		return upgradeDACLView{}, err
+	}
+	mask := windows.SECURITY_DESCRIPTOR_CONTROL(windows.SE_DACL_PROTECTED | windows.SE_DACL_AUTO_INHERITED | windows.SE_DACL_AUTO_INHERIT_REQ)
+	clone, err := windows.NewSecurityDescriptor()
+	if err != nil {
+		return upgradeDACLView{}, err
+	}
+	if err = clone.SetDACL(dacl, true, false); err != nil {
+		return upgradeDACLView{}, err
+	}
+	if err = clone.SetControl(mask, control&mask); err != nil {
+		return upgradeDACLView{}, err
+	}
+	view := upgradeDACLView{SDDL: clone.String(), Inheritance: control & mask}
+	runtime.KeepAlive(source)
+	if view.SDDL == "" {
+		return view, errors.New("unable to serialize DACL-only security descriptor")
+	}
+	return view, nil
 }
 
 func readUpgradeRequest(path string) (UpgradeRequest, error) {

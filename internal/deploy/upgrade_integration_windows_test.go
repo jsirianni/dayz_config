@@ -480,7 +480,9 @@ func runAgentUpgradeFixture(t *testing.T, root, legacy, candidate string, candid
 		}
 	} else {
 		if result.Status != "succeeded" || result.StartupPending || Digest(gotBinary) != candidateIdentity.SHA256 {
-			t.Fatal("upgrade did not commit candidate", result)
+			journal, _ := os.ReadFile(filepath.Join(upgradeRoot(c.Target), id, "journal.json"))
+			agentError, _ := os.ReadFile(filepath.Join(c.StateDir, "logs", "agent-error.txt"))
+			t.Fatalf("upgrade did not commit candidate: %+v\nJournal: %s\nAgent: %s", result, journal, agentError)
 		}
 		var heartbeat Heartbeat
 		if err = ReadJSON(filepath.Join(c.StateDir, "heartbeat.json"), &heartbeat); err != nil || heartbeat.Agent == nil || heartbeat.Agent.SHA256 != candidateIdentity.SHA256 {

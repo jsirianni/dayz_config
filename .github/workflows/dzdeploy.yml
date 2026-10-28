@@ -78,7 +78,8 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.27.3'
-      - name: Test durable agent upgrade continuity and startup rollback
-        run: go test ./internal/deploy -run '^TestAgentUpgradeServiceIntegration$' -count=1 -v -timeout 15m
+      - name: Test durable agent upgrades, rollback, and debugger crash isolation
+        run: go test ./internal/deploy -run '^(TestAgentUpgradeServiceIntegration|TestUpgradeLegacyDebuggerPreservesChild)$' -count=1 -v -timeout 15m
         env:
           DZDEPLOY_UPGRADE_INTEGRATION: '1'
+          DZDEPLOY_UPGRADE_DEBUG_INTEGRATION: '1'

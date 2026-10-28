@@ -258,8 +258,16 @@ func TestUpgradeAdministrativeArtifactOwnerPreservesInheritance(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if before.String() != after.String() {
-		t.Fatal("artifact owner normalization changed DACL or inheritance")
+	beforeDACL, err := captureUpgradeDACL(before)
+	if err != nil {
+		t.Fatal(err)
+	}
+	afterDACL, err := captureUpgradeDACL(after)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if beforeDACL != afterDACL {
+		t.Fatalf("artifact owner normalization changed DACL or inheritance:\nDACL before=%+v\nDACL after=%+v\nfull before=%s\nfull after=%s", beforeDACL, afterDACL, before.String(), after.String())
 	}
 	security, err := windows.GetNamedSecurityInfo(path, windows.SE_FILE_OBJECT, windows.OWNER_SECURITY_INFORMATION|windows.GROUP_SECURITY_INFORMATION)
 	if err != nil {
@@ -278,6 +286,30 @@ func TestUpgradeAdministrativeArtifactOwnerPreservesInheritance(t *testing.T) {
 	}
 	if err = upgradeAdministrativeOwner(path); err != nil {
 		t.Fatalf("owner normalization was not idempotent: %v", err)
+	}
+}
+
+func TestUpgradeDACLComparisonExcludesOwnerAndKeepsAccessAndInheritance(t *testing.T) {
+	views := make([]upgradeDACLView, 0, 4)
+	for _, sddl := range []string{"O:SYG:SYD:AI(A;ID;FR;;;AU)", "O:BAG:BAD:AI(A;ID;FR;;;AU)", "O:BAG:BAD:AI(A;ID;FW;;;AU)", "O:BAG:BAD:P(A;ID;FR;;;AU)"} {
+		sd, err := windows.SecurityDescriptorFromString(sddl)
+		if err != nil {
+			t.Fatal(err)
+		}
+		view, err := captureUpgradeDACL(sd)
+		if err != nil {
+			t.Fatal(err)
+		}
+		views = append(views, view)
+	}
+	if views[0] != views[1] {
+		t.Fatalf("owner/group change affected DACL comparison: %+v %+v", views[0], views[1])
+	}
+	if views[1] == views[2] {
+		t.Fatal("DACL comparison ignored an actual access-mask change")
+	}
+	if views[1] == views[3] {
+		t.Fatal("DACL comparison ignored changed inheritance protection")
 	}
 }
 

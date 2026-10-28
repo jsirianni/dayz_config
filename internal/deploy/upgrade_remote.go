@@ -51,7 +51,10 @@ func upgradeSpecScript(spec any, source string) string {
 	// repeated path prefixes with the fixed script (important under cmd's limit).
 	literal := strings.ReplaceAll(string(raw), "'", "''")
 	source = strings.ReplaceAll(source, "Get-Item -LiteralPath", "Get-Item -Force -LiteralPath")
-	return upgradePowerShell("$ErrorActionPreference='Stop';$spec='" + literal + "'|ConvertFrom-Json;" + source)
+	// Windows PowerShell can inherit PowerShell 7's incompatible module paths.
+	// Restrict this child process to its own trusted built-ins before autoloading
+	// any cmdlet, including ConvertFrom-Json or the ACL/security commands.
+	return upgradePowerShell("$ErrorActionPreference='Stop';$env:PSModulePath=[IO.Path]::Combine($PSHOME,'Modules');$spec='" + literal + "'|ConvertFrom-Json;" + source)
 }
 
 // coordinatorJSON reads only fixed, administrator-owned coordinator evidence.

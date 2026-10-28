@@ -54,7 +54,9 @@ func Command(s Spec) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	source := fmt.Sprintf("$spec = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('%s')) | ConvertFrom-Json\n%s", base64.StdEncoding.EncodeToString(raw), script)
+	// A Windows PowerShell child can inherit PowerShell 7's incompatible module
+	// paths. Use the native process's protected built-in modules for inspection.
+	source := fmt.Sprintf("$env:PSModulePath=[IO.Path]::Combine($PSHOME,'Modules');$spec = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('%s')) | ConvertFrom-Json\n%s", base64.StdEncoding.EncodeToString(raw), script)
 	var compressed bytes.Buffer
 	z := gzip.NewWriter(&compressed)
 	if _, err = z.Write([]byte(source)); err != nil {

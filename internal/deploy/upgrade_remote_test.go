@@ -72,6 +72,43 @@ func parseUpgradeCollector(t *testing.T, source string) {
 	}
 }
 
+func TestAgentUpgradeUsesTrustedWindowsPowerShellModules(t *testing.T) {
+	if runtime.GOOS != "windows" {
+		t.Skip("Windows PowerShell module discovery")
+	}
+	untrusted := t.TempDir()
+	for _, module := range []struct{ name, exports string }{{"Microsoft.PowerShell.Security", "'Get-Acl','Set-Acl'"}, {"CimCmdlets", "'Get-CimInstance'"}} {
+		directory := filepath.Join(untrusted, module.name)
+		if err := os.MkdirAll(directory, 0700); err != nil {
+			t.Fatal(err)
+		}
+		manifest := "@{ModuleVersion='99.0';PowerShellVersion='99.0';RootModule='poison.psm1';FunctionsToExport=@(" + module.exports + ")}"
+		if err := os.WriteFile(filepath.Join(directory, module.name+".psd1"), []byte(manifest), 0600); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(directory, "poison.psm1"), []byte("throw 'incompatible inherited module was loaded'"), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	source := `$trusted=[IO.Path]::Combine($PSHOME,'Modules');if($env:PSModulePath -ne $trusted){throw 'Inherited module search path was retained'};foreach($name in @('Get-Acl','Set-Acl','Get-CimInstance')){$command=Get-Command $name -ErrorAction Stop;$manifest=$command.Module.Path.StartsWith($trusted+'\',[StringComparison]::OrdinalIgnoreCase);$binaryBase=$command.Module.ModuleBase.StartsWith($trusted+'\',[StringComparison]::OrdinalIgnoreCase);if(-not($manifest -or $binaryBase)){throw ('Untrusted module loaded for '+$name)}};Write-Output 'trusted built-in commands loaded'`
+	command := upgradeSpecScript(map[string]string{}, source)
+	encoded := strings.TrimPrefix(command, "powershell.exe -NoProfile -NonInteractive -EncodedCommand ")
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, "powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", encoded)
+	prepareCommand(cmd)
+	for _, env := range os.Environ() {
+		key, _, _ := strings.Cut(env, "=")
+		if !strings.EqualFold(key, "PSModulePath") {
+			cmd.Env = append(cmd.Env, env)
+		}
+	}
+	cmd.Env = append(cmd.Env, "PSModulePath="+untrusted)
+	if out, err := cmd.CombinedOutput(); err != nil || !strings.Contains(string(out), "trusted built-in commands loaded") {
+		t.Fatalf("upgrade did not isolate inherited PowerShell modules: %v\n%s", err, out)
+	}
+}
+
 func TestAgentUpgradeEvidenceWithoutRunningAgent(t *testing.T) {
 	id := NewID()
 	result := UpgradeResult{Version: Protocol, ID: id, Target: "nasdara-staging", Status: "succeeded", Phase: "complete", Updated: time.Now().UTC(), Continuity: true}
