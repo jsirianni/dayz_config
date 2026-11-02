@@ -21,7 +21,7 @@ import (
 	"golang.org/x/sys/windows/svc/mgr"
 )
 
-func RunEnrollment(ctx context.Context, requestFile string, output io.Writer) error {
+func RunEnrollment(ctx context.Context, requestFile string, output io.Writer) (resultErr error) {
 	var req EnrollmentRequest
 	if err := ReadJSON(requestFile, &req); err != nil {
 		return err
@@ -35,6 +35,10 @@ func RunEnrollment(ctx context.Context, requestFile string, output io.Writer) er
 	}
 	if err := c.Validate(); err != nil {
 		return err
+	}
+	ctx, logs, ownsLogs := processLogSession(ctx, c)
+	if ownsLogs {
+		defer func() { resultErr = errors.Join(resultErr, logs.Close()) }()
 	}
 	if err := req.Launcher.Validate(); err != nil {
 		return err
@@ -73,7 +77,10 @@ func RunEnrollment(ctx context.Context, requestFile string, output io.Writer) er
 	if err = os.MkdirAll(c.StateDir, 0700); err != nil {
 		return err
 	}
-	if err = adminCommand(ctx, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
+	if err = protectPrivateDirectory(c.StateDir); err != nil {
+		return err
+	}
+	if err = adminCommand(ctx, c, "icacls.exe", c.StateDir, "/inheritance:r", "/grant:r", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
 		return err
 	}
 	lockDir := filepath.Join(c.StateDir, "setup", "enroll-lock")
@@ -240,12 +247,11 @@ func installPrerequisites(ctx context.Context, c HostConfig) error {
 			return err
 		}
 		cmd := exec.CommandContext(ctx, dest, "/install", "/quiet", "/norestart")
-		prepareCommand(cmd)
-		if err = cmd.Run(); err != nil {
+		if err = runLoggedCommand(ctx, c, "subprocess", cmd); err != nil {
 			var exit *exec.ExitError
 			// The runtime is usable after a 3010 result; record the reboot request
 			// but never reboot an operator's host as a side effect of deployment.
-			if !errors.As(err, &exit) || (exit.ExitCode() != 3010 && exit.ExitCode() != 1638) {
+			if !errors.As(err, &exit) || (exit.ExitCode() != 3010 && exit.ExitCode() != 1638) || hasCaptureFailure(err) {
 				return fmt.Errorf("Microsoft runtime installation failed: %w", err)
 			}
 			if exit.ExitCode() == 3010 {
@@ -265,9 +271,9 @@ func setupGameFirewall(ctx context.Context, c HostConfig, t Target) error {
 		return errors.New("explicit valid game/query ports are required for provisioning")
 	}
 	name := "dzdeploy game " + c.Target
-	_ = adminCommand(ctx, "netsh.exe", "advfirewall", "firewall", "delete", "rule", "name="+name)
+	_ = adminCommand(ctx, c, "netsh.exe", "advfirewall", "firewall", "delete", "rule", "name="+name)
 	ports := fmt.Sprintf("%d-%d,%d", t.GamePort, t.GamePort+3, t.QueryPort)
-	return adminCommand(ctx, "netsh.exe", "advfirewall", "firewall", "add", "rule", "name="+name, "dir=in", "action=allow", "protocol=UDP", "localport="+ports, "program="+filepath.Join(c.InstallDir, "DayZServer_x64.exe"))
+	return adminCommand(ctx, c, "netsh.exe", "advfirewall", "firewall", "add", "rule", "name="+name, "dir=in", "action=allow", "protocol=UDP", "localport="+ports, "program="+filepath.Join(c.InstallDir, "DayZServer_x64.exe"))
 }
 
 // Only this helper bridges SSH to the private service pipe. No secret appears

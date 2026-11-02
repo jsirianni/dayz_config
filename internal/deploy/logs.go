@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -30,13 +31,17 @@ type LogExcerpt struct {
 
 func ValidLogKind(kind string) bool {
 	switch kind {
-	case "console", "updates", "agent", "rpt", "script", "crash":
+	case "console", "updates", "subprocess", "agent", "rpt", "script", "crash":
 		return true
 	}
 	return false
 }
 
 func (r *Remote) LogSources(host HostConfig, kind string) ([]LogSource, error) {
+	return r.logSources(host, kind, false)
+}
+
+func (r *Remote) logSources(host HostConfig, kind string, archives bool) ([]LogSource, error) {
 	if !ValidLogKind(kind) {
 		return nil, errors.New("unrecognized log kind")
 	}
@@ -47,6 +52,8 @@ func (r *Remote) LogSources(host HostConfig, kind string) ([]LogSource, error) {
 		fixed = "server-console.log"
 	case "updates":
 		fixed = "updates.log"
+	case "subprocess":
+		fixed = "subprocess.log"
 	case "rpt", "script", "crash":
 		directory = path.Join(remoteInstall(host), "profiles")
 	}
@@ -58,16 +65,28 @@ func (r *Remote) LogSources(host HostConfig, kind string) ([]LogSource, error) {
 		return nil, err
 	}
 	var sources []LogSource
+	entryNames := map[string]bool{}
+	for _, entry := range entries {
+		if entry.Mode().IsRegular() {
+			entryNames[entry.Name()] = true
+		}
+	}
 	for _, file := range entries {
 		name := file.Name()
 		lower := strings.ToLower(name)
+		if archives && strings.HasSuffix(name, ".gz") && entryNames[strings.TrimSuffix(name, ".gz")] {
+			continue
+		}
 		if !file.Mode().IsRegular() || SafeRelative(name) != nil || path.Base(name) != name {
 			continue
 		}
 		match := name == fixed && fixed != ""
+		if archives && fixed != "" && rotatedLogName(name, fixed) {
+			match = true
+		}
 		switch kind {
 		case "agent":
-			match = lower == "agent-error.txt" || lower == "lifecycle-error.txt"
+			match = lower == "agent-error.txt" || lower == "lifecycle-error.txt" || lower == "capture-error.txt"
 		case "rpt":
 			match = strings.HasSuffix(lower, ".rpt")
 		case "script":
@@ -80,6 +99,12 @@ func (r *Remote) LogSources(host HostConfig, kind string) ([]LogSource, error) {
 		}
 	}
 	sort.Slice(sources, func(i, j int) bool {
+		if archives && fixed != "" {
+			if sources[i].Name == fixed || sources[j].Name == fixed {
+				return sources[i].Name == fixed && sources[j].Name != fixed
+			}
+			return sources[i].Name > sources[j].Name
+		}
 		if sources[i].Modified.Equal(sources[j].Modified) {
 			return sources[i].Name > sources[j].Name
 		}
@@ -102,8 +127,31 @@ func (r *Remote) ReadLog(source LogSource, lines int, completeOnly bool) (LogExc
 		return out, err
 	}
 	defer f.Close()
+	if strings.HasSuffix(source.Name, ".gz") {
+		if info.Size() > logreader.MaxArchiveBytes {
+			return out, errors.New("compressed log exceeds 64 MiB input limit; excerpt skipped")
+		}
+		out.Excerpt, err = logreader.CompressedTail(f, lines)
+		return out, err
+	}
 	out.Excerpt, err = logreader.Tail(f, info.Size(), lines, completeOnly)
 	return out, err
+}
+
+var rotatedTimestamp = regexp.MustCompile(`^\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}$`)
+
+func rotatedLogName(name, active string) bool {
+	base := strings.TrimSuffix(active, ".log") + "-"
+	name = strings.TrimSuffix(name, ".gz")
+	if !strings.HasPrefix(name, base) || !strings.HasSuffix(name, ".log") {
+		return false
+	}
+	stamp := strings.TrimSuffix(strings.TrimPrefix(name, base), ".log")
+	if !rotatedTimestamp.MatchString(stamp) {
+		return false
+	}
+	_, err := time.Parse("2006-01-02T15-04-05.000", stamp)
+	return err == nil
 }
 
 func (r *Remote) Logs(ctx context.Context, host HostConfig, kind string, lines int, follow bool, w io.Writer) error {

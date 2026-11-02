@@ -27,6 +27,19 @@ func (r *redactor) prepare(text string) {
 }
 
 func (r *redactor) line(line string) string {
+	if record, ok := DecodeRecord(line); ok {
+		record.Message = r.plainLine(record.Message)
+		encoded := encodeRecord(record)
+		if len(line) > maxLineBytes || len(encoded) > maxLineBytes {
+			record.Message = redactedLine
+			encoded = encodeRecord(record)
+		}
+		return encoded
+	}
+	return r.plainLine(line)
+}
+
+func (r *redactor) plainLine(line string) string {
 	upper := strings.ToUpper(line)
 	if strings.Contains(upper, "-----BEGIN ") && strings.Contains(upper, "PRIVATE KEY-----") {
 		r.private = true
@@ -44,7 +57,7 @@ func (r *redactor) line(line string) string {
 func CleanText(text string) string {
 	lines := strings.Split(text, "\n")
 	var r redactor
-	r.prepare(text)
+	r.prepareMessages(text)
 	for i, line := range lines {
 		lines[i] = r.line(line)
 	}
@@ -99,6 +112,15 @@ func Tail(r io.ReadSeeker, size int64, lines int, completeOnly bool) (Excerpt, e
 		out.Truncated = true
 	}
 	out.Text = CleanText(strings.Join(parts, ""))
+	if len(out.Text) > MaxBytes {
+		out.Text = out.Text[len(out.Text)-MaxBytes:]
+		if end := strings.IndexByte(out.Text, '\n'); end >= 0 {
+			out.Text = out.Text[end+1:]
+		} else {
+			out.Text = ""
+		}
+		out.Truncated = true
+	}
 	return out, nil
 }
 
@@ -139,8 +161,13 @@ func Summarize(text, source, session string) []Issue {
 	var issues []Issue
 	index := map[string]int{}
 	for _, line := range strings.Split(CleanText(text), "\n") {
+		errorStream := false
+		if record, ok := DecodeRecord(line); ok {
+			errorStream = record.Level == "error"
+			line = record.Message
+		}
 		lower := strings.ToLower(line)
-		if !strings.Contains(lower, "error") && !strings.Contains(lower, "exception") && !strings.Contains(lower, "warning") && !strings.HasPrefix(lower, "reason:") {
+		if !errorStream && !strings.Contains(lower, "error") && !strings.Contains(lower, "exception") && !strings.Contains(lower, "warning") && !strings.HasPrefix(lower, "reason:") {
 			continue
 		}
 		message := clockPrefix.ReplaceAllString(strings.TrimSpace(line), "")

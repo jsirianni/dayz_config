@@ -160,3 +160,15 @@ Run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-bootst
 CI also runs `scripts/test-bootstrap-windows-integration.ps1 -DisposableRunner` on disposable Windows Server 2022/2025 GitHub-hosted runners. It simulates unavailable Windows capabilities, downloads the real verified ZIP, starts the real SSH service, authenticates with an ephemeral test key, transfers a file using SFTP, and verifies a rerun preserves the host fingerprint. This test refuses to run on operator workstations and existing game servers. CI results demonstrate runner acceptance; target-server acceptance requires running the script on those servers.
 
 Baseline: 13 checks, no failures, three existing Deer Isle economy warnings. Local validation does not establish runtime behavior. Live rollout is deferred until YAML is populated. On a fresh staging VM verify that the script and one deploy command are sufficient, including in-command Steam prompts. Then verify copy-only PID preservation, clean restart/persistence, update/overlay ordering, managed deletion with stock/player data preserved, rollback, interrupted enrollment/SSH recovery, reboot startup without RDP, password-free VPP for allowlisted admins, and denial for unauthorized players. Then enroll each other host separately.
+
+## Subprocess output retention
+
+Host console, SteamCMD update, and installer/helper output use separate JSON Lines
+logs with independently configurable rotation under `host.logging.console`,
+`host.logging.steamcmd`, and `host.logging.subprocess`. Each defaults to 50 MiB,
+five backups, 30 days, and gzip compression. See `deploy.example.yaml` and
+[operator log workflows](operator-workflows.md#logs-and-diagnostics) for the record
+format, migration, limits, and diagnostics. Existing installations need an explicit
+agent upgrade to gain capture/rotation; configuration deployment alone does not
+replace the installed service. A separate authorized maintenance operation is
+required to activate binary or host-configuration changes.

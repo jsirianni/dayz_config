@@ -32,7 +32,8 @@ func lockHost(dir string) (func(), error) {
 	}
 	return func() { f.Close() }, nil
 }
-func prepareCommand(*exec.Cmd) {}
+func prepareCommand(*exec.Cmd)                  {}
+func lockProcessLog(dir string) (func(), error) { return lockHost(dir) }
 func processToken(pid int, exe string) (string, error) {
 	if err := syscall.Kill(pid, 0); err != nil {
 		return "", err

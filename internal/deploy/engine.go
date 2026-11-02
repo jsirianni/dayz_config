@@ -357,9 +357,13 @@ func (a *Agent) Process(ctx context.Context, req Request) (r Result) {
 	}
 	return
 }
-func RunAgent(ctx context.Context, c HostConfig, game Game) error {
+func RunAgent(ctx context.Context, c HostConfig, game Game) (resultErr error) {
 	if err := c.Validate(); err != nil {
 		return err
+	}
+	ctx, logs, ownsLogs := processLogSession(ctx, c)
+	if ownsLogs {
+		defer func() { resultErr = errors.Join(resultErr, logs.Close()) }()
 	}
 	if err := os.MkdirAll(c.StateDir, 0700); err != nil {
 		return err
@@ -382,7 +386,10 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 		return err
 	}
 	if game == nil {
-		game = &NativeGame{Config: store.Config}
+		game = &NativeGame{Config: store.Config, logs: logs}
+	}
+	if native, ok := game.(*NativeGame); ok {
+		native.logs = logs
 	}
 	a := &Agent{Store: store, Game: game}
 	if err = a.recoverRestore(ctx); err != nil {
@@ -447,6 +454,12 @@ func RunAgent(ctx context.Context, c HostConfig, game Game) error {
 			err = a.stop(stopCtx)
 			cancel()
 			return err
+		}
+		if native, ok := game.(*NativeGame); ok {
+			if captureErr := native.loggingError(); captureErr != nil && store.State.Error == "" {
+				store.State.Error = "console output capture failed: " + captureErr.Error()
+				_ = store.Save()
+			}
 		}
 		requests, err := os.ReadDir(filepath.Join(c.StateDir, "inbox"))
 		if err != nil {

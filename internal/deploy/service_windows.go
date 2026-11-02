@@ -127,12 +127,12 @@ func readServicePassword(env string) (string, error) {
 	}
 	return p, err
 }
-func adminCommand(ctx context.Context, name string, args ...string) error {
+func adminCommand(ctx context.Context, c HostConfig, name string, args ...string) error {
 	cmd := exec.CommandContext(ctx, name, args...)
-	prepareCommand(cmd)
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		return fmt.Errorf("%s: %w: %s", filepath.Base(name), err, strings.TrimSpace(string(out)))
+	tail := &commandTail{}
+	cmd.Stdout, cmd.Stderr = tail, tail
+	if err := runLoggedCommand(ctx, c, "subprocess", cmd); err != nil {
+		return fmt.Errorf("%s: %w: %s; see protected subprocess log", filepath.Base(name), err, strings.TrimSpace(tail.String()))
 	}
 	return nil
 }
@@ -140,21 +140,25 @@ func adminCommand(ctx context.Context, name string, args ...string) error {
 // protectServiceTree sets inheritable grants on the directory, then resets its
 // children to inherit them. Combining /inheritance:r with /T would strip file
 // ACLs: icacls applies (OI)(CI) grants only to directories, leaving files empty.
-func protectServiceTree(ctx context.Context, root, sid string) error {
-	if err := adminCommand(ctx, "icacls.exe", root, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)F", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
+func protectServiceTree(ctx context.Context, c HostConfig, root, sid string) error {
+	if err := adminCommand(ctx, c, "icacls.exe", root, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)F", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/Q"); err != nil {
 		return err
 	}
 	entries, err := os.ReadDir(root)
 	if err != nil || len(entries) == 0 {
 		return err
 	}
-	return adminCommand(ctx, "icacls.exe", filepath.Join(root, "*"), "/reset", "/T", "/Q")
+	return adminCommand(ctx, c, "icacls.exe", filepath.Join(root, "*"), "/reset", "/T", "/Q")
 }
 
-func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, error) {
+func Bootstrap(ctx context.Context, opt BootstrapOptions) (result map[string]string, resultErr error) {
 	c := opt.Config
 	if err := c.Validate(); err != nil {
 		return nil, err
+	}
+	ctx, logs, ownsLogs := processLogSession(ctx, c)
+	if ownsLogs {
+		defer func() { resultErr = errors.Join(resultErr, logs.Close()) }()
 	}
 	if !windows.GetCurrentProcessToken().IsElevated() {
 		return nil, errors.New("bootstrap must run from an elevated Windows terminal")
@@ -210,6 +214,9 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		if err = os.MkdirAll(p, 0700); err != nil {
 			return nil, err
 		}
+	}
+	if err := protectPrivateDirectory(c.StateDir); err != nil {
+		return nil, err
 	}
 	store, err := OpenStore(c)
 	if err != nil {
@@ -269,23 +276,23 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		}
 	}()
 	// State includes the binary, RCon secret and backups. Restrict inherited access.
-	if err = protectServiceTree(ctx, c.StateDir, sid.String()); err != nil {
+	if err = protectServiceTree(ctx, c, c.StateDir, sid.String()); err != nil {
 		return nil, err
 	}
 	for _, p := range []string{c.InstallDir, filepath.Dir(c.SteamCMD), c.WorkshopDir} {
-		if err = adminCommand(ctx, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
+		if err = adminCommand(ctx, c, "icacls.exe", p, "/grant", "*"+sid.String()+":(OI)(CI)M", "/T", "/Q"); err != nil {
 			return nil, err
 		}
 	}
 	if opt.Virtual {
-		if err = protectServiceTree(ctx, filepath.Dir(c.SteamCMD), sid.String()); err != nil {
+		if err = protectServiceTree(ctx, c, filepath.Dir(c.SteamCMD), sid.String()); err != nil {
 			return nil, err
 		}
 	}
 	if err = setupRCon(c); err != nil {
 		return nil, err
 	}
-	if err = protectServiceTree(ctx, filepath.Join(c.InstallDir, "battleye"), sid.String()); err != nil {
+	if err = protectServiceTree(ctx, c, filepath.Join(c.InstallDir, "battleye"), sid.String()); err != nil {
 		return nil, err
 	}
 	for _, suffix := range []string{"", ".dzdeploy-backup"} {
@@ -293,7 +300,7 @@ func Bootstrap(ctx context.Context, opt BootstrapOptions) (map[string]string, er
 		if _, err = os.Stat(p); os.IsNotExist(err) {
 			continue
 		}
-		if err = adminCommand(ctx, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
+		if err = adminCommand(ctx, c, "icacls.exe", p, "/inheritance:r", "/grant:r", "*"+sid.String()+":F", "*S-1-5-18:F", "*S-1-5-32-544:F", "/Q"); err != nil {
 			return nil, err
 		}
 	}
@@ -395,6 +402,7 @@ func grantServiceLogon(sid *windows.SID) error {
 }
 
 func setupSSH(ctx context.Context, opt BootstrapOptions, sid string) (string, error) {
+	c := opt.Config
 	if opt.SSHPort < 1 || opt.SSHPort > 65535 || opt.SSHSources == "" || opt.PublicKeyFile == "" {
 		return "", errors.New("SSH setup requires --ssh-port, --ssh-sources and --public-key")
 	}
@@ -416,11 +424,11 @@ func setupSSH(ctx context.Context, opt BootstrapOptions, sid string) (string, er
 	sshDir := filepath.Join(os.Getenv("WINDIR"), "System32", "OpenSSH")
 	sshd := filepath.Join(sshDir, "sshd.exe")
 	if _, err = os.Stat(sshd); os.IsNotExist(err) {
-		if err = adminCommand(ctx, "dism.exe", "/Online", "/Add-Capability", "/CapabilityName:OpenSSH.Server~~~~0.0.1.0", "/NoRestart"); err != nil {
+		if err = adminCommand(ctx, c, "dism.exe", "/Online", "/Add-Capability", "/CapabilityName:OpenSSH.Server~~~~0.0.1.0", "/NoRestart"); err != nil {
 			return "", err
 		}
 	}
-	if err = adminCommand(ctx, filepath.Join(sshDir, "ssh-keygen.exe"), "-A"); err != nil {
+	if err = adminCommand(ctx, c, filepath.Join(sshDir, "ssh-keygen.exe"), "-A"); err != nil {
 		return "", err
 	}
 	programData := os.Getenv("ProgramData")
@@ -432,7 +440,7 @@ func setupSSH(ctx context.Context, opt BootstrapOptions, sid string) (string, er
 	if err = AtomicWrite(keyFile, ssh.MarshalAuthorizedKey(key), 0600); err != nil {
 		return "", err
 	}
-	if err = adminCommand(ctx, "icacls.exe", keysDir, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)R", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
+	if err = adminCommand(ctx, c, "icacls.exe", keysDir, "/inheritance:r", "/grant:r", "*"+sid+":(OI)(CI)R", "*S-1-5-18:(OI)(CI)F", "*S-1-5-32-544:(OI)(CI)F", "/T", "/Q"); err != nil {
 		return "", err
 	}
 	cfgPath := filepath.Join(programData, "ssh", "sshd_config")
@@ -483,14 +491,14 @@ func setupSSH(ctx context.Context, opt BootstrapOptions, sid string) (string, er
 	if err = AtomicWrite(cfgPath, []byte(text), 0600); err != nil {
 		return "", err
 	}
-	if err = adminCommand(ctx, sshd, "-t", "-f", cfgPath); err != nil {
+	if err = adminCommand(ctx, c, sshd, "-t", "-f", cfgPath); err != nil {
 		_ = AtomicWrite(cfgPath, old, 0600)
 		return "", err
 	}
 	// Disable the standard broad installation rule before installing the scoped rule.
-	_ = adminCommand(ctx, "netsh.exe", "advfirewall", "firewall", "set", "rule", "name=OpenSSH SSH Server (sshd)", "new", "enable=no")
-	_ = adminCommand(ctx, "netsh.exe", "advfirewall", "firewall", "delete", "rule", "name=dzdeploy SSH")
-	if err = adminCommand(ctx, "netsh.exe", "advfirewall", "firewall", "add", "rule", "name=dzdeploy SSH", "dir=in", "action=allow", "protocol=TCP", fmt.Sprintf("localport=%d", opt.SSHPort), "remoteip="+opt.SSHSources, "program="+sshd); err != nil {
+	_ = adminCommand(ctx, c, "netsh.exe", "advfirewall", "firewall", "set", "rule", "name=OpenSSH SSH Server (sshd)", "new", "enable=no")
+	_ = adminCommand(ctx, c, "netsh.exe", "advfirewall", "firewall", "delete", "rule", "name=dzdeploy SSH")
+	if err = adminCommand(ctx, c, "netsh.exe", "advfirewall", "firewall", "add", "rule", "name=dzdeploy SSH", "dir=in", "action=allow", "protocol=TCP", fmt.Sprintf("localport=%d", opt.SSHPort), "remoteip="+opt.SSHSources, "program="+sshd); err != nil {
 		return "", err
 	}
 	m, err := mgr.Connect()
