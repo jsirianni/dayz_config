@@ -103,8 +103,8 @@ func (r *Remote) collectDiagnostics(ctx context.Context, alias string, since tim
 		stamp = out.Health.Snapshot.Processes[0].SessionStamp
 	}
 	total := 0
-	for _, kind := range []string{"console", "updates", "agent", "rpt", "script", "crash"} {
-		sources, err := r.LogSources(host, kind)
+	for _, kind := range []string{"console", "updates", "subprocess", "agent", "rpt", "script", "crash"} {
+		sources, err := r.logSources(host, kind, true)
 		if err != nil {
 			out.Warnings = append(out.Warnings, kind+": source unavailable")
 			continue
@@ -132,7 +132,7 @@ func (r *Remote) collectDiagnostics(ctx context.Context, alias string, since tim
 				snippet.Error = logreader.CleanText(e.Error())
 			}
 			snippet.Session = "unknown"
-			if kind == "console" || kind == "updates" || kind == "agent" {
+			if kind == "console" || kind == "updates" || kind == "subprocess" || kind == "agent" {
 				snippet.Session = "mixed"
 			} else if stamp != "" {
 				snippet.Session = "historical"

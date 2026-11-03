@@ -184,23 +184,29 @@ type ClientConfig struct {
 	Targets map[string]Endpoint `json:"targets" yaml:"targets"`
 }
 type HostConfig struct {
-	Version            int    `json:"version" yaml:"version,omitempty"`
-	Target             string `json:"target" yaml:"target,omitempty"`
-	InstallDir         string `json:"installDir" yaml:"install_dir"`
-	StateDir           string `json:"stateDir" yaml:"state_dir"`
-	SteamCMD           string `json:"steamcmd" yaml:"steamcmd"`
-	WorkshopDir        string `json:"workshopDir" yaml:"workshop_dir"`
-	SteamUser          string `json:"steamUser" yaml:"steam_user"`
-	RConAddress        string `json:"rconAddress" yaml:"rcon_address"`
-	RConPasswordFile   string `json:"rconPasswordFile" yaml:"rcon_password_file"`
-	QueryAddress       string `json:"queryAddress" yaml:"query_address"`
-	PublicQueryAddress string `json:"publicQueryAddress,omitempty" yaml:"public_query_address,omitempty"`
-	ShutdownSeconds    int    `json:"shutdownSeconds" yaml:"shutdown_seconds,omitempty"`
-	UpdateSeconds      int    `json:"updateSeconds" yaml:"update_seconds,omitempty"`
-	StartupSeconds     int    `json:"startupSeconds" yaml:"startup_seconds,omitempty"`
+	Logging            LoggingConfig `json:"logging" yaml:"logging,omitempty"`
+	Version            int           `json:"version" yaml:"version,omitempty"`
+	Target             string        `json:"target" yaml:"target,omitempty"`
+	InstallDir         string        `json:"installDir" yaml:"install_dir"`
+	StateDir           string        `json:"stateDir" yaml:"state_dir"`
+	SteamCMD           string        `json:"steamcmd" yaml:"steamcmd"`
+	WorkshopDir        string        `json:"workshopDir" yaml:"workshop_dir"`
+	SteamUser          string        `json:"steamUser" yaml:"steam_user"`
+	RConAddress        string        `json:"rconAddress" yaml:"rcon_address"`
+	RConPasswordFile   string        `json:"rconPasswordFile" yaml:"rcon_password_file"`
+	QueryAddress       string        `json:"queryAddress" yaml:"query_address"`
+	PublicQueryAddress string        `json:"publicQueryAddress,omitempty" yaml:"public_query_address,omitempty"`
+	ShutdownSeconds    int           `json:"shutdownSeconds" yaml:"shutdown_seconds,omitempty"`
+	UpdateSeconds      int           `json:"updateSeconds" yaml:"update_seconds,omitempty"`
+	StartupSeconds     int           `json:"startupSeconds" yaml:"startup_seconds,omitempty"`
 }
 
 func (c *HostConfig) Validate() error {
+	for _, policy := range []*RotationConfig{&c.Logging.Console, &c.Logging.SteamCMD, &c.Logging.Subprocess} {
+		if err := policy.defaults(); err != nil {
+			return err
+		}
+	}
 	if c.Version != Protocol {
 		return VersionError(c.Version)
 	}

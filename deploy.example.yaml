@@ -25,6 +25,23 @@ targets:
       shutdown_seconds: 180
       update_seconds: 1800
       startup_seconds: 600
+      # Each log has independent rotation settings. Omitted values use these defaults.
+      logging:
+        console:
+          max_size_mb: 50
+          max_backups: 5
+          max_age_days: 30
+          compress: true
+        steamcmd:
+          max_size_mb: 50
+          max_backups: 5
+          max_age_days: 30
+          compress: true
+        subprocess:
+          max_size_mb: 50
+          max_backups: 5
+          max_age_days: 30
+          compress: true
   nasdara:
     address: 'REPLACE_NASDARA_HOST:22'
     user: Administrator

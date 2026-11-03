@@ -70,6 +70,25 @@ func lockHost(dir string) (func(), error) {
 func prepareCommand(cmd *exec.Cmd) {
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true, CreationFlags: windows.CREATE_NO_WINDOW}
 }
+
+// Byte-range locking permits ACL maintenance to open the lock file while still
+// excluding other log writers (unlike the agent's deny-sharing instance lock).
+func lockProcessLog(dir string) (func(), error) {
+	p, err := windows.UTF16PtrFromString(filepath.Join(dir, "writer.lock"))
+	if err != nil {
+		return nil, err
+	}
+	h, err := windows.CreateFile(p, windows.GENERIC_READ|windows.GENERIC_WRITE, windows.FILE_SHARE_READ|windows.FILE_SHARE_WRITE, nil, windows.OPEN_ALWAYS, windows.FILE_ATTRIBUTE_NORMAL, 0)
+	if err != nil {
+		return nil, err
+	}
+	var overlapped windows.Overlapped
+	if err = windows.LockFileEx(h, windows.LOCKFILE_EXCLUSIVE_LOCK|windows.LOCKFILE_FAIL_IMMEDIATELY, 0, 1, 0, &overlapped); err != nil {
+		windows.CloseHandle(h)
+		return nil, err
+	}
+	return func() { windows.CloseHandle(h) }, nil
+}
 func processToken(pid int, exe string) (string, error) {
 	h, err := windows.OpenProcess(windows.PROCESS_QUERY_LIMITED_INFORMATION, false, uint32(pid))
 	if err != nil {

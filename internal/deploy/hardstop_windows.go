@@ -102,7 +102,7 @@ func (g *NativeGame) HardStop(ctx context.Context, state State) error {
 		return err
 	}
 	if code != 259 {
-		return nil
+		return g.waitCapture(ctx)
 	}
 	if err = windows.TerminateProcess(h, 1); err != nil {
 		return err
@@ -113,7 +113,7 @@ func (g *NativeGame) HardStop(ctx context.Context, state State) error {
 			return e
 		}
 		if result == windows.WAIT_OBJECT_0 {
-			return nil
+			return g.waitCapture(ctx)
 		}
 		if result != uint32(windows.WAIT_TIMEOUT) {
 			return fmt.Errorf("unexpected process wait result %d", result)

@@ -3,6 +3,7 @@ package deploy
 import (
 	"archive/zip"
 	"bytes"
+	"compress/gzip"
 	"context"
 	"encoding/json"
 	"io"
@@ -16,6 +17,41 @@ import (
 	"github.com/jsirianni/dayz_config/internal/lifecycle"
 	"github.com/jsirianni/dayz_config/internal/logreader"
 )
+
+func TestDiagnosticSourcesRecognizeArchivesAndReadGzip(t *testing.T) {
+	endpoint, root := sshFixture(t)
+	host := testConfig(t)
+	writeTest(t, root, "logs/server-console.log", "active\n")
+	writeTest(t, root, "logs/server-console-2026-11-01T00-00-00.000.log", "legacy\n")
+	var compressed bytes.Buffer
+	gz := gzip.NewWriter(&compressed)
+	_, _ = gz.Write([]byte("password=archive-sensitive\narchived safe line\n"))
+	_ = gz.Close()
+	writeTest(t, root, "logs/server-console-2026-11-02T00-00-00.000.log.gz", compressed.String())
+	writeTest(t, root, "logs/server-console-secrets.log", "not permitted")
+	writeTest(t, root, "logs/server-console-2026-99-99T00-00-00.000.log", "not permitted")
+	writeTest(t, root, "logs/subprocess.log", "helper\n")
+	r, err := Connect(context.Background(), endpoint)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer r.Close()
+	active, err := r.LogSources(host, "console")
+	if err != nil || len(active) != 1 {
+		t.Fatal(active, err)
+	}
+	all, err := r.logSources(host, "console", true)
+	if err != nil || len(all) != 3 || all[0].Name != "server-console.log" {
+		t.Fatal(all, err)
+	}
+	snippet, err := r.ReadLog(all[1], 20, false)
+	if err != nil || strings.Contains(snippet.Text, "archive-sensitive") || !strings.Contains(snippet.Text, "archived safe line") {
+		t.Fatal(snippet, err)
+	}
+	if sources, err := r.LogSources(host, "subprocess"); err != nil || len(sources) != 1 {
+		t.Fatal(sources, err)
+	}
+}
 
 func TestLogAllowlistRedactionAndNoRemoteWrites(t *testing.T) {
 	endpoint, root := sshFixture(t)

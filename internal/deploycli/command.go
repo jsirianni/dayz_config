@@ -52,7 +52,7 @@ func usage() {
 
   dzdeploy health <server|all> [--since 24h]
   dzdeploy history <server|all> [--since 24h]
-  dzdeploy logs <server> [--kind console|updates|agent|rpt|script|crash] [--tail 200] [--follow]
+  dzdeploy logs <server> [--kind console|updates|subprocess|agent|rpt|script|crash] [--tail 200] [--follow]
   dzdeploy diagnose <server|all> [--since 24h] [--output directory]
   dzdeploy backup create <server> [--stop] [--dry-run] [--no-wait]
   dzdeploy backup list <server>

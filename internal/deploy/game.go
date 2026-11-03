@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	battleye "github.com/multiplay/go-battleye"
@@ -25,6 +26,10 @@ type Game interface {
 	Healthy(context.Context, Target) (*DZSAReport, error)
 }
 type NativeGame struct {
+	logs *processLogs
+	captureMu      sync.Mutex
+	captureDone    chan struct{}
+	captureErr     error
 	Config         HostConfig
 	nextDZSA       time.Time
 	lastDZSAError  error
@@ -72,7 +77,7 @@ func (g *NativeGame) rcon(command string) error {
 }
 func (g *NativeGame) Stop(ctx context.Context, s State) error {
 	if !g.Alive(s) {
-		return nil
+		return g.waitCapture(ctx)
 	}
 	if err := g.rcon("version"); err != nil {
 		return err
@@ -88,21 +93,12 @@ func (g *NativeGame) Stop(ctx context.Context, s State) error {
 		case <-ticker.C:
 		}
 	}
-	return nil
+	return g.waitCapture(ctx)
 }
 func (g *NativeGame) run(ctx context.Context, exe string, args ...string) error {
-	log, err := os.OpenFile(filepath.Join(g.Config.StateDir, "logs", "updates.log"), os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
-	if err != nil {
-		return err
-	}
-	defer log.Close()
 	cmd := exec.CommandContext(ctx, exe, args...)
 	cmd.Dir = filepath.Dir(exe)
-	prepareCommand(cmd)
-	cmd.Stdout = log
-	cmd.Stderr = log
-	cmd.Stdin = nil
-	if err = cmd.Run(); err != nil {
+	if err := runLoggedCommand(ctx, g.Config, "updates", cmd); err != nil {
 		return fmt.Errorf("%s failed; see protected host update log: %w", filepath.Base(exe), err)
 	}
 	return nil
@@ -312,22 +308,40 @@ func (g *NativeGame) Launch(t Target) (int, string, error) {
 		mods = append(mods, m.Folder)
 	}
 	args := []string{"-config=" + filepath.Join(g.Config.InstallDir, "serverDZ.cfg"), fmt.Sprintf("-port=%d", t.GamePort), "-profiles=" + filepath.Join(g.Config.InstallDir, "profiles"), "-dologs", "-adminlog", "-netlog", "-freezecheck", "-BEpath=" + filepath.Join(g.Config.InstallDir, "battleye"), "-mod=" + strings.Join(mods, ";")}
-	log, err := os.OpenFile(filepath.Join(g.Config.StateDir, "logs", "server-console.log"), os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+	g.captureMu.Lock()
+	g.captureErr = nil
+	g.captureMu.Unlock()
+	logContext:=context.Background()
+	if g.logs!=nil {logContext=context.WithValue(logContext,processLogsKey{},g.logs)}
+	capture, err := captureFromContext(logContext, g.Config, "console", func(err error) {
+		g.captureMu.Lock()
+		g.captureErr = err
+		g.captureMu.Unlock()
+		captureErrorFile(g.Config, "console", err)
+	})
 	if err != nil {
 		return 0, "", err
 	}
 	cmd := exec.Command(exe, args...)
 	cmd.Dir = g.Config.InstallDir
-	cmd.Stdout = log
-	cmd.Stderr = log
+	capture.attach(cmd)
 	prepareCommand(cmd)
 	if err = cmd.Start(); err != nil {
-		log.Close()
-		return 0, "", err
+		return 0, "", errors.Join(err, capture.Close())
 	}
+	done := make(chan struct{})
+	g.captureMu.Lock()
+	g.captureDone = done
+	g.captureMu.Unlock()
 	pid := cmd.Process.Pid
 	token, err := processToken(pid, exe)
-	go func() { _ = cmd.Wait(); log.Close() }()
+	go func() {
+		defer close(done)
+		if err := cmd.Wait(); errors.Is(err, exec.ErrWaitDelay) {
+			capture.fail(err)
+		}
+		_ = capture.Close()
+	}()
 	return pid, token, err
 }
 
@@ -354,4 +368,25 @@ func (g *NativeGame) Healthy(ctx context.Context, t Target) (*DZSAReport, error)
 		return nil, err
 	}
 	return g.checkDZSA(ctx, t, hostname)
+}
+
+// waitCapture makes managed shutdown wait for final output to drain.
+func (g *NativeGame) waitCapture(ctx context.Context) error {
+	g.captureMu.Lock()
+	done := g.captureDone
+	g.captureMu.Unlock()
+	if done == nil {
+		return nil
+	}
+	select {
+	case <-done:
+		return nil
+	case <-ctx.Done():
+		return fmt.Errorf("console output drain: %w", ctx.Err())
+	}
+}
+func (g *NativeGame) loggingError() error {
+	g.captureMu.Lock()
+	defer g.captureMu.Unlock()
+	return g.captureErr
 }

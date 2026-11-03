@@ -133,7 +133,7 @@ func (f *Follower) observe(fragment []byte) {
 func (f *Follower) consume(data []byte) (string, bool) {
 	data = append(f.partial, data...)
 	f.partial = nil
-	f.redactor.prepare(string(data))
+	f.redactor.prepareMessages(string(data))
 	var out strings.Builder
 	truncated := false
 	for len(data) > 0 {
