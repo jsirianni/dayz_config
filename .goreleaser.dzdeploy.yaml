@@ -1,0 +1,15 @@
+version: 2
+project_name: dzdeploy
+dist: .tools/release
+# Build only: prefixed tags and GitHub publication are handled by CI, without Pro.
+snapshot:
+  version_template: '{{ .Env.DZDEPLOY_VERSION }}'
+builds:
+  - id: dzdeploy
+    main: ./cmd/dzdeploy
+    binary: dzdeploy
+    env: [CGO_ENABLED=0]
+    goos: [windows, linux]
+    goarch: [amd64, arm64]
+    flags: [-trimpath, -buildvcs=false]
+    ldflags: [-s -w]

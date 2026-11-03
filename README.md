@@ -18,7 +18,7 @@ DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients manag
 
 Build: `go build -o .tools/bin/ ./cmd/dzdeploy`. Populate the ignored `deploy.yaml` using `deploy.example.yaml`, then follow [the deployment runbook](docs/deployment.md). Routine deployment uses native Go SSH/SFTP and a Windows service, with no PowerShell dependency.
 
-Fresh Windows servers need two provisioning steps: copy only [bootstrap-windows.ps1](scripts/bootstrap-windows.ps1) to the server and run it as Administrator with the allowed source network, then run `dzdeploy deploy <target> --restart` on the client. The script already embeds the deployment client's public key. Deployment installs prerequisites, handles Steam login prompts, trusts the SSH host on first connection, and enrolls the Windows service automatically. Portable client packages are built with `go run ./cmd/dzdeploy-package` and published as CI artifacts.
+Fresh Windows servers need two provisioning steps: copy only [bootstrap-windows.ps1](scripts/bootstrap-windows.ps1) to the server and run it as Administrator with the allowed source network, then run `dzdeploy deploy <target> --restart` on the client. The script already embeds the deployment client's public key. Deployment installs prerequisites, handles Steam login prompts, trusts the SSH host on first connection, and enrolls the Windows service automatically. Portable Windows/Linux amd64 and arm64 client packages are available as CI preview artifacts and versioned [GitHub Releases](https://github.com/jsirianni/dayz_config/releases) named `dzdeploy X.Y.Z`. See [download and release instructions](docs/deployment.md#download-a-release). Local source packaging remains `go run ./cmd/dzdeploy-package`.
 
 ```text
 dzdeploy doctor nasdara-staging

@@ -2,6 +2,7 @@ name: dzdeploy
 on:
   push:
     branches: [main]
+    tags: ['dzdeploy/v*']
   pull_request:
     branches: [main, 'codex/**']
 permissions:
@@ -21,15 +22,11 @@ jobs:
       - run: go test ./...
       - run: go vet ./...
       - run: go build -o .tools/bin/ ./cmd/dzdeploy
+      - run: python -m unittest discover -s scripts -p 'test_dzdeploy_release.py'
       - name: Test SSH bootstrap with mocked Windows facilities
         if: runner.os == 'Windows'
         shell: powershell
         run: .\scripts\test-bootstrap-windows.ps1
-      - run: go run ./cmd/dzdeploy-package
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dzdeploy-${{ runner.os }}
-          path: .tools/packages/*.zip
   bootstrap-integration:
     strategy:
       fail-fast: false
@@ -70,3 +67,88 @@ jobs:
         run: go test ./internal/deploy -run '^TestOperatorServiceIntegration$' -count=1 -v -timeout 10m
         env:
           DZDEPLOY_OPERATOR_INTEGRATION: '1'
+  package:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.3'
+      - name: Select release or preview version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(python scripts/dzdeploy-release.py version --ref "$GITHUB_REF" --sha "$GITHUB_SHA")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Require release commit on main
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          args: check --config .goreleaser.dzdeploy.yaml
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.19.0
+          # OSS build-only mode avoids prefixed-tag parsing and never publishes.
+          args: build --snapshot --clean --config .goreleaser.dzdeploy.yaml
+        env:
+          DZDEPLOY_VERSION: ${{ steps.version.outputs.version }}
+      - name: Package and verify all clients
+        env:
+          PACKAGE_VERSION: ${{ steps.version.outputs.version }}
+        run: python scripts/dzdeploy-release.py package --version "$PACKAGE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dzdeploy-packages
+          path: .tools/packages/*
+          if-no-files-found: error
+  package-smoke:
+    needs: package
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dzdeploy-packages
+          path: .tools/packages
+      - name: Verify packages and run native amd64 client
+        env:
+          PACKAGE_VERSION: ${{ needs.package.outputs.version }}
+        shell: bash
+        run: python scripts/dzdeploy-release.py verify --version "$PACKAGE_VERSION" --smoke
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/dzdeploy/v')
+    needs: [test, bootstrap-integration, race-and-vulnerabilities, operator-integration, package, package-smoke]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: dzdeploy-release-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: dzdeploy-packages
+          path: .tools/packages
+      - name: Upload draft, verify downloaded assets, and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/dzdeploy-release.py publish --ref "$GITHUB_REF" --repository "$GITHUB_REPOSITORY"

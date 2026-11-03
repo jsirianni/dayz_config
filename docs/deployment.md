@@ -8,7 +8,58 @@ go build -o .tools/bin/ ./cmd/dzdeploy
 
 Windows produces `.tools/bin/dzdeploy.exe`; Linux produces `.tools/bin/dzdeploy`. These are the only supported client platforms. Add the directory to PATH or use its full path. The module selects Go 1.27.3. Go is not needed to run the compiled executable. Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
 
-For a portable distribution containing the client, Windows host companion, SSH script, example YAML, and checksums, run `go run ./cmd/dzdeploy-package`. `--os windows|linux --arch amd64|arm64` selects the client platform. CI publishes Windows/Linux ZIP artifacts. Keep `agents/windows-amd64/dzdeploy.exe` beside the extracted Linux client; Windows amd64 clients upload their own executable. Source builds can select another companion through YAML's optional `agent_binary` path.
+For a portable distribution containing the client, Windows host companion, SSH script, example YAML, and checksums, run `go run ./cmd/dzdeploy-package`. `--os windows|linux --arch amd64|arm64` selects the client platform. Keep `agents/windows-amd64/dzdeploy.exe` beside extracted Linux and Windows arm64 clients; Windows amd64 clients upload their own executable. Source builds can select another companion through YAML's optional `agent_binary` path.
+
+### Download a release
+
+Open [GitHub Releases](https://github.com/jsirianni/dayz_config/releases) and select a release named `dzdeploy X.Y.Z` with tag `dzdeploy/vX.Y.Z`. Select the ZIP matching the **client** computer, not the server: `dzdeploy_X.Y.Z_windows_amd64.zip`, `windows_arm64.zip`, `linux_amd64.zip`, or `linux_arm64.zip`. Every package includes the Windows amd64 host companion. Go is not required to use these downloads; the client still needs Git, a repository checkout, and its private configuration/SSH credentials.
+
+Download `checksums.txt` with the ZIP and verify the archive before extracting. For example, in PowerShell, after downloading version 1.2.3:
+
+```powershell
+$archiveName = 'dzdeploy_1.2.3_windows_amd64.zip'
+$expectedHash = ((Get-Content .\checksums.txt | Where-Object { $_.EndsWith("  $archiveName") }) -split '\s+')[0]
+if (!$expectedHash -or (Get-FileHash -LiteralPath $archiveName -Algorithm SHA256).Hash -ne $expectedHash) { throw 'Archive checksum mismatch' }
+Expand-Archive -LiteralPath $archiveName -DestinationPath .\dzdeploy
+.\dzdeploy\dzdeploy.exe version
+```
+
+On Linux, download the matching ZIP and `checksums.txt`, then run:
+
+```sh
+grep '  dzdeploy_1.2.3_linux_amd64.zip$' checksums.txt | sha256sum --check --strict -
+unzip dzdeploy_1.2.3_linux_amd64.zip -d dzdeploy
+chmod +x dzdeploy/dzdeploy
+./dzdeploy/dzdeploy version
+```
+
+Use the extracted client with `--repo /path/to/dayz_config`, preserving its companion directory. `checksums.json` inside each ZIP records the deployment protocol and SHA-256 for every payload file. PR and `main` builds provide the same four packages as the `dzdeploy-packages` Actions artifact, using `0.0.0-dev.<commit>` versions; these previews do not publish releases. The `version` command reports the deployment protocol; the release tag and archive filename identify the client release.
+
+### Publish a client release
+
+After merging the implementation and verifying CI, a maintainer can publish a stable release from a clean, current `main` checkout. Choose an unused semantic version:
+
+```sh
+git switch main
+git pull --ff-only
+git tag -a dzdeploy/v1.2.3 -m 'dzdeploy 1.2.3'
+git push origin dzdeploy/v1.2.3
+```
+
+Only `dzdeploy/vMAJOR.MINOR.PATCH` is accepted; leading zeros and prerelease suffixes are rejected. Tags must point to commits on `main`. The notifier retains its independent `v*` tags. CI runs the existing tests, bootstrap and operator integration, race/vulnerability checks, and package checks before publication. Pinned GoReleaser OSS builds all four clients in build-only snapshot mode, and the existing portable packager consumes those exact binaries. GitHub CLI publishes under the original prefixed tag, avoiding a GoReleaser Pro dependency.
+
+Publication uploads to a draft, downloads and verifies every asset, then publishes with `--latest=false`, preserving the notifier's repository-wide latest release. Failed publication leaves a draft for inspection and a workflow rerun; existing published releases are never overwritten. No populated `deploy.yaml`, private keys, runtime credentials, or server payloads are included. Publishing does not deploy or restart servers, change ports, or relax the clean-main deployment gate.
+
+For local release-build verification, use GoReleaser v2.19.0 and Python 3.10+ from the repository root. Set `DZDEPLOY_VERSION=1.2.3` in your shell, then run:
+
+```sh
+goreleaser check --config .goreleaser.dzdeploy.yaml
+goreleaser build --snapshot --clean --config .goreleaser.dzdeploy.yaml
+python scripts/dzdeploy-release.py package --version 1.2.3 --directory .tools/release-packages
+python scripts/dzdeploy-release.py verify --version 1.2.3 --directory .tools/release-packages --smoke
+```
+
+The package output directory must be empty. The packager's optional `--client-binary` and `--agent-binary` flags must be supplied together to consume prebuilt executables; `--version` adds a version to the archive filename. Its original source-build invocation and unversioned filenames remain supported.
 
 `deploy.yaml` is the single user-maintained configuration file. A local placeholder copy is provided; fresh clones should copy `deploy.example.yaml` to `deploy.yaml`. Both that populated file and `.deploy/` are ignored by Git. Fill the three host addresses, SSH sources, paths, Steam account names, and verified listener ports. Unknown fields, duplicate keys, multiple documents, and unsupported aliases/versions are rejected.
 

@@ -10,25 +10,42 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"runtime"
+	"sort"
 	"strings"
 
 	"github.com/jsirianni/dayz_config/internal/deploy"
 )
 
 func main() {
-	if err := run(); err != nil {
+	if err := run(os.Args[1:]); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
-func run() error {
-	platform := flag.String("os", runtime.GOOS, "client OS")
-	arch := flag.String("arch", runtime.GOARCH, "client architecture")
-	output := flag.String("output", ".tools/packages", "output directory")
-	flag.Parse()
+func run(args []string) error {
+	flags := flag.NewFlagSet("dzdeploy-package", flag.ContinueOnError)
+	platform := flags.String("os", runtime.GOOS, "client OS")
+	arch := flags.String("arch", runtime.GOARCH, "client architecture")
+	output := flags.String("output", ".tools/packages", "output directory")
+	version := flags.String("version", "", "optional archive version")
+	clientBinary := flags.String("client-binary", "", "prebuilt client (requires --agent-binary)")
+	agentBinary := flags.String("agent-binary", "", "prebuilt Windows amd64 companion (requires --client-binary)")
+	if err := flags.Parse(args); err != nil {
+		return err
+	}
+	if flags.NArg() != 0 {
+		return fmt.Errorf("unexpected positional arguments")
+	}
 	if !supportedClient(*platform, *arch) {
 		return fmt.Errorf("unsupported client platform")
+	}
+	if (*clientBinary == "") != (*agentBinary == "") {
+		return fmt.Errorf("--client-binary and --agent-binary must be supplied together")
+	}
+	if *version != "" && !regexp.MustCompile(`^[0-9A-Za-z][0-9A-Za-z.+-]*$`).MatchString(*version) {
+		return fmt.Errorf("invalid archive version")
 	}
 	if err := os.MkdirAll(*output, 0700); err != nil {
 		return err
@@ -67,23 +84,38 @@ func run() error {
 		clientName += ".exe"
 	}
 	client := filepath.Join(stage, clientName)
-	if err = build(*platform, *arch, client); err != nil {
-		return err
-	}
 	companion := filepath.Join(stage, "agent.exe")
-	if err = build("windows", "amd64", companion); err != nil {
-		return err
+	if *clientBinary != "" {
+		client, companion = *clientBinary, *agentBinary
+	} else {
+		if err = build(*platform, *arch, client); err != nil {
+			return err
+		}
+		if err = build("windows", "amd64", companion); err != nil {
+			return err
+		}
 	}
 	files := map[string]string{clientName: client, "agents/windows-amd64/dzdeploy.exe": companion, "bootstrap-windows.ps1": "scripts/bootstrap-windows.ps1", "deploy.example.yaml": "deploy.example.yaml", "deployment.md": "docs/deployment.md", "operator-workflows.md": "docs/operator-workflows.md"}
-	archive := filepath.Join(*output, "dzdeploy_"+*platform+"_"+*arch+".zip")
+	prefix := "dzdeploy_"
+	if *version != "" {
+		prefix += *version + "_"
+	}
+	archive := filepath.Join(*output, prefix+*platform+"_"+*arch+".zip")
 	f, err := os.Create(archive)
 	if err != nil {
 		return err
 	}
 	defer f.Close()
 	z := zip.NewWriter(f)
+	defer z.Close()
 	checksums := map[string]string{}
-	for name, source := range files {
+	names := make([]string, 0, len(files))
+	for name := range files {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	for _, name := range names {
+		source := files[name]
 		raw, err := os.ReadFile(source)
 		if err != nil {
 			z.Close()
