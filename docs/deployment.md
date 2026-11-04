@@ -1,14 +1,21 @@
 # Go DayZ deployment
 
-## Build and configure
+## Install and configure
+
+Install the pinned [dzdeploy v0.1.0 release](https://github.com/jsirianni/dzdeploy/releases/tag/v0.1.0) from the repository root with native scripting:
 
 ```text
-go build -o .tools/bin/ ./cmd/dzdeploy
+# Windows: powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1
+# Linux: bash scripts/install-dzdeploy.sh
 ```
 
-Windows produces `.tools/bin/dzdeploy.exe`; Linux produces `.tools/bin/dzdeploy`. These are the only supported client platforms. Add the directory to PATH or use its full path. The module selects Go 1.27.3. Go is not needed to run the compiled executable. Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
+Windows requires PowerShell 5.1 or newer. Linux requires Bash, curl, unzip, and sha256sum. The installer selects Windows/Linux and amd64/arm64, verifies the release checksum manifest against a committed SHA-256 pin, verifies the selected ZIP, and installs its complete contents under ignored `.tools/bin/`. Add that directory to PATH or invoke `.tools/bin/dzdeploy.exe` on Windows and `.tools/bin/dzdeploy` on Linux. Go is not required; Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
 
-For a portable distribution containing the client, Windows host companion, SSH script, example YAML, and checksums, run `go run ./cmd/dzdeploy-package`. `--os windows|linux --arch amd64|arm64` selects the client platform. CI publishes Windows/Linux ZIP artifacts. Keep `agents/windows-amd64/dzdeploy.exe` beside the extracted Linux client; Windows amd64 clients upload their own executable. Source builds can select another companion through YAML's optional `agent_binary` path.
+Keep `agents/windows-amd64/dzdeploy.exe` beside the client for Linux and Windows arm64 provisioning. Windows amd64 clients upload their own executable. The release also supplies the bootstrap script, example configuration, and operator documentation. Installation never overwrites the repository's ignored `deploy.yaml`, SSH keys, or host state and does not deploy or restart anything. The tracked bootstrap script remains available at `scripts/bootstrap-windows.ps1`.
+
+For manual installation, download the matching ZIP and `checksums.txt` from v0.1.0, compare the checksum file's SHA-256 with the checksum manifest pin in `scripts/install-dzdeploy.ps1` or `scripts/install-dzdeploy.sh`, verify the ZIP's SHA-256 against its entry, then extract the complete ZIP into `.tools/bin/`. Use `Get-FileHash -Algorithm SHA256` on Windows or `sha256sum` on Linux. To update dzdeploy, review a new upstream release, update the version and checksum manifest pin in both native installers through a PR, and let Windows/Linux CI verify it. `dzdeploy version` in v0.1.0 reports the protocol, not the release number; the installer records the selected release in its output.
+
+Run commands from this configuration checkout, or pass `--repo /path/to/dayz_config`. Preserve `internal/deploy/targets.json` at its current path: v0.1.0 reads it from the committed configuration revision when building deployments. Source, tool unit tests, packaging, and releases are maintained in [jsirianni/dzdeploy](https://github.com/jsirianni/dzdeploy). The notifier and Proxmox projects remain separate Go modules here.
 
 `deploy.yaml` is the single user-maintained configuration file. A local placeholder copy is provided; fresh clones should copy `deploy.example.yaml` to `deploy.yaml`. Both that populated file and `.deploy/` are ignored by Git. Fill the three host addresses, SSH sources, paths, Steam account names, and verified listener ports. Unknown fields, duplicate keys, multiple documents, and unsupported aliases/versions are rejected.
 
@@ -147,17 +154,14 @@ Protected `releases/`, `backups/`, `results/`, and `logs/` hold packages, preima
 ```text
 dzdeploy validate all
 dzdeploy validate nasdara-staging --offline
-go test ./...
-go test -race ./...
-go vet ./...
-go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+# Isolated packaging check (after tools install):
+# Windows: powershell.exe -NoProfile -File scripts/verify-dzdeploy-checkout.ps1
+# Linux: bash scripts/verify-dzdeploy-checkout.sh
 ```
 
-The Go installer downloads the Windows/Linux release and verifies its SHA-256 digest. Runtime validation invokes the binary directly. `--offline` is local-validation-only; deployments check the release. Missing/failed validators or unexpected help block deployment; warnings are reported.
+`dzdeploy tools install` downloads the Windows/Linux dzcli release and verifies its SHA-256 digest. Runtime validation invokes the binary directly. `--offline` is local-validation-only; deployments check the release. Missing/failed validators or unexpected help block deployment; warnings are reported.
 
-Run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-bootstrap-windows.ps1` for the mocked bootstrap suite; it changes only an isolated temporary directory. CI runs it using Windows PowerShell, without provisioning the runner. `go run ./cmd/dzdeploy-package` verifies portable distribution builds. Optional `DZDEPLOY_CHECK_VENDOR_DOWNLOADS=1` Go tests verify actual vendor download signatures without executing installers.
-
-CI also runs `scripts/test-bootstrap-windows-integration.ps1 -DisposableRunner` on disposable Windows Server 2022/2025 GitHub-hosted runners. It simulates unavailable Windows capabilities, downloads the real verified ZIP, starts the real SSH service, authenticates with an ephemeral test key, transfers a file using SFTP, and verifies a rerun preserves the host fingerprint. This test refuses to run on operator workstations and existing game servers. CI results demonstrate runner acceptance; target-server acceptance requires running the script on those servers.
+This repository's CI installs the pinned release and runs read-only configuration validation on Windows and Linux. Bootstrap, SSH, Windows service, race, vulnerability, and portable-package tests belong to the standalone dzdeploy repository. Publishing or installing a client does not upgrade an enrolled host agent; host upgrades remain separate authorized maintenance operations.
 
 Baseline: 13 checks, no failures, three existing Deer Isle economy warnings. Local validation does not establish runtime behavior. Live rollout is deferred until YAML is populated. On a fresh staging VM verify that the script and one deploy command are sufficient, including in-command Steam prompts. Then verify copy-only PID preservation, clean restart/persistence, update/overlay ordering, managed deletion with stock/player data preserved, rollback, interrupted enrollment/SSH recovery, reboot startup without RDP, password-free VPP for allowlisted admins, and denial for unauthorized players. Then enroll each other host separately.
 

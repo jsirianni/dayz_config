@@ -2,7 +2,7 @@
 
 # DayZ Config
 
-DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients managing the three Windows servers under `servers/current/`.
+DayZ configuration using the released `dzdeploy` CLI for Windows and Linux clients managing the three Windows servers under `servers/current/`.
 
 ## Contents
 
@@ -16,9 +16,9 @@ DayZ configuration and the Go `dzdeploy` CLI for Windows and Linux clients manag
 
 ## Deployment
 
-Build: `go build -o .tools/bin/ ./cmd/dzdeploy`. Populate the ignored `deploy.yaml` using `deploy.example.yaml`, then follow [the deployment runbook](docs/deployment.md). Routine deployment uses native Go SSH/SFTP and a Windows service, with no PowerShell dependency.
+Install [dzdeploy v0.1.0](https://github.com/jsirianni/dzdeploy/releases/tag/v0.1.0): `powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1` (Windows) or `bash scripts/install-dzdeploy.sh` (Linux) (checksum-verified complete package in `.tools/bin/`). Go is not required. Populate the ignored `deploy.yaml` using `deploy.example.yaml`, then follow [the deployment runbook](docs/deployment.md). Routine deployment uses native Go SSH/SFTP and a Windows service, with no PowerShell dependency.
 
-Fresh Windows servers need two provisioning steps: copy only [bootstrap-windows.ps1](scripts/bootstrap-windows.ps1) to the server and run it as Administrator with the allowed source network, then run `dzdeploy deploy <target> --restart` on the client. The script already embeds the deployment client's public key. Deployment installs prerequisites, handles Steam login prompts, trusts the SSH host on first connection, and enrolls the Windows service automatically. Portable client packages are built with `go run ./cmd/dzdeploy-package` and published as CI artifacts.
+Fresh Windows servers need two provisioning steps: copy only [bootstrap-windows.ps1](scripts/bootstrap-windows.ps1) to the server and run it as Administrator with the allowed source network, then run `dzdeploy deploy <target> --restart` on the client. The script already embeds the deployment client's public key. Deployment installs prerequisites, handles Steam login prompts, trusts the SSH host on first connection, and enrolls the Windows service automatically. Portable client packages are published by the standalone dzdeploy repository. This repository�s Windows/Linux CI installs the pinned release and validates server configuration.
 
 ```text
 dzdeploy doctor nasdara-staging

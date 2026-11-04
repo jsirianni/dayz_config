@@ -7,7 +7,8 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  validate:
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -15,58 +16,35 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.27.3'
-      - run: go test ./...
-      - run: go vet ./...
-      - run: go build -o .tools/bin/ ./cmd/dzdeploy
-      - name: Test SSH bootstrap with mocked Windows facilities
+      - name: Install and validate on Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash -n scripts/install-dzdeploy.sh scripts/verify-dzdeploy-checkout.sh
+          bash scripts/install-dzdeploy.sh
+          .tools/bin/dzdeploy --help
+          .tools/bin/dzdeploy version
+          .tools/bin/dzdeploy tools install
+          .tools/bin/dzdeploy validate all --json > .tools/config-validation.json
+          bash scripts/verify-dzdeploy-checkout.sh
+      - name: Install and validate on Windows
         if: runner.os == 'Windows'
         shell: powershell
-        run: .\scripts\test-bootstrap-windows.ps1
-      - run: go run ./cmd/dzdeploy-package
+        run: |
+          .\scripts\install-dzdeploy.ps1
+          & .tools/bin/dzdeploy.exe --help
+          if ($LASTEXITCODE -ne 0) { throw 'Help smoke check failed.' }
+          & .tools/bin/dzdeploy.exe version
+          if ($LASTEXITCODE -ne 0) { throw 'Version smoke check failed.' }
+          & .tools/bin/dzdeploy.exe tools install
+          if ($LASTEXITCODE -ne 0) { throw 'dzcli installation failed.' }
+          & .tools/bin/dzdeploy.exe validate all --json > .tools/config-validation.json
+          if ($LASTEXITCODE -ne 0) { throw 'Configuration validation failed.' }
+          .\scripts\verify-dzdeploy-checkout.ps1
       - uses: actions/upload-artifact@v4
-        with:
-          name: dzdeploy-${{ runner.os }}
-          path: .tools/packages/*.zip
-  bootstrap-integration:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, windows-2025]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test real SSH bootstrap with unavailable Windows capabilities
-        shell: powershell
-        run: .\scripts\test-bootstrap-windows-integration.ps1 -DisposableRunner
-      - name: Upload SSH integration diagnostics
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: ssh-bootstrap-${{ matrix.os }}
-          path: .tools/bootstrap-integration/
+          name: config-validation-${{ runner.os }}
+          path: .tools/config-validation.json
           if-no-files-found: warn
-  race-and-vulnerabilities:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.27.3'
-      - run: go test -race ./...
-      - run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
-  operator-integration:
-    runs-on: windows-2025
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.27.3'
-      - name: Test isolated service, hard restart, backup, and restore
-        run: go test ./internal/deploy -run '^TestOperatorServiceIntegration$' -count=1 -v -timeout 10m
-        env:
-          DZDEPLOY_OPERATOR_INTEGRATION: '1'

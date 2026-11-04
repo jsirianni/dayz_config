@@ -1,15 +1,22 @@
-.PHONY: build check
-build:
-	go build -o .tools/bin/ ./cmd/dzdeploy
+DZDEPLOY = .tools/bin/dzdeploy
+ifeq ($(OS),Windows_NT)
+INSTALL_DZDEPLOY = powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1
+VERIFY_DZDEPLOY = powershell.exe -NoProfile -File scripts/verify-dzdeploy-checkout.ps1
+else
+INSTALL_DZDEPLOY = bash scripts/install-dzdeploy.sh
+VERIFY_DZDEPLOY = bash scripts/verify-dzdeploy-checkout.sh
+endif
 
-check:
-	go vet ./...
-	go test ./...
+.PHONY: tools build check test
+tools:
+	$(INSTALL_DZDEPLOY)
 
-.PHONY: test
-test:
-	go test ./...
+# Compatibility alias: the tool is downloaded, never built in this repo.
+build: tools
 
-.PHONY: tidy
-tidy:
-	go mod tidy
+check: tools
+	$(DZDEPLOY) tools install
+	$(DZDEPLOY) validate all
+
+test: check
+	$(VERIFY_DZDEPLOY)
