@@ -7,7 +7,8 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  validate:
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -15,58 +16,25 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-python@v5
         with:
-          go-version: '1.27.3'
-      - run: go test ./...
-      - run: go vet ./...
-      - run: go build -o .tools/bin/ ./cmd/dzdeploy
-      - name: Test SSH bootstrap with mocked Windows facilities
-        if: runner.os == 'Windows'
-        shell: powershell
-        run: .\scripts\test-bootstrap-windows.ps1
-      - run: go run ./cmd/dzdeploy-package
+          python-version: '3.x'
+      - run: python -m unittest discover -s scripts -p 'test_install_dzdeploy.py'
+      - name: Install pinned dzdeploy release
+        run: python scripts/install-dzdeploy.py
+      - name: Smoke-test and validate configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          .tools/bin/dzdeploy --help
+          .tools/bin/dzdeploy version
+          .tools/bin/dzdeploy tools install
+          .tools/bin/dzdeploy validate all --json > .tools/config-validation.json
+      - name: Verify packaging from a Go-free configuration checkout
+        run: python scripts/verify-dzdeploy-checkout.py
       - uses: actions/upload-artifact@v4
-        with:
-          name: dzdeploy-${{ runner.os }}
-          path: .tools/packages/*.zip
-  bootstrap-integration:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2022, windows-2025]
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - name: Test real SSH bootstrap with unavailable Windows capabilities
-        shell: powershell
-        run: .\scripts\test-bootstrap-windows-integration.ps1 -DisposableRunner
-      - name: Upload SSH integration diagnostics
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: ssh-bootstrap-${{ matrix.os }}
-          path: .tools/bootstrap-integration/
+          name: config-validation-${{ runner.os }}
+          path: .tools/config-validation.json
           if-no-files-found: warn
-  race-and-vulnerabilities:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.27.3'
-      - run: go test -race ./...
-      - run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
-  operator-integration:
-    runs-on: windows-2025
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.27.3'
-      - name: Test isolated service, hard restart, backup, and restore
-        run: go test ./internal/deploy -run '^TestOperatorServiceIntegration$' -count=1 -v -timeout 10m
-        env:
-          DZDEPLOY_OPERATOR_INTEGRATION: '1'

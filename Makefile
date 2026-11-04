@@ -1,15 +1,16 @@
-.PHONY: build check
-build:
-	go build -o .tools/bin/ ./cmd/dzdeploy
+PYTHON ?= python3
+DZDEPLOY = .tools/bin/dzdeploy
 
-check:
-	go vet ./...
-	go test ./...
+.PHONY: tools build check test
+tools:
+	$(PYTHON) scripts/install-dzdeploy.py
 
-.PHONY: test
-test:
-	go test ./...
+# Compatibility alias: the tool is downloaded, never built in this repo.
+build: tools
 
-.PHONY: tidy
-tidy:
-	go mod tidy
+check: tools
+	$(DZDEPLOY) tools install
+	$(DZDEPLOY) validate all
+
+test: check
+	$(PYTHON) -m unittest discover -s scripts -p 'test_install_dzdeploy.py'
