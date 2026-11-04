@@ -16,22 +16,32 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - run: python -m unittest discover -s scripts -p 'test_install_dzdeploy.py'
-      - name: Install pinned dzdeploy release
-        run: python scripts/install-dzdeploy.py
-      - name: Smoke-test and validate configuration
+      - name: Install and validate on Linux
+        if: runner.os == 'Linux'
         shell: bash
         run: |
           set -euo pipefail
+          bash -n scripts/install-dzdeploy.sh scripts/verify-dzdeploy-checkout.sh
+          bash scripts/install-dzdeploy.sh
           .tools/bin/dzdeploy --help
           .tools/bin/dzdeploy version
           .tools/bin/dzdeploy tools install
           .tools/bin/dzdeploy validate all --json > .tools/config-validation.json
-      - name: Verify packaging from a Go-free configuration checkout
-        run: python scripts/verify-dzdeploy-checkout.py
+          bash scripts/verify-dzdeploy-checkout.sh
+      - name: Install and validate on Windows
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          .\scripts\install-dzdeploy.ps1
+          & .tools/bin/dzdeploy.exe --help
+          if ($LASTEXITCODE -ne 0) { throw 'Help smoke check failed.' }
+          & .tools/bin/dzdeploy.exe version
+          if ($LASTEXITCODE -ne 0) { throw 'Version smoke check failed.' }
+          & .tools/bin/dzdeploy.exe tools install
+          if ($LASTEXITCODE -ne 0) { throw 'dzcli installation failed.' }
+          & .tools/bin/dzdeploy.exe validate all --json > .tools/config-validation.json
+          if ($LASTEXITCODE -ne 0) { throw 'Configuration validation failed.' }
+          .\scripts\verify-dzdeploy-checkout.ps1
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -5,7 +5,7 @@ This repository contains DayZ server configuration. For any task that inspects o
 Before changing supported DayZ config files:
 
 1. Read and follow `skills/dzcli/SKILL.md`.
-2. Run `python scripts/install-dzdeploy.py`, then `.tools/bin/dzdeploy tools install` (use `.tools/bin/dzdeploy.exe` on Windows) from the repository root to install or update the repo-local `dzcli` binary. The legacy `.\skills\dzcli\scripts\install-dzcli.ps1` remains supported.
+2. Run `powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1` (Windows) or `bash scripts/install-dzdeploy.sh` (Linux), then `.tools/bin/dzdeploy tools install` (use `.tools/bin/dzdeploy.exe` on Windows) from the repository root to install or update the repo-local `dzcli` binary. The legacy `.\skills\dzcli\scripts\install-dzcli.ps1` remains supported.
 3. Set `$dz = Join-Path (Get-Location) ".tools\dzcli\dzcli.exe"` and invoke commands as `& $dz ...`.
 4. Prefer `dzcli get`, `create`, `update`, `delete`, or `fix` commands over direct edits for supported files.
 5. Preview mutations with `--dry-run` before applying them.
@@ -34,7 +34,7 @@ Do not commit downloaded tool binaries. The installer writes them under `.tools/
 
 ## Deployment
 
-Use the released `dzdeploy` v0.1.0 CLI; see `docs/deployment.md`. Install with `python scripts/install-dzdeploy.py` (Python 3). The executable is `.tools/bin/dzdeploy.exe` on Windows and `.tools/bin/dzdeploy` on Linux. Keep the complete extracted package, including `agents/windows-amd64/dzdeploy.exe`. Preserve tracked `internal/deploy/targets.json`: the released client reads it from the deployment commit.
+Use the released `dzdeploy` v0.1.0 CLI; see `docs/deployment.md`. Install with `powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1` on Windows or `bash scripts/install-dzdeploy.sh` on Linux. The executable is `.tools/bin/dzdeploy.exe` on Windows and `.tools/bin/dzdeploy` on Linux. Keep the complete extracted package, including `agents/windows-amd64/dzdeploy.exe`. Preserve tracked `internal/deploy/targets.json`: the released client reads it from the deployment commit.
 
 Only Windows and Linux clients are supported. Install and validate on those platforms; the host agent runs only on Windows.
 

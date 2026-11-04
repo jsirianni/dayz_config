@@ -13,10 +13,11 @@ Use `dzcli` before manual edits whenever the task touches supported DayZ configu
 
 From the repository root, install or update the repo-local binary before using `dzcli`:
 
-Preferred released-tool workflow (Python 3 for installation; no Go dependency):
+Preferred released-tool workflow (native PowerShell or Bash; no Go dependency):
 
 ```text
-python scripts/install-dzdeploy.py
+# Windows: powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1
+# Linux: bash scripts/install-dzdeploy.sh
 .tools/bin/dzdeploy tools install
 .tools/bin/dzdeploy validate all
 ```

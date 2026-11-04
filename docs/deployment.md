@@ -2,17 +2,18 @@
 
 ## Install and configure
 
-Install the pinned [dzdeploy v0.1.0 release](https://github.com/jsirianni/dzdeploy/releases/tag/v0.1.0) from the repository root using Python 3:
+Install the pinned [dzdeploy v0.1.0 release](https://github.com/jsirianni/dzdeploy/releases/tag/v0.1.0) from the repository root with native scripting:
 
 ```text
-python scripts/install-dzdeploy.py
+# Windows: powershell.exe -NoProfile -File scripts/install-dzdeploy.ps1
+# Linux: bash scripts/install-dzdeploy.sh
 ```
 
-Use `python3` on Linux when required. The installer selects Windows/Linux and amd64/arm64, verifies the release checksum manifest against a committed SHA-256 pin, verifies the selected ZIP, and installs its complete contents under ignored `.tools/bin/`. Add that directory to PATH or invoke `.tools/bin/dzdeploy.exe` on Windows and `.tools/bin/dzdeploy` on Linux. Go is not required; Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
+Windows requires PowerShell 5.1 or newer. Linux requires Bash, curl, unzip, and sha256sum. The installer selects Windows/Linux and amd64/arm64, verifies the release checksum manifest against a committed SHA-256 pin, verifies the selected ZIP, and installs its complete contents under ignored `.tools/bin/`. Add that directory to PATH or invoke `.tools/bin/dzdeploy.exe` on Windows and `.tools/bin/dzdeploy` on Linux. Go is not required; Git is required on the client. Fresh Windows Server 2019/2022/2025 x64 hosts need no Go, SteamCMD, or DayZ installation.
 
 Keep `agents/windows-amd64/dzdeploy.exe` beside the client for Linux and Windows arm64 provisioning. Windows amd64 clients upload their own executable. The release also supplies the bootstrap script, example configuration, and operator documentation. Installation never overwrites the repository's ignored `deploy.yaml`, SSH keys, or host state and does not deploy or restart anything. The tracked bootstrap script remains available at `scripts/bootstrap-windows.ps1`.
 
-For manual installation, download the matching ZIP and `checksums.txt` from v0.1.0, compare the checksum file's SHA-256 with `CHECKSUMS_SHA256` in `scripts/install-dzdeploy.py`, verify the ZIP's SHA-256 against its entry, then extract the complete ZIP into `.tools/bin/`. Use `Get-FileHash -Algorithm SHA256` on Windows or `sha256sum` on Linux. To update dzdeploy, review a new upstream release, update both `VERSION` and the checksum manifest pin in the installer through a PR, and let Windows/Linux CI verify it. `dzdeploy version` in v0.1.0 reports the protocol, not the release number; the installer records the selected release in its output.
+For manual installation, download the matching ZIP and `checksums.txt` from v0.1.0, compare the checksum file's SHA-256 with the checksum manifest pin in `scripts/install-dzdeploy.ps1` or `scripts/install-dzdeploy.sh`, verify the ZIP's SHA-256 against its entry, then extract the complete ZIP into `.tools/bin/`. Use `Get-FileHash -Algorithm SHA256` on Windows or `sha256sum` on Linux. To update dzdeploy, review a new upstream release, update the version and checksum manifest pin in both native installers through a PR, and let Windows/Linux CI verify it. `dzdeploy version` in v0.1.0 reports the protocol, not the release number; the installer records the selected release in its output.
 
 Run commands from this configuration checkout, or pass `--repo /path/to/dayz_config`. Preserve `internal/deploy/targets.json` at its current path: v0.1.0 reads it from the committed configuration revision when building deployments. Source, tool unit tests, packaging, and releases are maintained in [jsirianni/dzdeploy](https://github.com/jsirianni/dzdeploy). The notifier and Proxmox projects remain separate Go modules here.
 
@@ -153,7 +154,9 @@ Protected `releases/`, `backups/`, `results/`, and `logs/` hold packages, preima
 ```text
 dzdeploy validate all
 dzdeploy validate nasdara-staging --offline
-python -m unittest discover -s scripts -p "test_install_dzdeploy.py"
+# Isolated packaging check (after tools install):
+# Windows: powershell.exe -NoProfile -File scripts/verify-dzdeploy-checkout.ps1
+# Linux: bash scripts/verify-dzdeploy-checkout.sh
 ```
 
 `dzdeploy tools install` downloads the Windows/Linux dzcli release and verifies its SHA-256 digest. Runtime validation invokes the binary directly. `--offline` is local-validation-only; deployments check the release. Missing/failed validators or unexpected help block deployment; warnings are reported.
